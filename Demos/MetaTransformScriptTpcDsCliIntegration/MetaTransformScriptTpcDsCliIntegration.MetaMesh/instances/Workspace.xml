@@ -16,6 +16,11 @@
       <ModelName>MetaSql</ModelName>
       <Name>sql</Name>
     </Workspace>
+    <Workspace Id="workspace:sql-diff" MeshId="mesh:default">
+      <Description>Diff evidence for the original and round-tripped TPC-DS MetaSql workspaces.</Description>
+      <ModelName>InstanceDiffModelEqual</ModelName>
+      <Name>sql-diff</Name>
+    </Workspace>
     <Workspace Id="workspace:sql-roundtrip" MeshId="mesh:default">
       <Description>Generated MetaSql workspace converted from the round-tripped TPC-DS transform workspace.</Description>
       <ModelName>MetaSql</ModelName>
@@ -25,6 +30,11 @@
       <Description>Generated transform script workspace imported from TPC-DS query files.</Description>
       <ModelName>MetaTransformScript</ModelName>
       <Name>transform</Name>
+    </Workspace>
+    <Workspace Id="workspace:transform-diff" MeshId="mesh:default">
+      <Description>Expected TPC-DS transform representation and emitted-file provenance differences.</Description>
+      <ModelName>InstanceDiffModelEqual</ModelName>
+      <Name>transform-diff</Name>
     </Workspace>
     <Workspace Id="workspace:transform-roundtrip" MeshId="mesh:default">
       <Description>Generated transform script workspace imported from emitted TPC-DS SQL.</Description>

@@ -860,25 +860,25 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-business-data-vault:convert-business-data-vault-to-sql" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:add-bridge-traversal-customerfulfillmenttraversalshipmentorder">
-      <Arguments>business-datavault-to-sql --workspace "{workspace:business-data-vault.location}" --implementation-workspace "{workspace:business-data-vault-implementation.location}" --database-name BusinessDataVaultCliIntegrationWorkspace --out "{workspace:sql.location}"</Arguments>
+      <Arguments>business-datavault-to-sql --workspace "{workspace:business-data-vault.location}" --implementation-workspace "{workspace:business-data-vault-implementation.location}" --database-name BusinessDataVaultCliIntegrationWorkspace --output-xml "{workspace:sql.location}"</Arguments>
       <Executable>meta-convert.exe</Executable>
       <Name>convert-business-data-vault-to-sql</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-business-data-vault:create-business-data-vault-workspace" OperationId="operation:build-and-deploy-business-data-vault">
-      <Arguments>new-workspace "{workspace:business-data-vault.location}"</Arguments>
+      <Arguments>create --xml "{workspace:business-data-vault.location}"</Arguments>
       <Executable>meta-datavault-business.exe</Executable>
       <Name>create-business-data-vault-workspace</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-business-data-vault:create-deploy-manifest" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:convert-business-data-vault-to-sql">
-      <Arguments>deploy-plan --source-workspace "{workspace:sql.location}" --connection-env {env:META_BI_BUSINESS_DV_SQL} --out "{workspace:deploy-manifest.location}"</Arguments>
+      <Arguments>deploy-plan --source-workspace "{workspace:sql.location}" --connection-env {env:META_BI_BUSINESS_DV_SQL} --output-xml "{workspace:deploy-manifest.location}"</Arguments>
       <Executable>meta-sql.exe</Executable>
       <Name>create-deploy-manifest</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-business-data-vault:create-verify-manifest" OperationId="operation:build-and-deploy-business-data-vault" PreviousStepId="operation-step:build-and-deploy-business-data-vault:deploy-sql">
-      <Arguments>deploy-plan --source-workspace "{workspace:sql.location}" --connection-env {env:META_BI_BUSINESS_DV_SQL} --out "{workspace:verify-manifest.location}"</Arguments>
+      <Arguments>deploy-plan --source-workspace "{workspace:sql.location}" --connection-env {env:META_BI_BUSINESS_DV_SQL} --output-xml "{workspace:verify-manifest.location}"</Arguments>
       <Executable>meta-sql.exe</Executable>
       <Name>create-verify-manifest</Name>
       <WorkingDirectory></WorkingDirectory>

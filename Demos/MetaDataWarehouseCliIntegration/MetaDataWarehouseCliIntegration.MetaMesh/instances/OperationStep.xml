@@ -188,19 +188,19 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:convert-to-sql" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:add-sales-amount">
-      <Arguments>data-warehouse-to-sql --workspace "{workspace:warehouse.location}" --implementation-workspace "{workspace:warehouse-implementation.location}" --database-name DataWarehouseCliIntegration --out "{workspace:sql.location}"</Arguments>
+      <Arguments>data-warehouse-to-sql --workspace "{workspace:warehouse.location}" --implementation-workspace "{workspace:warehouse-implementation.location}" --database-name DataWarehouseCliIntegration --output-xml "{workspace:sql.location}"</Arguments>
       <Executable>meta-convert.exe</Executable>
       <Name>convert-to-sql</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:create-deploy-plan" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:convert-to-sql">
-      <Arguments>deploy-plan --source-workspace "{workspace:sql.location}" --connection-env {env:META_BI_DW_SQL} --out "{workspace:deploy-manifest.location}"</Arguments>
+      <Arguments>deploy-plan --source-workspace "{workspace:sql.location}" --connection-env {env:META_BI_DW_SQL} --output-xml "{workspace:deploy-manifest.location}"</Arguments>
       <Executable>meta-sql.exe</Executable>
       <Name>create-deploy-plan</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:create-verify-plan" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:deploy-sql">
-      <Arguments>deploy-plan --source-workspace "{workspace:sql.location}" --connection-env {env:META_BI_DW_SQL} --out "{workspace:verify-manifest.location}"</Arguments>
+      <Arguments>deploy-plan --source-workspace "{workspace:sql.location}" --connection-env {env:META_BI_DW_SQL} --output-xml "{workspace:verify-manifest.location}"</Arguments>
       <Executable>meta-sql.exe</Executable>
       <Name>create-verify-plan</Name>
       <WorkingDirectory></WorkingDirectory>
@@ -212,7 +212,7 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:new-workspace" OperationId="operation:build-and-deploy-warehouse">
-      <Arguments>new-workspace "{workspace:warehouse.location}"</Arguments>
+      <Arguments>create --xml "{workspace:warehouse.location}"</Arguments>
       <Executable>meta-data-warehouse.exe</Executable>
       <Name>new-workspace</Name>
       <WorkingDirectory></WorkingDirectory>

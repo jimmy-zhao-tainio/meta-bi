@@ -2,13 +2,13 @@
 <MetaMesh>
   <OperationStepList>
     <OperationStep Id="operation-step:bind-transforms:bind-transform-workspace" OperationId="operation:bind-transforms" PreviousStepId="operation-step:bind-transforms:import-invoice-window">
-      <Arguments>bind --transform-workspace "{workspace:transform.location}" --source-schema "{workspace:schema.location}" --target-schema "{workspace:schema.location}" --execute-system MetaTransformBindingCliIntegration --new-workspace "{workspace:binding.location}"</Arguments>
+      <Arguments>bind --transform-workspace "{workspace:transform.location}" --source-schema "{workspace:schema.location}" --target-schema "{workspace:schema.location}" --execute-system MetaTransformBindingCliIntegration --output-xml "{workspace:binding.location}"</Arguments>
       <Executable>meta-transform-binding.exe</Executable>
       <Name>bind-transform-workspace</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:bind-transforms:import-customer-order-summary" OperationId="operation:bind-transforms">
-      <Arguments>from sql-file --path SourceViews\001_customer_order_summary\view.sql --target sales.CustomerOrderSummary --new-workspace "{workspace:transform.location}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\001_customer_order_summary\view.sql --target sales.CustomerOrderSummary --output-xml "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-customer-order-summary</Name>
       <WorkingDirectory></WorkingDirectory>

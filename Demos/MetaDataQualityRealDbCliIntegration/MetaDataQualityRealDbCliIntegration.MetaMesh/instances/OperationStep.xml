@@ -148,13 +148,13 @@
       <Name>deploy-data-quality-sql</Name>
     </OperationStep>
     <OperationStep Id="operation-step:build-real-db-data-quality:import-source-views" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:deploy-027-customer-campaign-extra-outlier-01">
-      <Arguments>from sql-files --manifest SourceViews.manifest.tsv --new-workspace "{workspace:transform.location}" --report SourceViews.import-report.tsv</Arguments>
+      <Arguments>from sql-files --manifest SourceViews.manifest.tsv --output-xml "{workspace:transform.location}" --report SourceViews.import-report.tsv</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-source-views</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-real-db-data-quality:infer-data-quality" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:import-source-views">
-      <Arguments>from-transform-workspace --transform-workspace "{workspace:transform.location}" --new-workspace "{workspace:data-quality.location}"</Arguments>
+      <Arguments>from-transform-workspace --transform-workspace "{workspace:transform.location}" --output-xml "{workspace:data-quality.location}"</Arguments>
       <Executable>meta-data-quality.exe</Executable>
       <Name>infer-data-quality</Name>
       <WorkingDirectory></WorkingDirectory>

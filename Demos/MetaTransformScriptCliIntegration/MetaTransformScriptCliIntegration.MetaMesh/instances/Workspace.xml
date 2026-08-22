@@ -6,6 +6,11 @@
       <ModelName>MetaSql</ModelName>
       <Name>sql</Name>
     </Workspace>
+    <Workspace Id="workspace:sql-diff" MeshId="mesh:default">
+      <Description>Diff evidence for the original and round-tripped MetaSql workspaces.</Description>
+      <ModelName>InstanceDiffModelEqual</ModelName>
+      <Name>sql-diff</Name>
+    </Workspace>
     <Workspace Id="workspace:sql-roundtrip" MeshId="mesh:default">
       <Description>Generated MetaSql workspace converted from the round-tripped transform workspace.</Description>
       <ModelName>MetaSql</ModelName>

@@ -91,12 +91,6 @@
       <Name>add-order-date-key</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
-    <OperationStep Id="operation-step:author-analytics-model:add-sales-amount-aggregation" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-sales-amount-measure">
-      <Arguments>add-aggregation-behavior --workspace "{workspace:analytics.location}" --id SalesAmountAggregation --measure SalesAmount --function Sum</Arguments>
-      <Executable>meta-analytics.exe</Executable>
-      <Name>add-sales-amount-aggregation</Name>
-      <WorkingDirectory></WorkingDirectory>
-    </OperationStep>
     <OperationStep Id="operation-step:author-analytics-model:add-sales-amount-column" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-customer-sales-key">
       <Arguments>add-attribute --workspace "{workspace:analytics.location}" --id SalesAmountColumn --table Sales --name SalesAmount --data-type-id meta:type:Decimal --is-hidden true --summarize-by Sum</Arguments>
       <Executable>meta-analytics.exe</Executable>
@@ -104,7 +98,7 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:author-analytics-model:add-sales-amount-measure" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-sales-customer-relationship">
-      <Arguments>add-measure --workspace "{workspace:analytics.location}" --id SalesAmount --table Sales --source-attribute SalesAmountColumn --name "Sales Amount" --data-type-id meta:type:Decimal --format-string "#,0.00" --display-folder Sales</Arguments>
+      <Arguments>add-measure --workspace "{workspace:analytics.location}" --id SalesAmount --table Sales --source-attribute SalesAmountColumn --name "Sales Amount" --data-type-id meta:type:Decimal --format-string "#,0.00" --display-folder Sales --aggregate-function Sum</Arguments>
       <Executable>meta-analytics.exe</Executable>
       <Name>add-sales-amount-measure</Name>
       <WorkingDirectory></WorkingDirectory>
@@ -121,7 +115,7 @@
       <Name>add-sales-order-date-relationship</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
-    <OperationStep Id="operation-step:author-analytics-model:add-sales-perspective" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-sales-target-aggregation">
+    <OperationStep Id="operation-step:author-analytics-model:add-sales-perspective" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-sales-target-measure">
       <Arguments>add-perspective --workspace "{workspace:analytics.location}" --id SalesPerspective --model Commerce --name Sales</Arguments>
       <Executable>meta-analytics.exe</Executable>
       <Name>add-sales-perspective</Name>
@@ -157,12 +151,6 @@
       <Name>add-sales-readers-group</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
-    <OperationStep Id="operation-step:author-analytics-model:add-sales-readers-region-filter" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-sales-readers-group">
-      <Arguments>add-role-filter --workspace "{workspace:analytics.location}" --id SalesReadersRegionFilter --role SalesReaders --table Customer --expression-language DAX --expression "Customer[Region] = USERNAME()"</Arguments>
-      <Executable>meta-analytics.exe</Executable>
-      <Name>add-sales-readers-region-filter</Name>
-      <WorkingDirectory></WorkingDirectory>
-    </OperationStep>
     <OperationStep Id="operation-step:author-analytics-model:add-sales-readers-region-permission" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-sales-readers-table-permission">
       <Arguments>add-attribute-permission --workspace "{workspace:analytics.location}" --id SalesReadersCustomerRegionPermission --role SalesReaders --attribute CustomerRegion --metadata-permission None</Arguments>
       <Executable>meta-analytics.exe</Executable>
@@ -175,7 +163,7 @@
       <Name>add-sales-readers-role</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
-    <OperationStep Id="operation-step:author-analytics-model:add-sales-readers-table-permission" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-sales-readers-region-filter">
+    <OperationStep Id="operation-step:author-analytics-model:add-sales-readers-table-permission" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-sales-readers-group">
       <Arguments>add-table-permission --workspace "{workspace:analytics.location}" --id SalesReadersSalesTablePermission --role SalesReaders --table Sales --metadata-permission Read</Arguments>
       <Executable>meta-analytics.exe</Executable>
       <Name>add-sales-readers-table-permission</Name>
@@ -187,20 +175,14 @@
       <Name>add-sales-table</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
-    <OperationStep Id="operation-step:author-analytics-model:add-sales-target-aggregation" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-sales-target-measure">
-      <Arguments>add-aggregation-behavior --workspace "{workspace:analytics.location}" --id SalesTargetAggregation --measure SalesTarget --function Sum</Arguments>
-      <Executable>meta-analytics.exe</Executable>
-      <Name>add-sales-target-aggregation</Name>
-      <WorkingDirectory></WorkingDirectory>
-    </OperationStep>
     <OperationStep Id="operation-step:author-analytics-model:add-sales-target-column" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-sales-amount-column">
       <Arguments>add-attribute --workspace "{workspace:analytics.location}" --id SalesTargetColumn --table Sales --name SalesTarget --data-type-id meta:type:Decimal --is-hidden true --summarize-by Sum</Arguments>
       <Executable>meta-analytics.exe</Executable>
       <Name>add-sales-target-column</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
-    <OperationStep Id="operation-step:author-analytics-model:add-sales-target-measure" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-sales-amount-aggregation">
-      <Arguments>add-measure --workspace "{workspace:analytics.location}" --id SalesTarget --table Sales --source-attribute SalesTargetColumn --name "Sales Target" --data-type-id meta:type:Decimal --format-string "#,0.00" --display-folder Sales</Arguments>
+    <OperationStep Id="operation-step:author-analytics-model:add-sales-target-measure" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:add-sales-amount-measure">
+      <Arguments>add-measure --workspace "{workspace:analytics.location}" --id SalesTarget --table Sales --source-attribute SalesTargetColumn --name "Sales Target" --data-type-id meta:type:Decimal --format-string "#,0.00" --display-folder Sales --aggregate-function Sum</Arguments>
       <Executable>meta-analytics.exe</Executable>
       <Name>add-sales-target-measure</Name>
       <WorkingDirectory></WorkingDirectory>
@@ -230,7 +212,7 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:author-analytics-model:new-workspace" OperationId="operation:author-analytics-model">
-      <Arguments>new-workspace "{workspace:analytics.location}"</Arguments>
+      <Arguments>create --xml "{workspace:analytics.location}"</Arguments>
       <Executable>meta-analytics.exe</Executable>
       <Name>new-workspace</Name>
       <WorkingDirectory></WorkingDirectory>

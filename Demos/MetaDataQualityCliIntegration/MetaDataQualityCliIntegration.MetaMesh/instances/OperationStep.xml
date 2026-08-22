@@ -23,7 +23,7 @@
       <Name>deploy-data-quality-sql</Name>
     </OperationStep>
     <OperationStep Id="operation-step:build-data-quality:discover-data-quality" OperationId="operation:build-data-quality" PreviousStepId="operation-step:build-data-quality:import-customer-invoice-transform">
-      <Arguments>from-transform-workspace --transform-workspace "{workspace:transform.location}" --new-workspace "{workspace:data-quality.location}"</Arguments>
+      <Arguments>from-transform-workspace --transform-workspace "{workspace:transform.location}" --output-xml "{workspace:data-quality.location}"</Arguments>
       <Executable>meta-data-quality.exe</Executable>
       <Name>discover-data-quality</Name>
       <WorkingDirectory></WorkingDirectory>
@@ -35,7 +35,7 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-data-quality:import-customer-order-transform" OperationId="operation:build-data-quality" PreviousStepId="operation-step:build-data-quality:deploy-customer-invoice-view">
-      <Arguments>from sql-file --path SourceViews\001_customer_order_coverage\view.sql --target dq.CustomerOrderCoverage --new-workspace "{workspace:transform.location}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\001_customer_order_coverage\view.sql --target dq.CustomerOrderCoverage --output-xml "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-customer-order-transform</Name>
       <WorkingDirectory></WorkingDirectory>

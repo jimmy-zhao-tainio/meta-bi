@@ -20,13 +20,13 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-phase2ab-data-quality:discover-data-quality" OperationId="operation:build-phase2ab-data-quality" PreviousStepId="operation-step:build-phase2ab-data-quality:import-customer-invoice-outlier-extra">
-      <Arguments>from-transform-workspace --transform-workspace "{workspace:transform.location}" --new-workspace "{workspace:data-quality.location}"</Arguments>
+      <Arguments>from-transform-workspace --transform-workspace "{workspace:transform.location}" --output-xml "{workspace:data-quality.location}"</Arguments>
       <Executable>meta-data-quality.exe</Executable>
       <Name>discover-data-quality</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-phase2ab-data-quality:discover-supported-data-quality" OperationId="operation:build-phase2ab-data-quality" PreviousStepId="operation-step:build-phase2ab-data-quality:convert-all-promoted-candidates">
-      <Arguments>from-transform-workspace --transform-workspace "{workspace:transform.location}" --new-workspace "{workspace:data-quality-supported.location}"</Arguments>
+      <Arguments>from-transform-workspace --transform-workspace "{workspace:transform.location}" --output-xml "{workspace:data-quality-supported.location}"</Arguments>
       <Executable>meta-data-quality.exe</Executable>
       <Name>discover-supported-data-quality</Name>
       <WorkingDirectory></WorkingDirectory>
@@ -86,7 +86,7 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-phase2ab-data-quality:import-customer-order-composite-01" OperationId="operation:build-phase2ab-data-quality">
-      <Arguments>from sql-code --code "SELECT c.CustomerId, c.RegionId, o.OrderId FROM sales.Customer c INNER JOIN sales.[Order] o ON c.CustomerId = o.CustomerId AND c.RegionId = o.RegionId" --name dq.CustomerOrderComposite01 --target dq.CustomerOrderComposite01 --new-workspace "{workspace:transform.location}"</Arguments>
+      <Arguments>from sql-code --code "SELECT c.CustomerId, c.RegionId, o.OrderId FROM sales.Customer c INNER JOIN sales.[Order] o ON c.CustomerId = o.CustomerId AND c.RegionId = o.RegionId" --name dq.CustomerOrderComposite01 --target dq.CustomerOrderComposite01 --output-xml "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-customer-order-composite-01</Name>
       <WorkingDirectory></WorkingDirectory>

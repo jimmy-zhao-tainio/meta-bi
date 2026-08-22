@@ -11,12 +11,6 @@
       <Executable>cmd.exe</Executable>
       <Name>remove-multi-dimensional-workspace</Name>
     </OperationStep>
-    <OperationStep Id="operation-step:deploy-multi-dimensional-model:add-aggregation" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:add-measure">
-      <Arguments>add-aggregation-behavior --workspace "{workspace:analytics.location}" --id SalesAmountAggregation --measure SalesAmount --function Sum</Arguments>
-      <Executable>meta-analytics.exe</Executable>
-      <Name>add-aggregation</Name>
-      <WorkingDirectory></WorkingDirectory>
-    </OperationStep>
     <OperationStep Id="operation-step:deploy-multi-dimensional-model:add-cell-permission" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:add-cube-action">
       <Arguments>add-cell-permission --workspace "{workspace:multi-dimensional.location}" --id ReaderSalesCells --security-role Readers --cube Commerce:cube --expression "Measures.CurrentMember IS [Measures].[Sales Amount]"</Arguments>
       <Executable>meta-multi-dimensional.exe</Executable>
@@ -48,7 +42,7 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:deploy-multi-dimensional-model:add-measure" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:add-relationship">
-      <Arguments>add-measure --workspace "{workspace:analytics.location}" --id SalesAmount --table Sales --source-attribute SalesAmountColumn --name "Sales Amount" --data-type-id meta:type:Decimal --format-string "#,0.00"</Arguments>
+      <Arguments>add-measure --workspace "{workspace:analytics.location}" --id SalesAmount --table Sales --source-attribute SalesAmountColumn --name "Sales Amount" --data-type-id meta:type:Decimal --format-string "#,0.00" --aggregate-function Sum</Arguments>
       <Executable>meta-analytics.exe</Executable>
       <Name>add-measure</Name>
       <WorkingDirectory></WorkingDirectory>
@@ -95,14 +89,14 @@
       <Name>add-sales-table</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
-    <OperationStep Id="operation-step:deploy-multi-dimensional-model:add-security-role" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:add-aggregation">
+    <OperationStep Id="operation-step:deploy-multi-dimensional-model:add-security-role" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:add-measure">
       <Arguments>add-security-role --workspace "{workspace:analytics.location}" --id Readers --model Commerce --name Readers --permission Read</Arguments>
       <Executable>meta-analytics.exe</Executable>
       <Name>add-security-role</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:deploy-multi-dimensional-model:convert-to-multi-dimensional" OperationId="operation:deploy-multi-dimensional-model" PreviousStepId="operation-step:deploy-multi-dimensional-model:add-security-role">
-      <Arguments>analytics-to-multi-dimensional --workspace "{workspace:analytics.location}" --out "{workspace:multi-dimensional.location}"</Arguments>
+      <Arguments>analytics-to-multi-dimensional --workspace "{workspace:analytics.location}" --output-xml "{workspace:multi-dimensional.location}"</Arguments>
       <Executable>meta-convert.exe</Executable>
       <Name>convert-to-multi-dimensional</Name>
       <WorkingDirectory></WorkingDirectory>
@@ -114,7 +108,7 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:deploy-multi-dimensional-model:new-analytics-workspace" OperationId="operation:deploy-multi-dimensional-model">
-      <Arguments>new-workspace "{workspace:analytics.location}"</Arguments>
+      <Arguments>create --xml "{workspace:analytics.location}"</Arguments>
       <Executable>meta-analytics.exe</Executable>
       <Name>new-analytics-workspace</Name>
       <WorkingDirectory></WorkingDirectory>

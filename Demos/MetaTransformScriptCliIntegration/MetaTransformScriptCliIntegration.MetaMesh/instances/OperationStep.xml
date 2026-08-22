@@ -37,19 +37,19 @@
       <Name>remove-transform-workspace</Name>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-sql:convert-roundtrip-transform-to-sql" OperationId="operation:round-trip-sql" PreviousStepId="operation-step:round-trip-sql:convert-transform-to-sql">
-      <Arguments>transform-script-to-sql --workspace "{workspace:transform-roundtrip.location}" --database-name CliIntegrationDb --out "{workspace:sql-roundtrip.location}"</Arguments>
+      <Arguments>transform-script-to-sql --workspace "{workspace:transform-roundtrip.location}" --database-name CliIntegrationDb --output-xml "{workspace:sql-roundtrip.location}"</Arguments>
       <Executable>meta-convert.exe</Executable>
       <Name>convert-roundtrip-transform-to-sql</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-sql:convert-transform-to-sql" OperationId="operation:round-trip-sql" PreviousStepId="operation-step:round-trip-sql:import-roundtripped-invoice-window">
-      <Arguments>transform-script-to-sql --workspace "{workspace:transform.location}" --database-name CliIntegrationDb --out "{workspace:sql.location}"</Arguments>
+      <Arguments>transform-script-to-sql --workspace "{workspace:transform.location}" --database-name CliIntegrationDb --output-xml "{workspace:sql.location}"</Arguments>
       <Executable>meta-convert.exe</Executable>
       <Name>convert-transform-to-sql</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-sql:diff-sql-workspaces" OperationId="operation:round-trip-sql" PreviousStepId="operation-step:round-trip-sql:convert-roundtrip-transform-to-sql">
-      <Arguments>instance diff "{workspace:sql.location}" "{workspace:sql-roundtrip.location}"</Arguments>
+      <Arguments>instance diff "{workspace:sql.location}" "{workspace:sql-roundtrip.location}" --output-xml "{workspace:sql-diff.location}"</Arguments>
       <Executable>meta.exe</Executable>
       <Name>diff-sql-workspaces</Name>
       <WorkingDirectory></WorkingDirectory>
@@ -67,7 +67,7 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-sql:import-customer-order-summary" OperationId="operation:round-trip-sql">
-      <Arguments>from sql-file --path SourceViews\001_customer_order_summary\view.sql --target sales.CustomerOrderSummary --new-workspace "{workspace:transform.location}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\001_customer_order_summary\view.sql --target sales.CustomerOrderSummary --output-xml "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-customer-order-summary</Name>
       <WorkingDirectory></WorkingDirectory>
@@ -79,7 +79,7 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-sql:import-roundtripped-customer-order-summary" OperationId="operation:round-trip-sql" PreviousStepId="operation-step:round-trip-sql:print-customer-order-summary-sql">
-      <Arguments>from sql-file --path RoundTrippedViews\view.sql --target sales.CustomerOrderSummary --new-workspace "{workspace:transform-roundtrip.location}"</Arguments>
+      <Arguments>from sql-file --path RoundTrippedViews\view.sql --target sales.CustomerOrderSummary --output-xml "{workspace:transform-roundtrip.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-roundtripped-customer-order-summary</Name>
       <WorkingDirectory></WorkingDirectory>

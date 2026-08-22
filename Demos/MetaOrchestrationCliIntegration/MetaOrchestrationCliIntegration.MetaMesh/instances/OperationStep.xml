@@ -153,14 +153,14 @@
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-complete-run-plan:infer-orchestration" OperationId="operation:create-complete-run-plan" PreviousStepId="operation-step:create-complete-run-plan:add-step-private-scratch">
-      <Arguments>infer --pipeline-workspace "{workspace:complete-pipeline.location}" --new-workspace "{workspace:complete-orchestration.location}"</Arguments>
+      <Arguments>infer --pipeline-workspace "{workspace:complete-pipeline.location}" --output-xml "{workspace:complete-orchestration.location}"</Arguments>
       <Description>Infer the complete MetaOrchestration workspace from the complete pipeline workspace.</Description>
       <Executable>meta-orchestration.exe</Executable>
       <Name>infer-orchestration</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-complete-run-plan:new-pipeline-workspace" OperationId="operation:create-complete-run-plan">
-      <Arguments>new-workspace "{workspace:complete-pipeline.location}"</Arguments>
+      <Arguments>create --xml "{workspace:complete-pipeline.location}"</Arguments>
       <Description>Create the complete MetaPipeline workspace.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>new-pipeline-workspace</Name>
@@ -230,7 +230,7 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-invalid-evidence:infer-invalid-orchestration" OperationId="operation:create-invalid-evidence" PreviousStepId="operation-step:create-invalid-evidence:add-step-write-shared-b">
-      <Arguments>infer --pipeline-workspace {workspace:invalid-pipeline.location} --new-workspace {workspace:invalid-orchestration.location}</Arguments>
+      <Arguments>infer --pipeline-workspace {workspace:invalid-pipeline.location} --output-xml {workspace:invalid-orchestration.location}</Arguments>
       <Description>Infer invalid orchestration and expect diagnostic exit code 4.</Description>
       <Executable>meta-orchestration.exe</Executable>
       <ExpectedExitCode>4</ExpectedExitCode>
@@ -245,7 +245,7 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-invalid-evidence:new-invalid-pipeline-workspace" OperationId="operation:create-invalid-evidence">
-      <Arguments>new-workspace {workspace:invalid-pipeline.location}</Arguments>
+      <Arguments>create --xml {workspace:invalid-pipeline.location}</Arguments>
       <Description>Create the invalid MetaPipeline workspace.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>new-invalid-pipeline-workspace</Name>
@@ -287,7 +287,7 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-policy-run-plan:infer-policy-orchestration" OperationId="operation:create-policy-run-plan" PreviousStepId="operation-step:create-policy-run-plan:add-step-merge-shared-landing">
-      <Arguments>infer --pipeline-workspace {workspace:policy-pipeline.location} --new-workspace {workspace:policy-orchestration.location}</Arguments>
+      <Arguments>infer --pipeline-workspace {workspace:policy-pipeline.location} --output-xml {workspace:policy-orchestration.location}</Arguments>
       <Description>Infer policy orchestration from the policy pipeline workspace.</Description>
       <Executable>meta-orchestration.exe</Executable>
       <Name>infer-policy-orchestration</Name>
@@ -315,7 +315,7 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-policy-run-plan:new-policy-pipeline-workspace" OperationId="operation:create-policy-run-plan">
-      <Arguments>new-workspace {workspace:policy-pipeline.location}</Arguments>
+      <Arguments>create --xml {workspace:policy-pipeline.location}</Arguments>
       <Description>Create the policy MetaPipeline workspace.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>new-policy-pipeline-workspace</Name>
@@ -420,7 +420,7 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:execute-failure-branch:infer-failure-orchestration" OperationId="operation:execute-failure-branch" PreviousStepId="operation-step:execute-failure-branch:add-step-record-failure">
-      <Arguments>infer --pipeline-workspace {workspace:failure-pipeline.location} --new-workspace {workspace:failure-orchestration.location}</Arguments>
+      <Arguments>infer --pipeline-workspace {workspace:failure-pipeline.location} --output-xml {workspace:failure-orchestration.location}</Arguments>
       <Description>Infer failure scenario orchestration.</Description>
       <Executable>meta-orchestration.exe</Executable>
       <Name>infer-failure-orchestration</Name>
@@ -434,7 +434,7 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:execute-failure-branch:new-failure-pipeline-workspace" OperationId="operation:execute-failure-branch">
-      <Arguments>new-workspace {workspace:failure-pipeline.location}</Arguments>
+      <Arguments>create --xml {workspace:failure-pipeline.location}</Arguments>
       <Description>Create the failure MetaPipeline workspace.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>new-failure-pipeline-workspace</Name>
@@ -481,7 +481,7 @@
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:prepare-shared-workspaces:bind-transforms" OperationId="operation:prepare-shared-workspaces" PreviousStepId="operation-step:prepare-shared-workspaces:import-independent-failure-followup">
-      <Arguments>bind --transform-workspace "{workspace:transform.location}" --source-schema "{workspace:schema.location}" --target-schema "{workspace:schema.location}" --execute-system MetaOrchestrationCliIntegration --new-workspace "{workspace:binding.location}"</Arguments>
+      <Arguments>bind --transform-workspace "{workspace:transform.location}" --source-schema "{workspace:schema.location}" --target-schema "{workspace:schema.location}" --execute-system MetaOrchestrationCliIntegration --output-xml "{workspace:binding.location}"</Arguments>
       <Description>Bind imported transforms against the demo schema.</Description>
       <Executable>meta-transform-binding.exe</Executable>
       <Name>bind-transforms</Name>
@@ -502,7 +502,7 @@
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:prepare-shared-workspaces:extract-schema" OperationId="operation:prepare-shared-workspaces" PreviousStepId="operation-step:prepare-shared-workspaces:create-pipeline-db">
-      <Arguments>extract sqlserver --new-workspace "{workspace:schema.location}" --connection-env {env:META_ORCHESTRATION_DEMO_SQL} --system MetaOrchestrationCliIntegration --all-schemas --all-tables</Arguments>
+      <Arguments>extract sqlserver --output-xml "{workspace:schema.location}" --connection-env {env:META_ORCHESTRATION_DEMO_SQL} --system MetaOrchestrationCliIntegration --all-schemas --all-tables</Arguments>
       <Description>Extract the demo SQL Server database into a MetaSchema workspace.</Description>
       <Executable>meta-schema.exe</Executable>
       <Name>extract-schema</Name>
@@ -593,7 +593,7 @@
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:prepare-shared-workspaces:import-stage-customer" OperationId="operation:prepare-shared-workspaces" PreviousStepId="operation-step:prepare-shared-workspaces:extract-schema">
-      <Arguments>from sql-file --path TransformScripts\stage_customer.sql --target dbo.StageCustomer --new-workspace "{workspace:transform.location}"</Arguments>
+      <Arguments>from sql-file --path TransformScripts\stage_customer.sql --target dbo.StageCustomer --output-xml "{workspace:transform.location}"</Arguments>
       <Description>Create the MetaTransformScript workspace with the first transform.</Description>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-stage-customer</Name>

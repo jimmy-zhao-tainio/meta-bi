@@ -794,25 +794,25 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:convert-raw-data-vault-to-sql" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:add-link-satellite-attribute-employeedepartmenthiredateattr">
-      <Arguments>raw-datavault-to-sql --workspace {workspace:raw-data-vault.location} --implementation-workspace {workspace:data-vault-implementation.location} --database-name RawDataVaultCliIntegration --out {workspace:sql.location}</Arguments>
+      <Arguments>raw-datavault-to-sql --workspace {workspace:raw-data-vault.location} --implementation-workspace {workspace:data-vault-implementation.location} --database-name RawDataVaultCliIntegration --output-xml {workspace:sql.location}</Arguments>
       <Executable>meta-convert.exe</Executable>
       <Name>convert-raw-data-vault-to-sql</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:create-deploy-manifest" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:convert-raw-data-vault-to-sql">
-      <Arguments>deploy-plan --source-workspace "{workspace:sql.location}" --connection-env {env:META_BI_RAW_DV_SQL} --out "{workspace:deploy-manifest.location}"</Arguments>
+      <Arguments>deploy-plan --source-workspace "{workspace:sql.location}" --connection-env {env:META_BI_RAW_DV_SQL} --output-xml "{workspace:deploy-manifest.location}"</Arguments>
       <Executable>meta-sql.exe</Executable>
       <Name>create-deploy-manifest</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:create-raw-data-vault-workspace" OperationId="operation:build-and-deploy-raw-data-vault">
-      <Arguments>new-workspace "{workspace:raw-data-vault.location}"</Arguments>
+      <Arguments>create --xml "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-datavault-raw.exe</Executable>
       <Name>create-raw-data-vault-workspace</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-raw-data-vault:create-verify-manifest" OperationId="operation:build-and-deploy-raw-data-vault" PreviousStepId="operation-step:build-and-deploy-raw-data-vault:deploy-sql">
-      <Arguments>deploy-plan --source-workspace "{workspace:sql.location}" --connection-env {env:META_BI_RAW_DV_SQL} --out "{workspace:verify-manifest.location}"</Arguments>
+      <Arguments>deploy-plan --source-workspace "{workspace:sql.location}" --connection-env {env:META_BI_RAW_DV_SQL} --output-xml "{workspace:verify-manifest.location}"</Arguments>
       <Executable>meta-sql.exe</Executable>
       <Name>create-verify-manifest</Name>
       <WorkingDirectory></WorkingDirectory>

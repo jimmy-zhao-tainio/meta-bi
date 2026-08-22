@@ -6,6 +6,11 @@
       <ModelName>MetaSql</ModelName>
       <Name>sql</Name>
     </Workspace>
+    <Workspace Id="workspace:sql-diff" MeshId="mesh:default">
+      <Description>Diff evidence for the original and round-tripped reference-corpus MetaSql workspaces.</Description>
+      <ModelName>InstanceDiffModelEqual</ModelName>
+      <Name>sql-diff</Name>
+    </Workspace>
     <Workspace Id="workspace:sql-roundtrip" MeshId="mesh:default">
       <Description>Generated MetaSql workspace converted from the round-tripped transform workspace.</Description>
       <ModelName>MetaSql</ModelName>
@@ -15,6 +20,11 @@
       <Description>Generated transform script workspace imported from the reference SQL corpus.</Description>
       <ModelName>MetaTransformScript</ModelName>
       <Name>transform</Name>
+    </Workspace>
+    <Workspace Id="workspace:transform-diff" MeshId="mesh:default">
+      <Description>Expected transform representation and emitted-file provenance differences.</Description>
+      <ModelName>InstanceDiffModelEqual</ModelName>
+      <Name>transform-diff</Name>
     </Workspace>
     <Workspace Id="workspace:transform-roundtrip" MeshId="mesh:default">
       <Description>Generated transform script workspace imported from emitted reference SQL.</Description>

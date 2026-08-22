@@ -44,7 +44,7 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-execute-pipeline:bind-transforms" OperationId="operation:build-and-execute-pipeline" PreviousStepId="operation-step:build-and-execute-pipeline:import-customer-load-transform">
-      <Arguments>bind --transform-workspace "{workspace:transform.location}" --source-schema "{workspace:schema.location}" --target-schema "{workspace:schema.location}" --execute-system MetaPipelineSqlServerCliIntegration --ignore-target-columns AuditId,InsertDateTime2 --new-workspace "{workspace:binding.location}"</Arguments>
+      <Arguments>bind --transform-workspace "{workspace:transform.location}" --source-schema "{workspace:schema.location}" --target-schema "{workspace:schema.location}" --execute-system MetaPipelineSqlServerCliIntegration --ignore-target-columns AuditId,InsertDateTime2 --output-xml "{workspace:binding.location}"</Arguments>
       <Executable>meta-transform-binding.exe</Executable>
       <Name>bind-transforms</Name>
       <WorkingDirectory></WorkingDirectory>
@@ -61,7 +61,7 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-execute-pipeline:extract-schema" OperationId="operation:build-and-execute-pipeline" PreviousStepId="operation-step:build-and-execute-pipeline:setup-execution-database">
-      <Arguments>extract sqlserver --new-workspace "{workspace:schema.location}" --connection-env {env:META_PIPELINE_DEMO_EXECUTION_SQL} --system MetaPipelineSqlServerCliIntegration --all-schemas --all-tables</Arguments>
+      <Arguments>extract sqlserver --output-xml "{workspace:schema.location}" --connection-env {env:META_PIPELINE_DEMO_EXECUTION_SQL} --system MetaPipelineSqlServerCliIntegration --all-schemas --all-tables</Arguments>
       <Executable>meta-schema.exe</Executable>
       <Name>extract-schema</Name>
       <WorkingDirectory></WorkingDirectory>
@@ -91,7 +91,7 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-execute-pipeline:import-truncate-transform" OperationId="operation:build-and-execute-pipeline" PreviousStepId="operation-step:build-and-execute-pipeline:extract-schema">
-      <Arguments>from sql-file --path TransformScripts\truncate_target.sql --new-workspace "{workspace:transform.location}"</Arguments>
+      <Arguments>from sql-file --path TransformScripts\truncate_target.sql --output-xml "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-truncate-transform</Name>
       <WorkingDirectory></WorkingDirectory>
@@ -109,7 +109,7 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-execute-pipeline:new-pipeline-workspace" OperationId="operation:build-and-execute-pipeline" PreviousStepId="operation-step:build-and-execute-pipeline:bind-transforms">
-      <Arguments>new-workspace "{workspace:pipeline.location}"</Arguments>
+      <Arguments>create --xml "{workspace:pipeline.location}"</Arguments>
       <Executable>meta-pipeline.exe</Executable>
       <Name>new-pipeline-workspace</Name>
       <WorkingDirectory></WorkingDirectory>

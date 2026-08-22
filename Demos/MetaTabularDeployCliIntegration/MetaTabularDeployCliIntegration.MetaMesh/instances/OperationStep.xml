@@ -11,12 +11,6 @@
       <Executable>cmd.exe</Executable>
       <Name>remove-tabular-workspace</Name>
     </OperationStep>
-    <OperationStep Id="operation-step:deploy-tabular-model:add-aggregation" OperationId="operation:deploy-tabular-model" PreviousStepId="operation-step:deploy-tabular-model:add-measure">
-      <Arguments>add-aggregation-behavior --workspace "{workspace:analytics.location}" --id SalesAmountAggregation --measure SalesAmount --function Sum</Arguments>
-      <Executable>meta-analytics.exe</Executable>
-      <Name>add-aggregation</Name>
-      <WorkingDirectory></WorkingDirectory>
-    </OperationStep>
     <OperationStep Id="operation-step:deploy-tabular-model:add-calculation-group" OperationId="operation:deploy-tabular-model" PreviousStepId="operation-step:deploy-tabular-model:add-sales-partition">
       <Arguments>add-tabular-calculation-group --workspace "{workspace:tabular.location}" --id TimeIntelligence --tabular-model Commerce --name "Time Intelligence" --precedence 10</Arguments>
       <Executable>meta-tabular.exe</Executable>
@@ -54,7 +48,7 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:deploy-tabular-model:add-measure" OperationId="operation:deploy-tabular-model" PreviousStepId="operation-step:deploy-tabular-model:add-relationship">
-      <Arguments>add-measure --workspace "{workspace:analytics.location}" --id SalesAmount --table Sales --source-attribute SalesAmountColumn --name "Sales Amount" --data-type-id meta:type:Decimal --format-string "#,0.00"</Arguments>
+      <Arguments>add-measure --workspace "{workspace:analytics.location}" --id SalesAmount --table Sales --source-attribute SalesAmountColumn --name "Sales Amount" --data-type-id meta:type:Decimal --format-string "#,0.00" --aggregate-function Sum</Arguments>
       <Executable>meta-analytics.exe</Executable>
       <Name>add-measure</Name>
       <WorkingDirectory></WorkingDirectory>
@@ -101,14 +95,14 @@
       <Name>add-sales-table</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
-    <OperationStep Id="operation-step:deploy-tabular-model:add-security-role" OperationId="operation:deploy-tabular-model" PreviousStepId="operation-step:deploy-tabular-model:add-aggregation">
+    <OperationStep Id="operation-step:deploy-tabular-model:add-security-role" OperationId="operation:deploy-tabular-model" PreviousStepId="operation-step:deploy-tabular-model:add-measure">
       <Arguments>add-security-role --workspace "{workspace:analytics.location}" --id Readers --model Commerce --name Readers --permission Read</Arguments>
       <Executable>meta-analytics.exe</Executable>
       <Name>add-security-role</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:deploy-tabular-model:convert-to-tabular" OperationId="operation:deploy-tabular-model" PreviousStepId="operation-step:deploy-tabular-model:add-security-role">
-      <Arguments>analytics-to-tabular --workspace "{workspace:analytics.location}" --out "{workspace:tabular.location}"</Arguments>
+      <Arguments>analytics-to-tabular --workspace "{workspace:analytics.location}" --output-xml "{workspace:tabular.location}"</Arguments>
       <Executable>meta-convert.exe</Executable>
       <Name>convert-to-tabular</Name>
       <WorkingDirectory></WorkingDirectory>
@@ -120,7 +114,7 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:deploy-tabular-model:new-analytics-workspace" OperationId="operation:deploy-tabular-model">
-      <Arguments>new-workspace "{workspace:analytics.location}"</Arguments>
+      <Arguments>create --xml "{workspace:analytics.location}"</Arguments>
       <Executable>meta-analytics.exe</Executable>
       <Name>new-analytics-workspace</Name>
       <WorkingDirectory></WorkingDirectory>

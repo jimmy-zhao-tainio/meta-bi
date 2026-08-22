@@ -2,25 +2,25 @@
 <MetaMesh>
   <OperationStepList>
     <OperationStep Id="operation-step:build-from-meta-schema:convert-raw-data-vault-to-sql" OperationId="operation:build-from-meta-schema" PreviousStepId="operation-step:build-from-meta-schema:convert-schema-to-raw-data-vault">
-      <Arguments>raw-datavault-to-sql --workspace "{workspace:raw-data-vault.location}" --implementation-workspace "{workspace:data-vault-implementation.location}" --database-name RawDataVaultFromMetaSchemaCliIntegrationWorkspace --out "{workspace:sql.location}"</Arguments>
+      <Arguments>raw-datavault-to-sql --workspace "{workspace:raw-data-vault.location}" --implementation-workspace "{workspace:data-vault-implementation.location}" --database-name RawDataVaultFromMetaSchemaCliIntegrationWorkspace --output-xml "{workspace:sql.location}"</Arguments>
       <Executable>meta-convert.exe</Executable>
       <Name>convert-raw-data-vault-to-sql</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-from-meta-schema:convert-schema-to-raw-data-vault" OperationId="operation:build-from-meta-schema" PreviousStepId="operation-step:build-from-meta-schema:extract-source-schema">
-      <Arguments>schema-to-raw-datavault --source-workspace "{workspace:schema.location}" --new-workspace "{workspace:raw-data-vault.location}"</Arguments>
+      <Arguments>schema-to-raw-datavault --source-workspace "{workspace:schema.location}" --output-xml "{workspace:raw-data-vault.location}"</Arguments>
       <Executable>meta-convert.exe</Executable>
       <Name>convert-schema-to-raw-data-vault</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-from-meta-schema:create-deploy-manifest" OperationId="operation:build-from-meta-schema" PreviousStepId="operation-step:build-from-meta-schema:convert-raw-data-vault-to-sql">
-      <Arguments>deploy-plan --source-workspace "{workspace:sql.location}" --connection-env {env:META_BI_RAW_DV_FROM_SCHEMA_SQL} --out "{workspace:deploy-manifest.location}"</Arguments>
+      <Arguments>deploy-plan --source-workspace "{workspace:sql.location}" --connection-env {env:META_BI_RAW_DV_FROM_SCHEMA_SQL} --output-xml "{workspace:deploy-manifest.location}"</Arguments>
       <Executable>meta-sql.exe</Executable>
       <Name>create-deploy-manifest</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-from-meta-schema:create-verify-manifest" OperationId="operation:build-from-meta-schema" PreviousStepId="operation-step:build-from-meta-schema:deploy-sql">
-      <Arguments>deploy-plan --source-workspace "{workspace:sql.location}" --connection-env {env:META_BI_RAW_DV_FROM_SCHEMA_SQL} --out "{workspace:verify-manifest.location}"</Arguments>
+      <Arguments>deploy-plan --source-workspace "{workspace:sql.location}" --connection-env {env:META_BI_RAW_DV_FROM_SCHEMA_SQL} --output-xml "{workspace:verify-manifest.location}"</Arguments>
       <Executable>meta-sql.exe</Executable>
       <Name>create-verify-manifest</Name>
       <WorkingDirectory></WorkingDirectory>
@@ -32,7 +32,7 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-from-meta-schema:extract-source-schema" OperationId="operation:build-from-meta-schema" PreviousStepId="operation-step:build-from-meta-schema:run-source-build">
-      <Arguments>extract sqlserver --new-workspace "{workspace:schema.location}" --connection-env {env:META_BI_BUSINESS_DV_SQL} --system BusinessDataVaultCliIntegrationWorkspace --all-schemas --all-tables</Arguments>
+      <Arguments>extract sqlserver --output-xml "{workspace:schema.location}" --connection-env {env:META_BI_BUSINESS_DV_SQL} --system BusinessDataVaultCliIntegrationWorkspace --all-schemas --all-tables</Arguments>
       <Executable>meta-schema.exe</Executable>
       <Name>extract-source-schema</Name>
       <WorkingDirectory></WorkingDirectory>

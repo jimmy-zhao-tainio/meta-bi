@@ -2,25 +2,25 @@
 <MetaMesh>
   <OperationStepList>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:bind-transforms" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:import-q99">
-      <Arguments>bind --transform-workspace "{workspace:transform.location}" --source-schema "{workspace:schema.location}" --target-schema "{workspace:schema.location}" --execute-system TpcDsSnapshot --execute-system-default-schema-name dbo --new-workspace "{workspace:binding.location}"</Arguments>
+      <Arguments>bind --transform-workspace "{workspace:transform.location}" --source-schema "{workspace:schema.location}" --target-schema "{workspace:schema.location}" --execute-system TpcDsSnapshot --execute-system-default-schema-name dbo --output-xml "{workspace:binding.location}"</Arguments>
       <Executable>meta-transform-binding.exe</Executable>
       <Name>bind-transforms</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:convert-roundtrip-transform-to-sql" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:convert-transform-to-sql">
-      <Arguments>transform-script-to-sql --workspace "{workspace:transform-roundtrip.location}" --database-name TpcDsSnapshot --out "{workspace:sql-roundtrip.location}"</Arguments>
+      <Arguments>transform-script-to-sql --workspace "{workspace:transform-roundtrip.location}" --database-name TpcDsSnapshot --output-xml "{workspace:sql-roundtrip.location}"</Arguments>
       <Executable>meta-convert.exe</Executable>
       <Name>convert-roundtrip-transform-to-sql</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:convert-transform-to-sql" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:record-transform-roundtrip-diff">
-      <Arguments>transform-script-to-sql --workspace "{workspace:transform.location}" --database-name TpcDsSnapshot --out "{workspace:sql.location}"</Arguments>
+      <Arguments>transform-script-to-sql --workspace "{workspace:transform.location}" --database-name TpcDsSnapshot --output-xml "{workspace:sql.location}"</Arguments>
       <Executable>meta-convert.exe</Executable>
       <Name>convert-transform-to-sql</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:diff-sql-workspaces" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:convert-roundtrip-transform-to-sql">
-      <Arguments>instance diff "{workspace:sql.location}" "{workspace:sql-roundtrip.location}"</Arguments>
+      <Arguments>instance diff "{workspace:sql.location}" "{workspace:sql-roundtrip.location}" --output-xml "{workspace:sql-diff.location}"</Arguments>
       <Executable>meta.exe</Executable>
       <Name>diff-sql-workspaces</Name>
       <WorkingDirectory></WorkingDirectory>
@@ -38,7 +38,7 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:import-q01" OperationId="operation:build-tpc-ds-snapshot">
-      <Arguments>from sql-file --path SourceViews\001_q01\view.sql --target tpcds.v_q01 --new-workspace "{workspace:transform.location}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\001_q01\view.sql --target tpcds.v_q01 --output-xml "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-q01</Name>
       <WorkingDirectory></WorkingDirectory>
@@ -638,7 +638,7 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:record-transform-roundtrip-diff" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:roundtrip-import-manifest">
-      <Arguments>instance diff "{workspace:transform.location}" "{workspace:transform-roundtrip.location}"</Arguments>
+      <Arguments>instance diff "{workspace:transform.location}" "{workspace:transform-roundtrip.location}" --output-xml "{workspace:transform-diff.location}"</Arguments>
       <Description>Record the expected transform representation and emitted-file provenance differences after re-importing SQL modules.</Description>
       <Executable>meta.exe</Executable>
       <ExpectedExitCode>1</ExpectedExitCode>
@@ -646,7 +646,7 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-tpc-ds-snapshot:roundtrip-import-manifest" OperationId="operation:build-tpc-ds-snapshot" PreviousStepId="operation-step:build-tpc-ds-snapshot:print-sql-q01">
-      <Arguments>from sql-files --manifest RoundTrippedViews.manifest.tsv --new-workspace "{workspace:transform-roundtrip.location}"</Arguments>
+      <Arguments>from sql-files --manifest RoundTrippedViews.manifest.tsv --output-xml "{workspace:transform-roundtrip.location}"</Arguments>
       <Description>Import emitted SQL modules through the semantic path manifest.</Description>
       <Executable>meta-transform-script.exe</Executable>
       <Name>roundtrip-import-manifest</Name>

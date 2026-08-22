@@ -93,12 +93,6 @@
       <Name>add-order-date-key</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
-    <OperationStep Id="operation-step:deploy-and-query-hierarchy:add-sales-amount-aggregation" OperationId="operation:deploy-and-query-hierarchy" PreviousStepId="operation-step:deploy-and-query-hierarchy:add-sales-amount-measure">
-      <Arguments>add-aggregation-behavior --workspace "{workspace:analytics.location}" --id SalesAmountAggregation --measure SalesAmount --function Sum</Arguments>
-      <Executable>meta-analytics.exe</Executable>
-      <Name>add-sales-amount-aggregation</Name>
-      <WorkingDirectory></WorkingDirectory>
-    </OperationStep>
     <OperationStep Id="operation-step:deploy-and-query-hierarchy:add-sales-amount-column" OperationId="operation:deploy-and-query-hierarchy" PreviousStepId="operation-step:deploy-and-query-hierarchy:add-order-date-key">
       <Arguments>add-attribute --workspace "{workspace:analytics.location}" --id SalesAmountColumn --table Sales --name SalesAmount --data-type-id meta:type:Decimal --is-hidden true</Arguments>
       <Executable>meta-analytics.exe</Executable>
@@ -106,7 +100,7 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:deploy-and-query-hierarchy:add-sales-amount-measure" OperationId="operation:deploy-and-query-hierarchy" PreviousStepId="operation-step:deploy-and-query-hierarchy:add-sales-order-date-relationship">
-      <Arguments>add-measure --workspace "{workspace:analytics.location}" --id SalesAmount --table Sales --source-attribute SalesAmountColumn --name "Sales Amount" --data-type-id meta:type:Decimal --format-string "#,0.00"</Arguments>
+      <Arguments>add-measure --workspace "{workspace:analytics.location}" --id SalesAmount --table Sales --source-attribute SalesAmountColumn --name "Sales Amount" --data-type-id meta:type:Decimal --format-string "#,0.00" --aggregate-function Sum</Arguments>
       <Executable>meta-analytics.exe</Executable>
       <Name>add-sales-amount-measure</Name>
       <WorkingDirectory></WorkingDirectory>
@@ -129,14 +123,14 @@
       <Name>add-sales-table</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
-    <OperationStep Id="operation-step:deploy-and-query-hierarchy:convert-analytics-to-multidimensional" OperationId="operation:deploy-and-query-hierarchy" PreviousStepId="operation-step:deploy-and-query-hierarchy:add-sales-amount-aggregation">
-      <Arguments>analytics-to-multi-dimensional --workspace "{workspace:analytics.location}" --out "{workspace:multi-dimensional.location}"</Arguments>
+    <OperationStep Id="operation-step:deploy-and-query-hierarchy:convert-analytics-to-multidimensional" OperationId="operation:deploy-and-query-hierarchy" PreviousStepId="operation-step:deploy-and-query-hierarchy:add-sales-amount-measure">
+      <Arguments>analytics-to-multi-dimensional --workspace "{workspace:analytics.location}" --output-xml "{workspace:multi-dimensional.location}"</Arguments>
       <Executable>meta-convert.exe</Executable>
       <Name>convert-analytics-to-multidimensional</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:deploy-and-query-hierarchy:create-analytics-workspace" OperationId="operation:deploy-and-query-hierarchy" PreviousStepId="operation-step:deploy-and-query-hierarchy:setup-source-database">
-      <Arguments>new-workspace "{workspace:analytics.location}"</Arguments>
+      <Arguments>create --xml "{workspace:analytics.location}"</Arguments>
       <Executable>meta-analytics.exe</Executable>
       <Name>create-analytics-workspace</Name>
       <WorkingDirectory></WorkingDirectory>

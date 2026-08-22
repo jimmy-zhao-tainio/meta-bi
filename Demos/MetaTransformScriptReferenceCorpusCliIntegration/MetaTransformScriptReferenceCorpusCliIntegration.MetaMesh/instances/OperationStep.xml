@@ -46,19 +46,19 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:convert-roundtrip-transform-to-sql" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:convert-transform-to-sql">
-      <Arguments>transform-script-to-sql --workspace "{workspace:transform-roundtrip.location}" --database-name ReferenceCorpusDb --out "{workspace:sql-roundtrip.location}"</Arguments>
+      <Arguments>transform-script-to-sql --workspace "{workspace:transform-roundtrip.location}" --database-name ReferenceCorpusDb --output-xml "{workspace:sql-roundtrip.location}"</Arguments>
       <Executable>meta-convert.exe</Executable>
       <Name>convert-roundtrip-transform-to-sql</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:convert-transform-to-sql" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:record-transform-source-path-diff">
-      <Arguments>transform-script-to-sql --workspace "{workspace:transform.location}" --database-name ReferenceCorpusDb --out "{workspace:sql.location}"</Arguments>
+      <Arguments>transform-script-to-sql --workspace "{workspace:transform.location}" --database-name ReferenceCorpusDb --output-xml "{workspace:sql.location}"</Arguments>
       <Executable>meta-convert.exe</Executable>
       <Name>convert-transform-to-sql</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:diff-sql-workspaces" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:convert-roundtrip-transform-to-sql">
-      <Arguments>instance diff "{workspace:sql.location}" "{workspace:sql-roundtrip.location}"</Arguments>
+      <Arguments>instance diff "{workspace:sql.location}" "{workspace:sql-roundtrip.location}" --output-xml "{workspace:sql-diff.location}"</Arguments>
       <Executable>meta.exe</Executable>
       <Name>diff-sql-workspaces</Name>
       <WorkingDirectory></WorkingDirectory>
@@ -82,7 +82,7 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:import-basic" OperationId="operation:round-trip-reference-corpus">
-      <Arguments>from sql-file --path SourceViews\001_basic_select\view.sql --target dbo.v_basic --new-workspace "{workspace:transform.location}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\001_basic_select\view.sql --target dbo.v_basic --output-xml "{workspace:transform.location}"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-basic</Name>
       <WorkingDirectory></WorkingDirectory>
@@ -274,7 +274,7 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:record-transform-source-path-diff" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:roundtrip-import-manifest">
-      <Arguments>instance diff "{workspace:transform.location}" "{workspace:transform-roundtrip.location}"</Arguments>
+      <Arguments>instance diff "{workspace:transform.location}" "{workspace:transform-roundtrip.location}" --output-xml "{workspace:transform-diff.location}"</Arguments>
       <Description>Record the expected transform representation and emitted-file provenance differences after re-importing SQL modules.</Description>
       <Executable>meta.exe</Executable>
       <ExpectedExitCode>1</ExpectedExitCode>
@@ -282,7 +282,7 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:round-trip-reference-corpus:roundtrip-import-manifest" OperationId="operation:round-trip-reference-corpus" PreviousStepId="operation-step:round-trip-reference-corpus:print-sql-window-functions">
-      <Arguments>from sql-files --manifest RoundTrippedViews.manifest.tsv --new-workspace "{workspace:transform-roundtrip.location}"</Arguments>
+      <Arguments>from sql-files --manifest RoundTrippedViews.manifest.tsv --output-xml "{workspace:transform-roundtrip.location}"</Arguments>
       <Description>Import emitted SQL modules through the semantic path manifest.</Description>
       <Executable>meta-transform-script.exe</Executable>
       <Name>roundtrip-import-manifest</Name>

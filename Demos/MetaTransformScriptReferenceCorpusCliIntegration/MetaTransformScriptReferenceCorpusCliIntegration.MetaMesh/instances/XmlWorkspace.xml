@@ -13,5 +13,11 @@
     <XmlWorkspace Id="workspace:transform-roundtrip" WorkspaceId="workspace:transform-roundtrip">
       <Path>MetaTransformScriptReferenceCorpusRoundTripWorkspace</Path>
     </XmlWorkspace>
+    <XmlWorkspace Id="xml-workspace:sql-diff" WorkspaceId="workspace:sql-diff">
+      <Path>MetaSqlReferenceCorpusDiffWorkspace</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="xml-workspace:transform-diff" WorkspaceId="workspace:transform-diff">
+      <Path>MetaTransformScriptDiffWorkspace</Path>
+    </XmlWorkspace>
   </XmlWorkspaceList>
 </MetaMesh>
