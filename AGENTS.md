@@ -11,7 +11,14 @@ Before doing substantial work, read these first:
 
 - `docs/META-MODELING-GUARDRAILS.md`
 
-Use it as a first-class constraint, not an optional note.
+Use the modeling guardrails as a first-class constraint, not an optional note.
+
+Operational repository and CLI skills are maintained in the companion `meta`
+repository under `Skills/`. When the repositories are sibling checkouts, the
+path is `../meta/Skills`. Read the matching `SKILL.md` before operating
+the repositories, modeled CLIs, MetaMesh workflows, demos, conversions, or the
+combined MetaDocs site. The canonical public copy is in the `meta` repository;
+do not duplicate it here.
 
 ## Working Contract
 
