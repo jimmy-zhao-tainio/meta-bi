@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <TableList>
+    <Table Id="table:date" AnalyticsModelId="model:commerce">
+      <DataCategory>Time</DataCategory>
+      <Kind>Dimension</Kind>
+      <Name>Date</Name>
+    </Table>
+    <Table Id="table:customer" AnalyticsModelId="model:commerce">
+      <DataCategory>Customers</DataCategory>
+      <Kind>Dimension</Kind>
+      <Name>Customer</Name>
+    </Table>
+    <Table Id="table:product" AnalyticsModelId="model:commerce">
+      <DataCategory>Products</DataCategory>
+      <Kind>Dimension</Kind>
+      <Name>Product</Name>
+    </Table>
+    <Table Id="table:sales" AnalyticsModelId="model:commerce">
+      <DataCategory>Quantitative</DataCategory>
+      <Kind>Fact</Kind>
+      <Name>Sales</Name>
+    </Table>
+  </TableList>
+</MetaAnalytics>

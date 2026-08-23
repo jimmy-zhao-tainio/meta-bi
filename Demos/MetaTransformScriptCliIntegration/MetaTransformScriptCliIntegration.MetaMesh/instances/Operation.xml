@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <OperationList>
+    <Operation Id="operation:cleanup" MeshId="mesh:default">
+      <Description>Remove generated transform, SQL, diff, and round-tripped SQL outputs.</Description>
+      <Name>cleanup</Name>
+    </Operation>
+    <Operation Id="operation:round-trip-sql" MeshId="mesh:default">
+      <Description>Import SQL views, export them, re-import the exported SQL, convert both sides to MetaSql, and diff the SQL workspaces.</Description>
+      <Name>round-trip-sql</Name>
+    </Operation>
+  </OperationList>
+</MetaMesh>

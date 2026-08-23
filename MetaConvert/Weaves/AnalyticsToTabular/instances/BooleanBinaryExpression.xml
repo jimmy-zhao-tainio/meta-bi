@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <BooleanBinaryExpressionList>
+    <BooleanBinaryExpression Id="BooleanBinaryExpression:6" BooleanExpressionId="BooleanExpression:50">
+      <BinaryExpressionType>Or</BinaryExpressionType>
+    </BooleanBinaryExpression>
+  </BooleanBinaryExpressionList>
+</MetaWeave>

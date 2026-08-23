@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <JoinTableReferenceList>
+    <JoinTableReference Id="JoinTableReference:1" TableReferenceId="TableReference:12" />
+    <JoinTableReference Id="JoinTableReference:10" TableReferenceId="TableReference:51" />
+    <JoinTableReference Id="JoinTableReference:11" TableReferenceId="TableReference:54" />
+    <JoinTableReference Id="JoinTableReference:12" TableReferenceId="TableReference:56" />
+    <JoinTableReference Id="JoinTableReference:13" TableReferenceId="TableReference:59" />
+    <JoinTableReference Id="JoinTableReference:14" TableReferenceId="TableReference:61" />
+    <JoinTableReference Id="JoinTableReference:15" TableReferenceId="TableReference:64" />
+    <JoinTableReference Id="JoinTableReference:16" TableReferenceId="TableReference:66" />
+    <JoinTableReference Id="JoinTableReference:17" TableReferenceId="TableReference:83" />
+    <JoinTableReference Id="JoinTableReference:2" TableReferenceId="TableReference:24" />
+    <JoinTableReference Id="JoinTableReference:3" TableReferenceId="TableReference:26" />
+    <JoinTableReference Id="JoinTableReference:4" TableReferenceId="TableReference:33" />
+    <JoinTableReference Id="JoinTableReference:5" TableReferenceId="TableReference:39" />
+    <JoinTableReference Id="JoinTableReference:6" TableReferenceId="TableReference:41" />
+    <JoinTableReference Id="JoinTableReference:7" TableReferenceId="TableReference:44" />
+    <JoinTableReference Id="JoinTableReference:8" TableReferenceId="TableReference:46" />
+    <JoinTableReference Id="JoinTableReference:9" TableReferenceId="TableReference:49" />
+  </JoinTableReferenceList>
+</MetaWeave>

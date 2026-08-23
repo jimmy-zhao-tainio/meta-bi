@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessPointInTimeStampList>
+    <BusinessPointInTimeStamp Id="CustomerSnapshotBusinessDate" BusinessPointInTimeId="CustomerSnapshot">
+      <DataTypeId>meta:type:DateTime</DataTypeId>
+      <Name>BusinessDate</Name>
+    </BusinessPointInTimeStamp>
+  </BusinessPointInTimeStampList>
+</MetaBusinessDataVault>

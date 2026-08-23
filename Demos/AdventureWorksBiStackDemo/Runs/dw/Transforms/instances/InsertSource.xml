@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <InsertSourceList>
+    <InsertSource Id="InsertSource:1" />
+    <InsertSource Id="InsertSource:2" />
+    <InsertSource Id="InsertSource:3" />
+    <InsertSource Id="InsertSource:4" />
+    <InsertSource Id="InsertSource:5" />
+    <InsertSource Id="InsertSource:6" />
+    <InsertSource Id="InsertSource:7" />
+    <InsertSource Id="InsertSource:8" />
+  </InsertSourceList>
+</MetaTransformScript>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <ScalarSubqueryList>
+    <ScalarSubquery Id="ScalarSubquery:1" PrimaryExpressionId="PrimaryExpression:227" />
+    <ScalarSubquery Id="ScalarSubquery:2" PrimaryExpressionId="PrimaryExpression:881" />
+    <ScalarSubquery Id="ScalarSubquery:3" PrimaryExpressionId="PrimaryExpression:921" />
+    <ScalarSubquery Id="ScalarSubquery:4" PrimaryExpressionId="PrimaryExpression:925" />
+    <ScalarSubquery Id="ScalarSubquery:5" PrimaryExpressionId="PrimaryExpression:929" />
+    <ScalarSubquery Id="ScalarSubquery:6" PrimaryExpressionId="PrimaryExpression:2143" />
+    <ScalarSubquery Id="ScalarSubquery:7" PrimaryExpressionId="PrimaryExpression:2915" />
+    <ScalarSubquery Id="ScalarSubquery:8" PrimaryExpressionId="PrimaryExpression:2921" />
+    <ScalarSubquery Id="ScalarSubquery:9" PrimaryExpressionId="PrimaryExpression:2927" />
+  </ScalarSubqueryList>
+</MetaWeave>

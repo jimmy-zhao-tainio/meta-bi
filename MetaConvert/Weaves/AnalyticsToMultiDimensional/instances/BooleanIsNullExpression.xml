@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <BooleanIsNullExpressionList>
+    <BooleanIsNullExpression Id="BooleanIsNullExpression:1" BooleanExpressionId="BooleanExpression:2">
+      <IsNot></IsNot>
+    </BooleanIsNullExpression>
+  </BooleanIsNullExpressionList>
+</MetaWeave>

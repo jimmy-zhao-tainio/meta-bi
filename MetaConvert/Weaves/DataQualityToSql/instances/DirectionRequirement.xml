@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <DirectionRequirementList>
+    <DirectionRequirement Id="forward/DatabaseName" DirectionId="forward" SelectStatementId="SelectStatement:15">
+      <Code>DataQualityDatabaseNameRequired</Code>
+      <Message>databaseName must contain a non-blank MetaSql database identity.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/NumericEvidence" DirectionId="forward" SelectStatementId="SelectStatement:29">
+      <Code>DataQualityNumericEvidenceInvalid</Code>
+      <Message>Promoted semantic-review numeric evidence must be a valid non-negative bigint or decimal(18,6) literal.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/RuntimeEvidence" DirectionId="forward" SelectStatementId="SelectStatement:55">
+      <Code>DataQualityRuntimeEvidenceMissing</Code>
+      <Message>Promoted runtime checks require explicit source-object and join-column evidence.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/SemanticEvidence" DirectionId="forward" SelectStatementId="SelectStatement:67">
+      <Code>DataQualitySemanticEvidenceMissing</Code>
+      <Message>Promoted semantic-review findings require explicit corpus evidence and comparison patterns.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/SupportedCandidateKind" DirectionId="forward" SelectStatementId="SelectStatement:66">
+      <Code>DataQualityCandidateKindUnsupported</Code>
+      <Message>The direct witness supports promoted JoinOrphan and MinorityJoinPattern candidates.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/ViewNameLength" DirectionId="forward" SelectStatementId="SelectStatement:40">
+      <Code>DataQualityViewNameTooLong</Code>
+      <Message>Generated Data Quality view names must not exceed 128 characters.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/ViewNameUniqueness" DirectionId="forward" SelectStatementId="SelectStatement:41">
+      <Code>DataQualityViewNameDuplicate</Code>
+      <Message>Generated Data Quality view names must be unique.</Message>
+    </DirectionRequirement>
+  </DirectionRequirementList>
+</MetaWeave>

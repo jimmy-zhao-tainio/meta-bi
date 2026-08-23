@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ParameterGroupList>
+    <ParameterGroup Id="group-from-sql-code-target" ExecutableCommandId="exec-from-sql-code">
+      <Description>Choose one workspace target.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>target</Name>
+    </ParameterGroup>
+    <ParameterGroup Id="group-from-sql-file-target" ExecutableCommandId="exec-from-sql-file">
+      <Description>Choose one workspace target.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>target</Name>
+    </ParameterGroup>
+    <ParameterGroup Id="group-from-sql-files-target" ExecutableCommandId="exec-from-sql-files">
+      <Description>Choose one workspace target.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>target</Name>
+    </ParameterGroup>
+    <ParameterGroup Id="group-from-sql-script-workspace-target" ExecutableCommandId="exec-from-sql-script-workspace">
+      <AllowsMultiple>false</AllowsMultiple>
+      <Description>Choose one workspace target.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>target</Name>
+    </ParameterGroup>
+  </ParameterGroupList>
+</MetaCli>

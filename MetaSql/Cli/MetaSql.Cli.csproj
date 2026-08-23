@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>meta-sql</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="Meta.Operations" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="Meta.Surfaces" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="MetaCli.Core" Version="$(MetaFoundationPackageVersion)" />
+    <ProjectReference Include="..\Core\MetaSql.Core.csproj" />
+    <ProjectReference Include="..\Extractors.SqlServer\MetaSql.Extractors.SqlServer.csproj" />
+    <ProjectReference Include="..\CSharp\MetaSql.CSharp.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="meta-sql.MetaCli\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>meta-sql.MetaCli\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Content>
+  </ItemGroup>
+</Project>

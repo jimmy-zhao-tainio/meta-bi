@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <SqlDataTypeReferenceList>
+    <SqlDataTypeReference Id="SqlDataTypeReference:1" ParameterizedDataTypeReferenceId="ParameterizedDataTypeReference:1">
+      <SqlDataTypeOption>Int</SqlDataTypeOption>
+    </SqlDataTypeReference>
+    <SqlDataTypeReference Id="SqlDataTypeReference:2" ParameterizedDataTypeReferenceId="ParameterizedDataTypeReference:2">
+      <SqlDataTypeOption>Int</SqlDataTypeOption>
+    </SqlDataTypeReference>
+  </SqlDataTypeReferenceList>
+</MetaWeave>

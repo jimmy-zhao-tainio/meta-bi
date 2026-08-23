@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <BooleanComparisonExpressionList>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:15" BooleanExpressionId="BooleanExpression:29">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:16" BooleanExpressionId="BooleanExpression:30">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:17" BooleanExpressionId="BooleanExpression:31">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:18" BooleanExpressionId="BooleanExpression:32">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:19" BooleanExpressionId="BooleanExpression:33">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:20" BooleanExpressionId="BooleanExpression:34">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:21" BooleanExpressionId="BooleanExpression:35">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:22" BooleanExpressionId="BooleanExpression:36">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:23" BooleanExpressionId="BooleanExpression:37">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:24" BooleanExpressionId="BooleanExpression:38">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:25" BooleanExpressionId="BooleanExpression:39">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:26" BooleanExpressionId="BooleanExpression:40">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:27" BooleanExpressionId="BooleanExpression:41">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:28" BooleanExpressionId="BooleanExpression:42">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:29" BooleanExpressionId="BooleanExpression:43">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:30" BooleanExpressionId="BooleanExpression:44">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:31" BooleanExpressionId="BooleanExpression:45">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:32" BooleanExpressionId="BooleanExpression:46">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:33" BooleanExpressionId="BooleanExpression:47">
+      <ComparisonType>Equals</ComparisonType>
+    </BooleanComparisonExpression>
+    <BooleanComparisonExpression Id="BooleanComparisonExpression:34" BooleanExpressionId="BooleanExpression:49">
+      <ComparisonType>NotEqualToBrackets</ComparisonType>
+    </BooleanComparisonExpression>
+  </BooleanComparisonExpressionList>
+</MetaWeave>

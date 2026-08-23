@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <TransformationList>
+    <Transformation Id="forward/Database" DirectionId="forward" SelectStatementId="SelectStatement:1">
+      <TargetEntityName>Database</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/ForeignKey" DirectionId="forward" SelectStatementId="SelectStatement:6">
+      <TargetEntityName>ForeignKey</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/ForeignKeyColumn" DirectionId="forward" SelectStatementId="SelectStatement:7">
+      <TargetEntityName>ForeignKeyColumn</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/Index" DirectionId="forward" SelectStatementId="SelectStatement:9">
+      <TargetEntityName>Index</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/IndexColumn" DirectionId="forward" SelectStatementId="SelectStatement:10">
+      <TargetEntityName>IndexColumn</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/PrimaryKey" DirectionId="forward" SelectStatementId="SelectStatement:5">
+      <TargetEntityName>PrimaryKey</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/PrimaryKeyColumn" DirectionId="forward" SelectStatementId="SelectStatement:8">
+      <TargetEntityName>PrimaryKeyColumn</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/Schema" DirectionId="forward" SelectStatementId="SelectStatement:2">
+      <TargetEntityName>Schema</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/Table" DirectionId="forward" SelectStatementId="SelectStatement:3">
+      <TargetEntityName>Table</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/TableColumn" DirectionId="forward" SelectStatementId="SelectStatement:4">
+      <TargetEntityName>TableColumn</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/TableColumnDataTypeDetail" DirectionId="forward" SelectStatementId="SelectStatement:11">
+      <TargetEntityName>TableColumnDataTypeDetail</TargetEntityName>
+    </Transformation>
+  </TransformationList>
+</MetaWeave>

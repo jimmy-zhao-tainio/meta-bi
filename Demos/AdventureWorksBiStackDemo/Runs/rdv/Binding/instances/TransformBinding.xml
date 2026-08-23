@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <TransformBindingList>
+    <TransformBinding Id="TransformScript:10:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:10</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>H_SalesPersonQuotaHistory</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:11:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:11</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>H_SalesTerritory</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:12:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:12</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>H_SpecialOfferProduct</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:13:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:13</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>H_Store</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:14:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:14</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>H_Address</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:15:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:15</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>H_StateProvince</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:16:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:16</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>H_Employee</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:17:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:17</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>HS_CountryRegion_CountryRegion</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:18:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:18</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>HS_Customer_Customer</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:19:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:19</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>HS_Person_Person</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:1:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:1</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>H_CountryRegion</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:20:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:20</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>HS_Product_Product</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:21:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:21</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>HS_ProductCategory_ProductCategory</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:22:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:22</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>HS_ProductSubcategory_ProductSubcategory</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:23:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:23</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>HS_SalesOrderDetail_SalesOrderDetail</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:24:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:24</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>HS_SalesOrderHeader_SalesOrderHeader</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:25:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:25</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>HS_SalesPerson_SalesPerson</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:26:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:26</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>HS_SalesPersonQuotaHistory_SalesPersonQuotaHistory</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:27:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:27</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>HS_SalesTerritory_SalesTerritory</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:28:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:28</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>HS_SpecialOfferProduct_SpecialOfferProduct</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:29:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:29</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>HS_Store_Store</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:2:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:2</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>H_Customer</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:30:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:30</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>HS_Address_Address</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:31:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:31</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>HS_StateProvince_StateProvince</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:32:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:32</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>L_CustomerPerson</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:33:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:33</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>L_CustomerSalesTerritory</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:34:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:34</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>L_CustomerStore</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:35:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:35</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>L_ProductProductSubcategory</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:36:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:36</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>L_ProductSubcategoryProductCategory</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:37:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:37</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>L_SalesOrderDetailSalesOrderHeader</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:38:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:38</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>L_SalesOrderDetailSpecialOfferProduct</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:39:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:39</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>L_SalesOrderHeaderCustomer</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:3:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:3</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>H_Person</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:40:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:40</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>L_SalesOrderHeaderSalesPerson</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:41:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:41</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>L_SalesOrderHeaderSalesTerritory</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:42:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:42</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>L_SalesPersonQuotaHistorySalesPerson</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:43:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:43</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>L_SalesPersonSalesTerritory</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:44:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:44</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>L_SalesTerritoryCountryRegion</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:45:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:45</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>L_SpecialOfferProductProduct</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:46:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:46</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>L_StoreSalesPerson</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:47:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:47</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>L_AddressStateProvince</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:48:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:48</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>L_StateProvinceCountryRegion</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:49:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:49</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>L_StateProvinceSalesTerritory</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:4:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:4</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>H_Product</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:50:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:50</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>L_SalesOrderHeaderAddress_BillToAddressID</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:51:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:51</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>L_SalesOrderHeaderAddress_ShipToAddressID</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:52:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:52</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>L_EmployeePerson</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:53:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:53</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>L_SalesPersonEmployee</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:5:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:5</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>H_ProductCategory</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:6:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:6</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>H_ProductSubcategory</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:7:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:7</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>H_SalesOrderDetail</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:8:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:8</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>H_SalesOrderHeader</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:9:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:9</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>H_SalesPerson</TransformScriptName>
+    </TransformBinding>
+  </TransformBindingList>
+</MetaTransformBinding>

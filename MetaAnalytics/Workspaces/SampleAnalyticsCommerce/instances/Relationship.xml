@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <RelationshipList>
+    <Relationship Id="relationship:sales:order-date" FromAttributeId="table:sales:attribute:OrderDateKey" FromTableId="table:sales" ToAttributeId="table:date:attribute:DateKey" ToTableId="table:date">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Order Date</Name>
+      <RelationshipKind>Regular</RelationshipKind>
+      <RoleName>Order Date</RoleName>
+    </Relationship>
+    <Relationship Id="relationship:sales:customer" FromAttributeId="table:sales:attribute:CustomerKey" FromTableId="table:sales" ToAttributeId="table:customer:attribute:CustomerKey" ToTableId="table:customer">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Customer</Name>
+      <RelationshipKind>Regular</RelationshipKind>
+      <RoleName>Customer</RoleName>
+    </Relationship>
+    <Relationship Id="relationship:sales:product" FromAttributeId="table:sales:attribute:ProductKey" FromTableId="table:sales" ToAttributeId="table:product:attribute:ProductKey" ToTableId="table:product">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Product</Name>
+      <RelationshipKind>Regular</RelationshipKind>
+      <RoleName>Product</RoleName>
+    </Relationship>
+  </RelationshipList>
+</MetaAnalytics>

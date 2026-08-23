@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <BooleanParenthesisExpressionList>
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:1" BooleanExpressionId="BooleanExpression:349" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:2" BooleanExpressionId="BooleanExpression:356" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:3" BooleanExpressionId="BooleanExpression:363" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:4" BooleanExpressionId="BooleanExpression:370" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:5" BooleanExpressionId="BooleanExpression:393" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:6" BooleanExpressionId="BooleanExpression:400" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:7" BooleanExpressionId="BooleanExpression:411" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:8" BooleanExpressionId="BooleanExpression:426" />
+  </BooleanParenthesisExpressionList>
+</MetaTransformScript>

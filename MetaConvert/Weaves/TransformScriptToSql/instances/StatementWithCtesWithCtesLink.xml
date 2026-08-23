@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <StatementWithCtesWithCtesLinkList>
+    <StatementWithCtesWithCtesLink Id="StatementWithCtesWithCtesLink:15" StatementWithCtesId="StatementWithCtes:19" WithCtesId="WithCtes:15" />
+    <StatementWithCtesWithCtesLink Id="StatementWithCtesWithCtesLink:5" StatementWithCtesId="StatementWithCtes:9" WithCtesId="WithCtes:5" />
+    <StatementWithCtesWithCtesLink Id="StatementWithCtesWithCtesLink:59" StatementWithCtesId="StatementWithCtes:90" WithCtesId="WithCtes:59" />
+    <StatementWithCtesWithCtesLink Id="StatementWithCtesWithCtesLink:61" StatementWithCtesId="StatementWithCtes:92" WithCtesId="WithCtes:61" />
+    <StatementWithCtesWithCtesLink Id="StatementWithCtesWithCtesLink:64" StatementWithCtesId="StatementWithCtes:98" WithCtesId="WithCtes:64" />
+    <StatementWithCtesWithCtesLink Id="StatementWithCtesWithCtesLink:65" StatementWithCtesId="StatementWithCtes:99" WithCtesId="WithCtes:65" />
+    <StatementWithCtesWithCtesLink Id="StatementWithCtesWithCtesLink:66" StatementWithCtesId="StatementWithCtes:100" WithCtesId="WithCtes:66" />
+    <StatementWithCtesWithCtesLink Id="StatementWithCtesWithCtesLink:67" StatementWithCtesId="StatementWithCtes:103" WithCtesId="WithCtes:67" />
+    <StatementWithCtesWithCtesLink Id="StatementWithCtesWithCtesLink:68" StatementWithCtesId="StatementWithCtes:104" WithCtesId="WithCtes:68" />
+    <StatementWithCtesWithCtesLink Id="StatementWithCtesWithCtesLink:69" StatementWithCtesId="StatementWithCtes:105" WithCtesId="WithCtes:69" />
+    <StatementWithCtesWithCtesLink Id="StatementWithCtesWithCtesLink:71" StatementWithCtesId="StatementWithCtes:107" WithCtesId="WithCtes:71" />
+  </StatementWithCtesWithCtesLinkList>
+</MetaWeave>

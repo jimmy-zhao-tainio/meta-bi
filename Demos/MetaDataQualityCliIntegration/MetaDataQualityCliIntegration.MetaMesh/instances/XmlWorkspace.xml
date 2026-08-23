@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <XmlWorkspaceList>
+    <XmlWorkspace Id="workspace:data-quality" WorkspaceId="workspace:data-quality">
+      <Path>DataQualityWS</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="workspace:transform" WorkspaceId="workspace:transform">
+      <Path>TransformWS</Path>
+    </XmlWorkspace>
+  </XmlWorkspaceList>
+</MetaMesh>

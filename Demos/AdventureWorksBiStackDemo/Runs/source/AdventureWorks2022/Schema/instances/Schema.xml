@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <SchemaList>
+    <Schema Id="sqlserver:AdventureWorks2022:schema:dbo" SystemId="sqlserver:system:AdventureWorks2022">
+      <Name>dbo</Name>
+    </Schema>
+    <Schema Id="sqlserver:AdventureWorks2022:schema:HumanResources" SystemId="sqlserver:system:AdventureWorks2022">
+      <Name>HumanResources</Name>
+    </Schema>
+    <Schema Id="sqlserver:AdventureWorks2022:schema:Person" SystemId="sqlserver:system:AdventureWorks2022">
+      <Name>Person</Name>
+    </Schema>
+    <Schema Id="sqlserver:AdventureWorks2022:schema:Production" SystemId="sqlserver:system:AdventureWorks2022">
+      <Name>Production</Name>
+    </Schema>
+    <Schema Id="sqlserver:AdventureWorks2022:schema:Purchasing" SystemId="sqlserver:system:AdventureWorks2022">
+      <Name>Purchasing</Name>
+    </Schema>
+    <Schema Id="sqlserver:AdventureWorks2022:schema:Sales" SystemId="sqlserver:system:AdventureWorks2022">
+      <Name>Sales</Name>
+    </Schema>
+  </SchemaList>
+</MetaSchema>

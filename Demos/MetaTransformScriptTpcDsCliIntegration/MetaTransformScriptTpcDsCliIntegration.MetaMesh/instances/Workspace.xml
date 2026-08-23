@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <WorkspaceList>
+    <Workspace Id="workspace:binding" MeshId="mesh:default">
+      <Description>Generated transform binding workspace for the TPC-DS transform scripts.</Description>
+      <ModelName>MetaTransformBinding</ModelName>
+      <Name>binding</Name>
+    </Workspace>
+    <Workspace Id="workspace:schema" MeshId="mesh:default">
+      <Description>Tracked schema snapshot for TPC-DS source tables and target table contracts.</Description>
+      <ModelName>MetaSchema</ModelName>
+      <Name>schema</Name>
+    </Workspace>
+    <Workspace Id="workspace:sql" MeshId="mesh:default">
+      <Description>Generated MetaSql workspace converted from the TPC-DS transform workspace.</Description>
+      <ModelName>MetaSql</ModelName>
+      <Name>sql</Name>
+    </Workspace>
+    <Workspace Id="workspace:sql-diff" MeshId="mesh:default">
+      <Description>Diff evidence for the original and round-tripped TPC-DS MetaSql workspaces.</Description>
+      <ModelName>InstanceDiffModelEqual</ModelName>
+      <Name>sql-diff</Name>
+    </Workspace>
+    <Workspace Id="workspace:sql-roundtrip" MeshId="mesh:default">
+      <Description>Generated MetaSql workspace converted from the round-tripped TPC-DS transform workspace.</Description>
+      <ModelName>MetaSql</ModelName>
+      <Name>sql-roundtrip</Name>
+    </Workspace>
+    <Workspace Id="workspace:transform" MeshId="mesh:default">
+      <Description>Generated transform script workspace imported from TPC-DS query files.</Description>
+      <ModelName>MetaTransformScript</ModelName>
+      <Name>transform</Name>
+    </Workspace>
+    <Workspace Id="workspace:transform-diff" MeshId="mesh:default">
+      <Description>Expected TPC-DS transform representation and emitted-file provenance differences.</Description>
+      <ModelName>InstanceDiffModelEqual</ModelName>
+      <Name>transform-diff</Name>
+    </Workspace>
+    <Workspace Id="workspace:transform-roundtrip" MeshId="mesh:default">
+      <Description>Generated transform script workspace imported from emitted TPC-DS SQL.</Description>
+      <ModelName>MetaTransformScript</ModelName>
+      <Name>transform-roundtrip</Name>
+    </Workspace>
+  </WorkspaceList>
+</MetaMesh>

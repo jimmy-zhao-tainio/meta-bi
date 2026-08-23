@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouse>
+  <FactMeasureList>
+    <FactMeasure Id="fact:sales-line:measure:DiscountAmount" FactId="fact:sales-line">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>DiscountAmount</Name>
+      <Ordinal>30</Ordinal>
+    </FactMeasure>
+    <FactMeasure Id="fact:sales-line:measure:LineSalesAmount" FactId="fact:sales-line">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>LineSalesAmount</Name>
+      <Ordinal>40</Ordinal>
+    </FactMeasure>
+    <FactMeasure Id="fact:sales-line:measure:OrderQuantity" FactId="fact:sales-line">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>OrderQuantity</Name>
+      <Ordinal>10</Ordinal>
+    </FactMeasure>
+    <FactMeasure Id="fact:sales-line:measure:UnitPrice" FactId="fact:sales-line">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>UnitPrice</Name>
+      <Ordinal>20</Ordinal>
+    </FactMeasure>
+    <FactMeasure Id="fact:sales-order:measure:FreightAmount" FactId="fact:sales-order">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>FreightAmount</Name>
+      <Ordinal>40</Ordinal>
+    </FactMeasure>
+    <FactMeasure Id="fact:sales-order:measure:OrderCount" FactId="fact:sales-order">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>OrderCount</Name>
+      <Ordinal>10</Ordinal>
+    </FactMeasure>
+    <FactMeasure Id="fact:sales-order:measure:SubTotal" FactId="fact:sales-order">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>SubTotal</Name>
+      <Ordinal>20</Ordinal>
+    </FactMeasure>
+    <FactMeasure Id="fact:sales-order:measure:TaxAmount" FactId="fact:sales-order">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>TaxAmount</Name>
+      <Ordinal>30</Ordinal>
+    </FactMeasure>
+    <FactMeasure Id="fact:sales-order:measure:TotalDue" FactId="fact:sales-order">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>TotalDue</Name>
+      <Ordinal>50</Ordinal>
+    </FactMeasure>
+    <FactMeasure Id="fact:salesperson-quota:measure:QuotaAmount" FactId="fact:salesperson-quota">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>QuotaAmount</Name>
+      <Ordinal>10</Ordinal>
+    </FactMeasure>
+  </FactMeasureList>
+</MetaDataWarehouse>

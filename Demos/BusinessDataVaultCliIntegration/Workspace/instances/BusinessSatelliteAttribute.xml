@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessSatelliteAttributeList>
+    <BusinessSatelliteAttribute Id="CarrierName" BusinessSatelliteId="ShipmentHeader">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>CarrierName</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="CostCenterBudgetAmount" BusinessSatelliteId="CostCenterBudget">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <Name>BudgetAmount</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="CostCenterFiscalYear" BusinessSatelliteId="CostCenterBudget">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <Name>FiscalYear</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="CostCenterName" BusinessSatelliteId="CostCenterProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>CostCenterName</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="CurrencyCodeDescription" BusinessSatelliteId="CurrencyCodeDescriptionSet">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>Description</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="CustomerCityName" BusinessSatelliteId="CustomerAddress">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>CityName</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="CustomerCountryCode" BusinessSatelliteId="CustomerAddress">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>CountryCode</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="CustomerEmailAddress" BusinessSatelliteId="CustomerContact">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>EmailAddress</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="CustomerInvoiceBillingStatus" BusinessSatelliteId="CustomerInvoiceStatus">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>BillingStatus</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="CustomerName" BusinessSatelliteId="CustomerProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>CustomerName</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="CustomerOrderCurrencyCode" BusinessSatelliteId="CustomerOrderStatus">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>CurrencyCode</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="CustomerOrderStatusCode" BusinessSatelliteId="CustomerOrderStatus">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>OrderStatusCode</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="CustomerPhoneNumber" BusinessSatelliteId="CustomerContact">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>PhoneNumber</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="CustomerSameAsCrmConfidence" BusinessSatelliteId="CustomerSameAsCrmCustomerAudit">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <Name>MatchConfidence</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="CustomerTier" BusinessSatelliteId="CustomerProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>CustomerTier</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="DepartmentCostCenterShare" BusinessSatelliteId="DepartmentCostCenterAssignment">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <Name>AllocationShare</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="DepartmentHierarchyLevel" BusinessSatelliteId="DepartmentHierarchyInfo">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <Name>HierarchyLevel</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="DepartmentManagerAssignmentStartDate" BusinessSatelliteId="DepartmentManagerAssignment">
+      <DataTypeId>meta:type:DateTime</DataTypeId>
+      <Name>StartDate</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="DepartmentName" BusinessSatelliteId="DepartmentProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>DepartmentName</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="DepartmentRegionName" BusinessSatelliteId="DepartmentOperatingModel">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>RegionName</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="DepartmentType" BusinessSatelliteId="DepartmentOperatingModel">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>DepartmentType</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="EmployeeCostCenterAllocationPercentage" BusinessSatelliteId="EmployeeCostCenterAssignment">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <Name>AllocationPercentage</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="EmployeeDepartmentStartDate" BusinessSatelliteId="EmployeeDepartmentAssignment">
+      <DataTypeId>meta:type:DateTime</DataTypeId>
+      <Name>StartDate</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="EmployeeEmploymentType" BusinessSatelliteId="EmployeeEmployment">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>EmploymentType</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="EmployeeHireDate" BusinessSatelliteId="EmployeeEmployment">
+      <DataTypeId>meta:type:DateTime</DataTypeId>
+      <Name>HireDate</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="EmployeeName" BusinessSatelliteId="EmployeeProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>EmployeeName</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="InvoiceAmount" BusinessSatelliteId="InvoiceHeader">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <Name>InvoiceAmount</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="InvoiceDate" BusinessSatelliteId="InvoiceHeader">
+      <DataTypeId>meta:type:DateTime</DataTypeId>
+      <Name>InvoiceDate</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="InvoiceShipmentReceiptDate" BusinessSatelliteId="InvoiceShipmentTracking">
+      <DataTypeId>meta:type:DateTime</DataTypeId>
+      <Name>ReceiptDate</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="OrderAmount" BusinessSatelliteId="OrderHeader">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <Name>OrderAmount</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="OrderDate" BusinessSatelliteId="OrderHeader">
+      <DataTypeId>meta:type:DateTime</DataTypeId>
+      <Name>OrderDate</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="OrderProductQuantity" BusinessSatelliteId="OrderProductLine">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <Name>Quantity</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="OrderProductUnitPrice" BusinessSatelliteId="OrderProductLine">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <Name>UnitPrice</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="OrderStatusDescription" BusinessSatelliteId="OrderStatusDescriptionSet">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>Description</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="ProductBrand" BusinessSatelliteId="ProductCommercial">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>BrandName</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="ProductCategory" BusinessSatelliteId="ProductProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>ProductCategory</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="ProductLifecycleStatus" BusinessSatelliteId="ProductCommercial">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>LifecycleStatus</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="ProductName" BusinessSatelliteId="ProductProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>ProductName</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="ShipmentDate" BusinessSatelliteId="ShipmentHeader">
+      <DataTypeId>meta:type:DateTime</DataTypeId>
+      <Name>ShipmentDate</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="SupplierInvoicePaymentTermsCode" BusinessSatelliteId="SupplierInvoiceTerms">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>PaymentTermsCode</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="SupplierName" BusinessSatelliteId="SupplierProfile">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>SupplierName</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="SupplierProductLeadTimeDays" BusinessSatelliteId="SupplierProductTerms">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <Name>LeadTimeDays</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="SupplierRiskClass" BusinessSatelliteId="SupplierCompliance">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>RiskClass</Name>
+    </BusinessSatelliteAttribute>
+    <BusinessSatelliteAttribute Id="SupplierTaxIdentifier" BusinessSatelliteId="SupplierCompliance">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>TaxIdentifier</Name>
+    </BusinessSatelliteAttribute>
+  </BusinessSatelliteAttributeList>
+</MetaBusinessDataVault>

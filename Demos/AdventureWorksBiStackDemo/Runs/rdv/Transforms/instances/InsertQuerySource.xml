@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <InsertQuerySourceList>
+    <InsertQuerySource Id="InsertQuerySource:1" InsertSourceId="InsertSource:1" />
+    <InsertQuerySource Id="InsertQuerySource:10" InsertSourceId="InsertSource:10" />
+    <InsertQuerySource Id="InsertQuerySource:11" InsertSourceId="InsertSource:11" />
+    <InsertQuerySource Id="InsertQuerySource:12" InsertSourceId="InsertSource:12" />
+    <InsertQuerySource Id="InsertQuerySource:13" InsertSourceId="InsertSource:13" />
+    <InsertQuerySource Id="InsertQuerySource:14" InsertSourceId="InsertSource:14" />
+    <InsertQuerySource Id="InsertQuerySource:15" InsertSourceId="InsertSource:15" />
+    <InsertQuerySource Id="InsertQuerySource:16" InsertSourceId="InsertSource:16" />
+    <InsertQuerySource Id="InsertQuerySource:17" InsertSourceId="InsertSource:17" />
+    <InsertQuerySource Id="InsertQuerySource:18" InsertSourceId="InsertSource:18" />
+    <InsertQuerySource Id="InsertQuerySource:19" InsertSourceId="InsertSource:19" />
+    <InsertQuerySource Id="InsertQuerySource:2" InsertSourceId="InsertSource:2" />
+    <InsertQuerySource Id="InsertQuerySource:20" InsertSourceId="InsertSource:20" />
+    <InsertQuerySource Id="InsertQuerySource:21" InsertSourceId="InsertSource:21" />
+    <InsertQuerySource Id="InsertQuerySource:22" InsertSourceId="InsertSource:22" />
+    <InsertQuerySource Id="InsertQuerySource:23" InsertSourceId="InsertSource:23" />
+    <InsertQuerySource Id="InsertQuerySource:24" InsertSourceId="InsertSource:24" />
+    <InsertQuerySource Id="InsertQuerySource:25" InsertSourceId="InsertSource:25" />
+    <InsertQuerySource Id="InsertQuerySource:26" InsertSourceId="InsertSource:26" />
+    <InsertQuerySource Id="InsertQuerySource:27" InsertSourceId="InsertSource:27" />
+    <InsertQuerySource Id="InsertQuerySource:28" InsertSourceId="InsertSource:28" />
+    <InsertQuerySource Id="InsertQuerySource:29" InsertSourceId="InsertSource:29" />
+    <InsertQuerySource Id="InsertQuerySource:3" InsertSourceId="InsertSource:3" />
+    <InsertQuerySource Id="InsertQuerySource:30" InsertSourceId="InsertSource:30" />
+    <InsertQuerySource Id="InsertQuerySource:31" InsertSourceId="InsertSource:31" />
+    <InsertQuerySource Id="InsertQuerySource:32" InsertSourceId="InsertSource:32" />
+    <InsertQuerySource Id="InsertQuerySource:33" InsertSourceId="InsertSource:33" />
+    <InsertQuerySource Id="InsertQuerySource:34" InsertSourceId="InsertSource:34" />
+    <InsertQuerySource Id="InsertQuerySource:35" InsertSourceId="InsertSource:35" />
+    <InsertQuerySource Id="InsertQuerySource:36" InsertSourceId="InsertSource:36" />
+    <InsertQuerySource Id="InsertQuerySource:37" InsertSourceId="InsertSource:37" />
+    <InsertQuerySource Id="InsertQuerySource:38" InsertSourceId="InsertSource:38" />
+    <InsertQuerySource Id="InsertQuerySource:39" InsertSourceId="InsertSource:39" />
+    <InsertQuerySource Id="InsertQuerySource:4" InsertSourceId="InsertSource:4" />
+    <InsertQuerySource Id="InsertQuerySource:40" InsertSourceId="InsertSource:40" />
+    <InsertQuerySource Id="InsertQuerySource:41" InsertSourceId="InsertSource:41" />
+    <InsertQuerySource Id="InsertQuerySource:42" InsertSourceId="InsertSource:42" />
+    <InsertQuerySource Id="InsertQuerySource:43" InsertSourceId="InsertSource:43" />
+    <InsertQuerySource Id="InsertQuerySource:44" InsertSourceId="InsertSource:44" />
+    <InsertQuerySource Id="InsertQuerySource:45" InsertSourceId="InsertSource:45" />
+    <InsertQuerySource Id="InsertQuerySource:46" InsertSourceId="InsertSource:46" />
+    <InsertQuerySource Id="InsertQuerySource:47" InsertSourceId="InsertSource:47" />
+    <InsertQuerySource Id="InsertQuerySource:48" InsertSourceId="InsertSource:48" />
+    <InsertQuerySource Id="InsertQuerySource:49" InsertSourceId="InsertSource:49" />
+    <InsertQuerySource Id="InsertQuerySource:5" InsertSourceId="InsertSource:5" />
+    <InsertQuerySource Id="InsertQuerySource:50" InsertSourceId="InsertSource:50" />
+    <InsertQuerySource Id="InsertQuerySource:51" InsertSourceId="InsertSource:51" />
+    <InsertQuerySource Id="InsertQuerySource:52" InsertSourceId="InsertSource:52" />
+    <InsertQuerySource Id="InsertQuerySource:53" InsertSourceId="InsertSource:53" />
+    <InsertQuerySource Id="InsertQuerySource:6" InsertSourceId="InsertSource:6" />
+    <InsertQuerySource Id="InsertQuerySource:7" InsertSourceId="InsertSource:7" />
+    <InsertQuerySource Id="InsertQuerySource:8" InsertSourceId="InsertSource:8" />
+    <InsertQuerySource Id="InsertQuerySource:9" InsertSourceId="InsertSource:9" />
+  </InsertQuerySourceList>
+</MetaTransformScript>

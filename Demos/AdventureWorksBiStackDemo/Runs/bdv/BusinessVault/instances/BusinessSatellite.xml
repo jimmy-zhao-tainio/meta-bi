@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessSatelliteList>
+    <BusinessSatellite Id="AddressProfile">
+      <Name>AddressProfile</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="CountryRegionProfile">
+      <Name>CountryRegionProfile</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="CustomerProfile">
+      <Name>CustomerProfile</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="PersonProfile">
+      <Name>PersonProfile</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="ProductCategoryProfile">
+      <Name>ProductCategoryProfile</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="ProductProfile">
+      <Name>ProductProfile</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="ProductSubcategoryProfile">
+      <Name>ProductSubcategoryProfile</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="SalesOrderHeader">
+      <Name>SalesOrderHeader</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="SalesOrderLineDetail">
+      <Name>SalesOrderLineDetail</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="SalesPersonProfile">
+      <Name>SalesPersonProfile</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="SalesPersonQuotaProfile">
+      <Name>SalesPersonQuotaProfile</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="SalesTerritoryProfile">
+      <Name>SalesTerritoryProfile</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="StateProvinceProfile">
+      <Name>StateProvinceProfile</Name>
+    </BusinessSatellite>
+    <BusinessSatellite Id="StoreProfile">
+      <Name>StoreProfile</Name>
+    </BusinessSatellite>
+  </BusinessSatelliteList>
+</MetaBusinessDataVault>

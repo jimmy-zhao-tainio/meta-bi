@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <CoalesceExpressionExpressionsItemList>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:1" CoalesceExpressionId="CoalesceExpression:1" ScalarExpressionId="ScalarExpression:812">
+      <Ordinal>0</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:2" CoalesceExpressionId="CoalesceExpression:1" ScalarExpressionId="ScalarExpression:813">
+      <Ordinal>1</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:3" CoalesceExpressionId="CoalesceExpression:2" ScalarExpressionId="ScalarExpression:1394">
+      <Ordinal>0</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:4" CoalesceExpressionId="CoalesceExpression:2" ScalarExpressionId="ScalarExpression:1395">
+      <Ordinal>1</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:5" CoalesceExpressionId="CoalesceExpression:3" ScalarExpressionId="ScalarExpression:1627">
+      <Ordinal>0</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:6" CoalesceExpressionId="CoalesceExpression:3" ScalarExpressionId="ScalarExpression:1628">
+      <Ordinal>1</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:7" CoalesceExpressionId="CoalesceExpression:4" ScalarExpressionId="ScalarExpression:1932">
+      <Ordinal>0</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:8" CoalesceExpressionId="CoalesceExpression:4" ScalarExpressionId="ScalarExpression:1933">
+      <Ordinal>1</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+  </CoalesceExpressionExpressionsItemList>
+</MetaWeave>

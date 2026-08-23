@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <InsertStatementTargetLinkList>
+    <InsertStatementTargetLink Id="InsertStatementTargetLink:1" InsertStatementId="InsertStatement:1" SchemaObjectNameId="SchemaObjectName:1" />
+    <InsertStatementTargetLink Id="InsertStatementTargetLink:2" InsertStatementId="InsertStatement:2" SchemaObjectNameId="SchemaObjectName:8" />
+    <InsertStatementTargetLink Id="InsertStatementTargetLink:3" InsertStatementId="InsertStatement:3" SchemaObjectNameId="SchemaObjectName:15" />
+    <InsertStatementTargetLink Id="InsertStatementTargetLink:4" InsertStatementId="InsertStatement:4" SchemaObjectNameId="SchemaObjectName:22" />
+    <InsertStatementTargetLink Id="InsertStatementTargetLink:5" InsertStatementId="InsertStatement:5" SchemaObjectNameId="SchemaObjectName:29" />
+    <InsertStatementTargetLink Id="InsertStatementTargetLink:6" InsertStatementId="InsertStatement:6" SchemaObjectNameId="SchemaObjectName:36" />
+    <InsertStatementTargetLink Id="InsertStatementTargetLink:7" InsertStatementId="InsertStatement:7" SchemaObjectNameId="SchemaObjectName:43" />
+    <InsertStatementTargetLink Id="InsertStatementTargetLink:8" InsertStatementId="InsertStatement:8" SchemaObjectNameId="SchemaObjectName:50" />
+  </InsertStatementTargetLinkList>
+</MetaTransformScript>

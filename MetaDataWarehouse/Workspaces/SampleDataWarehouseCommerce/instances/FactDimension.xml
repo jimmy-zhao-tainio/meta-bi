@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouse>
+  <FactDimensionList>
+    <FactDimension Id="fact:sales-order:dimension:OrderDate" DimensionId="dimension:date" FactId="fact:sales-order">
+      <IsRequired>true</IsRequired>
+      <Ordinal>10</Ordinal>
+      <RoleName>OrderDate</RoleName>
+    </FactDimension>
+    <FactDimension Id="fact:sales-order:dimension:ShipDate" DimensionId="dimension:date" FactId="fact:sales-order">
+      <IsRequired>false</IsRequired>
+      <Ordinal>20</Ordinal>
+      <RoleName>ShipDate</RoleName>
+    </FactDimension>
+    <FactDimension Id="fact:sales-order:dimension:Customer" DimensionId="dimension:customer" FactId="fact:sales-order">
+      <IsRequired>true</IsRequired>
+      <Ordinal>30</Ordinal>
+      <RoleName>Customer</RoleName>
+    </FactDimension>
+    <FactDimension Id="fact:sales-order:dimension:Product" DimensionId="dimension:product" FactId="fact:sales-order">
+      <IsRequired>true</IsRequired>
+      <Ordinal>40</Ordinal>
+      <RoleName>Product</RoleName>
+    </FactDimension>
+    <FactDimension Id="fact:inventory-snapshot:dimension:SnapshotDate" DimensionId="dimension:date" FactId="fact:inventory-snapshot">
+      <IsRequired>true</IsRequired>
+      <Ordinal>10</Ordinal>
+      <RoleName>SnapshotDate</RoleName>
+    </FactDimension>
+    <FactDimension Id="fact:inventory-snapshot:dimension:Product" DimensionId="dimension:product" FactId="fact:inventory-snapshot">
+      <IsRequired>true</IsRequired>
+      <Ordinal>20</Ordinal>
+      <RoleName>Product</RoleName>
+    </FactDimension>
+    <FactDimension Id="fact:order-fulfillment:dimension:Customer" DimensionId="dimension:customer" FactId="fact:order-fulfillment">
+      <IsRequired>true</IsRequired>
+      <Ordinal>10</Ordinal>
+      <RoleName>Customer</RoleName>
+    </FactDimension>
+    <FactDimension Id="fact:promotion-coverage:dimension:PromotionDate" DimensionId="dimension:date" FactId="fact:promotion-coverage">
+      <IsRequired>true</IsRequired>
+      <Ordinal>10</Ordinal>
+      <RoleName>PromotionDate</RoleName>
+    </FactDimension>
+    <FactDimension Id="fact:promotion-coverage:dimension:Product" DimensionId="dimension:product" FactId="fact:promotion-coverage">
+      <IsRequired>true</IsRequired>
+      <Ordinal>20</Ordinal>
+      <RoleName>Product</RoleName>
+    </FactDimension>
+    <FactDimension Id="fact:monthly-sales-summary:dimension:Month" DimensionId="dimension:date" FactId="fact:monthly-sales-summary">
+      <IsRequired>true</IsRequired>
+      <Ordinal>10</Ordinal>
+      <RoleName>Month</RoleName>
+    </FactDimension>
+    <FactDimension Id="fact:monthly-sales-summary:dimension:Product" DimensionId="dimension:product" FactId="fact:monthly-sales-summary">
+      <IsRequired>true</IsRequired>
+      <Ordinal>20</Ordinal>
+      <RoleName>Product</RoleName>
+    </FactDimension>
+  </FactDimensionList>
+</MetaDataWarehouse>

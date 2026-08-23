@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSql>
+  <PrimaryKeyColumnList>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile.pk.PK_BHS_Address_AddressProfile.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile.pk.PK_BHS_Address_AddressProfile" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile.HubHashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile.pk.PK_BHS_Address_AddressProfile.column.2" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile.pk.PK_BHS_Address_AddressProfile" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile.LoadTimestamp">
+      <Ordinal>2</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BHS_CountryRegion_CountryRegionProfile.pk.PK_BHS_CountryRegion_CountryRegionProfile.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BHS_CountryRegion_CountryRegionProfile.pk.PK_BHS_CountryRegion_CountryRegionProfile" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_CountryRegion_CountryRegionProfile.HubHashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BHS_CountryRegion_CountryRegionProfile.pk.PK_BHS_CountryRegion_CountryRegionProfile.column.2" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BHS_CountryRegion_CountryRegionProfile.pk.PK_BHS_CountryRegion_CountryRegionProfile" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_CountryRegion_CountryRegionProfile.LoadTimestamp">
+      <Ordinal>2</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile.pk.PK_BHS_Customer_CustomerProfile.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile.pk.PK_BHS_Customer_CustomerProfile" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile.HubHashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile.pk.PK_BHS_Customer_CustomerProfile.column.2" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile.pk.PK_BHS_Customer_CustomerProfile" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile.LoadTimestamp">
+      <Ordinal>2</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile.pk.PK_BHS_Person_PersonProfile.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile.pk.PK_BHS_Person_PersonProfile" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile.HubHashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile.pk.PK_BHS_Person_PersonProfile.column.2" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile.pk.PK_BHS_Person_PersonProfile" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile.LoadTimestamp">
+      <Ordinal>2</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BHS_ProductCategory_ProductCategoryProfile.pk.PK_BHS_ProductCategory_ProductCategoryProfile.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BHS_ProductCategory_ProductCategoryProfile.pk.PK_BHS_ProductCategory_ProductCategoryProfile" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_ProductCategory_ProductCategoryProfile.HubHashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BHS_ProductCategory_ProductCategoryProfile.pk.PK_BHS_ProductCategory_ProductCategoryProfile.column.2" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BHS_ProductCategory_ProductCategoryProfile.pk.PK_BHS_ProductCategory_ProductCategoryProfile" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_ProductCategory_ProductCategoryProfile.LoadTimestamp">
+      <Ordinal>2</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BHS_ProductSubcategory_ProductSubcategoryProfile.pk.PK_BHS_ProductSubcategory_ProductSubcategoryProfile.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BHS_ProductSubcategory_ProductSubcategoryProfile.pk.PK_BHS_ProductSubcategory_ProductSubcategoryProfile" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_ProductSubcategory_ProductSubcategoryProfile.HubHashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BHS_ProductSubcategory_ProductSubcategoryProfile.pk.PK_BHS_ProductSubcategory_ProductSubcategoryProfile.column.2" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BHS_ProductSubcategory_ProductSubcategoryProfile.pk.PK_BHS_ProductSubcategory_ProductSubcategoryProfile" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_ProductSubcategory_ProductSubcategoryProfile.LoadTimestamp">
+      <Ordinal>2</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile.pk.PK_BHS_Product_ProductProfile.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile.pk.PK_BHS_Product_ProductProfile" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile.HubHashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile.pk.PK_BHS_Product_ProductProfile.column.2" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile.pk.PK_BHS_Product_ProductProfile" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile.LoadTimestamp">
+      <Ordinal>2</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail.pk.PK_BHS_SalesOrderLine_SalesOrderLineDetail.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail.pk.PK_BHS_SalesOrderLine_SalesOrderLineDetail" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail.HubHashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail.pk.PK_BHS_SalesOrderLine_SalesOrderLineDetail.column.2" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail.pk.PK_BHS_SalesOrderLine_SalesOrderLineDetail" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail.LoadTimestamp">
+      <Ordinal>2</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader.pk.PK_BHS_SalesOrder_SalesOrderHeader.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader.pk.PK_BHS_SalesOrder_SalesOrderHeader" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader.HubHashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader.pk.PK_BHS_SalesOrder_SalesOrderHeader.column.2" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader.pk.PK_BHS_SalesOrder_SalesOrderHeader" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader.LoadTimestamp">
+      <Ordinal>2</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile.pk.PK_BHS_SalesPersonQuota_SalesPersonQuotaProfile.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile.pk.PK_BHS_SalesPersonQuota_SalesPersonQuotaProfile" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile.HubHashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile.pk.PK_BHS_SalesPersonQuota_SalesPersonQuotaProfile.column.2" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile.pk.PK_BHS_SalesPersonQuota_SalesPersonQuotaProfile" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile.LoadTimestamp">
+      <Ordinal>2</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile.pk.PK_BHS_SalesPerson_SalesPersonProfile.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile.pk.PK_BHS_SalesPerson_SalesPersonProfile" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile.HubHashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile.pk.PK_BHS_SalesPerson_SalesPersonProfile.column.2" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile.pk.PK_BHS_SalesPerson_SalesPersonProfile" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile.LoadTimestamp">
+      <Ordinal>2</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.pk.PK_BHS_SalesTerritory_SalesTerritoryProfile.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.pk.PK_BHS_SalesTerritory_SalesTerritoryProfile" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.HubHashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.pk.PK_BHS_SalesTerritory_SalesTerritoryProfile.column.2" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.pk.PK_BHS_SalesTerritory_SalesTerritoryProfile" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.LoadTimestamp">
+      <Ordinal>2</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BHS_StateProvince_StateProvinceProfile.pk.PK_BHS_StateProvince_StateProvinceProfile.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BHS_StateProvince_StateProvinceProfile.pk.PK_BHS_StateProvince_StateProvinceProfile" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_StateProvince_StateProvinceProfile.HubHashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BHS_StateProvince_StateProvinceProfile.pk.PK_BHS_StateProvince_StateProvinceProfile.column.2" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BHS_StateProvince_StateProvinceProfile.pk.PK_BHS_StateProvince_StateProvinceProfile" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_StateProvince_StateProvinceProfile.LoadTimestamp">
+      <Ordinal>2</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile.pk.PK_BHS_Store_StoreProfile.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile.pk.PK_BHS_Store_StoreProfile" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile.HubHashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile.pk.PK_BHS_Store_StoreProfile.column.2" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile.pk.PK_BHS_Store_StoreProfile" TableColumnId="AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile.LoadTimestamp">
+      <Ordinal>2</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BH_Address.pk.PK_BH_Address.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BH_Address.pk.PK_BH_Address" TableColumnId="AdventureWorksBusinessVault.dbo.BH_Address.HashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BH_CountryRegion.pk.PK_BH_CountryRegion.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BH_CountryRegion.pk.PK_BH_CountryRegion" TableColumnId="AdventureWorksBusinessVault.dbo.BH_CountryRegion.HashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BH_Customer.pk.PK_BH_Customer.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BH_Customer.pk.PK_BH_Customer" TableColumnId="AdventureWorksBusinessVault.dbo.BH_Customer.HashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BH_Person.pk.PK_BH_Person.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BH_Person.pk.PK_BH_Person" TableColumnId="AdventureWorksBusinessVault.dbo.BH_Person.HashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BH_Product.pk.PK_BH_Product.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BH_Product.pk.PK_BH_Product" TableColumnId="AdventureWorksBusinessVault.dbo.BH_Product.HashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BH_ProductCategory.pk.PK_BH_ProductCategory.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BH_ProductCategory.pk.PK_BH_ProductCategory" TableColumnId="AdventureWorksBusinessVault.dbo.BH_ProductCategory.HashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BH_ProductSubcategory.pk.PK_BH_ProductSubcategory.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BH_ProductSubcategory.pk.PK_BH_ProductSubcategory" TableColumnId="AdventureWorksBusinessVault.dbo.BH_ProductSubcategory.HashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BH_SalesOrder.pk.PK_BH_SalesOrder.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BH_SalesOrder.pk.PK_BH_SalesOrder" TableColumnId="AdventureWorksBusinessVault.dbo.BH_SalesOrder.HashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BH_SalesOrderLine.pk.PK_BH_SalesOrderLine.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BH_SalesOrderLine.pk.PK_BH_SalesOrderLine" TableColumnId="AdventureWorksBusinessVault.dbo.BH_SalesOrderLine.HashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BH_SalesPerson.pk.PK_BH_SalesPerson.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BH_SalesPerson.pk.PK_BH_SalesPerson" TableColumnId="AdventureWorksBusinessVault.dbo.BH_SalesPerson.HashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota.pk.PK_BH_SalesPersonQuota.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota.pk.PK_BH_SalesPersonQuota" TableColumnId="AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota.HashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BH_SalesTerritory.pk.PK_BH_SalesTerritory.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BH_SalesTerritory.pk.PK_BH_SalesTerritory" TableColumnId="AdventureWorksBusinessVault.dbo.BH_SalesTerritory.HashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BH_StateProvince.pk.PK_BH_StateProvince.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BH_StateProvince.pk.PK_BH_StateProvince" TableColumnId="AdventureWorksBusinessVault.dbo.BH_StateProvince.HashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BH_Store.pk.PK_BH_Store.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BH_Store.pk.PK_BH_Store" TableColumnId="AdventureWorksBusinessVault.dbo.BH_Store.HashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BL_AddressStateProvince.pk.PK_BL_AddressStateProvince.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BL_AddressStateProvince.pk.PK_BL_AddressStateProvince" TableColumnId="AdventureWorksBusinessVault.dbo.BL_AddressStateProvince.HashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BL_CustomerPerson.pk.PK_BL_CustomerPerson.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BL_CustomerPerson.pk.PK_BL_CustomerPerson" TableColumnId="AdventureWorksBusinessVault.dbo.BL_CustomerPerson.HashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BL_CustomerStore.pk.PK_BL_CustomerStore.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BL_CustomerStore.pk.PK_BL_CustomerStore" TableColumnId="AdventureWorksBusinessVault.dbo.BL_CustomerStore.HashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment.pk.PK_BL_ProductSubcategoryAssignment.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment.pk.PK_BL_ProductSubcategoryAssignment" TableColumnId="AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment.HashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory.pk.PK_BL_ProductSubcategoryCategory.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory.pk.PK_BL_ProductSubcategoryCategory" TableColumnId="AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory.HashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress.pk.PK_BL_SalesOrderBillToAddress.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress.pk.PK_BL_SalesOrderBillToAddress" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress.HashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer.pk.PK_BL_SalesOrderCustomer.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer.pk.PK_BL_SalesOrderCustomer" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer.HashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct.pk.PK_BL_SalesOrderLineProduct.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct.pk.PK_BL_SalesOrderLineProduct" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct.HashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder.pk.PK_BL_SalesOrderLineSalesOrder.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder.pk.PK_BL_SalesOrderLineSalesOrder" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder.HashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson.pk.PK_BL_SalesOrderSalesPerson.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson.pk.PK_BL_SalesOrderSalesPerson" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson.HashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory.pk.PK_BL_SalesOrderSalesTerritory.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory.pk.PK_BL_SalesOrderSalesTerritory" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory.HashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress.pk.PK_BL_SalesOrderShipToAddress.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress.pk.PK_BL_SalesOrderShipToAddress" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress.HashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson.pk.PK_BL_SalesPersonPerson.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson.pk.PK_BL_SalesPersonPerson" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson.HashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson.pk.PK_BL_SalesPersonQuotaSalesPerson.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson.pk.PK_BL_SalesPersonQuotaSalesPerson" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson.HashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesPersonSalesTerritory.pk.PK_BL_SalesPersonSalesTerritory.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BL_SalesPersonSalesTerritory.pk.PK_BL_SalesPersonSalesTerritory" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesPersonSalesTerritory.HashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion.pk.PK_BL_SalesTerritoryCountryRegion.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion.pk.PK_BL_SalesTerritoryCountryRegion" TableColumnId="AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion.HashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion.pk.PK_BL_StateProvinceCountryRegion.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion.pk.PK_BL_StateProvinceCountryRegion" TableColumnId="AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion.HashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BL_StateProvinceSalesTerritory.pk.PK_BL_StateProvinceSalesTerritory.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BL_StateProvinceSalesTerritory.pk.PK_BL_StateProvinceSalesTerritory" TableColumnId="AdventureWorksBusinessVault.dbo.BL_StateProvinceSalesTerritory.HashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+    <PrimaryKeyColumn Id="AdventureWorksBusinessVault.dbo.BL_StoreSalesPerson.pk.PK_BL_StoreSalesPerson.column.1" PrimaryKeyId="AdventureWorksBusinessVault.dbo.BL_StoreSalesPerson.pk.PK_BL_StoreSalesPerson" TableColumnId="AdventureWorksBusinessVault.dbo.BL_StoreSalesPerson.HashKey">
+      <Ordinal>1</Ordinal>
+    </PrimaryKeyColumn>
+  </PrimaryKeyColumnList>
+</MetaSql>

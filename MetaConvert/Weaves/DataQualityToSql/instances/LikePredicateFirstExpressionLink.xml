@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <LikePredicateFirstExpressionLinkList>
+    <LikePredicateFirstExpressionLink Id="LikePredicateFirstExpressionLink:1" LikePredicateId="LikePredicate:1" ScalarExpressionId="ScalarExpression:1442" />
+    <LikePredicateFirstExpressionLink Id="LikePredicateFirstExpressionLink:2" LikePredicateId="LikePredicate:2" ScalarExpressionId="ScalarExpression:1454" />
+    <LikePredicateFirstExpressionLink Id="LikePredicateFirstExpressionLink:3" LikePredicateId="LikePredicate:3" ScalarExpressionId="ScalarExpression:1458" />
+    <LikePredicateFirstExpressionLink Id="LikePredicateFirstExpressionLink:4" LikePredicateId="LikePredicate:4" ScalarExpressionId="ScalarExpression:1460" />
+    <LikePredicateFirstExpressionLink Id="LikePredicateFirstExpressionLink:5" LikePredicateId="LikePredicate:5" ScalarExpressionId="ScalarExpression:1462" />
+    <LikePredicateFirstExpressionLink Id="LikePredicateFirstExpressionLink:6" LikePredicateId="LikePredicate:6" ScalarExpressionId="ScalarExpression:1464" />
+    <LikePredicateFirstExpressionLink Id="LikePredicateFirstExpressionLink:7" LikePredicateId="LikePredicate:7" ScalarExpressionId="ScalarExpression:1469" />
+  </LikePredicateFirstExpressionLinkList>
+</MetaWeave>

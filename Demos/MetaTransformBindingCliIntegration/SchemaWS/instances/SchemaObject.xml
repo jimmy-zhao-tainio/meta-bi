@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <SchemaObjectList>
+    <SchemaObject Id="demo:table:reporting:InvoiceWindow" SchemaId="demo:schema:reporting">
+      <Name>InvoiceWindow</Name>
+    </SchemaObject>
+    <SchemaObject Id="demo:table:sales:Customer" SchemaId="demo:schema:sales">
+      <Name>Customer</Name>
+    </SchemaObject>
+    <SchemaObject Id="demo:table:sales:CustomerOrderSummary" SchemaId="demo:schema:sales">
+      <Name>CustomerOrderSummary</Name>
+    </SchemaObject>
+    <SchemaObject Id="demo:table:sales:Invoice" SchemaId="demo:schema:sales">
+      <Name>Invoice</Name>
+    </SchemaObject>
+    <SchemaObject Id="demo:table:sales:Order" SchemaId="demo:schema:sales">
+      <Name>Order</Name>
+    </SchemaObject>
+  </SchemaObjectList>
+</MetaSchema>

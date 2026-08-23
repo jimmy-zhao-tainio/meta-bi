@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouse>
+  <FactGrainList>
+    <FactGrain Id="grain:sales-order-line" FactId="fact:sales-order">
+      <Description>One row per sales order line.</Description>
+      <Name>Sales order line</Name>
+    </FactGrain>
+  </FactGrainList>
+</MetaDataWarehouse>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouse>
+  <DegenerateDimensionList>
+    <DegenerateDimension Id="fact:sales-line:degenerate:SalesOrderDetailID" FactId="fact:sales-line">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <Name>SalesOrderDetailID</Name>
+      <Ordinal>20</Ordinal>
+    </DegenerateDimension>
+    <DegenerateDimension Id="fact:sales-line:degenerate:SalesOrderID" FactId="fact:sales-line">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <Name>SalesOrderID</Name>
+      <Ordinal>10</Ordinal>
+    </DegenerateDimension>
+    <DegenerateDimension Id="fact:sales-order:degenerate:SalesOrderID" FactId="fact:sales-order">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <Name>SalesOrderID</Name>
+      <Ordinal>10</Ordinal>
+    </DegenerateDimension>
+  </DegenerateDimensionList>
+</MetaDataWarehouse>

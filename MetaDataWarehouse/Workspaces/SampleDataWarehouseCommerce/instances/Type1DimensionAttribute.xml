@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouse>
+  <Type1DimensionAttributeList>
+    <Type1DimensionAttribute Id="scd:customer:customer-tier" DimensionAttributeId="dimension:customer:attribute:CustomerTier" SlowlyChangingDimensionId="scd:customer">
+    </Type1DimensionAttribute>
+  </Type1DimensionAttributeList>
+</MetaDataWarehouse>

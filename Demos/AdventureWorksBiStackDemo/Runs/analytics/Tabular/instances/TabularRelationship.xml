@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTabular>
+  <TabularRelationshipList>
+    <TabularRelationship Id="SalesLines_Customer" FromColumnId="SalesLines_CustomerKey" FromTableId="SalesLines" ToColumnId="Customer_CustomerKey" ToTableId="Customer">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Sales Lines Customer</Name>
+    </TabularRelationship>
+    <TabularRelationship Id="SalesLines_OrderDate" FromColumnId="SalesLines_OrderDateKey" FromTableId="SalesLines" ToColumnId="Date_DateKey" ToTableId="Date">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Sales Lines Order Date</Name>
+    </TabularRelationship>
+    <TabularRelationship Id="SalesLines_Product" FromColumnId="SalesLines_ProductKey" FromTableId="SalesLines" ToColumnId="Product_ProductKey" ToTableId="Product">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Product</Name>
+    </TabularRelationship>
+    <TabularRelationship Id="SalesLines_SalesChannel" FromColumnId="SalesLines_SalesChannelKey" FromTableId="SalesLines" ToColumnId="SalesChannel_SalesChannelKey" ToTableId="SalesChannel">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Sales Lines Sales Channel</Name>
+    </TabularRelationship>
+    <TabularRelationship Id="SalesLines_Salesperson" FromColumnId="SalesLines_SalespersonKey" FromTableId="SalesLines" ToColumnId="Salesperson_SalespersonKey" ToTableId="Salesperson">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>false</IsRequired>
+      <Name>Sales Lines Salesperson</Name>
+    </TabularRelationship>
+    <TabularRelationship Id="SalesLines_SalesTerritory" FromColumnId="SalesLines_SalesTerritoryKey" FromTableId="SalesLines" ToColumnId="SalesTerritory_SalesTerritoryKey" ToTableId="SalesTerritory">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>false</IsRequired>
+      <Name>Sales Lines Sales Territory</Name>
+    </TabularRelationship>
+    <TabularRelationship Id="SalesLines_ShipToGeography" FromColumnId="SalesLines_ShipToGeographyKey" FromTableId="SalesLines" ToColumnId="Geography_GeographyKey" ToTableId="Geography">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Sales Lines Ship To Geography</Name>
+    </TabularRelationship>
+    <TabularRelationship Id="SalesOrders_BillToGeography" FromColumnId="SalesOrders_BillToGeographyKey" FromTableId="SalesOrders" ToColumnId="Geography_GeographyKey" ToTableId="Geography">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Bill To Geography</Name>
+    </TabularRelationship>
+    <TabularRelationship Id="SalesOrders_Customer" FromColumnId="SalesOrders_CustomerKey" FromTableId="SalesOrders" ToColumnId="Customer_CustomerKey" ToTableId="Customer">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Sales Orders Customer</Name>
+    </TabularRelationship>
+    <TabularRelationship Id="SalesOrders_DueDate" FromColumnId="SalesOrders_DueDateKey" FromTableId="SalesOrders" ToColumnId="Date_DateKey" ToTableId="Date">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>false</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Due Date</Name>
+    </TabularRelationship>
+    <TabularRelationship Id="SalesOrders_OrderDate" FromColumnId="SalesOrders_OrderDateKey" FromTableId="SalesOrders" ToColumnId="Date_DateKey" ToTableId="Date">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Sales Orders Order Date</Name>
+    </TabularRelationship>
+    <TabularRelationship Id="SalesOrders_OrderStatus" FromColumnId="SalesOrders_OrderStatusKey" FromTableId="SalesOrders" ToColumnId="OrderStatus_OrderStatusKey" ToTableId="OrderStatus">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Order Status</Name>
+    </TabularRelationship>
+    <TabularRelationship Id="SalesOrders_SalesChannel" FromColumnId="SalesOrders_SalesChannelKey" FromTableId="SalesOrders" ToColumnId="SalesChannel_SalesChannelKey" ToTableId="SalesChannel">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Sales Orders Sales Channel</Name>
+    </TabularRelationship>
+    <TabularRelationship Id="SalesOrders_Salesperson" FromColumnId="SalesOrders_SalespersonKey" FromTableId="SalesOrders" ToColumnId="Salesperson_SalespersonKey" ToTableId="Salesperson">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>false</IsRequired>
+      <Name>Sales Orders Salesperson</Name>
+    </TabularRelationship>
+    <TabularRelationship Id="SalesOrders_SalesTerritory" FromColumnId="SalesOrders_SalesTerritoryKey" FromTableId="SalesOrders" ToColumnId="SalesTerritory_SalesTerritoryKey" ToTableId="SalesTerritory">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>false</IsRequired>
+      <Name>Sales Orders Sales Territory</Name>
+    </TabularRelationship>
+    <TabularRelationship Id="SalesOrders_ShipDate" FromColumnId="SalesOrders_ShipDateKey" FromTableId="SalesOrders" ToColumnId="Date_DateKey" ToTableId="Date">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>false</IsActive>
+      <IsRequired>false</IsRequired>
+      <Name>Ship Date</Name>
+    </TabularRelationship>
+    <TabularRelationship Id="SalesOrders_ShipToGeography" FromColumnId="SalesOrders_ShipToGeographyKey" FromTableId="SalesOrders" ToColumnId="Geography_GeographyKey" ToTableId="Geography">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>false</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Sales Orders Ship To Geography</Name>
+    </TabularRelationship>
+    <TabularRelationship Id="SalespersonQuotas_QuotaPeriod" FromColumnId="SalespersonQuotas_QuotaPeriodKey" FromTableId="SalespersonQuotas" ToColumnId="Date_DateKey" ToTableId="Date">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Quota Period</Name>
+    </TabularRelationship>
+    <TabularRelationship Id="SalespersonQuotas_Salesperson" FromColumnId="SalespersonQuotas_SalespersonKey" FromTableId="SalespersonQuotas" ToColumnId="Salesperson_SalespersonKey" ToTableId="Salesperson">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Salesperson Quotas Salesperson</Name>
+    </TabularRelationship>
+  </TabularRelationshipList>
+</MetaTabular>

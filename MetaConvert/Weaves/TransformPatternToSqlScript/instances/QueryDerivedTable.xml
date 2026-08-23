@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <QueryDerivedTableList>
+    <QueryDerivedTable Id="QueryDerivedTable:1" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:1" />
+    <QueryDerivedTable Id="QueryDerivedTable:2" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:2" />
+    <QueryDerivedTable Id="QueryDerivedTable:3" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:3" />
+    <QueryDerivedTable Id="QueryDerivedTable:4" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:4" />
+    <QueryDerivedTable Id="QueryDerivedTable:5" TableReferenceWithAliasAndColumnsId="TableReferenceWithAliasAndColumns:5" />
+  </QueryDerivedTableList>
+</MetaWeave>

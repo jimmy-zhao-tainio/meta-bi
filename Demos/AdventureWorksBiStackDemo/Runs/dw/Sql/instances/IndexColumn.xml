@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSql>
+  <IndexColumnList>
+    <IndexColumn Id="AdventureWorksAnalytics.dw.Dim_Customer:index:IX_Dim_Customer_CustomerKey:column:1" IndexId="AdventureWorksAnalytics.dw.Dim_Customer:index:IX_Dim_Customer_CustomerKey" TableColumnId="AdventureWorksAnalytics.dw.Dim_Customer.CustomerKey">
+      <Ordinal>1</Ordinal>
+    </IndexColumn>
+    <IndexColumn Id="AdventureWorksAnalytics.dw.Dim_Date:index:IX_Dim_Date_DateKey:column:1" IndexId="AdventureWorksAnalytics.dw.Dim_Date:index:IX_Dim_Date_DateKey" TableColumnId="AdventureWorksAnalytics.dw.Dim_Date.DateKey">
+      <Ordinal>1</Ordinal>
+    </IndexColumn>
+    <IndexColumn Id="AdventureWorksAnalytics.dw.Dim_Geography:index:IX_Dim_Geography_GeographyKey:column:1" IndexId="AdventureWorksAnalytics.dw.Dim_Geography:index:IX_Dim_Geography_GeographyKey" TableColumnId="AdventureWorksAnalytics.dw.Dim_Geography.GeographyKey">
+      <Ordinal>1</Ordinal>
+    </IndexColumn>
+    <IndexColumn Id="AdventureWorksAnalytics.dw.Dim_OrderStatus:index:IX_Dim_OrderStatus_OrderStatusKey:column:1" IndexId="AdventureWorksAnalytics.dw.Dim_OrderStatus:index:IX_Dim_OrderStatus_OrderStatusKey" TableColumnId="AdventureWorksAnalytics.dw.Dim_OrderStatus.OrderStatusKey">
+      <Ordinal>1</Ordinal>
+    </IndexColumn>
+    <IndexColumn Id="AdventureWorksAnalytics.dw.Dim_Product:index:IX_Dim_Product_ProductKey:column:1" IndexId="AdventureWorksAnalytics.dw.Dim_Product:index:IX_Dim_Product_ProductKey" TableColumnId="AdventureWorksAnalytics.dw.Dim_Product.ProductKey">
+      <Ordinal>1</Ordinal>
+    </IndexColumn>
+    <IndexColumn Id="AdventureWorksAnalytics.dw.Dim_SalesChannel:index:IX_Dim_SalesChannel_SalesChannelKey:column:1" IndexId="AdventureWorksAnalytics.dw.Dim_SalesChannel:index:IX_Dim_SalesChannel_SalesChannelKey" TableColumnId="AdventureWorksAnalytics.dw.Dim_SalesChannel.SalesChannelKey">
+      <Ordinal>1</Ordinal>
+    </IndexColumn>
+    <IndexColumn Id="AdventureWorksAnalytics.dw.Dim_Salesperson:index:IX_Dim_Salesperson_SalespersonKey:column:1" IndexId="AdventureWorksAnalytics.dw.Dim_Salesperson:index:IX_Dim_Salesperson_SalespersonKey" TableColumnId="AdventureWorksAnalytics.dw.Dim_Salesperson.SalespersonKey">
+      <Ordinal>1</Ordinal>
+    </IndexColumn>
+    <IndexColumn Id="AdventureWorksAnalytics.dw.Dim_SalesTerritory:index:IX_Dim_SalesTerritory_SalesTerritoryKey:column:1" IndexId="AdventureWorksAnalytics.dw.Dim_SalesTerritory:index:IX_Dim_SalesTerritory_SalesTerritoryKey" TableColumnId="AdventureWorksAnalytics.dw.Dim_SalesTerritory.SalesTerritoryKey">
+      <Ordinal>1</Ordinal>
+    </IndexColumn>
+    <IndexColumn Id="AdventureWorksAnalytics.dw.Fact_SalesLine:index:IX_Fact_SalesLine_OrderDateKey:column:1" IndexId="AdventureWorksAnalytics.dw.Fact_SalesLine:index:IX_Fact_SalesLine_OrderDateKey" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalesLine.OrderDateKey">
+      <Ordinal>1</Ordinal>
+    </IndexColumn>
+    <IndexColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder:index:IX_Fact_SalesOrder_OrderDateKey:column:1" IndexId="AdventureWorksAnalytics.dw.Fact_SalesOrder:index:IX_Fact_SalesOrder_OrderDateKey" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalesOrder.OrderDateKey">
+      <Ordinal>1</Ordinal>
+    </IndexColumn>
+    <IndexColumn Id="AdventureWorksAnalytics.dw.Fact_SalespersonQuota:index:IX_Fact_SalespersonQuota_QuotaPeriodKey:column:1" IndexId="AdventureWorksAnalytics.dw.Fact_SalespersonQuota:index:IX_Fact_SalespersonQuota_QuotaPeriodKey" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalespersonQuota.QuotaPeriodKey">
+      <Ordinal>1</Ordinal>
+    </IndexColumn>
+  </IndexColumnList>
+</MetaSql>

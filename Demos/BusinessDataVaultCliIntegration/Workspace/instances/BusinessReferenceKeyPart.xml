@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessReferenceKeyPartList>
+    <BusinessReferenceKeyPart Id="CurrencyCodeValue" BusinessReferenceId="CurrencyCode">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>CurrencyCode</Name>
+    </BusinessReferenceKeyPart>
+    <BusinessReferenceKeyPart Id="OrderStatusCode" BusinessReferenceId="OrderStatus">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>OrderStatusCode</Name>
+    </BusinessReferenceKeyPart>
+  </BusinessReferenceKeyPartList>
+</MetaBusinessDataVault>

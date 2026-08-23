@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <ScalarSubqueryQueryExpressionLinkList>
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:1" QueryExpressionId="QueryExpression:1" ScalarSubqueryId="ScalarSubquery:1" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:2" QueryExpressionId="QueryExpression:3" ScalarSubqueryId="ScalarSubquery:2" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:3" QueryExpressionId="QueryExpression:5" ScalarSubqueryId="ScalarSubquery:3" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:4" QueryExpressionId="QueryExpression:7" ScalarSubqueryId="ScalarSubquery:4" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:5" QueryExpressionId="QueryExpression:9" ScalarSubqueryId="ScalarSubquery:5" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:6" QueryExpressionId="QueryExpression:11" ScalarSubqueryId="ScalarSubquery:6" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:7" QueryExpressionId="QueryExpression:13" ScalarSubqueryId="ScalarSubquery:7" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:8" QueryExpressionId="QueryExpression:15" ScalarSubqueryId="ScalarSubquery:8" />
+  </ScalarSubqueryQueryExpressionLinkList>
+</MetaTransformScript>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <XmlWorkspaceList>
+    <XmlWorkspace Id="workspace:binding" WorkspaceId="workspace:binding">
+      <Path>BindingWS</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="workspace:complete-orchestration" WorkspaceId="workspace:complete-orchestration">
+      <Path>CompleteOrchestrationWS</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="workspace:complete-pipeline" WorkspaceId="workspace:complete-pipeline">
+      <Path>CompletePipelineWS</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="workspace:failure-orchestration" WorkspaceId="workspace:failure-orchestration">
+      <Path>FailureOrchestrationWS</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="workspace:failure-pipeline" WorkspaceId="workspace:failure-pipeline">
+      <Path>FailurePipelineWS</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="workspace:invalid-orchestration" WorkspaceId="workspace:invalid-orchestration">
+      <Path>InvalidOrchestrationWS</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="workspace:invalid-pipeline" WorkspaceId="workspace:invalid-pipeline">
+      <Path>InvalidPipelineWS</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="workspace:policy-orchestration" WorkspaceId="workspace:policy-orchestration">
+      <Path>PolicyOrchestrationWS</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="workspace:policy-pipeline" WorkspaceId="workspace:policy-pipeline">
+      <Path>PolicyPipelineWS</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="workspace:schema" WorkspaceId="workspace:schema">
+      <Path>SchemaWS</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="workspace:transform" WorkspaceId="workspace:transform">
+      <Path>TransformWS</Path>
+    </XmlWorkspace>
+  </XmlWorkspaceList>
+</MetaMesh>

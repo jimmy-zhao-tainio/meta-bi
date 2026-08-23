@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <PerspectiveMeasureList>
+    <PerspectiveMeasure Id="perspective:sales:measure:sales-amount" MeasureId="measure:sales-amount" PerspectiveId="perspective:sales">
+    </PerspectiveMeasure>
+    <PerspectiveMeasure Id="perspective:sales:measure:quantity" MeasureId="measure:quantity" PerspectiveId="perspective:sales">
+    </PerspectiveMeasure>
+    <PerspectiveMeasure Id="perspective:sales:measure:sales-target" MeasureId="measure:sales-target" PerspectiveId="perspective:sales">
+    </PerspectiveMeasure>
+  </PerspectiveMeasureList>
+</MetaAnalytics>

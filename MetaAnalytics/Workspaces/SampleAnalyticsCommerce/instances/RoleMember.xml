@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <RoleMemberList>
+    <RoleMember Id="role-member:sales-region-reader:analysts" SecurityRoleId="role:sales-region-reader">
+      <MemberKind>WindowsGroup</MemberKind>
+      <MemberName>CONTOSO\SalesAnalysts</MemberName>
+    </RoleMember>
+  </RoleMemberList>
+</MetaAnalytics>

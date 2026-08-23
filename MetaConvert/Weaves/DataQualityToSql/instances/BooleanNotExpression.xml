@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <BooleanNotExpressionList>
+    <BooleanNotExpression Id="BooleanNotExpression:17" BooleanExpressionId="BooleanExpression:294" />
+    <BooleanNotExpression Id="BooleanNotExpression:18" BooleanExpressionId="BooleanExpression:453" />
+    <BooleanNotExpression Id="BooleanNotExpression:19" BooleanExpressionId="BooleanExpression:457" />
+    <BooleanNotExpression Id="BooleanNotExpression:20" BooleanExpressionId="BooleanExpression:461" />
+    <BooleanNotExpression Id="BooleanNotExpression:21" BooleanExpressionId="BooleanExpression:465" />
+    <BooleanNotExpression Id="BooleanNotExpression:22" BooleanExpressionId="BooleanExpression:469" />
+    <BooleanNotExpression Id="BooleanNotExpression:23" BooleanExpressionId="BooleanExpression:473" />
+    <BooleanNotExpression Id="BooleanNotExpression:24" BooleanExpressionId="BooleanExpression:477" />
+    <BooleanNotExpression Id="BooleanNotExpression:25" BooleanExpressionId="BooleanExpression:481" />
+    <BooleanNotExpression Id="BooleanNotExpression:26" BooleanExpressionId="BooleanExpression:485" />
+    <BooleanNotExpression Id="BooleanNotExpression:27" BooleanExpressionId="BooleanExpression:489" />
+    <BooleanNotExpression Id="BooleanNotExpression:28" BooleanExpressionId="BooleanExpression:493" />
+    <BooleanNotExpression Id="BooleanNotExpression:29" BooleanExpressionId="BooleanExpression:497" />
+    <BooleanNotExpression Id="BooleanNotExpression:30" BooleanExpressionId="BooleanExpression:501" />
+    <BooleanNotExpression Id="BooleanNotExpression:31" BooleanExpressionId="BooleanExpression:505" />
+    <BooleanNotExpression Id="BooleanNotExpression:32" BooleanExpressionId="BooleanExpression:509" />
+    <BooleanNotExpression Id="BooleanNotExpression:33" BooleanExpressionId="BooleanExpression:542" />
+    <BooleanNotExpression Id="BooleanNotExpression:5" BooleanExpressionId="BooleanExpression:125" />
+  </BooleanNotExpressionList>
+</MetaWeave>

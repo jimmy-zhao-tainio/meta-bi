@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <BooleanBinaryExpressionList>
+    <BooleanBinaryExpression Id="BooleanBinaryExpression:1" BooleanExpressionId="BooleanExpression:4">
+      <BinaryExpressionType>And</BinaryExpressionType>
+    </BooleanBinaryExpression>
+    <BooleanBinaryExpression Id="BooleanBinaryExpression:10" BooleanExpressionId="BooleanExpression:60">
+      <BinaryExpressionType>And</BinaryExpressionType>
+    </BooleanBinaryExpression>
+    <BooleanBinaryExpression Id="BooleanBinaryExpression:11" BooleanExpressionId="BooleanExpression:67">
+      <BinaryExpressionType>And</BinaryExpressionType>
+    </BooleanBinaryExpression>
+    <BooleanBinaryExpression Id="BooleanBinaryExpression:2" BooleanExpressionId="BooleanExpression:13">
+      <BinaryExpressionType>And</BinaryExpressionType>
+    </BooleanBinaryExpression>
+    <BooleanBinaryExpression Id="BooleanBinaryExpression:3" BooleanExpressionId="BooleanExpression:18">
+      <BinaryExpressionType>And</BinaryExpressionType>
+    </BooleanBinaryExpression>
+    <BooleanBinaryExpression Id="BooleanBinaryExpression:4" BooleanExpressionId="BooleanExpression:22">
+      <BinaryExpressionType>And</BinaryExpressionType>
+    </BooleanBinaryExpression>
+    <BooleanBinaryExpression Id="BooleanBinaryExpression:5" BooleanExpressionId="BooleanExpression:28">
+      <BinaryExpressionType>And</BinaryExpressionType>
+    </BooleanBinaryExpression>
+    <BooleanBinaryExpression Id="BooleanBinaryExpression:6" BooleanExpressionId="BooleanExpression:40">
+      <BinaryExpressionType>And</BinaryExpressionType>
+    </BooleanBinaryExpression>
+    <BooleanBinaryExpression Id="BooleanBinaryExpression:7" BooleanExpressionId="BooleanExpression:46">
+      <BinaryExpressionType>And</BinaryExpressionType>
+    </BooleanBinaryExpression>
+    <BooleanBinaryExpression Id="BooleanBinaryExpression:8" BooleanExpressionId="BooleanExpression:48">
+      <BinaryExpressionType>Or</BinaryExpressionType>
+    </BooleanBinaryExpression>
+    <BooleanBinaryExpression Id="BooleanBinaryExpression:9" BooleanExpressionId="BooleanExpression:55">
+      <BinaryExpressionType>And</BinaryExpressionType>
+    </BooleanBinaryExpression>
+  </BooleanBinaryExpressionList>
+</MetaWeave>

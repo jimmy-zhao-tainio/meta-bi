@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <CoalesceExpressionExpressionsItemList>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:1" CoalesceExpressionId="CoalesceExpression:1" ScalarExpressionId="ScalarExpression:2340">
+      <Ordinal>0</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:2" CoalesceExpressionId="CoalesceExpression:1" ScalarExpressionId="ScalarExpression:2618">
+      <Ordinal>1</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:3" CoalesceExpressionId="CoalesceExpression:2" ScalarExpressionId="ScalarExpression:5397">
+      <Ordinal>0</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+    <CoalesceExpressionExpressionsItem Id="CoalesceExpressionExpressionsItem:4" CoalesceExpressionId="CoalesceExpression:2" ScalarExpressionId="ScalarExpression:5398">
+      <Ordinal>1</Ordinal>
+    </CoalesceExpressionExpressionsItem>
+  </CoalesceExpressionExpressionsItemList>
+</MetaWeave>

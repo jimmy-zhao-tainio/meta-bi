@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaRawDataVault>
+  <RawHubKeyPartList>
+    <RawHubKeyPart Id="CustomerHubKey" FieldId="CustomerIdField" RawHubId="CustomerHub">
+      <Name>CustomerId</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="DepartmentHubKey" FieldId="DepartmentIdField" RawHubId="DepartmentHub">
+      <Name>DepartmentId</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="EmployeeHubKey" FieldId="EmployeeIdField" RawHubId="EmployeeHub">
+      <Name>EmployeeId</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="InvoiceHubKey" FieldId="InvoiceIdField" RawHubId="InvoiceHub">
+      <Name>InvoiceId</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="OrderHubKey" FieldId="OrderIdField" RawHubId="OrderHub">
+      <Name>OrderId</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="ProductHubKey" FieldId="ProductIdField" RawHubId="ProductHub">
+      <Name>ProductId</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="ShipmentHubKey" FieldId="ShipmentIdField" RawHubId="ShipmentHub">
+      <Name>ShipmentId</Name>
+    </RawHubKeyPart>
+    <RawHubKeyPart Id="SupplierHubKey" FieldId="SupplierIdField" RawHubId="SupplierHub">
+      <Name>SupplierId</Name>
+    </RawHubKeyPart>
+  </RawHubKeyPartList>
+</MetaRawDataVault>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <PerspectiveHierarchyList>
+    <PerspectiveHierarchy Id="perspective:sales:hierarchy:calendar" HierarchyId="hierarchy:date:calendar" PerspectiveId="perspective:sales">
+    </PerspectiveHierarchy>
+  </PerspectiveHierarchyList>
+</MetaAnalytics>

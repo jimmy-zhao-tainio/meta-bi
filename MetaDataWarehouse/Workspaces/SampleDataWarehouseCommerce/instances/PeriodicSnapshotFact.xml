@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouse>
+  <PeriodicSnapshotFactList>
+    <PeriodicSnapshotFact Id="periodic-snapshot:inventory" FactId="fact:inventory-snapshot">
+      <PeriodName>Day</PeriodName>
+    </PeriodicSnapshotFact>
+  </PeriodicSnapshotFactList>
+</MetaDataWarehouse>

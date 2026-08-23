@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
+    <Compile Include="..\Workspaces\MetaOrchestration\MetaOrchestration.meta.cs" Link="MetaOrchestration.meta.cs" />
+    <ProjectReference Include="..\WorkerProtocol\MetaOrchestration.WorkerProtocol.csproj" />
+    <ProjectReference Include="..\..\MetaPipeline\Core\MetaPipeline.Core.csproj" />
+    <ProjectReference Include="..\..\MetaTransform\Binding\MetaTransform.Binding.csproj" />
+    <ProjectReference Include="..\..\MetaTransform\Script\Sql\MetaTransformScript.Sql.csproj" />
+  </ItemGroup>
+
+</Project>

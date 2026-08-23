@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessHubSatelliteList>
+    <BusinessHubSatellite Id="CostCenterBudget" BusinessHubId="CostCenter" BusinessSatelliteId="CostCenterBudget" />
+    <BusinessHubSatellite Id="CostCenterProfile" BusinessHubId="CostCenter" BusinessSatelliteId="CostCenterProfile" />
+    <BusinessHubSatellite Id="CustomerAddress" BusinessHubId="Customer" BusinessSatelliteId="CustomerAddress" />
+    <BusinessHubSatellite Id="CustomerContact" BusinessHubId="Customer" BusinessSatelliteId="CustomerContact" />
+    <BusinessHubSatellite Id="CustomerProfile" BusinessHubId="Customer" BusinessSatelliteId="CustomerProfile" />
+    <BusinessHubSatellite Id="DepartmentOperatingModel" BusinessHubId="Department" BusinessSatelliteId="DepartmentOperatingModel" />
+    <BusinessHubSatellite Id="DepartmentProfile" BusinessHubId="Department" BusinessSatelliteId="DepartmentProfile" />
+    <BusinessHubSatellite Id="EmployeeEmployment" BusinessHubId="Employee" BusinessSatelliteId="EmployeeEmployment" />
+    <BusinessHubSatellite Id="EmployeeProfile" BusinessHubId="Employee" BusinessSatelliteId="EmployeeProfile" />
+    <BusinessHubSatellite Id="InvoiceHeader" BusinessHubId="Invoice" BusinessSatelliteId="InvoiceHeader" />
+    <BusinessHubSatellite Id="OrderHeader" BusinessHubId="Order" BusinessSatelliteId="OrderHeader" />
+    <BusinessHubSatellite Id="ProductCommercial" BusinessHubId="Product" BusinessSatelliteId="ProductCommercial" />
+    <BusinessHubSatellite Id="ProductProfile" BusinessHubId="Product" BusinessSatelliteId="ProductProfile" />
+    <BusinessHubSatellite Id="ShipmentHeader" BusinessHubId="Shipment" BusinessSatelliteId="ShipmentHeader" />
+    <BusinessHubSatellite Id="SupplierCompliance" BusinessHubId="Supplier" BusinessSatelliteId="SupplierCompliance" />
+    <BusinessHubSatellite Id="SupplierProfile" BusinessHubId="Supplier" BusinessSatelliteId="SupplierProfile" />
+  </BusinessHubSatelliteList>
+</MetaBusinessDataVault>

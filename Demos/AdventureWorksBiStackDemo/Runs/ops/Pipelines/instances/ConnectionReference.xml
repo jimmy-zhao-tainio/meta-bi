@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaPipeline>
+  <ConnectionReferenceList>
+    <ConnectionReference Id="BusinessToWarehouse.AW_DW_SQL" PipelineId="BusinessToWarehouse">
+      <EnvironmentVariableName>AW_DW_SQL</EnvironmentVariableName>
+      <Name>AW_DW_SQL</Name>
+    </ConnectionReference>
+    <ConnectionReference Id="RawToBusiness.AW_BDV_SQL" PipelineId="RawToBusiness">
+      <EnvironmentVariableName>AW_BDV_SQL</EnvironmentVariableName>
+      <Name>AW_BDV_SQL</Name>
+    </ConnectionReference>
+    <ConnectionReference Id="SourceToRaw.AW_RDV_SQL" PipelineId="SourceToRaw">
+      <EnvironmentVariableName>AW_RDV_SQL</EnvironmentVariableName>
+      <Name>AW_RDV_SQL</Name>
+    </ConnectionReference>
+  </ConnectionReferenceList>
+</MetaPipeline>

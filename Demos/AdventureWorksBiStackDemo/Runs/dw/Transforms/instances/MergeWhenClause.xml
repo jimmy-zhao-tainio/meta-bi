@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <MergeWhenClauseList>
+    <MergeWhenClause Id="MergeWhenClause:1" />
+    <MergeWhenClause Id="MergeWhenClause:10" />
+    <MergeWhenClause Id="MergeWhenClause:11" />
+    <MergeWhenClause Id="MergeWhenClause:12" />
+    <MergeWhenClause Id="MergeWhenClause:13" />
+    <MergeWhenClause Id="MergeWhenClause:14" />
+    <MergeWhenClause Id="MergeWhenClause:15" />
+    <MergeWhenClause Id="MergeWhenClause:16" />
+    <MergeWhenClause Id="MergeWhenClause:17" />
+    <MergeWhenClause Id="MergeWhenClause:18" />
+    <MergeWhenClause Id="MergeWhenClause:19" />
+    <MergeWhenClause Id="MergeWhenClause:2" />
+    <MergeWhenClause Id="MergeWhenClause:20" />
+    <MergeWhenClause Id="MergeWhenClause:3" />
+    <MergeWhenClause Id="MergeWhenClause:4" />
+    <MergeWhenClause Id="MergeWhenClause:5" />
+    <MergeWhenClause Id="MergeWhenClause:6" />
+    <MergeWhenClause Id="MergeWhenClause:7" />
+    <MergeWhenClause Id="MergeWhenClause:8" />
+    <MergeWhenClause Id="MergeWhenClause:9" />
+  </MergeWhenClauseList>
+</MetaTransformScript>

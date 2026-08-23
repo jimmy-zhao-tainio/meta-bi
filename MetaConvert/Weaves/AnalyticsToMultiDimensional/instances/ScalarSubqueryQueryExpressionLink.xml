@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <ScalarSubqueryQueryExpressionLinkList>
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:1" QueryExpressionId="QueryExpression:20" ScalarSubqueryId="ScalarSubquery:1" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:10" QueryExpressionId="QueryExpression:47" ScalarSubqueryId="ScalarSubquery:10" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:11" QueryExpressionId="QueryExpression:50" ScalarSubqueryId="ScalarSubquery:11" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:12" QueryExpressionId="QueryExpression:52" ScalarSubqueryId="ScalarSubquery:12" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:13" QueryExpressionId="QueryExpression:58" ScalarSubqueryId="ScalarSubquery:13" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:14" QueryExpressionId="QueryExpression:60" ScalarSubqueryId="ScalarSubquery:14" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:2" QueryExpressionId="QueryExpression:22" ScalarSubqueryId="ScalarSubquery:2" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:3" QueryExpressionId="QueryExpression:24" ScalarSubqueryId="ScalarSubquery:3" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:4" QueryExpressionId="QueryExpression:26" ScalarSubqueryId="ScalarSubquery:4" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:5" QueryExpressionId="QueryExpression:27" ScalarSubqueryId="ScalarSubquery:5" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:6" QueryExpressionId="QueryExpression:29" ScalarSubqueryId="ScalarSubquery:6" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:7" QueryExpressionId="QueryExpression:31" ScalarSubqueryId="ScalarSubquery:7" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:8" QueryExpressionId="QueryExpression:33" ScalarSubqueryId="ScalarSubquery:8" />
+    <ScalarSubqueryQueryExpressionLink Id="ScalarSubqueryQueryExpressionLink:9" QueryExpressionId="QueryExpression:46" ScalarSubqueryId="ScalarSubquery:9" />
+  </ScalarSubqueryQueryExpressionLinkList>
+</MetaWeave>

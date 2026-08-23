@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <TableReferenceWithAliasAndColumnsList>
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:36" TableReferenceWithAliasId="TableReferenceWithAlias:16531" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:38" TableReferenceWithAliasId="TableReferenceWithAlias:18090" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:40" TableReferenceWithAliasId="TableReferenceWithAlias:18371" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:42" TableReferenceWithAliasId="TableReferenceWithAlias:18923" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:43" TableReferenceWithAliasId="TableReferenceWithAlias:19122" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:45" TableReferenceWithAliasId="TableReferenceWithAlias:19158" />
+  </TableReferenceWithAliasAndColumnsList>
+</MetaWeave>

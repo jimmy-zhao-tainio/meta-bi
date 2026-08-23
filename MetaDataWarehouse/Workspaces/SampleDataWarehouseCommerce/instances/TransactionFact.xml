@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouse>
+  <TransactionFactList>
+    <TransactionFact Id="transaction-fact:sales-order" FactId="fact:sales-order">
+    </TransactionFact>
+  </TransactionFactList>
+</MetaDataWarehouse>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <ExistsPredicateList>
+    <ExistsPredicate Id="ExistsPredicate:1" BooleanExpressionId="BooleanExpression:2" />
+    <ExistsPredicate Id="ExistsPredicate:2" BooleanExpressionId="BooleanExpression:5" />
+    <ExistsPredicate Id="ExistsPredicate:3" BooleanExpressionId="BooleanExpression:8" />
+    <ExistsPredicate Id="ExistsPredicate:4" BooleanExpressionId="BooleanExpression:11" />
+    <ExistsPredicate Id="ExistsPredicate:5" BooleanExpressionId="BooleanExpression:14" />
+    <ExistsPredicate Id="ExistsPredicate:6" BooleanExpressionId="BooleanExpression:17" />
+    <ExistsPredicate Id="ExistsPredicate:7" BooleanExpressionId="BooleanExpression:20" />
+    <ExistsPredicate Id="ExistsPredicate:8" BooleanExpressionId="BooleanExpression:23" />
+  </ExistsPredicateList>
+</MetaTransformScript>

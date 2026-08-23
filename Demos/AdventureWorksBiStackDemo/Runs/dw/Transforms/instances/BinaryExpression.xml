@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <BinaryExpressionList>
+    <BinaryExpression Id="BinaryExpression:1" ScalarExpressionId="ScalarExpression:249">
+      <BinaryExpressionType>Modulo</BinaryExpressionType>
+    </BinaryExpression>
+    <BinaryExpression Id="BinaryExpression:2" ScalarExpressionId="ScalarExpression:347">
+      <BinaryExpressionType>Modulo</BinaryExpressionType>
+    </BinaryExpression>
+    <BinaryExpression Id="BinaryExpression:3" ScalarExpressionId="ScalarExpression:445">
+      <BinaryExpressionType>Modulo</BinaryExpressionType>
+    </BinaryExpression>
+    <BinaryExpression Id="BinaryExpression:4" ScalarExpressionId="ScalarExpression:543">
+      <BinaryExpressionType>Modulo</BinaryExpressionType>
+    </BinaryExpression>
+    <BinaryExpression Id="BinaryExpression:5" ScalarExpressionId="ScalarExpression:1108">
+      <BinaryExpressionType>Multiply</BinaryExpressionType>
+    </BinaryExpression>
+    <BinaryExpression Id="BinaryExpression:6" ScalarExpressionId="ScalarExpression:1110">
+      <BinaryExpressionType>Multiply</BinaryExpressionType>
+    </BinaryExpression>
+  </BinaryExpressionList>
+</MetaTransformScript>

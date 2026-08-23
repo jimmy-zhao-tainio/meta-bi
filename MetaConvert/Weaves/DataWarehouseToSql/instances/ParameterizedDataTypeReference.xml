@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <ParameterizedDataTypeReferenceList>
+    <ParameterizedDataTypeReference Id="ParameterizedDataTypeReference:1" DataTypeReferenceId="DataTypeReference:1" />
+    <ParameterizedDataTypeReference Id="ParameterizedDataTypeReference:2" DataTypeReferenceId="DataTypeReference:2" />
+    <ParameterizedDataTypeReference Id="ParameterizedDataTypeReference:3" DataTypeReferenceId="DataTypeReference:3" />
+    <ParameterizedDataTypeReference Id="ParameterizedDataTypeReference:4" DataTypeReferenceId="DataTypeReference:4" />
+  </ParameterizedDataTypeReferenceList>
+</MetaWeave>

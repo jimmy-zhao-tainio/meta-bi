@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <KeyFieldList>
+    <KeyField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:key:PK_Dim_Customer:field:1" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:CustomerKey" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:key:PK_Dim_Customer">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:key:PK_Dim_Date:field:1" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:DateKey" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:key:PK_Dim_Date">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:key:PK_Dim_Geography:field:1" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:GeographyKey" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:key:PK_Dim_Geography">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:key:PK_Dim_OrderStatus:field:1" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:OrderStatusKey" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:key:PK_Dim_OrderStatus">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:key:PK_Dim_Product:field:1" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:ProductKey" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:key:PK_Dim_Product">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel:key:PK_Dim_SalesChannel:field:1" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel:field:SalesChannelKey" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel:key:PK_Dim_SalesChannel">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:key:PK_Dim_Salesperson:field:1" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:field:SalespersonKey" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:key:PK_Dim_Salesperson">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory:key:PK_Dim_SalesTerritory:field:1" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory:field:SalesTerritoryKey" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory:key:PK_Dim_SalesTerritory">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:key:PK_Fact_SalesLine:field:1" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:OrderDateKey" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:key:PK_Fact_SalesLine">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:key:PK_Fact_SalesLine:field:2" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:ProductKey" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:key:PK_Fact_SalesLine">
+      <Ordinal>2</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:key:PK_Fact_SalesLine:field:3" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:CustomerKey" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:key:PK_Fact_SalesLine">
+      <Ordinal>3</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:key:PK_Fact_SalesLine:field:4" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:SalesChannelKey" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:key:PK_Fact_SalesLine">
+      <Ordinal>4</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:key:PK_Fact_SalesLine:field:5" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:ShipToGeographyKey" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:key:PK_Fact_SalesLine">
+      <Ordinal>5</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:key:PK_Fact_SalesLine:field:6" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:SalesOrderID" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:key:PK_Fact_SalesLine">
+      <Ordinal>6</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:key:PK_Fact_SalesLine:field:7" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:SalesOrderDetailID" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:key:PK_Fact_SalesLine">
+      <Ordinal>7</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:key:PK_Fact_SalesOrder:field:1" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:OrderDateKey" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:key:PK_Fact_SalesOrder">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:key:PK_Fact_SalesOrder:field:2" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:DueDateKey" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:key:PK_Fact_SalesOrder">
+      <Ordinal>2</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:key:PK_Fact_SalesOrder:field:3" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:CustomerKey" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:key:PK_Fact_SalesOrder">
+      <Ordinal>3</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:key:PK_Fact_SalesOrder:field:4" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:SalesChannelKey" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:key:PK_Fact_SalesOrder">
+      <Ordinal>4</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:key:PK_Fact_SalesOrder:field:5" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:OrderStatusKey" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:key:PK_Fact_SalesOrder">
+      <Ordinal>5</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:key:PK_Fact_SalesOrder:field:6" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:BillToGeographyKey" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:key:PK_Fact_SalesOrder">
+      <Ordinal>6</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:key:PK_Fact_SalesOrder:field:7" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:ShipToGeographyKey" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:key:PK_Fact_SalesOrder">
+      <Ordinal>7</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:key:PK_Fact_SalesOrder:field:8" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:SalesOrderID" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:key:PK_Fact_SalesOrder">
+      <Ordinal>8</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota:key:PK_Fact_SalespersonQuota:field:1" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota:field:QuotaPeriodKey" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota:key:PK_Fact_SalespersonQuota">
+      <Ordinal>1</Ordinal>
+    </KeyField>
+    <KeyField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota:key:PK_Fact_SalespersonQuota:field:2" FieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota:field:SalespersonKey" KeyId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota:key:PK_Fact_SalespersonQuota">
+      <Ordinal>2</Ordinal>
+    </KeyField>
+  </KeyFieldList>
+</MetaSchema>

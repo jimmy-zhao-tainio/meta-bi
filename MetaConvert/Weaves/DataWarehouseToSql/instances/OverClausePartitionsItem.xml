@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <OverClausePartitionsItemList>
+    <OverClausePartitionsItem Id="OverClausePartitionsItem:1" OverClauseId="OverClause:1" ScalarExpressionId="ScalarExpression:808">
+      <Ordinal>0</Ordinal>
+    </OverClausePartitionsItem>
+    <OverClausePartitionsItem Id="OverClausePartitionsItem:2" OverClauseId="OverClause:2" ScalarExpressionId="ScalarExpression:1391">
+      <Ordinal>0</Ordinal>
+    </OverClausePartitionsItem>
+    <OverClausePartitionsItem Id="OverClausePartitionsItem:3" OverClauseId="OverClause:3" ScalarExpressionId="ScalarExpression:1624">
+      <Ordinal>0</Ordinal>
+    </OverClausePartitionsItem>
+    <OverClausePartitionsItem Id="OverClausePartitionsItem:4" OverClauseId="OverClause:4" ScalarExpressionId="ScalarExpression:1929">
+      <Ordinal>0</Ordinal>
+    </OverClausePartitionsItem>
+  </OverClausePartitionsItemList>
+</MetaWeave>

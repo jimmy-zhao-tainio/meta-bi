@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <ValidationTargetColumnTypeSanctionedConversionList>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:10:binding:validation:target:2:column:7:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:10:binding:validation:target:2:column:7">
+      <SourceMetaDataTypeId>sqlserver:type:int</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:11:binding:validation:target:3:column:13:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:11:binding:validation:target:3:column:13">
+      <SourceMetaDataTypeId>sqlserver:type:int</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:12:binding:validation:target:4:column:18:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:12:binding:validation:target:4:column:18">
+      <SourceMetaDataTypeId>sqlserver:type:int</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:12:binding:validation:target:4:column:19:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:12:binding:validation:target:4:column:19">
+      <SourceMetaDataTypeId>sqlserver:type:int</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:13:binding:validation:target:5:column:24:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:13:binding:validation:target:5:column:24">
+      <SourceMetaDataTypeId>sqlserver:type:int</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:14:binding:validation:target:6:column:29:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:14:binding:validation:target:6:column:29">
+      <SourceMetaDataTypeId>sqlserver:type:int</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:15:binding:validation:target:7:column:34:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:15:binding:validation:target:7:column:34">
+      <SourceMetaDataTypeId>sqlserver:type:int</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:16:binding:validation:target:8:column:39:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:16:binding:validation:target:8:column:39">
+      <SourceMetaDataTypeId>sqlserver:type:int</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:17:binding:validation:target:9:column:44:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:17:binding:validation:target:9:column:44">
+      <SourceMetaDataTypeId>sqlserver:type:Name</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:19:binding:validation:target:11:column:60:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:19:binding:validation:target:11:column:60">
+      <SourceMetaDataTypeId>sqlserver:type:NameStyle</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:bit</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:19:binding:validation:target:11:column:62:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:19:binding:validation:target:11:column:62">
+      <SourceMetaDataTypeId>sqlserver:type:Name</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:19:binding:validation:target:11:column:63:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:19:binding:validation:target:11:column:63">
+      <SourceMetaDataTypeId>sqlserver:type:Name</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:19:binding:validation:target:11:column:64:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:19:binding:validation:target:11:column:64">
+      <SourceMetaDataTypeId>sqlserver:type:Name</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:19:binding:validation:target:11:column:66:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:19:binding:validation:target:11:column:66">
+      <SourceMetaDataTypeId>sqlserver:type:int</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:20:binding:validation:target:13:column:81:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:20:binding:validation:target:13:column:81">
+      <SourceMetaDataTypeId>sqlserver:type:Name</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:20:binding:validation:target:13:column:83:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:20:binding:validation:target:13:column:83">
+      <SourceMetaDataTypeId>sqlserver:type:Flag</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:bit</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:20:binding:validation:target:13:column:84:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:20:binding:validation:target:13:column:84">
+      <SourceMetaDataTypeId>sqlserver:type:Flag</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:bit</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:20:binding:validation:target:13:column:92:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:20:binding:validation:target:13:column:92">
+      <SourceMetaDataTypeId>sqlserver:type:int</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:21:binding:validation:target:14:column:106:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:21:binding:validation:target:14:column:106">
+      <SourceMetaDataTypeId>sqlserver:type:Name</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:22:binding:validation:target:15:column:114:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:22:binding:validation:target:15:column:114">
+      <SourceMetaDataTypeId>sqlserver:type:Name</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:24:binding:validation:target:17:column:139:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:24:binding:validation:target:17:column:139">
+      <SourceMetaDataTypeId>sqlserver:type:Flag</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:bit</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:24:binding:validation:target:17:column:141:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:24:binding:validation:target:17:column:141">
+      <SourceMetaDataTypeId>sqlserver:type:OrderNumber</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:24:binding:validation:target:17:column:142:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:24:binding:validation:target:17:column:142">
+      <SourceMetaDataTypeId>sqlserver:type:AccountNumber</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:25:binding:validation:target:18:column:158:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:25:binding:validation:target:18:column:158">
+      <SourceMetaDataTypeId>sqlserver:type:smallmoney</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:27:binding:validation:target:20:column:176:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:27:binding:validation:target:20:column:176">
+      <SourceMetaDataTypeId>sqlserver:type:Name</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:29:binding:validation:target:22:column:196:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:29:binding:validation:target:22:column:196">
+      <SourceMetaDataTypeId>sqlserver:type:Name</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:2:binding:validation:target:12:column:76:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:2:binding:validation:target:12:column:76">
+      <SourceMetaDataTypeId>sqlserver:type:int</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:31:binding:validation:target:25:column:223:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:31:binding:validation:target:25:column:223">
+      <SourceMetaDataTypeId>sqlserver:type:Flag</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:bit</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:31:binding:validation:target:25:column:224:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:31:binding:validation:target:25:column:224">
+      <SourceMetaDataTypeId>sqlserver:type:Name</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:3:binding:validation:target:23:column:205:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:3:binding:validation:target:23:column:205">
+      <SourceMetaDataTypeId>sqlserver:type:int</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:4:binding:validation:target:34:column:280:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:4:binding:validation:target:34:column:280">
+      <SourceMetaDataTypeId>sqlserver:type:int</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:5:binding:validation:target:45:column:345:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:5:binding:validation:target:45:column:345">
+      <SourceMetaDataTypeId>sqlserver:type:int</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:6:binding:validation:target:50:column:374:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:6:binding:validation:target:50:column:374">
+      <SourceMetaDataTypeId>sqlserver:type:int</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:7:binding:validation:target:51:column:379:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:7:binding:validation:target:51:column:379">
+      <SourceMetaDataTypeId>sqlserver:type:int</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:7:binding:validation:target:51:column:380:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:7:binding:validation:target:51:column:380">
+      <SourceMetaDataTypeId>sqlserver:type:int</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:8:binding:validation:target:52:column:385:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:8:binding:validation:target:52:column:385">
+      <SourceMetaDataTypeId>sqlserver:type:int</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+    <ValidationTargetColumnTypeSanctionedConversion Id="TransformScript:9:binding:validation:target:53:column:390:type-sanctioned-conversion" ValidationTargetColumnLinkId="TransformScript:9:binding:validation:target:53:column:390">
+      <SourceMetaDataTypeId>sqlserver:type:int</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeSanctionedConversion>
+  </ValidationTargetColumnTypeSanctionedConversionList>
+</MetaTransformBinding>

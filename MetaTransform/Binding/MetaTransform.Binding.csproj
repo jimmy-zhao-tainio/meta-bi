@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Cli\**\*.cs" />
+    <Compile Remove="CliDefinition\**\*.cs" />
+    <EmbeddedResource Remove="Cli\**\*" />
+    <EmbeddedResource Remove="CliDefinition\**\*" />
+    <None Remove="Cli\**\*" />
+    <None Remove="CliDefinition\**\*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Script\Sql\MetaTransformScript.Sql.csproj" />
+    <ProjectReference Include="..\..\MetaSchema\Core\MetaSchema.Core.csproj" />
+    <ProjectReference Include="..\..\MetaDataTypeConversion\Core\MetaDataTypeConversion.Core.csproj" />
+  </ItemGroup>
+
+</Project>

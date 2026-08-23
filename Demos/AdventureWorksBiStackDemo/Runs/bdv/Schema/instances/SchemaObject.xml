@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <SchemaObjectList>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BHS_Address_AddressProfile</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_CountryRegion_CountryRegionProfile" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BHS_CountryRegion_CountryRegionProfile</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BHS_Customer_CustomerProfile</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BHS_Person_PersonProfile</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductCategory_ProductCategoryProfile" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BHS_ProductCategory_ProductCategoryProfile</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductSubcategory_ProductSubcategoryProfile" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BHS_ProductSubcategory_ProductSubcategoryProfile</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BHS_Product_ProductProfile</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BHS_SalesOrderLine_SalesOrderLineDetail</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BHS_SalesOrder_SalesOrderHeader</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BHS_SalesPersonQuota_SalesPersonQuotaProfile</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BHS_SalesPerson_SalesPersonProfile</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BHS_SalesTerritory_SalesTerritoryProfile</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BHS_StateProvince_StateProvinceProfile</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BHS_Store_StoreProfile</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Address" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BH_Address</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_CountryRegion" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BH_CountryRegion</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Customer" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BH_Customer</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Person" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BH_Person</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BH_Product</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductCategory" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BH_ProductCategory</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductSubcategory" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BH_ProductSubcategory</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BH_SalesOrder</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrderLine" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BH_SalesOrderLine</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPerson" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BH_SalesPerson</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPersonQuota" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BH_SalesPersonQuota</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesTerritory" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BH_SalesTerritory</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_StateProvince" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BH_StateProvince</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Store" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BH_Store</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_AddressStateProvince" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BL_AddressStateProvince</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerPerson" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BL_CustomerPerson</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerStore" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BL_CustomerStore</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryAssignment" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BL_ProductSubcategoryAssignment</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryCategory" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BL_ProductSubcategoryCategory</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderBillToAddress" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BL_SalesOrderBillToAddress</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BL_SalesOrderCustomer</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BL_SalesOrderLineProduct</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineSalesOrder" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BL_SalesOrderLineSalesOrder</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BL_SalesOrderSalesPerson</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesTerritory" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BL_SalesOrderSalesTerritory</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderShipToAddress" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BL_SalesOrderShipToAddress</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonPerson" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BL_SalesPersonPerson</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonQuotaSalesPerson" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BL_SalesPersonQuotaSalesPerson</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonSalesTerritory" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BL_SalesPersonSalesTerritory</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesTerritoryCountryRegion" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BL_SalesTerritoryCountryRegion</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceCountryRegion" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BL_StateProvinceCountryRegion</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceSalesTerritory" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BL_StateProvinceSalesTerritory</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StoreSalesPerson" SchemaId="sqlserver:AdventureWorksBusinessVault:schema:dbo">
+      <Name>BL_StoreSalesPerson</Name>
+    </SchemaObject>
+  </SchemaObjectList>
+</MetaSchema>

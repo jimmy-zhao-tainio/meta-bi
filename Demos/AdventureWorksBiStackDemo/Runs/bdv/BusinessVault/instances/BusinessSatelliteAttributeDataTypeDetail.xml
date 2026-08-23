@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessSatelliteAttributeDataTypeDetailList>
+    <BusinessSatelliteAttributeDataTypeDetail Id="AddressCity:datatype-detail:length" BusinessSatelliteAttributeId="AddressCity">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="AddressLine1:datatype-detail:length" BusinessSatelliteAttributeId="AddressLine1">
+      <Name>Length</Name>
+      <Value>60</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="AddressLine2:datatype-detail:length" BusinessSatelliteAttributeId="AddressLine2">
+      <Name>Length</Name>
+      <Value>60</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="AddressPostalCode:datatype-detail:length" BusinessSatelliteAttributeId="AddressPostalCode">
+      <Name>Length</Name>
+      <Value>15</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="CountryRegionName:datatype-detail:length" BusinessSatelliteAttributeId="CountryRegionName">
+      <Name>Length</Name>
+      <Value>128</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="CustomerAccountNumber:datatype-detail:length" BusinessSatelliteAttributeId="CustomerAccountNumber">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="PersonFirstName:datatype-detail:length" BusinessSatelliteAttributeId="PersonFirstName">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="PersonLastName:datatype-detail:length" BusinessSatelliteAttributeId="PersonLastName">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="PersonMiddleName:datatype-detail:length" BusinessSatelliteAttributeId="PersonMiddleName">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="ProductCategoryName:datatype-detail:length" BusinessSatelliteAttributeId="ProductCategoryName">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="ProductColor:datatype-detail:length" BusinessSatelliteAttributeId="ProductColor">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="ProductListPrice:datatype-detail:precision" BusinessSatelliteAttributeId="ProductListPrice">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="ProductListPrice:datatype-detail:scale" BusinessSatelliteAttributeId="ProductListPrice">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="ProductName:datatype-detail:length" BusinessSatelliteAttributeId="ProductName">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="ProductNumber:datatype-detail:length" BusinessSatelliteAttributeId="ProductNumber">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="ProductSize:datatype-detail:length" BusinessSatelliteAttributeId="ProductSize">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="ProductStandardCost:datatype-detail:precision" BusinessSatelliteAttributeId="ProductStandardCost">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="ProductStandardCost:datatype-detail:scale" BusinessSatelliteAttributeId="ProductStandardCost">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="ProductSubcategoryName:datatype-detail:length" BusinessSatelliteAttributeId="ProductSubcategoryName">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="ProductWeight:datatype-detail:precision" BusinessSatelliteAttributeId="ProductWeight">
+      <Name>Precision</Name>
+      <Value>8</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="ProductWeight:datatype-detail:scale" BusinessSatelliteAttributeId="ProductWeight">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesOrderFreightAmount:datatype-detail:precision" BusinessSatelliteAttributeId="SalesOrderFreightAmount">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesOrderFreightAmount:datatype-detail:scale" BusinessSatelliteAttributeId="SalesOrderFreightAmount">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesOrderLineDiscount:datatype-detail:precision" BusinessSatelliteAttributeId="SalesOrderLineDiscount">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesOrderLineDiscount:datatype-detail:scale" BusinessSatelliteAttributeId="SalesOrderLineDiscount">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesOrderLineTotal:datatype-detail:precision" BusinessSatelliteAttributeId="SalesOrderLineTotal">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesOrderLineTotal:datatype-detail:scale" BusinessSatelliteAttributeId="SalesOrderLineTotal">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesOrderLineUnitPrice:datatype-detail:precision" BusinessSatelliteAttributeId="SalesOrderLineUnitPrice">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesOrderLineUnitPrice:datatype-detail:scale" BusinessSatelliteAttributeId="SalesOrderLineUnitPrice">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesOrderSubTotal:datatype-detail:precision" BusinessSatelliteAttributeId="SalesOrderSubTotal">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesOrderSubTotal:datatype-detail:scale" BusinessSatelliteAttributeId="SalesOrderSubTotal">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesOrderTaxAmount:datatype-detail:precision" BusinessSatelliteAttributeId="SalesOrderTaxAmount">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesOrderTaxAmount:datatype-detail:scale" BusinessSatelliteAttributeId="SalesOrderTaxAmount">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesOrderTotalDue:datatype-detail:precision" BusinessSatelliteAttributeId="SalesOrderTotalDue">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesOrderTotalDue:datatype-detail:scale" BusinessSatelliteAttributeId="SalesOrderTotalDue">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesPersonBonus:datatype-detail:precision" BusinessSatelliteAttributeId="SalesPersonBonus">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesPersonBonus:datatype-detail:scale" BusinessSatelliteAttributeId="SalesPersonBonus">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesPersonCommissionPercent:datatype-detail:precision" BusinessSatelliteAttributeId="SalesPersonCommissionPercent">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesPersonCommissionPercent:datatype-detail:scale" BusinessSatelliteAttributeId="SalesPersonCommissionPercent">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesPersonQuota:datatype-detail:precision" BusinessSatelliteAttributeId="SalesPersonQuota">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesPersonQuota:datatype-detail:scale" BusinessSatelliteAttributeId="SalesPersonQuota">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesPersonQuotaAmount:datatype-detail:precision" BusinessSatelliteAttributeId="SalesPersonQuotaAmount">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesPersonQuotaAmount:datatype-detail:scale" BusinessSatelliteAttributeId="SalesPersonQuotaAmount">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesPersonSalesLastYear:datatype-detail:precision" BusinessSatelliteAttributeId="SalesPersonSalesLastYear">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesPersonSalesLastYear:datatype-detail:scale" BusinessSatelliteAttributeId="SalesPersonSalesLastYear">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesPersonSalesYearToDate:datatype-detail:precision" BusinessSatelliteAttributeId="SalesPersonSalesYearToDate">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesPersonSalesYearToDate:datatype-detail:scale" BusinessSatelliteAttributeId="SalesPersonSalesYearToDate">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesTerritoryCostLastYear:datatype-detail:precision" BusinessSatelliteAttributeId="SalesTerritoryCostLastYear">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesTerritoryCostLastYear:datatype-detail:scale" BusinessSatelliteAttributeId="SalesTerritoryCostLastYear">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesTerritoryCostYearToDate:datatype-detail:precision" BusinessSatelliteAttributeId="SalesTerritoryCostYearToDate">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesTerritoryCostYearToDate:datatype-detail:scale" BusinessSatelliteAttributeId="SalesTerritoryCostYearToDate">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesTerritoryGroup:datatype-detail:length" BusinessSatelliteAttributeId="SalesTerritoryGroup">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesTerritoryName:datatype-detail:length" BusinessSatelliteAttributeId="SalesTerritoryName">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesTerritorySalesLastYear:datatype-detail:precision" BusinessSatelliteAttributeId="SalesTerritorySalesLastYear">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesTerritorySalesLastYear:datatype-detail:scale" BusinessSatelliteAttributeId="SalesTerritorySalesLastYear">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesTerritorySalesYearToDate:datatype-detail:precision" BusinessSatelliteAttributeId="SalesTerritorySalesYearToDate">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="SalesTerritorySalesYearToDate:datatype-detail:scale" BusinessSatelliteAttributeId="SalesTerritorySalesYearToDate">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="StateProvinceCode:datatype-detail:length" BusinessSatelliteAttributeId="StateProvinceCode">
+      <Name>Length</Name>
+      <Value>3</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="StateProvinceName:datatype-detail:length" BusinessSatelliteAttributeId="StateProvinceName">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="StoreName:datatype-detail:length" BusinessSatelliteAttributeId="StoreName">
+      <Name>Length</Name>
+      <Value>128</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+  </BusinessSatelliteAttributeDataTypeDetailList>
+</MetaBusinessDataVault>

@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataQuality>
+  <JoinPatternOccurrenceSignalList>
+    <JoinPatternOccurrenceSignal Id="TransformScript:13.JoinPatternOccurrence.QualifiedJoin:2.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:13.JoinPatternOccurrence.QualifiedJoin:2">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:13.JoinPatternOccurrence.QualifiedJoin:2.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:13.JoinPatternOccurrence.QualifiedJoin:2">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:13.JoinPatternOccurrence.QualifiedJoin:4.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:13.JoinPatternOccurrence.QualifiedJoin:4">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:13.JoinPatternOccurrence.QualifiedJoin:4.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:13.JoinPatternOccurrence.QualifiedJoin:4">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:14.JoinPatternOccurrence.QualifiedJoin:7.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:14.JoinPatternOccurrence.QualifiedJoin:7">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:14.JoinPatternOccurrence.QualifiedJoin:7.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:14.JoinPatternOccurrence.QualifiedJoin:7">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:14.JoinPatternOccurrence.QualifiedJoin:9.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:14.JoinPatternOccurrence.QualifiedJoin:9">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:14.JoinPatternOccurrence.QualifiedJoin:9.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:14.JoinPatternOccurrence.QualifiedJoin:9">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:15.JoinPatternOccurrence.QualifiedJoin:13.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:15.JoinPatternOccurrence.QualifiedJoin:13">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:15.JoinPatternOccurrence.QualifiedJoin:13.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:15.JoinPatternOccurrence.QualifiedJoin:13">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:15.JoinPatternOccurrence.QualifiedJoin:14.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:15.JoinPatternOccurrence.QualifiedJoin:14">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:15.JoinPatternOccurrence.QualifiedJoin:14.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:15.JoinPatternOccurrence.QualifiedJoin:14">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:15.JoinPatternOccurrence.QualifiedJoin:15.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:15.JoinPatternOccurrence.QualifiedJoin:15">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:15.JoinPatternOccurrence.QualifiedJoin:15.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:15.JoinPatternOccurrence.QualifiedJoin:15">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:16.JoinPatternOccurrence.QualifiedJoin:17.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:16.JoinPatternOccurrence.QualifiedJoin:17">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:16.JoinPatternOccurrence.QualifiedJoin:17.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:16.JoinPatternOccurrence.QualifiedJoin:17">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:17.JoinPatternOccurrence.QualifiedJoin:20.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:17.JoinPatternOccurrence.QualifiedJoin:20">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:17.JoinPatternOccurrence.QualifiedJoin:20.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:17.JoinPatternOccurrence.QualifiedJoin:20">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:22.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:22">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:22.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:22">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:23.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:23">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:23.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:23">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:24.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:24">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:24.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:24">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:26.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:26">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:26.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:26">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:27.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:27">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:27.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:27">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:29.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:29">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:29.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:29">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:30.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:30">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:30.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:30">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:32.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:32">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:32.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:32">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:33.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:33">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:33.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:33">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:35.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:35">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:35.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:35">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:36.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:36">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:36.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:36">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:43.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:43">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:43.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:43">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:44.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:44">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:44.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:44">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:45.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:45">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:45.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:45">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:46.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:46">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:46.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:46">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:47.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:47">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:47.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:47">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:48.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:48">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:48.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:48">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:50.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:50">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:50.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:50">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:51.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:51">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:51.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:51">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:53.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:53">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:53.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:53">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:54.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:54">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:54.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:54">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:56.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:56">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:56.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:56">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:57.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:57">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:57.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:57">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:59.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:59">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:59.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:59">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:60.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:60">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:60.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:60">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:20.JoinPatternOccurrence.QualifiedJoin:64.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:20.JoinPatternOccurrence.QualifiedJoin:64">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:20.JoinPatternOccurrence.QualifiedJoin:64.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:20.JoinPatternOccurrence.QualifiedJoin:64">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:20.JoinPatternOccurrence.QualifiedJoin:65.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:20.JoinPatternOccurrence.QualifiedJoin:65">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:20.JoinPatternOccurrence.QualifiedJoin:65.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:20.JoinPatternOccurrence.QualifiedJoin:65">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:20.JoinPatternOccurrence.QualifiedJoin:66.Signal.JoinMultiplicityExplosion" JoinPatternOccurrenceId="TransformScript:20.JoinPatternOccurrence.QualifiedJoin:66">
+      <Explanation>Unsuppressed transform-scope row-multiplication risk signal.</Explanation>
+      <SignalKind>JoinMultiplicityExplosion</SignalKind>
+      <SourceCandidateKind>JoinMultiplicityExplosion</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+    <JoinPatternOccurrenceSignal Id="TransformScript:20.JoinPatternOccurrence.QualifiedJoin:66.Signal.OutputDuplicateRisk" JoinPatternOccurrenceId="TransformScript:20.JoinPatternOccurrence.QualifiedJoin:66">
+      <Explanation>Unsuppressed transform-scope duplicate-output risk signal.</Explanation>
+      <SignalKind>OutputDuplicateRisk</SignalKind>
+      <SourceCandidateKind>OutputDuplicateRisk</SourceCandidateKind>
+    </JoinPatternOccurrenceSignal>
+  </JoinPatternOccurrenceSignalList>
+</MetaDataQuality>

@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <TableSourceList>
+    <TableSource Id="TransformScript:10:binding:table-source:1" RowsetId="TableReference:11:rowset" TransformBindingId="TransformScript:10:binding">
+      <ExposedName>source</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:11</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:10:binding:table-source:2" RowsetId="TableReference:12:rowset" TransformBindingId="TransformScript:10:binding">
+      <ExposedName>source</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:12</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:11:binding:table-source:1" RowsetId="TableReference:13:rowset" TransformBindingId="TransformScript:11:binding">
+      <ExposedName>source</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:13</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:11:binding:table-source:2" RowsetId="TableReference:14:rowset" TransformBindingId="TransformScript:11:binding">
+      <ExposedName>source</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:14</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:12:binding:table-source:1" RowsetId="TableReference:15:rowset" TransformBindingId="TransformScript:12:binding">
+      <ExposedName>source</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:15</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:12:binding:table-source:2" RowsetId="TableReference:16:rowset" TransformBindingId="TransformScript:12:binding">
+      <ExposedName>source</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:16</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:13:binding:table-source:1" RowsetId="TableReference:20:rowset" TransformBindingId="TransformScript:13:binding">
+      <ExposedName>hub</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:20</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:13:binding:table-source:10" RowsetId="TableReference:31:rowset" TransformBindingId="TransformScript:13:binding">
+      <ExposedName>source</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:31</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:13:binding:table-source:2" RowsetId="TableReference:17:rowset" TransformBindingId="TransformScript:13:binding">
+      <ExposedName>source</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:17</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:13:binding:table-source:3" RowsetId="CommonTableExpression:1:rowset" TransformBindingId="TransformScript:13:binding">
+      <ExposedName>profile</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:21</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:13:binding:table-source:4" RowsetId="TableReference:23:rowset" TransformBindingId="TransformScript:13:binding">
+      <ExposedName>assignment</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:23</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:13:binding:table-source:5" RowsetId="TableReference:18:rowset" TransformBindingId="TransformScript:13:binding">
+      <ExposedName>source</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:18</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:13:binding:table-source:6" RowsetId="CommonTableExpression:2:rowset" TransformBindingId="TransformScript:13:binding">
+      <ExposedName>subcategoryProfile</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:25</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:13:binding:table-source:7" RowsetId="TableReference:27:rowset" TransformBindingId="TransformScript:13:binding">
+      <ExposedName>categoryAssignment</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:27</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:13:binding:table-source:8" RowsetId="TableReference:19:rowset" TransformBindingId="TransformScript:13:binding">
+      <ExposedName>source</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:19</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:13:binding:table-source:9" RowsetId="CommonTableExpression:3:rowset" TransformBindingId="TransformScript:13:binding">
+      <ExposedName>categoryProfile</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:29</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:14:binding:table-source:1" RowsetId="TableReference:35:rowset" TransformBindingId="TransformScript:14:binding">
+      <ExposedName>address</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:35</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:14:binding:table-source:10" RowsetId="CommonTableExpression:6:rowset" TransformBindingId="TransformScript:14:binding">
+      <ExposedName>countryRegionProfile</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:46</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:14:binding:table-source:11" RowsetId="TableReference:48:rowset" TransformBindingId="TransformScript:14:binding">
+      <ExposedName>source</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:48</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:14:binding:table-source:2" RowsetId="TableReference:32:rowset" TransformBindingId="TransformScript:14:binding">
+      <ExposedName>source</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:32</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:14:binding:table-source:3" RowsetId="CommonTableExpression:4:rowset" TransformBindingId="TransformScript:14:binding">
+      <ExposedName>addressProfile</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:36</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:14:binding:table-source:4" RowsetId="TableReference:38:rowset" TransformBindingId="TransformScript:14:binding">
+      <ExposedName>addressStateProvince</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:38</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:14:binding:table-source:5" RowsetId="TableReference:33:rowset" TransformBindingId="TransformScript:14:binding">
+      <ExposedName>source</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:33</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:14:binding:table-source:6" RowsetId="CommonTableExpression:5:rowset" TransformBindingId="TransformScript:14:binding">
+      <ExposedName>stateProvinceProfile</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:40</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:14:binding:table-source:7" RowsetId="TableReference:42:rowset" TransformBindingId="TransformScript:14:binding">
+      <ExposedName>stateProvinceCountryRegion</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:42</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:14:binding:table-source:8" RowsetId="TableReference:44:rowset" TransformBindingId="TransformScript:14:binding">
+      <ExposedName>countryRegion</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:44</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:14:binding:table-source:9" RowsetId="TableReference:34:rowset" TransformBindingId="TransformScript:14:binding">
+      <ExposedName>source</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:34</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:15:binding:table-source:1" RowsetId="TableReference:52:rowset" TransformBindingId="TransformScript:15:binding">
+      <ExposedName>customer</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:52</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:15:binding:table-source:10" RowsetId="TableReference:63:rowset" TransformBindingId="TransformScript:15:binding">
+      <ExposedName>source</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:63</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:15:binding:table-source:2" RowsetId="TableReference:49:rowset" TransformBindingId="TransformScript:15:binding">
+      <ExposedName>source</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:49</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:15:binding:table-source:3" RowsetId="CommonTableExpression:7:rowset" TransformBindingId="TransformScript:15:binding">
+      <ExposedName>customerProfile</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:53</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:15:binding:table-source:4" RowsetId="TableReference:55:rowset" TransformBindingId="TransformScript:15:binding">
+      <ExposedName>customerPerson</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:55</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:15:binding:table-source:5" RowsetId="TableReference:50:rowset" TransformBindingId="TransformScript:15:binding">
+      <ExposedName>source</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:50</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:15:binding:table-source:6" RowsetId="CommonTableExpression:8:rowset" TransformBindingId="TransformScript:15:binding">
+      <ExposedName>personProfile</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:57</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:15:binding:table-source:7" RowsetId="TableReference:59:rowset" TransformBindingId="TransformScript:15:binding">
+      <ExposedName>customerStore</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:59</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:15:binding:table-source:8" RowsetId="TableReference:51:rowset" TransformBindingId="TransformScript:15:binding">
+      <ExposedName>source</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:51</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:15:binding:table-source:9" RowsetId="CommonTableExpression:9:rowset" TransformBindingId="TransformScript:15:binding">
+      <ExposedName>storeProfile</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:61</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:16:binding:table-source:1" RowsetId="TableReference:65:rowset" TransformBindingId="TransformScript:16:binding">
+      <ExposedName>salesperson</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:65</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:16:binding:table-source:2" RowsetId="TableReference:66:rowset" TransformBindingId="TransformScript:16:binding">
+      <ExposedName>salespersonPerson</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:66</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:16:binding:table-source:3" RowsetId="TableReference:64:rowset" TransformBindingId="TransformScript:16:binding">
+      <ExposedName>source</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:64</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:16:binding:table-source:4" RowsetId="CommonTableExpression:10:rowset" TransformBindingId="TransformScript:16:binding">
+      <ExposedName>person</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:68</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:16:binding:table-source:5" RowsetId="TableReference:70:rowset" TransformBindingId="TransformScript:16:binding">
+      <ExposedName>source</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:70</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:17:binding:table-source:1" RowsetId="TableReference:72:rowset" TransformBindingId="TransformScript:17:binding">
+      <ExposedName>territory</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:72</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:17:binding:table-source:2" RowsetId="TableReference:71:rowset" TransformBindingId="TransformScript:17:binding">
+      <ExposedName>source</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:71</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:17:binding:table-source:3" RowsetId="CommonTableExpression:11:rowset" TransformBindingId="TransformScript:17:binding">
+      <ExposedName>profile</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:73</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:17:binding:table-source:4" RowsetId="TableReference:75:rowset" TransformBindingId="TransformScript:17:binding">
+      <ExposedName>territoryCountryRegion</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:75</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:17:binding:table-source:5" RowsetId="TableReference:77:rowset" TransformBindingId="TransformScript:17:binding">
+      <ExposedName>countryRegion</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:77</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:17:binding:table-source:6" RowsetId="TableReference:79:rowset" TransformBindingId="TransformScript:17:binding">
+      <ExposedName>source</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:79</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:18:binding:table-source:1" RowsetId="TableReference:81:rowset" TransformBindingId="TransformScript:18:binding">
+      <ExposedName>salesOrder</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:81</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:18:binding:table-source:10" RowsetId="TableReference:96:rowset" TransformBindingId="TransformScript:18:binding">
+      <ExposedName>salesOrderTerritory</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:96</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:18:binding:table-source:11" RowsetId="TableReference:98:rowset" TransformBindingId="TransformScript:18:binding">
+      <ExposedName>businessTerritory</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:98</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:18:binding:table-source:12" RowsetId="TableReference:100:rowset" TransformBindingId="TransformScript:18:binding">
+      <ExposedName>territory</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:100</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:18:binding:table-source:13" RowsetId="TableReference:102:rowset" TransformBindingId="TransformScript:18:binding">
+      <ExposedName>salesOrderBillToAddress</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:102</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:18:binding:table-source:14" RowsetId="TableReference:104:rowset" TransformBindingId="TransformScript:18:binding">
+      <ExposedName>businessBillToAddress</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:104</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:18:binding:table-source:15" RowsetId="TableReference:106:rowset" TransformBindingId="TransformScript:18:binding">
+      <ExposedName>billToGeography</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:106</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:18:binding:table-source:16" RowsetId="TableReference:108:rowset" TransformBindingId="TransformScript:18:binding">
+      <ExposedName>salesOrderShipToAddress</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:108</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:18:binding:table-source:17" RowsetId="TableReference:110:rowset" TransformBindingId="TransformScript:18:binding">
+      <ExposedName>businessShipToAddress</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:110</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:18:binding:table-source:18" RowsetId="TableReference:112:rowset" TransformBindingId="TransformScript:18:binding">
+      <ExposedName>shipToGeography</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:112</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:18:binding:table-source:19" RowsetId="TableReference:114:rowset" TransformBindingId="TransformScript:18:binding">
+      <ExposedName>orderDate</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:114</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:18:binding:table-source:2" RowsetId="TableReference:80:rowset" TransformBindingId="TransformScript:18:binding">
+      <ExposedName>source</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:80</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:18:binding:table-source:20" RowsetId="TableReference:116:rowset" TransformBindingId="TransformScript:18:binding">
+      <ExposedName>dueDate</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:116</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:18:binding:table-source:21" RowsetId="TableReference:118:rowset" TransformBindingId="TransformScript:18:binding">
+      <ExposedName>shipDate</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:118</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:18:binding:table-source:22" RowsetId="TableReference:120:rowset" TransformBindingId="TransformScript:18:binding">
+      <ExposedName>channel</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:120</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:18:binding:table-source:23" RowsetId="TableReference:122:rowset" TransformBindingId="TransformScript:18:binding">
+      <ExposedName>orderStatus</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:122</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:18:binding:table-source:24" RowsetId="TableReference:124:rowset" TransformBindingId="TransformScript:18:binding">
+      <ExposedName>source</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:124</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:18:binding:table-source:3" RowsetId="CommonTableExpression:12:rowset" TransformBindingId="TransformScript:18:binding">
+      <ExposedName>detail</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:82</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:18:binding:table-source:4" RowsetId="TableReference:84:rowset" TransformBindingId="TransformScript:18:binding">
+      <ExposedName>salesOrderCustomer</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:84</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:18:binding:table-source:5" RowsetId="TableReference:86:rowset" TransformBindingId="TransformScript:18:binding">
+      <ExposedName>businessCustomer</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:86</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:18:binding:table-source:6" RowsetId="TableReference:88:rowset" TransformBindingId="TransformScript:18:binding">
+      <ExposedName>customer</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:88</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:18:binding:table-source:7" RowsetId="TableReference:90:rowset" TransformBindingId="TransformScript:18:binding">
+      <ExposedName>salesOrderSalesperson</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:90</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:18:binding:table-source:8" RowsetId="TableReference:92:rowset" TransformBindingId="TransformScript:18:binding">
+      <ExposedName>businessSalesperson</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:92</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:18:binding:table-source:9" RowsetId="TableReference:94:rowset" TransformBindingId="TransformScript:18:binding">
+      <ExposedName>salesperson</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:94</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:19:binding:table-source:1" RowsetId="TableReference:127:rowset" TransformBindingId="TransformScript:19:binding">
+      <ExposedName>salesLine</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:127</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:19:binding:table-source:10" RowsetId="TableReference:140:rowset" TransformBindingId="TransformScript:19:binding">
+      <ExposedName>product</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:140</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:19:binding:table-source:11" RowsetId="TableReference:142:rowset" TransformBindingId="TransformScript:19:binding">
+      <ExposedName>salesOrderCustomer</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:142</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:19:binding:table-source:12" RowsetId="TableReference:144:rowset" TransformBindingId="TransformScript:19:binding">
+      <ExposedName>businessCustomer</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:144</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:19:binding:table-source:13" RowsetId="TableReference:146:rowset" TransformBindingId="TransformScript:19:binding">
+      <ExposedName>customer</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:146</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:19:binding:table-source:14" RowsetId="TableReference:148:rowset" TransformBindingId="TransformScript:19:binding">
+      <ExposedName>salesOrderSalesperson</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:148</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:19:binding:table-source:15" RowsetId="TableReference:150:rowset" TransformBindingId="TransformScript:19:binding">
+      <ExposedName>businessSalesperson</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:150</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:19:binding:table-source:16" RowsetId="TableReference:152:rowset" TransformBindingId="TransformScript:19:binding">
+      <ExposedName>salesperson</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:152</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:19:binding:table-source:17" RowsetId="TableReference:154:rowset" TransformBindingId="TransformScript:19:binding">
+      <ExposedName>salesOrderTerritory</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:154</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:19:binding:table-source:18" RowsetId="TableReference:156:rowset" TransformBindingId="TransformScript:19:binding">
+      <ExposedName>businessTerritory</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:156</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:19:binding:table-source:19" RowsetId="TableReference:158:rowset" TransformBindingId="TransformScript:19:binding">
+      <ExposedName>territory</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:158</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:19:binding:table-source:2" RowsetId="TableReference:125:rowset" TransformBindingId="TransformScript:19:binding">
+      <ExposedName>source</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:125</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:19:binding:table-source:20" RowsetId="TableReference:160:rowset" TransformBindingId="TransformScript:19:binding">
+      <ExposedName>salesOrderShipToAddress</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:160</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:19:binding:table-source:21" RowsetId="TableReference:162:rowset" TransformBindingId="TransformScript:19:binding">
+      <ExposedName>businessShipToAddress</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:162</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:19:binding:table-source:22" RowsetId="TableReference:164:rowset" TransformBindingId="TransformScript:19:binding">
+      <ExposedName>shipToGeography</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:164</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:19:binding:table-source:23" RowsetId="TableReference:166:rowset" TransformBindingId="TransformScript:19:binding">
+      <ExposedName>orderDate</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:166</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:19:binding:table-source:24" RowsetId="TableReference:168:rowset" TransformBindingId="TransformScript:19:binding">
+      <ExposedName>channel</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:168</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:19:binding:table-source:25" RowsetId="TableReference:170:rowset" TransformBindingId="TransformScript:19:binding">
+      <ExposedName>source</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:170</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:19:binding:table-source:3" RowsetId="CommonTableExpression:13:rowset" TransformBindingId="TransformScript:19:binding">
+      <ExposedName>lineDetail</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:128</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:19:binding:table-source:4" RowsetId="TableReference:130:rowset" TransformBindingId="TransformScript:19:binding">
+      <ExposedName>salesLineOrder</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:130</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:19:binding:table-source:5" RowsetId="TableReference:132:rowset" TransformBindingId="TransformScript:19:binding">
+      <ExposedName>salesOrder</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:132</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:19:binding:table-source:6" RowsetId="TableReference:126:rowset" TransformBindingId="TransformScript:19:binding">
+      <ExposedName>source</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:126</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:19:binding:table-source:7" RowsetId="CommonTableExpression:14:rowset" TransformBindingId="TransformScript:19:binding">
+      <ExposedName>orderDetail</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:134</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:19:binding:table-source:8" RowsetId="TableReference:136:rowset" TransformBindingId="TransformScript:19:binding">
+      <ExposedName>salesLineProduct</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:136</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:19:binding:table-source:9" RowsetId="TableReference:138:rowset" TransformBindingId="TransformScript:19:binding">
+      <ExposedName>businessProduct</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:138</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:1:binding:table-source:1" RowsetId="TableReference:1:rowset" TransformBindingId="TransformScript:1:binding">
+      <ExposedName>existing</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:1</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:20:binding:table-source:1" RowsetId="TableReference:172:rowset" TransformBindingId="TransformScript:20:binding">
+      <ExposedName>quota</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:172</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:20:binding:table-source:2" RowsetId="TableReference:171:rowset" TransformBindingId="TransformScript:20:binding">
+      <ExposedName>source</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:171</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:20:binding:table-source:3" RowsetId="CommonTableExpression:15:rowset" TransformBindingId="TransformScript:20:binding">
+      <ExposedName>quotaDetail</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:173</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:20:binding:table-source:4" RowsetId="TableReference:175:rowset" TransformBindingId="TransformScript:20:binding">
+      <ExposedName>quotaSalesperson</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:175</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:20:binding:table-source:5" RowsetId="TableReference:177:rowset" TransformBindingId="TransformScript:20:binding">
+      <ExposedName>businessSalesperson</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:177</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:20:binding:table-source:6" RowsetId="TableReference:179:rowset" TransformBindingId="TransformScript:20:binding">
+      <ExposedName>salesperson</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:179</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:20:binding:table-source:7" RowsetId="TableReference:181:rowset" TransformBindingId="TransformScript:20:binding">
+      <ExposedName>quotaPeriod</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:181</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:20:binding:table-source:8" RowsetId="TableReference:183:rowset" TransformBindingId="TransformScript:20:binding">
+      <ExposedName>source</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:183</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:2:binding:table-source:1" RowsetId="TableReference:2:rowset" TransformBindingId="TransformScript:2:binding">
+      <ExposedName>existing</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:2</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:3:binding:table-source:1" RowsetId="TableReference:3:rowset" TransformBindingId="TransformScript:3:binding">
+      <ExposedName>existing</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:3</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:4:binding:table-source:1" RowsetId="TableReference:4:rowset" TransformBindingId="TransformScript:4:binding">
+      <ExposedName>existing</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:4</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:5:binding:table-source:1" RowsetId="TableReference:5:rowset" TransformBindingId="TransformScript:5:binding">
+      <ExposedName>existing</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:5</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:6:binding:table-source:1" RowsetId="TableReference:6:rowset" TransformBindingId="TransformScript:6:binding">
+      <ExposedName>existing</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:6</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:7:binding:table-source:1" RowsetId="TableReference:7:rowset" TransformBindingId="TransformScript:7:binding">
+      <ExposedName>existing</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:7</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:8:binding:table-source:1" RowsetId="TableReference:8:rowset" TransformBindingId="TransformScript:8:binding">
+      <ExposedName>existing</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:8</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:9:binding:table-source:1" RowsetId="TableReference:9:rowset" TransformBindingId="TransformScript:9:binding">
+      <ExposedName>source</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:9</MetaTransformScriptTableReferenceId>
+    </TableSource>
+    <TableSource Id="TransformScript:9:binding:table-source:2" RowsetId="TableReference:10:rowset" TransformBindingId="TransformScript:9:binding">
+      <ExposedName>source</ExposedName>
+      <MetaTransformScriptTableReferenceId>TableReference:10</MetaTransformScriptTableReferenceId>
+    </TableSource>
+  </TableSourceList>
+</MetaTransformBinding>

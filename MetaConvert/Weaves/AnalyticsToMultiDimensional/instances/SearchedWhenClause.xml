@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <SearchedWhenClauseList>
+    <SearchedWhenClause Id="SearchedWhenClause:1" WhenClauseId="WhenClause:1" />
+    <SearchedWhenClause Id="SearchedWhenClause:2" WhenClauseId="WhenClause:2" />
+  </SearchedWhenClauseList>
+</MetaWeave>

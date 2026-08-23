@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <DirectionRequirementList>
+    <DirectionRequirement Id="forward/DatabaseName" DirectionId="forward" SelectStatementId="SelectStatement:3">
+      <Code>DatabaseNameRequired</Code>
+      <Message>databaseName must contain a non-blank MetaSql database identity.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/ModuleClassification" DirectionId="forward" SelectStatementId="SelectStatement:9">
+      <Code>TransformScriptModuleClassificationInvalid</Code>
+      <Message>Each exported transform script must have exactly one modeled SQL module kind.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/ModuleIdentity" DirectionId="forward" SelectStatementId="SelectStatement:6">
+      <Code>TransformScriptModuleIdentityMissing</Code>
+      <Message>Each exported transform script must carry structured schema and object identifiers.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/ModuleIdentityUniqueness" DirectionId="forward" SelectStatementId="SelectStatement:19">
+      <Code>TransformScriptModuleIdentityDuplicate</Code>
+      <Message>SQL module identities must be unique under WeaveScript comparison semantics.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/ModulePresence" DirectionId="forward" SelectStatementId="SelectStatement:4">
+      <Code>TransformScriptModuleRequired</Code>
+      <Message>The source must contain at least one transform script SQL module.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/RendererCoverage" DirectionId="forward" SelectStatementId="SelectStatement:102">
+      <Code>TransformScriptRendererUnsupported</Code>
+      <Message>The modeled SQL renderer does not yet cover one or more source syntax nodes.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/RenderEventProtocol" DirectionId="forward" SelectStatementId="SelectStatement:103">
+      <Code>TransformScriptRenderEventProtocolInvalid</Code>
+      <Message>TransformScript render-event protocol integrity failed.</Message>
+    </DirectionRequirement>
+  </DirectionRequirementList>
+</MetaWeave>

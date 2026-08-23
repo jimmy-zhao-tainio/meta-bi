@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <CultureList>
+    <Culture Id="culture:sv-SE" AnalyticsModelId="model:commerce">
+      <Name>sv-SE</Name>
+    </Culture>
+  </CultureList>
+</MetaAnalytics>

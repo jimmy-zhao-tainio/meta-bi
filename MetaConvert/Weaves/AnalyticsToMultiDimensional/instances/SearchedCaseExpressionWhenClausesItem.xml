@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <SearchedCaseExpressionWhenClausesItemList>
+    <SearchedCaseExpressionWhenClausesItem Id="SearchedCaseExpressionWhenClausesItem:1" SearchedCaseExpressionId="SearchedCaseExpression:1" SearchedWhenClauseId="SearchedWhenClause:1">
+      <Ordinal>0</Ordinal>
+    </SearchedCaseExpressionWhenClausesItem>
+    <SearchedCaseExpressionWhenClausesItem Id="SearchedCaseExpressionWhenClausesItem:2" SearchedCaseExpressionId="SearchedCaseExpression:2" SearchedWhenClauseId="SearchedWhenClause:2">
+      <Ordinal>0</Ordinal>
+    </SearchedCaseExpressionWhenClausesItem>
+  </SearchedCaseExpressionWhenClausesItemList>
+</MetaWeave>

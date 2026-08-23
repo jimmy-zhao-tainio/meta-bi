@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSql>
+  <SchemaList>
+    <Schema Id="AdventureWorksBusinessVault.dbo" DatabaseId="AdventureWorksBusinessVault">
+      <Name>dbo</Name>
+    </Schema>
+  </SchemaList>
+</MetaSql>

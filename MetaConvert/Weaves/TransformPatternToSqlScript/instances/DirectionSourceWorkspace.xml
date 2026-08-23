@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <DirectionSourceWorkspaceList>
+    <DirectionSourceWorkspace Id="forward/instance" DirectionId="forward">
+      <ModelName>MetaTransformPatternInstance</ModelName>
+      <Name>instance</Name>
+    </DirectionSourceWorkspace>
+    <DirectionSourceWorkspace Id="forward/pattern" DirectionId="forward">
+      <ModelName>MetaTransformPattern</ModelName>
+      <Name>pattern</Name>
+    </DirectionSourceWorkspace>
+  </DirectionSourceWorkspaceList>
+</MetaWeave>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ExecutableCommandList>
+    <ExecutableCommand Id="exec-add-field" CommandId="cmd-add-field" />
+    <ExecutableCommand Id="exec-add-field-data-type-detail" CommandId="cmd-add-field-data-type-detail" />
+    <ExecutableCommand Id="exec-add-raw-hub" CommandId="cmd-add-raw-hub" />
+    <ExecutableCommand Id="exec-add-raw-hub-key-part" CommandId="cmd-add-raw-hub-key-part" />
+    <ExecutableCommand Id="exec-add-raw-hub-satellite" CommandId="cmd-add-raw-hub-satellite" />
+    <ExecutableCommand Id="exec-add-raw-hub-satellite-attribute" CommandId="cmd-add-raw-hub-satellite-attribute" />
+    <ExecutableCommand Id="exec-add-raw-link" CommandId="cmd-add-raw-link" />
+    <ExecutableCommand Id="exec-add-raw-link-role" CommandId="cmd-add-raw-link-role" />
+    <ExecutableCommand Id="exec-add-raw-link-satellite" CommandId="cmd-add-raw-link-satellite" />
+    <ExecutableCommand Id="exec-add-raw-link-satellite-attribute" CommandId="cmd-add-raw-link-satellite-attribute" />
+    <ExecutableCommand Id="exec-create" CommandId="cmd-create" />
+    <ExecutableCommand Id="exec-help" CommandId="cmd-help" />
+  </ExecutableCommandList>
+</MetaCli>

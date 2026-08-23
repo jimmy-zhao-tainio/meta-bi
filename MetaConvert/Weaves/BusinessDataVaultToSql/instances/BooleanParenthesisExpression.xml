@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <BooleanParenthesisExpressionList>
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:10" BooleanExpressionId="BooleanExpression:684" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:11" BooleanExpressionId="BooleanExpression:688" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:12" BooleanExpressionId="BooleanExpression:729" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:13" BooleanExpressionId="BooleanExpression:731" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:14" BooleanExpressionId="BooleanExpression:746" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:15" BooleanExpressionId="BooleanExpression:748" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:16" BooleanExpressionId="BooleanExpression:759" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:17" BooleanExpressionId="BooleanExpression:761" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:18" BooleanExpressionId="BooleanExpression:767" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:19" BooleanExpressionId="BooleanExpression:769" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:9" BooleanExpressionId="BooleanExpression:648" />
+  </BooleanParenthesisExpressionList>
+</MetaWeave>

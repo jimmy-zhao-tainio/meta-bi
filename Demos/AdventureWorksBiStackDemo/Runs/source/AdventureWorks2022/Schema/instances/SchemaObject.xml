@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <SchemaObjectList>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:dbo:table:AWBuildVersion" SchemaId="sqlserver:AdventureWorks2022:schema:dbo">
+      <Name>AWBuildVersion</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog" SchemaId="sqlserver:AdventureWorks2022:schema:dbo">
+      <Name>DatabaseLog</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog" SchemaId="sqlserver:AdventureWorks2022:schema:dbo">
+      <Name>ErrorLog</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Department" SchemaId="sqlserver:AdventureWorks2022:schema:HumanResources">
+      <Name>Department</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee" SchemaId="sqlserver:AdventureWorks2022:schema:HumanResources">
+      <Name>Employee</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory" SchemaId="sqlserver:AdventureWorks2022:schema:HumanResources">
+      <Name>EmployeeDepartmentHistory</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory" SchemaId="sqlserver:AdventureWorks2022:schema:HumanResources">
+      <Name>EmployeePayHistory</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:JobCandidate" SchemaId="sqlserver:AdventureWorks2022:schema:HumanResources">
+      <Name>JobCandidate</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift" SchemaId="sqlserver:AdventureWorks2022:schema:HumanResources">
+      <Name>Shift</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployee" SchemaId="sqlserver:AdventureWorks2022:schema:HumanResources">
+      <Name>vEmployee</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartment" SchemaId="sqlserver:AdventureWorks2022:schema:HumanResources">
+      <Name>vEmployeeDepartment</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vEmployeeDepartmentHistory" SchemaId="sqlserver:AdventureWorks2022:schema:HumanResources">
+      <Name>vEmployeeDepartmentHistory</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidate" SchemaId="sqlserver:AdventureWorks2022:schema:HumanResources">
+      <Name>vJobCandidate</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEducation" SchemaId="sqlserver:AdventureWorks2022:schema:HumanResources">
+      <Name>vJobCandidateEducation</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:vJobCandidateEmployment" SchemaId="sqlserver:AdventureWorks2022:schema:HumanResources">
+      <Name>vJobCandidateEmployment</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Person:table:Address" SchemaId="sqlserver:AdventureWorks2022:schema:Person">
+      <Name>Address</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Person:table:AddressType" SchemaId="sqlserver:AdventureWorks2022:schema:Person">
+      <Name>AddressType</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntity" SchemaId="sqlserver:AdventureWorks2022:schema:Person">
+      <Name>BusinessEntity</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress" SchemaId="sqlserver:AdventureWorks2022:schema:Person">
+      <Name>BusinessEntityAddress</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact" SchemaId="sqlserver:AdventureWorks2022:schema:Person">
+      <Name>BusinessEntityContact</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Person:table:ContactType" SchemaId="sqlserver:AdventureWorks2022:schema:Person">
+      <Name>ContactType</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Person:table:CountryRegion" SchemaId="sqlserver:AdventureWorks2022:schema:Person">
+      <Name>CountryRegion</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress" SchemaId="sqlserver:AdventureWorks2022:schema:Person">
+      <Name>EmailAddress</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Person:table:Password" SchemaId="sqlserver:AdventureWorks2022:schema:Person">
+      <Name>Password</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Person:table:Person" SchemaId="sqlserver:AdventureWorks2022:schema:Person">
+      <Name>Person</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone" SchemaId="sqlserver:AdventureWorks2022:schema:Person">
+      <Name>PersonPhone</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Person:table:PhoneNumberType" SchemaId="sqlserver:AdventureWorks2022:schema:Person">
+      <Name>PhoneNumberType</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Person:table:StateProvince" SchemaId="sqlserver:AdventureWorks2022:schema:Person">
+      <Name>StateProvince</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Person:table:vAdditionalContactInfo" SchemaId="sqlserver:AdventureWorks2022:schema:Person">
+      <Name>vAdditionalContactInfo</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Person:table:vStateProvinceCountryRegion" SchemaId="sqlserver:AdventureWorks2022:schema:Person">
+      <Name>vStateProvinceCountryRegion</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials" SchemaId="sqlserver:AdventureWorks2022:schema:Production">
+      <Name>BillOfMaterials</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Production:table:Culture" SchemaId="sqlserver:AdventureWorks2022:schema:Production">
+      <Name>Culture</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Production:table:Document" SchemaId="sqlserver:AdventureWorks2022:schema:Production">
+      <Name>Document</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Production:table:Illustration" SchemaId="sqlserver:AdventureWorks2022:schema:Production">
+      <Name>Illustration</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Production:table:Location" SchemaId="sqlserver:AdventureWorks2022:schema:Production">
+      <Name>Location</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Production:table:Product" SchemaId="sqlserver:AdventureWorks2022:schema:Production">
+      <Name>Product</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory" SchemaId="sqlserver:AdventureWorks2022:schema:Production">
+      <Name>ProductCategory</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory" SchemaId="sqlserver:AdventureWorks2022:schema:Production">
+      <Name>ProductCostHistory</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductDescription" SchemaId="sqlserver:AdventureWorks2022:schema:Production">
+      <Name>ProductDescription</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductDocument" SchemaId="sqlserver:AdventureWorks2022:schema:Production">
+      <Name>ProductDocument</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory" SchemaId="sqlserver:AdventureWorks2022:schema:Production">
+      <Name>ProductInventory</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory" SchemaId="sqlserver:AdventureWorks2022:schema:Production">
+      <Name>ProductListPriceHistory</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductModel" SchemaId="sqlserver:AdventureWorks2022:schema:Production">
+      <Name>ProductModel</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelIllustration" SchemaId="sqlserver:AdventureWorks2022:schema:Production">
+      <Name>ProductModelIllustration</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture" SchemaId="sqlserver:AdventureWorks2022:schema:Production">
+      <Name>ProductModelProductDescriptionCulture</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto" SchemaId="sqlserver:AdventureWorks2022:schema:Production">
+      <Name>ProductPhoto</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto" SchemaId="sqlserver:AdventureWorks2022:schema:Production">
+      <Name>ProductProductPhoto</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductReview" SchemaId="sqlserver:AdventureWorks2022:schema:Production">
+      <Name>ProductReview</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory" SchemaId="sqlserver:AdventureWorks2022:schema:Production">
+      <Name>ProductSubcategory</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Production:table:ScrapReason" SchemaId="sqlserver:AdventureWorks2022:schema:Production">
+      <Name>ScrapReason</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory" SchemaId="sqlserver:AdventureWorks2022:schema:Production">
+      <Name>TransactionHistory</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive" SchemaId="sqlserver:AdventureWorks2022:schema:Production">
+      <Name>TransactionHistoryArchive</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Production:table:UnitMeasure" SchemaId="sqlserver:AdventureWorks2022:schema:Production">
+      <Name>UnitMeasure</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductAndDescription" SchemaId="sqlserver:AdventureWorks2022:schema:Production">
+      <Name>vProductAndDescription</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelCatalogDescription" SchemaId="sqlserver:AdventureWorks2022:schema:Production">
+      <Name>vProductModelCatalogDescription</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Production:table:vProductModelInstructions" SchemaId="sqlserver:AdventureWorks2022:schema:Production">
+      <Name>vProductModelInstructions</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder" SchemaId="sqlserver:AdventureWorks2022:schema:Production">
+      <Name>WorkOrder</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting" SchemaId="sqlserver:AdventureWorks2022:schema:Production">
+      <Name>WorkOrderRouting</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor" SchemaId="sqlserver:AdventureWorks2022:schema:Purchasing">
+      <Name>ProductVendor</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail" SchemaId="sqlserver:AdventureWorks2022:schema:Purchasing">
+      <Name>PurchaseOrderDetail</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader" SchemaId="sqlserver:AdventureWorks2022:schema:Purchasing">
+      <Name>PurchaseOrderHeader</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod" SchemaId="sqlserver:AdventureWorks2022:schema:Purchasing">
+      <Name>ShipMethod</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor" SchemaId="sqlserver:AdventureWorks2022:schema:Purchasing">
+      <Name>Vendor</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithAddresses" SchemaId="sqlserver:AdventureWorks2022:schema:Purchasing">
+      <Name>vVendorWithAddresses</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:vVendorWithContacts" SchemaId="sqlserver:AdventureWorks2022:schema:Purchasing">
+      <Name>vVendorWithContacts</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency" SchemaId="sqlserver:AdventureWorks2022:schema:Sales">
+      <Name>CountryRegionCurrency</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard" SchemaId="sqlserver:AdventureWorks2022:schema:Sales">
+      <Name>CreditCard</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Sales:table:Currency" SchemaId="sqlserver:AdventureWorks2022:schema:Sales">
+      <Name>Currency</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate" SchemaId="sqlserver:AdventureWorks2022:schema:Sales">
+      <Name>CurrencyRate</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Sales:table:Customer" SchemaId="sqlserver:AdventureWorks2022:schema:Sales">
+      <Name>Customer</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Sales:table:PersonCreditCard" SchemaId="sqlserver:AdventureWorks2022:schema:Sales">
+      <Name>PersonCreditCard</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail" SchemaId="sqlserver:AdventureWorks2022:schema:Sales">
+      <Name>SalesOrderDetail</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader" SchemaId="sqlserver:AdventureWorks2022:schema:Sales">
+      <Name>SalesOrderHeader</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeaderSalesReason" SchemaId="sqlserver:AdventureWorks2022:schema:Sales">
+      <Name>SalesOrderHeaderSalesReason</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson" SchemaId="sqlserver:AdventureWorks2022:schema:Sales">
+      <Name>SalesPerson</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory" SchemaId="sqlserver:AdventureWorks2022:schema:Sales">
+      <Name>SalesPersonQuotaHistory</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesReason" SchemaId="sqlserver:AdventureWorks2022:schema:Sales">
+      <Name>SalesReason</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate" SchemaId="sqlserver:AdventureWorks2022:schema:Sales">
+      <Name>SalesTaxRate</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory" SchemaId="sqlserver:AdventureWorks2022:schema:Sales">
+      <Name>SalesTerritory</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory" SchemaId="sqlserver:AdventureWorks2022:schema:Sales">
+      <Name>SalesTerritoryHistory</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem" SchemaId="sqlserver:AdventureWorks2022:schema:Sales">
+      <Name>ShoppingCartItem</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer" SchemaId="sqlserver:AdventureWorks2022:schema:Sales">
+      <Name>SpecialOffer</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct" SchemaId="sqlserver:AdventureWorks2022:schema:Sales">
+      <Name>SpecialOfferProduct</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Sales:table:Store" SchemaId="sqlserver:AdventureWorks2022:schema:Sales">
+      <Name>Store</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Sales:table:vIndividualCustomer" SchemaId="sqlserver:AdventureWorks2022:schema:Sales">
+      <Name>vIndividualCustomer</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Sales:table:vPersonDemographics" SchemaId="sqlserver:AdventureWorks2022:schema:Sales">
+      <Name>vPersonDemographics</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPerson" SchemaId="sqlserver:AdventureWorks2022:schema:Sales">
+      <Name>vSalesPerson</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Sales:table:vSalesPersonSalesByFiscalYears" SchemaId="sqlserver:AdventureWorks2022:schema:Sales">
+      <Name>vSalesPersonSalesByFiscalYears</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithAddresses" SchemaId="sqlserver:AdventureWorks2022:schema:Sales">
+      <Name>vStoreWithAddresses</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithContacts" SchemaId="sqlserver:AdventureWorks2022:schema:Sales">
+      <Name>vStoreWithContacts</Name>
+    </SchemaObject>
+    <SchemaObject Id="sqlserver:AdventureWorks2022:schema:Sales:table:vStoreWithDemographics" SchemaId="sqlserver:AdventureWorks2022:schema:Sales">
+      <Name>vStoreWithDemographics</Name>
+    </SchemaObject>
+  </SchemaObjectList>
+</MetaSchema>

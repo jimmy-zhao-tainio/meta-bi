@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ApplicationList>
+    <Application Id="app-meta-data-type">
+      <Description>Author sanctioned data type catalogs used by schema, SQL, conversion, and BI modeling tools.</Description>
+      <ExecutableName>meta-data-type</ExecutableName>
+      <Name>meta-data-type</Name>
+    </Application>
+  </ApplicationList>
+</MetaCli>

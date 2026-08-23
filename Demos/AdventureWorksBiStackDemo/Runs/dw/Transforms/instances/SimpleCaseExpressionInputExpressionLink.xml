@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <SimpleCaseExpressionInputExpressionLinkList>
+    <SimpleCaseExpressionInputExpressionLink Id="SimpleCaseExpressionInputExpressionLink:1" ScalarExpressionId="ScalarExpression:210" SimpleCaseExpressionId="SimpleCaseExpression:1" />
+    <SimpleCaseExpressionInputExpressionLink Id="SimpleCaseExpressionInputExpressionLink:2" ScalarExpressionId="ScalarExpression:249" SimpleCaseExpressionId="SimpleCaseExpression:2" />
+    <SimpleCaseExpressionInputExpressionLink Id="SimpleCaseExpressionInputExpressionLink:3" ScalarExpressionId="ScalarExpression:308" SimpleCaseExpressionId="SimpleCaseExpression:3" />
+    <SimpleCaseExpressionInputExpressionLink Id="SimpleCaseExpressionInputExpressionLink:4" ScalarExpressionId="ScalarExpression:347" SimpleCaseExpressionId="SimpleCaseExpression:4" />
+    <SimpleCaseExpressionInputExpressionLink Id="SimpleCaseExpressionInputExpressionLink:5" ScalarExpressionId="ScalarExpression:406" SimpleCaseExpressionId="SimpleCaseExpression:5" />
+    <SimpleCaseExpressionInputExpressionLink Id="SimpleCaseExpressionInputExpressionLink:6" ScalarExpressionId="ScalarExpression:445" SimpleCaseExpressionId="SimpleCaseExpression:6" />
+    <SimpleCaseExpressionInputExpressionLink Id="SimpleCaseExpressionInputExpressionLink:7" ScalarExpressionId="ScalarExpression:504" SimpleCaseExpressionId="SimpleCaseExpression:7" />
+    <SimpleCaseExpressionInputExpressionLink Id="SimpleCaseExpressionInputExpressionLink:8" ScalarExpressionId="ScalarExpression:543" SimpleCaseExpressionId="SimpleCaseExpression:8" />
+  </SimpleCaseExpressionInputExpressionLinkList>
+</MetaTransformScript>

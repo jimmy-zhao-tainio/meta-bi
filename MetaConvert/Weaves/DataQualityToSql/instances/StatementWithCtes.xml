@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <StatementWithCtesList>
+    <StatementWithCtes Id="StatementWithCtes:1" TSqlStatementId="TSqlStatement:1" />
+    <StatementWithCtes Id="StatementWithCtes:10" TSqlStatementId="TSqlStatement:10" />
+    <StatementWithCtes Id="StatementWithCtes:15" TSqlStatementId="TSqlStatement:15" />
+    <StatementWithCtes Id="StatementWithCtes:17" TSqlStatementId="TSqlStatement:17" />
+    <StatementWithCtes Id="StatementWithCtes:18" TSqlStatementId="TSqlStatement:18" />
+    <StatementWithCtes Id="StatementWithCtes:24" TSqlStatementId="TSqlStatement:24" />
+    <StatementWithCtes Id="StatementWithCtes:27" TSqlStatementId="TSqlStatement:27" />
+    <StatementWithCtes Id="StatementWithCtes:28" TSqlStatementId="TSqlStatement:28" />
+    <StatementWithCtes Id="StatementWithCtes:29" TSqlStatementId="TSqlStatement:29" />
+    <StatementWithCtes Id="StatementWithCtes:35" TSqlStatementId="TSqlStatement:35" />
+    <StatementWithCtes Id="StatementWithCtes:36" TSqlStatementId="TSqlStatement:36" />
+    <StatementWithCtes Id="StatementWithCtes:37" TSqlStatementId="TSqlStatement:37" />
+    <StatementWithCtes Id="StatementWithCtes:38" TSqlStatementId="TSqlStatement:38" />
+    <StatementWithCtes Id="StatementWithCtes:39" TSqlStatementId="TSqlStatement:39" />
+    <StatementWithCtes Id="StatementWithCtes:4" TSqlStatementId="TSqlStatement:4" />
+    <StatementWithCtes Id="StatementWithCtes:40" TSqlStatementId="TSqlStatement:40" />
+    <StatementWithCtes Id="StatementWithCtes:41" TSqlStatementId="TSqlStatement:41" />
+    <StatementWithCtes Id="StatementWithCtes:46" TSqlStatementId="TSqlStatement:46" />
+    <StatementWithCtes Id="StatementWithCtes:47" TSqlStatementId="TSqlStatement:47" />
+    <StatementWithCtes Id="StatementWithCtes:48" TSqlStatementId="TSqlStatement:48" />
+    <StatementWithCtes Id="StatementWithCtes:49" TSqlStatementId="TSqlStatement:49" />
+    <StatementWithCtes Id="StatementWithCtes:50" TSqlStatementId="TSqlStatement:50" />
+    <StatementWithCtes Id="StatementWithCtes:51" TSqlStatementId="TSqlStatement:51" />
+    <StatementWithCtes Id="StatementWithCtes:52" TSqlStatementId="TSqlStatement:52" />
+    <StatementWithCtes Id="StatementWithCtes:53" TSqlStatementId="TSqlStatement:53" />
+    <StatementWithCtes Id="StatementWithCtes:55" TSqlStatementId="TSqlStatement:55" />
+    <StatementWithCtes Id="StatementWithCtes:56" TSqlStatementId="TSqlStatement:56" />
+    <StatementWithCtes Id="StatementWithCtes:58" TSqlStatementId="TSqlStatement:58" />
+    <StatementWithCtes Id="StatementWithCtes:59" TSqlStatementId="TSqlStatement:59" />
+    <StatementWithCtes Id="StatementWithCtes:60" TSqlStatementId="TSqlStatement:60" />
+    <StatementWithCtes Id="StatementWithCtes:61" TSqlStatementId="TSqlStatement:61" />
+    <StatementWithCtes Id="StatementWithCtes:62" TSqlStatementId="TSqlStatement:62" />
+    <StatementWithCtes Id="StatementWithCtes:63" TSqlStatementId="TSqlStatement:63" />
+    <StatementWithCtes Id="StatementWithCtes:64" TSqlStatementId="TSqlStatement:64" />
+    <StatementWithCtes Id="StatementWithCtes:65" TSqlStatementId="TSqlStatement:65" />
+    <StatementWithCtes Id="StatementWithCtes:66" TSqlStatementId="TSqlStatement:66" />
+    <StatementWithCtes Id="StatementWithCtes:67" TSqlStatementId="TSqlStatement:67" />
+  </StatementWithCtesList>
+</MetaWeave>

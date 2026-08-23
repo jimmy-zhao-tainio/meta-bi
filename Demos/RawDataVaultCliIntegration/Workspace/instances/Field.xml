@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaRawDataVault>
+  <FieldList>
+    <Field Id="CustomerEmailField">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>EmailAddress</Name>
+    </Field>
+    <Field Id="CustomerIdField">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>CustomerId</Name>
+    </Field>
+    <Field Id="CustomerNameField">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>CustomerName</Name>
+    </Field>
+    <Field Id="DepartmentIdField">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>DepartmentId</Name>
+    </Field>
+    <Field Id="DepartmentNameField">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>DepartmentName</Name>
+    </Field>
+    <Field Id="EmployeeDepartmentIdField">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>DepartmentId</Name>
+    </Field>
+    <Field Id="EmployeeHireDateField">
+      <DataTypeId>sqlserver:type:datetime2</DataTypeId>
+      <Name>HireDate</Name>
+    </Field>
+    <Field Id="EmployeeIdField">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>EmployeeId</Name>
+    </Field>
+    <Field Id="EmployeeNameField">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>EmployeeName</Name>
+    </Field>
+    <Field Id="InvoiceAmountField">
+      <DataTypeId>sqlserver:type:decimal</DataTypeId>
+      <Name>InvoiceAmount</Name>
+    </Field>
+    <Field Id="InvoiceDateField">
+      <DataTypeId>sqlserver:type:datetime2</DataTypeId>
+      <Name>InvoiceDate</Name>
+    </Field>
+    <Field Id="InvoiceIdField">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>InvoiceId</Name>
+    </Field>
+    <Field Id="InvoiceOrderIdField">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>OrderId</Name>
+    </Field>
+    <Field Id="InvoiceSupplierIdField">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>SupplierId</Name>
+    </Field>
+    <Field Id="OrderAmountField">
+      <DataTypeId>sqlserver:type:decimal</DataTypeId>
+      <Name>OrderAmount</Name>
+    </Field>
+    <Field Id="OrderCustomerIdField">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>CustomerId</Name>
+    </Field>
+    <Field Id="OrderDateField">
+      <DataTypeId>sqlserver:type:datetime2</DataTypeId>
+      <Name>OrderDate</Name>
+    </Field>
+    <Field Id="OrderIdField">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>OrderId</Name>
+    </Field>
+    <Field Id="OrderStatusCodeField">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>OrderStatusCode</Name>
+    </Field>
+    <Field Id="ProductCategoryField">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>ProductCategory</Name>
+    </Field>
+    <Field Id="ProductIdField">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>ProductId</Name>
+    </Field>
+    <Field Id="ProductNameField">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>ProductName</Name>
+    </Field>
+    <Field Id="ProductSupplierIdField">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>SupplierId</Name>
+    </Field>
+    <Field Id="ShipmentCarrierNameField">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>CarrierName</Name>
+    </Field>
+    <Field Id="ShipmentDateField">
+      <DataTypeId>sqlserver:type:datetime2</DataTypeId>
+      <Name>ShipmentDate</Name>
+    </Field>
+    <Field Id="ShipmentIdField">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>ShipmentId</Name>
+    </Field>
+    <Field Id="ShipmentOrderIdField">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>OrderId</Name>
+    </Field>
+    <Field Id="SupplierIdField">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>SupplierId</Name>
+    </Field>
+    <Field Id="SupplierNameField">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>SupplierName</Name>
+    </Field>
+    <Field Id="SupplierProductCodeField">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>SupplierProductCode</Name>
+    </Field>
+    <Field Id="SupplierRiskClassField">
+      <DataTypeId>sqlserver:type:nvarchar</DataTypeId>
+      <Name>RiskClass</Name>
+    </Field>
+  </FieldList>
+</MetaRawDataVault>

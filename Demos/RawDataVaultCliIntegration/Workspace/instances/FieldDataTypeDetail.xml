@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaRawDataVault>
+  <FieldDataTypeDetailList>
+    <FieldDataTypeDetail Id="CustomerEmailLength" FieldId="CustomerEmailField">
+      <Name>Length</Name>
+      <Value>200</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="CustomerIdLength" FieldId="CustomerIdField">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="CustomerNameLength" FieldId="CustomerNameField">
+      <Name>Length</Name>
+      <Value>200</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="DepartmentIdLength" FieldId="DepartmentIdField">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="DepartmentNameLength" FieldId="DepartmentNameField">
+      <Name>Length</Name>
+      <Value>150</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="EmployeeDepartmentIdLength" FieldId="EmployeeDepartmentIdField">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="EmployeeHireDatePrecision" FieldId="EmployeeHireDateField">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="EmployeeIdLength" FieldId="EmployeeIdField">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="EmployeeNameLength" FieldId="EmployeeNameField">
+      <Name>Length</Name>
+      <Value>150</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="InvoiceAmountPrecision" FieldId="InvoiceAmountField">
+      <Name>Precision</Name>
+      <Value>18</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="InvoiceAmountScale" FieldId="InvoiceAmountField">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="InvoiceDatePrecision" FieldId="InvoiceDateField">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="InvoiceIdLength" FieldId="InvoiceIdField">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="InvoiceOrderIdLength" FieldId="InvoiceOrderIdField">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="InvoiceSupplierIdLength" FieldId="InvoiceSupplierIdField">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="OrderAmountPrecision" FieldId="OrderAmountField">
+      <Name>Precision</Name>
+      <Value>18</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="OrderAmountScale" FieldId="OrderAmountField">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="OrderCustomerIdLength" FieldId="OrderCustomerIdField">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="OrderDatePrecision" FieldId="OrderDateField">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="OrderIdLength" FieldId="OrderIdField">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="OrderStatusCodeLength" FieldId="OrderStatusCodeField">
+      <Name>Length</Name>
+      <Value>20</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="ProductCategoryLength" FieldId="ProductCategoryField">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="ProductIdLength" FieldId="ProductIdField">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="ProductNameLength" FieldId="ProductNameField">
+      <Name>Length</Name>
+      <Value>200</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="ProductSupplierIdLength" FieldId="ProductSupplierIdField">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="ShipmentCarrierNameLength" FieldId="ShipmentCarrierNameField">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="ShipmentDatePrecision" FieldId="ShipmentDateField">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="ShipmentIdLength" FieldId="ShipmentIdField">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="ShipmentOrderIdLength" FieldId="ShipmentOrderIdField">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="SupplierIdLength" FieldId="SupplierIdField">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="SupplierNameLength" FieldId="SupplierNameField">
+      <Name>Length</Name>
+      <Value>200</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="SupplierProductCodeLength" FieldId="SupplierProductCodeField">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="SupplierRiskClassLength" FieldId="SupplierRiskClassField">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </FieldDataTypeDetail>
+  </FieldDataTypeDetailList>
+</MetaRawDataVault>

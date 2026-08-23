@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <ExpressionGroupingSpecificationList>
+    <ExpressionGroupingSpecification Id="ExpressionGroupingSpecification:1" GroupingSpecificationId="GroupingSpecification:1" />
+    <ExpressionGroupingSpecification Id="ExpressionGroupingSpecification:10" GroupingSpecificationId="GroupingSpecification:10" />
+    <ExpressionGroupingSpecification Id="ExpressionGroupingSpecification:11" GroupingSpecificationId="GroupingSpecification:11" />
+    <ExpressionGroupingSpecification Id="ExpressionGroupingSpecification:12" GroupingSpecificationId="GroupingSpecification:12" />
+    <ExpressionGroupingSpecification Id="ExpressionGroupingSpecification:13" GroupingSpecificationId="GroupingSpecification:13" />
+    <ExpressionGroupingSpecification Id="ExpressionGroupingSpecification:14" GroupingSpecificationId="GroupingSpecification:14" />
+    <ExpressionGroupingSpecification Id="ExpressionGroupingSpecification:15" GroupingSpecificationId="GroupingSpecification:15" />
+    <ExpressionGroupingSpecification Id="ExpressionGroupingSpecification:16" GroupingSpecificationId="GroupingSpecification:16" />
+    <ExpressionGroupingSpecification Id="ExpressionGroupingSpecification:17" GroupingSpecificationId="GroupingSpecification:17" />
+    <ExpressionGroupingSpecification Id="ExpressionGroupingSpecification:18" GroupingSpecificationId="GroupingSpecification:18" />
+    <ExpressionGroupingSpecification Id="ExpressionGroupingSpecification:19" GroupingSpecificationId="GroupingSpecification:19" />
+    <ExpressionGroupingSpecification Id="ExpressionGroupingSpecification:2" GroupingSpecificationId="GroupingSpecification:2" />
+    <ExpressionGroupingSpecification Id="ExpressionGroupingSpecification:3" GroupingSpecificationId="GroupingSpecification:3" />
+    <ExpressionGroupingSpecification Id="ExpressionGroupingSpecification:4" GroupingSpecificationId="GroupingSpecification:4" />
+    <ExpressionGroupingSpecification Id="ExpressionGroupingSpecification:5" GroupingSpecificationId="GroupingSpecification:5" />
+    <ExpressionGroupingSpecification Id="ExpressionGroupingSpecification:6" GroupingSpecificationId="GroupingSpecification:6" />
+    <ExpressionGroupingSpecification Id="ExpressionGroupingSpecification:7" GroupingSpecificationId="GroupingSpecification:7" />
+    <ExpressionGroupingSpecification Id="ExpressionGroupingSpecification:8" GroupingSpecificationId="GroupingSpecification:8" />
+    <ExpressionGroupingSpecification Id="ExpressionGroupingSpecification:9" GroupingSpecificationId="GroupingSpecification:9" />
+  </ExpressionGroupingSpecificationList>
+</MetaWeave>

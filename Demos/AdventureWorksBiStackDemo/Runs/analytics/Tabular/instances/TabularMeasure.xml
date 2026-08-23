@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTabular>
+  <TabularMeasureList>
+    <TabularMeasure Id="AverageOrderValue" TabularTableId="SalesOrders">
+      <DisplayFolder>Orders</DisplayFolder>
+      <Expression>AVERAGE('Sales Orders'[Total Due Value])</Expression>
+      <FormatString>#,0.00</FormatString>
+      <Name>Average Order Value</Name>
+    </TabularMeasure>
+    <TabularMeasure Id="AverageUnitPrice" TabularTableId="SalesLines">
+      <DisplayFolder>Sales</DisplayFolder>
+      <Expression>AVERAGE('Sales Lines'[Unit Price])</Expression>
+      <FormatString>#,0.00</FormatString>
+      <Name>Average Unit Price</Name>
+    </TabularMeasure>
+    <TabularMeasure Id="DiscountAmount" TabularTableId="SalesLines">
+      <DisplayFolder>Sales</DisplayFolder>
+      <Expression>SUM('Sales Lines'[Discount Amount Value])</Expression>
+      <FormatString>#,0.00</FormatString>
+      <Name>Discount Amount</Name>
+    </TabularMeasure>
+    <TabularMeasure Id="FreightAmount" TabularTableId="SalesOrders">
+      <DisplayFolder>Orders</DisplayFolder>
+      <Expression>SUM('Sales Orders'[Freight Amount Value])</Expression>
+      <FormatString>#,0.00</FormatString>
+      <Name>Freight Amount</Name>
+    </TabularMeasure>
+    <TabularMeasure Id="OrderCount" TabularTableId="SalesOrders">
+      <DisplayFolder>Orders</DisplayFolder>
+      <Expression>SUM('Sales Orders'[Order Count Value])</Expression>
+      <FormatString>#,0</FormatString>
+      <Name>Order Count</Name>
+    </TabularMeasure>
+    <TabularMeasure Id="OrderQuantity" TabularTableId="SalesLines">
+      <DisplayFolder>Sales</DisplayFolder>
+      <Expression>SUM('Sales Lines'[Order Quantity Value])</Expression>
+      <FormatString>#,0</FormatString>
+      <Name>Order Quantity</Name>
+    </TabularMeasure>
+    <TabularMeasure Id="OrderSubtotal" TabularTableId="SalesOrders">
+      <DisplayFolder>Orders</DisplayFolder>
+      <Expression>SUM('Sales Orders'[Subtotal])</Expression>
+      <FormatString>#,0.00</FormatString>
+      <Name>Order Subtotal</Name>
+    </TabularMeasure>
+    <TabularMeasure Id="QuotaAmount" TabularTableId="SalespersonQuotas">
+      <DisplayFolder>Quota</DisplayFolder>
+      <Expression>SUM('Salesperson Quotas'[Quota Amount Value])</Expression>
+      <FormatString>#,0.00</FormatString>
+      <Name>Quota Amount</Name>
+    </TabularMeasure>
+    <TabularMeasure Id="SalesAmount" TabularTableId="SalesLines">
+      <DisplayFolder>Sales</DisplayFolder>
+      <Expression>SUM('Sales Lines'[Sales Amount Value])</Expression>
+      <FormatString>#,0.00</FormatString>
+      <Name>Sales Amount</Name>
+    </TabularMeasure>
+    <TabularMeasure Id="TaxAmount" TabularTableId="SalesOrders">
+      <DisplayFolder>Orders</DisplayFolder>
+      <Expression>SUM('Sales Orders'[Tax Amount Value])</Expression>
+      <FormatString>#,0.00</FormatString>
+      <Name>Tax Amount</Name>
+    </TabularMeasure>
+    <TabularMeasure Id="TotalDue" TabularTableId="SalesOrders">
+      <DisplayFolder>Orders</DisplayFolder>
+      <Expression>SUM('Sales Orders'[Total Due Value])</Expression>
+      <FormatString>#,0.00</FormatString>
+      <Name>Total Due</Name>
+    </TabularMeasure>
+  </TabularMeasureList>
+</MetaTabular>

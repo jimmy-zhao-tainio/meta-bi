@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <DirectionRelationList>
+    <DirectionRelation Id="forward/all_views" DirectionId="forward" SelectStatementId="SelectStatement:38" />
+    <DirectionRelation Id="forward/candidate_views" DirectionId="forward" SelectStatementId="SelectStatement:10" />
+    <DirectionRelation Id="forward/dashboard_branches" DirectionId="forward" SelectStatementId="SelectStatement:36" />
+    <DirectionRelation Id="forward/dashboard_views" DirectionId="forward" SelectStatementId="SelectStatement:37" />
+    <DirectionRelation Id="forward/implied_runtime_contexts" DirectionId="forward" SelectStatementId="SelectStatement:50" />
+    <DirectionRelation Id="forward/implied_runtime_orientations" DirectionId="forward" SelectStatementId="SelectStatement:51" />
+    <DirectionRelation Id="forward/implied_runtime_ranked_orientations" DirectionId="forward" SelectStatementId="SelectStatement:52" />
+    <DirectionRelation Id="forward/numeric_evidence" DirectionId="forward" SelectStatementId="SelectStatement:28" />
+    <DirectionRelation Id="forward/pattern_occurrences" DirectionId="forward" SelectStatementId="SelectStatement:4" />
+    <DirectionRelation Id="forward/rendered_object_identifiers" DirectionId="forward" SelectStatementId="SelectStatement:1" />
+    <DirectionRelation Id="forward/runtime_branches" DirectionId="forward" SelectStatementId="SelectStatement:56" />
+    <DirectionRelation Id="forward/runtime_candidates" DirectionId="forward" SelectStatementId="SelectStatement:53" />
+    <DirectionRelation Id="forward/runtime_dashboard_branches" DirectionId="forward" SelectStatementId="SelectStatement:58" />
+    <DirectionRelation Id="forward/runtime_dashboard_candidates" DirectionId="forward" SelectStatementId="SelectStatement:59" />
+    <DirectionRelation Id="forward/runtime_key_parts" DirectionId="forward" SelectStatementId="SelectStatement:46" />
+    <DirectionRelation Id="forward/runtime_lookup_key_parts" DirectionId="forward" SelectStatementId="SelectStatement:48" />
+    <DirectionRelation Id="forward/runtime_lookup_patterns" DirectionId="forward" SelectStatementId="SelectStatement:49" />
+    <DirectionRelation Id="forward/runtime_patterns" DirectionId="forward" SelectStatementId="SelectStatement:47" />
+    <DirectionRelation Id="forward/runtime_views" DirectionId="forward" SelectStatementId="SelectStatement:24" />
+    <DirectionRelation Id="forward/semantic_branches" DirectionId="forward" SelectStatementId="SelectStatement:65" />
+    <DirectionRelation Id="forward/semantic_candidates" DirectionId="forward" SelectStatementId="SelectStatement:64" />
+    <DirectionRelation Id="forward/semantic_candidate_types" DirectionId="forward" SelectStatementId="SelectStatement:60" />
+    <DirectionRelation Id="forward/semantic_context_patterns" DirectionId="forward" SelectStatementId="SelectStatement:61" />
+    <DirectionRelation Id="forward/semantic_dashboard_branches" DirectionId="forward" SelectStatementId="SelectStatement:35" />
+    <DirectionRelation Id="forward/semantic_runtime_contexts" DirectionId="forward" SelectStatementId="SelectStatement:62" />
+    <DirectionRelation Id="forward/semantic_transform_views" DirectionId="forward" SelectStatementId="SelectStatement:63" />
+    <DirectionRelation Id="forward/semantic_views" DirectionId="forward" SelectStatementId="SelectStatement:27" />
+  </DirectionRelationList>
+</MetaWeave>

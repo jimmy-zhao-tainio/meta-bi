@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <DirectionRequirementList>
+    <DirectionRequirement Id="forward/MeasureAggregateFunction" DirectionId="forward" SelectStatementId="SelectStatement:2">
+      <Code>MeasureAggregateFunctionInvalid</Code>
+      <Message>Each measure must reference exactly one concrete aggregate-function entity.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/UnsupportedSecurity" DirectionId="forward" SelectStatementId="SelectStatement:1">
+      <Code>UnsupportedSecurity</Code>
+      <Message>MetaMultiDimensional conversion does not translate tabular-style row/object security. Convert the shared model first, then add dimension/cell permissions in MetaMultiDimensional.</Message>
+    </DirectionRequirement>
+  </DirectionRequirementList>
+</MetaWeave>

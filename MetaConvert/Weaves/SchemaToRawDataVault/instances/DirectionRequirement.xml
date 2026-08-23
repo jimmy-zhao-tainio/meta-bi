@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <DirectionRequirementList>
+    <DirectionRequirement Id="forward/IncludedObjectUniqueness" DirectionId="forward" SelectStatementId="SelectStatement:19">
+      <Code>SchemaToRawIncludedObjectDuplicate</Code>
+      <Message>A schema object may be included only once as a table or view.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/IncludeViewsCardinality" DirectionId="forward" SelectStatementId="SelectStatement:18">
+      <Code>SchemaToRawIncludeViewsCardinalityInvalid</Code>
+      <Message>The include-views option may occur at most once.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/OptionsCardinality" DirectionId="forward" SelectStatementId="SelectStatement:17">
+      <Code>SchemaToRawOptionsCardinalityInvalid</Code>
+      <Message>Exactly one conversion-options root is required.</Message>
+    </DirectionRequirement>
+  </DirectionRequirementList>
+</MetaWeave>

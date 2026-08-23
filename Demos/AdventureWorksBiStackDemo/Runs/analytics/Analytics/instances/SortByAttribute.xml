@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <SortByAttributeList>
+    <SortByAttribute Id="Date_MonthNameSort" SortAttributeId="Date_MonthNumber" SourceAttributeId="Date_MonthName" />
+  </SortByAttributeList>
+</MetaAnalytics>

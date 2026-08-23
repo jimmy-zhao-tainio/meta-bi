@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessHierarchicalLinkList>
+    <BusinessHierarchicalLink Id="DepartmentHierarchy" ChildHubId="Department" ParentHubId="Department">
+      <Name>DepartmentHierarchy</Name>
+    </BusinessHierarchicalLink>
+  </BusinessHierarchicalLinkList>
+</MetaBusinessDataVault>

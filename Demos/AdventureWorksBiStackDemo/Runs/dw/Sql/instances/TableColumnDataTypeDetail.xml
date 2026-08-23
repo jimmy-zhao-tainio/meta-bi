@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSql>
+  <TableColumnDataTypeDetailList>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_Customer.AccountNumber:type-detail:Length" TableColumnId="AdventureWorksAnalytics.dw.Dim_Customer.AccountNumber">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_Customer.CustomerName:type-detail:Length" TableColumnId="AdventureWorksAnalytics.dw.Dim_Customer.CustomerName">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_Customer.CustomerType:type-detail:Length" TableColumnId="AdventureWorksAnalytics.dw.Dim_Customer.CustomerType">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_Customer.InsertDateTime2:type-detail:Precision" TableColumnId="AdventureWorksAnalytics.dw.Dim_Customer.InsertDateTime2">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_Customer.StoreName:type-detail:Length" TableColumnId="AdventureWorksAnalytics.dw.Dim_Customer.StoreName">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_Date.DayName:type-detail:Length" TableColumnId="AdventureWorksAnalytics.dw.Dim_Date.DayName">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_Date.InsertDateTime2:type-detail:Precision" TableColumnId="AdventureWorksAnalytics.dw.Dim_Date.InsertDateTime2">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_Date.MonthName:type-detail:Length" TableColumnId="AdventureWorksAnalytics.dw.Dim_Date.MonthName">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_Geography.AddressLine1:type-detail:Length" TableColumnId="AdventureWorksAnalytics.dw.Dim_Geography.AddressLine1">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_Geography.AddressLine2:type-detail:Length" TableColumnId="AdventureWorksAnalytics.dw.Dim_Geography.AddressLine2">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_Geography.City:type-detail:Length" TableColumnId="AdventureWorksAnalytics.dw.Dim_Geography.City">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_Geography.CountryRegionCode:type-detail:Length" TableColumnId="AdventureWorksAnalytics.dw.Dim_Geography.CountryRegionCode">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_Geography.CountryRegionName:type-detail:Length" TableColumnId="AdventureWorksAnalytics.dw.Dim_Geography.CountryRegionName">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_Geography.InsertDateTime2:type-detail:Precision" TableColumnId="AdventureWorksAnalytics.dw.Dim_Geography.InsertDateTime2">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_Geography.PostalCode:type-detail:Length" TableColumnId="AdventureWorksAnalytics.dw.Dim_Geography.PostalCode">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_Geography.StateProvinceCode:type-detail:Length" TableColumnId="AdventureWorksAnalytics.dw.Dim_Geography.StateProvinceCode">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_Geography.StateProvinceName:type-detail:Length" TableColumnId="AdventureWorksAnalytics.dw.Dim_Geography.StateProvinceName">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_OrderStatus.InsertDateTime2:type-detail:Precision" TableColumnId="AdventureWorksAnalytics.dw.Dim_OrderStatus.InsertDateTime2">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_OrderStatus.StatusName:type-detail:Length" TableColumnId="AdventureWorksAnalytics.dw.Dim_OrderStatus.StatusName">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_Product.Color:type-detail:Length" TableColumnId="AdventureWorksAnalytics.dw.Dim_Product.Color">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_Product.InsertDateTime2:type-detail:Precision" TableColumnId="AdventureWorksAnalytics.dw.Dim_Product.InsertDateTime2">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_Product.ProductCategoryName:type-detail:Length" TableColumnId="AdventureWorksAnalytics.dw.Dim_Product.ProductCategoryName">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_Product.ProductName:type-detail:Length" TableColumnId="AdventureWorksAnalytics.dw.Dim_Product.ProductName">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_Product.ProductNumber:type-detail:Length" TableColumnId="AdventureWorksAnalytics.dw.Dim_Product.ProductNumber">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_Product.ProductSubcategoryName:type-detail:Length" TableColumnId="AdventureWorksAnalytics.dw.Dim_Product.ProductSubcategoryName">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_SalesChannel.ChannelCode:type-detail:Length" TableColumnId="AdventureWorksAnalytics.dw.Dim_SalesChannel.ChannelCode">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_SalesChannel.ChannelName:type-detail:Length" TableColumnId="AdventureWorksAnalytics.dw.Dim_SalesChannel.ChannelName">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_SalesChannel.InsertDateTime2:type-detail:Precision" TableColumnId="AdventureWorksAnalytics.dw.Dim_SalesChannel.InsertDateTime2">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_Salesperson.FirstName:type-detail:Length" TableColumnId="AdventureWorksAnalytics.dw.Dim_Salesperson.FirstName">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_Salesperson.FullName:type-detail:Length" TableColumnId="AdventureWorksAnalytics.dw.Dim_Salesperson.FullName">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_Salesperson.InsertDateTime2:type-detail:Precision" TableColumnId="AdventureWorksAnalytics.dw.Dim_Salesperson.InsertDateTime2">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_Salesperson.LastName:type-detail:Length" TableColumnId="AdventureWorksAnalytics.dw.Dim_Salesperson.LastName">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_SalesTerritory.CountryRegionCode:type-detail:Length" TableColumnId="AdventureWorksAnalytics.dw.Dim_SalesTerritory.CountryRegionCode">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_SalesTerritory.InsertDateTime2:type-detail:Precision" TableColumnId="AdventureWorksAnalytics.dw.Dim_SalesTerritory.InsertDateTime2">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_SalesTerritory.TerritoryGroup:type-detail:Length" TableColumnId="AdventureWorksAnalytics.dw.Dim_SalesTerritory.TerritoryGroup">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Dim_SalesTerritory.TerritoryName:type-detail:Length" TableColumnId="AdventureWorksAnalytics.dw.Dim_SalesTerritory.TerritoryName">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Fact_SalesLine.DiscountAmount:type-detail:Precision" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalesLine.DiscountAmount">
+      <Name>Precision</Name>
+      <Value>18</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Fact_SalesLine.DiscountAmount:type-detail:Scale" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalesLine.DiscountAmount">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Fact_SalesLine.InsertDateTime2:type-detail:Precision" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalesLine.InsertDateTime2">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Fact_SalesLine.LineSalesAmount:type-detail:Precision" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalesLine.LineSalesAmount">
+      <Name>Precision</Name>
+      <Value>18</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Fact_SalesLine.LineSalesAmount:type-detail:Scale" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalesLine.LineSalesAmount">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Fact_SalesLine.UnitPrice:type-detail:Precision" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalesLine.UnitPrice">
+      <Name>Precision</Name>
+      <Value>18</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Fact_SalesLine.UnitPrice:type-detail:Scale" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalesLine.UnitPrice">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Fact_SalesOrder.FreightAmount:type-detail:Precision" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalesOrder.FreightAmount">
+      <Name>Precision</Name>
+      <Value>18</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Fact_SalesOrder.FreightAmount:type-detail:Scale" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalesOrder.FreightAmount">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Fact_SalesOrder.InsertDateTime2:type-detail:Precision" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalesOrder.InsertDateTime2">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Fact_SalesOrder.SubTotal:type-detail:Precision" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalesOrder.SubTotal">
+      <Name>Precision</Name>
+      <Value>18</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Fact_SalesOrder.SubTotal:type-detail:Scale" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalesOrder.SubTotal">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Fact_SalesOrder.TaxAmount:type-detail:Precision" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalesOrder.TaxAmount">
+      <Name>Precision</Name>
+      <Value>18</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Fact_SalesOrder.TaxAmount:type-detail:Scale" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalesOrder.TaxAmount">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Fact_SalesOrder.TotalDue:type-detail:Precision" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalesOrder.TotalDue">
+      <Name>Precision</Name>
+      <Value>18</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Fact_SalesOrder.TotalDue:type-detail:Scale" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalesOrder.TotalDue">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Fact_SalespersonQuota.InsertDateTime2:type-detail:Precision" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalespersonQuota.InsertDateTime2">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Fact_SalespersonQuota.QuotaAmount:type-detail:Precision" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalespersonQuota.QuotaAmount">
+      <Name>Precision</Name>
+      <Value>18</Value>
+    </TableColumnDataTypeDetail>
+    <TableColumnDataTypeDetail Id="AdventureWorksAnalytics.dw.Fact_SalespersonQuota.QuotaAmount:type-detail:Scale" TableColumnId="AdventureWorksAnalytics.dw.Fact_SalespersonQuota.QuotaAmount">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </TableColumnDataTypeDetail>
+  </TableColumnDataTypeDetailList>
+</MetaSql>

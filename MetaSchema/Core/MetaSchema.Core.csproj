@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="Meta.Operations" Version="$(MetaFoundationPackageVersion)" />
+    <Compile Include="..\Workspaces\MetaSchema\MetaSchema.meta.cs" Link="MetaSchema.meta.cs" />
+  </ItemGroup>
+
+</Project>
+
+
+

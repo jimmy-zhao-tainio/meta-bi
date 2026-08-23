@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSqlDeployManifest>
+  <AddSchemaList>
+    <AddSchema Id="AddSchema:AdventureWorksAnalytics.dw" DeployManifestId="DeployManifest:1">
+      <SourceSchemaId>AdventureWorksAnalytics.dw</SourceSchemaId>
+    </AddSchema>
+  </AddSchemaList>
+</MetaSqlDeployManifest>

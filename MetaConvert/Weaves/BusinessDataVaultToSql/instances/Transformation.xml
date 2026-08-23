@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <TransformationList>
+    <Transformation Id="forward/Database" DirectionId="forward" SelectStatementId="SelectStatement:14">
+      <TargetEntityName>Database</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/ForeignKey" DirectionId="forward" SelectStatementId="SelectStatement:21">
+      <TargetEntityName>ForeignKey</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/ForeignKeyColumn" DirectionId="forward" SelectStatementId="SelectStatement:22">
+      <TargetEntityName>ForeignKeyColumn</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/PrimaryKey" DirectionId="forward" SelectStatementId="SelectStatement:19">
+      <TargetEntityName>PrimaryKey</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/PrimaryKeyColumn" DirectionId="forward" SelectStatementId="SelectStatement:20">
+      <TargetEntityName>PrimaryKeyColumn</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/Schema" DirectionId="forward" SelectStatementId="SelectStatement:15">
+      <TargetEntityName>Schema</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/Table" DirectionId="forward" SelectStatementId="SelectStatement:16">
+      <TargetEntityName>Table</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/TableColumn" DirectionId="forward" SelectStatementId="SelectStatement:17">
+      <TargetEntityName>TableColumn</TargetEntityName>
+    </Transformation>
+    <Transformation Id="forward/TableColumnDataTypeDetail" DirectionId="forward" SelectStatementId="SelectStatement:18">
+      <TargetEntityName>TableColumnDataTypeDetail</TargetEntityName>
+    </Transformation>
+  </TransformationList>
+</MetaWeave>

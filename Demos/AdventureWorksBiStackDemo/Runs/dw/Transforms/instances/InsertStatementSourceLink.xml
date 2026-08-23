@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <InsertStatementSourceLinkList>
+    <InsertStatementSourceLink Id="InsertStatementSourceLink:1" InsertSourceId="InsertSource:1" InsertStatementId="InsertStatement:1" />
+    <InsertStatementSourceLink Id="InsertStatementSourceLink:2" InsertSourceId="InsertSource:2" InsertStatementId="InsertStatement:2" />
+    <InsertStatementSourceLink Id="InsertStatementSourceLink:3" InsertSourceId="InsertSource:3" InsertStatementId="InsertStatement:3" />
+    <InsertStatementSourceLink Id="InsertStatementSourceLink:4" InsertSourceId="InsertSource:4" InsertStatementId="InsertStatement:4" />
+    <InsertStatementSourceLink Id="InsertStatementSourceLink:5" InsertSourceId="InsertSource:5" InsertStatementId="InsertStatement:5" />
+    <InsertStatementSourceLink Id="InsertStatementSourceLink:6" InsertSourceId="InsertSource:6" InsertStatementId="InsertStatement:6" />
+    <InsertStatementSourceLink Id="InsertStatementSourceLink:7" InsertSourceId="InsertSource:7" InsertStatementId="InsertStatement:7" />
+    <InsertStatementSourceLink Id="InsertStatementSourceLink:8" InsertSourceId="InsertSource:8" InsertStatementId="InsertStatement:8" />
+  </InsertStatementSourceLinkList>
+</MetaTransformScript>

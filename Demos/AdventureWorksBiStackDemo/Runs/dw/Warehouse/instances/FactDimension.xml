@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouse>
+  <FactDimensionList>
+    <FactDimension Id="fact:sales-line:dimension:Customer" DimensionId="dimension:customer" FactId="fact:sales-line">
+      <IsRequired>true</IsRequired>
+      <Ordinal>30</Ordinal>
+      <RoleName>Customer</RoleName>
+    </FactDimension>
+    <FactDimension Id="fact:sales-line:dimension:OrderDate" DimensionId="dimension:date" FactId="fact:sales-line">
+      <IsRequired>true</IsRequired>
+      <Ordinal>10</Ordinal>
+      <RoleName>OrderDate</RoleName>
+    </FactDimension>
+    <FactDimension Id="fact:sales-line:dimension:Product" DimensionId="dimension:product" FactId="fact:sales-line">
+      <IsRequired>true</IsRequired>
+      <Ordinal>20</Ordinal>
+      <RoleName>Product</RoleName>
+    </FactDimension>
+    <FactDimension Id="fact:sales-line:dimension:SalesChannel" DimensionId="dimension:sales-channel" FactId="fact:sales-line">
+      <IsRequired>true</IsRequired>
+      <Ordinal>60</Ordinal>
+      <RoleName>SalesChannel</RoleName>
+    </FactDimension>
+    <FactDimension Id="fact:sales-line:dimension:Salesperson" DimensionId="dimension:salesperson" FactId="fact:sales-line">
+      <IsRequired>false</IsRequired>
+      <Ordinal>40</Ordinal>
+      <RoleName>Salesperson</RoleName>
+    </FactDimension>
+    <FactDimension Id="fact:sales-line:dimension:SalesTerritory" DimensionId="dimension:sales-territory" FactId="fact:sales-line">
+      <IsRequired>false</IsRequired>
+      <Ordinal>50</Ordinal>
+      <RoleName>SalesTerritory</RoleName>
+    </FactDimension>
+    <FactDimension Id="fact:sales-line:dimension:ShipToGeography" DimensionId="dimension:geography" FactId="fact:sales-line">
+      <IsRequired>true</IsRequired>
+      <Ordinal>70</Ordinal>
+      <RoleName>ShipToGeography</RoleName>
+    </FactDimension>
+    <FactDimension Id="fact:sales-order:dimension:BillToGeography" DimensionId="dimension:geography" FactId="fact:sales-order">
+      <IsRequired>true</IsRequired>
+      <Ordinal>90</Ordinal>
+      <RoleName>BillToGeography</RoleName>
+    </FactDimension>
+    <FactDimension Id="fact:sales-order:dimension:Customer" DimensionId="dimension:customer" FactId="fact:sales-order">
+      <IsRequired>true</IsRequired>
+      <Ordinal>40</Ordinal>
+      <RoleName>Customer</RoleName>
+    </FactDimension>
+    <FactDimension Id="fact:sales-order:dimension:DueDate" DimensionId="dimension:date" FactId="fact:sales-order">
+      <IsRequired>true</IsRequired>
+      <Ordinal>20</Ordinal>
+      <RoleName>DueDate</RoleName>
+    </FactDimension>
+    <FactDimension Id="fact:sales-order:dimension:OrderDate" DimensionId="dimension:date" FactId="fact:sales-order">
+      <IsRequired>true</IsRequired>
+      <Ordinal>10</Ordinal>
+      <RoleName>OrderDate</RoleName>
+    </FactDimension>
+    <FactDimension Id="fact:sales-order:dimension:OrderStatus" DimensionId="dimension:order-status" FactId="fact:sales-order">
+      <IsRequired>true</IsRequired>
+      <Ordinal>80</Ordinal>
+      <RoleName>OrderStatus</RoleName>
+    </FactDimension>
+    <FactDimension Id="fact:sales-order:dimension:SalesChannel" DimensionId="dimension:sales-channel" FactId="fact:sales-order">
+      <IsRequired>true</IsRequired>
+      <Ordinal>70</Ordinal>
+      <RoleName>SalesChannel</RoleName>
+    </FactDimension>
+    <FactDimension Id="fact:sales-order:dimension:Salesperson" DimensionId="dimension:salesperson" FactId="fact:sales-order">
+      <IsRequired>false</IsRequired>
+      <Ordinal>50</Ordinal>
+      <RoleName>Salesperson</RoleName>
+    </FactDimension>
+    <FactDimension Id="fact:sales-order:dimension:SalesTerritory" DimensionId="dimension:sales-territory" FactId="fact:sales-order">
+      <IsRequired>false</IsRequired>
+      <Ordinal>60</Ordinal>
+      <RoleName>SalesTerritory</RoleName>
+    </FactDimension>
+    <FactDimension Id="fact:sales-order:dimension:ShipDate" DimensionId="dimension:date" FactId="fact:sales-order">
+      <IsRequired>false</IsRequired>
+      <Ordinal>30</Ordinal>
+      <RoleName>ShipDate</RoleName>
+    </FactDimension>
+    <FactDimension Id="fact:sales-order:dimension:ShipToGeography" DimensionId="dimension:geography" FactId="fact:sales-order">
+      <IsRequired>true</IsRequired>
+      <Ordinal>100</Ordinal>
+      <RoleName>ShipToGeography</RoleName>
+    </FactDimension>
+    <FactDimension Id="fact:salesperson-quota:dimension:QuotaPeriod" DimensionId="dimension:date" FactId="fact:salesperson-quota">
+      <IsRequired>true</IsRequired>
+      <Ordinal>10</Ordinal>
+      <RoleName>QuotaPeriod</RoleName>
+    </FactDimension>
+    <FactDimension Id="fact:salesperson-quota:dimension:Salesperson" DimensionId="dimension:salesperson" FactId="fact:salesperson-quota">
+      <IsRequired>true</IsRequired>
+      <Ordinal>20</Ordinal>
+      <RoleName>Salesperson</RoleName>
+    </FactDimension>
+  </FactDimensionList>
+</MetaDataWarehouse>

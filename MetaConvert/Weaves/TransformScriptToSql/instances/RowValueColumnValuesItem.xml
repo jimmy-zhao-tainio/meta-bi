@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <RowValueColumnValuesItemList>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1961" RowValueId="RowValue:981" ScalarExpressionId="ScalarExpression:118511">
+      <Ordinal>0</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1962" RowValueId="RowValue:981" ScalarExpressionId="ScalarExpression:118512">
+      <Ordinal>1</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1963" RowValueId="RowValue:982" ScalarExpressionId="ScalarExpression:118513">
+      <Ordinal>0</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1964" RowValueId="RowValue:982" ScalarExpressionId="ScalarExpression:118514">
+      <Ordinal>1</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1965" RowValueId="RowValue:983" ScalarExpressionId="ScalarExpression:118515">
+      <Ordinal>0</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1966" RowValueId="RowValue:983" ScalarExpressionId="ScalarExpression:118516">
+      <Ordinal>1</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1967" RowValueId="RowValue:984" ScalarExpressionId="ScalarExpression:118517">
+      <Ordinal>0</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1968" RowValueId="RowValue:984" ScalarExpressionId="ScalarExpression:118518">
+      <Ordinal>1</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1969" RowValueId="RowValue:985" ScalarExpressionId="ScalarExpression:118519">
+      <Ordinal>0</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1970" RowValueId="RowValue:985" ScalarExpressionId="ScalarExpression:118520">
+      <Ordinal>1</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1971" RowValueId="RowValue:986" ScalarExpressionId="ScalarExpression:118521">
+      <Ordinal>0</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1972" RowValueId="RowValue:986" ScalarExpressionId="ScalarExpression:118522">
+      <Ordinal>1</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1973" RowValueId="RowValue:987" ScalarExpressionId="ScalarExpression:118523">
+      <Ordinal>0</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1974" RowValueId="RowValue:987" ScalarExpressionId="ScalarExpression:118524">
+      <Ordinal>1</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1975" RowValueId="RowValue:988" ScalarExpressionId="ScalarExpression:118525">
+      <Ordinal>0</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1976" RowValueId="RowValue:988" ScalarExpressionId="ScalarExpression:118526">
+      <Ordinal>1</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1977" RowValueId="RowValue:989" ScalarExpressionId="ScalarExpression:118527">
+      <Ordinal>0</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1978" RowValueId="RowValue:989" ScalarExpressionId="ScalarExpression:118528">
+      <Ordinal>1</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1979" RowValueId="RowValue:990" ScalarExpressionId="ScalarExpression:118529">
+      <Ordinal>0</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1980" RowValueId="RowValue:990" ScalarExpressionId="ScalarExpression:118530">
+      <Ordinal>1</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1981" RowValueId="RowValue:991" ScalarExpressionId="ScalarExpression:118531">
+      <Ordinal>0</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1982" RowValueId="RowValue:991" ScalarExpressionId="ScalarExpression:118532">
+      <Ordinal>1</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1983" RowValueId="RowValue:992" ScalarExpressionId="ScalarExpression:118533">
+      <Ordinal>0</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1984" RowValueId="RowValue:992" ScalarExpressionId="ScalarExpression:118534">
+      <Ordinal>1</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1985" RowValueId="RowValue:993" ScalarExpressionId="ScalarExpression:118535">
+      <Ordinal>0</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1986" RowValueId="RowValue:993" ScalarExpressionId="ScalarExpression:118536">
+      <Ordinal>1</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1987" RowValueId="RowValue:994" ScalarExpressionId="ScalarExpression:118537">
+      <Ordinal>0</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1988" RowValueId="RowValue:994" ScalarExpressionId="ScalarExpression:118538">
+      <Ordinal>1</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1989" RowValueId="RowValue:995" ScalarExpressionId="ScalarExpression:118539">
+      <Ordinal>0</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1990" RowValueId="RowValue:995" ScalarExpressionId="ScalarExpression:118540">
+      <Ordinal>1</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1991" RowValueId="RowValue:996" ScalarExpressionId="ScalarExpression:118541">
+      <Ordinal>0</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1992" RowValueId="RowValue:996" ScalarExpressionId="ScalarExpression:118542">
+      <Ordinal>1</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1993" RowValueId="RowValue:997" ScalarExpressionId="ScalarExpression:118543">
+      <Ordinal>0</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1994" RowValueId="RowValue:997" ScalarExpressionId="ScalarExpression:118544">
+      <Ordinal>1</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1995" RowValueId="RowValue:998" ScalarExpressionId="ScalarExpression:118545">
+      <Ordinal>0</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1996" RowValueId="RowValue:998" ScalarExpressionId="ScalarExpression:118546">
+      <Ordinal>1</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1997" RowValueId="RowValue:999" ScalarExpressionId="ScalarExpression:118547">
+      <Ordinal>0</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1998" RowValueId="RowValue:999" ScalarExpressionId="ScalarExpression:118548">
+      <Ordinal>1</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:1999" RowValueId="RowValue:1000" ScalarExpressionId="ScalarExpression:118549">
+      <Ordinal>0</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:2000" RowValueId="RowValue:1000" ScalarExpressionId="ScalarExpression:118550">
+      <Ordinal>1</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:2001" RowValueId="RowValue:1001" ScalarExpressionId="ScalarExpression:118551">
+      <Ordinal>0</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:2002" RowValueId="RowValue:1001" ScalarExpressionId="ScalarExpression:118552">
+      <Ordinal>1</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:2003" RowValueId="RowValue:1002" ScalarExpressionId="ScalarExpression:118553">
+      <Ordinal>0</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:2004" RowValueId="RowValue:1002" ScalarExpressionId="ScalarExpression:118554">
+      <Ordinal>1</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:2005" RowValueId="RowValue:1003" ScalarExpressionId="ScalarExpression:118555">
+      <Ordinal>0</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:2006" RowValueId="RowValue:1003" ScalarExpressionId="ScalarExpression:118556">
+      <Ordinal>1</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:2007" RowValueId="RowValue:1004" ScalarExpressionId="ScalarExpression:118557">
+      <Ordinal>0</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:2008" RowValueId="RowValue:1004" ScalarExpressionId="ScalarExpression:118558">
+      <Ordinal>1</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:2009" RowValueId="RowValue:1005" ScalarExpressionId="ScalarExpression:118559">
+      <Ordinal>0</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:2010" RowValueId="RowValue:1005" ScalarExpressionId="ScalarExpression:118560">
+      <Ordinal>1</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:2011" RowValueId="RowValue:1006" ScalarExpressionId="ScalarExpression:118561">
+      <Ordinal>0</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:2012" RowValueId="RowValue:1006" ScalarExpressionId="ScalarExpression:118562">
+      <Ordinal>1</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:2013" RowValueId="RowValue:1007" ScalarExpressionId="ScalarExpression:118563">
+      <Ordinal>0</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:2014" RowValueId="RowValue:1007" ScalarExpressionId="ScalarExpression:118564">
+      <Ordinal>1</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:2015" RowValueId="RowValue:1008" ScalarExpressionId="ScalarExpression:118565">
+      <Ordinal>0</Ordinal>
+    </RowValueColumnValuesItem>
+    <RowValueColumnValuesItem Id="RowValueColumnValuesItem:2016" RowValueId="RowValue:1008" ScalarExpressionId="ScalarExpression:118566">
+      <Ordinal>1</Ordinal>
+    </RowValueColumnValuesItem>
+  </RowValueColumnValuesItemList>
+</MetaWeave>

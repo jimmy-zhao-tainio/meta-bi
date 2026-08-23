@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <TableList>
+    <Table Id="Customer" AnalyticsModelId="AdventureWorksSales">
+      <DataCategory>Customers</DataCategory>
+      <Description>Conformed individual and store customer dimension.</Description>
+      <Kind>Dimension</Kind>
+      <Name>Customer</Name>
+    </Table>
+    <Table Id="Date" AnalyticsModelId="AdventureWorksSales">
+      <DataCategory>Time</DataCategory>
+      <Description>Conformed calendar date dimension.</Description>
+      <Kind>Dimension</Kind>
+      <Name>Date</Name>
+    </Table>
+    <Table Id="Geography" AnalyticsModelId="AdventureWorksSales">
+      <DataCategory>Geography</DataCategory>
+      <Description>Conformed address geography dimension.</Description>
+      <Kind>Dimension</Kind>
+      <Name>Geography</Name>
+    </Table>
+    <Table Id="OrderStatus" AnalyticsModelId="AdventureWorksSales">
+      <Description>AdventureWorks sales order status.</Description>
+      <Kind>Dimension</Kind>
+      <Name>Order Status</Name>
+    </Table>
+    <Table Id="Product" AnalyticsModelId="AdventureWorksSales">
+      <DataCategory>Products</DataCategory>
+      <Description>Conformed product, subcategory, and category dimension.</Description>
+      <Kind>Dimension</Kind>
+      <Name>Product</Name>
+    </Table>
+    <Table Id="SalesChannel" AnalyticsModelId="AdventureWorksSales">
+      <Description>Online and store sales channels.</Description>
+      <Kind>Dimension</Kind>
+      <Name>Sales Channel</Name>
+    </Table>
+    <Table Id="SalesLines" AnalyticsModelId="AdventureWorksSales">
+      <Description>One row per sales order line.</Description>
+      <Kind>Fact</Kind>
+      <Name>Sales Lines</Name>
+    </Table>
+    <Table Id="SalesOrders" AnalyticsModelId="AdventureWorksSales">
+      <Description>One row per sales order.</Description>
+      <Kind>Fact</Kind>
+      <Name>Sales Orders</Name>
+    </Table>
+    <Table Id="Salesperson" AnalyticsModelId="AdventureWorksSales">
+      <DataCategory>People</DataCategory>
+      <Description>Conformed salesperson dimension.</Description>
+      <Kind>Dimension</Kind>
+      <Name>Salesperson</Name>
+    </Table>
+    <Table Id="SalespersonQuotas" AnalyticsModelId="AdventureWorksSales">
+      <Description>One row per salesperson and quota period.</Description>
+      <Kind>Fact</Kind>
+      <Name>Salesperson Quotas</Name>
+    </Table>
+    <Table Id="SalesTerritory" AnalyticsModelId="AdventureWorksSales">
+      <DataCategory>Geography</DataCategory>
+      <Description>Conformed sales territory dimension.</Description>
+      <Kind>Dimension</Kind>
+      <Name>Sales Territory</Name>
+    </Table>
+  </TableList>
+</MetaAnalytics>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTabular>
+  <TabularSortByColumnList>
+    <TabularSortByColumn Id="Date_MonthNameSort" SortColumnId="Date_MonthNumber" SourceColumnId="Date_MonthName" />
+  </TabularSortByColumnList>
+</MetaTabular>

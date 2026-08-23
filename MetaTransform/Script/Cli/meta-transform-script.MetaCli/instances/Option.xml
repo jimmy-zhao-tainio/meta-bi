@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <OptionList>
+    <Option Id="opt-from-sql-code-code" ParameterId="param-from-sql-code-code" />
+    <Option Id="opt-from-sql-code-name" ParameterId="param-from-sql-code-name" />
+    <Option Id="opt-from-sql-code-target" ParameterId="param-from-sql-code-target" />
+    <Option Id="opt-from-sql-code-workspace" ParameterId="param-from-sql-code-workspace" />
+    <Option Id="opt-from-sql-file-path" ParameterId="param-from-sql-file-path" />
+    <Option Id="opt-from-sql-file-target" ParameterId="param-from-sql-file-target" />
+    <Option Id="opt-from-sql-file-workspace" ParameterId="param-from-sql-file-workspace" />
+    <Option Id="opt-from-sql-files-manifest" ParameterId="param-from-sql-files-manifest" />
+    <Option Id="opt-from-sql-files-report" ParameterId="param-from-sql-files-report" />
+    <Option Id="opt-from-sql-files-verbose" ParameterId="param-from-sql-files-verbose" />
+    <Option Id="opt-from-sql-files-workspace" ParameterId="param-from-sql-files-workspace" />
+    <Option Id="opt-stored-procedure-add-contract-name" ParameterId="param-stored-procedure-add-contract-name" />
+    <Option Id="opt-stored-procedure-add-contract-notes" ParameterId="param-stored-procedure-add-contract-notes" />
+    <Option Id="opt-stored-procedure-add-contract-operation" ParameterId="param-stored-procedure-add-contract-operation" />
+    <Option Id="opt-stored-procedure-add-contract-result-column" ParameterId="param-stored-procedure-add-contract-result-column" />
+    <Option Id="opt-stored-procedure-add-contract-result-rowset" ParameterId="param-stored-procedure-add-contract-result-rowset" />
+    <Option Id="opt-stored-procedure-add-contract-workspace" ParameterId="param-stored-procedure-add-contract-workspace" />
+    <Option Id="opt-stored-procedure-remove-contract-name" ParameterId="param-stored-procedure-remove-contract-name" />
+    <Option Id="opt-stored-procedure-remove-contract-workspace" ParameterId="param-stored-procedure-remove-contract-workspace" />
+    <Option Id="opt-stored-procedure-view-contract-name" ParameterId="param-stored-procedure-view-contract-name" />
+    <Option Id="opt-stored-procedure-view-contract-workspace" ParameterId="param-stored-procedure-view-contract-workspace" />
+    <Option Id="opt-target-identifiers-from-pattern-allow-empty" ParameterId="param-target-identifiers-from-pattern-allow-empty" />
+    <Option Id="opt-target-identifiers-from-pattern-dry-run" ParameterId="param-target-identifiers-from-pattern-dry-run" />
+    <Option Id="opt-target-identifiers-from-pattern-only-missing" ParameterId="param-target-identifiers-from-pattern-only-missing" />
+    <Option Id="opt-target-identifiers-from-pattern-source-pattern" ParameterId="param-target-identifiers-from-pattern-source-pattern" />
+    <Option Id="opt-target-identifiers-from-pattern-target-pattern" ParameterId="param-target-identifiers-from-pattern-target-pattern" />
+    <Option Id="opt-target-identifiers-from-pattern-verbose" ParameterId="param-target-identifiers-from-pattern-verbose" />
+    <Option Id="opt-target-identifiers-from-pattern-workspace" ParameterId="param-target-identifiers-from-pattern-workspace" />
+    <Option Id="opt-to-sql-code-name" ParameterId="param-to-sql-code-name" />
+    <Option Id="opt-to-sql-code-workspace" ParameterId="param-to-sql-code-workspace" />
+    <Option Id="opt-to-sql-path-out" ParameterId="param-to-sql-path-out" />
+    <Option Id="opt-to-sql-path-workspace" ParameterId="param-to-sql-path-workspace" />
+    <Option Id="option-from-sql-code-output-connection-env" ParameterId="param-from-sql-code-output-connection-env" />
+    <Option Id="option-from-sql-code-output-csharp" ParameterId="param-from-sql-code-output-csharp" />
+    <Option Id="option-from-sql-code-output-sql" ParameterId="param-from-sql-code-output-sql" />
+    <Option Id="option-from-sql-code-output-xml" ParameterId="param-from-sql-code-output-xml" />
+    <Option Id="option-from-sql-file-output-connection-env" ParameterId="param-from-sql-file-output-connection-env" />
+    <Option Id="option-from-sql-file-output-csharp" ParameterId="param-from-sql-file-output-csharp" />
+    <Option Id="option-from-sql-file-output-sql" ParameterId="param-from-sql-file-output-sql" />
+    <Option Id="option-from-sql-file-output-xml" ParameterId="param-from-sql-file-output-xml" />
+    <Option Id="option-from-sql-files-output-connection-env" ParameterId="param-from-sql-files-output-connection-env" />
+    <Option Id="option-from-sql-files-output-csharp" ParameterId="param-from-sql-files-output-csharp" />
+    <Option Id="option-from-sql-files-output-sql" ParameterId="param-from-sql-files-output-sql" />
+    <Option Id="option-from-sql-files-output-xml" ParameterId="param-from-sql-files-output-xml" />
+    <Option Id="option-from-sql-script-workspace-output-connection-env" ParameterId="param-from-sql-script-workspace-output-connection-env" />
+    <Option Id="option-from-sql-script-workspace-output-csharp" ParameterId="param-from-sql-script-workspace-output-csharp" />
+    <Option Id="option-from-sql-script-workspace-output-sql" ParameterId="param-from-sql-script-workspace-output-sql" />
+    <Option Id="option-from-sql-script-workspace-output-xml" ParameterId="param-from-sql-script-workspace-output-xml" />
+    <Option Id="option-from-sql-script-workspace-source-workspace" ParameterId="param-from-sql-script-workspace-source-workspace" />
+    <Option Id="option-from-sql-script-workspace-workspace" ParameterId="param-from-sql-script-workspace-workspace" />
+  </OptionList>
+</MetaCli>

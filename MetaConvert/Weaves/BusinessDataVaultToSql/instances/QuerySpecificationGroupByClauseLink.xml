@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <QuerySpecificationGroupByClauseLinkList>
+    <QuerySpecificationGroupByClauseLink Id="QuerySpecificationGroupByClauseLink:1" GroupByClauseId="GroupByClause:1" QuerySpecificationId="QuerySpecification:192" />
+    <QuerySpecificationGroupByClauseLink Id="QuerySpecificationGroupByClauseLink:10" GroupByClauseId="GroupByClause:10" QuerySpecificationId="QuerySpecification:239" />
+    <QuerySpecificationGroupByClauseLink Id="QuerySpecificationGroupByClauseLink:11" GroupByClauseId="GroupByClause:11" QuerySpecificationId="QuerySpecification:242" />
+    <QuerySpecificationGroupByClauseLink Id="QuerySpecificationGroupByClauseLink:12" GroupByClauseId="GroupByClause:12" QuerySpecificationId="QuerySpecification:243" />
+    <QuerySpecificationGroupByClauseLink Id="QuerySpecificationGroupByClauseLink:13" GroupByClauseId="GroupByClause:13" QuerySpecificationId="QuerySpecification:252" />
+    <QuerySpecificationGroupByClauseLink Id="QuerySpecificationGroupByClauseLink:14" GroupByClauseId="GroupByClause:14" QuerySpecificationId="QuerySpecification:264" />
+    <QuerySpecificationGroupByClauseLink Id="QuerySpecificationGroupByClauseLink:2" GroupByClauseId="GroupByClause:2" QuerySpecificationId="QuerySpecification:199" />
+    <QuerySpecificationGroupByClauseLink Id="QuerySpecificationGroupByClauseLink:3" GroupByClauseId="GroupByClause:3" QuerySpecificationId="QuerySpecification:214" />
+    <QuerySpecificationGroupByClauseLink Id="QuerySpecificationGroupByClauseLink:4" GroupByClauseId="GroupByClause:4" QuerySpecificationId="QuerySpecification:218" />
+    <QuerySpecificationGroupByClauseLink Id="QuerySpecificationGroupByClauseLink:5" GroupByClauseId="GroupByClause:5" QuerySpecificationId="QuerySpecification:219" />
+    <QuerySpecificationGroupByClauseLink Id="QuerySpecificationGroupByClauseLink:6" GroupByClauseId="GroupByClause:6" QuerySpecificationId="QuerySpecification:220" />
+    <QuerySpecificationGroupByClauseLink Id="QuerySpecificationGroupByClauseLink:7" GroupByClauseId="GroupByClause:7" QuerySpecificationId="QuerySpecification:221" />
+    <QuerySpecificationGroupByClauseLink Id="QuerySpecificationGroupByClauseLink:8" GroupByClauseId="GroupByClause:8" QuerySpecificationId="QuerySpecification:228" />
+    <QuerySpecificationGroupByClauseLink Id="QuerySpecificationGroupByClauseLink:9" GroupByClauseId="GroupByClause:9" QuerySpecificationId="QuerySpecification:229" />
+  </QuerySpecificationGroupByClauseLinkList>
+</MetaWeave>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <TransformBindingTargetList>
+    <TransformBindingTarget Id="TransformScript:10:binding:target:1" TransformBindingId="TransformScript:10:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_SalesPersonQuotaHistory</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:11:binding:target:1" TransformBindingId="TransformScript:11:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_SalesTerritory</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:12:binding:target:1" TransformBindingId="TransformScript:12:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_SpecialOfferProduct</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:13:binding:target:1" TransformBindingId="TransformScript:13:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_Store</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:14:binding:target:1" TransformBindingId="TransformScript:14:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_Address</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:15:binding:target:1" TransformBindingId="TransformScript:15:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_StateProvince</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:16:binding:target:1" TransformBindingId="TransformScript:16:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_Employee</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:17:binding:target:1" TransformBindingId="TransformScript:17:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.HS_CountryRegion_CountryRegion</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:18:binding:target:1" TransformBindingId="TransformScript:18:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.HS_Customer_Customer</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:19:binding:target:1" TransformBindingId="TransformScript:19:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.HS_Person_Person</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:1:binding:target:1" TransformBindingId="TransformScript:1:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_CountryRegion</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:20:binding:target:1" TransformBindingId="TransformScript:20:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.HS_Product_Product</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:21:binding:target:1" TransformBindingId="TransformScript:21:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.HS_ProductCategory_ProductCategory</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:22:binding:target:1" TransformBindingId="TransformScript:22:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.HS_ProductSubcategory_ProductSubcategory</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:23:binding:target:1" TransformBindingId="TransformScript:23:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.HS_SalesOrderDetail_SalesOrderDetail</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:24:binding:target:1" TransformBindingId="TransformScript:24:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.HS_SalesOrderHeader_SalesOrderHeader</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:25:binding:target:1" TransformBindingId="TransformScript:25:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.HS_SalesPerson_SalesPerson</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:26:binding:target:1" TransformBindingId="TransformScript:26:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.HS_SalesPersonQuotaHistory_SalesPersonQuotaHistory</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:27:binding:target:1" TransformBindingId="TransformScript:27:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.HS_SalesTerritory_SalesTerritory</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:28:binding:target:1" TransformBindingId="TransformScript:28:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.HS_SpecialOfferProduct_SpecialOfferProduct</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:29:binding:target:1" TransformBindingId="TransformScript:29:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.HS_Store_Store</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:2:binding:target:1" TransformBindingId="TransformScript:2:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_Customer</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:30:binding:target:1" TransformBindingId="TransformScript:30:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.HS_Address_Address</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:31:binding:target:1" TransformBindingId="TransformScript:31:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.HS_StateProvince_StateProvince</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:32:binding:target:1" TransformBindingId="TransformScript:32:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_CustomerPerson</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:33:binding:target:1" TransformBindingId="TransformScript:33:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_CustomerSalesTerritory</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:34:binding:target:1" TransformBindingId="TransformScript:34:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_CustomerStore</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:35:binding:target:1" TransformBindingId="TransformScript:35:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_ProductProductSubcategory</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:36:binding:target:1" TransformBindingId="TransformScript:36:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_ProductSubcategoryProductCategory</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:37:binding:target:1" TransformBindingId="TransformScript:37:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_SalesOrderDetailSalesOrderHeader</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:38:binding:target:1" TransformBindingId="TransformScript:38:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_SalesOrderDetailSpecialOfferProduct</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:39:binding:target:1" TransformBindingId="TransformScript:39:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_SalesOrderHeaderCustomer</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:3:binding:target:1" TransformBindingId="TransformScript:3:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_Person</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:40:binding:target:1" TransformBindingId="TransformScript:40:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesPerson</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:41:binding:target:1" TransformBindingId="TransformScript:41:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesTerritory</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:42:binding:target:1" TransformBindingId="TransformScript:42:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_SalesPersonQuotaHistorySalesPerson</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:43:binding:target:1" TransformBindingId="TransformScript:43:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_SalesPersonSalesTerritory</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:44:binding:target:1" TransformBindingId="TransformScript:44:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_SalesTerritoryCountryRegion</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:45:binding:target:1" TransformBindingId="TransformScript:45:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_SpecialOfferProductProduct</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:46:binding:target:1" TransformBindingId="TransformScript:46:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_StoreSalesPerson</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:47:binding:target:1" TransformBindingId="TransformScript:47:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_AddressStateProvince</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:48:binding:target:1" TransformBindingId="TransformScript:48:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_StateProvinceCountryRegion</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:49:binding:target:1" TransformBindingId="TransformScript:49:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_StateProvinceSalesTerritory</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:4:binding:target:1" TransformBindingId="TransformScript:4:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_Product</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:50:binding:target:1" TransformBindingId="TransformScript:50:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_BillToAddressID</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:51:binding:target:1" TransformBindingId="TransformScript:51:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_ShipToAddressID</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:52:binding:target:1" TransformBindingId="TransformScript:52:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_EmployeePerson</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:53:binding:target:1" TransformBindingId="TransformScript:53:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_SalesPersonEmployee</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:5:binding:target:1" TransformBindingId="TransformScript:5:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_ProductCategory</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:6:binding:target:1" TransformBindingId="TransformScript:6:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_ProductSubcategory</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:7:binding:target:1" TransformBindingId="TransformScript:7:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_SalesOrderDetail</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:8:binding:target:1" TransformBindingId="TransformScript:8:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_SalesOrderHeader</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:9:binding:target:1" TransformBindingId="TransformScript:9:binding">
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_SalesPerson</SqlIdentifier>
+    </TransformBindingTarget>
+  </TransformBindingTargetList>
+</MetaTransformBinding>

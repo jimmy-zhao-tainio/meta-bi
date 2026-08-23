@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouse>
+  <DimensionBusinessKeyList>
+    <DimensionBusinessKey Id="dimension:customer:key" DimensionId="dimension:customer">
+      <Name>Customer</Name>
+    </DimensionBusinessKey>
+    <DimensionBusinessKey Id="dimension:date:key" DimensionId="dimension:date">
+      <Name>Date</Name>
+    </DimensionBusinessKey>
+    <DimensionBusinessKey Id="dimension:geography:key" DimensionId="dimension:geography">
+      <Name>Address</Name>
+    </DimensionBusinessKey>
+    <DimensionBusinessKey Id="dimension:order-status:key" DimensionId="dimension:order-status">
+      <Name>OrderStatus</Name>
+    </DimensionBusinessKey>
+    <DimensionBusinessKey Id="dimension:product:key" DimensionId="dimension:product">
+      <Name>Product</Name>
+    </DimensionBusinessKey>
+    <DimensionBusinessKey Id="dimension:sales-channel:key" DimensionId="dimension:sales-channel">
+      <Name>SalesChannel</Name>
+    </DimensionBusinessKey>
+    <DimensionBusinessKey Id="dimension:sales-territory:key" DimensionId="dimension:sales-territory">
+      <Name>SalesTerritory</Name>
+    </DimensionBusinessKey>
+    <DimensionBusinessKey Id="dimension:salesperson:key" DimensionId="dimension:salesperson">
+      <Name>Salesperson</Name>
+    </DimensionBusinessKey>
+  </DimensionBusinessKeyList>
+</MetaDataWarehouse>

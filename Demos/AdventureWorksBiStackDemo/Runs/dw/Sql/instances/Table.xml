@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSql>
+  <TableList>
+    <Table Id="AdventureWorksAnalytics.dw.Dim_Customer" SchemaId="AdventureWorksAnalytics.dw">
+      <Name>Dim_Customer</Name>
+    </Table>
+    <Table Id="AdventureWorksAnalytics.dw.Dim_Date" SchemaId="AdventureWorksAnalytics.dw">
+      <Name>Dim_Date</Name>
+    </Table>
+    <Table Id="AdventureWorksAnalytics.dw.Dim_Geography" SchemaId="AdventureWorksAnalytics.dw">
+      <Name>Dim_Geography</Name>
+    </Table>
+    <Table Id="AdventureWorksAnalytics.dw.Dim_OrderStatus" SchemaId="AdventureWorksAnalytics.dw">
+      <Name>Dim_OrderStatus</Name>
+    </Table>
+    <Table Id="AdventureWorksAnalytics.dw.Dim_Product" SchemaId="AdventureWorksAnalytics.dw">
+      <Name>Dim_Product</Name>
+    </Table>
+    <Table Id="AdventureWorksAnalytics.dw.Dim_SalesChannel" SchemaId="AdventureWorksAnalytics.dw">
+      <Name>Dim_SalesChannel</Name>
+    </Table>
+    <Table Id="AdventureWorksAnalytics.dw.Dim_Salesperson" SchemaId="AdventureWorksAnalytics.dw">
+      <Name>Dim_Salesperson</Name>
+    </Table>
+    <Table Id="AdventureWorksAnalytics.dw.Dim_SalesTerritory" SchemaId="AdventureWorksAnalytics.dw">
+      <Name>Dim_SalesTerritory</Name>
+    </Table>
+    <Table Id="AdventureWorksAnalytics.dw.Fact_SalesLine" SchemaId="AdventureWorksAnalytics.dw">
+      <Name>Fact_SalesLine</Name>
+    </Table>
+    <Table Id="AdventureWorksAnalytics.dw.Fact_SalesOrder" SchemaId="AdventureWorksAnalytics.dw">
+      <Name>Fact_SalesOrder</Name>
+    </Table>
+    <Table Id="AdventureWorksAnalytics.dw.Fact_SalespersonQuota" SchemaId="AdventureWorksAnalytics.dw">
+      <Name>Fact_SalespersonQuota</Name>
+    </Table>
+  </TableList>
+</MetaSql>

@@ -1,0 +1,5 @@
+<Project>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Build\CliVersion.cs" Link="CliVersion.cs" Condition="'$(OutputType)' == 'Exe'" />
+  </ItemGroup>
+</Project>

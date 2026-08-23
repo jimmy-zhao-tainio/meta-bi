@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTabular>
+  <TabularDataSourceList>
+    <TabularDataSource Id="Warehouse" TabularModelId="AdventureWorksSales">
+      <ConnectionReference>AW_DW_SQL</ConnectionReference>
+      <Description>AdventureWorksAnalytics dimensional warehouse.</Description>
+      <Name>AdventureWorks Analytics</Name>
+      <Provider>SqlServer</Provider>
+    </TabularDataSource>
+  </TabularDataSourceList>
+</MetaTabular>

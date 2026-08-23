@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <TableReferenceWithAliasAndColumnsList>
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:1" TableReferenceWithAliasId="TableReferenceWithAlias:31" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:10" TableReferenceWithAliasId="TableReferenceWithAlias:58" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:11" TableReferenceWithAliasId="TableReferenceWithAlias:61" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:12" TableReferenceWithAliasId="TableReferenceWithAlias:64" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:13" TableReferenceWithAliasId="TableReferenceWithAlias:67" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:14" TableReferenceWithAliasId="TableReferenceWithAlias:70" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:15" TableReferenceWithAliasId="TableReferenceWithAlias:73" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:16" TableReferenceWithAliasId="TableReferenceWithAlias:76" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:17" TableReferenceWithAliasId="TableReferenceWithAlias:79" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:18" TableReferenceWithAliasId="TableReferenceWithAlias:82" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:19" TableReferenceWithAliasId="TableReferenceWithAlias:85" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:2" TableReferenceWithAliasId="TableReferenceWithAlias:34" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:20" TableReferenceWithAliasId="TableReferenceWithAlias:88" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:21" TableReferenceWithAliasId="TableReferenceWithAlias:91" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:22" TableReferenceWithAliasId="TableReferenceWithAlias:94" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:23" TableReferenceWithAliasId="TableReferenceWithAlias:97" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:24" TableReferenceWithAliasId="TableReferenceWithAlias:100" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:25" TableReferenceWithAliasId="TableReferenceWithAlias:103" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:26" TableReferenceWithAliasId="TableReferenceWithAlias:106" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:27" TableReferenceWithAliasId="TableReferenceWithAlias:109" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:28" TableReferenceWithAliasId="TableReferenceWithAlias:112" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:3" TableReferenceWithAliasId="TableReferenceWithAlias:37" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:4" TableReferenceWithAliasId="TableReferenceWithAlias:40" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:5" TableReferenceWithAliasId="TableReferenceWithAlias:43" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:6" TableReferenceWithAliasId="TableReferenceWithAlias:46" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:7" TableReferenceWithAliasId="TableReferenceWithAlias:49" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:8" TableReferenceWithAliasId="TableReferenceWithAlias:52" />
+    <TableReferenceWithAliasAndColumns Id="TableReferenceWithAliasAndColumns:9" TableReferenceWithAliasId="TableReferenceWithAlias:55" />
+  </TableReferenceWithAliasAndColumnsList>
+</MetaTransformScript>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <BooleanNotExpressionList>
+    <BooleanNotExpression Id="BooleanNotExpression:1" BooleanExpressionId="BooleanExpression:3" />
+    <BooleanNotExpression Id="BooleanNotExpression:2" BooleanExpressionId="BooleanExpression:6" />
+    <BooleanNotExpression Id="BooleanNotExpression:3" BooleanExpressionId="BooleanExpression:9" />
+    <BooleanNotExpression Id="BooleanNotExpression:4" BooleanExpressionId="BooleanExpression:12" />
+    <BooleanNotExpression Id="BooleanNotExpression:5" BooleanExpressionId="BooleanExpression:15" />
+    <BooleanNotExpression Id="BooleanNotExpression:6" BooleanExpressionId="BooleanExpression:18" />
+    <BooleanNotExpression Id="BooleanNotExpression:7" BooleanExpressionId="BooleanExpression:21" />
+    <BooleanNotExpression Id="BooleanNotExpression:8" BooleanExpressionId="BooleanExpression:24" />
+  </BooleanNotExpressionList>
+</MetaTransformScript>

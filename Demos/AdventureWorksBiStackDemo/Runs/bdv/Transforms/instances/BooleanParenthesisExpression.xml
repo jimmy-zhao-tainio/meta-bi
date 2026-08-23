@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <BooleanParenthesisExpressionList>
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:1" BooleanExpressionId="BooleanExpression:99" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:10" BooleanExpressionId="BooleanExpression:304" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:11" BooleanExpressionId="BooleanExpression:331" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:12" BooleanExpressionId="BooleanExpression:366" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:2" BooleanExpressionId="BooleanExpression:116" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:3" BooleanExpressionId="BooleanExpression:137" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:4" BooleanExpressionId="BooleanExpression:172" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:5" BooleanExpressionId="BooleanExpression:189" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:6" BooleanExpressionId="BooleanExpression:206" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:7" BooleanExpressionId="BooleanExpression:239" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:8" BooleanExpressionId="BooleanExpression:262" />
+    <BooleanParenthesisExpression Id="BooleanParenthesisExpression:9" BooleanExpressionId="BooleanExpression:287" />
+  </BooleanParenthesisExpressionList>
+</MetaTransformScript>

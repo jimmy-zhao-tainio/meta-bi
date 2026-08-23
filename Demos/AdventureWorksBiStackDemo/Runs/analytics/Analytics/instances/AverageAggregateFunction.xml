@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <AverageAggregateFunctionList>
+    <AverageAggregateFunction Id="AverageOrderValue:aggregate-function:type" AggregateFunctionId="AverageOrderValue:aggregate-function" />
+    <AverageAggregateFunction Id="AverageUnitPrice:aggregate-function:type" AggregateFunctionId="AverageUnitPrice:aggregate-function" />
+  </AverageAggregateFunctionList>
+</MetaAnalytics>

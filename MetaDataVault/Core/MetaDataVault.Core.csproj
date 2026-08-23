@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Workspaces\MetaBusinessDataVault\MetaBusinessDataVault.meta.cs" Link="MetaBusinessDataVault.meta.cs" />
+    <Compile Include="..\Workspaces\MetaDataVaultImplementation\MetaDataVaultImplementation.meta.cs" Link="MetaDataVaultImplementation.meta.cs" />
+    <Compile Include="..\Workspaces\MetaRawDataVault\MetaRawDataVault.meta.cs" Link="MetaRawDataVault.meta.cs" />
+    <ProjectReference Include="..\..\MetaSchema\Core\MetaSchema.Core.csproj" />
+  </ItemGroup>
+
+</Project>

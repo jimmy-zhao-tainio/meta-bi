@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSql>
+  <IndexList>
+    <Index Id="AdventureWorksAnalytics.dw.Dim_Customer:index:IX_Dim_Customer_CustomerKey" TableId="AdventureWorksAnalytics.dw.Dim_Customer">
+      <Name>IX_Dim_Customer_CustomerKey</Name>
+    </Index>
+    <Index Id="AdventureWorksAnalytics.dw.Dim_Date:index:IX_Dim_Date_DateKey" TableId="AdventureWorksAnalytics.dw.Dim_Date">
+      <Name>IX_Dim_Date_DateKey</Name>
+    </Index>
+    <Index Id="AdventureWorksAnalytics.dw.Dim_Geography:index:IX_Dim_Geography_GeographyKey" TableId="AdventureWorksAnalytics.dw.Dim_Geography">
+      <Name>IX_Dim_Geography_GeographyKey</Name>
+    </Index>
+    <Index Id="AdventureWorksAnalytics.dw.Dim_OrderStatus:index:IX_Dim_OrderStatus_OrderStatusKey" TableId="AdventureWorksAnalytics.dw.Dim_OrderStatus">
+      <Name>IX_Dim_OrderStatus_OrderStatusKey</Name>
+    </Index>
+    <Index Id="AdventureWorksAnalytics.dw.Dim_Product:index:IX_Dim_Product_ProductKey" TableId="AdventureWorksAnalytics.dw.Dim_Product">
+      <Name>IX_Dim_Product_ProductKey</Name>
+    </Index>
+    <Index Id="AdventureWorksAnalytics.dw.Dim_SalesChannel:index:IX_Dim_SalesChannel_SalesChannelKey" TableId="AdventureWorksAnalytics.dw.Dim_SalesChannel">
+      <Name>IX_Dim_SalesChannel_SalesChannelKey</Name>
+    </Index>
+    <Index Id="AdventureWorksAnalytics.dw.Dim_Salesperson:index:IX_Dim_Salesperson_SalespersonKey" TableId="AdventureWorksAnalytics.dw.Dim_Salesperson">
+      <Name>IX_Dim_Salesperson_SalespersonKey</Name>
+    </Index>
+    <Index Id="AdventureWorksAnalytics.dw.Dim_SalesTerritory:index:IX_Dim_SalesTerritory_SalesTerritoryKey" TableId="AdventureWorksAnalytics.dw.Dim_SalesTerritory">
+      <Name>IX_Dim_SalesTerritory_SalesTerritoryKey</Name>
+    </Index>
+    <Index Id="AdventureWorksAnalytics.dw.Fact_SalesLine:index:IX_Fact_SalesLine_OrderDateKey" TableId="AdventureWorksAnalytics.dw.Fact_SalesLine">
+      <Name>IX_Fact_SalesLine_OrderDateKey</Name>
+    </Index>
+    <Index Id="AdventureWorksAnalytics.dw.Fact_SalesOrder:index:IX_Fact_SalesOrder_OrderDateKey" TableId="AdventureWorksAnalytics.dw.Fact_SalesOrder">
+      <Name>IX_Fact_SalesOrder_OrderDateKey</Name>
+    </Index>
+    <Index Id="AdventureWorksAnalytics.dw.Fact_SalespersonQuota:index:IX_Fact_SalespersonQuota_QuotaPeriodKey" TableId="AdventureWorksAnalytics.dw.Fact_SalespersonQuota">
+      <Name>IX_Fact_SalespersonQuota_QuotaPeriodKey</Name>
+    </Index>
+  </IndexList>
+</MetaSql>

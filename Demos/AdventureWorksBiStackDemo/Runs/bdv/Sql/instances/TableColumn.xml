@@ -1,0 +1,1929 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSql>
+  <TableColumnList>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile.AddressLine1" TableId="AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>AddressLine1</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile.AddressLine2" TableId="AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>AddressLine2</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile.AuditId" TableId="AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>9</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile.City" TableId="AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>City</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile.HashDiff" TableId="AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile.HubHashKey" TableId="AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile.PostalCode" TableId="AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>PostalCode</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>8</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_CountryRegion_CountryRegionProfile.AuditId" TableId="AdventureWorksBusinessVault.dbo.BHS_CountryRegion_CountryRegionProfile">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_CountryRegion_CountryRegionProfile.HashDiff" TableId="AdventureWorksBusinessVault.dbo.BHS_CountryRegion_CountryRegionProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_CountryRegion_CountryRegionProfile.HubHashKey" TableId="AdventureWorksBusinessVault.dbo.BHS_CountryRegion_CountryRegionProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_CountryRegion_CountryRegionProfile.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BHS_CountryRegion_CountryRegionProfile">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_CountryRegion_CountryRegionProfile.Name" TableId="AdventureWorksBusinessVault.dbo.BHS_CountryRegion_CountryRegionProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>Name</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_CountryRegion_CountryRegionProfile.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BHS_CountryRegion_CountryRegionProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile.AccountNumber" TableId="AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>AccountNumber</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile.AuditId" TableId="AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile.HashDiff" TableId="AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile.HubHashKey" TableId="AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile.AuditId" TableId="AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>8</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile.FirstName" TableId="AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>FirstName</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile.HashDiff" TableId="AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile.HubHashKey" TableId="AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile.LastName" TableId="AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>LastName</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile.MiddleName" TableId="AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>MiddleName</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_ProductCategory_ProductCategoryProfile.AuditId" TableId="AdventureWorksBusinessVault.dbo.BHS_ProductCategory_ProductCategoryProfile">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_ProductCategory_ProductCategoryProfile.HashDiff" TableId="AdventureWorksBusinessVault.dbo.BHS_ProductCategory_ProductCategoryProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_ProductCategory_ProductCategoryProfile.HubHashKey" TableId="AdventureWorksBusinessVault.dbo.BHS_ProductCategory_ProductCategoryProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_ProductCategory_ProductCategoryProfile.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BHS_ProductCategory_ProductCategoryProfile">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_ProductCategory_ProductCategoryProfile.Name" TableId="AdventureWorksBusinessVault.dbo.BHS_ProductCategory_ProductCategoryProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>Name</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_ProductCategory_ProductCategoryProfile.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BHS_ProductCategory_ProductCategoryProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_ProductSubcategory_ProductSubcategoryProfile.AuditId" TableId="AdventureWorksBusinessVault.dbo.BHS_ProductSubcategory_ProductSubcategoryProfile">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_ProductSubcategory_ProductSubcategoryProfile.HashDiff" TableId="AdventureWorksBusinessVault.dbo.BHS_ProductSubcategory_ProductSubcategoryProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_ProductSubcategory_ProductSubcategoryProfile.HubHashKey" TableId="AdventureWorksBusinessVault.dbo.BHS_ProductSubcategory_ProductSubcategoryProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_ProductSubcategory_ProductSubcategoryProfile.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BHS_ProductSubcategory_ProductSubcategoryProfile">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_ProductSubcategory_ProductSubcategoryProfile.Name" TableId="AdventureWorksBusinessVault.dbo.BHS_ProductSubcategory_ProductSubcategoryProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>Name</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_ProductSubcategory_ProductSubcategoryProfile.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BHS_ProductSubcategory_ProductSubcategoryProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile.AuditId" TableId="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>15</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile.Color" TableId="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>Color</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile.DiscontinuedDate" TableId="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime</MetaDataTypeId>
+      <Name>DiscontinuedDate</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile.HashDiff" TableId="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>12</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile.HubHashKey" TableId="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile.ListPrice" TableId="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>ListPrice</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>13</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile.Name" TableId="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>Name</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile.ProductNumber" TableId="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>ProductNumber</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>14</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile.SellEndDate" TableId="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime</MetaDataTypeId>
+      <Name>SellEndDate</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile.SellStartDate" TableId="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime</MetaDataTypeId>
+      <Name>SellStartDate</Name>
+      <Ordinal>8</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile.Size" TableId="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>Size</Name>
+      <Ordinal>9</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile.StandardCost" TableId="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>StandardCost</Name>
+      <Ordinal>10</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile.Weight" TableId="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>Weight</Name>
+      <Ordinal>11</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail.AuditId" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>9</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail.HashDiff" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail.HubHashKey" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail.LineTotal" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>LineTotal</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail.OrderQuantity" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:smallint</MetaDataTypeId>
+      <Name>OrderQuantity</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>8</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail.UnitPrice" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>UnitPrice</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail.UnitPriceDiscount" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>UnitPriceDiscount</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader.AuditId" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>14</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader.DueDate" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime</MetaDataTypeId>
+      <Name>DueDate</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader.FreightAmount" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>FreightAmount</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader.HashDiff" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>11</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader.HubHashKey" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>12</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader.OnlineOrderFlag" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bit</MetaDataTypeId>
+      <Name>OnlineOrderFlag</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader.OrderDate" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime</MetaDataTypeId>
+      <Name>OrderDate</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>13</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader.ShipDate" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime</MetaDataTypeId>
+      <Name>ShipDate</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader.Status" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>Status</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader.SubTotal" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>SubTotal</Name>
+      <Ordinal>8</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader.TaxAmount" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>TaxAmount</Name>
+      <Ordinal>9</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader.TotalDue" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>TotalDue</Name>
+      <Ordinal>10</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile.AuditId" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile.HashDiff" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile.HubHashKey" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile.SalesQuota" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>SalesQuota</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile.AuditId" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>10</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile.Bonus" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>Bonus</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile.CommissionPercent" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>CommissionPercent</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile.HashDiff" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile.HubHashKey" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>8</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>9</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile.SalesLastYear" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>SalesLastYear</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile.SalesQuota" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>SalesQuota</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile.SalesYearToDate" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>SalesYearToDate</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.AuditId" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>11</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.CostLastYear" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>CostLastYear</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.CostYearToDate" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>CostYearToDate</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.GroupName" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>GroupName</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.HashDiff" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>8</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.HubHashKey" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>9</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.Name" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>Name</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>10</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.SalesLastYear" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>SalesLastYear</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile.SalesYearToDate" TableId="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>SalesYearToDate</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_StateProvince_StateProvinceProfile.AuditId" TableId="AdventureWorksBusinessVault.dbo.BHS_StateProvince_StateProvinceProfile">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_StateProvince_StateProvinceProfile.HashDiff" TableId="AdventureWorksBusinessVault.dbo.BHS_StateProvince_StateProvinceProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_StateProvince_StateProvinceProfile.HubHashKey" TableId="AdventureWorksBusinessVault.dbo.BHS_StateProvince_StateProvinceProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_StateProvince_StateProvinceProfile.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BHS_StateProvince_StateProvinceProfile">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_StateProvince_StateProvinceProfile.Name" TableId="AdventureWorksBusinessVault.dbo.BHS_StateProvince_StateProvinceProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>Name</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_StateProvince_StateProvinceProfile.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BHS_StateProvince_StateProvinceProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_StateProvince_StateProvinceProfile.StateProvinceCode" TableId="AdventureWorksBusinessVault.dbo.BHS_StateProvince_StateProvinceProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>StateProvinceCode</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile.AuditId" TableId="AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile.HashDiff" TableId="AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashDiff</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile.HubHashKey" TableId="AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HubHashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile.Name" TableId="AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>Name</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_Address.AddressID" TableId="AdventureWorksBusinessVault.dbo.BH_Address">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AddressID</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_Address.AuditId" TableId="AdventureWorksBusinessVault.dbo.BH_Address">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_Address.HashKey" TableId="AdventureWorksBusinessVault.dbo.BH_Address">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_Address.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BH_Address">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_Address.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BH_Address">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_CountryRegion.AuditId" TableId="AdventureWorksBusinessVault.dbo.BH_CountryRegion">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_CountryRegion.CountryRegionCode" TableId="AdventureWorksBusinessVault.dbo.BH_CountryRegion">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CountryRegionCode</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_CountryRegion.HashKey" TableId="AdventureWorksBusinessVault.dbo.BH_CountryRegion">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_CountryRegion.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BH_CountryRegion">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_CountryRegion.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BH_CountryRegion">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_Customer.AuditId" TableId="AdventureWorksBusinessVault.dbo.BH_Customer">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_Customer.CustomerID" TableId="AdventureWorksBusinessVault.dbo.BH_Customer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>CustomerID</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_Customer.HashKey" TableId="AdventureWorksBusinessVault.dbo.BH_Customer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_Customer.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BH_Customer">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_Customer.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BH_Customer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_Person.AuditId" TableId="AdventureWorksBusinessVault.dbo.BH_Person">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_Person.BusinessEntityID" TableId="AdventureWorksBusinessVault.dbo.BH_Person">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>BusinessEntityID</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_Person.HashKey" TableId="AdventureWorksBusinessVault.dbo.BH_Person">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_Person.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BH_Person">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_Person.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BH_Person">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_Product.AuditId" TableId="AdventureWorksBusinessVault.dbo.BH_Product">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_Product.HashKey" TableId="AdventureWorksBusinessVault.dbo.BH_Product">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_Product.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BH_Product">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_Product.ProductID" TableId="AdventureWorksBusinessVault.dbo.BH_Product">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>ProductID</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_Product.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BH_Product">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_ProductCategory.AuditId" TableId="AdventureWorksBusinessVault.dbo.BH_ProductCategory">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_ProductCategory.HashKey" TableId="AdventureWorksBusinessVault.dbo.BH_ProductCategory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_ProductCategory.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BH_ProductCategory">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_ProductCategory.ProductCategoryID" TableId="AdventureWorksBusinessVault.dbo.BH_ProductCategory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>ProductCategoryID</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_ProductCategory.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BH_ProductCategory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_ProductSubcategory.AuditId" TableId="AdventureWorksBusinessVault.dbo.BH_ProductSubcategory">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_ProductSubcategory.HashKey" TableId="AdventureWorksBusinessVault.dbo.BH_ProductSubcategory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_ProductSubcategory.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BH_ProductSubcategory">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_ProductSubcategory.ProductSubcategoryID" TableId="AdventureWorksBusinessVault.dbo.BH_ProductSubcategory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>ProductSubcategoryID</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_ProductSubcategory.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BH_ProductSubcategory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_SalesOrder.AuditId" TableId="AdventureWorksBusinessVault.dbo.BH_SalesOrder">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_SalesOrder.HashKey" TableId="AdventureWorksBusinessVault.dbo.BH_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_SalesOrder.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BH_SalesOrder">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_SalesOrder.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BH_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_SalesOrder.SalesOrderID" TableId="AdventureWorksBusinessVault.dbo.BH_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>SalesOrderID</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_SalesOrderLine.AuditId" TableId="AdventureWorksBusinessVault.dbo.BH_SalesOrderLine">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_SalesOrderLine.HashKey" TableId="AdventureWorksBusinessVault.dbo.BH_SalesOrderLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_SalesOrderLine.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BH_SalesOrderLine">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_SalesOrderLine.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BH_SalesOrderLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_SalesOrderLine.SalesOrderDetailID" TableId="AdventureWorksBusinessVault.dbo.BH_SalesOrderLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>SalesOrderDetailID</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_SalesOrderLine.SalesOrderID" TableId="AdventureWorksBusinessVault.dbo.BH_SalesOrderLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>SalesOrderID</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_SalesPerson.AuditId" TableId="AdventureWorksBusinessVault.dbo.BH_SalesPerson">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_SalesPerson.BusinessEntityID" TableId="AdventureWorksBusinessVault.dbo.BH_SalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>BusinessEntityID</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_SalesPerson.HashKey" TableId="AdventureWorksBusinessVault.dbo.BH_SalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_SalesPerson.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BH_SalesPerson">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_SalesPerson.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BH_SalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota.AuditId" TableId="AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota.BusinessEntityID" TableId="AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>BusinessEntityID</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota.HashKey" TableId="AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota.QuotaDate" TableId="AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime</MetaDataTypeId>
+      <Name>QuotaDate</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_SalesTerritory.AuditId" TableId="AdventureWorksBusinessVault.dbo.BH_SalesTerritory">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_SalesTerritory.HashKey" TableId="AdventureWorksBusinessVault.dbo.BH_SalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_SalesTerritory.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BH_SalesTerritory">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_SalesTerritory.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BH_SalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_SalesTerritory.TerritoryID" TableId="AdventureWorksBusinessVault.dbo.BH_SalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>TerritoryID</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_StateProvince.AuditId" TableId="AdventureWorksBusinessVault.dbo.BH_StateProvince">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_StateProvince.HashKey" TableId="AdventureWorksBusinessVault.dbo.BH_StateProvince">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_StateProvince.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BH_StateProvince">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_StateProvince.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BH_StateProvince">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_StateProvince.StateProvinceID" TableId="AdventureWorksBusinessVault.dbo.BH_StateProvince">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>StateProvinceID</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_Store.AuditId" TableId="AdventureWorksBusinessVault.dbo.BH_Store">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_Store.BusinessEntityID" TableId="AdventureWorksBusinessVault.dbo.BH_Store">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>BusinessEntityID</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_Store.HashKey" TableId="AdventureWorksBusinessVault.dbo.BH_Store">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_Store.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BH_Store">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BH_Store.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BH_Store">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_AddressStateProvince.AddressHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_AddressStateProvince">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>AddressHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_AddressStateProvince.AuditId" TableId="AdventureWorksBusinessVault.dbo.BL_AddressStateProvince">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_AddressStateProvince.HashKey" TableId="AdventureWorksBusinessVault.dbo.BL_AddressStateProvince">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_AddressStateProvince.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BL_AddressStateProvince">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_AddressStateProvince.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BL_AddressStateProvince">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_AddressStateProvince.StateProvinceHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_AddressStateProvince">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>StateProvinceHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_CustomerPerson.AuditId" TableId="AdventureWorksBusinessVault.dbo.BL_CustomerPerson">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_CustomerPerson.CustomerHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_CustomerPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>CustomerHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_CustomerPerson.HashKey" TableId="AdventureWorksBusinessVault.dbo.BL_CustomerPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_CustomerPerson.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BL_CustomerPerson">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_CustomerPerson.PersonHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_CustomerPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>PersonHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_CustomerPerson.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BL_CustomerPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_CustomerStore.AuditId" TableId="AdventureWorksBusinessVault.dbo.BL_CustomerStore">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_CustomerStore.CustomerHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_CustomerStore">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>CustomerHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_CustomerStore.HashKey" TableId="AdventureWorksBusinessVault.dbo.BL_CustomerStore">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_CustomerStore.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BL_CustomerStore">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_CustomerStore.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BL_CustomerStore">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_CustomerStore.StoreHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_CustomerStore">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>StoreHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment.AuditId" TableId="AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment.HashKey" TableId="AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment.ProductHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>ProductHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment.ProductSubcategoryHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>ProductSubcategoryHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory.AuditId" TableId="AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory.HashKey" TableId="AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory.ProductCategoryHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>ProductCategoryHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory.ProductSubcategoryHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>ProductSubcategoryHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress.AuditId" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress.BillToAddressHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>BillToAddressHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress.HashKey" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress.SalesOrderHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesOrderHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer.AuditId" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer.CustomerHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>CustomerHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer.HashKey" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer.SalesOrderHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesOrderHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct.AuditId" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct.HashKey" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct.ProductHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>ProductHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct.SalesOrderLineHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesOrderLineHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder.AuditId" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder.HashKey" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder.SalesOrderHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesOrderHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder.SalesOrderLineHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesOrderLineHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson.AuditId" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson.HashKey" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson.SalesOrderHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesOrderHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson.SalesPersonHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesPersonHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory.AuditId" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory.HashKey" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory.SalesOrderHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesOrderHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory.SalesTerritoryHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesTerritoryHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress.AuditId" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress.HashKey" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress.SalesOrderHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesOrderHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress.ShipToAddressHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>ShipToAddressHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson.AuditId" TableId="AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson.HashKey" TableId="AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson.PersonHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>PersonHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson.SalesPersonHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesPersonHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson.AuditId" TableId="AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson.HashKey" TableId="AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson.SalesPersonHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesPersonHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson.SalesPersonQuotaHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesPersonQuotaHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesPersonSalesTerritory.AuditId" TableId="AdventureWorksBusinessVault.dbo.BL_SalesPersonSalesTerritory">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesPersonSalesTerritory.HashKey" TableId="AdventureWorksBusinessVault.dbo.BL_SalesPersonSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesPersonSalesTerritory.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BL_SalesPersonSalesTerritory">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesPersonSalesTerritory.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BL_SalesPersonSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesPersonSalesTerritory.SalesPersonHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_SalesPersonSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesPersonHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesPersonSalesTerritory.SalesTerritoryHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_SalesPersonSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesTerritoryHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion.AuditId" TableId="AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion.CountryRegionHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>CountryRegionHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion.HashKey" TableId="AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion.SalesTerritoryHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesTerritoryHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion.AuditId" TableId="AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion.CountryRegionHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>CountryRegionHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion.HashKey" TableId="AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion.StateProvinceHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>StateProvinceHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_StateProvinceSalesTerritory.AuditId" TableId="AdventureWorksBusinessVault.dbo.BL_StateProvinceSalesTerritory">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_StateProvinceSalesTerritory.HashKey" TableId="AdventureWorksBusinessVault.dbo.BL_StateProvinceSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_StateProvinceSalesTerritory.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BL_StateProvinceSalesTerritory">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_StateProvinceSalesTerritory.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BL_StateProvinceSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_StateProvinceSalesTerritory.SalesTerritoryHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_StateProvinceSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesTerritoryHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_StateProvinceSalesTerritory.StateProvinceHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_StateProvinceSalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>StateProvinceHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_StoreSalesPerson.AuditId" TableId="AdventureWorksBusinessVault.dbo.BL_StoreSalesPerson">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_StoreSalesPerson.HashKey" TableId="AdventureWorksBusinessVault.dbo.BL_StoreSalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>HashKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_StoreSalesPerson.LoadTimestamp" TableId="AdventureWorksBusinessVault.dbo.BL_StoreSalesPerson">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>LoadTimestamp</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_StoreSalesPerson.RecordSource" TableId="AdventureWorksBusinessVault.dbo.BL_StoreSalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>RecordSource</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_StoreSalesPerson.SalesPersonHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_StoreSalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>SalesPersonHashKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksBusinessVault.dbo.BL_StoreSalesPerson.StoreHashKey" TableId="AdventureWorksBusinessVault.dbo.BL_StoreSalesPerson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:binary</MetaDataTypeId>
+      <Name>StoreHashKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+  </TableColumnList>
+</MetaSql>

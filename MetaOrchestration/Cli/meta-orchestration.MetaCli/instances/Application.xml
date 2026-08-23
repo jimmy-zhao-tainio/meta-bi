@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ApplicationList>
+    <Application Id="app-meta-orchestration">
+      <Description>Create, inspect, plan, and execute orchestration plans with task ordering, concurrency policy, and run evidence.</Description>
+      <ExecutableName>meta-orchestration</ExecutableName>
+      <Name>meta-orchestration</Name>
+    </Application>
+  </ApplicationList>
+</MetaCli>

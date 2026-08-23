@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaRawDataVault>
+  <RawLinkList>
+    <RawLink Id="EmployeeDepartmentLink">
+      <LinkKind>standard</LinkKind>
+      <Name>EmployeeDepartment</Name>
+    </RawLink>
+    <RawLink Id="InvoiceOrderLink">
+      <LinkKind>standard</LinkKind>
+      <Name>InvoiceOrder</Name>
+    </RawLink>
+    <RawLink Id="InvoiceSupplierLink">
+      <LinkKind>standard</LinkKind>
+      <Name>InvoiceSupplier</Name>
+    </RawLink>
+    <RawLink Id="OrderCustomerLink">
+      <LinkKind>standard</LinkKind>
+      <Name>OrderCustomer</Name>
+    </RawLink>
+    <RawLink Id="ProductSupplierLink">
+      <LinkKind>standard</LinkKind>
+      <Name>ProductSupplier</Name>
+    </RawLink>
+    <RawLink Id="ShipmentOrderLink">
+      <LinkKind>standard</LinkKind>
+      <Name>ShipmentOrder</Name>
+    </RawLink>
+  </RawLinkList>
+</MetaRawDataVault>

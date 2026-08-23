@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataQuality>
+  <CorpusRelationshipPatternOccurrenceLinkList>
+    <CorpusRelationshipPatternOccurrenceLink Id="CorpusRelationshipPatternOccurrenceLink.1" CorpusRelationshipPatternId="CorpusRelationshipPattern.1" JoinPatternOccurrenceId="TransformScript:16.JoinPatternOccurrence.QualifiedJoin:17" />
+    <CorpusRelationshipPatternOccurrenceLink Id="CorpusRelationshipPatternOccurrenceLink.2" CorpusRelationshipPatternId="CorpusRelationshipPattern.2" JoinPatternOccurrenceId="TransformScript:14.JoinPatternOccurrence.QualifiedJoin:6" />
+    <CorpusRelationshipPatternOccurrenceLink Id="CorpusRelationshipPatternOccurrenceLink.3" CorpusRelationshipPatternId="CorpusRelationshipPattern.3" JoinPatternOccurrenceId="TransformScript:15.JoinPatternOccurrence.QualifiedJoin:12" />
+    <CorpusRelationshipPatternOccurrenceLink Id="CorpusRelationshipPatternOccurrenceLink.4" CorpusRelationshipPatternId="CorpusRelationshipPattern.4" JoinPatternOccurrenceId="TransformScript:13.JoinPatternOccurrence.QualifiedJoin:1" />
+    <CorpusRelationshipPatternOccurrenceLink Id="CorpusRelationshipPatternOccurrenceLink.5" CorpusRelationshipPatternId="CorpusRelationshipPattern.5" JoinPatternOccurrenceId="TransformScript:18.JoinPatternOccurrence.QualifiedJoin:22" />
+    <CorpusRelationshipPatternOccurrenceLink Id="CorpusRelationshipPatternOccurrenceLink.6" CorpusRelationshipPatternId="CorpusRelationshipPattern.6" JoinPatternOccurrenceId="TransformScript:19.JoinPatternOccurrence.QualifiedJoin:43" />
+    <CorpusRelationshipPatternOccurrenceLink Id="CorpusRelationshipPatternOccurrenceLink.7" CorpusRelationshipPatternId="CorpusRelationshipPattern.7" JoinPatternOccurrenceId="TransformScript:20.JoinPatternOccurrence.QualifiedJoin:64" />
+    <CorpusRelationshipPatternOccurrenceLink Id="CorpusRelationshipPatternOccurrenceLink.8" CorpusRelationshipPatternId="CorpusRelationshipPattern.8" JoinPatternOccurrenceId="TransformScript:17.JoinPatternOccurrence.QualifiedJoin:19" />
+  </CorpusRelationshipPatternOccurrenceLinkList>
+</MetaDataQuality>

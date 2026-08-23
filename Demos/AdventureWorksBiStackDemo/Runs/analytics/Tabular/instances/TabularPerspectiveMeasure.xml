@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTabular>
+  <TabularPerspectiveMeasureList>
+    <TabularPerspectiveMeasure Id="SalesAnalysis_AverageOrderValue" TabularMeasureId="AverageOrderValue" TabularPerspectiveId="SalesAnalysis" />
+    <TabularPerspectiveMeasure Id="SalesAnalysis_AverageUnitPrice" TabularMeasureId="AverageUnitPrice" TabularPerspectiveId="SalesAnalysis" />
+    <TabularPerspectiveMeasure Id="SalesAnalysis_DiscountAmount" TabularMeasureId="DiscountAmount" TabularPerspectiveId="SalesAnalysis" />
+    <TabularPerspectiveMeasure Id="SalesAnalysis_FreightAmount" TabularMeasureId="FreightAmount" TabularPerspectiveId="SalesAnalysis" />
+    <TabularPerspectiveMeasure Id="SalesAnalysis_OrderCount" TabularMeasureId="OrderCount" TabularPerspectiveId="SalesAnalysis" />
+    <TabularPerspectiveMeasure Id="SalesAnalysis_OrderQuantity" TabularMeasureId="OrderQuantity" TabularPerspectiveId="SalesAnalysis" />
+    <TabularPerspectiveMeasure Id="SalesAnalysis_OrderSubtotal" TabularMeasureId="OrderSubtotal" TabularPerspectiveId="SalesAnalysis" />
+    <TabularPerspectiveMeasure Id="SalesAnalysis_QuotaAmount" TabularMeasureId="QuotaAmount" TabularPerspectiveId="SalesAnalysis" />
+    <TabularPerspectiveMeasure Id="SalesAnalysis_SalesAmount" TabularMeasureId="SalesAmount" TabularPerspectiveId="SalesAnalysis" />
+    <TabularPerspectiveMeasure Id="SalesAnalysis_TaxAmount" TabularMeasureId="TaxAmount" TabularPerspectiveId="SalesAnalysis" />
+    <TabularPerspectiveMeasure Id="SalesAnalysis_TotalDue" TabularMeasureId="TotalDue" TabularPerspectiveId="SalesAnalysis" />
+  </TabularPerspectiveMeasureList>
+</MetaTabular>

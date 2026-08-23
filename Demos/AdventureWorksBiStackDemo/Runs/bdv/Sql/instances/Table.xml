@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSql>
+  <TableList>
+    <Table Id="AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BHS_Address_AddressProfile</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BHS_CountryRegion_CountryRegionProfile" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BHS_CountryRegion_CountryRegionProfile</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BHS_Customer_CustomerProfile</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BHS_Person_PersonProfile</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BHS_ProductCategory_ProductCategoryProfile" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BHS_ProductCategory_ProductCategoryProfile</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BHS_ProductSubcategory_ProductSubcategoryProfile" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BHS_ProductSubcategory_ProductSubcategoryProfile</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BHS_Product_ProductProfile</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BHS_SalesOrderLine_SalesOrderLineDetail</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BHS_SalesOrder_SalesOrderHeader</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BHS_SalesPersonQuota_SalesPersonQuotaProfile</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BHS_SalesPerson_SalesPersonProfile</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BHS_SalesTerritory_SalesTerritoryProfile</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BHS_StateProvince_StateProvinceProfile" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BHS_StateProvince_StateProvinceProfile</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BHS_Store_StoreProfile</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BH_Address" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BH_Address</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BH_CountryRegion" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BH_CountryRegion</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BH_Customer" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BH_Customer</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BH_Person" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BH_Person</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BH_Product" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BH_Product</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BH_ProductCategory" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BH_ProductCategory</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BH_ProductSubcategory" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BH_ProductSubcategory</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BH_SalesOrder" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BH_SalesOrder</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BH_SalesOrderLine" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BH_SalesOrderLine</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BH_SalesPerson" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BH_SalesPerson</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BH_SalesPersonQuota</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BH_SalesTerritory" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BH_SalesTerritory</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BH_StateProvince" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BH_StateProvince</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BH_Store" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BH_Store</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BL_AddressStateProvince" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BL_AddressStateProvince</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BL_CustomerPerson" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BL_CustomerPerson</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BL_CustomerStore" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BL_CustomerStore</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BL_ProductSubcategoryAssignment</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BL_ProductSubcategoryCategory</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BL_SalesOrderBillToAddress</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BL_SalesOrderCustomer</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BL_SalesOrderLineProduct</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BL_SalesOrderLineSalesOrder</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BL_SalesOrderSalesPerson</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BL_SalesOrderSalesTerritory</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BL_SalesOrderShipToAddress</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BL_SalesPersonPerson</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BL_SalesPersonQuotaSalesPerson</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BL_SalesPersonSalesTerritory" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BL_SalesPersonSalesTerritory</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BL_SalesTerritoryCountryRegion</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BL_StateProvinceCountryRegion</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BL_StateProvinceSalesTerritory" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BL_StateProvinceSalesTerritory</Name>
+    </Table>
+    <Table Id="AdventureWorksBusinessVault.dbo.BL_StoreSalesPerson" SchemaId="AdventureWorksBusinessVault.dbo">
+      <Name>BL_StoreSalesPerson</Name>
+    </Table>
+  </TableList>
+</MetaSql>

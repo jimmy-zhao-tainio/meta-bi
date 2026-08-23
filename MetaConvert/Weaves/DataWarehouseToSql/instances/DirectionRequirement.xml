@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <DirectionRequirementList>
+    <DirectionRequirement Id="forward/DatabaseName" DirectionId="forward" SelectStatementId="SelectStatement:12">
+      <Code>DatabaseNameRequired</Code>
+      <Message>The databaseName parameter must contain a nonblank target database name.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/ImplementationCardinality" DirectionId="forward" SelectStatementId="SelectStatement:13">
+      <Code>ImplementationCardinalityInvalid</Code>
+      <Message>Each required table implementation contract must contain exactly one row.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/SqlServerTypeLowering" DirectionId="forward" SelectStatementId="SelectStatement:14">
+      <Code>SqlServerTypeLoweringInvalid</Code>
+      <Message>Every used column type must resolve to exactly one sanctioned SQL Server type.</Message>
+    </DirectionRequirement>
+  </DirectionRequirementList>
+</MetaWeave>

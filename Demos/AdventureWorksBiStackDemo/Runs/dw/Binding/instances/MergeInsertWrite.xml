@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <MergeInsertWriteList>
+    <MergeInsertWrite Id="TransformScript:10:binding:validation:target:2:write:merge-insert" WriteId="TransformScript:10:binding:validation:target:2:write">
+      <MetaTransformScriptMergeInsertActionId>MergeInsertAction:2</MetaTransformScriptMergeInsertActionId>
+    </MergeInsertWrite>
+    <MergeInsertWrite Id="TransformScript:11:binding:validation:target:3:write:merge-insert" WriteId="TransformScript:11:binding:validation:target:3:write">
+      <MetaTransformScriptMergeInsertActionId>MergeInsertAction:3</MetaTransformScriptMergeInsertActionId>
+    </MergeInsertWrite>
+    <MergeInsertWrite Id="TransformScript:12:binding:validation:target:4:write:merge-insert" WriteId="TransformScript:12:binding:validation:target:4:write">
+      <MetaTransformScriptMergeInsertActionId>MergeInsertAction:4</MetaTransformScriptMergeInsertActionId>
+    </MergeInsertWrite>
+    <MergeInsertWrite Id="TransformScript:13:binding:validation:target:6:write:merge-insert" WriteId="TransformScript:13:binding:validation:target:6:write">
+      <MetaTransformScriptMergeInsertActionId>MergeInsertAction:5</MetaTransformScriptMergeInsertActionId>
+    </MergeInsertWrite>
+    <MergeInsertWrite Id="TransformScript:14:binding:validation:target:8:write:merge-insert" WriteId="TransformScript:14:binding:validation:target:8:write">
+      <MetaTransformScriptMergeInsertActionId>MergeInsertAction:6</MetaTransformScriptMergeInsertActionId>
+    </MergeInsertWrite>
+    <MergeInsertWrite Id="TransformScript:15:binding:validation:target:10:write:merge-insert" WriteId="TransformScript:15:binding:validation:target:10:write">
+      <MetaTransformScriptMergeInsertActionId>MergeInsertAction:7</MetaTransformScriptMergeInsertActionId>
+    </MergeInsertWrite>
+    <MergeInsertWrite Id="TransformScript:16:binding:validation:target:12:write:merge-insert" WriteId="TransformScript:16:binding:validation:target:12:write">
+      <MetaTransformScriptMergeInsertActionId>MergeInsertAction:8</MetaTransformScriptMergeInsertActionId>
+    </MergeInsertWrite>
+    <MergeInsertWrite Id="TransformScript:17:binding:validation:target:14:write:merge-insert" WriteId="TransformScript:17:binding:validation:target:14:write">
+      <MetaTransformScriptMergeInsertActionId>MergeInsertAction:9</MetaTransformScriptMergeInsertActionId>
+    </MergeInsertWrite>
+    <MergeInsertWrite Id="TransformScript:18:binding:validation:target:16:write:merge-insert" WriteId="TransformScript:18:binding:validation:target:16:write">
+      <MetaTransformScriptMergeInsertActionId>MergeInsertAction:10</MetaTransformScriptMergeInsertActionId>
+    </MergeInsertWrite>
+    <MergeInsertWrite Id="TransformScript:19:binding:validation:target:18:write:merge-insert" WriteId="TransformScript:19:binding:validation:target:18:write">
+      <MetaTransformScriptMergeInsertActionId>MergeInsertAction:11</MetaTransformScriptMergeInsertActionId>
+    </MergeInsertWrite>
+    <MergeInsertWrite Id="TransformScript:20:binding:validation:target:21:write:merge-insert" WriteId="TransformScript:20:binding:validation:target:21:write">
+      <MetaTransformScriptMergeInsertActionId>MergeInsertAction:12</MetaTransformScriptMergeInsertActionId>
+    </MergeInsertWrite>
+    <MergeInsertWrite Id="TransformScript:9:binding:validation:target:28:write:merge-insert" WriteId="TransformScript:9:binding:validation:target:28:write">
+      <MetaTransformScriptMergeInsertActionId>MergeInsertAction:1</MetaTransformScriptMergeInsertActionId>
+    </MergeInsertWrite>
+  </MergeInsertWriteList>
+</MetaTransformBinding>

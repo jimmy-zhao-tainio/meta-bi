@@ -1,0 +1,1021 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <FieldDataTypeDetailList>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile:field:AddressLine1:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile:field:AddressLine1">
+      <Name>Length</Name>
+      <Value>60</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile:field:AddressLine2:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile:field:AddressLine2">
+      <Name>Length</Name>
+      <Value>60</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile:field:City:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile:field:City">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile:field:HashDiff:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile:field:HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile:field:HubHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile:field:HubHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile:field:PostalCode:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile:field:PostalCode">
+      <Name>Length</Name>
+      <Value>15</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_CountryRegion_CountryRegionProfile:field:HashDiff:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_CountryRegion_CountryRegionProfile:field:HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_CountryRegion_CountryRegionProfile:field:HubHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_CountryRegion_CountryRegionProfile:field:HubHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_CountryRegion_CountryRegionProfile:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_CountryRegion_CountryRegionProfile:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_CountryRegion_CountryRegionProfile:field:Name:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_CountryRegion_CountryRegionProfile:field:Name">
+      <Name>Length</Name>
+      <Value>128</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_CountryRegion_CountryRegionProfile:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_CountryRegion_CountryRegionProfile:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile:field:AccountNumber:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile:field:AccountNumber">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile:field:HashDiff:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile:field:HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile:field:HubHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile:field:HubHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile:field:FirstName:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile:field:FirstName">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile:field:HashDiff:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile:field:HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile:field:HubHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile:field:HubHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile:field:LastName:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile:field:LastName">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile:field:MiddleName:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile:field:MiddleName">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductCategory_ProductCategoryProfile:field:HashDiff:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductCategory_ProductCategoryProfile:field:HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductCategory_ProductCategoryProfile:field:HubHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductCategory_ProductCategoryProfile:field:HubHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductCategory_ProductCategoryProfile:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductCategory_ProductCategoryProfile:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductCategory_ProductCategoryProfile:field:Name:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductCategory_ProductCategoryProfile:field:Name">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductCategory_ProductCategoryProfile:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductCategory_ProductCategoryProfile:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductSubcategory_ProductSubcategoryProfile:field:HashDiff:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductSubcategory_ProductSubcategoryProfile:field:HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductSubcategory_ProductSubcategoryProfile:field:HubHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductSubcategory_ProductSubcategoryProfile:field:HubHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductSubcategory_ProductSubcategoryProfile:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductSubcategory_ProductSubcategoryProfile:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductSubcategory_ProductSubcategoryProfile:field:Name:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductSubcategory_ProductSubcategoryProfile:field:Name">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductSubcategory_ProductSubcategoryProfile:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductSubcategory_ProductSubcategoryProfile:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:Color:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:Color">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:HashDiff:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:HubHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:HubHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:ListPrice:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:ListPrice">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:ListPrice:detail:Scale" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:ListPrice">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:Name:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:Name">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:ProductNumber:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:ProductNumber">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:Size:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:Size">
+      <Name>Length</Name>
+      <Value>10</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:StandardCost:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:StandardCost">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:StandardCost:detail:Scale" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:StandardCost">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:Weight:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:Weight">
+      <Name>Precision</Name>
+      <Value>8</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:Weight:detail:Scale" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:field:Weight">
+      <Name>Scale</Name>
+      <Value>2</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:field:HashDiff:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:field:HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:field:HubHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:field:HubHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:field:LineTotal:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:field:LineTotal">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:field:LineTotal:detail:Scale" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:field:LineTotal">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:field:UnitPrice:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:field:UnitPrice">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:field:UnitPrice:detail:Scale" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:field:UnitPrice">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:field:UnitPriceDiscount:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:field:UnitPriceDiscount">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:field:UnitPriceDiscount:detail:Scale" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:field:UnitPriceDiscount">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:FreightAmount:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:FreightAmount">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:FreightAmount:detail:Scale" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:FreightAmount">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:HashDiff:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:HubHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:HubHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:SubTotal:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:SubTotal">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:SubTotal:detail:Scale" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:SubTotal">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:TaxAmount:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:TaxAmount">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:TaxAmount:detail:Scale" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:TaxAmount">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:TotalDue:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:TotalDue">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:TotalDue:detail:Scale" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:field:TotalDue">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile:field:HashDiff:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile:field:HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile:field:HubHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile:field:HubHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile:field:SalesQuota:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile:field:SalesQuota">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile:field:SalesQuota:detail:Scale" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile:field:SalesQuota">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:Bonus:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:Bonus">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:Bonus:detail:Scale" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:Bonus">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:CommissionPercent:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:CommissionPercent">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:CommissionPercent:detail:Scale" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:CommissionPercent">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:HashDiff:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:HubHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:HubHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:SalesLastYear:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:SalesLastYear">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:SalesLastYear:detail:Scale" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:SalesLastYear">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:SalesQuota:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:SalesQuota">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:SalesQuota:detail:Scale" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:SalesQuota">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:SalesYearToDate:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:SalesYearToDate">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:SalesYearToDate:detail:Scale" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:field:SalesYearToDate">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:CostLastYear:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:CostLastYear">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:CostLastYear:detail:Scale" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:CostLastYear">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:CostYearToDate:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:CostYearToDate">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:CostYearToDate:detail:Scale" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:CostYearToDate">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:GroupName:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:GroupName">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:HashDiff:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:HubHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:HubHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:Name:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:Name">
+      <Name>Length</Name>
+      <Value>100</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:SalesLastYear:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:SalesLastYear">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:SalesLastYear:detail:Scale" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:SalesLastYear">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:SalesYearToDate:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:SalesYearToDate">
+      <Name>Precision</Name>
+      <Value>19</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:SalesYearToDate:detail:Scale" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:field:SalesYearToDate">
+      <Name>Scale</Name>
+      <Value>4</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile:field:HashDiff:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile:field:HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile:field:HubHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile:field:HubHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile:field:Name:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile:field:Name">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile:field:StateProvinceCode:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile:field:StateProvinceCode">
+      <Name>Length</Name>
+      <Value>3</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile:field:HashDiff:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile:field:HashDiff">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile:field:HubHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile:field:HubHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile:field:Name:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile:field:Name">
+      <Name>Length</Name>
+      <Value>128</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Address:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Address:field:HashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Address:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Address:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Address:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Address:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_CountryRegion:field:CountryRegionCode:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_CountryRegion:field:CountryRegionCode">
+      <Name>Length</Name>
+      <Value>3</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_CountryRegion:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_CountryRegion:field:HashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_CountryRegion:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_CountryRegion:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_CountryRegion:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_CountryRegion:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Customer:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Customer:field:HashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Customer:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Customer:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Customer:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Customer:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Person:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Person:field:HashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Person:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Person:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Person:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Person:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product:field:HashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductCategory:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductCategory:field:HashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductCategory:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductCategory:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductCategory:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductCategory:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductSubcategory:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductSubcategory:field:HashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductSubcategory:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductSubcategory:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductSubcategory:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductSubcategory:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder:field:HashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrderLine:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrderLine:field:HashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrderLine:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrderLine:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrderLine:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrderLine:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPerson:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPerson:field:HashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPerson:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPerson:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPerson:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPerson:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPersonQuota:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPersonQuota:field:HashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPersonQuota:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPersonQuota:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPersonQuota:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPersonQuota:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesTerritory:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesTerritory:field:HashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesTerritory:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesTerritory:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesTerritory:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesTerritory:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_StateProvince:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_StateProvince:field:HashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_StateProvince:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_StateProvince:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_StateProvince:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_StateProvince:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Store:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Store:field:HashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Store:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Store:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Store:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Store:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_AddressStateProvince:field:AddressHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_AddressStateProvince:field:AddressHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_AddressStateProvince:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_AddressStateProvince:field:HashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_AddressStateProvince:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_AddressStateProvince:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_AddressStateProvince:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_AddressStateProvince:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_AddressStateProvince:field:StateProvinceHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_AddressStateProvince:field:StateProvinceHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerPerson:field:CustomerHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerPerson:field:CustomerHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerPerson:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerPerson:field:HashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerPerson:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerPerson:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerPerson:field:PersonHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerPerson:field:PersonHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerPerson:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerPerson:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerStore:field:CustomerHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerStore:field:CustomerHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerStore:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerStore:field:HashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerStore:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerStore:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerStore:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerStore:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerStore:field:StoreHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerStore:field:StoreHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryAssignment:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryAssignment:field:HashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryAssignment:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryAssignment:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryAssignment:field:ProductHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryAssignment:field:ProductHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryAssignment:field:ProductSubcategoryHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryAssignment:field:ProductSubcategoryHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryAssignment:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryAssignment:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryCategory:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryCategory:field:HashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryCategory:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryCategory:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryCategory:field:ProductCategoryHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryCategory:field:ProductCategoryHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryCategory:field:ProductSubcategoryHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryCategory:field:ProductSubcategoryHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryCategory:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryCategory:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderBillToAddress:field:BillToAddressHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderBillToAddress:field:BillToAddressHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderBillToAddress:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderBillToAddress:field:HashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderBillToAddress:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderBillToAddress:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderBillToAddress:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderBillToAddress:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderBillToAddress:field:SalesOrderHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderBillToAddress:field:SalesOrderHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer:field:CustomerHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer:field:CustomerHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer:field:HashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer:field:SalesOrderHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer:field:SalesOrderHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct:field:HashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct:field:ProductHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct:field:ProductHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct:field:SalesOrderLineHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct:field:SalesOrderLineHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineSalesOrder:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineSalesOrder:field:HashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineSalesOrder:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineSalesOrder:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineSalesOrder:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineSalesOrder:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineSalesOrder:field:SalesOrderHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineSalesOrder:field:SalesOrderHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineSalesOrder:field:SalesOrderLineHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineSalesOrder:field:SalesOrderLineHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson:field:HashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson:field:SalesOrderHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson:field:SalesOrderHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson:field:SalesPersonHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson:field:SalesPersonHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesTerritory:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesTerritory:field:HashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesTerritory:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesTerritory:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesTerritory:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesTerritory:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesTerritory:field:SalesOrderHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesTerritory:field:SalesOrderHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesTerritory:field:SalesTerritoryHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesTerritory:field:SalesTerritoryHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderShipToAddress:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderShipToAddress:field:HashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderShipToAddress:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderShipToAddress:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderShipToAddress:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderShipToAddress:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderShipToAddress:field:SalesOrderHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderShipToAddress:field:SalesOrderHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderShipToAddress:field:ShipToAddressHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderShipToAddress:field:ShipToAddressHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonPerson:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonPerson:field:HashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonPerson:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonPerson:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonPerson:field:PersonHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonPerson:field:PersonHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonPerson:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonPerson:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonPerson:field:SalesPersonHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonPerson:field:SalesPersonHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonQuotaSalesPerson:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonQuotaSalesPerson:field:HashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonQuotaSalesPerson:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonQuotaSalesPerson:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonQuotaSalesPerson:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonQuotaSalesPerson:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonQuotaSalesPerson:field:SalesPersonHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonQuotaSalesPerson:field:SalesPersonHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonQuotaSalesPerson:field:SalesPersonQuotaHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonQuotaSalesPerson:field:SalesPersonQuotaHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonSalesTerritory:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonSalesTerritory:field:HashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonSalesTerritory:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonSalesTerritory:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonSalesTerritory:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonSalesTerritory:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonSalesTerritory:field:SalesPersonHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonSalesTerritory:field:SalesPersonHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonSalesTerritory:field:SalesTerritoryHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonSalesTerritory:field:SalesTerritoryHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesTerritoryCountryRegion:field:CountryRegionHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesTerritoryCountryRegion:field:CountryRegionHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesTerritoryCountryRegion:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesTerritoryCountryRegion:field:HashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesTerritoryCountryRegion:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesTerritoryCountryRegion:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesTerritoryCountryRegion:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesTerritoryCountryRegion:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesTerritoryCountryRegion:field:SalesTerritoryHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesTerritoryCountryRegion:field:SalesTerritoryHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceCountryRegion:field:CountryRegionHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceCountryRegion:field:CountryRegionHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceCountryRegion:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceCountryRegion:field:HashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceCountryRegion:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceCountryRegion:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceCountryRegion:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceCountryRegion:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceCountryRegion:field:StateProvinceHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceCountryRegion:field:StateProvinceHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceSalesTerritory:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceSalesTerritory:field:HashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceSalesTerritory:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceSalesTerritory:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceSalesTerritory:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceSalesTerritory:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceSalesTerritory:field:SalesTerritoryHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceSalesTerritory:field:SalesTerritoryHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceSalesTerritory:field:StateProvinceHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceSalesTerritory:field:StateProvinceHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StoreSalesPerson:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StoreSalesPerson:field:HashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StoreSalesPerson:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StoreSalesPerson:field:LoadTimestamp">
+      <Name>Precision</Name>
+      <Value>7</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StoreSalesPerson:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StoreSalesPerson:field:RecordSource">
+      <Name>Length</Name>
+      <Value>256</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StoreSalesPerson:field:SalesPersonHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StoreSalesPerson:field:SalesPersonHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+    <FieldDataTypeDetail Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StoreSalesPerson:field:StoreHashKey:detail:Length" FieldId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StoreSalesPerson:field:StoreHashKey">
+      <Name>Length</Name>
+      <Value>32</Value>
+    </FieldDataTypeDetail>
+  </FieldDataTypeDetailList>
+</MetaSchema>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <DataTypeReferenceList>
+    <DataTypeReference Id="DataTypeReference:1" />
+    <DataTypeReference Id="DataTypeReference:2" />
+    <DataTypeReference Id="DataTypeReference:3" />
+    <DataTypeReference Id="DataTypeReference:4" />
+  </DataTypeReferenceList>
+</MetaWeave>

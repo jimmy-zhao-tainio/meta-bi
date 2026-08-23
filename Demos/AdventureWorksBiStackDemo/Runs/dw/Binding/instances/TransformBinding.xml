@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <TransformBindingList>
+    <TransformBinding Id="TransformScript:10:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:10</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>Dim_Date_DueDate</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:11:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:11</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>Dim_Date_ShipDate</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:12:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:12</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>Dim_Date_QuotaDate</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:13:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:13</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>Dim_Product</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:14:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:14</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>Dim_Geography</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:15:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:15</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>Dim_Customer</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:16:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:16</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>Dim_Salesperson</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:17:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:17</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>Dim_SalesTerritory</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:18:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:18</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>Fact_SalesOrder</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:19:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:19</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>Fact_SalesLine</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:1:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:1</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>Dim_SalesChannel_Online</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:20:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:20</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>Fact_SalespersonQuota</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:2:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:2</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>Dim_SalesChannel_Store</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:3:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:3</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>Dim_OrderStatus_1_InProcess</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:4:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:4</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>Dim_OrderStatus_2_Approved</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:5:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:5</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>Dim_OrderStatus_3_Backordered</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:6:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:6</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>Dim_OrderStatus_4_Rejected</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:7:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:7</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>Dim_OrderStatus_5_Shipped</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:8:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:8</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>Dim_OrderStatus_6_Cancelled</TransformScriptName>
+    </TransformBinding>
+    <TransformBinding Id="TransformScript:9:binding">
+      <MetaTransformScriptTransformScriptId>TransformScript:9</MetaTransformScriptTransformScriptId>
+      <TransformScriptName>Dim_Date_OrderDate</TransformScriptName>
+    </TransformBinding>
+  </TransformBindingList>
+</MetaTransformBinding>

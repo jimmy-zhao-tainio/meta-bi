@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTabular>
+  <TabularModelList>
+    <TabularModel Id="AdventureWorksSales">
+      <CompatibilityLevel>1500</CompatibilityLevel>
+      <DefaultCulture>en-US</DefaultCulture>
+      <Description>Sales orders, sales lines, and salesperson quotas from the conformed AdventureWorks warehouse.</Description>
+      <Name>AdventureWorks Sales</Name>
+    </TabularModel>
+  </TabularModelList>
+</MetaTabular>

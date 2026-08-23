@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSql>
+  <TableColumnList>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Customer.AccountNumber" TableId="AdventureWorksAnalytics.dw.Dim_Customer">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>AccountNumber</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Customer.AuditId" TableId="AdventureWorksAnalytics.dw.Dim_Customer">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Customer.CustomerID" TableId="AdventureWorksAnalytics.dw.Dim_Customer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>CustomerID</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Customer.CustomerKey" TableId="AdventureWorksAnalytics.dw.Dim_Customer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>CustomerKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Customer.CustomerName" TableId="AdventureWorksAnalytics.dw.Dim_Customer">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CustomerName</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Customer.CustomerType" TableId="AdventureWorksAnalytics.dw.Dim_Customer">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CustomerType</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Customer.InsertDateTime2" TableId="AdventureWorksAnalytics.dw.Dim_Customer">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>InsertDateTime2</Name>
+      <Ordinal>8</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Customer.StoreName" TableId="AdventureWorksAnalytics.dw.Dim_Customer">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>StoreName</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Date.AuditId" TableId="AdventureWorksAnalytics.dw.Dim_Date">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>10</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Date.CalendarDate" TableId="AdventureWorksAnalytics.dw.Dim_Date">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:date</MetaDataTypeId>
+      <Name>CalendarDate</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Date.CalendarDateKey" TableId="AdventureWorksAnalytics.dw.Dim_Date">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>CalendarDateKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Date.CalendarQuarter" TableId="AdventureWorksAnalytics.dw.Dim_Date">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>CalendarQuarter</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Date.CalendarYear" TableId="AdventureWorksAnalytics.dw.Dim_Date">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>CalendarYear</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Date.DateKey" TableId="AdventureWorksAnalytics.dw.Dim_Date">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>DateKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Date.DayName" TableId="AdventureWorksAnalytics.dw.Dim_Date">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>DayName</Name>
+      <Ordinal>9</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Date.DayOfMonth" TableId="AdventureWorksAnalytics.dw.Dim_Date">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>DayOfMonth</Name>
+      <Ordinal>8</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Date.InsertDateTime2" TableId="AdventureWorksAnalytics.dw.Dim_Date">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>InsertDateTime2</Name>
+      <Ordinal>11</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Date.MonthName" TableId="AdventureWorksAnalytics.dw.Dim_Date">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>MonthName</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Date.MonthNumber" TableId="AdventureWorksAnalytics.dw.Dim_Date">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>MonthNumber</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Geography.AddressID" TableId="AdventureWorksAnalytics.dw.Dim_Geography">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AddressID</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Geography.AddressLine1" TableId="AdventureWorksAnalytics.dw.Dim_Geography">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>AddressLine1</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Geography.AddressLine2" TableId="AdventureWorksAnalytics.dw.Dim_Geography">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>AddressLine2</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Geography.AuditId" TableId="AdventureWorksAnalytics.dw.Dim_Geography">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>11</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Geography.City" TableId="AdventureWorksAnalytics.dw.Dim_Geography">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>City</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Geography.CountryRegionCode" TableId="AdventureWorksAnalytics.dw.Dim_Geography">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CountryRegionCode</Name>
+      <Ordinal>9</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Geography.CountryRegionName" TableId="AdventureWorksAnalytics.dw.Dim_Geography">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CountryRegionName</Name>
+      <Ordinal>10</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Geography.GeographyKey" TableId="AdventureWorksAnalytics.dw.Dim_Geography">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>GeographyKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Geography.InsertDateTime2" TableId="AdventureWorksAnalytics.dw.Dim_Geography">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>InsertDateTime2</Name>
+      <Ordinal>12</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Geography.PostalCode" TableId="AdventureWorksAnalytics.dw.Dim_Geography">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>PostalCode</Name>
+      <Ordinal>8</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Geography.StateProvinceCode" TableId="AdventureWorksAnalytics.dw.Dim_Geography">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>StateProvinceCode</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Geography.StateProvinceName" TableId="AdventureWorksAnalytics.dw.Dim_Geography">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>StateProvinceName</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_OrderStatus.AuditId" TableId="AdventureWorksAnalytics.dw.Dim_OrderStatus">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_OrderStatus.InsertDateTime2" TableId="AdventureWorksAnalytics.dw.Dim_OrderStatus">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>InsertDateTime2</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_OrderStatus.OrderStatusKey" TableId="AdventureWorksAnalytics.dw.Dim_OrderStatus">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>OrderStatusKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_OrderStatus.StatusCode" TableId="AdventureWorksAnalytics.dw.Dim_OrderStatus">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>StatusCode</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_OrderStatus.StatusName" TableId="AdventureWorksAnalytics.dw.Dim_OrderStatus">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>StatusName</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Product.AuditId" TableId="AdventureWorksAnalytics.dw.Dim_Product">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>8</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Product.Color" TableId="AdventureWorksAnalytics.dw.Dim_Product">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>Color</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Product.InsertDateTime2" TableId="AdventureWorksAnalytics.dw.Dim_Product">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>InsertDateTime2</Name>
+      <Ordinal>9</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Product.ProductCategoryName" TableId="AdventureWorksAnalytics.dw.Dim_Product">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>ProductCategoryName</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Product.ProductID" TableId="AdventureWorksAnalytics.dw.Dim_Product">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>ProductID</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Product.ProductKey" TableId="AdventureWorksAnalytics.dw.Dim_Product">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>ProductKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Product.ProductName" TableId="AdventureWorksAnalytics.dw.Dim_Product">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>ProductName</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Product.ProductNumber" TableId="AdventureWorksAnalytics.dw.Dim_Product">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>ProductNumber</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Product.ProductSubcategoryName" TableId="AdventureWorksAnalytics.dw.Dim_Product">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>ProductSubcategoryName</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_SalesChannel.AuditId" TableId="AdventureWorksAnalytics.dw.Dim_SalesChannel">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_SalesChannel.ChannelCode" TableId="AdventureWorksAnalytics.dw.Dim_SalesChannel">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>ChannelCode</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_SalesChannel.ChannelName" TableId="AdventureWorksAnalytics.dw.Dim_SalesChannel">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>ChannelName</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_SalesChannel.InsertDateTime2" TableId="AdventureWorksAnalytics.dw.Dim_SalesChannel">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>InsertDateTime2</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_SalesChannel.SalesChannelKey" TableId="AdventureWorksAnalytics.dw.Dim_SalesChannel">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>SalesChannelKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Salesperson.AuditId" TableId="AdventureWorksAnalytics.dw.Dim_Salesperson">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Salesperson.BusinessEntityID" TableId="AdventureWorksAnalytics.dw.Dim_Salesperson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>BusinessEntityID</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Salesperson.FirstName" TableId="AdventureWorksAnalytics.dw.Dim_Salesperson">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>FirstName</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Salesperson.FullName" TableId="AdventureWorksAnalytics.dw.Dim_Salesperson">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>FullName</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Salesperson.InsertDateTime2" TableId="AdventureWorksAnalytics.dw.Dim_Salesperson">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>InsertDateTime2</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Salesperson.LastName" TableId="AdventureWorksAnalytics.dw.Dim_Salesperson">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>LastName</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_Salesperson.SalespersonKey" TableId="AdventureWorksAnalytics.dw.Dim_Salesperson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>SalespersonKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_SalesTerritory.AuditId" TableId="AdventureWorksAnalytics.dw.Dim_SalesTerritory">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_SalesTerritory.CountryRegionCode" TableId="AdventureWorksAnalytics.dw.Dim_SalesTerritory">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CountryRegionCode</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_SalesTerritory.InsertDateTime2" TableId="AdventureWorksAnalytics.dw.Dim_SalesTerritory">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>InsertDateTime2</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_SalesTerritory.SalesTerritoryKey" TableId="AdventureWorksAnalytics.dw.Dim_SalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>SalesTerritoryKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_SalesTerritory.TerritoryGroup" TableId="AdventureWorksAnalytics.dw.Dim_SalesTerritory">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>TerritoryGroup</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_SalesTerritory.TerritoryID" TableId="AdventureWorksAnalytics.dw.Dim_SalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>TerritoryID</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Dim_SalesTerritory.TerritoryName" TableId="AdventureWorksAnalytics.dw.Dim_SalesTerritory">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>TerritoryName</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalesLine.AuditId" TableId="AdventureWorksAnalytics.dw.Fact_SalesLine">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>14</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalesLine.CustomerKey" TableId="AdventureWorksAnalytics.dw.Fact_SalesLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>CustomerKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalesLine.DiscountAmount" TableId="AdventureWorksAnalytics.dw.Fact_SalesLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>DiscountAmount</Name>
+      <Ordinal>12</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalesLine.InsertDateTime2" TableId="AdventureWorksAnalytics.dw.Fact_SalesLine">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>InsertDateTime2</Name>
+      <Ordinal>15</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalesLine.LineSalesAmount" TableId="AdventureWorksAnalytics.dw.Fact_SalesLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>LineSalesAmount</Name>
+      <Ordinal>13</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalesLine.OrderDateKey" TableId="AdventureWorksAnalytics.dw.Fact_SalesLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>OrderDateKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalesLine.OrderQuantity" TableId="AdventureWorksAnalytics.dw.Fact_SalesLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>OrderQuantity</Name>
+      <Ordinal>10</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalesLine.ProductKey" TableId="AdventureWorksAnalytics.dw.Fact_SalesLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>ProductKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalesLine.SalesChannelKey" TableId="AdventureWorksAnalytics.dw.Fact_SalesLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>SalesChannelKey</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalesLine.SalesOrderDetailID" TableId="AdventureWorksAnalytics.dw.Fact_SalesLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>SalesOrderDetailID</Name>
+      <Ordinal>9</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalesLine.SalesOrderID" TableId="AdventureWorksAnalytics.dw.Fact_SalesLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>SalesOrderID</Name>
+      <Ordinal>8</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalesLine.SalespersonKey" TableId="AdventureWorksAnalytics.dw.Fact_SalesLine">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>SalespersonKey</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalesLine.SalesTerritoryKey" TableId="AdventureWorksAnalytics.dw.Fact_SalesLine">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>SalesTerritoryKey</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalesLine.ShipToGeographyKey" TableId="AdventureWorksAnalytics.dw.Fact_SalesLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>ShipToGeographyKey</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalesLine.UnitPrice" TableId="AdventureWorksAnalytics.dw.Fact_SalesLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>UnitPrice</Name>
+      <Ordinal>11</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder.AuditId" TableId="AdventureWorksAnalytics.dw.Fact_SalesOrder">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>17</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder.BillToGeographyKey" TableId="AdventureWorksAnalytics.dw.Fact_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>BillToGeographyKey</Name>
+      <Ordinal>9</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder.CustomerKey" TableId="AdventureWorksAnalytics.dw.Fact_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>CustomerKey</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder.DueDateKey" TableId="AdventureWorksAnalytics.dw.Fact_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>DueDateKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder.FreightAmount" TableId="AdventureWorksAnalytics.dw.Fact_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>FreightAmount</Name>
+      <Ordinal>15</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder.InsertDateTime2" TableId="AdventureWorksAnalytics.dw.Fact_SalesOrder">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>InsertDateTime2</Name>
+      <Ordinal>18</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder.OrderCount" TableId="AdventureWorksAnalytics.dw.Fact_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>OrderCount</Name>
+      <Ordinal>12</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder.OrderDateKey" TableId="AdventureWorksAnalytics.dw.Fact_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>OrderDateKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder.OrderStatusKey" TableId="AdventureWorksAnalytics.dw.Fact_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>OrderStatusKey</Name>
+      <Ordinal>8</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder.SalesChannelKey" TableId="AdventureWorksAnalytics.dw.Fact_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>SalesChannelKey</Name>
+      <Ordinal>7</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder.SalesOrderID" TableId="AdventureWorksAnalytics.dw.Fact_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>SalesOrderID</Name>
+      <Ordinal>11</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder.SalespersonKey" TableId="AdventureWorksAnalytics.dw.Fact_SalesOrder">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>SalespersonKey</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder.SalesTerritoryKey" TableId="AdventureWorksAnalytics.dw.Fact_SalesOrder">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>SalesTerritoryKey</Name>
+      <Ordinal>6</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder.ShipDateKey" TableId="AdventureWorksAnalytics.dw.Fact_SalesOrder">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>ShipDateKey</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder.ShipToGeographyKey" TableId="AdventureWorksAnalytics.dw.Fact_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>ShipToGeographyKey</Name>
+      <Ordinal>10</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder.SubTotal" TableId="AdventureWorksAnalytics.dw.Fact_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>SubTotal</Name>
+      <Ordinal>13</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder.TaxAmount" TableId="AdventureWorksAnalytics.dw.Fact_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>TaxAmount</Name>
+      <Ordinal>14</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalesOrder.TotalDue" TableId="AdventureWorksAnalytics.dw.Fact_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>TotalDue</Name>
+      <Ordinal>16</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalespersonQuota.AuditId" TableId="AdventureWorksAnalytics.dw.Fact_SalespersonQuota">
+      <DefaultExpressionSql>CONVERT(bigint, SESSION_CONTEXT(N'MetaPipeline.AuditId'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>4</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalespersonQuota.InsertDateTime2" TableId="AdventureWorksAnalytics.dw.Fact_SalespersonQuota">
+      <DefaultExpressionSql>CONVERT(datetime2(7), SESSION_CONTEXT(N'MetaPipeline.TaskStartedAtUtc'))</DefaultExpressionSql>
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>InsertDateTime2</Name>
+      <Ordinal>5</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalespersonQuota.QuotaAmount" TableId="AdventureWorksAnalytics.dw.Fact_SalespersonQuota">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>QuotaAmount</Name>
+      <Ordinal>3</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalespersonQuota.QuotaPeriodKey" TableId="AdventureWorksAnalytics.dw.Fact_SalespersonQuota">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>QuotaPeriodKey</Name>
+      <Ordinal>1</Ordinal>
+    </TableColumn>
+    <TableColumn Id="AdventureWorksAnalytics.dw.Fact_SalespersonQuota.SalespersonKey" TableId="AdventureWorksAnalytics.dw.Fact_SalespersonQuota">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>SalespersonKey</Name>
+      <Ordinal>2</Ordinal>
+    </TableColumn>
+  </TableColumnList>
+</MetaSql>

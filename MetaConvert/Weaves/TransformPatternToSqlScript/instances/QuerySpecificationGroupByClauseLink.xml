@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <QuerySpecificationGroupByClauseLinkList>
+    <QuerySpecificationGroupByClauseLink Id="QuerySpecificationGroupByClauseLink:1" GroupByClauseId="GroupByClause:1" QuerySpecificationId="QuerySpecification:7" />
+    <QuerySpecificationGroupByClauseLink Id="QuerySpecificationGroupByClauseLink:2" GroupByClauseId="GroupByClause:2" QuerySpecificationId="QuerySpecification:9" />
+    <QuerySpecificationGroupByClauseLink Id="QuerySpecificationGroupByClauseLink:3" GroupByClauseId="GroupByClause:3" QuerySpecificationId="QuerySpecification:19" />
+    <QuerySpecificationGroupByClauseLink Id="QuerySpecificationGroupByClauseLink:4" GroupByClauseId="GroupByClause:4" QuerySpecificationId="QuerySpecification:21" />
+    <QuerySpecificationGroupByClauseLink Id="QuerySpecificationGroupByClauseLink:5" GroupByClauseId="GroupByClause:5" QuerySpecificationId="QuerySpecification:25" />
+    <QuerySpecificationGroupByClauseLink Id="QuerySpecificationGroupByClauseLink:6" GroupByClauseId="GroupByClause:6" QuerySpecificationId="QuerySpecification:29" />
+  </QuerySpecificationGroupByClauseLinkList>
+</MetaWeave>

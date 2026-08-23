@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <MergeInsertActionList>
+    <MergeInsertAction Id="MergeInsertAction:1" MergeActionId="MergeAction:1" />
+    <MergeInsertAction Id="MergeInsertAction:10" MergeActionId="MergeAction:16" />
+    <MergeInsertAction Id="MergeInsertAction:11" MergeActionId="MergeAction:18" />
+    <MergeInsertAction Id="MergeInsertAction:12" MergeActionId="MergeAction:20" />
+    <MergeInsertAction Id="MergeInsertAction:2" MergeActionId="MergeAction:2" />
+    <MergeInsertAction Id="MergeInsertAction:3" MergeActionId="MergeAction:3" />
+    <MergeInsertAction Id="MergeInsertAction:4" MergeActionId="MergeAction:4" />
+    <MergeInsertAction Id="MergeInsertAction:5" MergeActionId="MergeAction:6" />
+    <MergeInsertAction Id="MergeInsertAction:6" MergeActionId="MergeAction:8" />
+    <MergeInsertAction Id="MergeInsertAction:7" MergeActionId="MergeAction:10" />
+    <MergeInsertAction Id="MergeInsertAction:8" MergeActionId="MergeAction:12" />
+    <MergeInsertAction Id="MergeInsertAction:9" MergeActionId="MergeAction:14" />
+  </MergeInsertActionList>
+</MetaTransformScript>

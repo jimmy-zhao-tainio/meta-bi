@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTabular>
+  <TabularPerspectiveTableList>
+    <TabularPerspectiveTable Id="SalesAnalysis_Customer" TabularPerspectiveId="SalesAnalysis" TabularTableId="Customer" />
+    <TabularPerspectiveTable Id="SalesAnalysis_Date" TabularPerspectiveId="SalesAnalysis" TabularTableId="Date" />
+    <TabularPerspectiveTable Id="SalesAnalysis_Geography" TabularPerspectiveId="SalesAnalysis" TabularTableId="Geography" />
+    <TabularPerspectiveTable Id="SalesAnalysis_OrderStatus" TabularPerspectiveId="SalesAnalysis" TabularTableId="OrderStatus" />
+    <TabularPerspectiveTable Id="SalesAnalysis_Product" TabularPerspectiveId="SalesAnalysis" TabularTableId="Product" />
+    <TabularPerspectiveTable Id="SalesAnalysis_SalesChannel" TabularPerspectiveId="SalesAnalysis" TabularTableId="SalesChannel" />
+    <TabularPerspectiveTable Id="SalesAnalysis_SalesLines" TabularPerspectiveId="SalesAnalysis" TabularTableId="SalesLines" />
+    <TabularPerspectiveTable Id="SalesAnalysis_SalesOrders" TabularPerspectiveId="SalesAnalysis" TabularTableId="SalesOrders" />
+    <TabularPerspectiveTable Id="SalesAnalysis_Salesperson" TabularPerspectiveId="SalesAnalysis" TabularTableId="Salesperson" />
+    <TabularPerspectiveTable Id="SalesAnalysis_SalespersonQuotas" TabularPerspectiveId="SalesAnalysis" TabularTableId="SalespersonQuotas" />
+    <TabularPerspectiveTable Id="SalesAnalysis_SalesTerritory" TabularPerspectiveId="SalesAnalysis" TabularTableId="SalesTerritory" />
+  </TabularPerspectiveTableList>
+</MetaTabular>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <DirectionSourceWorkspaceList>
+    <DirectionSourceWorkspace Id="forward/options" DirectionId="forward">
+      <ModelName>MetaSchemaToRawDataVaultOptions</ModelName>
+      <Name>options</Name>
+    </DirectionSourceWorkspace>
+    <DirectionSourceWorkspace Id="forward/schema" DirectionId="forward">
+      <ModelName>MetaSchema</ModelName>
+      <Name>schema</Name>
+    </DirectionSourceWorkspace>
+  </DirectionSourceWorkspaceList>
+</MetaWeave>

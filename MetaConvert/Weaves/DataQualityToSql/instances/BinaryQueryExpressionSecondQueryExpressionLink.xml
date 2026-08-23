@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <BinaryQueryExpressionSecondQueryExpressionLinkList>
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:1" BinaryQueryExpressionId="BinaryQueryExpression:1" QueryExpressionId="QueryExpression:11" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:10" BinaryQueryExpressionId="BinaryQueryExpression:10" QueryExpressionId="QueryExpression:52" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:11" BinaryQueryExpressionId="BinaryQueryExpression:11" QueryExpressionId="QueryExpression:68" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:12" BinaryQueryExpressionId="BinaryQueryExpression:12" QueryExpressionId="QueryExpression:72" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:13" BinaryQueryExpressionId="BinaryQueryExpression:13" QueryExpressionId="QueryExpression:87" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:14" BinaryQueryExpressionId="BinaryQueryExpression:14" QueryExpressionId="QueryExpression:92" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:15" BinaryQueryExpressionId="BinaryQueryExpression:15" QueryExpressionId="QueryExpression:94" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:16" BinaryQueryExpressionId="BinaryQueryExpression:16" QueryExpressionId="QueryExpression:96" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:17" BinaryQueryExpressionId="BinaryQueryExpression:17" QueryExpressionId="QueryExpression:98" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:18" BinaryQueryExpressionId="BinaryQueryExpression:18" QueryExpressionId="QueryExpression:121" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:19" BinaryQueryExpressionId="BinaryQueryExpression:19" QueryExpressionId="QueryExpression:123" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:20" BinaryQueryExpressionId="BinaryQueryExpression:20" QueryExpressionId="QueryExpression:125" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:21" BinaryQueryExpressionId="BinaryQueryExpression:21" QueryExpressionId="QueryExpression:127" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:22" BinaryQueryExpressionId="BinaryQueryExpression:22" QueryExpressionId="QueryExpression:129" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:23" BinaryQueryExpressionId="BinaryQueryExpression:23" QueryExpressionId="QueryExpression:131" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:24" BinaryQueryExpressionId="BinaryQueryExpression:24" QueryExpressionId="QueryExpression:133" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:25" BinaryQueryExpressionId="BinaryQueryExpression:25" QueryExpressionId="QueryExpression:135" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:26" BinaryQueryExpressionId="BinaryQueryExpression:26" QueryExpressionId="QueryExpression:138" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:3" BinaryQueryExpressionId="BinaryQueryExpression:3" QueryExpressionId="QueryExpression:38" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:4" BinaryQueryExpressionId="BinaryQueryExpression:4" QueryExpressionId="QueryExpression:40" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:5" BinaryQueryExpressionId="BinaryQueryExpression:5" QueryExpressionId="QueryExpression:42" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:6" BinaryQueryExpressionId="BinaryQueryExpression:6" QueryExpressionId="QueryExpression:44" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:7" BinaryQueryExpressionId="BinaryQueryExpression:7" QueryExpressionId="QueryExpression:46" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:8" BinaryQueryExpressionId="BinaryQueryExpression:8" QueryExpressionId="QueryExpression:48" />
+    <BinaryQueryExpressionSecondQueryExpressionLink Id="BinaryQueryExpressionSecondQueryExpressionLink:9" BinaryQueryExpressionId="BinaryQueryExpression:9" QueryExpressionId="QueryExpression:50" />
+  </BinaryQueryExpressionSecondQueryExpressionLinkList>
+</MetaWeave>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaRawDataVault>
+  <RawHubSatelliteList>
+    <RawHubSatellite Id="CustomerProfileSat" RawHubId="CustomerHub">
+      <Name>CustomerProfile</Name>
+      <SatelliteKind>standard</SatelliteKind>
+    </RawHubSatellite>
+    <RawHubSatellite Id="DepartmentProfileSat" RawHubId="DepartmentHub">
+      <Name>DepartmentProfile</Name>
+      <SatelliteKind>standard</SatelliteKind>
+    </RawHubSatellite>
+    <RawHubSatellite Id="EmployeeProfileSat" RawHubId="EmployeeHub">
+      <Name>EmployeeProfile</Name>
+      <SatelliteKind>standard</SatelliteKind>
+    </RawHubSatellite>
+    <RawHubSatellite Id="InvoiceHeaderSat" RawHubId="InvoiceHub">
+      <Name>InvoiceHeader</Name>
+      <SatelliteKind>standard</SatelliteKind>
+    </RawHubSatellite>
+    <RawHubSatellite Id="OrderHeaderSat" RawHubId="OrderHub">
+      <Name>OrderHeader</Name>
+      <SatelliteKind>standard</SatelliteKind>
+    </RawHubSatellite>
+    <RawHubSatellite Id="ProductProfileSat" RawHubId="ProductHub">
+      <Name>ProductProfile</Name>
+      <SatelliteKind>standard</SatelliteKind>
+    </RawHubSatellite>
+    <RawHubSatellite Id="ShipmentHeaderSat" RawHubId="ShipmentHub">
+      <Name>ShipmentHeader</Name>
+      <SatelliteKind>standard</SatelliteKind>
+    </RawHubSatellite>
+    <RawHubSatellite Id="SupplierProfileSat" RawHubId="SupplierHub">
+      <Name>SupplierProfile</Name>
+      <SatelliteKind>standard</SatelliteKind>
+    </RawHubSatellite>
+  </RawHubSatelliteList>
+</MetaRawDataVault>

@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaOrchestration>
+  <DataObjectList>
+    <DataObject Id="plan-default:object:adventureworks2022-humanresources-employee" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKS2022.HUMANRESOURCES.EMPLOYEE</NormalizedKey>
+      <SqlIdentifier>AdventureWorks2022.HumanResources.Employee</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworks2022-person-address" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKS2022.PERSON.ADDRESS</NormalizedKey>
+      <SqlIdentifier>AdventureWorks2022.Person.Address</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworks2022-person-countryregion" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKS2022.PERSON.COUNTRYREGION</NormalizedKey>
+      <SqlIdentifier>AdventureWorks2022.Person.CountryRegion</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworks2022-person-person" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKS2022.PERSON.PERSON</NormalizedKey>
+      <SqlIdentifier>AdventureWorks2022.Person.Person</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworks2022-person-stateprovince" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKS2022.PERSON.STATEPROVINCE</NormalizedKey>
+      <SqlIdentifier>AdventureWorks2022.Person.StateProvince</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworks2022-production-product" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKS2022.PRODUCTION.PRODUCT</NormalizedKey>
+      <SqlIdentifier>AdventureWorks2022.Production.Product</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworks2022-production-productcategory" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKS2022.PRODUCTION.PRODUCTCATEGORY</NormalizedKey>
+      <SqlIdentifier>AdventureWorks2022.Production.ProductCategory</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworks2022-production-productsubcategory" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKS2022.PRODUCTION.PRODUCTSUBCATEGORY</NormalizedKey>
+      <SqlIdentifier>AdventureWorks2022.Production.ProductSubcategory</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworks2022-sales-customer" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKS2022.SALES.CUSTOMER</NormalizedKey>
+      <SqlIdentifier>AdventureWorks2022.Sales.Customer</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworks2022-sales-salesorderdetail" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKS2022.SALES.SALESORDERDETAIL</NormalizedKey>
+      <SqlIdentifier>AdventureWorks2022.Sales.SalesOrderDetail</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworks2022-sales-salesorderheader" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKS2022.SALES.SALESORDERHEADER</NormalizedKey>
+      <SqlIdentifier>AdventureWorks2022.Sales.SalesOrderHeader</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworks2022-sales-salesperson" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKS2022.SALES.SALESPERSON</NormalizedKey>
+      <SqlIdentifier>AdventureWorks2022.Sales.SalesPerson</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworks2022-sales-salespersonquotahistory" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKS2022.SALES.SALESPERSONQUOTAHISTORY</NormalizedKey>
+      <SqlIdentifier>AdventureWorks2022.Sales.SalesPersonQuotaHistory</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworks2022-sales-salesterritory" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKS2022.SALES.SALESTERRITORY</NormalizedKey>
+      <SqlIdentifier>AdventureWorks2022.Sales.SalesTerritory</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworks2022-sales-specialofferproduct" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKS2022.SALES.SPECIALOFFERPRODUCT</NormalizedKey>
+      <SqlIdentifier>AdventureWorks2022.Sales.SpecialOfferProduct</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworks2022-sales-store" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKS2022.SALES.STORE</NormalizedKey>
+      <SqlIdentifier>AdventureWorks2022.Sales.Store</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksanalytics-dw-dim-customer" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSANALYTICS.DW.DIM_CUSTOMER</NormalizedKey>
+      <SqlIdentifier>AdventureWorksAnalytics.dw.Dim_Customer</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksanalytics-dw-dim-date" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSANALYTICS.DW.DIM_DATE</NormalizedKey>
+      <SqlIdentifier>AdventureWorksAnalytics.dw.Dim_Date</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksanalytics-dw-dim-geography" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSANALYTICS.DW.DIM_GEOGRAPHY</NormalizedKey>
+      <SqlIdentifier>AdventureWorksAnalytics.dw.Dim_Geography</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksanalytics-dw-dim-orderstatus" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSANALYTICS.DW.DIM_ORDERSTATUS</NormalizedKey>
+      <SqlIdentifier>AdventureWorksAnalytics.dw.Dim_OrderStatus</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksanalytics-dw-dim-product" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSANALYTICS.DW.DIM_PRODUCT</NormalizedKey>
+      <SqlIdentifier>AdventureWorksAnalytics.dw.Dim_Product</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksanalytics-dw-dim-saleschannel" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSANALYTICS.DW.DIM_SALESCHANNEL</NormalizedKey>
+      <SqlIdentifier>AdventureWorksAnalytics.dw.Dim_SalesChannel</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksanalytics-dw-dim-salesperson" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSANALYTICS.DW.DIM_SALESPERSON</NormalizedKey>
+      <SqlIdentifier>AdventureWorksAnalytics.dw.Dim_Salesperson</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksanalytics-dw-dim-salesterritory" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSANALYTICS.DW.DIM_SALESTERRITORY</NormalizedKey>
+      <SqlIdentifier>AdventureWorksAnalytics.dw.Dim_SalesTerritory</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksanalytics-dw-fact-salesline" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSANALYTICS.DW.FACT_SALESLINE</NormalizedKey>
+      <SqlIdentifier>AdventureWorksAnalytics.dw.Fact_SalesLine</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksanalytics-dw-fact-salesorder" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSANALYTICS.DW.FACT_SALESORDER</NormalizedKey>
+      <SqlIdentifier>AdventureWorksAnalytics.dw.Fact_SalesOrder</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksanalytics-dw-fact-salespersonquota" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSANALYTICS.DW.FACT_SALESPERSONQUOTA</NormalizedKey>
+      <SqlIdentifier>AdventureWorksAnalytics.dw.Fact_SalespersonQuota</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bh-address" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BH_ADDRESS</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BH_Address</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bh-countryregion" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BH_COUNTRYREGION</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BH_CountryRegion</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bh-customer" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BH_CUSTOMER</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BH_Customer</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bh-person" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BH_PERSON</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BH_Person</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bh-product" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BH_PRODUCT</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BH_Product</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bh-productcategory" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BH_PRODUCTCATEGORY</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BH_ProductCategory</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bh-productsubcategory" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BH_PRODUCTSUBCATEGORY</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BH_ProductSubcategory</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bh-salesorder" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BH_SALESORDER</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BH_SalesOrder</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bh-salesorderline" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BH_SALESORDERLINE</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BH_SalesOrderLine</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bh-salesperson" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BH_SALESPERSON</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BH_SalesPerson</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bh-salespersonquota" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BH_SALESPERSONQUOTA</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bh-salesterritory" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BH_SALESTERRITORY</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BH_SalesTerritory</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bh-stateprovince" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BH_STATEPROVINCE</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BH_StateProvince</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bh-store" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BH_STORE</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BH_Store</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bhs-address-addressprofile" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BHS_ADDRESS_ADDRESSPROFILE</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bhs-countryregion-countryregionprofile" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BHS_COUNTRYREGION_COUNTRYREGIONPROFILE</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BHS_CountryRegion_CountryRegionProfile</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bhs-customer-customerprofile" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BHS_CUSTOMER_CUSTOMERPROFILE</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bhs-person-personprofile" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BHS_PERSON_PERSONPROFILE</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BHS_Person_PersonProfile</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bhs-product-productprofile" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BHS_PRODUCT_PRODUCTPROFILE</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bhs-productcategory-productcategoryprofile" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BHS_PRODUCTCATEGORY_PRODUCTCATEGORYPROFILE</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BHS_ProductCategory_ProductCategoryProfile</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bhs-productsubcategory-productsubcategoryprofile" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BHS_PRODUCTSUBCATEGORY_PRODUCTSUBCATEGORYPROFILE</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BHS_ProductSubcategory_ProductSubcategoryProfile</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bhs-salesorder-salesorderheader" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BHS_SALESORDER_SALESORDERHEADER</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bhs-salesorderline-salesorderlinedetail" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BHS_SALESORDERLINE_SALESORDERLINEDETAIL</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bhs-salesperson-salespersonprofile" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BHS_SALESPERSON_SALESPERSONPROFILE</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BHS_SalesPerson_SalesPersonProfile</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bhs-salespersonquota-salespersonquotaprofile" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BHS_SALESPERSONQUOTA_SALESPERSONQUOTAPROFILE</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bhs-salesterritory-salesterritoryprofile" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BHS_SALESTERRITORY_SALESTERRITORYPROFILE</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bhs-stateprovince-stateprovinceprofile" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BHS_STATEPROVINCE_STATEPROVINCEPROFILE</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BHS_StateProvince_StateProvinceProfile</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bhs-store-storeprofile" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BHS_STORE_STOREPROFILE</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BHS_Store_StoreProfile</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bl-addressstateprovince" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BL_ADDRESSSTATEPROVINCE</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BL_AddressStateProvince</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bl-customerperson" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BL_CUSTOMERPERSON</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BL_CustomerPerson</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bl-customerstore" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BL_CUSTOMERSTORE</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BL_CustomerStore</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bl-productsubcategoryassignment" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BL_PRODUCTSUBCATEGORYASSIGNMENT</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryAssignment</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bl-productsubcategorycategory" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BL_PRODUCTSUBCATEGORYCATEGORY</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BL_ProductSubcategoryCategory</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bl-salesorderbilltoaddress" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BL_SALESORDERBILLTOADDRESS</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BL_SalesOrderBillToAddress</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bl-salesordercustomer" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BL_SALESORDERCUSTOMER</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BL_SalesOrderCustomer</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bl-salesorderlineproduct" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BL_SALESORDERLINEPRODUCT</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineProduct</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bl-salesorderlinesalesorder" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BL_SALESORDERLINESALESORDER</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BL_SalesOrderLineSalesOrder</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bl-salesordersalesperson" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BL_SALESORDERSALESPERSON</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesPerson</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bl-salesordersalesterritory" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BL_SALESORDERSALESTERRITORY</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BL_SalesOrderSalesTerritory</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bl-salesordershiptoaddress" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BL_SALESORDERSHIPTOADDRESS</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BL_SalesOrderShipToAddress</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bl-salespersonperson" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BL_SALESPERSONPERSON</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bl-salespersonquotasalesperson" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BL_SALESPERSONQUOTASALESPERSON</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BL_SalesPersonQuotaSalesPerson</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bl-salespersonsalesterritory" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BL_SALESPERSONSALESTERRITORY</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BL_SalesPersonSalesTerritory</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bl-salesterritorycountryregion" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BL_SALESTERRITORYCOUNTRYREGION</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BL_SalesTerritoryCountryRegion</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bl-stateprovincecountryregion" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BL_STATEPROVINCECOUNTRYREGION</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BL_StateProvinceCountryRegion</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bl-stateprovincesalesterritory" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BL_STATEPROVINCESALESTERRITORY</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BL_StateProvinceSalesTerritory</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksbusinessvault-dbo-bl-storesalesperson" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSBUSINESSVAULT.DBO.BL_STORESALESPERSON</NormalizedKey>
+      <SqlIdentifier>AdventureWorksBusinessVault.dbo.BL_StoreSalesPerson</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-h-address" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.H_ADDRESS</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_Address</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-h-countryregion" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.H_COUNTRYREGION</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_CountryRegion</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-h-customer" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.H_CUSTOMER</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_Customer</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-h-employee" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.H_EMPLOYEE</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_Employee</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-h-person" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.H_PERSON</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_Person</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-h-product" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.H_PRODUCT</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_Product</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-h-productcategory" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.H_PRODUCTCATEGORY</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_ProductCategory</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-h-productsubcategory" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.H_PRODUCTSUBCATEGORY</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_ProductSubcategory</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-h-salesorderdetail" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.H_SALESORDERDETAIL</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_SalesOrderDetail</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-h-salesorderheader" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.H_SALESORDERHEADER</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_SalesOrderHeader</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-h-salesperson" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.H_SALESPERSON</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_SalesPerson</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-h-salespersonquotahistory" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.H_SALESPERSONQUOTAHISTORY</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_SalesPersonQuotaHistory</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-h-salesterritory" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.H_SALESTERRITORY</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_SalesTerritory</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-h-specialofferproduct" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.H_SPECIALOFFERPRODUCT</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_SpecialOfferProduct</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-h-stateprovince" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.H_STATEPROVINCE</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_StateProvince</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-h-store" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.H_STORE</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.H_Store</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-hs-address-address" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.HS_ADDRESS_ADDRESS</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.HS_Address_Address</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-hs-countryregion-countryregion" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.HS_COUNTRYREGION_COUNTRYREGION</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.HS_CountryRegion_CountryRegion</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-hs-customer-customer" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.HS_CUSTOMER_CUSTOMER</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.HS_Customer_Customer</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-hs-person-person" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.HS_PERSON_PERSON</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.HS_Person_Person</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-hs-product-product" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.HS_PRODUCT_PRODUCT</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.HS_Product_Product</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-hs-productcategory-productcategory" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.HS_PRODUCTCATEGORY_PRODUCTCATEGORY</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.HS_ProductCategory_ProductCategory</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-hs-productsubcategory-productsubcategory" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.HS_PRODUCTSUBCATEGORY_PRODUCTSUBCATEGORY</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.HS_ProductSubcategory_ProductSubcategory</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-hs-salesorderdetail-salesorderdetail" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.HS_SALESORDERDETAIL_SALESORDERDETAIL</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.HS_SalesOrderDetail_SalesOrderDetail</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-hs-salesorderheader-salesorderheader" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.HS_SALESORDERHEADER_SALESORDERHEADER</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.HS_SalesOrderHeader_SalesOrderHeader</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-hs-salesperson-salesperson" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.HS_SALESPERSON_SALESPERSON</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.HS_SalesPerson_SalesPerson</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-hs-salespersonquotahistory-salespersonquotahistory" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.HS_SALESPERSONQUOTAHISTORY_SALESPERSONQUOTAHISTORY</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.HS_SalesPersonQuotaHistory_SalesPersonQuotaHistory</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-hs-salesterritory-salesterritory" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.HS_SALESTERRITORY_SALESTERRITORY</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.HS_SalesTerritory_SalesTerritory</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-hs-specialofferproduct-specialofferproduct" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.HS_SPECIALOFFERPRODUCT_SPECIALOFFERPRODUCT</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.HS_SpecialOfferProduct_SpecialOfferProduct</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-hs-stateprovince-stateprovince" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.HS_STATEPROVINCE_STATEPROVINCE</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.HS_StateProvince_StateProvince</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-hs-store-store" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.HS_STORE_STORE</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.HS_Store_Store</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-l-addressstateprovince" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.L_ADDRESSSTATEPROVINCE</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_AddressStateProvince</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-l-customerperson" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.L_CUSTOMERPERSON</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_CustomerPerson</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-l-customersalesterritory" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.L_CUSTOMERSALESTERRITORY</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_CustomerSalesTerritory</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-l-customerstore" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.L_CUSTOMERSTORE</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_CustomerStore</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-l-employeeperson" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.L_EMPLOYEEPERSON</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_EmployeePerson</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-l-productproductsubcategory" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.L_PRODUCTPRODUCTSUBCATEGORY</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_ProductProductSubcategory</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-l-productsubcategoryproductcategory" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.L_PRODUCTSUBCATEGORYPRODUCTCATEGORY</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_ProductSubcategoryProductCategory</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-l-salesorderdetailsalesorderheader" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.L_SALESORDERDETAILSALESORDERHEADER</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_SalesOrderDetailSalesOrderHeader</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-l-salesorderdetailspecialofferproduct" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.L_SALESORDERDETAILSPECIALOFFERPRODUCT</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_SalesOrderDetailSpecialOfferProduct</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-l-salesorderheaderaddress-billtoaddressid" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.L_SALESORDERHEADERADDRESS_BILLTOADDRESSID</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_BillToAddressID</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-l-salesorderheaderaddress-shiptoaddressid" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.L_SALESORDERHEADERADDRESS_SHIPTOADDRESSID</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_SalesOrderHeaderAddress_ShipToAddressID</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-l-salesorderheadercustomer" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.L_SALESORDERHEADERCUSTOMER</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_SalesOrderHeaderCustomer</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-l-salesorderheadersalesperson" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.L_SALESORDERHEADERSALESPERSON</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesPerson</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-l-salesorderheadersalesterritory" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.L_SALESORDERHEADERSALESTERRITORY</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_SalesOrderHeaderSalesTerritory</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-l-salespersonemployee" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.L_SALESPERSONEMPLOYEE</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_SalesPersonEmployee</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-l-salespersonquotahistorysalesperson" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.L_SALESPERSONQUOTAHISTORYSALESPERSON</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_SalesPersonQuotaHistorySalesPerson</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-l-salespersonsalesterritory" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.L_SALESPERSONSALESTERRITORY</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_SalesPersonSalesTerritory</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-l-salesterritorycountryregion" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.L_SALESTERRITORYCOUNTRYREGION</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_SalesTerritoryCountryRegion</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-l-specialofferproductproduct" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.L_SPECIALOFFERPRODUCTPRODUCT</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_SpecialOfferProductProduct</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-l-stateprovincecountryregion" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.L_STATEPROVINCECOUNTRYREGION</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_StateProvinceCountryRegion</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-l-stateprovincesalesterritory" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.L_STATEPROVINCESALESTERRITORY</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_StateProvinceSalesTerritory</SqlIdentifier>
+    </DataObject>
+    <DataObject Id="plan-default:object:adventureworksrawvault-dbo-l-storesalesperson" OrchestrationPlanId="plan:default">
+      <NormalizedKey>ADVENTUREWORKSRAWVAULT.DBO.L_STORESALESPERSON</NormalizedKey>
+      <SqlIdentifier>AdventureWorksRawVault.dbo.L_StoreSalesPerson</SqlIdentifier>
+    </DataObject>
+  </DataObjectList>
+</MetaOrchestration>

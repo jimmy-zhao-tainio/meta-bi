@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <TableRelationshipList>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile:relationship:FK_BHS_Address_AddressProfile_BH_Address" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Address">
+      <Name>FK_BHS_Address_AddressProfile_BH_Address</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_CountryRegion_CountryRegionProfile:relationship:FK_BHS_CountryRegion_CountryRegionProfile_BH_CountryRegion" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_CountryRegion_CountryRegionProfile" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_CountryRegion">
+      <Name>FK_BHS_CountryRegion_CountryRegionProfile_BH_CountryRegion</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile:relationship:FK_BHS_Customer_CustomerProfile_BH_Customer" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Customer">
+      <Name>FK_BHS_Customer_CustomerProfile_BH_Customer</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile:relationship:FK_BHS_Person_PersonProfile_BH_Person" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Person">
+      <Name>FK_BHS_Person_PersonProfile_BH_Person</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductCategory_ProductCategoryProfile:relationship:FK_BHS_ProductCategory_ProductCategoryProfile_BH_ProductCategory" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductCategory_ProductCategoryProfile" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductCategory">
+      <Name>FK_BHS_ProductCategory_ProductCategoryProfile_BH_ProductCategory</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductSubcategory_ProductSubcategoryProfile:relationship:FK_BHS_ProductSubcategory_ProductSubcategoryProfile_BH_ProductSubcategory" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductSubcategory_ProductSubcategoryProfile" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductSubcategory">
+      <Name>FK_BHS_ProductSubcategory_ProductSubcategoryProfile_BH_ProductSubcategory</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:relationship:FK_BHS_Product_ProductProfile_BH_Product" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product">
+      <Name>FK_BHS_Product_ProductProfile_BH_Product</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:relationship:FK_BHS_SalesOrderLine_SalesOrderLineDetail_BH_SalesOrderLine" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrderLine">
+      <Name>FK_BHS_SalesOrderLine_SalesOrderLineDetail_BH_SalesOrderLine</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:relationship:FK_BHS_SalesOrder_SalesOrderHeader_BH_SalesOrder" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder">
+      <Name>FK_BHS_SalesOrder_SalesOrderHeader_BH_SalesOrder</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile:relationship:FK_BHS_SalesPersonQuota_SalesPersonQuotaProfile_BH_SalesPersonQuota" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPersonQuota">
+      <Name>FK_BHS_SalesPersonQuota_SalesPersonQuotaProfile_BH_SalesPersonQuota</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:relationship:FK_BHS_SalesPerson_SalesPersonProfile_BH_SalesPerson" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPerson">
+      <Name>FK_BHS_SalesPerson_SalesPersonProfile_BH_SalesPerson</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:relationship:FK_BHS_SalesTerritory_SalesTerritoryProfile_BH_SalesTerritory" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesTerritory">
+      <Name>FK_BHS_SalesTerritory_SalesTerritoryProfile_BH_SalesTerritory</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile:relationship:FK_BHS_StateProvince_StateProvinceProfile_BH_StateProvince" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_StateProvince">
+      <Name>FK_BHS_StateProvince_StateProvinceProfile_BH_StateProvince</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile:relationship:FK_BHS_Store_StoreProfile_BH_Store" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Store">
+      <Name>FK_BHS_Store_StoreProfile_BH_Store</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_AddressStateProvince:relationship:FK_BL_AddressStateProvince_BH_Address_AddressHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_AddressStateProvince" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Address">
+      <Name>FK_BL_AddressStateProvince_BH_Address_AddressHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_AddressStateProvince:relationship:FK_BL_AddressStateProvince_BH_StateProvince_StateProvinceHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_AddressStateProvince" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_StateProvince">
+      <Name>FK_BL_AddressStateProvince_BH_StateProvince_StateProvinceHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerPerson:relationship:FK_BL_CustomerPerson_BH_Customer_CustomerHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerPerson" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Customer">
+      <Name>FK_BL_CustomerPerson_BH_Customer_CustomerHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerPerson:relationship:FK_BL_CustomerPerson_BH_Person_PersonHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerPerson" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Person">
+      <Name>FK_BL_CustomerPerson_BH_Person_PersonHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerStore:relationship:FK_BL_CustomerStore_BH_Customer_CustomerHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerStore" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Customer">
+      <Name>FK_BL_CustomerStore_BH_Customer_CustomerHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerStore:relationship:FK_BL_CustomerStore_BH_Store_StoreHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerStore" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Store">
+      <Name>FK_BL_CustomerStore_BH_Store_StoreHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryAssignment:relationship:FK_BL_ProductSubcategoryAssignment_BH_ProductSubcategory_ProductSubcategoryHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryAssignment" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductSubcategory">
+      <Name>FK_BL_ProductSubcategoryAssignment_BH_ProductSubcategory_ProductSubcategoryHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryAssignment:relationship:FK_BL_ProductSubcategoryAssignment_BH_Product_ProductHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryAssignment" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product">
+      <Name>FK_BL_ProductSubcategoryAssignment_BH_Product_ProductHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryCategory:relationship:FK_BL_ProductSubcategoryCategory_BH_ProductCategory_ProductCategoryHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryCategory" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductCategory">
+      <Name>FK_BL_ProductSubcategoryCategory_BH_ProductCategory_ProductCategoryHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryCategory:relationship:FK_BL_ProductSubcategoryCategory_BH_ProductSubcategory_ProductSubcategoryHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryCategory" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductSubcategory">
+      <Name>FK_BL_ProductSubcategoryCategory_BH_ProductSubcategory_ProductSubcategoryHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderBillToAddress:relationship:FK_BL_SalesOrderBillToAddress_BH_Address_BillToAddressHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderBillToAddress" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Address">
+      <Name>FK_BL_SalesOrderBillToAddress_BH_Address_BillToAddressHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderBillToAddress:relationship:FK_BL_SalesOrderBillToAddress_BH_SalesOrder_SalesOrderHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderBillToAddress" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder">
+      <Name>FK_BL_SalesOrderBillToAddress_BH_SalesOrder_SalesOrderHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer:relationship:FK_BL_SalesOrderCustomer_BH_Customer_CustomerHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Customer">
+      <Name>FK_BL_SalesOrderCustomer_BH_Customer_CustomerHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer:relationship:FK_BL_SalesOrderCustomer_BH_SalesOrder_SalesOrderHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder">
+      <Name>FK_BL_SalesOrderCustomer_BH_SalesOrder_SalesOrderHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct:relationship:FK_BL_SalesOrderLineProduct_BH_Product_ProductHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product">
+      <Name>FK_BL_SalesOrderLineProduct_BH_Product_ProductHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct:relationship:FK_BL_SalesOrderLineProduct_BH_SalesOrderLine_SalesOrderLineHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrderLine">
+      <Name>FK_BL_SalesOrderLineProduct_BH_SalesOrderLine_SalesOrderLineHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineSalesOrder:relationship:FK_BL_SalesOrderLineSalesOrder_BH_SalesOrderLine_SalesOrderLineHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineSalesOrder" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrderLine">
+      <Name>FK_BL_SalesOrderLineSalesOrder_BH_SalesOrderLine_SalesOrderLineHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineSalesOrder:relationship:FK_BL_SalesOrderLineSalesOrder_BH_SalesOrder_SalesOrderHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineSalesOrder" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder">
+      <Name>FK_BL_SalesOrderLineSalesOrder_BH_SalesOrder_SalesOrderHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson:relationship:FK_BL_SalesOrderSalesPerson_BH_SalesOrder_SalesOrderHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder">
+      <Name>FK_BL_SalesOrderSalesPerson_BH_SalesOrder_SalesOrderHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson:relationship:FK_BL_SalesOrderSalesPerson_BH_SalesPerson_SalesPersonHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPerson">
+      <Name>FK_BL_SalesOrderSalesPerson_BH_SalesPerson_SalesPersonHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesTerritory:relationship:FK_BL_SalesOrderSalesTerritory_BH_SalesOrder_SalesOrderHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesTerritory" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder">
+      <Name>FK_BL_SalesOrderSalesTerritory_BH_SalesOrder_SalesOrderHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesTerritory:relationship:FK_BL_SalesOrderSalesTerritory_BH_SalesTerritory_SalesTerritoryHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesTerritory" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesTerritory">
+      <Name>FK_BL_SalesOrderSalesTerritory_BH_SalesTerritory_SalesTerritoryHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderShipToAddress:relationship:FK_BL_SalesOrderShipToAddress_BH_Address_ShipToAddressHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderShipToAddress" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Address">
+      <Name>FK_BL_SalesOrderShipToAddress_BH_Address_ShipToAddressHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderShipToAddress:relationship:FK_BL_SalesOrderShipToAddress_BH_SalesOrder_SalesOrderHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderShipToAddress" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder">
+      <Name>FK_BL_SalesOrderShipToAddress_BH_SalesOrder_SalesOrderHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonPerson:relationship:FK_BL_SalesPersonPerson_BH_Person_PersonHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonPerson" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Person">
+      <Name>FK_BL_SalesPersonPerson_BH_Person_PersonHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonPerson:relationship:FK_BL_SalesPersonPerson_BH_SalesPerson_SalesPersonHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonPerson" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPerson">
+      <Name>FK_BL_SalesPersonPerson_BH_SalesPerson_SalesPersonHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonQuotaSalesPerson:relationship:FK_BL_SalesPersonQuotaSalesPerson_BH_SalesPersonQuota_SalesPersonQuotaHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonQuotaSalesPerson" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPersonQuota">
+      <Name>FK_BL_SalesPersonQuotaSalesPerson_BH_SalesPersonQuota_SalesPersonQuotaHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonQuotaSalesPerson:relationship:FK_BL_SalesPersonQuotaSalesPerson_BH_SalesPerson_SalesPersonHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonQuotaSalesPerson" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPerson">
+      <Name>FK_BL_SalesPersonQuotaSalesPerson_BH_SalesPerson_SalesPersonHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonSalesTerritory:relationship:FK_BL_SalesPersonSalesTerritory_BH_SalesPerson_SalesPersonHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonSalesTerritory" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPerson">
+      <Name>FK_BL_SalesPersonSalesTerritory_BH_SalesPerson_SalesPersonHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonSalesTerritory:relationship:FK_BL_SalesPersonSalesTerritory_BH_SalesTerritory_SalesTerritoryHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonSalesTerritory" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesTerritory">
+      <Name>FK_BL_SalesPersonSalesTerritory_BH_SalesTerritory_SalesTerritoryHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesTerritoryCountryRegion:relationship:FK_BL_SalesTerritoryCountryRegion_BH_CountryRegion_CountryRegionHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesTerritoryCountryRegion" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_CountryRegion">
+      <Name>FK_BL_SalesTerritoryCountryRegion_BH_CountryRegion_CountryRegionHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesTerritoryCountryRegion:relationship:FK_BL_SalesTerritoryCountryRegion_BH_SalesTerritory_SalesTerritoryHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesTerritoryCountryRegion" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesTerritory">
+      <Name>FK_BL_SalesTerritoryCountryRegion_BH_SalesTerritory_SalesTerritoryHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceCountryRegion:relationship:FK_BL_StateProvinceCountryRegion_BH_CountryRegion_CountryRegionHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceCountryRegion" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_CountryRegion">
+      <Name>FK_BL_StateProvinceCountryRegion_BH_CountryRegion_CountryRegionHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceCountryRegion:relationship:FK_BL_StateProvinceCountryRegion_BH_StateProvince_StateProvinceHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceCountryRegion" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_StateProvince">
+      <Name>FK_BL_StateProvinceCountryRegion_BH_StateProvince_StateProvinceHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceSalesTerritory:relationship:FK_BL_StateProvinceSalesTerritory_BH_SalesTerritory_SalesTerritoryHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceSalesTerritory" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesTerritory">
+      <Name>FK_BL_StateProvinceSalesTerritory_BH_SalesTerritory_SalesTerritoryHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceSalesTerritory:relationship:FK_BL_StateProvinceSalesTerritory_BH_StateProvince_StateProvinceHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceSalesTerritory" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_StateProvince">
+      <Name>FK_BL_StateProvinceSalesTerritory_BH_StateProvince_StateProvinceHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StoreSalesPerson:relationship:FK_BL_StoreSalesPerson_BH_SalesPerson_SalesPersonHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StoreSalesPerson" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPerson">
+      <Name>FK_BL_StoreSalesPerson_BH_SalesPerson_SalesPersonHashKey</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StoreSalesPerson:relationship:FK_BL_StoreSalesPerson_BH_Store_StoreHashKey" SourceTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StoreSalesPerson" TargetTableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Store">
+      <Name>FK_BL_StoreSalesPerson_BH_Store_StoreHashKey</Name>
+    </TableRelationship>
+  </TableRelationshipList>
+</MetaSchema>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <SetClauseList>
+    <SetClause Id="SetClause:1" />
+    <SetClause Id="SetClause:2" />
+    <SetClause Id="SetClause:3" />
+    <SetClause Id="SetClause:4" />
+    <SetClause Id="SetClause:5" />
+    <SetClause Id="SetClause:6" />
+    <SetClause Id="SetClause:7" />
+    <SetClause Id="SetClause:8" />
+  </SetClauseList>
+</MetaTransformScript>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <QualifiedJoinList>
+    <QualifiedJoin Id="QualifiedJoin:13" JoinTableReferenceId="JoinTableReference:13">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:14" JoinTableReferenceId="JoinTableReference:14">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:15" JoinTableReferenceId="JoinTableReference:15">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:16" JoinTableReferenceId="JoinTableReference:16">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:17" JoinTableReferenceId="JoinTableReference:17">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:21" JoinTableReferenceId="JoinTableReference:21">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:22" JoinTableReferenceId="JoinTableReference:22">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:23" JoinTableReferenceId="JoinTableReference:23">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:24" JoinTableReferenceId="JoinTableReference:24">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:25" JoinTableReferenceId="JoinTableReference:25">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:26" JoinTableReferenceId="JoinTableReference:26">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:27" JoinTableReferenceId="JoinTableReference:27">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:28" JoinTableReferenceId="JoinTableReference:28">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:29" JoinTableReferenceId="JoinTableReference:29">
+      <QualifiedJoinType>LeftOuter</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:3" JoinTableReferenceId="JoinTableReference:3">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:30" JoinTableReferenceId="JoinTableReference:30">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:31" JoinTableReferenceId="JoinTableReference:31">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:32" JoinTableReferenceId="JoinTableReference:32">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:33" JoinTableReferenceId="JoinTableReference:33">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:34" JoinTableReferenceId="JoinTableReference:34">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:35" JoinTableReferenceId="JoinTableReference:35">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:36" JoinTableReferenceId="JoinTableReference:36">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:4" JoinTableReferenceId="JoinTableReference:4">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:5" JoinTableReferenceId="JoinTableReference:5">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:6" JoinTableReferenceId="JoinTableReference:6">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+    <QualifiedJoin Id="QualifiedJoin:8" JoinTableReferenceId="JoinTableReference:8">
+      <QualifiedJoinType>Inner</QualifiedJoinType>
+    </QualifiedJoin>
+  </QualifiedJoinList>
+</MetaWeave>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <CommonTableExpressionExpressionNameLinkList>
+    <CommonTableExpressionExpressionNameLink Id="CommonTableExpressionExpressionNameLink:5" CommonTableExpressionId="CommonTableExpression:5" IdentifierId="Identifier:875" />
+    <CommonTableExpressionExpressionNameLink Id="CommonTableExpressionExpressionNameLink:6" CommonTableExpressionId="CommonTableExpression:6" IdentifierId="Identifier:923" />
+    <CommonTableExpressionExpressionNameLink Id="CommonTableExpressionExpressionNameLink:7" CommonTableExpressionId="CommonTableExpression:7" IdentifierId="Identifier:1031" />
+    <CommonTableExpressionExpressionNameLink Id="CommonTableExpressionExpressionNameLink:8" CommonTableExpressionId="CommonTableExpression:8" IdentifierId="Identifier:1088" />
+  </CommonTableExpressionExpressionNameLinkList>
+</MetaWeave>

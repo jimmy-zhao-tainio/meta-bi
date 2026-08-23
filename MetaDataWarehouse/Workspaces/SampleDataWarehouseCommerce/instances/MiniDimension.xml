@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouse>
+  <MiniDimensionList>
+    <MiniDimension Id="mini:customer-demographics" ProfileDimensionId="dimension:customer-demographics" SourceDimensionId="dimension:customer">
+      <RoleName>Demographics</RoleName>
+    </MiniDimension>
+  </MiniDimensionList>
+</MetaDataWarehouse>

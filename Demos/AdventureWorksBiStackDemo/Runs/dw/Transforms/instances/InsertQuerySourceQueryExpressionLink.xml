@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <InsertQuerySourceQueryExpressionLinkList>
+    <InsertQuerySourceQueryExpressionLink Id="InsertQuerySourceQueryExpressionLink:1" InsertQuerySourceId="InsertQuerySource:1" QueryExpressionId="QueryExpression:2" />
+    <InsertQuerySourceQueryExpressionLink Id="InsertQuerySourceQueryExpressionLink:2" InsertQuerySourceId="InsertQuerySource:2" QueryExpressionId="QueryExpression:4" />
+    <InsertQuerySourceQueryExpressionLink Id="InsertQuerySourceQueryExpressionLink:3" InsertQuerySourceId="InsertQuerySource:3" QueryExpressionId="QueryExpression:6" />
+    <InsertQuerySourceQueryExpressionLink Id="InsertQuerySourceQueryExpressionLink:4" InsertQuerySourceId="InsertQuerySource:4" QueryExpressionId="QueryExpression:8" />
+    <InsertQuerySourceQueryExpressionLink Id="InsertQuerySourceQueryExpressionLink:5" InsertQuerySourceId="InsertQuerySource:5" QueryExpressionId="QueryExpression:10" />
+    <InsertQuerySourceQueryExpressionLink Id="InsertQuerySourceQueryExpressionLink:6" InsertQuerySourceId="InsertQuerySource:6" QueryExpressionId="QueryExpression:12" />
+    <InsertQuerySourceQueryExpressionLink Id="InsertQuerySourceQueryExpressionLink:7" InsertQuerySourceId="InsertQuerySource:7" QueryExpressionId="QueryExpression:14" />
+    <InsertQuerySourceQueryExpressionLink Id="InsertQuerySourceQueryExpressionLink:8" InsertQuerySourceId="InsertQuerySource:8" QueryExpressionId="QueryExpression:16" />
+  </InsertQuerySourceQueryExpressionLinkList>
+</MetaTransformScript>

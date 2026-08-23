@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessLinkList>
+    <BusinessLink Id="CustomerInvoice">
+      <Name>CustomerInvoice</Name>
+    </BusinessLink>
+    <BusinessLink Id="CustomerOrder">
+      <Name>CustomerOrder</Name>
+    </BusinessLink>
+    <BusinessLink Id="DepartmentCostCenter">
+      <Name>DepartmentCostCenter</Name>
+    </BusinessLink>
+    <BusinessLink Id="DepartmentManager">
+      <Name>DepartmentManager</Name>
+    </BusinessLink>
+    <BusinessLink Id="EmployeeCostCenter">
+      <Name>EmployeeCostCenter</Name>
+    </BusinessLink>
+    <BusinessLink Id="EmployeeDepartment">
+      <Name>EmployeeDepartment</Name>
+    </BusinessLink>
+    <BusinessLink Id="InvoiceShipment">
+      <Name>InvoiceShipment</Name>
+    </BusinessLink>
+    <BusinessLink Id="OrderInvoice">
+      <Name>OrderInvoice</Name>
+    </BusinessLink>
+    <BusinessLink Id="OrderProduct">
+      <Name>OrderProduct</Name>
+    </BusinessLink>
+    <BusinessLink Id="ShipmentOrder">
+      <Name>ShipmentOrder</Name>
+    </BusinessLink>
+    <BusinessLink Id="SupplierInvoice">
+      <Name>SupplierInvoice</Name>
+    </BusinessLink>
+    <BusinessLink Id="SupplierProduct">
+      <Name>SupplierProduct</Name>
+    </BusinessLink>
+  </BusinessLinkList>
+</MetaBusinessDataVault>

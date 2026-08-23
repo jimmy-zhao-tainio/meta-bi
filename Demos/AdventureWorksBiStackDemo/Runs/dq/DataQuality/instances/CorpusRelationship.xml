@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataQuality>
+  <CorpusRelationshipList>
+    <CorpusRelationship Id="CorpusRelationship.1">
+      <CanonicalSideAObjectName>AdventureWorksBusinessVault.dbo.BH_SalesPerson</CanonicalSideAObjectName>
+      <CanonicalSideBObjectName>AdventureWorksBusinessVault.dbo.BL_SalesPersonPerson</CanonicalSideBObjectName>
+      <CanonicalUndirectedSignature>adventureworksbusinessvault.dbo.bh_salesperson|adventureworksbusinessvault.dbo.bl_salespersonperson</CanonicalUndirectedSignature>
+      <OccurrenceCount>1</OccurrenceCount>
+      <TransformCount>1</TransformCount>
+    </CorpusRelationship>
+    <CorpusRelationship Id="CorpusRelationship.2">
+      <CanonicalSideAObjectName>AdventureWorksBusinessVault.dbo.BHS_Address_AddressProfile</CanonicalSideAObjectName>
+      <CanonicalSideBObjectName>AdventureWorksBusinessVault.dbo.BH_Address</CanonicalSideBObjectName>
+      <CanonicalUndirectedSignature>adventureworksbusinessvault.dbo.bhs_address_addressprofile|adventureworksbusinessvault.dbo.bh_address</CanonicalUndirectedSignature>
+      <OccurrenceCount>1</OccurrenceCount>
+      <TransformCount>1</TransformCount>
+    </CorpusRelationship>
+    <CorpusRelationship Id="CorpusRelationship.3">
+      <CanonicalSideAObjectName>AdventureWorksBusinessVault.dbo.BHS_Customer_CustomerProfile</CanonicalSideAObjectName>
+      <CanonicalSideBObjectName>AdventureWorksBusinessVault.dbo.BH_Customer</CanonicalSideBObjectName>
+      <CanonicalUndirectedSignature>adventureworksbusinessvault.dbo.bhs_customer_customerprofile|adventureworksbusinessvault.dbo.bh_customer</CanonicalUndirectedSignature>
+      <OccurrenceCount>1</OccurrenceCount>
+      <TransformCount>1</TransformCount>
+    </CorpusRelationship>
+    <CorpusRelationship Id="CorpusRelationship.4">
+      <CanonicalSideAObjectName>AdventureWorksBusinessVault.dbo.BHS_Product_ProductProfile</CanonicalSideAObjectName>
+      <CanonicalSideBObjectName>AdventureWorksBusinessVault.dbo.BH_Product</CanonicalSideBObjectName>
+      <CanonicalUndirectedSignature>adventureworksbusinessvault.dbo.bhs_product_productprofile|adventureworksbusinessvault.dbo.bh_product</CanonicalUndirectedSignature>
+      <OccurrenceCount>1</OccurrenceCount>
+      <TransformCount>1</TransformCount>
+    </CorpusRelationship>
+    <CorpusRelationship Id="CorpusRelationship.5">
+      <CanonicalSideAObjectName>AdventureWorksBusinessVault.dbo.BHS_SalesOrder_SalesOrderHeader</CanonicalSideAObjectName>
+      <CanonicalSideBObjectName>AdventureWorksBusinessVault.dbo.BH_SalesOrder</CanonicalSideBObjectName>
+      <CanonicalUndirectedSignature>adventureworksbusinessvault.dbo.bhs_salesorder_salesorderheader|adventureworksbusinessvault.dbo.bh_salesorder</CanonicalUndirectedSignature>
+      <OccurrenceCount>1</OccurrenceCount>
+      <TransformCount>1</TransformCount>
+    </CorpusRelationship>
+    <CorpusRelationship Id="CorpusRelationship.6">
+      <CanonicalSideAObjectName>AdventureWorksBusinessVault.dbo.BHS_SalesOrderLine_SalesOrderLineDetail</CanonicalSideAObjectName>
+      <CanonicalSideBObjectName>AdventureWorksBusinessVault.dbo.BH_SalesOrderLine</CanonicalSideBObjectName>
+      <CanonicalUndirectedSignature>adventureworksbusinessvault.dbo.bhs_salesorderline_salesorderlinedetail|adventureworksbusinessvault.dbo.bh_salesorderline</CanonicalUndirectedSignature>
+      <OccurrenceCount>1</OccurrenceCount>
+      <TransformCount>1</TransformCount>
+    </CorpusRelationship>
+    <CorpusRelationship Id="CorpusRelationship.7">
+      <CanonicalSideAObjectName>AdventureWorksBusinessVault.dbo.BHS_SalesPersonQuota_SalesPersonQuotaProfile</CanonicalSideAObjectName>
+      <CanonicalSideBObjectName>AdventureWorksBusinessVault.dbo.BH_SalesPersonQuota</CanonicalSideBObjectName>
+      <CanonicalUndirectedSignature>adventureworksbusinessvault.dbo.bhs_salespersonquota_salespersonquotaprofile|adventureworksbusinessvault.dbo.bh_salespersonquota</CanonicalUndirectedSignature>
+      <OccurrenceCount>1</OccurrenceCount>
+      <TransformCount>1</TransformCount>
+    </CorpusRelationship>
+    <CorpusRelationship Id="CorpusRelationship.8">
+      <CanonicalSideAObjectName>AdventureWorksBusinessVault.dbo.BHS_SalesTerritory_SalesTerritoryProfile</CanonicalSideAObjectName>
+      <CanonicalSideBObjectName>AdventureWorksBusinessVault.dbo.BH_SalesTerritory</CanonicalSideBObjectName>
+      <CanonicalUndirectedSignature>adventureworksbusinessvault.dbo.bhs_salesterritory_salesterritoryprofile|adventureworksbusinessvault.dbo.bh_salesterritory</CanonicalUndirectedSignature>
+      <OccurrenceCount>1</OccurrenceCount>
+      <TransformCount>1</TransformCount>
+    </CorpusRelationship>
+  </CorpusRelationshipList>
+</MetaDataQuality>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <WorkspaceList>
+    <Workspace Id="workspace:analytics" MeshId="mesh:default">
+      <Description>Business-facing AdventureWorks sales analytics model over the conformed warehouse.</Description>
+      <ModelName>MetaAnalytics</ModelName>
+      <Name>analytics</Name>
+    </Workspace>
+    <Workspace Id="workspace:business-vault" MeshId="mesh:default">
+      <Description>Curated AdventureWorks business vault.</Description>
+      <ModelName>MetaBusinessDataVault</ModelName>
+      <Name>business-vault</Name>
+    </Workspace>
+    <Workspace Id="workspace:business-vault-deploy-manifest" MeshId="mesh:default">
+      <Description>Deployment plan for the business vault database.</Description>
+      <ModelName>MetaSqlDeployManifest</ModelName>
+      <Name>business-vault-deploy-manifest</Name>
+    </Workspace>
+    <Workspace Id="workspace:business-vault-implementation" MeshId="mesh:default">
+      <Description>Sanctioned Data Vault SQL implementation policy.</Description>
+      <ModelName>MetaDataVaultImplementation</ModelName>
+      <Name>data-vault-implementation</Name>
+    </Workspace>
+    <Workspace Id="workspace:business-vault-schema" MeshId="mesh:default">
+      <Description>Schema extracted from the deployed business vault.</Description>
+      <ModelName>MetaSchema</ModelName>
+      <Name>business-vault-schema</Name>
+    </Workspace>
+    <Workspace Id="workspace:business-vault-sql" MeshId="mesh:default">
+      <Description>Deployable SQL projection of the business vault.</Description>
+      <ModelName>MetaSql</ModelName>
+      <Name>business-vault-sql</Name>
+    </Workspace>
+    <Workspace Id="workspace:business-warehouse-binding" MeshId="mesh:default">
+      <Description>Strict binding evidence for Business-to-warehouse transforms.</Description>
+      <ModelName>MetaTransformBinding</ModelName>
+      <Name>business-warehouse-binding</Name>
+    </Workspace>
+    <Workspace Id="workspace:business-warehouse-transforms" MeshId="mesh:default">
+      <Description>Transforms from the Business Data Vault into the dimensional warehouse.</Description>
+      <ModelName>MetaTransformScript</ModelName>
+      <Name>business-warehouse-transforms</Name>
+    </Workspace>
+    <Workspace Id="workspace:data-quality" MeshId="mesh:default">
+      <Description>Generated and promoted Data Quality evidence for the bound Business-to-warehouse transforms.</Description>
+      <ModelName>MetaDataQuality</ModelName>
+      <Name>data-quality</Name>
+    </Workspace>
+    <Workspace Id="workspace:data-type-conversion" MeshId="mesh:default">
+      <Description>Sanctioned cross-platform data type conversion policy.</Description>
+      <ModelName>MetaDataTypeConversion</ModelName>
+      <Name>data-type-conversion</Name>
+    </Workspace>
+    <Workspace Id="workspace:dimensional-warehouse" MeshId="mesh:default">
+      <Description>AdventureWorks dimensional warehouse model.</Description>
+      <ModelName>MetaDataWarehouse</ModelName>
+      <Name>dimensional-warehouse</Name>
+    </Workspace>
+    <Workspace Id="workspace:dimensional-warehouse-deploy-manifest" MeshId="mesh:default">
+      <Description>Deployment plan for the dimensional warehouse database.</Description>
+      <ModelName>MetaSqlDeployManifest</ModelName>
+      <Name>dimensional-warehouse-deploy-manifest</Name>
+    </Workspace>
+    <Workspace Id="workspace:dimensional-warehouse-implementation" MeshId="mesh:default">
+      <Description>Sanctioned dimensional SQL implementation policy.</Description>
+      <ModelName>MetaDataWarehouseImplementation</ModelName>
+      <Name>dimensional-warehouse-implementation</Name>
+    </Workspace>
+    <Workspace Id="workspace:dimensional-warehouse-schema" MeshId="mesh:default">
+      <Description>Schema extracted from the deployed dimensional warehouse.</Description>
+      <ModelName>MetaSchema</ModelName>
+      <Name>dimensional-warehouse-schema</Name>
+    </Workspace>
+    <Workspace Id="workspace:dimensional-warehouse-sql" MeshId="mesh:default">
+      <Description>Deployable SQL projection of the dimensional warehouse.</Description>
+      <ModelName>MetaSql</ModelName>
+      <Name>dimensional-warehouse-sql</Name>
+    </Workspace>
+    <Workspace Id="workspace:orchestration" MeshId="mesh:default">
+      <Description>Orchestration inferred from the complete AdventureWorks ETL pipeline workspace.</Description>
+      <ModelName>MetaOrchestration</ModelName>
+      <Name>orchestration</Name>
+    </Workspace>
+    <Workspace Id="workspace:pipelines" MeshId="mesh:default">
+      <Description>Three modeled ETL pipelines for Source-to-Raw, Raw-to-Business, and Business-to-Warehouse execution.</Description>
+      <ModelName>MetaPipeline</ModelName>
+      <Name>pipelines</Name>
+    </Workspace>
+    <Workspace Id="workspace:raw-business-binding" MeshId="mesh:default">
+      <Description>Strict binding evidence for raw-to-business transforms.</Description>
+      <ModelName>MetaTransformBinding</ModelName>
+      <Name>raw-business-binding</Name>
+    </Workspace>
+    <Workspace Id="workspace:raw-business-transforms" MeshId="mesh:default">
+      <Description>Transforms from the raw vault into the business vault.</Description>
+      <ModelName>MetaTransformScript</ModelName>
+      <Name>raw-business-transforms</Name>
+    </Workspace>
+    <Workspace Id="workspace:raw-vault" MeshId="mesh:default">
+      <Description>Source-faithful AdventureWorks Raw Data Vault.</Description>
+      <ModelName>MetaRawDataVault</ModelName>
+      <Name>raw-vault</Name>
+    </Workspace>
+    <Workspace Id="workspace:raw-vault-deploy-manifest" MeshId="mesh:default">
+      <Description>Deployment plan for the Raw Data Vault database.</Description>
+      <ModelName>MetaSqlDeployManifest</ModelName>
+      <Name>raw-vault-deploy-manifest</Name>
+    </Workspace>
+    <Workspace Id="workspace:raw-vault-schema" MeshId="mesh:default">
+      <Description>Schema extracted from the deployed Raw Data Vault.</Description>
+      <ModelName>MetaSchema</ModelName>
+      <Name>raw-vault-schema</Name>
+    </Workspace>
+    <Workspace Id="workspace:raw-vault-sql" MeshId="mesh:default">
+      <Description>Deployable SQL projection of the Raw Data Vault.</Description>
+      <ModelName>MetaSql</ModelName>
+      <Name>raw-vault-sql</Name>
+    </Workspace>
+    <Workspace Id="workspace:source-raw-binding" MeshId="mesh:default">
+      <Description>Strict binding evidence for source-to-Raw transforms.</Description>
+      <ModelName>MetaTransformBinding</ModelName>
+      <Name>source-raw-binding</Name>
+    </Workspace>
+    <Workspace Id="workspace:source-raw-transforms" MeshId="mesh:default">
+      <Description>Transforms from AdventureWorks source tables into the Raw Data Vault.</Description>
+      <ModelName>MetaTransformScript</ModelName>
+      <Name>source-raw-transforms</Name>
+    </Workspace>
+    <Workspace Id="workspace:source-schema" MeshId="mesh:default">
+      <Description>Source schema extracted from the restored AdventureWorks2022 OLTP database.</Description>
+      <ModelName>MetaSchema</ModelName>
+      <Name>source-schema</Name>
+    </Workspace>
+    <Workspace Id="workspace:tabular" MeshId="mesh:default">
+      <Description>Tabular projection of the AdventureWorks sales analytics model with warehouse query partitions.</Description>
+      <ModelName>MetaTabular</ModelName>
+      <Name>tabular</Name>
+    </Workspace>
+  </WorkspaceList>
+</MetaMesh>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <TransformBindingTargetList>
+    <TransformBindingTarget Id="TransformScript:10:binding:target:1" TransformBindingId="TransformScript:10:binding">
+      <SqlIdentifier>AdventureWorksAnalytics.dw.Dim_Date</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:11:binding:target:1" TransformBindingId="TransformScript:11:binding">
+      <SqlIdentifier>AdventureWorksAnalytics.dw.Dim_Date</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:12:binding:target:1" TransformBindingId="TransformScript:12:binding">
+      <SqlIdentifier>AdventureWorksAnalytics.dw.Dim_Date</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:13:binding:target:1" TransformBindingId="TransformScript:13:binding">
+      <SqlIdentifier>AdventureWorksAnalytics.dw.Dim_Product</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:14:binding:target:1" TransformBindingId="TransformScript:14:binding">
+      <SqlIdentifier>AdventureWorksAnalytics.dw.Dim_Geography</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:15:binding:target:1" TransformBindingId="TransformScript:15:binding">
+      <SqlIdentifier>AdventureWorksAnalytics.dw.Dim_Customer</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:16:binding:target:1" TransformBindingId="TransformScript:16:binding">
+      <SqlIdentifier>AdventureWorksAnalytics.dw.Dim_Salesperson</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:17:binding:target:1" TransformBindingId="TransformScript:17:binding">
+      <SqlIdentifier>AdventureWorksAnalytics.dw.Dim_SalesTerritory</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:18:binding:target:1" TransformBindingId="TransformScript:18:binding">
+      <SqlIdentifier>AdventureWorksAnalytics.dw.Fact_SalesOrder</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:19:binding:target:1" TransformBindingId="TransformScript:19:binding">
+      <SqlIdentifier>AdventureWorksAnalytics.dw.Fact_SalesLine</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:1:binding:target:1" TransformBindingId="TransformScript:1:binding">
+      <SqlIdentifier>AdventureWorksAnalytics.dw.Dim_SalesChannel</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:20:binding:target:1" TransformBindingId="TransformScript:20:binding">
+      <SqlIdentifier>AdventureWorksAnalytics.dw.Fact_SalespersonQuota</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:2:binding:target:1" TransformBindingId="TransformScript:2:binding">
+      <SqlIdentifier>AdventureWorksAnalytics.dw.Dim_SalesChannel</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:3:binding:target:1" TransformBindingId="TransformScript:3:binding">
+      <SqlIdentifier>AdventureWorksAnalytics.dw.Dim_OrderStatus</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:4:binding:target:1" TransformBindingId="TransformScript:4:binding">
+      <SqlIdentifier>AdventureWorksAnalytics.dw.Dim_OrderStatus</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:5:binding:target:1" TransformBindingId="TransformScript:5:binding">
+      <SqlIdentifier>AdventureWorksAnalytics.dw.Dim_OrderStatus</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:6:binding:target:1" TransformBindingId="TransformScript:6:binding">
+      <SqlIdentifier>AdventureWorksAnalytics.dw.Dim_OrderStatus</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:7:binding:target:1" TransformBindingId="TransformScript:7:binding">
+      <SqlIdentifier>AdventureWorksAnalytics.dw.Dim_OrderStatus</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:8:binding:target:1" TransformBindingId="TransformScript:8:binding">
+      <SqlIdentifier>AdventureWorksAnalytics.dw.Dim_OrderStatus</SqlIdentifier>
+    </TransformBindingTarget>
+    <TransformBindingTarget Id="TransformScript:9:binding:target:1" TransformBindingId="TransformScript:9:binding">
+      <SqlIdentifier>AdventureWorksAnalytics.dw.Dim_Date</SqlIdentifier>
+    </TransformBindingTarget>
+  </TransformBindingTargetList>
+</MetaTransformBinding>

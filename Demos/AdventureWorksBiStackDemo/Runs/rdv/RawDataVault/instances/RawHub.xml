@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaRawDataVault>
+  <RawHubList>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:AWBuildVersion">
+      <Name>AWBuildVersion</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:DatabaseLog">
+      <Name>DatabaseLog</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:dbo:table:ErrorLog">
+      <Name>ErrorLog</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Department">
+      <Name>Department</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee">
+      <Name>Employee</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory">
+      <Name>EmployeeDepartmentHistory</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory">
+      <Name>EmployeePayHistory</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:JobCandidate">
+      <Name>JobCandidate</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift">
+      <Name>Shift</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Address">
+      <Name>Address</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:AddressType">
+      <Name>AddressType</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntity">
+      <Name>BusinessEntity</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress">
+      <Name>BusinessEntityAddress</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact">
+      <Name>BusinessEntityContact</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:ContactType">
+      <Name>ContactType</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:CountryRegion">
+      <Name>CountryRegion</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress">
+      <Name>EmailAddress</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Password">
+      <Name>Password</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:Person">
+      <Name>Person</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone">
+      <Name>PersonPhone</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:PhoneNumberType">
+      <Name>PhoneNumberType</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Person:table:StateProvince">
+      <Name>StateProvince</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials">
+      <Name>BillOfMaterials</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Culture">
+      <Name>Culture</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Document">
+      <Name>Document</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Illustration">
+      <Name>Illustration</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Location">
+      <Name>Location</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:Product">
+      <Name>Product</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory">
+      <Name>ProductCategory</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory">
+      <Name>ProductCostHistory</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductDescription">
+      <Name>ProductDescription</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductDocument">
+      <Name>ProductDocument</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory">
+      <Name>ProductInventory</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory">
+      <Name>ProductListPriceHistory</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductModel">
+      <Name>ProductModel</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductModelIllustration">
+      <Name>ProductModelIllustration</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture">
+      <Name>ProductModelProductDescriptionCulture</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto">
+      <Name>ProductPhoto</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto">
+      <Name>ProductProductPhoto</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductReview">
+      <Name>ProductReview</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory">
+      <Name>ProductSubcategory</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:ScrapReason">
+      <Name>ScrapReason</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory">
+      <Name>TransactionHistory</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistoryArchive">
+      <Name>TransactionHistoryArchive</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:UnitMeasure">
+      <Name>UnitMeasure</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder">
+      <Name>WorkOrder</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting">
+      <Name>WorkOrderRouting</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor">
+      <Name>ProductVendor</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail">
+      <Name>PurchaseOrderDetail</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader">
+      <Name>PurchaseOrderHeader</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod">
+      <Name>ShipMethod</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor">
+      <Name>Vendor</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency">
+      <Name>CountryRegionCurrency</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard">
+      <Name>CreditCard</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:Currency">
+      <Name>Currency</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate">
+      <Name>CurrencyRate</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:Customer">
+      <Name>Customer</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:PersonCreditCard">
+      <Name>PersonCreditCard</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail">
+      <Name>SalesOrderDetail</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader">
+      <Name>SalesOrderHeader</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeaderSalesReason">
+      <Name>SalesOrderHeaderSalesReason</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson">
+      <Name>SalesPerson</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory">
+      <Name>SalesPersonQuotaHistory</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesReason">
+      <Name>SalesReason</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate">
+      <Name>SalesTaxRate</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory">
+      <Name>SalesTerritory</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory">
+      <Name>SalesTerritoryHistory</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem">
+      <Name>ShoppingCartItem</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer">
+      <Name>SpecialOffer</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct">
+      <Name>SpecialOfferProduct</Name>
+    </RawHub>
+    <RawHub Id="rawhub:sqlserver:AdventureWorks2022:schema:Sales:table:Store">
+      <Name>Store</Name>
+    </RawHub>
+  </RawHubList>
+</MetaRawDataVault>

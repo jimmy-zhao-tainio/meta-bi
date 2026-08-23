@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="TransformScriptSqlIdentifierTests.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="Meta.Operations" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="Meta.Surfaces" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="Meta.Surfaces.Xml" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="MetaWeave.Core" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="xunit.assert" Version="2.9.2" />
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\\..\\..\\Tests\\Common\\MetaBi.Tests.Common.csproj" />
+    <ProjectReference Include="..\\..\\..\\MetaConvert\\SqlToTransformScript\\MetaConvert.SqlToTransformScript.csproj" />
+    <ProjectReference Include="..\\..\\..\\MetaConvert\\TransformPatternToSqlScript\\MetaConvert.TransformPatternToSqlScript.csproj" />
+    <ProjectReference Include="..\\..\\..\\MetaConvert\\TransformScriptToSql\\MetaConvert.TransformScriptToSql.csproj" />
+    <ProjectReference Include="..\\..\\..\\MetaSql\\Core\\MetaSql.Core.csproj" />
+    <ProjectReference Include="..\\..\\..\\MetaSqlScript\\Core\\MetaSqlScript.Core.csproj" />
+    <ProjectReference Include="..\\..\\Binding\\Cli\\MetaTransformBinding.Cli.csproj" />
+    <ProjectReference Include="..\\Cli\\MetaTransformScript.Cli.csproj" />
+    <ProjectReference Include="..\\Sql\\MetaTransformScript.Sql.csproj" />
+    <ProjectReference Include="..\\..\\Pattern\\Core\\MetaTransformPattern.Core.csproj" />
+    <ProjectReference Include="..\\..\\PatternInstance\\Core\\MetaTransformPatternInstance.Core.csproj" />
+    <ProjectReference Include="..\\..\\Pattern\\Cli\\MetaTransformPattern.Cli.csproj" />
+    <ProjectReference Include="..\\..\\Binding\\MetaTransform.Binding.csproj" />
+  </ItemGroup>
+
+</Project>

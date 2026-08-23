@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSqlDeployManifest>
+  <AddPrimaryKeyList>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksAnalytics.dw.Dim_Customer:primary-key" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksAnalytics.dw.Dim_Customer:primary-key</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksAnalytics.dw.Dim_Date:primary-key" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksAnalytics.dw.Dim_Date:primary-key</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksAnalytics.dw.Dim_Geography:primary-key" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksAnalytics.dw.Dim_Geography:primary-key</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksAnalytics.dw.Dim_OrderStatus:primary-key" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksAnalytics.dw.Dim_OrderStatus:primary-key</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksAnalytics.dw.Dim_Product:primary-key" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksAnalytics.dw.Dim_Product:primary-key</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksAnalytics.dw.Dim_SalesChannel:primary-key" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksAnalytics.dw.Dim_SalesChannel:primary-key</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksAnalytics.dw.Dim_Salesperson:primary-key" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksAnalytics.dw.Dim_Salesperson:primary-key</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksAnalytics.dw.Dim_SalesTerritory:primary-key" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksAnalytics.dw.Dim_SalesTerritory:primary-key</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksAnalytics.dw.Fact_SalesLine:primary-key" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksAnalytics.dw.Fact_SalesLine:primary-key</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksAnalytics.dw.Fact_SalesOrder:primary-key" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksAnalytics.dw.Fact_SalesOrder:primary-key</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+    <AddPrimaryKey Id="AddPrimaryKey:AdventureWorksAnalytics.dw.Fact_SalespersonQuota:primary-key" DeployManifestId="DeployManifest:1">
+      <SourcePrimaryKeyId>AdventureWorksAnalytics.dw.Fact_SalespersonQuota:primary-key</SourcePrimaryKeyId>
+    </AddPrimaryKey>
+  </AddPrimaryKeyList>
+</MetaSqlDeployManifest>

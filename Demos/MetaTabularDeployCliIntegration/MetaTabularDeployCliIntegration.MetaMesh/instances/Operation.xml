@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <OperationList>
+    <Operation Id="operation:cleanup" MeshId="mesh:default">
+      <Description>Remove generated tabular deploy demo workspaces.</Description>
+      <Name>cleanup</Name>
+    </Operation>
+    <Operation Id="operation:deploy-tabular-model" MeshId="mesh:default">
+      <Description>Author an analytics model, convert it to MetaTabular, patch tabular-only details, and deploy metadata to Analysis Services Tabular.</Description>
+      <Name>deploy-tabular-model</Name>
+    </Operation>
+  </OperationList>
+</MetaMesh>

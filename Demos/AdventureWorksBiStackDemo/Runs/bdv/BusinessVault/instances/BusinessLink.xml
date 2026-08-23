@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessLinkList>
+    <BusinessLink Id="AddressStateProvince">
+      <Name>AddressStateProvince</Name>
+    </BusinessLink>
+    <BusinessLink Id="CustomerPerson">
+      <Name>CustomerPerson</Name>
+    </BusinessLink>
+    <BusinessLink Id="CustomerStore">
+      <Name>CustomerStore</Name>
+    </BusinessLink>
+    <BusinessLink Id="ProductSubcategoryAssignment">
+      <Name>ProductSubcategoryAssignment</Name>
+    </BusinessLink>
+    <BusinessLink Id="ProductSubcategoryCategory">
+      <Name>ProductSubcategoryCategory</Name>
+    </BusinessLink>
+    <BusinessLink Id="SalesOrderBillToAddress">
+      <Name>SalesOrderBillToAddress</Name>
+    </BusinessLink>
+    <BusinessLink Id="SalesOrderCustomer">
+      <Name>SalesOrderCustomer</Name>
+    </BusinessLink>
+    <BusinessLink Id="SalesOrderLineProduct">
+      <Name>SalesOrderLineProduct</Name>
+    </BusinessLink>
+    <BusinessLink Id="SalesOrderLineSalesOrder">
+      <Name>SalesOrderLineSalesOrder</Name>
+    </BusinessLink>
+    <BusinessLink Id="SalesOrderSalesPerson">
+      <Name>SalesOrderSalesPerson</Name>
+    </BusinessLink>
+    <BusinessLink Id="SalesOrderSalesTerritory">
+      <Name>SalesOrderSalesTerritory</Name>
+    </BusinessLink>
+    <BusinessLink Id="SalesOrderShipToAddress">
+      <Name>SalesOrderShipToAddress</Name>
+    </BusinessLink>
+    <BusinessLink Id="SalesPersonPerson">
+      <Name>SalesPersonPerson</Name>
+    </BusinessLink>
+    <BusinessLink Id="SalesPersonQuotaSalesPerson">
+      <Name>SalesPersonQuotaSalesPerson</Name>
+    </BusinessLink>
+    <BusinessLink Id="SalesPersonSalesTerritory">
+      <Name>SalesPersonSalesTerritory</Name>
+    </BusinessLink>
+    <BusinessLink Id="SalesTerritoryCountryRegion">
+      <Name>SalesTerritoryCountryRegion</Name>
+    </BusinessLink>
+    <BusinessLink Id="StateProvinceCountryRegion">
+      <Name>StateProvinceCountryRegion</Name>
+    </BusinessLink>
+    <BusinessLink Id="StateProvinceSalesTerritory">
+      <Name>StateProvinceSalesTerritory</Name>
+    </BusinessLink>
+    <BusinessLink Id="StoreSalesPerson">
+      <Name>StoreSalesPerson</Name>
+    </BusinessLink>
+  </BusinessLinkList>
+</MetaBusinessDataVault>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ExecutableCommandList>
+    <ExecutableCommand Id="exec-check" CommandId="cmd-check" />
+    <ExecutableCommand Id="exec-create" CommandId="cmd-create" />
+    <ExecutableCommand Id="exec-help" CommandId="cmd-help" />
+    <ExecutableCommand Id="exec-resolve" CommandId="cmd-resolve" />
+  </ExecutableCommandList>
+</MetaCli>

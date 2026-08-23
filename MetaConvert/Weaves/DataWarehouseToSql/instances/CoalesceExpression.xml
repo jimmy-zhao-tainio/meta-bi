@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <CoalesceExpressionList>
+    <CoalesceExpression Id="CoalesceExpression:1" PrimaryExpressionId="PrimaryExpression:814" />
+    <CoalesceExpression Id="CoalesceExpression:2" PrimaryExpressionId="PrimaryExpression:1396" />
+    <CoalesceExpression Id="CoalesceExpression:3" PrimaryExpressionId="PrimaryExpression:1629" />
+    <CoalesceExpression Id="CoalesceExpression:4" PrimaryExpressionId="PrimaryExpression:1934" />
+  </CoalesceExpressionList>
+</MetaWeave>

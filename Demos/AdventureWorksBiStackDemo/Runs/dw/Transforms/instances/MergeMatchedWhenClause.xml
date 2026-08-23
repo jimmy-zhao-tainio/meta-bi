@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <MergeMatchedWhenClauseList>
+    <MergeMatchedWhenClause Id="MergeMatchedWhenClause:1" MergeWhenClauseId="MergeWhenClause:5" />
+    <MergeMatchedWhenClause Id="MergeMatchedWhenClause:2" MergeWhenClauseId="MergeWhenClause:7" />
+    <MergeMatchedWhenClause Id="MergeMatchedWhenClause:3" MergeWhenClauseId="MergeWhenClause:9" />
+    <MergeMatchedWhenClause Id="MergeMatchedWhenClause:4" MergeWhenClauseId="MergeWhenClause:11" />
+    <MergeMatchedWhenClause Id="MergeMatchedWhenClause:5" MergeWhenClauseId="MergeWhenClause:13" />
+    <MergeMatchedWhenClause Id="MergeMatchedWhenClause:6" MergeWhenClauseId="MergeWhenClause:15" />
+    <MergeMatchedWhenClause Id="MergeMatchedWhenClause:7" MergeWhenClauseId="MergeWhenClause:17" />
+    <MergeMatchedWhenClause Id="MergeMatchedWhenClause:8" MergeWhenClauseId="MergeWhenClause:19" />
+  </MergeMatchedWhenClauseList>
+</MetaTransformScript>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessHubKeyPartDataTypeDetailList>
+    <BusinessHubKeyPartDataTypeDetail Id="CostCenterIdentifierLength" BusinessHubKeyPartId="CostCenterIdentifier">
+      <Name>Length</Name>
+      <Value>20</Value>
+    </BusinessHubKeyPartDataTypeDetail>
+    <BusinessHubKeyPartDataTypeDetail Id="CrmCustomerIdentifierLength" BusinessHubKeyPartId="CrmCustomerIdentifier">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </BusinessHubKeyPartDataTypeDetail>
+    <BusinessHubKeyPartDataTypeDetail Id="CustomerIdentifierLength" BusinessHubKeyPartId="CustomerIdentifier">
+      <Name>Length</Name>
+      <Value>50</Value>
+    </BusinessHubKeyPartDataTypeDetail>
+    <BusinessHubKeyPartDataTypeDetail Id="DepartmentIdentifierLength" BusinessHubKeyPartId="DepartmentIdentifier">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </BusinessHubKeyPartDataTypeDetail>
+    <BusinessHubKeyPartDataTypeDetail Id="EmployeeIdentifierLength" BusinessHubKeyPartId="EmployeeIdentifier">
+      <Name>Length</Name>
+      <Value>30</Value>
+    </BusinessHubKeyPartDataTypeDetail>
+    <BusinessHubKeyPartDataTypeDetail Id="InvoiceIdentifierLength" BusinessHubKeyPartId="InvoiceIdentifier">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </BusinessHubKeyPartDataTypeDetail>
+    <BusinessHubKeyPartDataTypeDetail Id="OrderIdentifierLength" BusinessHubKeyPartId="OrderIdentifier">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </BusinessHubKeyPartDataTypeDetail>
+    <BusinessHubKeyPartDataTypeDetail Id="ProductIdentifierLength" BusinessHubKeyPartId="ProductIdentifier">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </BusinessHubKeyPartDataTypeDetail>
+    <BusinessHubKeyPartDataTypeDetail Id="ShipmentIdentifierLength" BusinessHubKeyPartId="ShipmentIdentifier">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </BusinessHubKeyPartDataTypeDetail>
+    <BusinessHubKeyPartDataTypeDetail Id="SupplierIdentifierLength" BusinessHubKeyPartId="SupplierIdentifier">
+      <Name>Length</Name>
+      <Value>40</Value>
+    </BusinessHubKeyPartDataTypeDetail>
+  </BusinessHubKeyPartDataTypeDetailList>
+</MetaBusinessDataVault>

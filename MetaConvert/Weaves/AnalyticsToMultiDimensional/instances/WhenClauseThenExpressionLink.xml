@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <WhenClauseThenExpressionLinkList>
+    <WhenClauseThenExpressionLink Id="WhenClauseThenExpressionLink:1" ScalarExpressionId="ScalarExpression:72" WhenClauseId="WhenClause:1" />
+    <WhenClauseThenExpressionLink Id="WhenClauseThenExpressionLink:2" ScalarExpressionId="ScalarExpression:78" WhenClauseId="WhenClause:2" />
+  </WhenClauseThenExpressionLinkList>
+</MetaWeave>

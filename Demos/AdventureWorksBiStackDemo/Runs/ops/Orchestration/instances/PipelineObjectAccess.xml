@@ -1,0 +1,861 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaOrchestration>
+  <PipelineObjectAccessList>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksanalytics-dw-dim-customer" DataObjectId="plan-default:object:adventureworksanalytics-dw-dim-customer" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>ReadWrite</AccessKind>
+      <Reason>Dim_Customer:ReadWrite; Fact_SalesOrder:Read; Fact_SalesLine:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksanalytics-dw-dim-date" DataObjectId="plan-default:object:adventureworksanalytics-dw-dim-date" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>ReadWrite</AccessKind>
+      <Reason>Dim_Date_OrderDate:ReadWrite; Dim_Date_DueDate:ReadWrite; Dim_Date_ShipDate:ReadWrite; Dim_Date_QuotaDate:ReadWrite; Fact_SalesOrder:Read; Fact_SalesLine:Read; Fact_SalespersonQuota:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksanalytics-dw-dim-geography" DataObjectId="plan-default:object:adventureworksanalytics-dw-dim-geography" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>ReadWrite</AccessKind>
+      <Reason>Dim_Geography:ReadWrite; Fact_SalesOrder:Read; Fact_SalesLine:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksanalytics-dw-dim-orderstatus" DataObjectId="plan-default:object:adventureworksanalytics-dw-dim-orderstatus" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Write</AccessKind>
+      <Reason>Dim_OrderStatus_1_InProcess:Read; Dim_OrderStatus_1_InProcess:Write; Dim_OrderStatus_2_Approved:Read; Dim_OrderStatus_2_Approved:Write; Dim_OrderStatus_3_Backordered:Read; Dim_OrderStatus_3_Backordered:Write; Dim_OrderStatus_4_Rejected:Read; Dim_OrderStatus_4_Rejected:Write; Dim_OrderStatus_5_Shipped:Read; Dim_OrderStatus_5_Shipped:Write; Dim_OrderStatus_6_Cancelled:Read; Dim_OrderStatus_6_Cancelled:Write; Fact_SalesOrder:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksanalytics-dw-dim-product" DataObjectId="plan-default:object:adventureworksanalytics-dw-dim-product" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>ReadWrite</AccessKind>
+      <Reason>Dim_Product:ReadWrite; Fact_SalesLine:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksanalytics-dw-dim-saleschannel" DataObjectId="plan-default:object:adventureworksanalytics-dw-dim-saleschannel" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Write</AccessKind>
+      <Reason>Dim_SalesChannel_Online:Read; Dim_SalesChannel_Online:Write; Dim_SalesChannel_Store:Read; Dim_SalesChannel_Store:Write; Fact_SalesOrder:Read; Fact_SalesLine:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksanalytics-dw-dim-salesperson" DataObjectId="plan-default:object:adventureworksanalytics-dw-dim-salesperson" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>ReadWrite</AccessKind>
+      <Reason>Dim_Salesperson:ReadWrite; Fact_SalesOrder:Read; Fact_SalesLine:Read; Fact_SalespersonQuota:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksanalytics-dw-dim-salesterritory" DataObjectId="plan-default:object:adventureworksanalytics-dw-dim-salesterritory" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>ReadWrite</AccessKind>
+      <Reason>Dim_SalesTerritory:ReadWrite; Fact_SalesOrder:Read; Fact_SalesLine:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksanalytics-dw-fact-salesline" DataObjectId="plan-default:object:adventureworksanalytics-dw-fact-salesline" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>ReadWrite</AccessKind>
+      <Reason>Fact_SalesLine:ReadWrite</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksanalytics-dw-fact-salesorder" DataObjectId="plan-default:object:adventureworksanalytics-dw-fact-salesorder" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>ReadWrite</AccessKind>
+      <Reason>Fact_SalesOrder:ReadWrite</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksanalytics-dw-fact-salespersonquota" DataObjectId="plan-default:object:adventureworksanalytics-dw-fact-salespersonquota" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>ReadWrite</AccessKind>
+      <Reason>Fact_SalespersonQuota:ReadWrite</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bh-address" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-address" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Dim_Geography:Read; Fact_SalesOrder:Read; Fact_SalesLine:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bh-countryregion" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-countryregion" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Dim_Geography:Read; Dim_SalesTerritory:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bh-customer" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-customer" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Dim_Customer:Read; Fact_SalesOrder:Read; Fact_SalesLine:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bh-product" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-product" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Dim_Product:Read; Fact_SalesLine:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bh-salesorder" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-salesorder" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Fact_SalesOrder:Read; Fact_SalesLine:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bh-salesorderline" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-salesorderline" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Fact_SalesLine:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bh-salesperson" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-salesperson" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Dim_Salesperson:Read; Fact_SalesOrder:Read; Fact_SalesLine:Read; Fact_SalespersonQuota:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bh-salespersonquota" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-salespersonquota" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Dim_Date_QuotaDate:Read; Fact_SalespersonQuota:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bh-salesterritory" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-salesterritory" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Dim_SalesTerritory:Read; Fact_SalesOrder:Read; Fact_SalesLine:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bhs-address-addressprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-address-addressprofile" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Dim_Geography:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bhs-countryregion-countryregionprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-countryregion-countryregionprofile" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Dim_Geography:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bhs-customer-customerprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-customer-customerprofile" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Dim_Customer:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bhs-person-personprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-person-personprofile" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Dim_Customer:Read; Dim_Salesperson:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bhs-product-productprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-product-productprofile" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Dim_Product:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bhs-productcategory-productcategoryprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-productcategory-productcategoryprofile" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Dim_Product:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bhs-productsubcategory-productsubcategoryprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-productsubcategory-productsubcategoryprofile" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Dim_Product:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bhs-salesorder-salesorderheader" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-salesorder-salesorderheader" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Dim_Date_OrderDate:Read; Dim_Date_DueDate:Read; Dim_Date_ShipDate:Read; Fact_SalesOrder:Read; Fact_SalesLine:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bhs-salesorderline-salesorderlinedetail" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-salesorderline-salesorderlinedetail" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Fact_SalesLine:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bhs-salespersonquota-salespersonquotaprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-salespersonquota-salespersonquotaprofile" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Fact_SalespersonQuota:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bhs-salesterritory-salesterritoryprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-salesterritory-salesterritoryprofile" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Dim_SalesTerritory:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bhs-stateprovince-stateprovinceprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-stateprovince-stateprovinceprofile" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Dim_Geography:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bhs-store-storeprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-store-storeprofile" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Dim_Customer:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bl-addressstateprovince" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-addressstateprovince" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Dim_Geography:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bl-customerperson" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-customerperson" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Dim_Customer:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bl-customerstore" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-customerstore" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Dim_Customer:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bl-productsubcategoryassignment" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-productsubcategoryassignment" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Dim_Product:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bl-productsubcategorycategory" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-productsubcategorycategory" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Dim_Product:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bl-salesorderbilltoaddress" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salesorderbilltoaddress" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Fact_SalesOrder:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bl-salesordercustomer" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salesordercustomer" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Fact_SalesOrder:Read; Fact_SalesLine:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bl-salesorderlineproduct" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salesorderlineproduct" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Fact_SalesLine:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bl-salesorderlinesalesorder" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salesorderlinesalesorder" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Fact_SalesLine:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bl-salesordersalesperson" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salesordersalesperson" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Fact_SalesOrder:Read; Fact_SalesLine:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bl-salesordersalesterritory" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salesordersalesterritory" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Fact_SalesOrder:Read; Fact_SalesLine:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bl-salesordershiptoaddress" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salesordershiptoaddress" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Fact_SalesOrder:Read; Fact_SalesLine:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bl-salespersonperson" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salespersonperson" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Dim_Salesperson:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bl-salespersonquotasalesperson" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salespersonquotasalesperson" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Fact_SalespersonQuota:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bl-salesterritorycountryregion" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salesterritorycountryregion" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Dim_SalesTerritory:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-businesstowarehouse:object:adventureworksbusinessvault-dbo-bl-stateprovincecountryregion" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-stateprovincecountryregion" PipelineReferenceId="plan-default:pipeline:businesstowarehouse">
+      <AccessKind>Read</AccessKind>
+      <Reason>Dim_Geography:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bh-address" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-address" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BH_Address:Read; BH_Address:Write; BHS_Address_AddressProfile:Read; BL_AddressStateProvince:Read; BL_SalesOrderBillToAddress:Read; BL_SalesOrderShipToAddress:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bh-countryregion" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-countryregion" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BH_CountryRegion:Read; BH_CountryRegion:Write; BHS_CountryRegion_CountryRegionProfile:Read; BL_SalesTerritoryCountryRegion:Read; BL_StateProvinceCountryRegion:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bh-customer" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-customer" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BH_Customer:Read; BH_Customer:Write; BHS_Customer_CustomerProfile:Read; BL_CustomerPerson:Read; BL_CustomerStore:Read; BL_SalesOrderCustomer:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bh-person" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-person" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BH_Person:Read; BH_Person:Write; BHS_Person_PersonProfile:Read; BL_CustomerPerson:Read; BL_SalesPersonPerson:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bh-product" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-product" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BH_Product:Read; BH_Product:Write; BHS_Product_ProductProfile:Read; BL_ProductSubcategoryAssignment:Read; BL_SalesOrderLineProduct:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bh-productcategory" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-productcategory" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BH_ProductCategory:Read; BH_ProductCategory:Write; BHS_ProductCategory_ProductCategoryProfile:Read; BL_ProductSubcategoryCategory:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bh-productsubcategory" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-productsubcategory" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BH_ProductSubcategory:Read; BH_ProductSubcategory:Write; BHS_ProductSubcategory_ProductSubcategoryProfile:Read; BL_ProductSubcategoryAssignment:Read; BL_ProductSubcategoryCategory:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bh-salesorder" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-salesorder" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BH_SalesOrder:Read; BH_SalesOrder:Write; BHS_SalesOrder_SalesOrderHeader:Read; BL_SalesOrderBillToAddress:Read; BL_SalesOrderCustomer:Read; BL_SalesOrderLineSalesOrder:Read; BL_SalesOrderSalesPerson:Read; BL_SalesOrderShipToAddress:Read; BL_SalesOrderSalesTerritory:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bh-salesorderline" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-salesorderline" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BH_SalesOrderLine:Read; BH_SalesOrderLine:Write; BHS_SalesOrderLine_SalesOrderLineDetail:Read; BL_SalesOrderLineProduct:Read; BL_SalesOrderLineSalesOrder:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bh-salesperson" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-salesperson" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BH_SalesPerson:Read; BH_SalesPerson:Write; BHS_SalesPerson_SalesPersonProfile:Read; BL_SalesOrderSalesPerson:Read; BL_SalesPersonPerson:Read; BL_SalesPersonQuotaSalesPerson:Read; BL_SalesPersonSalesTerritory:Read; BL_StoreSalesPerson:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bh-salespersonquota" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-salespersonquota" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BH_SalesPersonQuota:Read; BH_SalesPersonQuota:Write; BHS_SalesPersonQuota_SalesPersonQuotaProfile:Read; BL_SalesPersonQuotaSalesPerson:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bh-salesterritory" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-salesterritory" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BH_SalesTerritory:Read; BH_SalesTerritory:Write; BHS_SalesTerritory_SalesTerritoryProfile:Read; BL_SalesOrderSalesTerritory:Read; BL_SalesPersonSalesTerritory:Read; BL_SalesTerritoryCountryRegion:Read; BL_StateProvinceSalesTerritory:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bh-stateprovince" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-stateprovince" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BH_StateProvince:Read; BH_StateProvince:Write; BHS_StateProvince_StateProvinceProfile:Read; BL_AddressStateProvince:Read; BL_StateProvinceCountryRegion:Read; BL_StateProvinceSalesTerritory:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bh-store" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bh-store" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BH_Store:Read; BH_Store:Write; BHS_Store_StoreProfile:Read; BL_CustomerStore:Read; BL_StoreSalesPerson:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bhs-address-addressprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-address-addressprofile" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BHS_Address_AddressProfile:Read; BHS_Address_AddressProfile:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bhs-countryregion-countryregionprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-countryregion-countryregionprofile" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BHS_CountryRegion_CountryRegionProfile:Read; BHS_CountryRegion_CountryRegionProfile:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bhs-customer-customerprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-customer-customerprofile" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BHS_Customer_CustomerProfile:Read; BHS_Customer_CustomerProfile:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bhs-person-personprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-person-personprofile" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BHS_Person_PersonProfile:Read; BHS_Person_PersonProfile:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bhs-product-productprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-product-productprofile" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BHS_Product_ProductProfile:Read; BHS_Product_ProductProfile:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bhs-productcategory-productcategoryprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-productcategory-productcategoryprofile" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BHS_ProductCategory_ProductCategoryProfile:Read; BHS_ProductCategory_ProductCategoryProfile:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bhs-productsubcategory-productsubcategoryprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-productsubcategory-productsubcategoryprofile" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BHS_ProductSubcategory_ProductSubcategoryProfile:Read; BHS_ProductSubcategory_ProductSubcategoryProfile:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bhs-salesorder-salesorderheader" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-salesorder-salesorderheader" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BHS_SalesOrder_SalesOrderHeader:Read; BHS_SalesOrder_SalesOrderHeader:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bhs-salesorderline-salesorderlinedetail" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-salesorderline-salesorderlinedetail" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BHS_SalesOrderLine_SalesOrderLineDetail:Read; BHS_SalesOrderLine_SalesOrderLineDetail:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bhs-salesperson-salespersonprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-salesperson-salespersonprofile" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BHS_SalesPerson_SalesPersonProfile:Read; BHS_SalesPerson_SalesPersonProfile:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bhs-salespersonquota-salespersonquotaprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-salespersonquota-salespersonquotaprofile" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BHS_SalesPersonQuota_SalesPersonQuotaProfile:Read; BHS_SalesPersonQuota_SalesPersonQuotaProfile:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bhs-salesterritory-salesterritoryprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-salesterritory-salesterritoryprofile" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BHS_SalesTerritory_SalesTerritoryProfile:Read; BHS_SalesTerritory_SalesTerritoryProfile:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bhs-stateprovince-stateprovinceprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-stateprovince-stateprovinceprofile" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BHS_StateProvince_StateProvinceProfile:Read; BHS_StateProvince_StateProvinceProfile:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bhs-store-storeprofile" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bhs-store-storeprofile" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BHS_Store_StoreProfile:Read; BHS_Store_StoreProfile:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bl-addressstateprovince" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-addressstateprovince" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BL_AddressStateProvince:Read; BL_AddressStateProvince:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bl-customerperson" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-customerperson" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BL_CustomerPerson:Read; BL_CustomerPerson:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bl-customerstore" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-customerstore" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BL_CustomerStore:Read; BL_CustomerStore:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bl-productsubcategoryassignment" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-productsubcategoryassignment" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BL_ProductSubcategoryAssignment:Read; BL_ProductSubcategoryAssignment:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bl-productsubcategorycategory" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-productsubcategorycategory" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BL_ProductSubcategoryCategory:Read; BL_ProductSubcategoryCategory:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bl-salesorderbilltoaddress" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salesorderbilltoaddress" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BL_SalesOrderBillToAddress:Read; BL_SalesOrderBillToAddress:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bl-salesordercustomer" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salesordercustomer" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BL_SalesOrderCustomer:Read; BL_SalesOrderCustomer:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bl-salesorderlineproduct" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salesorderlineproduct" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BL_SalesOrderLineProduct:Read; BL_SalesOrderLineProduct:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bl-salesorderlinesalesorder" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salesorderlinesalesorder" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BL_SalesOrderLineSalesOrder:Read; BL_SalesOrderLineSalesOrder:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bl-salesordersalesperson" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salesordersalesperson" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BL_SalesOrderSalesPerson:Read; BL_SalesOrderSalesPerson:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bl-salesordersalesterritory" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salesordersalesterritory" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BL_SalesOrderSalesTerritory:Read; BL_SalesOrderSalesTerritory:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bl-salesordershiptoaddress" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salesordershiptoaddress" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BL_SalesOrderShipToAddress:Read; BL_SalesOrderShipToAddress:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bl-salespersonperson" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salespersonperson" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BL_SalesPersonPerson:Read; BL_SalesPersonPerson:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bl-salespersonquotasalesperson" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salespersonquotasalesperson" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BL_SalesPersonQuotaSalesPerson:Read; BL_SalesPersonQuotaSalesPerson:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bl-salespersonsalesterritory" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salespersonsalesterritory" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BL_SalesPersonSalesTerritory:Read; BL_SalesPersonSalesTerritory:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bl-salesterritorycountryregion" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-salesterritorycountryregion" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BL_SalesTerritoryCountryRegion:Read; BL_SalesTerritoryCountryRegion:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bl-stateprovincecountryregion" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-stateprovincecountryregion" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BL_StateProvinceCountryRegion:Read; BL_StateProvinceCountryRegion:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bl-stateprovincesalesterritory" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-stateprovincesalesterritory" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BL_StateProvinceSalesTerritory:Read; BL_StateProvinceSalesTerritory:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksbusinessvault-dbo-bl-storesalesperson" DataObjectId="plan-default:object:adventureworksbusinessvault-dbo-bl-storesalesperson" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Write</AccessKind>
+      <Reason>BL_StoreSalesPerson:Read; BL_StoreSalesPerson:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-h-address" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-address" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BH_Address:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-h-countryregion" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-countryregion" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BH_CountryRegion:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-h-customer" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-customer" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BH_Customer:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-h-person" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-person" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BH_Person:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-h-product" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-product" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BH_Product:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-h-productcategory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-productcategory" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BH_ProductCategory:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-h-productsubcategory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-productsubcategory" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BH_ProductSubcategory:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-h-salesorderdetail" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-salesorderdetail" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BH_SalesOrderLine:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-h-salesorderheader" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-salesorderheader" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BH_SalesOrder:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-h-salesperson" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-salesperson" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BH_SalesPerson:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-h-salespersonquotahistory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-salespersonquotahistory" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BH_SalesPersonQuota:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-h-salesterritory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-salesterritory" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BH_SalesTerritory:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-h-stateprovince" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-stateprovince" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BH_StateProvince:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-h-store" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-store" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BH_Store:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-hs-address-address" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-address-address" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BHS_Address_AddressProfile:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-hs-countryregion-countryregion" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-countryregion-countryregion" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BHS_CountryRegion_CountryRegionProfile:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-hs-customer-customer" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-customer-customer" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BHS_Customer_CustomerProfile:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-hs-person-person" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-person-person" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BHS_Person_PersonProfile:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-hs-product-product" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-product-product" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BHS_Product_ProductProfile:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-hs-productcategory-productcategory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-productcategory-productcategory" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BHS_ProductCategory_ProductCategoryProfile:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-hs-productsubcategory-productsubcategory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-productsubcategory-productsubcategory" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BHS_ProductSubcategory_ProductSubcategoryProfile:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-hs-salesorderdetail-salesorderdetail" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-salesorderdetail-salesorderdetail" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BHS_SalesOrderLine_SalesOrderLineDetail:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-hs-salesorderheader-salesorderheader" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-salesorderheader-salesorderheader" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BHS_SalesOrder_SalesOrderHeader:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-hs-salesperson-salesperson" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-salesperson-salesperson" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BHS_SalesPerson_SalesPersonProfile:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-hs-salespersonquotahistory-salespersonquotahistory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-salespersonquotahistory-salespersonquotahistory" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BHS_SalesPersonQuota_SalesPersonQuotaProfile:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-hs-salesterritory-salesterritory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-salesterritory-salesterritory" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BHS_SalesTerritory_SalesTerritoryProfile:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-hs-stateprovince-stateprovince" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-stateprovince-stateprovince" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BHS_StateProvince_StateProvinceProfile:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-hs-store-store" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-store-store" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BHS_Store_StoreProfile:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-l-addressstateprovince" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-addressstateprovince" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BL_AddressStateProvince:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-l-customerperson" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-customerperson" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BL_CustomerPerson:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-l-customerstore" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-customerstore" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BL_CustomerStore:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-l-employeeperson" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-employeeperson" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BL_SalesPersonPerson:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-l-productproductsubcategory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-productproductsubcategory" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BL_ProductSubcategoryAssignment:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-l-productsubcategoryproductcategory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-productsubcategoryproductcategory" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BL_ProductSubcategoryCategory:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-l-salesorderdetailsalesorderheader" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salesorderdetailsalesorderheader" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BL_SalesOrderLineSalesOrder:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-l-salesorderdetailspecialofferproduct" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salesorderdetailspecialofferproduct" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BL_SalesOrderLineProduct:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-l-salesorderheaderaddress-billtoaddressid" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salesorderheaderaddress-billtoaddressid" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BL_SalesOrderBillToAddress:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-l-salesorderheaderaddress-shiptoaddressid" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salesorderheaderaddress-shiptoaddressid" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BL_SalesOrderShipToAddress:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-l-salesorderheadercustomer" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salesorderheadercustomer" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BL_SalesOrderCustomer:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-l-salesorderheadersalesperson" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salesorderheadersalesperson" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BL_SalesOrderSalesPerson:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-l-salesorderheadersalesterritory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salesorderheadersalesterritory" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BL_SalesOrderSalesTerritory:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-l-salespersonemployee" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salespersonemployee" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BL_SalesPersonPerson:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-l-salespersonquotahistorysalesperson" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salespersonquotahistorysalesperson" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BL_SalesPersonQuotaSalesPerson:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-l-salespersonsalesterritory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salespersonsalesterritory" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BL_SalesPersonSalesTerritory:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-l-salesterritorycountryregion" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salesterritorycountryregion" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BL_SalesTerritoryCountryRegion:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-l-specialofferproductproduct" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-specialofferproductproduct" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BL_SalesOrderLineProduct:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-l-stateprovincecountryregion" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-stateprovincecountryregion" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BL_StateProvinceCountryRegion:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-l-stateprovincesalesterritory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-stateprovincesalesterritory" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BL_StateProvinceSalesTerritory:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-rawtobusiness:object:adventureworksrawvault-dbo-l-storesalesperson" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-storesalesperson" PipelineReferenceId="plan-default:pipeline:rawtobusiness">
+      <AccessKind>Read</AccessKind>
+      <Reason>BL_StoreSalesPerson:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworks2022-humanresources-employee" DataObjectId="plan-default:object:adventureworks2022-humanresources-employee" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Read</AccessKind>
+      <Reason>H_Employee:Read; L_EmployeePerson:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworks2022-person-address" DataObjectId="plan-default:object:adventureworks2022-person-address" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Read</AccessKind>
+      <Reason>H_Address:Read; HS_Address_Address:Read; L_AddressStateProvince:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworks2022-person-countryregion" DataObjectId="plan-default:object:adventureworks2022-person-countryregion" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Read</AccessKind>
+      <Reason>H_CountryRegion:Read; HS_CountryRegion_CountryRegion:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworks2022-person-person" DataObjectId="plan-default:object:adventureworks2022-person-person" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Read</AccessKind>
+      <Reason>H_Person:Read; HS_Person_Person:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworks2022-person-stateprovince" DataObjectId="plan-default:object:adventureworks2022-person-stateprovince" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Read</AccessKind>
+      <Reason>H_StateProvince:Read; HS_StateProvince_StateProvince:Read; L_StateProvinceCountryRegion:Read; L_StateProvinceSalesTerritory:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworks2022-production-product" DataObjectId="plan-default:object:adventureworks2022-production-product" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Read</AccessKind>
+      <Reason>H_Product:Read; HS_Product_Product:Read; L_ProductProductSubcategory:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworks2022-production-productcategory" DataObjectId="plan-default:object:adventureworks2022-production-productcategory" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Read</AccessKind>
+      <Reason>H_ProductCategory:Read; HS_ProductCategory_ProductCategory:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworks2022-production-productsubcategory" DataObjectId="plan-default:object:adventureworks2022-production-productsubcategory" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Read</AccessKind>
+      <Reason>H_ProductSubcategory:Read; HS_ProductSubcategory_ProductSubcategory:Read; L_ProductSubcategoryProductCategory:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworks2022-sales-customer" DataObjectId="plan-default:object:adventureworks2022-sales-customer" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Read</AccessKind>
+      <Reason>H_Customer:Read; HS_Customer_Customer:Read; L_CustomerPerson:Read; L_CustomerSalesTerritory:Read; L_CustomerStore:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworks2022-sales-salesorderdetail" DataObjectId="plan-default:object:adventureworks2022-sales-salesorderdetail" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Read</AccessKind>
+      <Reason>H_SalesOrderDetail:Read; HS_SalesOrderDetail_SalesOrderDetail:Read; L_SalesOrderDetailSalesOrderHeader:Read; L_SalesOrderDetailSpecialOfferProduct:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworks2022-sales-salesorderheader" DataObjectId="plan-default:object:adventureworks2022-sales-salesorderheader" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Read</AccessKind>
+      <Reason>H_SalesOrderHeader:Read; HS_SalesOrderHeader_SalesOrderHeader:Read; L_SalesOrderHeaderCustomer:Read; L_SalesOrderHeaderSalesPerson:Read; L_SalesOrderHeaderSalesTerritory:Read; L_SalesOrderHeaderAddress_BillToAddressID:Read; L_SalesOrderHeaderAddress_ShipToAddressID:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworks2022-sales-salesperson" DataObjectId="plan-default:object:adventureworks2022-sales-salesperson" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Read</AccessKind>
+      <Reason>H_SalesPerson:Read; HS_SalesPerson_SalesPerson:Read; L_SalesPersonSalesTerritory:Read; L_SalesPersonEmployee:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworks2022-sales-salespersonquotahistory" DataObjectId="plan-default:object:adventureworks2022-sales-salespersonquotahistory" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Read</AccessKind>
+      <Reason>H_SalesPersonQuotaHistory:Read; HS_SalesPersonQuotaHistory_SalesPersonQuotaHistory:Read; L_SalesPersonQuotaHistorySalesPerson:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworks2022-sales-salesterritory" DataObjectId="plan-default:object:adventureworks2022-sales-salesterritory" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Read</AccessKind>
+      <Reason>H_SalesTerritory:Read; HS_SalesTerritory_SalesTerritory:Read; L_SalesTerritoryCountryRegion:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworks2022-sales-specialofferproduct" DataObjectId="plan-default:object:adventureworks2022-sales-specialofferproduct" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Read</AccessKind>
+      <Reason>H_SpecialOfferProduct:Read; HS_SpecialOfferProduct_SpecialOfferProduct:Read; L_SpecialOfferProductProduct:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworks2022-sales-store" DataObjectId="plan-default:object:adventureworks2022-sales-store" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Read</AccessKind>
+      <Reason>H_Store:Read; HS_Store_Store:Read; L_StoreSalesPerson:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-h-address" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-address" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>H_Address:Read; H_Address:Write; HS_Address_Address:Read; L_AddressStateProvince:Read; L_SalesOrderHeaderAddress_BillToAddressID:Read; L_SalesOrderHeaderAddress_ShipToAddressID:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-h-countryregion" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-countryregion" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>H_CountryRegion:Read; H_CountryRegion:Write; HS_CountryRegion_CountryRegion:Read; L_SalesTerritoryCountryRegion:Read; L_StateProvinceCountryRegion:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-h-customer" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-customer" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>H_Customer:Read; H_Customer:Write; HS_Customer_Customer:Read; L_CustomerPerson:Read; L_CustomerSalesTerritory:Read; L_CustomerStore:Read; L_SalesOrderHeaderCustomer:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-h-employee" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-employee" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>H_Employee:Read; H_Employee:Write; L_EmployeePerson:Read; L_SalesPersonEmployee:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-h-person" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-person" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>H_Person:Read; H_Person:Write; HS_Person_Person:Read; L_CustomerPerson:Read; L_EmployeePerson:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-h-product" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-product" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>H_Product:Read; H_Product:Write; HS_Product_Product:Read; L_ProductProductSubcategory:Read; L_SpecialOfferProductProduct:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-h-productcategory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-productcategory" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>H_ProductCategory:Read; H_ProductCategory:Write; HS_ProductCategory_ProductCategory:Read; L_ProductSubcategoryProductCategory:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-h-productsubcategory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-productsubcategory" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>H_ProductSubcategory:Read; H_ProductSubcategory:Write; HS_ProductSubcategory_ProductSubcategory:Read; L_ProductProductSubcategory:Read; L_ProductSubcategoryProductCategory:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-h-salesorderdetail" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-salesorderdetail" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>H_SalesOrderDetail:Read; H_SalesOrderDetail:Write; HS_SalesOrderDetail_SalesOrderDetail:Read; L_SalesOrderDetailSalesOrderHeader:Read; L_SalesOrderDetailSpecialOfferProduct:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-h-salesorderheader" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-salesorderheader" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>H_SalesOrderHeader:Read; H_SalesOrderHeader:Write; HS_SalesOrderHeader_SalesOrderHeader:Read; L_SalesOrderDetailSalesOrderHeader:Read; L_SalesOrderHeaderCustomer:Read; L_SalesOrderHeaderSalesPerson:Read; L_SalesOrderHeaderSalesTerritory:Read; L_SalesOrderHeaderAddress_BillToAddressID:Read; L_SalesOrderHeaderAddress_ShipToAddressID:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-h-salesperson" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-salesperson" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>H_SalesPerson:Read; H_SalesPerson:Write; HS_SalesPerson_SalesPerson:Read; L_SalesOrderHeaderSalesPerson:Read; L_SalesPersonQuotaHistorySalesPerson:Read; L_SalesPersonSalesTerritory:Read; L_StoreSalesPerson:Read; L_SalesPersonEmployee:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-h-salespersonquotahistory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-salespersonquotahistory" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>H_SalesPersonQuotaHistory:Read; H_SalesPersonQuotaHistory:Write; HS_SalesPersonQuotaHistory_SalesPersonQuotaHistory:Read; L_SalesPersonQuotaHistorySalesPerson:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-h-salesterritory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-salesterritory" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>H_SalesTerritory:Read; H_SalesTerritory:Write; HS_SalesTerritory_SalesTerritory:Read; L_CustomerSalesTerritory:Read; L_SalesOrderHeaderSalesTerritory:Read; L_SalesPersonSalesTerritory:Read; L_SalesTerritoryCountryRegion:Read; L_StateProvinceSalesTerritory:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-h-specialofferproduct" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-specialofferproduct" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>H_SpecialOfferProduct:Read; H_SpecialOfferProduct:Write; HS_SpecialOfferProduct_SpecialOfferProduct:Read; L_SalesOrderDetailSpecialOfferProduct:Read; L_SpecialOfferProductProduct:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-h-stateprovince" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-stateprovince" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>H_StateProvince:Read; H_StateProvince:Write; HS_StateProvince_StateProvince:Read; L_AddressStateProvince:Read; L_StateProvinceCountryRegion:Read; L_StateProvinceSalesTerritory:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-h-store" DataObjectId="plan-default:object:adventureworksrawvault-dbo-h-store" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>H_Store:Read; H_Store:Write; HS_Store_Store:Read; L_CustomerStore:Read; L_StoreSalesPerson:Read</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-hs-address-address" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-address-address" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>HS_Address_Address:Read; HS_Address_Address:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-hs-countryregion-countryregion" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-countryregion-countryregion" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>HS_CountryRegion_CountryRegion:Read; HS_CountryRegion_CountryRegion:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-hs-customer-customer" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-customer-customer" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>HS_Customer_Customer:Read; HS_Customer_Customer:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-hs-person-person" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-person-person" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>HS_Person_Person:Read; HS_Person_Person:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-hs-product-product" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-product-product" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>HS_Product_Product:Read; HS_Product_Product:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-hs-productcategory-productcategory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-productcategory-productcategory" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>HS_ProductCategory_ProductCategory:Read; HS_ProductCategory_ProductCategory:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-hs-productsubcategory-productsubcategory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-productsubcategory-productsubcategory" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>HS_ProductSubcategory_ProductSubcategory:Read; HS_ProductSubcategory_ProductSubcategory:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-hs-salesorderdetail-salesorderdetail" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-salesorderdetail-salesorderdetail" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>HS_SalesOrderDetail_SalesOrderDetail:Read; HS_SalesOrderDetail_SalesOrderDetail:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-hs-salesorderheader-salesorderheader" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-salesorderheader-salesorderheader" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>HS_SalesOrderHeader_SalesOrderHeader:Read; HS_SalesOrderHeader_SalesOrderHeader:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-hs-salesperson-salesperson" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-salesperson-salesperson" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>HS_SalesPerson_SalesPerson:Read; HS_SalesPerson_SalesPerson:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-hs-salespersonquotahistory-salespersonquotahistory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-salespersonquotahistory-salespersonquotahistory" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>HS_SalesPersonQuotaHistory_SalesPersonQuotaHistory:Read; HS_SalesPersonQuotaHistory_SalesPersonQuotaHistory:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-hs-salesterritory-salesterritory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-salesterritory-salesterritory" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>HS_SalesTerritory_SalesTerritory:Read; HS_SalesTerritory_SalesTerritory:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-hs-specialofferproduct-specialofferproduct" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-specialofferproduct-specialofferproduct" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>HS_SpecialOfferProduct_SpecialOfferProduct:Read; HS_SpecialOfferProduct_SpecialOfferProduct:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-hs-stateprovince-stateprovince" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-stateprovince-stateprovince" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>HS_StateProvince_StateProvince:Read; HS_StateProvince_StateProvince:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-hs-store-store" DataObjectId="plan-default:object:adventureworksrawvault-dbo-hs-store-store" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>HS_Store_Store:Read; HS_Store_Store:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-l-addressstateprovince" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-addressstateprovince" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>L_AddressStateProvince:Read; L_AddressStateProvince:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-l-customerperson" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-customerperson" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>L_CustomerPerson:Read; L_CustomerPerson:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-l-customersalesterritory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-customersalesterritory" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>L_CustomerSalesTerritory:Read; L_CustomerSalesTerritory:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-l-customerstore" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-customerstore" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>L_CustomerStore:Read; L_CustomerStore:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-l-employeeperson" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-employeeperson" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>L_EmployeePerson:Read; L_EmployeePerson:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-l-productproductsubcategory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-productproductsubcategory" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>L_ProductProductSubcategory:Read; L_ProductProductSubcategory:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-l-productsubcategoryproductcategory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-productsubcategoryproductcategory" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>L_ProductSubcategoryProductCategory:Read; L_ProductSubcategoryProductCategory:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-l-salesorderdetailsalesorderheader" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salesorderdetailsalesorderheader" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>L_SalesOrderDetailSalesOrderHeader:Read; L_SalesOrderDetailSalesOrderHeader:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-l-salesorderdetailspecialofferproduct" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salesorderdetailspecialofferproduct" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>L_SalesOrderDetailSpecialOfferProduct:Read; L_SalesOrderDetailSpecialOfferProduct:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-l-salesorderheaderaddress-billtoaddressid" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salesorderheaderaddress-billtoaddressid" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>L_SalesOrderHeaderAddress_BillToAddressID:Read; L_SalesOrderHeaderAddress_BillToAddressID:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-l-salesorderheaderaddress-shiptoaddressid" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salesorderheaderaddress-shiptoaddressid" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>L_SalesOrderHeaderAddress_ShipToAddressID:Read; L_SalesOrderHeaderAddress_ShipToAddressID:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-l-salesorderheadercustomer" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salesorderheadercustomer" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>L_SalesOrderHeaderCustomer:Read; L_SalesOrderHeaderCustomer:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-l-salesorderheadersalesperson" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salesorderheadersalesperson" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>L_SalesOrderHeaderSalesPerson:Read; L_SalesOrderHeaderSalesPerson:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-l-salesorderheadersalesterritory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salesorderheadersalesterritory" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>L_SalesOrderHeaderSalesTerritory:Read; L_SalesOrderHeaderSalesTerritory:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-l-salespersonemployee" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salespersonemployee" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>L_SalesPersonEmployee:Read; L_SalesPersonEmployee:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-l-salespersonquotahistorysalesperson" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salespersonquotahistorysalesperson" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>L_SalesPersonQuotaHistorySalesPerson:Read; L_SalesPersonQuotaHistorySalesPerson:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-l-salespersonsalesterritory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salespersonsalesterritory" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>L_SalesPersonSalesTerritory:Read; L_SalesPersonSalesTerritory:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-l-salesterritorycountryregion" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-salesterritorycountryregion" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>L_SalesTerritoryCountryRegion:Read; L_SalesTerritoryCountryRegion:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-l-specialofferproductproduct" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-specialofferproductproduct" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>L_SpecialOfferProductProduct:Read; L_SpecialOfferProductProduct:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-l-stateprovincecountryregion" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-stateprovincecountryregion" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>L_StateProvinceCountryRegion:Read; L_StateProvinceCountryRegion:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-l-stateprovincesalesterritory" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-stateprovincesalesterritory" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>L_StateProvinceSalesTerritory:Read; L_StateProvinceSalesTerritory:Write</Reason>
+    </PipelineObjectAccess>
+    <PipelineObjectAccess Id="plan-default-pipeline-sourcetoraw:object:adventureworksrawvault-dbo-l-storesalesperson" DataObjectId="plan-default:object:adventureworksrawvault-dbo-l-storesalesperson" PipelineReferenceId="plan-default:pipeline:sourcetoraw">
+      <AccessKind>Write</AccessKind>
+      <Reason>L_StoreSalesPerson:Read; L_StoreSalesPerson:Write</Reason>
+    </PipelineObjectAccess>
+  </PipelineObjectAccessList>
+</MetaOrchestration>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <GroupByClauseList>
+    <GroupByClause Id="GroupByClause:1" />
+    <GroupByClause Id="GroupByClause:10" />
+    <GroupByClause Id="GroupByClause:11" />
+    <GroupByClause Id="GroupByClause:12" />
+    <GroupByClause Id="GroupByClause:13" />
+    <GroupByClause Id="GroupByClause:14" />
+    <GroupByClause Id="GroupByClause:2" />
+    <GroupByClause Id="GroupByClause:3" />
+    <GroupByClause Id="GroupByClause:4" />
+    <GroupByClause Id="GroupByClause:5" />
+    <GroupByClause Id="GroupByClause:6" />
+    <GroupByClause Id="GroupByClause:7" />
+    <GroupByClause Id="GroupByClause:8" />
+    <GroupByClause Id="GroupByClause:9" />
+  </GroupByClauseList>
+</MetaWeave>

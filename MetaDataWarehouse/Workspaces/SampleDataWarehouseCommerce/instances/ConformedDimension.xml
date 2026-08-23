@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouse>
+  <ConformedDimensionList>
+    <ConformedDimension Id="conformed:date" DimensionId="dimension:date">
+      <ConformanceName>EnterpriseDate</ConformanceName>
+      <Description>Shared calendar conformance dimension.</Description>
+    </ConformedDimension>
+  </ConformedDimensionList>
+</MetaDataWarehouse>

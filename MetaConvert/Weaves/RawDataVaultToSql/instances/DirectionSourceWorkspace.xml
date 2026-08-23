@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <DirectionSourceWorkspaceList>
+    <DirectionSourceWorkspace Id="forward/dataTypes" DirectionId="forward">
+      <ModelName>MetaDataType</ModelName>
+      <Name>dataTypes</Name>
+    </DirectionSourceWorkspace>
+    <DirectionSourceWorkspace Id="forward/implementation" DirectionId="forward">
+      <ModelName>MetaDataVaultImplementation</ModelName>
+      <Name>implementation</Name>
+    </DirectionSourceWorkspace>
+    <DirectionSourceWorkspace Id="forward/raw" DirectionId="forward">
+      <ModelName>MetaRawDataVault</ModelName>
+      <Name>raw</Name>
+    </DirectionSourceWorkspace>
+    <DirectionSourceWorkspace Id="forward/typeConversions" DirectionId="forward">
+      <ModelName>MetaDataTypeConversion</ModelName>
+      <Name>typeConversions</Name>
+    </DirectionSourceWorkspace>
+  </DirectionSourceWorkspaceList>
+</MetaWeave>

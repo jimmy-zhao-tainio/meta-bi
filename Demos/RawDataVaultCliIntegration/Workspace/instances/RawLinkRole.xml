@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaRawDataVault>
+  <RawLinkRoleList>
+    <RawLinkRole Id="EmployeeDepartmentLinkDepartment" RawHubId="DepartmentHub" RawLinkId="EmployeeDepartmentLink">
+      <Name>Department</Name>
+    </RawLinkRole>
+    <RawLinkRole Id="EmployeeDepartmentLinkEmployee" RawHubId="EmployeeHub" RawLinkId="EmployeeDepartmentLink">
+      <Name>Employee</Name>
+    </RawLinkRole>
+    <RawLinkRole Id="InvoiceOrderLinkInvoice" RawHubId="InvoiceHub" RawLinkId="InvoiceOrderLink">
+      <Name>Invoice</Name>
+    </RawLinkRole>
+    <RawLinkRole Id="InvoiceOrderLinkOrder" RawHubId="OrderHub" RawLinkId="InvoiceOrderLink">
+      <Name>Order</Name>
+    </RawLinkRole>
+    <RawLinkRole Id="InvoiceSupplierLinkInvoice" RawHubId="InvoiceHub" RawLinkId="InvoiceSupplierLink">
+      <Name>Invoice</Name>
+    </RawLinkRole>
+    <RawLinkRole Id="InvoiceSupplierLinkSupplier" RawHubId="SupplierHub" RawLinkId="InvoiceSupplierLink">
+      <Name>Supplier</Name>
+    </RawLinkRole>
+    <RawLinkRole Id="OrderCustomerLinkCustomer" RawHubId="CustomerHub" RawLinkId="OrderCustomerLink">
+      <Name>Customer</Name>
+    </RawLinkRole>
+    <RawLinkRole Id="OrderCustomerLinkOrder" RawHubId="OrderHub" RawLinkId="OrderCustomerLink">
+      <Name>Order</Name>
+    </RawLinkRole>
+    <RawLinkRole Id="ProductSupplierLinkProduct" RawHubId="ProductHub" RawLinkId="ProductSupplierLink">
+      <Name>Product</Name>
+    </RawLinkRole>
+    <RawLinkRole Id="ProductSupplierLinkSupplier" RawHubId="SupplierHub" RawLinkId="ProductSupplierLink">
+      <Name>Supplier</Name>
+    </RawLinkRole>
+    <RawLinkRole Id="ShipmentOrderLinkOrder" RawHubId="OrderHub" RawLinkId="ShipmentOrderLink">
+      <Name>Order</Name>
+    </RawLinkRole>
+    <RawLinkRole Id="ShipmentOrderLinkShipment" RawHubId="ShipmentHub" RawLinkId="ShipmentOrderLink">
+      <Name>Shipment</Name>
+    </RawLinkRole>
+  </RawLinkRoleList>
+</MetaRawDataVault>

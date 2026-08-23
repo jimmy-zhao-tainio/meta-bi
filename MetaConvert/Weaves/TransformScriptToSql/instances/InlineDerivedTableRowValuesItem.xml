@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <InlineDerivedTableRowValuesItemList>
+    <InlineDerivedTableRowValuesItem Id="InlineDerivedTableRowValuesItem:1000" InlineDerivedTableId="InlineDerivedTable:36" RowValueId="RowValue:1000">
+      <Ordinal>19</Ordinal>
+    </InlineDerivedTableRowValuesItem>
+    <InlineDerivedTableRowValuesItem Id="InlineDerivedTableRowValuesItem:1001" InlineDerivedTableId="InlineDerivedTable:36" RowValueId="RowValue:1001">
+      <Ordinal>20</Ordinal>
+    </InlineDerivedTableRowValuesItem>
+    <InlineDerivedTableRowValuesItem Id="InlineDerivedTableRowValuesItem:1002" InlineDerivedTableId="InlineDerivedTable:36" RowValueId="RowValue:1002">
+      <Ordinal>21</Ordinal>
+    </InlineDerivedTableRowValuesItem>
+    <InlineDerivedTableRowValuesItem Id="InlineDerivedTableRowValuesItem:1003" InlineDerivedTableId="InlineDerivedTable:36" RowValueId="RowValue:1003">
+      <Ordinal>22</Ordinal>
+    </InlineDerivedTableRowValuesItem>
+    <InlineDerivedTableRowValuesItem Id="InlineDerivedTableRowValuesItem:1004" InlineDerivedTableId="InlineDerivedTable:36" RowValueId="RowValue:1004">
+      <Ordinal>23</Ordinal>
+    </InlineDerivedTableRowValuesItem>
+    <InlineDerivedTableRowValuesItem Id="InlineDerivedTableRowValuesItem:1005" InlineDerivedTableId="InlineDerivedTable:36" RowValueId="RowValue:1005">
+      <Ordinal>24</Ordinal>
+    </InlineDerivedTableRowValuesItem>
+    <InlineDerivedTableRowValuesItem Id="InlineDerivedTableRowValuesItem:1006" InlineDerivedTableId="InlineDerivedTable:36" RowValueId="RowValue:1006">
+      <Ordinal>25</Ordinal>
+    </InlineDerivedTableRowValuesItem>
+    <InlineDerivedTableRowValuesItem Id="InlineDerivedTableRowValuesItem:1007" InlineDerivedTableId="InlineDerivedTable:36" RowValueId="RowValue:1007">
+      <Ordinal>26</Ordinal>
+    </InlineDerivedTableRowValuesItem>
+    <InlineDerivedTableRowValuesItem Id="InlineDerivedTableRowValuesItem:1008" InlineDerivedTableId="InlineDerivedTable:36" RowValueId="RowValue:1008">
+      <Ordinal>27</Ordinal>
+    </InlineDerivedTableRowValuesItem>
+    <InlineDerivedTableRowValuesItem Id="InlineDerivedTableRowValuesItem:981" InlineDerivedTableId="InlineDerivedTable:36" RowValueId="RowValue:981">
+      <Ordinal>0</Ordinal>
+    </InlineDerivedTableRowValuesItem>
+    <InlineDerivedTableRowValuesItem Id="InlineDerivedTableRowValuesItem:982" InlineDerivedTableId="InlineDerivedTable:36" RowValueId="RowValue:982">
+      <Ordinal>1</Ordinal>
+    </InlineDerivedTableRowValuesItem>
+    <InlineDerivedTableRowValuesItem Id="InlineDerivedTableRowValuesItem:983" InlineDerivedTableId="InlineDerivedTable:36" RowValueId="RowValue:983">
+      <Ordinal>2</Ordinal>
+    </InlineDerivedTableRowValuesItem>
+    <InlineDerivedTableRowValuesItem Id="InlineDerivedTableRowValuesItem:984" InlineDerivedTableId="InlineDerivedTable:36" RowValueId="RowValue:984">
+      <Ordinal>3</Ordinal>
+    </InlineDerivedTableRowValuesItem>
+    <InlineDerivedTableRowValuesItem Id="InlineDerivedTableRowValuesItem:985" InlineDerivedTableId="InlineDerivedTable:36" RowValueId="RowValue:985">
+      <Ordinal>4</Ordinal>
+    </InlineDerivedTableRowValuesItem>
+    <InlineDerivedTableRowValuesItem Id="InlineDerivedTableRowValuesItem:986" InlineDerivedTableId="InlineDerivedTable:36" RowValueId="RowValue:986">
+      <Ordinal>5</Ordinal>
+    </InlineDerivedTableRowValuesItem>
+    <InlineDerivedTableRowValuesItem Id="InlineDerivedTableRowValuesItem:987" InlineDerivedTableId="InlineDerivedTable:36" RowValueId="RowValue:987">
+      <Ordinal>6</Ordinal>
+    </InlineDerivedTableRowValuesItem>
+    <InlineDerivedTableRowValuesItem Id="InlineDerivedTableRowValuesItem:988" InlineDerivedTableId="InlineDerivedTable:36" RowValueId="RowValue:988">
+      <Ordinal>7</Ordinal>
+    </InlineDerivedTableRowValuesItem>
+    <InlineDerivedTableRowValuesItem Id="InlineDerivedTableRowValuesItem:989" InlineDerivedTableId="InlineDerivedTable:36" RowValueId="RowValue:989">
+      <Ordinal>8</Ordinal>
+    </InlineDerivedTableRowValuesItem>
+    <InlineDerivedTableRowValuesItem Id="InlineDerivedTableRowValuesItem:990" InlineDerivedTableId="InlineDerivedTable:36" RowValueId="RowValue:990">
+      <Ordinal>9</Ordinal>
+    </InlineDerivedTableRowValuesItem>
+    <InlineDerivedTableRowValuesItem Id="InlineDerivedTableRowValuesItem:991" InlineDerivedTableId="InlineDerivedTable:36" RowValueId="RowValue:991">
+      <Ordinal>10</Ordinal>
+    </InlineDerivedTableRowValuesItem>
+    <InlineDerivedTableRowValuesItem Id="InlineDerivedTableRowValuesItem:992" InlineDerivedTableId="InlineDerivedTable:36" RowValueId="RowValue:992">
+      <Ordinal>11</Ordinal>
+    </InlineDerivedTableRowValuesItem>
+    <InlineDerivedTableRowValuesItem Id="InlineDerivedTableRowValuesItem:993" InlineDerivedTableId="InlineDerivedTable:36" RowValueId="RowValue:993">
+      <Ordinal>12</Ordinal>
+    </InlineDerivedTableRowValuesItem>
+    <InlineDerivedTableRowValuesItem Id="InlineDerivedTableRowValuesItem:994" InlineDerivedTableId="InlineDerivedTable:36" RowValueId="RowValue:994">
+      <Ordinal>13</Ordinal>
+    </InlineDerivedTableRowValuesItem>
+    <InlineDerivedTableRowValuesItem Id="InlineDerivedTableRowValuesItem:995" InlineDerivedTableId="InlineDerivedTable:36" RowValueId="RowValue:995">
+      <Ordinal>14</Ordinal>
+    </InlineDerivedTableRowValuesItem>
+    <InlineDerivedTableRowValuesItem Id="InlineDerivedTableRowValuesItem:996" InlineDerivedTableId="InlineDerivedTable:36" RowValueId="RowValue:996">
+      <Ordinal>15</Ordinal>
+    </InlineDerivedTableRowValuesItem>
+    <InlineDerivedTableRowValuesItem Id="InlineDerivedTableRowValuesItem:997" InlineDerivedTableId="InlineDerivedTable:36" RowValueId="RowValue:997">
+      <Ordinal>16</Ordinal>
+    </InlineDerivedTableRowValuesItem>
+    <InlineDerivedTableRowValuesItem Id="InlineDerivedTableRowValuesItem:998" InlineDerivedTableId="InlineDerivedTable:36" RowValueId="RowValue:998">
+      <Ordinal>17</Ordinal>
+    </InlineDerivedTableRowValuesItem>
+    <InlineDerivedTableRowValuesItem Id="InlineDerivedTableRowValuesItem:999" InlineDerivedTableId="InlineDerivedTable:36" RowValueId="RowValue:999">
+      <Ordinal>18</Ordinal>
+    </InlineDerivedTableRowValuesItem>
+  </InlineDerivedTableRowValuesItemList>
+</MetaWeave>

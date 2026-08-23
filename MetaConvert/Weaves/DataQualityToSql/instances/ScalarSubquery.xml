@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <ScalarSubqueryList>
+    <ScalarSubquery Id="ScalarSubquery:18" PrimaryExpressionId="PrimaryExpression:3850" />
+    <ScalarSubquery Id="ScalarSubquery:19" PrimaryExpressionId="PrimaryExpression:3854" />
+    <ScalarSubquery Id="ScalarSubquery:20" PrimaryExpressionId="PrimaryExpression:3858" />
+    <ScalarSubquery Id="ScalarSubquery:21" PrimaryExpressionId="PrimaryExpression:3862" />
+    <ScalarSubquery Id="ScalarSubquery:22" PrimaryExpressionId="PrimaryExpression:3866" />
+    <ScalarSubquery Id="ScalarSubquery:23" PrimaryExpressionId="PrimaryExpression:3870" />
+    <ScalarSubquery Id="ScalarSubquery:24" PrimaryExpressionId="PrimaryExpression:3874" />
+    <ScalarSubquery Id="ScalarSubquery:25" PrimaryExpressionId="PrimaryExpression:5758" />
+    <ScalarSubquery Id="ScalarSubquery:26" PrimaryExpressionId="PrimaryExpression:5762" />
+    <ScalarSubquery Id="ScalarSubquery:27" PrimaryExpressionId="PrimaryExpression:5766" />
+    <ScalarSubquery Id="ScalarSubquery:28" PrimaryExpressionId="PrimaryExpression:5770" />
+    <ScalarSubquery Id="ScalarSubquery:29" PrimaryExpressionId="PrimaryExpression:5774" />
+    <ScalarSubquery Id="ScalarSubquery:30" PrimaryExpressionId="PrimaryExpression:5778" />
+    <ScalarSubquery Id="ScalarSubquery:31" PrimaryExpressionId="PrimaryExpression:5782" />
+    <ScalarSubquery Id="ScalarSubquery:32" PrimaryExpressionId="PrimaryExpression:5786" />
+    <ScalarSubquery Id="ScalarSubquery:33" PrimaryExpressionId="PrimaryExpression:5790" />
+    <ScalarSubquery Id="ScalarSubquery:34" PrimaryExpressionId="PrimaryExpression:5794" />
+    <ScalarSubquery Id="ScalarSubquery:35" PrimaryExpressionId="PrimaryExpression:5798" />
+    <ScalarSubquery Id="ScalarSubquery:36" PrimaryExpressionId="PrimaryExpression:5802" />
+    <ScalarSubquery Id="ScalarSubquery:37" PrimaryExpressionId="PrimaryExpression:5806" />
+    <ScalarSubquery Id="ScalarSubquery:38" PrimaryExpressionId="PrimaryExpression:5810" />
+    <ScalarSubquery Id="ScalarSubquery:39" PrimaryExpressionId="PrimaryExpression:5814" />
+    <ScalarSubquery Id="ScalarSubquery:40" PrimaryExpressionId="PrimaryExpression:5822" />
+    <ScalarSubquery Id="ScalarSubquery:41" PrimaryExpressionId="PrimaryExpression:5826" />
+    <ScalarSubquery Id="ScalarSubquery:42" PrimaryExpressionId="PrimaryExpression:5830" />
+    <ScalarSubquery Id="ScalarSubquery:43" PrimaryExpressionId="PrimaryExpression:5834" />
+    <ScalarSubquery Id="ScalarSubquery:44" PrimaryExpressionId="PrimaryExpression:5838" />
+    <ScalarSubquery Id="ScalarSubquery:45" PrimaryExpressionId="PrimaryExpression:5842" />
+    <ScalarSubquery Id="ScalarSubquery:46" PrimaryExpressionId="PrimaryExpression:5846" />
+    <ScalarSubquery Id="ScalarSubquery:47" PrimaryExpressionId="PrimaryExpression:5850" />
+    <ScalarSubquery Id="ScalarSubquery:48" PrimaryExpressionId="PrimaryExpression:5854" />
+    <ScalarSubquery Id="ScalarSubquery:49" PrimaryExpressionId="PrimaryExpression:5858" />
+  </ScalarSubqueryList>
+</MetaWeave>

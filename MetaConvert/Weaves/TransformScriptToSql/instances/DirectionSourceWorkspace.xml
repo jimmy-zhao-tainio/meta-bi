@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <DirectionSourceWorkspaceList>
+    <DirectionSourceWorkspace Id="forward/transform" DirectionId="forward">
+      <ModelName>MetaTransformScript</ModelName>
+      <Name>transform</Name>
+    </DirectionSourceWorkspace>
+  </DirectionSourceWorkspaceList>
+</MetaWeave>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouse>
+  <FactBridgeList>
+    <FactBridge Id="fact-bridge:sales-order:customer-group" BridgeTableId="bridge:customer-group" FactId="fact:sales-order">
+      <Ordinal>50</Ordinal>
+      <RoleName>CustomerGroup</RoleName>
+    </FactBridge>
+  </FactBridgeList>
+</MetaDataWarehouse>

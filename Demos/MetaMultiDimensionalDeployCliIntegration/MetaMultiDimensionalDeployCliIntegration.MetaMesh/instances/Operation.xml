@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <OperationList>
+    <Operation Id="operation:cleanup" MeshId="mesh:default">
+      <Description>Remove generated multidimensional deploy demo workspaces.</Description>
+      <Name>cleanup</Name>
+    </Operation>
+    <Operation Id="operation:deploy-multi-dimensional-model" MeshId="mesh:default">
+      <Description>Author an analytics model, convert it to MetaMultiDimensional, patch multidimensional-only details, and deploy metadata to Analysis Services Multidimensional.</Description>
+      <Name>deploy-multi-dimensional-model</Name>
+    </Operation>
+  </OperationList>
+</MetaMesh>

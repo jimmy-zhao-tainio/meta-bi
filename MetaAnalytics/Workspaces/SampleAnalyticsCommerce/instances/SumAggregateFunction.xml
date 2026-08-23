@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <SumAggregateFunctionList>
+    <SumAggregateFunction Id="measure:quantity:aggregate-function:type" AggregateFunctionId="measure:quantity:aggregate-function" />
+    <SumAggregateFunction Id="measure:sales-amount:aggregate-function:type" AggregateFunctionId="measure:sales-amount:aggregate-function" />
+    <SumAggregateFunction Id="measure:sales-target:aggregate-function:type" AggregateFunctionId="measure:sales-target:aggregate-function" />
+  </SumAggregateFunctionList>
+</MetaAnalytics>

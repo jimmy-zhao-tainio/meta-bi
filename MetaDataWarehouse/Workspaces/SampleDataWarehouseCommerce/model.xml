@@ -1,0 +1,291 @@
+<Model name="MetaDataWarehouse">
+  <EntityList>
+    <Entity name="AccumulatingSnapshotFact">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Fact" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="AccumulatingSnapshotMilestone">
+      <PropertyList>
+        <Property name="DateRoleName" />
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="AccumulatingSnapshotFact" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="AggregateFact">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Fact" role="AggregatedFact" />
+        <Relationship entity="Fact" role="SourceFact" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BridgeParticipant">
+      <PropertyList>
+        <Property name="IsRequired" isRequired="false" />
+        <Property name="Ordinal" />
+        <Property name="RoleName" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BridgeTable" />
+        <Relationship entity="Dimension" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BridgeTable">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Warehouse" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="BridgeWeight">
+      <PropertyList>
+        <Property name="DataTypeId" />
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BridgeTable" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="ConformedDimension">
+      <PropertyList>
+        <Property name="ConformanceName" />
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Dimension" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="DegenerateDimension">
+      <PropertyList>
+        <Property name="DataTypeId" />
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Fact" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="Dimension">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Warehouse" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="DimensionAttribute">
+      <PropertyList>
+        <Property name="DataTypeId" />
+        <Property name="Description" isRequired="false" />
+        <Property name="IsNullable" isRequired="false" />
+        <Property name="Name" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Dimension" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="DimensionBusinessKey">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Dimension" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="DimensionBusinessKeyPart">
+      <PropertyList>
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DimensionAttribute" />
+        <Relationship entity="DimensionBusinessKey" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="DimensionHierarchy">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Dimension" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="DimensionHierarchyLevel">
+      <PropertyList>
+        <Property name="Name" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DimensionAttribute" />
+        <Relationship entity="DimensionHierarchy" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="Fact">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Warehouse" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="FactBridge">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="Ordinal" />
+        <Property name="RoleName" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="BridgeTable" />
+        <Relationship entity="Fact" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="FactDimension">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="IsRequired" isRequired="false" />
+        <Property name="Ordinal" />
+        <Property name="RoleName" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Dimension" />
+        <Relationship entity="Fact" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="FactGrain">
+      <PropertyList>
+        <Property name="Description" />
+        <Property name="Name" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Fact" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="FactlessFact">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Fact" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="FactMeasure">
+      <PropertyList>
+        <Property name="DataTypeId" />
+        <Property name="Description" isRequired="false" />
+        <Property name="IsNullable" isRequired="false" />
+        <Property name="Name" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Fact" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="JunkDimension">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Dimension" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="JunkDimensionComponent">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="Ordinal" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DimensionAttribute" />
+        <Relationship entity="JunkDimension" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="MiniDimension">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="RoleName" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Dimension" role="ProfileDimension" />
+        <Relationship entity="Dimension" role="SourceDimension" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="OutriggerDimension">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="IsRequired" isRequired="false" />
+        <Property name="Ordinal" />
+        <Property name="RoleName" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Dimension" role="ChildDimension" />
+        <Relationship entity="Dimension" role="ParentDimension" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="PeriodicSnapshotFact">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="PeriodName" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Fact" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="SlowlyChangingDimension">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Dimension" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="TransactionFact">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Fact" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="Type1DimensionAttribute">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DimensionAttribute" />
+        <Relationship entity="SlowlyChangingDimension" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="Type2DimensionAttribute">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="DimensionAttribute" />
+        <Relationship entity="SlowlyChangingDimension" />
+      </RelationshipList>
+    </Entity>
+    <Entity name="Warehouse">
+      <PropertyList>
+        <Property name="Description" isRequired="false" />
+        <Property name="Name" />
+      </PropertyList>
+    </Entity>
+  </EntityList>
+</Model>

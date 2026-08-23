@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <CommonTableExpressionList>
+    <CommonTableExpression Id="CommonTableExpression:1" />
+    <CommonTableExpression Id="CommonTableExpression:15" />
+    <CommonTableExpression Id="CommonTableExpression:23" />
+    <CommonTableExpression Id="CommonTableExpression:24" />
+    <CommonTableExpression Id="CommonTableExpression:25" />
+    <CommonTableExpression Id="CommonTableExpression:26" />
+    <CommonTableExpression Id="CommonTableExpression:27" />
+    <CommonTableExpression Id="CommonTableExpression:28" />
+    <CommonTableExpression Id="CommonTableExpression:29" />
+    <CommonTableExpression Id="CommonTableExpression:30" />
+    <CommonTableExpression Id="CommonTableExpression:31" />
+    <CommonTableExpression Id="CommonTableExpression:32" />
+    <CommonTableExpression Id="CommonTableExpression:33" />
+    <CommonTableExpression Id="CommonTableExpression:34" />
+    <CommonTableExpression Id="CommonTableExpression:35" />
+    <CommonTableExpression Id="CommonTableExpression:36" />
+    <CommonTableExpression Id="CommonTableExpression:37" />
+    <CommonTableExpression Id="CommonTableExpression:38" />
+    <CommonTableExpression Id="CommonTableExpression:39" />
+  </CommonTableExpressionList>
+</MetaWeave>

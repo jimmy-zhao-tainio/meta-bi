@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaPipeline>
+  <PipelineList>
+    <Pipeline Id="BusinessToWarehouse">
+      <Description>Load conformed dimensions and analytical facts from the Business Data Vault into the dimensional warehouse.</Description>
+      <Name>BusinessToWarehouse</Name>
+    </Pipeline>
+    <Pipeline Id="RawToBusiness">
+      <Description>Load curated business structures from the Raw Data Vault into the Business Data Vault.</Description>
+      <Name>RawToBusiness</Name>
+    </Pipeline>
+    <Pipeline Id="SourceToRaw">
+      <Description>Load source-faithful AdventureWorks records into the Raw Data Vault.</Description>
+      <Name>SourceToRaw</Name>
+    </Pipeline>
+  </PipelineList>
+</MetaPipeline>

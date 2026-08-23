@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ParameterList>
+    <Parameter Id="param-from-transform-workspace-binding-workspace" ValueShapeId="shape-path">
+      <Description>MetaTransformBinding workspace used to scan only validated scripts.</Description>
+      <Name>binding-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-from-transform-workspace-output-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable containing the output SQL workspace connection string.</Description>
+      <Name>output-connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-from-transform-workspace-output-csharp" ValueShapeId="shape-path">
+      <Description>Create the output on the selected workspace surface.</Description>
+      <Name>output-csharp</Name>
+    </Parameter>
+    <Parameter Id="param-from-transform-workspace-output-sql" ValueShapeId="shape-path">
+      <Description>Create the output on the selected workspace surface.</Description>
+      <Name>output-sql</Name>
+    </Parameter>
+    <Parameter Id="param-from-transform-workspace-output-xml" ValueShapeId="shape-path">
+      <Description>Create the output on the selected workspace surface.</Description>
+      <Name>output-xml</Name>
+    </Parameter>
+    <Parameter Id="param-from-transform-workspace-transform-workspace" ValueShapeId="shape-path">
+      <Description>MetaTransformScript workspace to analyze.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>transform-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-inspect-show-candidate-ids" ValueShapeId="shape-flag">
+      <Description>Include candidate ids in adjustment output. Implies --show-cases.</Description>
+      <Name>show-candidate-ids</Name>
+    </Parameter>
+    <Parameter Id="param-inspect-show-cases" ValueShapeId="shape-flag">
+      <Description>Show candidate adjustment cases.</Description>
+      <Name>show-cases</Name>
+    </Parameter>
+    <Parameter Id="param-inspect-top-cases" ValueShapeId="shape-count">
+      <DefaultValue>20</DefaultValue>
+      <Description>Show up to n candidate cases. Implies --show-cases.</Description>
+      <Name>top-cases</Name>
+    </Parameter>
+    <Parameter Id="param-inspect-workspace" ValueShapeId="shape-path">
+      <Description>MetaDataQuality workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-promote-all" ValueShapeId="shape-flag">
+      <Description>Promote every generated data-quality candidate.</Description>
+      <Name>all</Name>
+    </Parameter>
+    <Parameter Id="param-promote-candidate-id" ValueShapeId="shape-text">
+      <Description>Promote one generated candidate. May be provided more than once.</Description>
+      <IsRepeatable>true</IsRepeatable>
+      <Name>candidate-id</Name>
+    </Parameter>
+    <Parameter Id="param-promote-candidate-kind" ValueShapeId="shape-text">
+      <Description>Promote generated candidates of one candidate family. May be provided more than once.</Description>
+      <IsRepeatable>true</IsRepeatable>
+      <Name>candidate-kind</Name>
+    </Parameter>
+    <Parameter Id="param-promote-workspace" ValueShapeId="shape-path">
+      <Description>MetaDataQuality workspace. Defaults to the current directory.</Description>
+      <Name>workspace</Name>
+    </Parameter>
+  </ParameterList>
+</MetaCli>

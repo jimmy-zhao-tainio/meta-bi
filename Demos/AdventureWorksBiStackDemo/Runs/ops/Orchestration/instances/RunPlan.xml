@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaOrchestration>
+  <RunPlanList>
+    <RunPlan Id="plan-default:run-plan:defaultrunplan" OrchestrationPlanId="plan:default">
+      <Name>DefaultRunPlan</Name>
+      <Reason>Generated from declared task access profiles, task-object effects, and lock compatibility policy. Dependency rows remain graph edges evaluated at execution time.</Reason>
+      <RunPlanStatus>Ready</RunPlanStatus>
+    </RunPlan>
+  </RunPlanList>
+</MetaOrchestration>

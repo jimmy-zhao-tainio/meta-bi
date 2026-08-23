@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformBinding>
+  <TargetColumnReferenceList>
+    <TargetColumnReference Id="TransformScript:10:binding:target:1:column-reference:ColumnReferenceExpression:30" ColumnId="TransformScript:10:mutation-target-column:3" TransformBindingTargetId="TransformScript:10:binding:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:CalendarDate</MetaSchemaFieldId>
+      <MetaTransformScriptColumnReferenceId>ColumnReferenceExpression:30</MetaTransformScriptColumnReferenceId>
+    </TargetColumnReference>
+    <TargetColumnReference Id="TransformScript:11:binding:target:1:column-reference:ColumnReferenceExpression:49" ColumnId="TransformScript:11:mutation-target-column:3" TransformBindingTargetId="TransformScript:11:binding:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:CalendarDate</MetaSchemaFieldId>
+      <MetaTransformScriptColumnReferenceId>ColumnReferenceExpression:49</MetaTransformScriptColumnReferenceId>
+    </TargetColumnReference>
+    <TargetColumnReference Id="TransformScript:12:binding:target:1:column-reference:ColumnReferenceExpression:68" ColumnId="TransformScript:12:mutation-target-column:3" TransformBindingTargetId="TransformScript:12:binding:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:CalendarDate</MetaSchemaFieldId>
+      <MetaTransformScriptColumnReferenceId>ColumnReferenceExpression:68</MetaTransformScriptColumnReferenceId>
+    </TargetColumnReference>
+    <TargetColumnReference Id="TransformScript:13:binding:target:1:column-reference:ColumnReferenceExpression:121" ColumnId="TransformScript:13:mutation-target-column:2" TransformBindingTargetId="TransformScript:13:binding:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:ProductID</MetaSchemaFieldId>
+      <MetaTransformScriptColumnReferenceId>ColumnReferenceExpression:121</MetaTransformScriptColumnReferenceId>
+    </TargetColumnReference>
+    <TargetColumnReference Id="TransformScript:14:binding:target:1:column-reference:ColumnReferenceExpression:183" ColumnId="TransformScript:14:mutation-target-column:2" TransformBindingTargetId="TransformScript:14:binding:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:AddressID</MetaSchemaFieldId>
+      <MetaTransformScriptColumnReferenceId>ColumnReferenceExpression:183</MetaTransformScriptColumnReferenceId>
+    </TargetColumnReference>
+    <TargetColumnReference Id="TransformScript:15:binding:target:1:column-reference:ColumnReferenceExpression:252" ColumnId="TransformScript:15:mutation-target-column:2" TransformBindingTargetId="TransformScript:15:binding:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:CustomerID</MetaSchemaFieldId>
+      <MetaTransformScriptColumnReferenceId>ColumnReferenceExpression:252</MetaTransformScriptColumnReferenceId>
+    </TargetColumnReference>
+    <TargetColumnReference Id="TransformScript:16:binding:target:1:column-reference:ColumnReferenceExpression:284" ColumnId="TransformScript:16:mutation-target-column:2" TransformBindingTargetId="TransformScript:16:binding:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:field:BusinessEntityID</MetaSchemaFieldId>
+      <MetaTransformScriptColumnReferenceId>ColumnReferenceExpression:284</MetaTransformScriptColumnReferenceId>
+    </TargetColumnReference>
+    <TargetColumnReference Id="TransformScript:17:binding:target:1:column-reference:ColumnReferenceExpression:314" ColumnId="TransformScript:17:mutation-target-column:2" TransformBindingTargetId="TransformScript:17:binding:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory:field:TerritoryID</MetaSchemaFieldId>
+      <MetaTransformScriptColumnReferenceId>ColumnReferenceExpression:314</MetaTransformScriptColumnReferenceId>
+    </TargetColumnReference>
+    <TargetColumnReference Id="TransformScript:18:binding:target:1:column-reference:ColumnReferenceExpression:406" ColumnId="TransformScript:18:mutation-target-column:11" TransformBindingTargetId="TransformScript:18:binding:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:SalesOrderID</MetaSchemaFieldId>
+      <MetaTransformScriptColumnReferenceId>ColumnReferenceExpression:406</MetaTransformScriptColumnReferenceId>
+    </TargetColumnReference>
+    <TargetColumnReference Id="TransformScript:19:binding:target:1:column-reference:ColumnReferenceExpression:533" ColumnId="TransformScript:19:mutation-target-column:8" TransformBindingTargetId="TransformScript:19:binding:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:SalesOrderID</MetaSchemaFieldId>
+      <MetaTransformScriptColumnReferenceId>ColumnReferenceExpression:533</MetaTransformScriptColumnReferenceId>
+    </TargetColumnReference>
+    <TargetColumnReference Id="TransformScript:19:binding:target:1:column-reference:ColumnReferenceExpression:535" ColumnId="TransformScript:19:mutation-target-column:9" TransformBindingTargetId="TransformScript:19:binding:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:SalesOrderDetailID</MetaSchemaFieldId>
+      <MetaTransformScriptColumnReferenceId>ColumnReferenceExpression:535</MetaTransformScriptColumnReferenceId>
+    </TargetColumnReference>
+    <TargetColumnReference Id="TransformScript:20:binding:target:1:column-reference:ColumnReferenceExpression:592" ColumnId="TransformScript:20:mutation-target-column:1" TransformBindingTargetId="TransformScript:20:binding:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota:field:QuotaPeriodKey</MetaSchemaFieldId>
+      <MetaTransformScriptColumnReferenceId>ColumnReferenceExpression:592</MetaTransformScriptColumnReferenceId>
+    </TargetColumnReference>
+    <TargetColumnReference Id="TransformScript:20:binding:target:1:column-reference:ColumnReferenceExpression:594" ColumnId="TransformScript:20:mutation-target-column:2" TransformBindingTargetId="TransformScript:20:binding:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota:field:SalespersonKey</MetaSchemaFieldId>
+      <MetaTransformScriptColumnReferenceId>ColumnReferenceExpression:594</MetaTransformScriptColumnReferenceId>
+    </TargetColumnReference>
+    <TargetColumnReference Id="TransformScript:9:binding:target:1:column-reference:ColumnReferenceExpression:11" ColumnId="TransformScript:9:mutation-target-column:3" TransformBindingTargetId="TransformScript:9:binding:target:1">
+      <MetaSchemaFieldId>sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:CalendarDate</MetaSchemaFieldId>
+      <MetaTransformScriptColumnReferenceId>ColumnReferenceExpression:11</MetaTransformScriptColumnReferenceId>
+    </TargetColumnReference>
+  </TargetColumnReferenceList>
+</MetaTransformBinding>

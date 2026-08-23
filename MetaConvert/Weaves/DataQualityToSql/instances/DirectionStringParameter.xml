@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <DirectionStringParameterList>
+    <DirectionStringParameter Id="forward/databaseName" DirectionId="forward">
+      <Name>databaseName</Name>
+    </DirectionStringParameter>
+  </DirectionStringParameterList>
+</MetaWeave>

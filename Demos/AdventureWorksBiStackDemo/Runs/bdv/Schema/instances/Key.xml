@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <KeyList>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile:key:PK_BHS_Address_AddressProfile" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Address_AddressProfile">
+      <Name>PK_BHS_Address_AddressProfile</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_CountryRegion_CountryRegionProfile:key:PK_BHS_CountryRegion_CountryRegionProfile" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_CountryRegion_CountryRegionProfile">
+      <Name>PK_BHS_CountryRegion_CountryRegionProfile</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile:key:PK_BHS_Customer_CustomerProfile" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Customer_CustomerProfile">
+      <Name>PK_BHS_Customer_CustomerProfile</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile:key:PK_BHS_Person_PersonProfile" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Person_PersonProfile">
+      <Name>PK_BHS_Person_PersonProfile</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductCategory_ProductCategoryProfile:key:PK_BHS_ProductCategory_ProductCategoryProfile" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductCategory_ProductCategoryProfile">
+      <Name>PK_BHS_ProductCategory_ProductCategoryProfile</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductSubcategory_ProductSubcategoryProfile:key:PK_BHS_ProductSubcategory_ProductSubcategoryProfile" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_ProductSubcategory_ProductSubcategoryProfile">
+      <Name>PK_BHS_ProductSubcategory_ProductSubcategoryProfile</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile:key:PK_BHS_Product_ProductProfile" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Product_ProductProfile">
+      <Name>PK_BHS_Product_ProductProfile</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail:key:PK_BHS_SalesOrderLine_SalesOrderLineDetail" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrderLine_SalesOrderLineDetail">
+      <Name>PK_BHS_SalesOrderLine_SalesOrderLineDetail</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader:key:PK_BHS_SalesOrder_SalesOrderHeader" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesOrder_SalesOrderHeader">
+      <Name>PK_BHS_SalesOrder_SalesOrderHeader</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile:key:PK_BHS_SalesPersonQuota_SalesPersonQuotaProfile" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPersonQuota_SalesPersonQuotaProfile">
+      <Name>PK_BHS_SalesPersonQuota_SalesPersonQuotaProfile</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile:key:PK_BHS_SalesPerson_SalesPersonProfile" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesPerson_SalesPersonProfile">
+      <Name>PK_BHS_SalesPerson_SalesPersonProfile</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile:key:PK_BHS_SalesTerritory_SalesTerritoryProfile" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_SalesTerritory_SalesTerritoryProfile">
+      <Name>PK_BHS_SalesTerritory_SalesTerritoryProfile</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile:key:PK_BHS_StateProvince_StateProvinceProfile" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_StateProvince_StateProvinceProfile">
+      <Name>PK_BHS_StateProvince_StateProvinceProfile</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile:key:PK_BHS_Store_StoreProfile" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BHS_Store_StoreProfile">
+      <Name>PK_BHS_Store_StoreProfile</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Address:key:PK_BH_Address" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Address">
+      <Name>PK_BH_Address</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_CountryRegion:key:PK_BH_CountryRegion" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_CountryRegion">
+      <Name>PK_BH_CountryRegion</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Customer:key:PK_BH_Customer" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Customer">
+      <Name>PK_BH_Customer</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Person:key:PK_BH_Person" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Person">
+      <Name>PK_BH_Person</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product:key:PK_BH_Product" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Product">
+      <Name>PK_BH_Product</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductCategory:key:PK_BH_ProductCategory" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductCategory">
+      <Name>PK_BH_ProductCategory</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductSubcategory:key:PK_BH_ProductSubcategory" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_ProductSubcategory">
+      <Name>PK_BH_ProductSubcategory</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder:key:PK_BH_SalesOrder" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrder">
+      <Name>PK_BH_SalesOrder</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrderLine:key:PK_BH_SalesOrderLine" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesOrderLine">
+      <Name>PK_BH_SalesOrderLine</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPerson:key:PK_BH_SalesPerson" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPerson">
+      <Name>PK_BH_SalesPerson</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPersonQuota:key:PK_BH_SalesPersonQuota" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesPersonQuota">
+      <Name>PK_BH_SalesPersonQuota</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesTerritory:key:PK_BH_SalesTerritory" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_SalesTerritory">
+      <Name>PK_BH_SalesTerritory</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_StateProvince:key:PK_BH_StateProvince" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_StateProvince">
+      <Name>PK_BH_StateProvince</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Store:key:PK_BH_Store" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BH_Store">
+      <Name>PK_BH_Store</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_AddressStateProvince:key:PK_BL_AddressStateProvince" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_AddressStateProvince">
+      <Name>PK_BL_AddressStateProvince</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerPerson:key:PK_BL_CustomerPerson" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerPerson">
+      <Name>PK_BL_CustomerPerson</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerStore:key:PK_BL_CustomerStore" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_CustomerStore">
+      <Name>PK_BL_CustomerStore</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryAssignment:key:PK_BL_ProductSubcategoryAssignment" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryAssignment">
+      <Name>PK_BL_ProductSubcategoryAssignment</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryCategory:key:PK_BL_ProductSubcategoryCategory" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_ProductSubcategoryCategory">
+      <Name>PK_BL_ProductSubcategoryCategory</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderBillToAddress:key:PK_BL_SalesOrderBillToAddress" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderBillToAddress">
+      <Name>PK_BL_SalesOrderBillToAddress</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer:key:PK_BL_SalesOrderCustomer" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderCustomer">
+      <Name>PK_BL_SalesOrderCustomer</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct:key:PK_BL_SalesOrderLineProduct" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineProduct">
+      <Name>PK_BL_SalesOrderLineProduct</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineSalesOrder:key:PK_BL_SalesOrderLineSalesOrder" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderLineSalesOrder">
+      <Name>PK_BL_SalesOrderLineSalesOrder</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson:key:PK_BL_SalesOrderSalesPerson" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesPerson">
+      <Name>PK_BL_SalesOrderSalesPerson</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesTerritory:key:PK_BL_SalesOrderSalesTerritory" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderSalesTerritory">
+      <Name>PK_BL_SalesOrderSalesTerritory</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderShipToAddress:key:PK_BL_SalesOrderShipToAddress" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesOrderShipToAddress">
+      <Name>PK_BL_SalesOrderShipToAddress</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonPerson:key:PK_BL_SalesPersonPerson" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonPerson">
+      <Name>PK_BL_SalesPersonPerson</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonQuotaSalesPerson:key:PK_BL_SalesPersonQuotaSalesPerson" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonQuotaSalesPerson">
+      <Name>PK_BL_SalesPersonQuotaSalesPerson</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonSalesTerritory:key:PK_BL_SalesPersonSalesTerritory" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesPersonSalesTerritory">
+      <Name>PK_BL_SalesPersonSalesTerritory</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesTerritoryCountryRegion:key:PK_BL_SalesTerritoryCountryRegion" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_SalesTerritoryCountryRegion">
+      <Name>PK_BL_SalesTerritoryCountryRegion</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceCountryRegion:key:PK_BL_StateProvinceCountryRegion" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceCountryRegion">
+      <Name>PK_BL_StateProvinceCountryRegion</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceSalesTerritory:key:PK_BL_StateProvinceSalesTerritory" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StateProvinceSalesTerritory">
+      <Name>PK_BL_StateProvinceSalesTerritory</Name>
+    </Key>
+    <Key Id="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StoreSalesPerson:key:PK_BL_StoreSalesPerson" TableId="sqlserver:AdventureWorksBusinessVault:schema:dbo:table:BL_StoreSalesPerson">
+      <Name>PK_BL_StoreSalesPerson</Name>
+    </Key>
+  </KeyList>
+</MetaSchema>

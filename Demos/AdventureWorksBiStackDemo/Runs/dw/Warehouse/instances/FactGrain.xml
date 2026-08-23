@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouse>
+  <FactGrainList>
+    <FactGrain Id="fact:sales-line:grain" FactId="fact:sales-line">
+      <Description>One row per sales order line</Description>
+      <Name>SalesOrderLine</Name>
+    </FactGrain>
+    <FactGrain Id="fact:sales-order:grain" FactId="fact:sales-order">
+      <Description>One row per sales order</Description>
+      <Name>SalesOrder</Name>
+    </FactGrain>
+    <FactGrain Id="fact:salesperson-quota:grain" FactId="fact:salesperson-quota">
+      <Description>One row per salesperson and quota period</Description>
+      <Name>SalespersonQuotaPeriod</Name>
+    </FactGrain>
+  </FactGrainList>
+</MetaDataWarehouse>

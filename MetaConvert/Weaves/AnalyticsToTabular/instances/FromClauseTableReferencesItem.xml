@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <FromClauseTableReferencesItemList>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:10" FromClauseId="FromClause:10" TableReferenceId="TableReference:10">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:11" FromClauseId="FromClause:11" TableReferenceId="TableReference:11">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:12" FromClauseId="FromClause:12" TableReferenceId="TableReference:12">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:13" FromClauseId="FromClause:13" TableReferenceId="TableReference:13">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:14" FromClauseId="FromClause:14" TableReferenceId="TableReference:14">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:15" FromClauseId="FromClause:15" TableReferenceId="TableReference:15">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:16" FromClauseId="FromClause:16" TableReferenceId="TableReference:16">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:17" FromClauseId="FromClause:17" TableReferenceId="TableReference:17">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:18" FromClauseId="FromClause:18" TableReferenceId="TableReference:18">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:19" FromClauseId="FromClause:19" TableReferenceId="TableReference:19">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:2" FromClauseId="FromClause:2" TableReferenceId="TableReference:2">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:20" FromClauseId="FromClause:20" TableReferenceId="TableReference:20">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:21" FromClauseId="FromClause:21" TableReferenceId="TableReference:21">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:22" FromClauseId="FromClause:22" TableReferenceId="TableReference:22">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:23" FromClauseId="FromClause:23" TableReferenceId="TableReference:23">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:24" FromClauseId="FromClause:24" TableReferenceId="TableReference:24">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:27" FromClauseId="FromClause:27" TableReferenceId="TableReference:49">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:28" FromClauseId="FromClause:28" TableReferenceId="TableReference:56">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:29" FromClauseId="FromClause:29" TableReferenceId="TableReference:63">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:3" FromClauseId="FromClause:3" TableReferenceId="TableReference:3">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:30" FromClauseId="FromClause:30" TableReferenceId="TableReference:70">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:31" FromClauseId="FromClause:31" TableReferenceId="TableReference:77">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:32" FromClauseId="FromClause:32" TableReferenceId="TableReference:84">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:33" FromClauseId="FromClause:33" TableReferenceId="TableReference:86">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:34" FromClauseId="FromClause:34" TableReferenceId="TableReference:87">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:35" FromClauseId="FromClause:35" TableReferenceId="TableReference:88">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:36" FromClauseId="FromClause:36" TableReferenceId="TableReference:89">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:37" FromClauseId="FromClause:37" TableReferenceId="TableReference:90">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:38" FromClauseId="FromClause:38" TableReferenceId="TableReference:91">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:39" FromClauseId="FromClause:39" TableReferenceId="TableReference:92">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:4" FromClauseId="FromClause:4" TableReferenceId="TableReference:4">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:40" FromClauseId="FromClause:40" TableReferenceId="TableReference:94">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:5" FromClauseId="FromClause:5" TableReferenceId="TableReference:5">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:6" FromClauseId="FromClause:6" TableReferenceId="TableReference:6">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:7" FromClauseId="FromClause:7" TableReferenceId="TableReference:7">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:8" FromClauseId="FromClause:8" TableReferenceId="TableReference:8">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:9" FromClauseId="FromClause:9" TableReferenceId="TableReference:9">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
+  </FromClauseTableReferencesItemList>
+</MetaWeave>

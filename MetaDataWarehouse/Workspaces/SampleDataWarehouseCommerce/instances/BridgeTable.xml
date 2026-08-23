@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouse>
+  <BridgeTableList>
+    <BridgeTable Id="bridge:customer-group" WarehouseId="warehouse:commerce">
+      <Name>CustomerGroup</Name>
+    </BridgeTable>
+  </BridgeTableList>
+</MetaDataWarehouse>

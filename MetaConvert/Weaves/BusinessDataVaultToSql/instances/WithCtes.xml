@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <WithCtesList>
+    <WithCtes Id="WithCtes:1" />
+    <WithCtes Id="WithCtes:10" />
+    <WithCtes Id="WithCtes:11" />
+    <WithCtes Id="WithCtes:12" />
+    <WithCtes Id="WithCtes:13" />
+    <WithCtes Id="WithCtes:14" />
+    <WithCtes Id="WithCtes:15" />
+    <WithCtes Id="WithCtes:16" />
+    <WithCtes Id="WithCtes:17" />
+    <WithCtes Id="WithCtes:18" />
+    <WithCtes Id="WithCtes:19" />
+    <WithCtes Id="WithCtes:2" />
+    <WithCtes Id="WithCtes:20" />
+    <WithCtes Id="WithCtes:3" />
+    <WithCtes Id="WithCtes:4" />
+    <WithCtes Id="WithCtes:5" />
+    <WithCtes Id="WithCtes:7" />
+    <WithCtes Id="WithCtes:8" />
+    <WithCtes Id="WithCtes:9" />
+  </WithCtesList>
+</MetaWeave>

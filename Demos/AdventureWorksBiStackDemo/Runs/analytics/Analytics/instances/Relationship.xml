@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <RelationshipList>
+    <Relationship Id="SalesLines_Customer" FromAttributeId="SalesLines_CustomerKey" FromTableId="SalesLines" ToAttributeId="Customer_CustomerKey" ToTableId="Customer">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Sales Lines Customer</Name>
+      <RelationshipKind>Regular</RelationshipKind>
+      <RoleName>Customer</RoleName>
+    </Relationship>
+    <Relationship Id="SalesLines_OrderDate" FromAttributeId="SalesLines_OrderDateKey" FromTableId="SalesLines" ToAttributeId="Date_DateKey" ToTableId="Date">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Sales Lines Order Date</Name>
+      <RelationshipKind>Regular</RelationshipKind>
+      <RoleName>OrderDate</RoleName>
+    </Relationship>
+    <Relationship Id="SalesLines_Product" FromAttributeId="SalesLines_ProductKey" FromTableId="SalesLines" ToAttributeId="Product_ProductKey" ToTableId="Product">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Product</Name>
+      <RelationshipKind>Regular</RelationshipKind>
+      <RoleName>Product</RoleName>
+    </Relationship>
+    <Relationship Id="SalesLines_SalesChannel" FromAttributeId="SalesLines_SalesChannelKey" FromTableId="SalesLines" ToAttributeId="SalesChannel_SalesChannelKey" ToTableId="SalesChannel">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Sales Lines Sales Channel</Name>
+      <RelationshipKind>Regular</RelationshipKind>
+      <RoleName>SalesChannel</RoleName>
+    </Relationship>
+    <Relationship Id="SalesLines_Salesperson" FromAttributeId="SalesLines_SalespersonKey" FromTableId="SalesLines" ToAttributeId="Salesperson_SalespersonKey" ToTableId="Salesperson">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>false</IsRequired>
+      <Name>Sales Lines Salesperson</Name>
+      <RelationshipKind>Regular</RelationshipKind>
+      <RoleName>Salesperson</RoleName>
+    </Relationship>
+    <Relationship Id="SalesLines_SalesTerritory" FromAttributeId="SalesLines_SalesTerritoryKey" FromTableId="SalesLines" ToAttributeId="SalesTerritory_SalesTerritoryKey" ToTableId="SalesTerritory">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>false</IsRequired>
+      <Name>Sales Lines Sales Territory</Name>
+      <RelationshipKind>Regular</RelationshipKind>
+      <RoleName>SalesTerritory</RoleName>
+    </Relationship>
+    <Relationship Id="SalesLines_ShipToGeography" FromAttributeId="SalesLines_ShipToGeographyKey" FromTableId="SalesLines" ToAttributeId="Geography_GeographyKey" ToTableId="Geography">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Sales Lines Ship To Geography</Name>
+      <RelationshipKind>Regular</RelationshipKind>
+      <RoleName>ShipToGeography</RoleName>
+    </Relationship>
+    <Relationship Id="SalesOrders_BillToGeography" FromAttributeId="SalesOrders_BillToGeographyKey" FromTableId="SalesOrders" ToAttributeId="Geography_GeographyKey" ToTableId="Geography">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Bill To Geography</Name>
+      <RelationshipKind>Regular</RelationshipKind>
+      <RoleName>BillToGeography</RoleName>
+    </Relationship>
+    <Relationship Id="SalesOrders_Customer" FromAttributeId="SalesOrders_CustomerKey" FromTableId="SalesOrders" ToAttributeId="Customer_CustomerKey" ToTableId="Customer">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Sales Orders Customer</Name>
+      <RelationshipKind>Regular</RelationshipKind>
+      <RoleName>Customer</RoleName>
+    </Relationship>
+    <Relationship Id="SalesOrders_DueDate" FromAttributeId="SalesOrders_DueDateKey" FromTableId="SalesOrders" ToAttributeId="Date_DateKey" ToTableId="Date">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>false</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Due Date</Name>
+      <RelationshipKind>Regular</RelationshipKind>
+      <RoleName>DueDate</RoleName>
+    </Relationship>
+    <Relationship Id="SalesOrders_OrderDate" FromAttributeId="SalesOrders_OrderDateKey" FromTableId="SalesOrders" ToAttributeId="Date_DateKey" ToTableId="Date">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Sales Orders Order Date</Name>
+      <RelationshipKind>Regular</RelationshipKind>
+      <RoleName>OrderDate</RoleName>
+    </Relationship>
+    <Relationship Id="SalesOrders_OrderStatus" FromAttributeId="SalesOrders_OrderStatusKey" FromTableId="SalesOrders" ToAttributeId="OrderStatus_OrderStatusKey" ToTableId="OrderStatus">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Order Status</Name>
+      <RelationshipKind>Regular</RelationshipKind>
+      <RoleName>OrderStatus</RoleName>
+    </Relationship>
+    <Relationship Id="SalesOrders_SalesChannel" FromAttributeId="SalesOrders_SalesChannelKey" FromTableId="SalesOrders" ToAttributeId="SalesChannel_SalesChannelKey" ToTableId="SalesChannel">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Sales Orders Sales Channel</Name>
+      <RelationshipKind>Regular</RelationshipKind>
+      <RoleName>SalesChannel</RoleName>
+    </Relationship>
+    <Relationship Id="SalesOrders_Salesperson" FromAttributeId="SalesOrders_SalespersonKey" FromTableId="SalesOrders" ToAttributeId="Salesperson_SalespersonKey" ToTableId="Salesperson">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>false</IsRequired>
+      <Name>Sales Orders Salesperson</Name>
+      <RelationshipKind>Regular</RelationshipKind>
+      <RoleName>Salesperson</RoleName>
+    </Relationship>
+    <Relationship Id="SalesOrders_SalesTerritory" FromAttributeId="SalesOrders_SalesTerritoryKey" FromTableId="SalesOrders" ToAttributeId="SalesTerritory_SalesTerritoryKey" ToTableId="SalesTerritory">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>false</IsRequired>
+      <Name>Sales Orders Sales Territory</Name>
+      <RelationshipKind>Regular</RelationshipKind>
+      <RoleName>SalesTerritory</RoleName>
+    </Relationship>
+    <Relationship Id="SalesOrders_ShipDate" FromAttributeId="SalesOrders_ShipDateKey" FromTableId="SalesOrders" ToAttributeId="Date_DateKey" ToTableId="Date">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>false</IsActive>
+      <IsRequired>false</IsRequired>
+      <Name>Ship Date</Name>
+      <RelationshipKind>Regular</RelationshipKind>
+      <RoleName>ShipDate</RoleName>
+    </Relationship>
+    <Relationship Id="SalesOrders_ShipToGeography" FromAttributeId="SalesOrders_ShipToGeographyKey" FromTableId="SalesOrders" ToAttributeId="Geography_GeographyKey" ToTableId="Geography">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>false</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Sales Orders Ship To Geography</Name>
+      <RelationshipKind>Regular</RelationshipKind>
+      <RoleName>ShipToGeography</RoleName>
+    </Relationship>
+    <Relationship Id="SalespersonQuotas_QuotaPeriod" FromAttributeId="SalespersonQuotas_QuotaPeriodKey" FromTableId="SalespersonQuotas" ToAttributeId="Date_DateKey" ToTableId="Date">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Quota Period</Name>
+      <RelationshipKind>Regular</RelationshipKind>
+      <RoleName>QuotaPeriod</RoleName>
+    </Relationship>
+    <Relationship Id="SalespersonQuotas_Salesperson" FromAttributeId="SalespersonQuotas_SalespersonKey" FromTableId="SalespersonQuotas" ToAttributeId="Salesperson_SalespersonKey" ToTableId="Salesperson">
+      <Cardinality>ManyToOne</Cardinality>
+      <CrossFilterDirection>Single</CrossFilterDirection>
+      <IsActive>true</IsActive>
+      <IsRequired>true</IsRequired>
+      <Name>Salesperson Quotas Salesperson</Name>
+      <RelationshipKind>Regular</RelationshipKind>
+      <RoleName>Salesperson</RoleName>
+    </Relationship>
+  </RelationshipList>
+</MetaAnalytics>

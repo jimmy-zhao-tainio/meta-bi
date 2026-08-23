@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaDataWarehouse>
+  <DimensionBusinessKeyPartList>
+    <DimensionBusinessKeyPart Id="dimension:customer:key:CustomerID" DimensionAttributeId="dimension:customer:attribute:CustomerID" DimensionBusinessKeyId="dimension:customer:key">
+      <Ordinal>10</Ordinal>
+    </DimensionBusinessKeyPart>
+    <DimensionBusinessKeyPart Id="dimension:date:key:DateKey" DimensionAttributeId="dimension:date:attribute:DateKey" DimensionBusinessKeyId="dimension:date:key">
+      <Ordinal>10</Ordinal>
+    </DimensionBusinessKeyPart>
+    <DimensionBusinessKeyPart Id="dimension:geography:key:AddressID" DimensionAttributeId="dimension:geography:attribute:AddressID" DimensionBusinessKeyId="dimension:geography:key">
+      <Ordinal>10</Ordinal>
+    </DimensionBusinessKeyPart>
+    <DimensionBusinessKeyPart Id="dimension:order-status:key:StatusCode" DimensionAttributeId="dimension:order-status:attribute:StatusCode" DimensionBusinessKeyId="dimension:order-status:key">
+      <Ordinal>10</Ordinal>
+    </DimensionBusinessKeyPart>
+    <DimensionBusinessKeyPart Id="dimension:product:key:ProductID" DimensionAttributeId="dimension:product:attribute:ProductID" DimensionBusinessKeyId="dimension:product:key">
+      <Ordinal>10</Ordinal>
+    </DimensionBusinessKeyPart>
+    <DimensionBusinessKeyPart Id="dimension:sales-channel:key:ChannelCode" DimensionAttributeId="dimension:sales-channel:attribute:ChannelCode" DimensionBusinessKeyId="dimension:sales-channel:key">
+      <Ordinal>10</Ordinal>
+    </DimensionBusinessKeyPart>
+    <DimensionBusinessKeyPart Id="dimension:sales-territory:key:TerritoryID" DimensionAttributeId="dimension:sales-territory:attribute:TerritoryID" DimensionBusinessKeyId="dimension:sales-territory:key">
+      <Ordinal>10</Ordinal>
+    </DimensionBusinessKeyPart>
+    <DimensionBusinessKeyPart Id="dimension:salesperson:key:BusinessEntityID" DimensionAttributeId="dimension:salesperson:attribute:BusinessEntityID" DimensionBusinessKeyId="dimension:salesperson:key">
+      <Ordinal>10</Ordinal>
+    </DimensionBusinessKeyPart>
+  </DimensionBusinessKeyPartList>
+</MetaDataWarehouse>

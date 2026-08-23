@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessSatelliteAttributeDataTypeDetailList>
+    <BusinessSatelliteAttributeDataTypeDetail Id="CustomerMatchScoreLength" BusinessSatelliteAttributeId="CustomerMatchScore">
+      <Name>Length</Name>
+      <Value>20</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+    <BusinessSatelliteAttributeDataTypeDetail Id="EmployeeManagerLineTypeLength" BusinessSatelliteAttributeId="EmployeeManagerLineType">
+      <Name>Length</Name>
+      <Value>20</Value>
+    </BusinessSatelliteAttributeDataTypeDetail>
+  </BusinessSatelliteAttributeDataTypeDetailList>
+</MetaBusinessDataVault>

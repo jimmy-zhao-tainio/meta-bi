@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <TableRelationshipList>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee:relationship:FK_Employee_Person_BusinessEntityID" SourceTableId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee" TargetTableId="sqlserver:AdventureWorks2022:schema:Person:table:Person">
+      <Name>FK_Employee_Person_BusinessEntityID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:relationship:FK_EmployeeDepartmentHistory_Department_DepartmentID" SourceTableId="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory" TargetTableId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Department">
+      <Name>FK_EmployeeDepartmentHistory_Department_DepartmentID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:relationship:FK_EmployeeDepartmentHistory_Employee_BusinessEntityID" SourceTableId="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory" TargetTableId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee">
+      <Name>FK_EmployeeDepartmentHistory_Employee_BusinessEntityID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory:relationship:FK_EmployeeDepartmentHistory_Shift_ShiftID" SourceTableId="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeeDepartmentHistory" TargetTableId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Shift">
+      <Name>FK_EmployeeDepartmentHistory_Shift_ShiftID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory:relationship:FK_EmployeePayHistory_Employee_BusinessEntityID" SourceTableId="sqlserver:AdventureWorks2022:schema:HumanResources:table:EmployeePayHistory" TargetTableId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee">
+      <Name>FK_EmployeePayHistory_Employee_BusinessEntityID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:HumanResources:table:JobCandidate:relationship:FK_JobCandidate_Employee_BusinessEntityID" SourceTableId="sqlserver:AdventureWorks2022:schema:HumanResources:table:JobCandidate" TargetTableId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee">
+      <Name>FK_JobCandidate_Employee_BusinessEntityID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Person:table:Address:relationship:FK_Address_StateProvince_StateProvinceID" SourceTableId="sqlserver:AdventureWorks2022:schema:Person:table:Address" TargetTableId="sqlserver:AdventureWorks2022:schema:Person:table:StateProvince">
+      <Name>FK_Address_StateProvince_StateProvinceID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:relationship:FK_BusinessEntityAddress_AddressType_AddressTypeID" SourceTableId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress" TargetTableId="sqlserver:AdventureWorks2022:schema:Person:table:AddressType">
+      <Name>FK_BusinessEntityAddress_AddressType_AddressTypeID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:relationship:FK_BusinessEntityAddress_Address_AddressID" SourceTableId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress" TargetTableId="sqlserver:AdventureWorks2022:schema:Person:table:Address">
+      <Name>FK_BusinessEntityAddress_Address_AddressID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress:relationship:FK_BusinessEntityAddress_BusinessEntity_BusinessEntityID" SourceTableId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityAddress" TargetTableId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntity">
+      <Name>FK_BusinessEntityAddress_BusinessEntity_BusinessEntityID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:relationship:FK_BusinessEntityContact_BusinessEntity_BusinessEntityID" SourceTableId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact" TargetTableId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntity">
+      <Name>FK_BusinessEntityContact_BusinessEntity_BusinessEntityID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:relationship:FK_BusinessEntityContact_ContactType_ContactTypeID" SourceTableId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact" TargetTableId="sqlserver:AdventureWorks2022:schema:Person:table:ContactType">
+      <Name>FK_BusinessEntityContact_ContactType_ContactTypeID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact:relationship:FK_BusinessEntityContact_Person_PersonID" SourceTableId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntityContact" TargetTableId="sqlserver:AdventureWorks2022:schema:Person:table:Person">
+      <Name>FK_BusinessEntityContact_Person_PersonID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress:relationship:FK_EmailAddress_Person_BusinessEntityID" SourceTableId="sqlserver:AdventureWorks2022:schema:Person:table:EmailAddress" TargetTableId="sqlserver:AdventureWorks2022:schema:Person:table:Person">
+      <Name>FK_EmailAddress_Person_BusinessEntityID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Person:table:Password:relationship:FK_Password_Person_BusinessEntityID" SourceTableId="sqlserver:AdventureWorks2022:schema:Person:table:Password" TargetTableId="sqlserver:AdventureWorks2022:schema:Person:table:Person">
+      <Name>FK_Password_Person_BusinessEntityID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Person:table:Person:relationship:FK_Person_BusinessEntity_BusinessEntityID" SourceTableId="sqlserver:AdventureWorks2022:schema:Person:table:Person" TargetTableId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntity">
+      <Name>FK_Person_BusinessEntity_BusinessEntityID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:relationship:FK_PersonPhone_Person_BusinessEntityID" SourceTableId="sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone" TargetTableId="sqlserver:AdventureWorks2022:schema:Person:table:Person">
+      <Name>FK_PersonPhone_Person_BusinessEntityID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone:relationship:FK_PersonPhone_PhoneNumberType_PhoneNumberTypeID" SourceTableId="sqlserver:AdventureWorks2022:schema:Person:table:PersonPhone" TargetTableId="sqlserver:AdventureWorks2022:schema:Person:table:PhoneNumberType">
+      <Name>FK_PersonPhone_PhoneNumberType_PhoneNumberTypeID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:relationship:FK_StateProvince_CountryRegion_CountryRegionCode" SourceTableId="sqlserver:AdventureWorks2022:schema:Person:table:StateProvince" TargetTableId="sqlserver:AdventureWorks2022:schema:Person:table:CountryRegion">
+      <Name>FK_StateProvince_CountryRegion_CountryRegionCode</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Person:table:StateProvince:relationship:FK_StateProvince_SalesTerritory_TerritoryID" SourceTableId="sqlserver:AdventureWorks2022:schema:Person:table:StateProvince" TargetTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory">
+      <Name>FK_StateProvince_SalesTerritory_TerritoryID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:relationship:FK_BillOfMaterials_Product_ComponentID" SourceTableId="sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials" TargetTableId="sqlserver:AdventureWorks2022:schema:Production:table:Product">
+      <Name>FK_BillOfMaterials_Product_ComponentID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:relationship:FK_BillOfMaterials_Product_ProductAssemblyID" SourceTableId="sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials" TargetTableId="sqlserver:AdventureWorks2022:schema:Production:table:Product">
+      <Name>FK_BillOfMaterials_Product_ProductAssemblyID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials:relationship:FK_BillOfMaterials_UnitMeasure_UnitMeasureCode" SourceTableId="sqlserver:AdventureWorks2022:schema:Production:table:BillOfMaterials" TargetTableId="sqlserver:AdventureWorks2022:schema:Production:table:UnitMeasure">
+      <Name>FK_BillOfMaterials_UnitMeasure_UnitMeasureCode</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Production:table:Document:relationship:FK_Document_Employee_Owner" SourceTableId="sqlserver:AdventureWorks2022:schema:Production:table:Document" TargetTableId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee">
+      <Name>FK_Document_Employee_Owner</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:relationship:FK_Product_ProductModel_ProductModelID" SourceTableId="sqlserver:AdventureWorks2022:schema:Production:table:Product" TargetTableId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModel">
+      <Name>FK_Product_ProductModel_ProductModelID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:relationship:FK_Product_ProductSubcategory_ProductSubcategoryID" SourceTableId="sqlserver:AdventureWorks2022:schema:Production:table:Product" TargetTableId="sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory">
+      <Name>FK_Product_ProductSubcategory_ProductSubcategoryID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:relationship:FK_Product_UnitMeasure_SizeUnitMeasureCode" SourceTableId="sqlserver:AdventureWorks2022:schema:Production:table:Product" TargetTableId="sqlserver:AdventureWorks2022:schema:Production:table:UnitMeasure">
+      <Name>FK_Product_UnitMeasure_SizeUnitMeasureCode</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Production:table:Product:relationship:FK_Product_UnitMeasure_WeightUnitMeasureCode" SourceTableId="sqlserver:AdventureWorks2022:schema:Production:table:Product" TargetTableId="sqlserver:AdventureWorks2022:schema:Production:table:UnitMeasure">
+      <Name>FK_Product_UnitMeasure_WeightUnitMeasureCode</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory:relationship:FK_ProductCostHistory_Product_ProductID" SourceTableId="sqlserver:AdventureWorks2022:schema:Production:table:ProductCostHistory" TargetTableId="sqlserver:AdventureWorks2022:schema:Production:table:Product">
+      <Name>FK_ProductCostHistory_Product_ProductID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductDocument:relationship:FK_ProductDocument_Document_DocumentNode" SourceTableId="sqlserver:AdventureWorks2022:schema:Production:table:ProductDocument" TargetTableId="sqlserver:AdventureWorks2022:schema:Production:table:Document">
+      <Name>FK_ProductDocument_Document_DocumentNode</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductDocument:relationship:FK_ProductDocument_Product_ProductID" SourceTableId="sqlserver:AdventureWorks2022:schema:Production:table:ProductDocument" TargetTableId="sqlserver:AdventureWorks2022:schema:Production:table:Product">
+      <Name>FK_ProductDocument_Product_ProductID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:relationship:FK_ProductInventory_Location_LocationID" SourceTableId="sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory" TargetTableId="sqlserver:AdventureWorks2022:schema:Production:table:Location">
+      <Name>FK_ProductInventory_Location_LocationID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory:relationship:FK_ProductInventory_Product_ProductID" SourceTableId="sqlserver:AdventureWorks2022:schema:Production:table:ProductInventory" TargetTableId="sqlserver:AdventureWorks2022:schema:Production:table:Product">
+      <Name>FK_ProductInventory_Product_ProductID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory:relationship:FK_ProductListPriceHistory_Product_ProductID" SourceTableId="sqlserver:AdventureWorks2022:schema:Production:table:ProductListPriceHistory" TargetTableId="sqlserver:AdventureWorks2022:schema:Production:table:Product">
+      <Name>FK_ProductListPriceHistory_Product_ProductID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelIllustration:relationship:FK_ProductModelIllustration_Illustration_IllustrationID" SourceTableId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelIllustration" TargetTableId="sqlserver:AdventureWorks2022:schema:Production:table:Illustration">
+      <Name>FK_ProductModelIllustration_Illustration_IllustrationID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelIllustration:relationship:FK_ProductModelIllustration_ProductModel_ProductModelID" SourceTableId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelIllustration" TargetTableId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModel">
+      <Name>FK_ProductModelIllustration_ProductModel_ProductModelID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:relationship:FK_ProductModelProductDescriptionCulture_Culture_CultureID" SourceTableId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture" TargetTableId="sqlserver:AdventureWorks2022:schema:Production:table:Culture">
+      <Name>FK_ProductModelProductDescriptionCulture_Culture_CultureID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:relationship:FK_ProductModelProductDescriptionCulture_ProductDescription_ProductDescriptionID" SourceTableId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture" TargetTableId="sqlserver:AdventureWorks2022:schema:Production:table:ProductDescription">
+      <Name>FK_ProductModelProductDescriptionCulture_ProductDescription_ProductDescriptionID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture:relationship:FK_ProductModelProductDescriptionCulture_ProductModel_ProductModelID" SourceTableId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModelProductDescriptionCulture" TargetTableId="sqlserver:AdventureWorks2022:schema:Production:table:ProductModel">
+      <Name>FK_ProductModelProductDescriptionCulture_ProductModel_ProductModelID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto:relationship:FK_ProductProductPhoto_ProductPhoto_ProductPhotoID" SourceTableId="sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto" TargetTableId="sqlserver:AdventureWorks2022:schema:Production:table:ProductPhoto">
+      <Name>FK_ProductProductPhoto_ProductPhoto_ProductPhotoID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto:relationship:FK_ProductProductPhoto_Product_ProductID" SourceTableId="sqlserver:AdventureWorks2022:schema:Production:table:ProductProductPhoto" TargetTableId="sqlserver:AdventureWorks2022:schema:Production:table:Product">
+      <Name>FK_ProductProductPhoto_Product_ProductID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductReview:relationship:FK_ProductReview_Product_ProductID" SourceTableId="sqlserver:AdventureWorks2022:schema:Production:table:ProductReview" TargetTableId="sqlserver:AdventureWorks2022:schema:Production:table:Product">
+      <Name>FK_ProductReview_Product_ProductID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory:relationship:FK_ProductSubcategory_ProductCategory_ProductCategoryID" SourceTableId="sqlserver:AdventureWorks2022:schema:Production:table:ProductSubcategory" TargetTableId="sqlserver:AdventureWorks2022:schema:Production:table:ProductCategory">
+      <Name>FK_ProductSubcategory_ProductCategory_ProductCategoryID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory:relationship:FK_TransactionHistory_Product_ProductID" SourceTableId="sqlserver:AdventureWorks2022:schema:Production:table:TransactionHistory" TargetTableId="sqlserver:AdventureWorks2022:schema:Production:table:Product">
+      <Name>FK_TransactionHistory_Product_ProductID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:relationship:FK_WorkOrder_Product_ProductID" SourceTableId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder" TargetTableId="sqlserver:AdventureWorks2022:schema:Production:table:Product">
+      <Name>FK_WorkOrder_Product_ProductID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder:relationship:FK_WorkOrder_ScrapReason_ScrapReasonID" SourceTableId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder" TargetTableId="sqlserver:AdventureWorks2022:schema:Production:table:ScrapReason">
+      <Name>FK_WorkOrder_ScrapReason_ScrapReasonID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:relationship:FK_WorkOrderRouting_Location_LocationID" SourceTableId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting" TargetTableId="sqlserver:AdventureWorks2022:schema:Production:table:Location">
+      <Name>FK_WorkOrderRouting_Location_LocationID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting:relationship:FK_WorkOrderRouting_WorkOrder_WorkOrderID" SourceTableId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrderRouting" TargetTableId="sqlserver:AdventureWorks2022:schema:Production:table:WorkOrder">
+      <Name>FK_WorkOrderRouting_WorkOrder_WorkOrderID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:relationship:FK_ProductVendor_Product_ProductID" SourceTableId="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor" TargetTableId="sqlserver:AdventureWorks2022:schema:Production:table:Product">
+      <Name>FK_ProductVendor_Product_ProductID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:relationship:FK_ProductVendor_UnitMeasure_UnitMeasureCode" SourceTableId="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor" TargetTableId="sqlserver:AdventureWorks2022:schema:Production:table:UnitMeasure">
+      <Name>FK_ProductVendor_UnitMeasure_UnitMeasureCode</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor:relationship:FK_ProductVendor_Vendor_BusinessEntityID" SourceTableId="sqlserver:AdventureWorks2022:schema:Purchasing:table:ProductVendor" TargetTableId="sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor">
+      <Name>FK_ProductVendor_Vendor_BusinessEntityID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:relationship:FK_PurchaseOrderDetail_Product_ProductID" SourceTableId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail" TargetTableId="sqlserver:AdventureWorks2022:schema:Production:table:Product">
+      <Name>FK_PurchaseOrderDetail_Product_ProductID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail:relationship:FK_PurchaseOrderDetail_PurchaseOrderHeader_PurchaseOrderID" SourceTableId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderDetail" TargetTableId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader">
+      <Name>FK_PurchaseOrderDetail_PurchaseOrderHeader_PurchaseOrderID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:relationship:FK_PurchaseOrderHeader_Employee_EmployeeID" SourceTableId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader" TargetTableId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee">
+      <Name>FK_PurchaseOrderHeader_Employee_EmployeeID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:relationship:FK_PurchaseOrderHeader_ShipMethod_ShipMethodID" SourceTableId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader" TargetTableId="sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod">
+      <Name>FK_PurchaseOrderHeader_ShipMethod_ShipMethodID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader:relationship:FK_PurchaseOrderHeader_Vendor_VendorID" SourceTableId="sqlserver:AdventureWorks2022:schema:Purchasing:table:PurchaseOrderHeader" TargetTableId="sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor">
+      <Name>FK_PurchaseOrderHeader_Vendor_VendorID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor:relationship:FK_Vendor_BusinessEntity_BusinessEntityID" SourceTableId="sqlserver:AdventureWorks2022:schema:Purchasing:table:Vendor" TargetTableId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntity">
+      <Name>FK_Vendor_BusinessEntity_BusinessEntityID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency:relationship:FK_CountryRegionCurrency_CountryRegion_CountryRegionCode" SourceTableId="sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency" TargetTableId="sqlserver:AdventureWorks2022:schema:Person:table:CountryRegion">
+      <Name>FK_CountryRegionCurrency_CountryRegion_CountryRegionCode</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency:relationship:FK_CountryRegionCurrency_Currency_CurrencyCode" SourceTableId="sqlserver:AdventureWorks2022:schema:Sales:table:CountryRegionCurrency" TargetTableId="sqlserver:AdventureWorks2022:schema:Sales:table:Currency">
+      <Name>FK_CountryRegionCurrency_Currency_CurrencyCode</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:relationship:FK_CurrencyRate_Currency_FromCurrencyCode" SourceTableId="sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate" TargetTableId="sqlserver:AdventureWorks2022:schema:Sales:table:Currency">
+      <Name>FK_CurrencyRate_Currency_FromCurrencyCode</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate:relationship:FK_CurrencyRate_Currency_ToCurrencyCode" SourceTableId="sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate" TargetTableId="sqlserver:AdventureWorks2022:schema:Sales:table:Currency">
+      <Name>FK_CurrencyRate_Currency_ToCurrencyCode</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Sales:table:Customer:relationship:FK_Customer_Person_PersonID" SourceTableId="sqlserver:AdventureWorks2022:schema:Sales:table:Customer" TargetTableId="sqlserver:AdventureWorks2022:schema:Person:table:Person">
+      <Name>FK_Customer_Person_PersonID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Sales:table:Customer:relationship:FK_Customer_SalesTerritory_TerritoryID" SourceTableId="sqlserver:AdventureWorks2022:schema:Sales:table:Customer" TargetTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory">
+      <Name>FK_Customer_SalesTerritory_TerritoryID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Sales:table:Customer:relationship:FK_Customer_Store_StoreID" SourceTableId="sqlserver:AdventureWorks2022:schema:Sales:table:Customer" TargetTableId="sqlserver:AdventureWorks2022:schema:Sales:table:Store">
+      <Name>FK_Customer_Store_StoreID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Sales:table:PersonCreditCard:relationship:FK_PersonCreditCard_CreditCard_CreditCardID" SourceTableId="sqlserver:AdventureWorks2022:schema:Sales:table:PersonCreditCard" TargetTableId="sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard">
+      <Name>FK_PersonCreditCard_CreditCard_CreditCardID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Sales:table:PersonCreditCard:relationship:FK_PersonCreditCard_Person_BusinessEntityID" SourceTableId="sqlserver:AdventureWorks2022:schema:Sales:table:PersonCreditCard" TargetTableId="sqlserver:AdventureWorks2022:schema:Person:table:Person">
+      <Name>FK_PersonCreditCard_Person_BusinessEntityID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:relationship:FK_SalesOrderDetail_SalesOrderHeader_SalesOrderID" SourceTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail" TargetTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader">
+      <Name>FK_SalesOrderDetail_SalesOrderHeader_SalesOrderID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail:relationship:FK_SalesOrderDetail_SpecialOfferProduct_SpecialOfferIDProductID" SourceTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderDetail" TargetTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct">
+      <Name>FK_SalesOrderDetail_SpecialOfferProduct_SpecialOfferIDProductID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:relationship:FK_SalesOrderHeader_Address_BillToAddressID" SourceTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader" TargetTableId="sqlserver:AdventureWorks2022:schema:Person:table:Address">
+      <Name>FK_SalesOrderHeader_Address_BillToAddressID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:relationship:FK_SalesOrderHeader_Address_ShipToAddressID" SourceTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader" TargetTableId="sqlserver:AdventureWorks2022:schema:Person:table:Address">
+      <Name>FK_SalesOrderHeader_Address_ShipToAddressID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:relationship:FK_SalesOrderHeader_CreditCard_CreditCardID" SourceTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader" TargetTableId="sqlserver:AdventureWorks2022:schema:Sales:table:CreditCard">
+      <Name>FK_SalesOrderHeader_CreditCard_CreditCardID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:relationship:FK_SalesOrderHeader_CurrencyRate_CurrencyRateID" SourceTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader" TargetTableId="sqlserver:AdventureWorks2022:schema:Sales:table:CurrencyRate">
+      <Name>FK_SalesOrderHeader_CurrencyRate_CurrencyRateID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:relationship:FK_SalesOrderHeader_Customer_CustomerID" SourceTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader" TargetTableId="sqlserver:AdventureWorks2022:schema:Sales:table:Customer">
+      <Name>FK_SalesOrderHeader_Customer_CustomerID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:relationship:FK_SalesOrderHeader_SalesPerson_SalesPersonID" SourceTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader" TargetTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson">
+      <Name>FK_SalesOrderHeader_SalesPerson_SalesPersonID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:relationship:FK_SalesOrderHeader_SalesTerritory_TerritoryID" SourceTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader" TargetTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory">
+      <Name>FK_SalesOrderHeader_SalesTerritory_TerritoryID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader:relationship:FK_SalesOrderHeader_ShipMethod_ShipMethodID" SourceTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader" TargetTableId="sqlserver:AdventureWorks2022:schema:Purchasing:table:ShipMethod">
+      <Name>FK_SalesOrderHeader_ShipMethod_ShipMethodID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeaderSalesReason:relationship:FK_SalesOrderHeaderSalesReason_SalesOrderHeader_SalesOrderID" SourceTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeaderSalesReason" TargetTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeader">
+      <Name>FK_SalesOrderHeaderSalesReason_SalesOrderHeader_SalesOrderID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeaderSalesReason:relationship:FK_SalesOrderHeaderSalesReason_SalesReason_SalesReasonID" SourceTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesOrderHeaderSalesReason" TargetTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesReason">
+      <Name>FK_SalesOrderHeaderSalesReason_SalesReason_SalesReasonID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:relationship:FK_SalesPerson_Employee_BusinessEntityID" SourceTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson" TargetTableId="sqlserver:AdventureWorks2022:schema:HumanResources:table:Employee">
+      <Name>FK_SalesPerson_Employee_BusinessEntityID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson:relationship:FK_SalesPerson_SalesTerritory_TerritoryID" SourceTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson" TargetTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory">
+      <Name>FK_SalesPerson_SalesTerritory_TerritoryID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory:relationship:FK_SalesPersonQuotaHistory_SalesPerson_BusinessEntityID" SourceTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPersonQuotaHistory" TargetTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson">
+      <Name>FK_SalesPersonQuotaHistory_SalesPerson_BusinessEntityID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate:relationship:FK_SalesTaxRate_StateProvince_StateProvinceID" SourceTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTaxRate" TargetTableId="sqlserver:AdventureWorks2022:schema:Person:table:StateProvince">
+      <Name>FK_SalesTaxRate_StateProvince_StateProvinceID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory:relationship:FK_SalesTerritory_CountryRegion_CountryRegionCode" SourceTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory" TargetTableId="sqlserver:AdventureWorks2022:schema:Person:table:CountryRegion">
+      <Name>FK_SalesTerritory_CountryRegion_CountryRegionCode</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:relationship:FK_SalesTerritoryHistory_SalesPerson_BusinessEntityID" SourceTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory" TargetTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson">
+      <Name>FK_SalesTerritoryHistory_SalesPerson_BusinessEntityID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory:relationship:FK_SalesTerritoryHistory_SalesTerritory_TerritoryID" SourceTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritoryHistory" TargetTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesTerritory">
+      <Name>FK_SalesTerritoryHistory_SalesTerritory_TerritoryID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem:relationship:FK_ShoppingCartItem_Product_ProductID" SourceTableId="sqlserver:AdventureWorks2022:schema:Sales:table:ShoppingCartItem" TargetTableId="sqlserver:AdventureWorks2022:schema:Production:table:Product">
+      <Name>FK_ShoppingCartItem_Product_ProductID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct:relationship:FK_SpecialOfferProduct_Product_ProductID" SourceTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct" TargetTableId="sqlserver:AdventureWorks2022:schema:Production:table:Product">
+      <Name>FK_SpecialOfferProduct_Product_ProductID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct:relationship:FK_SpecialOfferProduct_SpecialOffer_SpecialOfferID" SourceTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOfferProduct" TargetTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SpecialOffer">
+      <Name>FK_SpecialOfferProduct_SpecialOffer_SpecialOfferID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Sales:table:Store:relationship:FK_Store_BusinessEntity_BusinessEntityID" SourceTableId="sqlserver:AdventureWorks2022:schema:Sales:table:Store" TargetTableId="sqlserver:AdventureWorks2022:schema:Person:table:BusinessEntity">
+      <Name>FK_Store_BusinessEntity_BusinessEntityID</Name>
+    </TableRelationship>
+    <TableRelationship Id="sqlserver:AdventureWorks2022:schema:Sales:table:Store:relationship:FK_Store_SalesPerson_SalesPersonID" SourceTableId="sqlserver:AdventureWorks2022:schema:Sales:table:Store" TargetTableId="sqlserver:AdventureWorks2022:schema:Sales:table:SalesPerson">
+      <Name>FK_Store_SalesPerson_SalesPersonID</Name>
+    </TableRelationship>
+  </TableRelationshipList>
+</MetaSchema>

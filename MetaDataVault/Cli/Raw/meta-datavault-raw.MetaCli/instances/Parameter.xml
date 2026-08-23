@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCli>
+  <ParameterList>
+    <Parameter Id="param-add-field-data-type-detail-field" ValueShapeId="shape-text">
+      <Description>Field id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>field</Name>
+    </Parameter>
+    <Parameter Id="param-add-field-data-type-detail-id" ValueShapeId="shape-text">
+      <Description>Field data type detail row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-field-data-type-detail-name" ValueShapeId="shape-text">
+      <Description>Detail name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-field-data-type-detail-value" ValueShapeId="shape-text">
+      <Description>Detail value.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>value</Name>
+    </Parameter>
+    <Parameter Id="param-add-field-data-type-detail-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-field-data-type-id" ValueShapeId="shape-text">
+      <Description>Data type id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>data-type-id</Name>
+    </Parameter>
+    <Parameter Id="param-add-field-id" ValueShapeId="shape-text">
+      <Description>Field row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-field-name" ValueShapeId="shape-text">
+      <Description>Field name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-field-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-hub-id" ValueShapeId="shape-text">
+      <Description>Raw hub row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-hub-key-part-field" ValueShapeId="shape-text">
+      <Description>Field id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>field</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-hub-key-part-hub" ValueShapeId="shape-text">
+      <Description>Raw hub id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>hub</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-hub-key-part-id" ValueShapeId="shape-text">
+      <Description>Raw hub key part row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-hub-key-part-name" ValueShapeId="shape-text">
+      <Description>Key part name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-hub-key-part-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-hub-name" ValueShapeId="shape-text">
+      <Description>Raw hub name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-hub-satellite-attribute-field" ValueShapeId="shape-text">
+      <Description>Field id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>field</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-hub-satellite-attribute-hub-satellite" ValueShapeId="shape-text">
+      <Description>Raw hub satellite id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>hub-satellite</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-hub-satellite-attribute-id" ValueShapeId="shape-text">
+      <Description>Raw hub satellite attribute row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-hub-satellite-attribute-name" ValueShapeId="shape-text">
+      <Description>Attribute name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-hub-satellite-attribute-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-hub-satellite-hub" ValueShapeId="shape-text">
+      <Description>Raw hub id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>hub</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-hub-satellite-id" ValueShapeId="shape-text">
+      <Description>Raw hub satellite row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-hub-satellite-name" ValueShapeId="shape-text">
+      <Description>Raw hub satellite name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-hub-satellite-satellite-kind" ValueShapeId="shape-text">
+      <Description>Satellite kind.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>satellite-kind</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-hub-satellite-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-hub-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-link-id" ValueShapeId="shape-text">
+      <Description>Raw link row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-link-link-kind" ValueShapeId="shape-text">
+      <Description>Link kind.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>link-kind</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-link-name" ValueShapeId="shape-text">
+      <Description>Raw link name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-link-role-hub" ValueShapeId="shape-text">
+      <Description>Raw hub id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>hub</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-link-role-id" ValueShapeId="shape-text">
+      <Description>Raw link role id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-link-role-link" ValueShapeId="shape-text">
+      <Description>Raw link id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>link</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-link-role-name" ValueShapeId="shape-text">
+      <Description>Raw link role name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-link-role-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-link-satellite-attribute-field" ValueShapeId="shape-text">
+      <Description>Field id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>field</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-link-satellite-attribute-id" ValueShapeId="shape-text">
+      <Description>Raw link satellite attribute row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-link-satellite-attribute-link-satellite" ValueShapeId="shape-text">
+      <Description>Raw link satellite id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>link-satellite</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-link-satellite-attribute-name" ValueShapeId="shape-text">
+      <Description>Attribute name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-link-satellite-attribute-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-link-satellite-id" ValueShapeId="shape-text">
+      <Description>Raw link satellite row id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>id</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-link-satellite-link" ValueShapeId="shape-text">
+      <Description>Raw link id.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>link</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-link-satellite-name" ValueShapeId="shape-text">
+      <Description>Raw link satellite name.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>name</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-link-satellite-satellite-kind" ValueShapeId="shape-text">
+      <Description>Satellite kind.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>satellite-kind</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-link-satellite-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-add-raw-link-workspace" ValueShapeId="shape-path">
+      <Description>Workspace path. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-create-connection-env" ValueShapeId="shape-text">
+      <Description>Environment variable containing the SQL Server connection string.</Description>
+      <Name>connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-create-csharp" ValueShapeId="shape-path">
+      <Description>Create a C# workspace at this directory.</Description>
+      <Name>csharp</Name>
+    </Parameter>
+    <Parameter Id="param-create-sql" ValueShapeId="shape-path">
+      <Description>Create a SQL workspace described by this directory.</Description>
+      <Name>sql</Name>
+    </Parameter>
+    <Parameter Id="param-create-xml" ValueShapeId="shape-path">
+      <Description>Create an XML workspace at this directory.</Description>
+      <Name>xml</Name>
+    </Parameter>
+  </ParameterList>
+</MetaCli>

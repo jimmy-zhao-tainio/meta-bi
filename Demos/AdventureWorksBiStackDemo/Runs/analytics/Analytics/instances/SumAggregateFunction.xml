@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <SumAggregateFunctionList>
+    <SumAggregateFunction Id="DiscountAmount:aggregate-function:type" AggregateFunctionId="DiscountAmount:aggregate-function" />
+    <SumAggregateFunction Id="FreightAmount:aggregate-function:type" AggregateFunctionId="FreightAmount:aggregate-function" />
+    <SumAggregateFunction Id="OrderCount:aggregate-function:type" AggregateFunctionId="OrderCount:aggregate-function" />
+    <SumAggregateFunction Id="OrderQuantity:aggregate-function:type" AggregateFunctionId="OrderQuantity:aggregate-function" />
+    <SumAggregateFunction Id="OrderSubtotal:aggregate-function:type" AggregateFunctionId="OrderSubtotal:aggregate-function" />
+    <SumAggregateFunction Id="QuotaAmount:aggregate-function:type" AggregateFunctionId="QuotaAmount:aggregate-function" />
+    <SumAggregateFunction Id="SalesAmount:aggregate-function:type" AggregateFunctionId="SalesAmount:aggregate-function" />
+    <SumAggregateFunction Id="TaxAmount:aggregate-function:type" AggregateFunctionId="TaxAmount:aggregate-function" />
+    <SumAggregateFunction Id="TotalDue:aggregate-function:type" AggregateFunctionId="TotalDue:aggregate-function" />
+  </SumAggregateFunctionList>
+</MetaAnalytics>

@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <FieldList>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:AccountNumber" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>AccountNumber</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>7</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:CustomerID" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>CustomerID</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:CustomerKey" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>CustomerKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:CustomerName" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CustomerName</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:CustomerType" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CustomerType</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:InsertDateTime2" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>InsertDateTime2</Name>
+      <Ordinal>8</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:StoreName" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>StoreName</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>10</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:CalendarDate" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:date</MetaDataTypeId>
+      <Name>CalendarDate</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:CalendarDateKey" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>CalendarDateKey</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:CalendarQuarter" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>CalendarQuarter</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:CalendarYear" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>CalendarYear</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:DateKey" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>DateKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:DayName" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>DayName</Name>
+      <Ordinal>9</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:DayOfMonth" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>DayOfMonth</Name>
+      <Ordinal>8</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:InsertDateTime2" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>InsertDateTime2</Name>
+      <Ordinal>11</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:MonthName" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>MonthName</Name>
+      <Ordinal>7</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:MonthNumber" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>MonthNumber</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:AddressID" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>AddressID</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:AddressLine1" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>AddressLine1</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:AddressLine2" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>AddressLine2</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>11</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:City" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>City</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:CountryRegionCode" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CountryRegionCode</Name>
+      <Ordinal>9</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:CountryRegionName" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CountryRegionName</Name>
+      <Ordinal>10</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:GeographyKey" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>GeographyKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:InsertDateTime2" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>InsertDateTime2</Name>
+      <Ordinal>12</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:PostalCode" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>PostalCode</Name>
+      <Ordinal>8</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:StateProvinceCode" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>StateProvinceCode</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:StateProvinceName" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>StateProvinceName</Name>
+      <Ordinal>7</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:InsertDateTime2" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>InsertDateTime2</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:OrderStatusKey" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>OrderStatusKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:StatusCode" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>StatusCode</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:StatusName" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>StatusName</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>8</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:Color" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>Color</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:InsertDateTime2" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>InsertDateTime2</Name>
+      <Ordinal>9</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:ProductCategoryName" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>ProductCategoryName</Name>
+      <Ordinal>7</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:ProductID" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>ProductID</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:ProductKey" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>ProductKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:ProductName" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>ProductName</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:ProductNumber" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>ProductNumber</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:ProductSubcategoryName" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>ProductSubcategoryName</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel:field:ChannelCode" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>ChannelCode</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel:field:ChannelName" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>ChannelName</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel:field:InsertDateTime2" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>InsertDateTime2</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel:field:SalesChannelKey" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>SalesChannelKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:field:BusinessEntityID" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>BusinessEntityID</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:field:FirstName" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>FirstName</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:field:FullName" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>FullName</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:field:InsertDateTime2" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>InsertDateTime2</Name>
+      <Ordinal>7</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:field:LastName" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>LastName</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:field:SalespersonKey" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>SalespersonKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory:field:CountryRegionCode" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>CountryRegionCode</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory:field:InsertDateTime2" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>InsertDateTime2</Name>
+      <Ordinal>7</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory:field:SalesTerritoryKey" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>SalesTerritoryKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory:field:TerritoryGroup" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>TerritoryGroup</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory:field:TerritoryID" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>TerritoryID</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory:field:TerritoryName" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <Name>TerritoryName</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>14</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:CustomerKey" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>CustomerKey</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:DiscountAmount" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>DiscountAmount</Name>
+      <Ordinal>12</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:InsertDateTime2" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>InsertDateTime2</Name>
+      <Ordinal>15</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:LineSalesAmount" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>LineSalesAmount</Name>
+      <Ordinal>13</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:OrderDateKey" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>OrderDateKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:OrderQuantity" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>OrderQuantity</Name>
+      <Ordinal>10</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:ProductKey" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>ProductKey</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:SalesChannelKey" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>SalesChannelKey</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:SalesOrderDetailID" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>SalesOrderDetailID</Name>
+      <Ordinal>9</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:SalesOrderID" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>SalesOrderID</Name>
+      <Ordinal>8</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:SalespersonKey" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>SalespersonKey</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:SalesTerritoryKey" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>SalesTerritoryKey</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:ShipToGeographyKey" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>ShipToGeographyKey</Name>
+      <Ordinal>7</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:UnitPrice" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>UnitPrice</Name>
+      <Ordinal>11</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>17</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:BillToGeographyKey" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>BillToGeographyKey</Name>
+      <Ordinal>9</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:CustomerKey" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>CustomerKey</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:DueDateKey" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>DueDateKey</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:FreightAmount" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>FreightAmount</Name>
+      <Ordinal>15</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:InsertDateTime2" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>InsertDateTime2</Name>
+      <Ordinal>18</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:OrderCount" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>OrderCount</Name>
+      <Ordinal>12</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:OrderDateKey" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>OrderDateKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:OrderStatusKey" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>OrderStatusKey</Name>
+      <Ordinal>8</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:SalesChannelKey" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>SalesChannelKey</Name>
+      <Ordinal>7</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:SalesOrderID" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
+      <Name>SalesOrderID</Name>
+      <Ordinal>11</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:SalespersonKey" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>SalespersonKey</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:SalesTerritoryKey" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>SalesTerritoryKey</Name>
+      <Ordinal>6</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:ShipDateKey" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder">
+      <IsNullable>true</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>ShipDateKey</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:ShipToGeographyKey" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>ShipToGeographyKey</Name>
+      <Ordinal>10</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:SubTotal" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>SubTotal</Name>
+      <Ordinal>13</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:TaxAmount" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>TaxAmount</Name>
+      <Ordinal>14</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:TotalDue" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>TotalDue</Name>
+      <Ordinal>16</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota:field:AuditId" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>AuditId</Name>
+      <Ordinal>4</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota:field:InsertDateTime2" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:datetime2</MetaDataTypeId>
+      <Name>InsertDateTime2</Name>
+      <Ordinal>5</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota:field:QuotaAmount" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <Name>QuotaAmount</Name>
+      <Ordinal>3</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota:field:QuotaPeriodKey" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>QuotaPeriodKey</Name>
+      <Ordinal>1</Ordinal>
+    </Field>
+    <Field Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota:field:SalespersonKey" SchemaObjectId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota">
+      <IsNullable>false</IsNullable>
+      <MetaDataTypeId>sqlserver:type:bigint</MetaDataTypeId>
+      <Name>SalespersonKey</Name>
+      <Ordinal>2</Ordinal>
+    </Field>
+  </FieldList>
+</MetaSchema>

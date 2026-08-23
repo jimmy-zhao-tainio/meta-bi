@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessBridgeTraversalList>
+    <BusinessBridgeTraversal Id="CustomerFulfillmentTraversalCustomerOrder" BusinessBridgeId="CustomerFulfillmentTraversal" SourceRoleId="CustomerOrderCustomer" TargetRoleId="CustomerOrderOrder" />
+    <BusinessBridgeTraversal Id="CustomerFulfillmentTraversalShipmentOrder" BusinessBridgeId="CustomerFulfillmentTraversal" PreviousTraversalId="CustomerFulfillmentTraversalCustomerOrder" SourceRoleId="ShipmentOrderOrder" TargetRoleId="ShipmentOrderShipment" />
+  </BusinessBridgeTraversalList>
+</MetaBusinessDataVault>

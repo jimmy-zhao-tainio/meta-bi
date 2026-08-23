@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaSchema>
+  <TableRelationshipFieldList>
+    <TableRelationshipField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:relationship:FK_Fact_SalesLine_Customer:field:1" SourceFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:CustomerKey" TableRelationshipId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:relationship:FK_Fact_SalesLine_Customer" TargetFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:CustomerKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:relationship:FK_Fact_SalesLine_OrderDate:field:1" SourceFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:OrderDateKey" TableRelationshipId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:relationship:FK_Fact_SalesLine_OrderDate" TargetFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:DateKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:relationship:FK_Fact_SalesLine_Product:field:1" SourceFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:ProductKey" TableRelationshipId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:relationship:FK_Fact_SalesLine_Product" TargetFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Product:field:ProductKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:relationship:FK_Fact_SalesLine_SalesChannel:field:1" SourceFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:SalesChannelKey" TableRelationshipId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:relationship:FK_Fact_SalesLine_SalesChannel" TargetFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel:field:SalesChannelKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:relationship:FK_Fact_SalesLine_Salesperson:field:1" SourceFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:SalespersonKey" TableRelationshipId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:relationship:FK_Fact_SalesLine_Salesperson" TargetFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:field:SalespersonKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:relationship:FK_Fact_SalesLine_SalesTerritory:field:1" SourceFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:SalesTerritoryKey" TableRelationshipId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:relationship:FK_Fact_SalesLine_SalesTerritory" TargetFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory:field:SalesTerritoryKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:relationship:FK_Fact_SalesLine_ShipToGeography:field:1" SourceFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:field:ShipToGeographyKey" TableRelationshipId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesLine:relationship:FK_Fact_SalesLine_ShipToGeography" TargetFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:GeographyKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:relationship:FK_Fact_SalesOrder_BillToGeography:field:1" SourceFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:BillToGeographyKey" TableRelationshipId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:relationship:FK_Fact_SalesOrder_BillToGeography" TargetFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:GeographyKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:relationship:FK_Fact_SalesOrder_Customer:field:1" SourceFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:CustomerKey" TableRelationshipId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:relationship:FK_Fact_SalesOrder_Customer" TargetFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Customer:field:CustomerKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:relationship:FK_Fact_SalesOrder_DueDate:field:1" SourceFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:DueDateKey" TableRelationshipId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:relationship:FK_Fact_SalesOrder_DueDate" TargetFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:DateKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:relationship:FK_Fact_SalesOrder_OrderDate:field:1" SourceFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:OrderDateKey" TableRelationshipId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:relationship:FK_Fact_SalesOrder_OrderDate" TargetFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:DateKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:relationship:FK_Fact_SalesOrder_OrderStatus:field:1" SourceFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:OrderStatusKey" TableRelationshipId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:relationship:FK_Fact_SalesOrder_OrderStatus" TargetFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_OrderStatus:field:OrderStatusKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:relationship:FK_Fact_SalesOrder_SalesChannel:field:1" SourceFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:SalesChannelKey" TableRelationshipId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:relationship:FK_Fact_SalesOrder_SalesChannel" TargetFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesChannel:field:SalesChannelKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:relationship:FK_Fact_SalesOrder_Salesperson:field:1" SourceFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:SalespersonKey" TableRelationshipId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:relationship:FK_Fact_SalesOrder_Salesperson" TargetFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:field:SalespersonKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:relationship:FK_Fact_SalesOrder_SalesTerritory:field:1" SourceFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:SalesTerritoryKey" TableRelationshipId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:relationship:FK_Fact_SalesOrder_SalesTerritory" TargetFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_SalesTerritory:field:SalesTerritoryKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:relationship:FK_Fact_SalesOrder_ShipDate:field:1" SourceFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:ShipDateKey" TableRelationshipId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:relationship:FK_Fact_SalesOrder_ShipDate" TargetFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:DateKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:relationship:FK_Fact_SalesOrder_ShipToGeography:field:1" SourceFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:field:ShipToGeographyKey" TableRelationshipId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalesOrder:relationship:FK_Fact_SalesOrder_ShipToGeography" TargetFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Geography:field:GeographyKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota:relationship:FK_Fact_SalespersonQuota_QuotaPeriod:field:1" SourceFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota:field:QuotaPeriodKey" TableRelationshipId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota:relationship:FK_Fact_SalespersonQuota_QuotaPeriod" TargetFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Date:field:DateKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+    <TableRelationshipField Id="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota:relationship:FK_Fact_SalespersonQuota_Salesperson:field:1" SourceFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota:field:SalespersonKey" TableRelationshipId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Fact_SalespersonQuota:relationship:FK_Fact_SalespersonQuota_Salesperson" TargetFieldId="sqlserver:AdventureWorksAnalytics:schema:dw:table:Dim_Salesperson:field:SalespersonKey">
+      <Ordinal>1</Ordinal>
+    </TableRelationshipField>
+  </TableRelationshipFieldList>
+</MetaSchema>

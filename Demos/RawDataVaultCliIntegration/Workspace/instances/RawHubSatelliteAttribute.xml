@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaRawDataVault>
+  <RawHubSatelliteAttributeList>
+    <RawHubSatelliteAttribute Id="CustomerEmailAttr" FieldId="CustomerEmailField" RawHubSatelliteId="CustomerProfileSat">
+      <Name>EmailAddress</Name>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="CustomerNameAttr" FieldId="CustomerNameField" RawHubSatelliteId="CustomerProfileSat">
+      <Name>CustomerName</Name>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="DepartmentNameAttr" FieldId="DepartmentNameField" RawHubSatelliteId="DepartmentProfileSat">
+      <Name>DepartmentName</Name>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="EmployeeHireDateAttr" FieldId="EmployeeHireDateField" RawHubSatelliteId="EmployeeProfileSat">
+      <Name>HireDate</Name>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="EmployeeNameAttr" FieldId="EmployeeNameField" RawHubSatelliteId="EmployeeProfileSat">
+      <Name>EmployeeName</Name>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="InvoiceAmountAttr" FieldId="InvoiceAmountField" RawHubSatelliteId="InvoiceHeaderSat">
+      <Name>InvoiceAmount</Name>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="InvoiceDateAttr" FieldId="InvoiceDateField" RawHubSatelliteId="InvoiceHeaderSat">
+      <Name>InvoiceDate</Name>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="OrderAmountAttr" FieldId="OrderAmountField" RawHubSatelliteId="OrderHeaderSat">
+      <Name>OrderAmount</Name>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="OrderDateAttr" FieldId="OrderDateField" RawHubSatelliteId="OrderHeaderSat">
+      <Name>OrderDate</Name>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="ProductCategoryAttr" FieldId="ProductCategoryField" RawHubSatelliteId="ProductProfileSat">
+      <Name>ProductCategory</Name>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="ProductNameAttr" FieldId="ProductNameField" RawHubSatelliteId="ProductProfileSat">
+      <Name>ProductName</Name>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="ShipmentCarrierAttr" FieldId="ShipmentCarrierNameField" RawHubSatelliteId="ShipmentHeaderSat">
+      <Name>CarrierName</Name>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="ShipmentDateAttr" FieldId="ShipmentDateField" RawHubSatelliteId="ShipmentHeaderSat">
+      <Name>ShipmentDate</Name>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="SupplierNameAttr" FieldId="SupplierNameField" RawHubSatelliteId="SupplierProfileSat">
+      <Name>SupplierName</Name>
+    </RawHubSatelliteAttribute>
+    <RawHubSatelliteAttribute Id="SupplierRiskClassAttr" FieldId="SupplierRiskClassField" RawHubSatelliteId="SupplierProfileSat">
+      <Name>RiskClass</Name>
+    </RawHubSatelliteAttribute>
+  </RawHubSatelliteAttributeList>
+</MetaRawDataVault>

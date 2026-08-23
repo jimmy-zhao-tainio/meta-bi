@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <DataSourceList>
+    <DataSource Id="Warehouse" AnalyticsModelId="AdventureWorksSales">
+      <ConnectionReference>AW_DW_SQL</ConnectionReference>
+      <Description>AdventureWorksAnalytics dimensional warehouse.</Description>
+      <Name>AdventureWorks Analytics</Name>
+      <Provider>SqlServer</Provider>
+      <SourceKind>Relational</SourceKind>
+    </DataSource>
+  </DataSourceList>
+</MetaAnalytics>

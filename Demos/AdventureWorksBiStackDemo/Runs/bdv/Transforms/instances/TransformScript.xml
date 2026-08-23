@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaTransformScript>
+  <TransformScriptList>
+    <TransformScript Id="TransformScript:1">
+      <Name>BH_Address</Name>
+      <SourcePath>BH_Address.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:10">
+      <Name>BH_SalesPerson</Name>
+      <SourcePath>BH_SalesPerson.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:11">
+      <Name>BH_SalesPersonQuota</Name>
+      <SourcePath>BH_SalesPersonQuota.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:12">
+      <Name>BH_SalesTerritory</Name>
+      <SourcePath>BH_SalesTerritory.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:13">
+      <Name>BH_StateProvince</Name>
+      <SourcePath>BH_StateProvince.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:14">
+      <Name>BH_Store</Name>
+      <SourcePath>BH_Store.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:15">
+      <Name>BHS_Address_AddressProfile</Name>
+      <SourcePath>BHS_Address_AddressProfile.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:16">
+      <Name>BHS_CountryRegion_CountryRegionProfile</Name>
+      <SourcePath>BHS_CountryRegion_CountryRegionProfile.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:17">
+      <Name>BHS_Customer_CustomerProfile</Name>
+      <SourcePath>BHS_Customer_CustomerProfile.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:18">
+      <Name>BHS_Person_PersonProfile</Name>
+      <SourcePath>BHS_Person_PersonProfile.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:19">
+      <Name>BHS_Product_ProductProfile</Name>
+      <SourcePath>BHS_Product_ProductProfile.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:2">
+      <Name>BH_CountryRegion</Name>
+      <SourcePath>BH_CountryRegion.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:20">
+      <Name>BHS_ProductCategory_ProductCategoryProfile</Name>
+      <SourcePath>BHS_ProductCategory_ProductCategoryProfile.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:21">
+      <Name>BHS_ProductSubcategory_ProductSubcategoryProfile</Name>
+      <SourcePath>BHS_ProductSubcategory_ProductSubcategoryProfile.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:22">
+      <Name>BHS_SalesOrder_SalesOrderHeader</Name>
+      <SourcePath>BHS_SalesOrder_SalesOrderHeader.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:23">
+      <Name>BHS_SalesOrderLine_SalesOrderLineDetail</Name>
+      <SourcePath>BHS_SalesOrderLine_SalesOrderLineDetail.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:24">
+      <Name>BHS_SalesPerson_SalesPersonProfile</Name>
+      <SourcePath>BHS_SalesPerson_SalesPersonProfile.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:25">
+      <Name>BHS_SalesPersonQuota_SalesPersonQuotaProfile</Name>
+      <SourcePath>BHS_SalesPersonQuota_SalesPersonQuotaProfile.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:26">
+      <Name>BHS_SalesTerritory_SalesTerritoryProfile</Name>
+      <SourcePath>BHS_SalesTerritory_SalesTerritoryProfile.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:27">
+      <Name>BHS_StateProvince_StateProvinceProfile</Name>
+      <SourcePath>BHS_StateProvince_StateProvinceProfile.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:28">
+      <Name>BHS_Store_StoreProfile</Name>
+      <SourcePath>BHS_Store_StoreProfile.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:29">
+      <Name>BL_AddressStateProvince</Name>
+      <SourcePath>BL_AddressStateProvince.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:3">
+      <Name>BH_Customer</Name>
+      <SourcePath>BH_Customer.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:30">
+      <Name>BL_CustomerPerson</Name>
+      <SourcePath>BL_CustomerPerson.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:31">
+      <Name>BL_CustomerStore</Name>
+      <SourcePath>BL_CustomerStore.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:32">
+      <Name>BL_ProductSubcategoryAssignment</Name>
+      <SourcePath>BL_ProductSubcategoryAssignment.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:33">
+      <Name>BL_ProductSubcategoryCategory</Name>
+      <SourcePath>BL_ProductSubcategoryCategory.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:34">
+      <Name>BL_SalesOrderBillToAddress</Name>
+      <SourcePath>BL_SalesOrderBillToAddress.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:35">
+      <Name>BL_SalesOrderCustomer</Name>
+      <SourcePath>BL_SalesOrderCustomer.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:36">
+      <Name>BL_SalesOrderLineProduct</Name>
+      <SourcePath>BL_SalesOrderLineProduct.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:37">
+      <Name>BL_SalesOrderLineSalesOrder</Name>
+      <SourcePath>BL_SalesOrderLineSalesOrder.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:38">
+      <Name>BL_SalesOrderSalesPerson</Name>
+      <SourcePath>BL_SalesOrderSalesPerson.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:39">
+      <Name>BL_SalesOrderShipToAddress</Name>
+      <SourcePath>BL_SalesOrderShipToAddress.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:4">
+      <Name>BH_Person</Name>
+      <SourcePath>BH_Person.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:40">
+      <Name>BL_SalesOrderSalesTerritory</Name>
+      <SourcePath>BL_SalesOrderSalesTerritory.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:41">
+      <Name>BL_SalesPersonPerson</Name>
+      <SourcePath>BL_SalesPersonPerson.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:42">
+      <Name>BL_SalesPersonQuotaSalesPerson</Name>
+      <SourcePath>BL_SalesPersonQuotaSalesPerson.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:43">
+      <Name>BL_SalesPersonSalesTerritory</Name>
+      <SourcePath>BL_SalesPersonSalesTerritory.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:44">
+      <Name>BL_SalesTerritoryCountryRegion</Name>
+      <SourcePath>BL_SalesTerritoryCountryRegion.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:45">
+      <Name>BL_StateProvinceCountryRegion</Name>
+      <SourcePath>BL_StateProvinceCountryRegion.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:46">
+      <Name>BL_StateProvinceSalesTerritory</Name>
+      <SourcePath>BL_StateProvinceSalesTerritory.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:47">
+      <Name>BL_StoreSalesPerson</Name>
+      <SourcePath>BL_StoreSalesPerson.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:5">
+      <Name>BH_Product</Name>
+      <SourcePath>BH_Product.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:6">
+      <Name>BH_ProductCategory</Name>
+      <SourcePath>BH_ProductCategory.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:7">
+      <Name>BH_ProductSubcategory</Name>
+      <SourcePath>BH_ProductSubcategory.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:8">
+      <Name>BH_SalesOrder</Name>
+      <SourcePath>BH_SalesOrder.sql</SourcePath>
+    </TransformScript>
+    <TransformScript Id="TransformScript:9">
+      <Name>BH_SalesOrderLine</Name>
+      <SourcePath>BH_SalesOrderLine.sql</SourcePath>
+    </TransformScript>
+  </TransformScriptList>
+</MetaTransformScript>

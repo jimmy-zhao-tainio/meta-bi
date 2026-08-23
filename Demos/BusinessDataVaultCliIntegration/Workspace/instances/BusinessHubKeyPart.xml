@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaBusinessDataVault>
+  <BusinessHubKeyPartList>
+    <BusinessHubKeyPart Id="CostCenterIdentifier" BusinessHubId="CostCenter">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>CostCenterIdentifier</Name>
+    </BusinessHubKeyPart>
+    <BusinessHubKeyPart Id="CrmCustomerIdentifier" BusinessHubId="CrmCustomer">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>CrmCustomerIdentifier</Name>
+    </BusinessHubKeyPart>
+    <BusinessHubKeyPart Id="CustomerIdentifier" BusinessHubId="Customer">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>CustomerIdentifier</Name>
+    </BusinessHubKeyPart>
+    <BusinessHubKeyPart Id="DepartmentIdentifier" BusinessHubId="Department">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>DepartmentIdentifier</Name>
+    </BusinessHubKeyPart>
+    <BusinessHubKeyPart Id="EmployeeIdentifier" BusinessHubId="Employee">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>EmployeeIdentifier</Name>
+    </BusinessHubKeyPart>
+    <BusinessHubKeyPart Id="InvoiceIdentifier" BusinessHubId="Invoice">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>InvoiceIdentifier</Name>
+    </BusinessHubKeyPart>
+    <BusinessHubKeyPart Id="OrderIdentifier" BusinessHubId="Order">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>OrderIdentifier</Name>
+    </BusinessHubKeyPart>
+    <BusinessHubKeyPart Id="ProductIdentifier" BusinessHubId="Product">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>ProductIdentifier</Name>
+    </BusinessHubKeyPart>
+    <BusinessHubKeyPart Id="ShipmentIdentifier" BusinessHubId="Shipment">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>ShipmentIdentifier</Name>
+    </BusinessHubKeyPart>
+    <BusinessHubKeyPart Id="SupplierIdentifier" BusinessHubId="Supplier">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <Name>SupplierIdentifier</Name>
+    </BusinessHubKeyPart>
+  </BusinessHubKeyPartList>
+</MetaBusinessDataVault>

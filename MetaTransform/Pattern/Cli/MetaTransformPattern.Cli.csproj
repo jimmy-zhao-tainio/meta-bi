@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>meta-transform-pattern</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="MetaCli.Core" Version="$(MetaFoundationPackageVersion)" />
+    <ProjectReference Include="..\Core\MetaTransformPattern.Core.csproj" />
+    <ProjectReference Include="..\..\PatternInstance\Core\MetaTransformPatternInstance.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="meta-transform-pattern.MetaCli\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

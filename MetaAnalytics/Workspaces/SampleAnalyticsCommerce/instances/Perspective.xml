@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <PerspectiveList>
+    <Perspective Id="perspective:sales" AnalyticsModelId="model:commerce">
+      <Name>Sales</Name>
+    </Perspective>
+  </PerspectiveList>
+</MetaAnalytics>

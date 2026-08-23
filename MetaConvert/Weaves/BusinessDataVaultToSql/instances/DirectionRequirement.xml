@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <DirectionRequirementList>
+    <DirectionRequirement Id="forward/BridgeTraversal" DirectionId="forward" SelectStatementId="SelectStatement:30">
+      <Code>BusinessBridgeTraversalInvalid</Code>
+      <Message>Business bridge traversals must form one continuous linear chain.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/ColumnNameAllocation" DirectionId="forward" SelectStatementId="SelectStatement:34">
+      <Code>BusinessColumnNameAllocationInvalid</Code>
+      <Message>Business SQL column names must allocate uniquely.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/ColumnTypeLowering" DirectionId="forward" SelectStatementId="SelectStatement:32">
+      <Code>BusinessColumnTypeLoweringInvalid</Code>
+      <Message>Every Business Data Vault column type must have one sanctioned SQL Server lowering.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/DatabaseName" DirectionId="forward" SelectStatementId="SelectStatement:24">
+      <Code>BusinessDatabaseNameRequired</Code>
+      <Message>Business Data Vault SQL projection requires a database name.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/DirectSqlServerMapping" DirectionId="forward" SelectStatementId="SelectStatement:25">
+      <Code>DirectSqlServerMappingConflict</Code>
+      <Message>Direct SQL Server type mappings must not conflict.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/IdentifierLength" DirectionId="forward" SelectStatementId="SelectStatement:36">
+      <Code>SqlServerIdentifierTooLong</Code>
+      <Message>Projected SQL Server identifiers must contain at most 128 characters.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/ImplementationCardinality" DirectionId="forward" SelectStatementId="SelectStatement:27">
+      <Code>BusinessImplementationCardinalityInvalid</Code>
+      <Message>Each Business Data Vault implementation contract must contain exactly one row.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/KeyPartChain" DirectionId="forward" SelectStatementId="SelectStatement:29">
+      <Code>BusinessKeyPartChainInvalid</Code>
+      <Message>Business hub and reference key-part precedence must form one linear chain.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/LinkRoleName" DirectionId="forward" SelectStatementId="SelectStatement:28">
+      <Code>BusinessLinkRoleNameInvalid</Code>
+      <Message>Business link role names must be present and unique within each link.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/OptionalImplementationColumn" DirectionId="forward" SelectStatementId="SelectStatement:31">
+      <Code>BusinessOptionalColumnInvalid</Code>
+      <Message>Optional implementation columns must define both name and datatype, or neither.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/ProjectedIdentity" DirectionId="forward" SelectStatementId="SelectStatement:35">
+      <Code>BusinessProjectedIdentityDuplicate</Code>
+      <Message>Projected SQL identities must be unique.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/SatelliteSpecialization" DirectionId="forward" SelectStatementId="SelectStatement:26">
+      <Code>BusinessSatelliteSpecializationInvalid</Code>
+      <Message>Each business satellite must have exactly one concrete specialization.</Message>
+    </DirectionRequirement>
+    <DirectionRequirement Id="forward/SchemaName" DirectionId="forward" SelectStatementId="SelectStatement:33">
+      <Code>BusinessSchemaNameInvalid</Code>
+      <Message>Projected schema names must be present and already trimmed.</Message>
+    </DirectionRequirement>
+  </DirectionRequirementList>
+</MetaWeave>

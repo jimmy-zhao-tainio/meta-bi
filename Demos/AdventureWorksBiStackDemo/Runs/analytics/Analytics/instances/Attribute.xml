@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <AttributeList>
+    <Attribute Id="Customer_AccountNumber" TableId="Customer">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>Account Number</Name>
+      <Ordinal>20</Ordinal>
+      <SourceName>AccountNumber</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="Customer_CustomerKey" TableId="Customer">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsKey>true</IsKey>
+      <IsNullable>false</IsNullable>
+      <Name>Customer Key</Name>
+      <Ordinal>10</Ordinal>
+      <SourceName>CustomerKey</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="Customer_CustomerName" TableId="Customer">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>Customer</Name>
+      <Ordinal>30</Ordinal>
+      <SourceName>CustomerName</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="Customer_CustomerType" TableId="Customer">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>Customer Type</Name>
+      <Ordinal>40</Ordinal>
+      <SourceName>CustomerType</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="Customer_StoreName" TableId="Customer">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>Store</Name>
+      <Ordinal>50</Ordinal>
+      <SourceName>StoreName</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="Date_CalendarDate" TableId="Date">
+      <DataTypeId>meta:type:Date</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>Date</Name>
+      <Ordinal>20</Ordinal>
+      <SourceName>CalendarDate</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="Date_CalendarQuarter" TableId="Date">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>Quarter</Name>
+      <Ordinal>40</Ordinal>
+      <SourceName>CalendarQuarter</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="Date_CalendarYear" TableId="Date">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>Year</Name>
+      <Ordinal>30</Ordinal>
+      <SourceName>CalendarYear</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="Date_DateKey" TableId="Date">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsKey>true</IsKey>
+      <IsNullable>false</IsNullable>
+      <Name>Date Key</Name>
+      <Ordinal>10</Ordinal>
+      <SourceName>DateKey</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="Date_DayName" TableId="Date">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>Day</Name>
+      <Ordinal>80</Ordinal>
+      <SourceName>DayName</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="Date_DayOfMonth" TableId="Date">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>Day of Month</Name>
+      <Ordinal>70</Ordinal>
+      <SourceName>DayOfMonth</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="Date_MonthName" TableId="Date">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>Month</Name>
+      <Ordinal>60</Ordinal>
+      <SourceName>MonthName</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="Date_MonthNumber" TableId="Date">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsNullable>false</IsNullable>
+      <Name>Month Number</Name>
+      <Ordinal>50</Ordinal>
+      <SourceName>MonthNumber</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="Geography_City" TableId="Geography">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>City</Name>
+      <Ordinal>20</Ordinal>
+      <SourceName>City</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="Geography_CountryRegionCode" TableId="Geography">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>Country Region Code</Name>
+      <Ordinal>60</Ordinal>
+      <SourceName>CountryRegionCode</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="Geography_CountryRegionName" TableId="Geography">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>Country Region</Name>
+      <Ordinal>70</Ordinal>
+      <SourceName>CountryRegionName</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="Geography_GeographyKey" TableId="Geography">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsKey>true</IsKey>
+      <IsNullable>false</IsNullable>
+      <Name>Geography Key</Name>
+      <Ordinal>10</Ordinal>
+      <SourceName>GeographyKey</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="Geography_PostalCode" TableId="Geography">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>Postal Code</Name>
+      <Ordinal>50</Ordinal>
+      <SourceName>PostalCode</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="Geography_StateProvinceCode" TableId="Geography">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>State Province Code</Name>
+      <Ordinal>30</Ordinal>
+      <SourceName>StateProvinceCode</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="Geography_StateProvinceName" TableId="Geography">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>State Province</Name>
+      <Ordinal>40</Ordinal>
+      <SourceName>StateProvinceName</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="OrderStatus_OrderStatusKey" TableId="OrderStatus">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsKey>true</IsKey>
+      <IsNullable>false</IsNullable>
+      <Name>Order Status Key</Name>
+      <Ordinal>10</Ordinal>
+      <SourceName>OrderStatusKey</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="OrderStatus_StatusCode" TableId="OrderStatus">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>Status Code</Name>
+      <Ordinal>20</Ordinal>
+      <SourceName>StatusCode</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="OrderStatus_StatusName" TableId="OrderStatus">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>Order Status</Name>
+      <Ordinal>30</Ordinal>
+      <SourceName>StatusName</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="Product_Category" TableId="Product">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>Product Category</Name>
+      <Ordinal>60</Ordinal>
+      <SourceName>ProductCategoryName</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="Product_Color" TableId="Product">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>Color</Name>
+      <Ordinal>40</Ordinal>
+      <SourceName>Color</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="Product_ProductKey" TableId="Product">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsKey>true</IsKey>
+      <IsNullable>false</IsNullable>
+      <Name>Product Key</Name>
+      <Ordinal>10</Ordinal>
+      <SourceName>ProductKey</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="Product_ProductName" TableId="Product">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>Product</Name>
+      <Ordinal>30</Ordinal>
+      <SourceName>ProductName</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="Product_ProductNumber" TableId="Product">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>Product Number</Name>
+      <Ordinal>20</Ordinal>
+      <SourceName>ProductNumber</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="Product_Subcategory" TableId="Product">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>Product Subcategory</Name>
+      <Ordinal>50</Ordinal>
+      <SourceName>ProductSubcategoryName</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesChannel_ChannelCode" TableId="SalesChannel">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>Channel Code</Name>
+      <Ordinal>20</Ordinal>
+      <SourceName>ChannelCode</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesChannel_ChannelName" TableId="SalesChannel">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>Sales Channel</Name>
+      <Ordinal>30</Ordinal>
+      <SourceName>ChannelName</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesChannel_SalesChannelKey" TableId="SalesChannel">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsKey>true</IsKey>
+      <IsNullable>false</IsNullable>
+      <Name>Sales Channel Key</Name>
+      <Ordinal>10</Ordinal>
+      <SourceName>SalesChannelKey</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesLines_CustomerKey" TableId="SalesLines">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsNullable>false</IsNullable>
+      <Name>Customer Key</Name>
+      <Ordinal>30</Ordinal>
+      <SourceName>CustomerKey</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesLines_DiscountAmount" TableId="SalesLines">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsNullable>false</IsNullable>
+      <Name>Discount Amount Value</Name>
+      <Ordinal>120</Ordinal>
+      <SourceName>DiscountAmount</SourceName>
+      <SummarizeBy>Sum</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesLines_LineSalesAmount" TableId="SalesLines">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsNullable>false</IsNullable>
+      <Name>Sales Amount Value</Name>
+      <Ordinal>130</Ordinal>
+      <SourceName>LineSalesAmount</SourceName>
+      <SummarizeBy>Sum</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesLines_OrderDateKey" TableId="SalesLines">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsNullable>false</IsNullable>
+      <Name>Order Date Key</Name>
+      <Ordinal>10</Ordinal>
+      <SourceName>OrderDateKey</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesLines_OrderQuantity" TableId="SalesLines">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsNullable>false</IsNullable>
+      <Name>Order Quantity Value</Name>
+      <Ordinal>100</Ordinal>
+      <SourceName>OrderQuantity</SourceName>
+      <SummarizeBy>Sum</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesLines_ProductKey" TableId="SalesLines">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsNullable>false</IsNullable>
+      <Name>Product Key</Name>
+      <Ordinal>20</Ordinal>
+      <SourceName>ProductKey</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesLines_SalesChannelKey" TableId="SalesLines">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsNullable>false</IsNullable>
+      <Name>Sales Channel Key</Name>
+      <Ordinal>60</Ordinal>
+      <SourceName>SalesChannelKey</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesLines_SalesOrderDetailID" TableId="SalesLines">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>Sales Order Detail ID</Name>
+      <Ordinal>90</Ordinal>
+      <SourceName>SalesOrderDetailID</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesLines_SalesOrderID" TableId="SalesLines">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsNullable>false</IsNullable>
+      <Name>Sales Order ID</Name>
+      <Ordinal>80</Ordinal>
+      <SourceName>SalesOrderID</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesLines_SalespersonKey" TableId="SalesLines">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsNullable>true</IsNullable>
+      <Name>Salesperson Key</Name>
+      <Ordinal>40</Ordinal>
+      <SourceName>SalespersonKey</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesLines_SalesTerritoryKey" TableId="SalesLines">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsNullable>true</IsNullable>
+      <Name>Sales Territory Key</Name>
+      <Ordinal>50</Ordinal>
+      <SourceName>SalesTerritoryKey</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesLines_ShipToGeographyKey" TableId="SalesLines">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsNullable>false</IsNullable>
+      <Name>Ship To Geography Key</Name>
+      <Ordinal>70</Ordinal>
+      <SourceName>ShipToGeographyKey</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesLines_UnitPrice" TableId="SalesLines">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsNullable>false</IsNullable>
+      <Name>Unit Price</Name>
+      <Ordinal>110</Ordinal>
+      <SourceName>UnitPrice</SourceName>
+      <SummarizeBy>Average</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesOrders_BillToGeographyKey" TableId="SalesOrders">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsNullable>false</IsNullable>
+      <Name>Bill To Geography Key</Name>
+      <Ordinal>90</Ordinal>
+      <SourceName>BillToGeographyKey</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesOrders_CustomerKey" TableId="SalesOrders">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsNullable>false</IsNullable>
+      <Name>Customer Key</Name>
+      <Ordinal>40</Ordinal>
+      <SourceName>CustomerKey</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesOrders_DueDateKey" TableId="SalesOrders">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsNullable>false</IsNullable>
+      <Name>Due Date Key</Name>
+      <Ordinal>20</Ordinal>
+      <SourceName>DueDateKey</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesOrders_FreightAmount" TableId="SalesOrders">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsNullable>false</IsNullable>
+      <Name>Freight Amount Value</Name>
+      <Ordinal>150</Ordinal>
+      <SourceName>FreightAmount</SourceName>
+      <SummarizeBy>Sum</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesOrders_OrderCount" TableId="SalesOrders">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsNullable>false</IsNullable>
+      <Name>Order Count Value</Name>
+      <Ordinal>120</Ordinal>
+      <SourceName>OrderCount</SourceName>
+      <SummarizeBy>Sum</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesOrders_OrderDateKey" TableId="SalesOrders">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsNullable>false</IsNullable>
+      <Name>Order Date Key</Name>
+      <Ordinal>10</Ordinal>
+      <SourceName>OrderDateKey</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesOrders_OrderStatusKey" TableId="SalesOrders">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsNullable>false</IsNullable>
+      <Name>Order Status Key</Name>
+      <Ordinal>80</Ordinal>
+      <SourceName>OrderStatusKey</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesOrders_SalesChannelKey" TableId="SalesOrders">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsNullable>false</IsNullable>
+      <Name>Sales Channel Key</Name>
+      <Ordinal>70</Ordinal>
+      <SourceName>SalesChannelKey</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesOrders_SalesOrderID" TableId="SalesOrders">
+      <DataTypeId>meta:type:Int32</DataTypeId>
+      <IsKey>true</IsKey>
+      <IsNullable>false</IsNullable>
+      <Name>Sales Order ID</Name>
+      <Ordinal>110</Ordinal>
+      <SourceName>SalesOrderID</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesOrders_SalespersonKey" TableId="SalesOrders">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsNullable>true</IsNullable>
+      <Name>Salesperson Key</Name>
+      <Ordinal>50</Ordinal>
+      <SourceName>SalespersonKey</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesOrders_SalesTerritoryKey" TableId="SalesOrders">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsNullable>true</IsNullable>
+      <Name>Sales Territory Key</Name>
+      <Ordinal>60</Ordinal>
+      <SourceName>SalesTerritoryKey</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesOrders_ShipDateKey" TableId="SalesOrders">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsNullable>true</IsNullable>
+      <Name>Ship Date Key</Name>
+      <Ordinal>30</Ordinal>
+      <SourceName>ShipDateKey</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesOrders_ShipToGeographyKey" TableId="SalesOrders">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsNullable>false</IsNullable>
+      <Name>Ship To Geography Key</Name>
+      <Ordinal>100</Ordinal>
+      <SourceName>ShipToGeographyKey</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesOrders_SubTotal" TableId="SalesOrders">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsNullable>false</IsNullable>
+      <Name>Subtotal</Name>
+      <Ordinal>130</Ordinal>
+      <SourceName>SubTotal</SourceName>
+      <SummarizeBy>Sum</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesOrders_TaxAmount" TableId="SalesOrders">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsNullable>false</IsNullable>
+      <Name>Tax Amount Value</Name>
+      <Ordinal>140</Ordinal>
+      <SourceName>TaxAmount</SourceName>
+      <SummarizeBy>Sum</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesOrders_TotalDue" TableId="SalesOrders">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsNullable>false</IsNullable>
+      <Name>Total Due Value</Name>
+      <Ordinal>160</Ordinal>
+      <SourceName>TotalDue</SourceName>
+      <SummarizeBy>Sum</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalespersonQuotas_QuotaAmount" TableId="SalespersonQuotas">
+      <DataTypeId>meta:type:Decimal</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsNullable>false</IsNullable>
+      <Name>Quota Amount Value</Name>
+      <Ordinal>30</Ordinal>
+      <SourceName>QuotaAmount</SourceName>
+      <SummarizeBy>Sum</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalespersonQuotas_QuotaPeriodKey" TableId="SalespersonQuotas">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsNullable>false</IsNullable>
+      <Name>Quota Period Key</Name>
+      <Ordinal>10</Ordinal>
+      <SourceName>QuotaPeriodKey</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalespersonQuotas_SalespersonKey" TableId="SalespersonQuotas">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsNullable>false</IsNullable>
+      <Name>Salesperson Key</Name>
+      <Ordinal>20</Ordinal>
+      <SourceName>SalespersonKey</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="Salesperson_FirstName" TableId="Salesperson">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>First Name</Name>
+      <Ordinal>20</Ordinal>
+      <SourceName>FirstName</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="Salesperson_FullName" TableId="Salesperson">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>Salesperson</Name>
+      <Ordinal>40</Ordinal>
+      <SourceName>FullName</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="Salesperson_LastName" TableId="Salesperson">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>Last Name</Name>
+      <Ordinal>30</Ordinal>
+      <SourceName>LastName</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="Salesperson_SalespersonKey" TableId="Salesperson">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsKey>true</IsKey>
+      <IsNullable>false</IsNullable>
+      <Name>Salesperson Key</Name>
+      <Ordinal>10</Ordinal>
+      <SourceName>SalespersonKey</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesTerritory_CountryRegionCode" TableId="SalesTerritory">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>Country Region Code</Name>
+      <Ordinal>30</Ordinal>
+      <SourceName>CountryRegionCode</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesTerritory_SalesTerritoryKey" TableId="SalesTerritory">
+      <DataTypeId>meta:type:Int64</DataTypeId>
+      <IsHidden>true</IsHidden>
+      <IsKey>true</IsKey>
+      <IsNullable>false</IsNullable>
+      <Name>Sales Territory Key</Name>
+      <Ordinal>10</Ordinal>
+      <SourceName>SalesTerritoryKey</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesTerritory_TerritoryGroup" TableId="SalesTerritory">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>Territory Group</Name>
+      <Ordinal>40</Ordinal>
+      <SourceName>TerritoryGroup</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+    <Attribute Id="SalesTerritory_TerritoryName" TableId="SalesTerritory">
+      <DataTypeId>meta:type:String</DataTypeId>
+      <IsNullable>true</IsNullable>
+      <Name>Sales Territory</Name>
+      <Ordinal>20</Ordinal>
+      <SourceName>TerritoryName</SourceName>
+      <SummarizeBy>None</SummarizeBy>
+    </Attribute>
+  </AttributeList>
+</MetaAnalytics>

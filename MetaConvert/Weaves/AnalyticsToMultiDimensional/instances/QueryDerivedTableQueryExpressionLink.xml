@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <QueryDerivedTableQueryExpressionLinkList>
+    <QueryDerivedTableQueryExpressionLink Id="QueryDerivedTableQueryExpressionLink:1" QueryDerivedTableId="QueryDerivedTable:1" QueryExpressionId="QueryExpression:14" />
+    <QueryDerivedTableQueryExpressionLink Id="QueryDerivedTableQueryExpressionLink:2" QueryDerivedTableId="QueryDerivedTable:2" QueryExpressionId="QueryExpression:15" />
+  </QueryDerivedTableQueryExpressionLinkList>
+</MetaWeave>

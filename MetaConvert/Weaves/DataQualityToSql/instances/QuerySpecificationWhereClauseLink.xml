@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaWeave>
+  <QuerySpecificationWhereClauseLinkList>
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:12" QuerySpecificationId="QuerySpecification:20" WhereClauseId="WhereClause:12" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:19" QuerySpecificationId="QuerySpecification:44" WhereClauseId="WhereClause:19" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:28" QuerySpecificationId="QuerySpecification:63" WhereClauseId="WhereClause:28" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:29" QuerySpecificationId="QuerySpecification:65" WhereClauseId="WhereClause:29" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:30" QuerySpecificationId="QuerySpecification:70" WhereClauseId="WhereClause:30" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:31" QuerySpecificationId="QuerySpecification:74" WhereClauseId="WhereClause:31" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:32" QuerySpecificationId="QuerySpecification:75" WhereClauseId="WhereClause:32" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:33" QuerySpecificationId="QuerySpecification:78" WhereClauseId="WhereClause:33" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:34" QuerySpecificationId="QuerySpecification:79" WhereClauseId="WhereClause:34" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:35" QuerySpecificationId="QuerySpecification:80" WhereClauseId="WhereClause:35" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:36" QuerySpecificationId="QuerySpecification:81" WhereClauseId="WhereClause:36" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:45" QuerySpecificationId="QuerySpecification:91" WhereClauseId="WhereClause:45" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:46" QuerySpecificationId="QuerySpecification:92" WhereClauseId="WhereClause:46" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:47" QuerySpecificationId="QuerySpecification:93" WhereClauseId="WhereClause:47" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:48" QuerySpecificationId="QuerySpecification:94" WhereClauseId="WhereClause:48" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:49" QuerySpecificationId="QuerySpecification:95" WhereClauseId="WhereClause:49" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:50" QuerySpecificationId="QuerySpecification:96" WhereClauseId="WhereClause:50" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:51" QuerySpecificationId="QuerySpecification:97" WhereClauseId="WhereClause:51" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:52" QuerySpecificationId="QuerySpecification:98" WhereClauseId="WhereClause:52" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:53" QuerySpecificationId="QuerySpecification:103" WhereClauseId="WhereClause:53" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:54" QuerySpecificationId="QuerySpecification:104" WhereClauseId="WhereClause:54" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:55" QuerySpecificationId="QuerySpecification:105" WhereClauseId="WhereClause:55" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:56" QuerySpecificationId="QuerySpecification:106" WhereClauseId="WhereClause:56" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:57" QuerySpecificationId="QuerySpecification:107" WhereClauseId="WhereClause:57" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:58" QuerySpecificationId="QuerySpecification:108" WhereClauseId="WhereClause:58" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:59" QuerySpecificationId="QuerySpecification:109" WhereClauseId="WhereClause:59" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:60" QuerySpecificationId="QuerySpecification:110" WhereClauseId="WhereClause:60" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:61" QuerySpecificationId="QuerySpecification:111" WhereClauseId="WhereClause:61" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:62" QuerySpecificationId="QuerySpecification:112" WhereClauseId="WhereClause:62" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:63" QuerySpecificationId="QuerySpecification:113" WhereClauseId="WhereClause:63" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:64" QuerySpecificationId="QuerySpecification:118" WhereClauseId="WhereClause:64" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:65" QuerySpecificationId="QuerySpecification:119" WhereClauseId="WhereClause:65" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:66" QuerySpecificationId="QuerySpecification:120" WhereClauseId="WhereClause:66" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:67" QuerySpecificationId="QuerySpecification:121" WhereClauseId="WhereClause:67" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:68" QuerySpecificationId="QuerySpecification:122" WhereClauseId="WhereClause:68" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:69" QuerySpecificationId="QuerySpecification:123" WhereClauseId="WhereClause:69" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:70" QuerySpecificationId="QuerySpecification:124" WhereClauseId="WhereClause:70" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:71" QuerySpecificationId="QuerySpecification:125" WhereClauseId="WhereClause:71" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:72" QuerySpecificationId="QuerySpecification:126" WhereClauseId="WhereClause:72" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:73" QuerySpecificationId="QuerySpecification:127" WhereClauseId="WhereClause:73" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:74" QuerySpecificationId="QuerySpecification:128" WhereClauseId="WhereClause:74" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:75" QuerySpecificationId="QuerySpecification:129" WhereClauseId="WhereClause:75" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:76" QuerySpecificationId="QuerySpecification:130" WhereClauseId="WhereClause:76" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:77" QuerySpecificationId="QuerySpecification:131" WhereClauseId="WhereClause:77" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:78" QuerySpecificationId="QuerySpecification:132" WhereClauseId="WhereClause:78" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:79" QuerySpecificationId="QuerySpecification:133" WhereClauseId="WhereClause:79" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:80" QuerySpecificationId="QuerySpecification:134" WhereClauseId="WhereClause:80" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:81" QuerySpecificationId="QuerySpecification:135" WhereClauseId="WhereClause:81" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:82" QuerySpecificationId="QuerySpecification:136" WhereClauseId="WhereClause:82" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:83" QuerySpecificationId="QuerySpecification:137" WhereClauseId="WhereClause:83" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:84" QuerySpecificationId="QuerySpecification:138" WhereClauseId="WhereClause:84" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:85" QuerySpecificationId="QuerySpecification:139" WhereClauseId="WhereClause:85" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:86" QuerySpecificationId="QuerySpecification:140" WhereClauseId="WhereClause:86" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:87" QuerySpecificationId="QuerySpecification:141" WhereClauseId="WhereClause:87" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:88" QuerySpecificationId="QuerySpecification:142" WhereClauseId="WhereClause:88" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:89" QuerySpecificationId="QuerySpecification:143" WhereClauseId="WhereClause:89" />
+    <QuerySpecificationWhereClauseLink Id="QuerySpecificationWhereClauseLink:90" QuerySpecificationId="QuerySpecification:144" WhereClauseId="WhereClause:90" />
+  </QuerySpecificationWhereClauseLinkList>
+</MetaWeave>

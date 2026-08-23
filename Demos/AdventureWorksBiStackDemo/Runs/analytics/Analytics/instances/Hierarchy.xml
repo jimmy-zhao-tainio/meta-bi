@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaAnalytics>
+  <HierarchyList>
+    <Hierarchy Id="Calendar" TableId="Date">
+      <Name>Calendar</Name>
+    </Hierarchy>
+    <Hierarchy Id="Geographies" TableId="Geography">
+      <Name>Geography</Name>
+    </Hierarchy>
+    <Hierarchy Id="Products" TableId="Product">
+      <Name>Products</Name>
+    </Hierarchy>
+  </HierarchyList>
+</MetaAnalytics>
