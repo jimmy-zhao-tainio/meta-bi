@@ -17,8 +17,8 @@ It is not a hidden business-rules engine. It turns modeled transform syntax into
 Commands:
 
 ```cmd
-meta-data-quality from-transform-workspace --transform-workspace TransformWS --new-workspace DataQualityWS
-meta-data-quality from-transform-workspace --transform-workspace TransformWS --binding-workspace BindingWS --new-workspace DataQualityWS
+meta-data-quality from-transform-workspace --transform-workspace TransformWS --output-xml DataQualityWS
+meta-data-quality from-transform-workspace --transform-workspace TransformWS --binding-workspace BindingWS --output-xml DataQualityWS
 meta-data-quality inspect --workspace DataQualityWS
 meta-data-quality promote --workspace DataQualityWS --all
 meta-convert data-quality-to-sql --workspace DataQualityWS --out DataQualityViews.sql
