@@ -2561,12 +2561,24 @@ public sealed class CliDeploymentSafetyTests
         {
             CreateDatabase(masterConnectionString, databaseName);
             CreateParentChildWithForeignKey(databaseConnectionString);
+            ExecuteSql(databaseConnectionString, """
+                CREATE TABLE raw.ALegacy(Id int NOT NULL PRIMARY KEY, OtherId int NULL);
+                CREATE TABLE raw.ZLegacy(Id int NOT NULL PRIMARY KEY, OtherId int NULL REFERENCES raw.ALegacy(Id));
+                ALTER TABLE raw.ALegacy ADD FOREIGN KEY(OtherId) REFERENCES raw.ZLegacy(Id);
+                INSERT raw.ALegacy VALUES(1,NULL);
+                INSERT raw.ZLegacy VALUES(1,1);
+                UPDATE raw.ALegacy SET OtherId=1;
+                """);
+            var approvalsPath = Path.Combine(tempRoot, "approvals.json");
+            Directory.CreateDirectory(tempRoot);
+            await File.WriteAllTextAsync(approvalsPath,
+                """{"DataDropTable":["raw.Parent","raw.ALegacy","raw.ZLegacy"]}""");
             await CreateSourceWorkspaceWithChildOnlyNoForeignKeyAsync(sourcePath, databaseName);
 
             var planCommand = new ProcessStartInfo
             {
                 FileName = "meta-sql",
-                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --approve-drop-table raw.Parent --output-xml \"{planPath}\"",
+                Arguments = $"deploy-plan --source-workspace \"{sourcePath}\" --connection-string \"{databaseConnectionString}\" --approval-file \"{approvalsPath}\" --output-xml \"{planPath}\"",
                 WorkingDirectory = repoRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -2576,7 +2588,7 @@ public sealed class CliDeploymentSafetyTests
             var planResult = RunProcess(planCommand, "Could not start MetaSql CLI deploy-plan process.");
             Assert.Equal(0, planResult.ExitCode);
             var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(planPath, searchUpward: false);
-            Assert.Single(manifest.DropTableList);
+            Assert.Equal(3, manifest.DropTableList.Count);
             Assert.Single(manifest.DropForeignKeyList);
 
             var deployCommand = new ProcessStartInfo
@@ -2593,6 +2605,8 @@ public sealed class CliDeploymentSafetyTests
             Assert.Equal(0, deployResult.ExitCode);
 
             Assert.False(TableExists(databaseConnectionString, "raw", "Parent"));
+            Assert.False(TableExists(databaseConnectionString, "raw", "ALegacy"));
+            Assert.False(TableExists(databaseConnectionString, "raw", "ZLegacy"));
             Assert.True(TableExists(databaseConnectionString, "raw", "Child"));
             Assert.False(ForeignKeyExists(databaseConnectionString, "FK_Child_Parent"));
         }

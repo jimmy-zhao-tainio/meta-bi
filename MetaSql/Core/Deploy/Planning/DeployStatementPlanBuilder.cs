@@ -71,15 +71,13 @@ internal sealed class DeployStatementPlanBuilder
         var dropForeignKeyIds = manifestModel.DropForeignKeyList
             .Select(row => row.LiveForeignKeyId)
             .Concat(manifestModel.ReplaceForeignKeyList.Select(row => row.LiveForeignKeyId))
+            // Dropping whole tables implies removing their outgoing constraints first.
+            // This also handles cycles and parent tables sorted before their children.
+            .Concat(liveModel.ForeignKeyList.Where(row => droppedTableIds.Contains(row.SourceTable.Id)).Select(row => row.Id))
             .ToHashSet(StringComparer.Ordinal);
         foreach (var foreignKeyId in dropForeignKeyIds.OrderBy(row => row, StringComparer.Ordinal))
         {
             var foreignKey = RequireById(liveForeignKeysById, foreignKeyId, "DropForeignKey.LiveForeignKeyId");
-            if (droppedTableIds.Contains(foreignKey.SourceTable.Id))
-            {
-                continue;
-            }
-
             actions.Add(new DropForeignKeyAction(foreignKey));
         }
 
