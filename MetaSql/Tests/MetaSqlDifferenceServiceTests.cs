@@ -53,7 +53,7 @@ public sealed class MetaSqlDifferenceServiceTests
         var service = new MetaSqlDifferenceService();
         var differences = service.BuildDifferences(sourceWorkspace, liveWorkspace);
 
-        var difference = Assert.Single(differences, row => row.ObjectKind == MetaSqlObjectKind.Index);
+        var difference = Assert.Single(differences);
         Assert.Equal(MetaSqlObjectKind.Index, difference.ObjectKind);
         Assert.Equal(MetaSqlDifferenceKind.Different, difference.DifferenceKind);
         Assert.Equal("dbo.Customer", difference.ScopeDisplayName);
@@ -62,6 +62,55 @@ public sealed class MetaSqlDifferenceServiceTests
         Assert.Equal("LiveDb.dbo.Customer.index.IX_Customer_Name", difference.LiveId);
         Assert.DoesNotContain(differences, row => row.ObjectKind == MetaSqlObjectKind.Index && row.DifferenceKind == MetaSqlDifferenceKind.MissingInLive);
         Assert.DoesNotContain(differences, row => row.ObjectKind == MetaSqlObjectKind.Index && row.DifferenceKind == MetaSqlDifferenceKind.ExtraInLive);
+    }
+
+    [Fact]
+    public void BuildDifferences_IgnoresAllWorkspaceIds_IncludingForeignKeyReferences()
+    {
+        var source = CreateCustomerModel(false, idPrefix: "authored");
+        var live = CreateCustomerModel(false, idPrefix: "extracted");
+        foreach (var model in new[] { source, live })
+        {
+            var table = Assert.Single(model.TableList);
+            var column = model.TableColumnList[0];
+            var foreignKey = new ForeignKey
+            {
+                Id = table.Id + ".fk", Name = "FK_Self", SourceTable = table, TargetTable = table,
+            };
+            model.ForeignKeyList.Add(foreignKey);
+            model.ForeignKeyColumnList.Add(new ForeignKeyColumn
+            {
+                Id = table.Id + ".fk.member", ForeignKey = foreignKey,
+                SourceColumn = column, TargetColumn = column, Ordinal = "1",
+            });
+        }
+        source.PrimaryKeyColumnList[0].IsDescending = "false";
+        source.IndexColumnList[0].IsIncluded = "false";
+        var sourceWorkspace = CreateWorkspace(source, "source");
+        var liveWorkspace = CreateWorkspace(live, "live");
+        var differences = new MetaSqlDifferenceService().BuildDifferences(sourceWorkspace, liveWorkspace);
+        Assert.Empty(differences);
+        var manifest = new MetaSqlDeployManifestService().BuildManifest(
+            sourceWorkspace, liveWorkspace, MetaSqlLiveDatabasePresence.Present,
+            differences, "IndependentIds", null);
+        Assert.True(manifest.IsDeployable);
+        Assert.Equal(0, manifest.AddCount + manifest.DropCount + manifest.AlterCount + manifest.ReplaceCount);
+    }
+
+    [Fact]
+    public void BuildDifferences_DistinguishesNamesContainingScopeSeparators()
+    {
+        var source = CreateCustomerModel(false, idPrefix: "source");
+        var live = CreateCustomerModel(false, idPrefix: "live");
+        source.SchemaList[0].Name = "a|b";
+        source.TableList[0].Name = "c";
+        live.SchemaList[0].Name = "a";
+        live.TableList[0].Name = "b|c";
+        var differences = new MetaSqlDifferenceService().BuildDifferences(
+            CreateWorkspace(source, "source"), CreateWorkspace(live, "live"));
+        Assert.Equal(2, differences.Count);
+        Assert.Contains(differences, row => row.DifferenceKind == MetaSqlDifferenceKind.MissingInLive);
+        Assert.Contains(differences, row => row.DifferenceKind == MetaSqlDifferenceKind.ExtraInLive);
     }
 
     [Fact]
@@ -114,6 +163,21 @@ public sealed class MetaSqlDifferenceServiceTests
         var service = new MetaSqlDifferenceService();
         var exception = Assert.Throws<InvalidOperationException>(() => service.BuildDifferences(sourceWorkspace, liveWorkspace));
         Assert.Contains("Ambiguous source table identity key", exception.Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void BuildDifferences_RejectsDuplicateColumnNamesWithDifferentIds()
+    {
+        var source = CreateCustomerModel(false);
+        source.TableColumnList.Add(new TableColumn
+        {
+            Id = "another-id", Name = "CustomerId", Table = source.TableList[0],
+            Ordinal = "3", MetaDataTypeId = "sqlserver:type:int", IsNullable = "false",
+        });
+        var exception = Assert.Throws<InvalidOperationException>(() =>
+            new MetaSqlDifferenceService().BuildDifferences(
+                CreateWorkspace(source, "source"), CreateWorkspace(CreateCustomerModel(false), "live")));
+        Assert.Contains("Ambiguous SQL column identity", exception.Message, StringComparison.Ordinal);
     }
 
     private static MetaSqlModel CreateCustomerModel(bool includeExtraLiveColumn, bool sourceIndexUnique = false, string idPrefix = "SalesDb")

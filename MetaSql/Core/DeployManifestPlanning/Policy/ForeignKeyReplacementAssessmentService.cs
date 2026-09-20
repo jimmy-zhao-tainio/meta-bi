@@ -26,7 +26,7 @@ internal sealed class ForeignKeyReplacementAssessmentService
 
         var sourceTableId = sourceForeignKey.RelationshipIds["SourceTableId"];
         var liveTableId = liveForeignKey.RelationshipIds["SourceTableId"];
-        if (!string.Equals(sourceTableId, liveTableId, StringComparison.Ordinal))
+        if (!string.Equals(lookup.SourceIdentity.Table(sourceTableId), lookup.LiveIdentity.Table(liveTableId), StringComparison.Ordinal))
         {
             return (false, $"{difference.DisplayName}: ReplaceForeignKey requires the same source table scope in source and live.");
         }
@@ -72,13 +72,13 @@ internal sealed class ForeignKeyReplacementAssessmentService
             var sourceColumnTableId = sourceColumn.RelationshipIds["TableId"];
             var sourceTargetTableId = targetColumn.RelationshipIds["TableId"];
             if (!lookup.PlannedAddedTableIds.Contains(sourceColumnTableId) &&
-                !lookup.LiveTablesById.ContainsKey(sourceColumnTableId))
+                !lookup.LiveIdentity.ContainsTable(lookup.SourceIdentity.Table(sourceColumnTableId)))
             {
                 return (false, $"{difference.DisplayName}: source foreign key member references source table '{sourceColumnTableId}' that is neither live nor planned add.");
             }
 
             if (!lookup.PlannedAddedTableIds.Contains(sourceTargetTableId) &&
-                !lookup.LiveTablesById.ContainsKey(sourceTargetTableId))
+                !lookup.LiveIdentity.ContainsTable(lookup.SourceIdentity.Table(sourceTargetTableId)))
             {
                 return (false, $"{difference.DisplayName}: source foreign key member references target table '{sourceTargetTableId}' that is neither live nor planned add.");
             }
@@ -93,7 +93,7 @@ internal sealed class ForeignKeyReplacementAssessmentService
             }
 
             var liveSourceColumnTableId = liveSourceColumn.RelationshipIds["TableId"];
-            if (lookup.PlannedAddedTableIds.Contains(liveSourceColumnTableId))
+            if (lookup.PlannedAddedTableIds.Any(id => lookup.SourceIdentity.Table(id) == lookup.LiveIdentity.Table(liveSourceColumnTableId)))
             {
                 return (false, $"{difference.DisplayName}: live foreign key member references a table planned as add, which is unsupported for ReplaceForeignKey.");
             }

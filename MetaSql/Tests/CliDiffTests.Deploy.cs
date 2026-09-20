@@ -150,8 +150,10 @@ public sealed class CliForeignKeyDeploymentTests
         }
     }
 
-    [Fact]
-    public async Task DeployCommand_AppliesReplaceForeignKeyAction()
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public async Task DeployCommand_AppliesReplaceForeignKeyAction(bool independentIds)
     {
         var repoRoot = FindRepositoryRoot();
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"));
@@ -166,6 +168,9 @@ public sealed class CliForeignKeyDeploymentTests
             CreateDatabase(masterConnectionString, databaseName);
             CreateForeignKeyReplaceFixture(databaseConnectionString);
             await CreateSourceWorkspaceWithSingleForeignKeyTargetAsync(sourcePath, databaseName, targetTableName: "ParentB", includeForeignKeyMember: true);
+
+            if (independentIds)
+                await MutateSourceWorkspaceAsync(sourcePath, UseIndependentIds);
 
             var planCommand = new ProcessStartInfo
             {
@@ -315,8 +320,10 @@ public sealed class CliPrimaryKeyDeploymentTests
         }
     }
 
-    [Fact]
-    public async Task DeployPlanAndDeploy_EmitAndApplyExplicitDependentForeignKeyReplacementForPrimaryKeyReplacement()
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public async Task DeployPlanAndDeploy_EmitAndApplyExplicitDependentForeignKeyReplacementForPrimaryKeyReplacement(bool independentIds)
     {
         var repoRoot = FindRepositoryRoot();
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"));
@@ -343,6 +350,9 @@ public sealed class CliPrimaryKeyDeploymentTests
                         string.Equals(row.Ordinal, "1", StringComparison.Ordinal));
                     primaryKeyMember.IsDescending = "true";
                 });
+
+            if (independentIds)
+                await MutateSourceWorkspaceAsync(sourcePath, UseIndependentIds);
 
             var planCommand = new ProcessStartInfo
             {
@@ -969,8 +979,10 @@ public sealed class CliIndexDeploymentTests
         }
     }
 
-    [Fact]
-    public async Task DeployCommand_AppliesReplaceIndexAction()
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public async Task DeployCommand_AppliesReplaceIndexAction(bool independentIds)
     {
         var repoRoot = FindRepositoryRoot();
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"));
@@ -994,6 +1006,9 @@ public sealed class CliIndexDeploymentTests
                     var index = RequireIndex(model, "raw", "IndexReplaceCase", "IX_IndexReplaceCase_Payload");
                     index.IsUnique = "true";
                 });
+
+            if (independentIds)
+                await MutateSourceWorkspaceAsync(sourcePath, UseIndependentIds);
 
             var planCommand = new ProcessStartInfo
             {
@@ -1188,8 +1203,10 @@ public sealed class CliManifestDeploymentTests
         }
     }
 
-    [Fact]
-    public async Task DeployCommand_AppliesAddOnlyManifest()
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public async Task DeployCommand_AppliesAddOnlyManifest(bool independentIds)
     {
         var repoRoot = FindRepositoryRoot();
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"));
@@ -1205,6 +1222,9 @@ public sealed class CliManifestDeploymentTests
             CreateDatabase(masterConnectionString, databaseName);
             CreateSimpleTable(databaseConnectionString);
             await CreateSourceWorkspaceWithExtraColumnAsync(sourcePath, databaseName);
+
+            if (independentIds)
+                await MutateSourceWorkspaceAsync(sourcePath, UseIndependentIds);
 
             var planCommand = new ProcessStartInfo
             {
@@ -1257,8 +1277,10 @@ public sealed class CliManifestDeploymentTests
         }
     }
 
-    [Fact]
-    public async Task DeployPlanAndDeploy_HandleIdentityTableAdd()
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public async Task DeployPlanAndDeploy_HandleIdentityTableAdd(bool independentIds)
     {
         var repoRoot = FindRepositoryRoot();
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"));
@@ -1273,6 +1295,12 @@ public sealed class CliManifestDeploymentTests
         {
             CreateDatabase(masterConnectionString, databaseName);
             await CreateSourceWorkspaceWithIdentityTableAsync(sourcePath, databaseName);
+
+            if (independentIds)
+            {
+                ExecuteSql(databaseConnectionString, "CREATE SCHEMA [raw];");
+                await MutateSourceWorkspaceAsync(sourcePath, UseIndependentIds);
+            }
 
             var planCommand = new ProcessStartInfo
             {
@@ -1381,8 +1409,10 @@ public sealed class CliManifestDeploymentTests
         }
     }
 
-    [Fact]
-    public async Task DeployCommand_AppliesAlterTableColumnAction()
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public async Task DeployCommand_AppliesAlterTableColumnAction(bool independentIds)
     {
         var repoRoot = FindRepositoryRoot();
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"));
@@ -1397,6 +1427,9 @@ public sealed class CliManifestDeploymentTests
             CreateDatabase(masterConnectionString, databaseName);
             CreateSimpleTable(databaseConnectionString, customerIdLength: 50);
             await CreateSourceWorkspaceWithCustomerIdLengthAsync(sourcePath, databaseName, customerIdLength: 100);
+
+            if (independentIds)
+                await MutateSourceWorkspaceAsync(sourcePath, UseIndependentIds);
 
             var planCommand = new ProcessStartInfo
             {
@@ -1555,8 +1588,10 @@ public sealed class CliColumnShapeDeploymentTests
         }
     }
 
-    [Fact]
-    public async Task DeployPlanAndDeploy_WithExactDataTruncationApproval_NarrowsLengthAndTruncatesData()
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public async Task DeployPlanAndDeploy_WithExactDataTruncationApproval_NarrowsLengthAndTruncatesData(bool independentIds)
     {
         var repoRoot = FindRepositoryRoot();
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"));
@@ -1580,6 +1615,9 @@ public sealed class CliColumnShapeDeploymentTests
                     var column = RequireColumn(model, "raw", "VarcharCase", "ValueCol");
                     SetOrReplaceColumnDetail(model, column, "Length", "50");
                 });
+
+            if (independentIds)
+                await MutateSourceWorkspaceAsync(sourcePath, UseIndependentIds);
 
             var planCommand = new ProcessStartInfo
             {
@@ -1960,8 +1998,10 @@ public sealed class CliColumnDependencyDeploymentTests
         }
     }
 
-    [Fact]
-    public async Task DeployPlanAndDeploy_AppliesAlterWhenColumnParticipatesInNonClusteredPrimaryKey()
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public async Task DeployPlanAndDeploy_AppliesAlterWhenColumnParticipatesInNonClusteredPrimaryKey(bool independentIds)
     {
         var repoRoot = FindRepositoryRoot();
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"));
@@ -1991,6 +2031,9 @@ public sealed class CliColumnDependencyDeploymentTests
                     var column = RequireColumn(model, "raw", "PkAlterCase", "KeyCol");
                     SetOrReplaceColumnDetail(model, column, "Length", "100");
                 });
+
+            if (independentIds)
+                await MutateSourceWorkspaceAsync(sourcePath, UseIndependentIds);
 
             var planCommand = new ProcessStartInfo
             {
@@ -2036,8 +2079,10 @@ public sealed class CliColumnDependencyDeploymentTests
         }
     }
 
-    [Fact]
-    public async Task DeployPlanAndDeploy_AppliesAlterWhenColumnParticipatesInForeignKey()
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public async Task DeployPlanAndDeploy_AppliesAlterWhenColumnParticipatesInForeignKey(bool independentIds)
     {
         var repoRoot = FindRepositoryRoot();
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"));
@@ -2075,6 +2120,9 @@ public sealed class CliColumnDependencyDeploymentTests
                     var column = RequireColumn(model, "raw", "FkCase", "ParentCode");
                     column.IsNullable = "true";
                 });
+
+            if (independentIds)
+                await MutateSourceWorkspaceAsync(sourcePath, UseIndependentIds);
 
             var planCommand = new ProcessStartInfo
             {
@@ -2118,8 +2166,10 @@ public sealed class CliColumnDependencyDeploymentTests
         }
     }
 
-    [Fact]
-    public async Task DeployPlanAndDeploy_AppliesAlterWhenColumnParticipatesInIndexIncludedMember()
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public async Task DeployPlanAndDeploy_AppliesAlterWhenColumnParticipatesInIndexIncludedMember(bool independentIds)
     {
         var repoRoot = FindRepositoryRoot();
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"));
@@ -2154,6 +2204,9 @@ public sealed class CliColumnDependencyDeploymentTests
                     var column = RequireColumn(model, "raw", "IndexCase", "Payload");
                     SetOrReplaceColumnDetail(model, column, "Length", "100");
                 });
+
+            if (independentIds)
+                await MutateSourceWorkspaceAsync(sourcePath, UseIndependentIds);
 
             var planCommand = new ProcessStartInfo
             {

@@ -18,7 +18,7 @@ internal sealed class SqlServerAlterColumnSqlRenderer
         IReadOnlyDictionary<string, List<TableColumnDataTypeDetail>> sourceDetailsByColumnId,
         IReadOnlyDictionary<string, List<TableColumnDataTypeDetail>> liveDetailsByColumnId)
     {
-        if (sourceColumn.Table.Id != liveColumn.Table.Id)
+        if (!SqlObjectIdentity.SameTable(sourceColumn.Table, liveColumn.Table))
         {
             throw new InvalidOperationException(
                 $"Cannot alter column because source table '{sourceColumn.Table.Id}' and live table '{liveColumn.Table.Id}' differ.");

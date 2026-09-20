@@ -10,7 +10,7 @@ internal sealed class SqlServerTruncateColumnDataSqlRenderer
         TableColumn liveColumn,
         IReadOnlyDictionary<string, List<TableColumnDataTypeDetail>> sourceDetailsByColumnId)
     {
-        if (sourceColumn.Table.Id != liveColumn.Table.Id)
+        if (!SqlObjectIdentity.SameTable(sourceColumn.Table, liveColumn.Table))
         {
             throw new InvalidOperationException(
                 $"Cannot truncate column data because source table '{sourceColumn.Table.Id}' and live table '{liveColumn.Table.Id}' differ.");

@@ -60,9 +60,9 @@ internal sealed class PrimaryKeyReplacementForeignKeyExpansionService
             var liveDependentForeignKeys = GetOrderedTargetTableForeignKeys(lookup.LiveForeignKeysByTargetTableId, livePrimaryKey.RelationshipIds["TableId"]);
 
             var sourceByMatchKey = sourceDependentForeignKeys
-                .ToDictionary(BuildForeignKeyMatchKey, row => row, StringComparer.Ordinal);
+                .ToDictionary(row => lookup.SourceIdentity.TableObject(row, "SourceTableId"), row => row, StringComparer.Ordinal);
             var liveByMatchKey = liveDependentForeignKeys
-                .ToDictionary(BuildForeignKeyMatchKey, row => row, StringComparer.Ordinal);
+                .ToDictionary(row => lookup.LiveIdentity.TableObject(row, "SourceTableId"), row => row, StringComparer.Ordinal);
             if (sourceByMatchKey.Count != sourceDependentForeignKeys.Count ||
                 liveByMatchKey.Count != liveDependentForeignKeys.Count)
             {
@@ -182,13 +182,6 @@ internal sealed class PrimaryKeyReplacementForeignKeyExpansionService
         return foreignKeys
             .OrderBy(row => row.Id, StringComparer.Ordinal)
             .ToList();
-    }
-
-    private static string BuildForeignKeyMatchKey(Meta.Operations.Domain.GenericRecord foreignKey)
-    {
-        var sourceTableId = foreignKey.RelationshipIds["SourceTableId"];
-        var name = GetValue(foreignKey, "Name");
-        return sourceTableId + "|" + name;
     }
 
     private static string BuildReplaceForeignKeyPairKey(string sourceForeignKeyId, string liveForeignKeyId)

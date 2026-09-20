@@ -139,7 +139,7 @@ internal sealed class AlteredColumnConstraintExpansionService
                 continue;
             }
 
-            var matchKey = BuildPrimaryKeyMatchKey(sourcePrimaryKey);
+            var matchKey = lookup.SourceIdentity.TableObject(sourcePrimaryKey);
             if (!sourcePrimaryKeysByMatchKey.TryAdd(matchKey, sourcePrimaryKey))
             {
                 current.BlockCount += manifestBlockFactory.AddColumnDependencyBlock(
@@ -163,7 +163,7 @@ internal sealed class AlteredColumnConstraintExpansionService
                 continue;
             }
 
-            var matchKey = BuildPrimaryKeyMatchKey(livePrimaryKey);
+            var matchKey = lookup.LiveIdentity.TableObject(livePrimaryKey);
             if (!livePrimaryKeysByMatchKey.TryAdd(matchKey, livePrimaryKey))
             {
                 current.BlockCount += manifestBlockFactory.AddColumnDependencyBlock(
@@ -311,7 +311,7 @@ internal sealed class AlteredColumnConstraintExpansionService
                 continue;
             }
 
-            var matchKey = BuildForeignKeyMatchKey(sourceForeignKey);
+            var matchKey = lookup.SourceIdentity.TableObject(sourceForeignKey, "SourceTableId");
             if (!sourceForeignKeysByMatchKey.TryAdd(matchKey, sourceForeignKey))
             {
                 current.BlockCount += manifestBlockFactory.AddColumnDependencyBlock(
@@ -335,7 +335,7 @@ internal sealed class AlteredColumnConstraintExpansionService
                 continue;
             }
 
-            var matchKey = BuildForeignKeyMatchKey(liveForeignKey);
+            var matchKey = lookup.LiveIdentity.TableObject(liveForeignKey, "SourceTableId");
             if (!liveForeignKeysByMatchKey.TryAdd(matchKey, liveForeignKey))
             {
                 current.BlockCount += manifestBlockFactory.AddColumnDependencyBlock(
@@ -490,7 +490,7 @@ internal sealed class AlteredColumnConstraintExpansionService
                     continue;
                 }
 
-                var key = BuildIndexMatchKey(sourceIndex);
+                var key = lookup.SourceIdentity.TableObject(sourceIndex);
                 if (!sourceByMatchKey.TryAdd(key, sourceIndex))
                 {
                     current.BlockCount += manifestBlockFactory.AddColumnDependencyBlock(
@@ -514,7 +514,7 @@ internal sealed class AlteredColumnConstraintExpansionService
                     continue;
                 }
 
-                var key = BuildIndexMatchKey(liveIndex);
+                var key = lookup.LiveIdentity.TableObject(liveIndex);
                 if (!liveByMatchKey.TryAdd(key, liveIndex))
                 {
                     current.BlockCount += manifestBlockFactory.AddColumnDependencyBlock(
@@ -614,27 +614,6 @@ internal sealed class AlteredColumnConstraintExpansionService
                     $"AlterTableColumn has partial dependent index coverage for '{matchKey}'. Dependent index choreography must be explicit.");
             }
         }
-    }
-
-    private static string BuildPrimaryKeyMatchKey(GenericRecord primaryKey)
-    {
-        var tableId = primaryKey.RelationshipIds["TableId"];
-        var name = GetValue(primaryKey, "Name");
-        return tableId + "|" + name;
-    }
-
-    private static string BuildForeignKeyMatchKey(GenericRecord foreignKey)
-    {
-        var sourceTableId = foreignKey.RelationshipIds["SourceTableId"];
-        var name = GetValue(foreignKey, "Name");
-        return sourceTableId + "|" + name;
-    }
-
-    private static string BuildIndexMatchKey(GenericRecord index)
-    {
-        var tableId = index.RelationshipIds["TableId"];
-        var name = GetValue(index, "Name");
-        return tableId + "|" + name;
     }
 
     private static string BuildReplacePrimaryKeyPairKey(string sourcePrimaryKeyId, string livePrimaryKeyId)

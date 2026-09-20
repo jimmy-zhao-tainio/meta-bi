@@ -29,9 +29,6 @@ internal sealed class AddedTableDependencyExpansionService
             return current;
         }
 
-        var liveSchemaIds = context.LiveWorkspace.Instance.GetOrCreateEntityRecords("Schema")
-            .Select(row => row.Id)
-            .ToHashSet(StringComparer.Ordinal);
         var addedSchemaIds = model.AddSchemaList
             .Select(row => row.SourceSchemaId)
             .ToHashSet(StringComparer.Ordinal);
@@ -46,7 +43,7 @@ internal sealed class AddedTableDependencyExpansionService
                 continue;
             }
 
-            if (liveSchemaIds.Contains(sourceSchemaId) || !addedSchemaIds.Add(sourceSchemaId))
+            if (lookup.LiveIdentity.ContainsSchema(lookup.SourceIdentity.Schema(sourceSchemaId)) || !addedSchemaIds.Add(sourceSchemaId))
             {
                 continue;
             }

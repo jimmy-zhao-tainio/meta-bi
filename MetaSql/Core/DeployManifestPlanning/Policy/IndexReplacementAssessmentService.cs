@@ -26,7 +26,7 @@ internal sealed class IndexReplacementAssessmentService
 
         var sourceTableId = sourceIndex.RelationshipIds["TableId"];
         var liveTableId = liveIndex.RelationshipIds["TableId"];
-        if (!string.Equals(sourceTableId, liveTableId, StringComparison.Ordinal))
+        if (!string.Equals(lookup.SourceIdentity.Table(sourceTableId), lookup.LiveIdentity.Table(liveTableId), StringComparison.Ordinal))
         {
             return (false, $"{difference.DisplayName}: ReplaceIndex requires the same table scope in source and live.");
         }
@@ -81,7 +81,7 @@ internal sealed class IndexReplacementAssessmentService
 
             var sourceColumnTableId = sourceColumn.RelationshipIds["TableId"];
             if (!lookup.PlannedAddedTableIds.Contains(sourceColumnTableId) &&
-                !lookup.LiveTablesById.ContainsKey(sourceColumnTableId))
+                !lookup.LiveIdentity.ContainsTable(lookup.SourceIdentity.Table(sourceColumnTableId)))
             {
                 return (false, $"{difference.DisplayName}: source index member references table '{sourceColumnTableId}' that is neither live nor planned add.");
             }
@@ -104,7 +104,7 @@ internal sealed class IndexReplacementAssessmentService
             }
 
             var liveColumnTableId = liveColumn.RelationshipIds["TableId"];
-            if (lookup.PlannedAddedTableIds.Contains(liveColumnTableId))
+            if (lookup.PlannedAddedTableIds.Any(id => lookup.SourceIdentity.Table(id) == lookup.LiveIdentity.Table(liveColumnTableId)))
             {
                 return (false, $"{difference.DisplayName}: live index member references table planned as add, unsupported for ReplaceIndex.");
             }

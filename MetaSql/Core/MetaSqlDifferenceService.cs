@@ -89,6 +89,9 @@ public sealed class MetaSqlDifferenceService
                     LiveId = liveTablesByScopedName[key].Id,
                 }));
 
+        var sourceIdentity = new SqlObjectIdentity(sourceWorkspace);
+        var liveIdentity = new SqlObjectIdentity(liveWorkspace);
+
         var sourceColumnsByTableId = GetGroupedRecordIndex(sourceWorkspace, "TableColumn", "TableId");
         var liveColumnsByTableId = GetGroupedRecordIndex(liveWorkspace, "TableColumn", "TableId");
         var sourceColumnDetailsByColumnId = GetGroupedRecords(sourceWorkspace, "TableColumnDataTypeDetail", "TableColumnId");
@@ -115,9 +118,9 @@ public sealed class MetaSqlDifferenceService
             var liveTable = liveTablesByScopedName[tableKey];
 
             AddColumnDifferences(differences, sourceTable, liveTable, sourceSchemasById, liveSchemasById, sourceTablesById, liveTablesById, sourceColumnsByTableId, liveColumnsByTableId, sourceColumnDetailsByColumnId, liveColumnDetailsByColumnId);
-            AddPrimaryKeyDifferences(differences, sourceTable, liveTable, sourceSchemasById, liveSchemasById, sourcePrimaryKeysByTableId, livePrimaryKeysByTableId, sourcePrimaryKeyColumnsByPrimaryKeyId, livePrimaryKeyColumnsByPrimaryKeyId);
-            AddForeignKeyDifferences(differences, sourceTable, liveTable, sourceSchemasById, liveSchemasById, sourceForeignKeysByTableId, liveForeignKeysByTableId, sourceForeignKeyColumnsByForeignKeyId, liveForeignKeyColumnsByForeignKeyId);
-            AddIndexDifferences(differences, sourceTable, liveTable, sourceSchemasById, liveSchemasById, sourceIndexesByTableId, liveIndexesByTableId, sourceIndexColumnsByIndexId, liveIndexColumnsByIndexId);
+            AddPrimaryKeyDifferences(differences, sourceTable, liveTable, sourceSchemasById, liveSchemasById, sourcePrimaryKeysByTableId, livePrimaryKeysByTableId, sourcePrimaryKeyColumnsByPrimaryKeyId, livePrimaryKeyColumnsByPrimaryKeyId, sourceIdentity, liveIdentity);
+            AddForeignKeyDifferences(differences, sourceTable, liveTable, sourceSchemasById, liveSchemasById, sourceForeignKeysByTableId, liveForeignKeysByTableId, sourceForeignKeyColumnsByForeignKeyId, liveForeignKeyColumnsByForeignKeyId, sourceIdentity, liveIdentity);
+            AddIndexDifferences(differences, sourceTable, liveTable, sourceSchemasById, liveSchemasById, sourceIndexesByTableId, liveIndexesByTableId, sourceIndexColumnsByIndexId, liveIndexColumnsByIndexId, sourceIdentity, liveIdentity);
         }
 
         AddSchemaScopedObjectDifferences(
@@ -231,7 +234,9 @@ public sealed class MetaSqlDifferenceService
         IReadOnlyDictionary<string, Dictionary<string, GenericRecord>> sourcePrimaryKeysByTableId,
         IReadOnlyDictionary<string, Dictionary<string, GenericRecord>> livePrimaryKeysByTableId,
         IReadOnlyDictionary<string, List<GenericRecord>> sourcePrimaryKeyColumnsByPrimaryKeyId,
-        IReadOnlyDictionary<string, List<GenericRecord>> livePrimaryKeyColumnsByPrimaryKeyId)
+        IReadOnlyDictionary<string, List<GenericRecord>> livePrimaryKeyColumnsByPrimaryKeyId,
+        SqlObjectIdentity sourceIdentity,
+        SqlObjectIdentity liveIdentity)
     {
         var sourcePrimaryKeys = sourcePrimaryKeysByTableId.TryGetValue(sourceTable.Id, out var sourceTablePrimaryKeys)
             ? sourceTablePrimaryKeys
@@ -278,7 +283,7 @@ public sealed class MetaSqlDifferenceService
         {
             var sourcePrimaryKey = sourcePrimaryKeysByName[primaryKeyName];
             var livePrimaryKey = livePrimaryKeysByName[primaryKeyName];
-            if (!ArePrimaryKeysEquivalent(sourcePrimaryKey, livePrimaryKey, sourcePrimaryKeyColumnsByPrimaryKeyId, livePrimaryKeyColumnsByPrimaryKeyId))
+            if (!ArePrimaryKeysEquivalent(sourcePrimaryKey, livePrimaryKey, sourcePrimaryKeyColumnsByPrimaryKeyId, livePrimaryKeyColumnsByPrimaryKeyId, sourceIdentity, liveIdentity))
             {
                 differences.Add(new MetaSqlDifference
                 {
@@ -302,7 +307,9 @@ public sealed class MetaSqlDifferenceService
         IReadOnlyDictionary<string, Dictionary<string, GenericRecord>> sourceForeignKeysByTableId,
         IReadOnlyDictionary<string, Dictionary<string, GenericRecord>> liveForeignKeysByTableId,
         IReadOnlyDictionary<string, List<GenericRecord>> sourceForeignKeyColumnsByForeignKeyId,
-        IReadOnlyDictionary<string, List<GenericRecord>> liveForeignKeyColumnsByForeignKeyId)
+        IReadOnlyDictionary<string, List<GenericRecord>> liveForeignKeyColumnsByForeignKeyId,
+        SqlObjectIdentity sourceIdentity,
+        SqlObjectIdentity liveIdentity)
     {
         var sourceForeignKeys = sourceForeignKeysByTableId.TryGetValue(sourceTable.Id, out var sourceTableForeignKeys)
             ? sourceTableForeignKeys
@@ -349,7 +356,7 @@ public sealed class MetaSqlDifferenceService
         {
             var sourceForeignKey = sourceForeignKeysByName[foreignKeyName];
             var liveForeignKey = liveForeignKeysByName[foreignKeyName];
-            if (!AreForeignKeysEquivalent(sourceForeignKey, liveForeignKey, sourceForeignKeyColumnsByForeignKeyId, liveForeignKeyColumnsByForeignKeyId))
+            if (!AreForeignKeysEquivalent(sourceForeignKey, liveForeignKey, sourceForeignKeyColumnsByForeignKeyId, liveForeignKeyColumnsByForeignKeyId, sourceIdentity, liveIdentity))
             {
                 differences.Add(new MetaSqlDifference
                 {
@@ -373,7 +380,9 @@ public sealed class MetaSqlDifferenceService
         IReadOnlyDictionary<string, Dictionary<string, GenericRecord>> sourceIndexesByTableId,
         IReadOnlyDictionary<string, Dictionary<string, GenericRecord>> liveIndexesByTableId,
         IReadOnlyDictionary<string, List<GenericRecord>> sourceIndexColumnsByIndexId,
-        IReadOnlyDictionary<string, List<GenericRecord>> liveIndexColumnsByIndexId)
+        IReadOnlyDictionary<string, List<GenericRecord>> liveIndexColumnsByIndexId,
+        SqlObjectIdentity sourceIdentity,
+        SqlObjectIdentity liveIdentity)
     {
         var sourceIndexes = sourceIndexesByTableId.TryGetValue(sourceTable.Id, out var sourceTableIndexes)
             ? sourceTableIndexes
@@ -420,7 +429,7 @@ public sealed class MetaSqlDifferenceService
         {
             var sourceIndex = sourceIndexesByName[indexName];
             var liveIndex = liveIndexesByName[indexName];
-            if (!AreIndexesEquivalent(sourceIndex, liveIndex, sourceIndexColumnsByIndexId, liveIndexColumnsByIndexId))
+            if (!AreIndexesEquivalent(sourceIndex, liveIndex, sourceIndexColumnsByIndexId, liveIndexColumnsByIndexId, sourceIdentity, liveIdentity))
             {
                 differences.Add(new MetaSqlDifference
                 {
@@ -541,7 +550,9 @@ public sealed class MetaSqlDifferenceService
         GenericRecord sourcePrimaryKey,
         GenericRecord livePrimaryKey,
         IReadOnlyDictionary<string, List<GenericRecord>> sourceColumnsByPrimaryKeyId,
-        IReadOnlyDictionary<string, List<GenericRecord>> liveColumnsByPrimaryKeyId)
+        IReadOnlyDictionary<string, List<GenericRecord>> liveColumnsByPrimaryKeyId,
+        SqlObjectIdentity sourceIdentity,
+        SqlObjectIdentity liveIdentity)
     {
         if (!IsSameValue(GetValue(sourcePrimaryKey, "Name"), GetValue(livePrimaryKey, "Name")) ||
             !IsSameValue(GetValue(sourcePrimaryKey, "IsClustered"), GetValue(livePrimaryKey, "IsClustered")))
@@ -549,8 +560,8 @@ public sealed class MetaSqlDifferenceService
             return false;
         }
 
-        var sourceMembers = GetPrimaryKeyMembers(sourceColumnsByPrimaryKeyId, sourcePrimaryKey.Id);
-        var liveMembers = GetPrimaryKeyMembers(liveColumnsByPrimaryKeyId, livePrimaryKey.Id);
+        var sourceMembers = GetPrimaryKeyMembers(sourceColumnsByPrimaryKeyId, sourcePrimaryKey.Id, sourceIdentity);
+        var liveMembers = GetPrimaryKeyMembers(liveColumnsByPrimaryKeyId, livePrimaryKey.Id, liveIdentity);
         return sourceMembers.SequenceEqual(liveMembers);
     }
 
@@ -558,16 +569,18 @@ public sealed class MetaSqlDifferenceService
         GenericRecord sourceForeignKey,
         GenericRecord liveForeignKey,
         IReadOnlyDictionary<string, List<GenericRecord>> sourceColumnsByForeignKeyId,
-        IReadOnlyDictionary<string, List<GenericRecord>> liveColumnsByForeignKeyId)
+        IReadOnlyDictionary<string, List<GenericRecord>> liveColumnsByForeignKeyId,
+        SqlObjectIdentity sourceIdentity,
+        SqlObjectIdentity liveIdentity)
     {
         if (!IsSameValue(GetValue(sourceForeignKey, "Name"), GetValue(liveForeignKey, "Name")) ||
-            !IsSameValue(sourceForeignKey.RelationshipIds["TargetTableId"], liveForeignKey.RelationshipIds["TargetTableId"]))
+            !IsSameValue(sourceIdentity.Table(sourceForeignKey.RelationshipIds["TargetTableId"]), liveIdentity.Table(liveForeignKey.RelationshipIds["TargetTableId"])))
         {
             return false;
         }
 
-        var sourceMembers = GetForeignKeyMembers(sourceColumnsByForeignKeyId, sourceForeignKey.Id);
-        var liveMembers = GetForeignKeyMembers(liveColumnsByForeignKeyId, liveForeignKey.Id);
+        var sourceMembers = GetForeignKeyMembers(sourceColumnsByForeignKeyId, sourceForeignKey.Id, sourceIdentity);
+        var liveMembers = GetForeignKeyMembers(liveColumnsByForeignKeyId, liveForeignKey.Id, liveIdentity);
         return sourceMembers.SequenceEqual(liveMembers);
     }
 
@@ -575,7 +588,9 @@ public sealed class MetaSqlDifferenceService
         GenericRecord sourceIndex,
         GenericRecord liveIndex,
         IReadOnlyDictionary<string, List<GenericRecord>> sourceColumnsByIndexId,
-        IReadOnlyDictionary<string, List<GenericRecord>> liveColumnsByIndexId)
+        IReadOnlyDictionary<string, List<GenericRecord>> liveColumnsByIndexId,
+        SqlObjectIdentity sourceIdentity,
+        SqlObjectIdentity liveIdentity)
     {
         if (!IsSameValue(GetValue(sourceIndex, "Name"), GetValue(liveIndex, "Name")) ||
             !IsSameValue(GetValue(sourceIndex, "IsUnique"), GetValue(liveIndex, "IsUnique")) ||
@@ -585,8 +600,8 @@ public sealed class MetaSqlDifferenceService
             return false;
         }
 
-        var sourceMembers = GetIndexMembers(sourceColumnsByIndexId, sourceIndex.Id);
-        var liveMembers = GetIndexMembers(liveColumnsByIndexId, liveIndex.Id);
+        var sourceMembers = GetIndexMembers(sourceColumnsByIndexId, sourceIndex.Id, sourceIdentity);
+        var liveMembers = GetIndexMembers(liveColumnsByIndexId, liveIndex.Id, liveIdentity);
         return sourceMembers.SequenceEqual(liveMembers);
     }
 
@@ -612,7 +627,7 @@ public sealed class MetaSqlDifferenceService
             .ToList();
     }
 
-    private static List<string> GetPrimaryKeyMembers(IReadOnlyDictionary<string, List<GenericRecord>> rowsByPrimaryKeyId, string primaryKeyId)
+    private static List<string> GetPrimaryKeyMembers(IReadOnlyDictionary<string, List<GenericRecord>> rowsByPrimaryKeyId, string primaryKeyId, SqlObjectIdentity identity)
     {
         if (!rowsByPrimaryKeyId.TryGetValue(primaryKeyId, out var rows))
         {
@@ -622,11 +637,11 @@ public sealed class MetaSqlDifferenceService
         return rows
             .OrderBy(row => ParseOrdinal(GetValue(row, "Ordinal")))
             .ThenBy(row => row.Id, StringComparer.Ordinal)
-            .Select(row => $"{ParseOrdinal(GetValue(row, "Ordinal"))}:{row.RelationshipIds["TableColumnId"]}:{GetValue(row, "IsDescending")}")
+            .Select(row => $"{ParseOrdinal(GetValue(row, "Ordinal"))}:{identity.Column(row.RelationshipIds["TableColumnId"])}:{GetValue(row, "IsDescending")}")
             .ToList();
     }
 
-    private static List<string> GetForeignKeyMembers(IReadOnlyDictionary<string, List<GenericRecord>> rowsByForeignKeyId, string foreignKeyId)
+    private static List<string> GetForeignKeyMembers(IReadOnlyDictionary<string, List<GenericRecord>> rowsByForeignKeyId, string foreignKeyId, SqlObjectIdentity identity)
     {
         if (!rowsByForeignKeyId.TryGetValue(foreignKeyId, out var rows))
         {
@@ -636,11 +651,11 @@ public sealed class MetaSqlDifferenceService
         return rows
             .OrderBy(row => ParseOrdinal(GetValue(row, "Ordinal")))
             .ThenBy(row => row.Id, StringComparer.Ordinal)
-            .Select(row => $"{ParseOrdinal(GetValue(row, "Ordinal"))}:{row.RelationshipIds["SourceColumnId"]}:{row.RelationshipIds["TargetColumnId"]}")
+            .Select(row => $"{ParseOrdinal(GetValue(row, "Ordinal"))}:{identity.Column(row.RelationshipIds["SourceColumnId"])}:{identity.Column(row.RelationshipIds["TargetColumnId"])}")
             .ToList();
     }
 
-    private static List<string> GetIndexMembers(IReadOnlyDictionary<string, List<GenericRecord>> rowsByIndexId, string indexId)
+    private static List<string> GetIndexMembers(IReadOnlyDictionary<string, List<GenericRecord>> rowsByIndexId, string indexId, SqlObjectIdentity identity)
     {
         if (!rowsByIndexId.TryGetValue(indexId, out var rows))
         {
@@ -650,7 +665,7 @@ public sealed class MetaSqlDifferenceService
         return rows
             .OrderBy(row => ParseOrdinal(GetValue(row, "Ordinal")))
             .ThenBy(row => row.Id, StringComparer.Ordinal)
-            .Select(row => $"{ParseOrdinal(GetValue(row, "Ordinal"))}:{row.RelationshipIds["TableColumnId"]}:{GetValue(row, "IsDescending")}:{GetValue(row, "IsIncluded")}")
+            .Select(row => $"{ParseOrdinal(GetValue(row, "Ordinal"))}:{identity.Column(row.RelationshipIds["TableColumnId"])}:{GetValue(row, "IsDescending")}:{GetValue(row, "IsIncluded")}")
             .ToList();
     }
 
@@ -690,11 +705,11 @@ public sealed class MetaSqlDifferenceService
                 $"Table '{table.Id}' references missing schema '{schemaId}'.");
         }
 
-        return schema.Values["Name"] + "|" + table.Values["Name"];
+        return SqlObjectIdentity.Key(schema.Values["Name"], table.Values["Name"]);
     }
 
     private static string BuildSchemaScopedObjectKey(GenericRecord row, IReadOnlyDictionary<string, GenericRecord> schemasById, string entityName) =>
-        FormatSchema(row, schemasById, entityName) + "|" + row.Values["Name"];
+        SqlObjectIdentity.Key(FormatSchema(row, schemasById, entityName), row.Values["Name"]);
 
     private static Dictionary<string, GenericRecord> BuildUniqueRecordIndex(
         IEnumerable<GenericRecord> rows,

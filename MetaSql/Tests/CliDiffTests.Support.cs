@@ -343,6 +343,25 @@ internal static class CliDiffTestSupport
         await TypedWorkspaceModelMapper.SaveAsync(model, sourcePath);
     }
 
+    // Change only transport IDs; typed references retain the same SQL structure.
+    internal static void UseIndependentIds(MetaSqlModel model)
+    {
+        foreach (var row in model.DatabaseList) row.Id = "authored:" + Guid.NewGuid().ToString("N");
+        foreach (var row in model.SchemaList) row.Id = "authored:" + Guid.NewGuid().ToString("N");
+        foreach (var row in model.TableList) row.Id = "authored:" + Guid.NewGuid().ToString("N");
+        foreach (var row in model.TableColumnList) row.Id = "authored:" + Guid.NewGuid().ToString("N");
+        foreach (var row in model.TableColumnDataTypeDetailList) row.Id = "authored:" + Guid.NewGuid().ToString("N");
+        foreach (var row in model.PrimaryKeyList) row.Id = "authored:" + Guid.NewGuid().ToString("N");
+        foreach (var row in model.PrimaryKeyColumnList) row.Id = "authored:" + Guid.NewGuid().ToString("N");
+        foreach (var row in model.ForeignKeyList) row.Id = "authored:" + Guid.NewGuid().ToString("N");
+        foreach (var row in model.ForeignKeyColumnList) row.Id = "authored:" + Guid.NewGuid().ToString("N");
+        foreach (var row in model.IndexList) row.Id = "authored:" + Guid.NewGuid().ToString("N");
+        foreach (var row in model.IndexColumnList) row.Id = "authored:" + Guid.NewGuid().ToString("N");
+        foreach (var row in model.ViewList) row.Id = "authored:" + Guid.NewGuid().ToString("N");
+        foreach (var row in model.FunctionList) row.Id = "authored:" + Guid.NewGuid().ToString("N");
+        foreach (var row in model.StoredProcedureList) row.Id = "authored:" + Guid.NewGuid().ToString("N");
+    }
+
     internal static TableColumn RequireColumn(
         MetaSqlModel model,
         string schemaName,

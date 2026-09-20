@@ -7,6 +7,9 @@ namespace MetaSql;
 /// </summary>
 internal sealed record ManifestPlanningLookupContext
 {
+    public required SqlObjectIdentity SourceIdentity { get; init; }
+    public required SqlObjectIdentity LiveIdentity { get; init; }
+
     public required InMemoryWorkspace SourceWorkspace { get; init; }
     public required InMemoryWorkspace LiveWorkspace { get; init; }
     public required IReadOnlyDictionary<string, GenericRecord> SourceColumnsById { get; init; }

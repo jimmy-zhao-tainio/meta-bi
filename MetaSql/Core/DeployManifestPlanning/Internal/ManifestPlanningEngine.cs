@@ -103,6 +103,8 @@ internal sealed class ManifestPlanningEngine
         {
             SourceWorkspace = context.SourceWorkspace,
             LiveWorkspace = context.LiveWorkspace,
+            SourceIdentity = new SqlObjectIdentity(context.SourceWorkspace),
+            LiveIdentity = new SqlObjectIdentity(context.LiveWorkspace),
             SourceColumnsById = GetRecordIndex(context.SourceWorkspace, "TableColumn"),
             LiveColumnsById = GetRecordIndex(context.LiveWorkspace, "TableColumn"),
             SourceTablesById = GetRecordIndex(context.SourceWorkspace, "Table"),

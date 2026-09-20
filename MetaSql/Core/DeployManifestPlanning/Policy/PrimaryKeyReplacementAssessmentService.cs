@@ -26,7 +26,7 @@ internal sealed class PrimaryKeyReplacementAssessmentService
 
         var sourceTableId = sourcePrimaryKey.RelationshipIds["TableId"];
         var liveTableId = livePrimaryKey.RelationshipIds["TableId"];
-        if (!string.Equals(sourceTableId, liveTableId, StringComparison.Ordinal))
+        if (!string.Equals(lookup.SourceIdentity.Table(sourceTableId), lookup.LiveIdentity.Table(liveTableId), StringComparison.Ordinal))
         {
             return (false, $"{difference.DisplayName}: ReplacePrimaryKey requires the same table scope in source and live.");
         }
@@ -43,7 +43,7 @@ internal sealed class PrimaryKeyReplacementAssessmentService
             return (false, $"{difference.DisplayName}: source primary key references missing table '{sourceTableId}'.");
         }
 
-        if (!(lookup.LiveTablesById.ContainsKey(sourceTableId) || lookup.PlannedAddedTableIds.Contains(sourceTableId)))
+        if (!(lookup.LiveIdentity.ContainsTable(lookup.SourceIdentity.Table(sourceTableId)) || lookup.PlannedAddedTableIds.Contains(sourceTableId)))
         {
             return (false, $"{difference.DisplayName}: primary key table '{sourceTableId}' is not present in live and not planned as AddTable.");
         }
@@ -92,7 +92,7 @@ internal sealed class PrimaryKeyReplacementAssessmentService
                 return (false, $"{difference.DisplayName}: source primary key member column '{sourceColumnId}' is outside the source table scope.");
             }
 
-            if (!(lookup.LiveColumnsById.ContainsKey(sourceColumnId) || lookup.PlannedAddedColumnIds.Contains(sourceColumnId)))
+            if (!(lookup.LiveIdentity.ContainsColumn(lookup.SourceIdentity.Column(sourceColumnId)) || lookup.PlannedAddedColumnIds.Contains(sourceColumnId)))
             {
                 return (false, $"{difference.DisplayName}: source primary key member column '{sourceColumnId}' is not present in live and not planned as AddTableColumn.");
             }
@@ -138,10 +138,10 @@ internal sealed class PrimaryKeyReplacementAssessmentService
         }
 
         var sourceForeignKeyMatchKeys = lookup.SourceForeignKeysById.Values
-            .Select(BuildForeignKeyMatchKey)
+            .Select(row => lookup.SourceIdentity.TableObject(row, "SourceTableId"))
             .ToHashSet(StringComparer.Ordinal);
         var liveForeignKeyMatchKeys = lookup.LiveForeignKeysById.Values
-            .Select(BuildForeignKeyMatchKey)
+            .Select(row => lookup.LiveIdentity.TableObject(row, "SourceTableId"))
             .ToHashSet(StringComparer.Ordinal);
 
         var sourceDependentForeignKeys = GetOrderedTargetTableForeignKeys(lookup.SourceForeignKeysByTargetTableId, sourceTableId);
@@ -170,7 +170,7 @@ internal sealed class PrimaryKeyReplacementAssessmentService
             }
 
             var sourceForeignKeySourceTableId = sourceForeignKey.RelationshipIds["SourceTableId"];
-            if (!(lookup.LiveTablesById.ContainsKey(sourceForeignKeySourceTableId) || lookup.PlannedAddedTableIds.Contains(sourceForeignKeySourceTableId)))
+            if (!(lookup.LiveIdentity.ContainsTable(lookup.SourceIdentity.Table(sourceForeignKeySourceTableId)) || lookup.PlannedAddedTableIds.Contains(sourceForeignKeySourceTableId)))
             {
                 return (false, $"{difference.DisplayName}: source dependent foreign key '{sourceForeignKeyId}' source table '{sourceForeignKeySourceTableId}' is not present in live and not planned as AddTable.");
             }
@@ -189,12 +189,12 @@ internal sealed class PrimaryKeyReplacementAssessmentService
                     return (false, $"{difference.DisplayName}: source dependent foreign key '{sourceForeignKeyId}' references missing target column '{targetColumnId}'.");
                 }
 
-                if (!(lookup.LiveColumnsById.ContainsKey(sourceColumnId) || lookup.PlannedAddedColumnIds.Contains(sourceColumnId)))
+                if (!(lookup.LiveIdentity.ContainsColumn(lookup.SourceIdentity.Column(sourceColumnId)) || lookup.PlannedAddedColumnIds.Contains(sourceColumnId)))
                 {
                     return (false, $"{difference.DisplayName}: source dependent foreign key '{sourceForeignKeyId}' source column '{sourceColumnId}' is not present in live and not planned as AddTableColumn.");
                 }
 
-                if (!(lookup.LiveColumnsById.ContainsKey(targetColumnId) || lookup.PlannedAddedColumnIds.Contains(targetColumnId)))
+                if (!(lookup.LiveIdentity.ContainsColumn(lookup.SourceIdentity.Column(targetColumnId)) || lookup.PlannedAddedColumnIds.Contains(targetColumnId)))
                 {
                     return (false, $"{difference.DisplayName}: source dependent foreign key '{sourceForeignKeyId}' target column '{targetColumnId}' is not present in live and not planned as AddTableColumn.");
                 }
@@ -205,7 +205,7 @@ internal sealed class PrimaryKeyReplacementAssessmentService
                 }
             }
 
-            var sourceForeignKeyMatchKey = BuildForeignKeyMatchKey(sourceForeignKey);
+            var sourceForeignKeyMatchKey = lookup.SourceIdentity.TableObject(sourceForeignKey, "SourceTableId");
             if (!(liveForeignKeyMatchKeys.Contains(sourceForeignKeyMatchKey) || lookup.PlannedAddedForeignKeyIds.Contains(sourceForeignKeyId)))
             {
                 return (false, $"{difference.DisplayName}: source dependent foreign key '{sourceForeignKeyId}' is not present in live and not planned as AddForeignKey.");
@@ -237,7 +237,7 @@ internal sealed class PrimaryKeyReplacementAssessmentService
                 continue;
             }
 
-            var liveForeignKeyMatchKey = BuildForeignKeyMatchKey(liveForeignKey);
+            var liveForeignKeyMatchKey = lookup.LiveIdentity.TableObject(liveForeignKey, "SourceTableId");
             if (!(sourceForeignKeyMatchKeys.Contains(liveForeignKeyMatchKey) || lookup.PlannedDroppedForeignKeyIds.Contains(liveForeignKeyId)))
             {
                 return (false, $"{difference.DisplayName}: live dependent foreign key '{liveForeignKeyId}' has no source equivalent and is not planned as DropForeignKey.");
@@ -289,13 +289,6 @@ internal sealed class PrimaryKeyReplacementAssessmentService
             .OrderBy(row => ParseOrdinal(GetValue(row, "Ordinal")))
             .ThenBy(row => row.Id, StringComparer.Ordinal)
             .ToList();
-    }
-
-    private static string BuildForeignKeyMatchKey(GenericRecord foreignKey)
-    {
-        var sourceTableId = foreignKey.RelationshipIds["SourceTableId"];
-        var name = GetValue(foreignKey, "Name");
-        return sourceTableId + "|" + name;
     }
 
     private static bool TryParseOptionalBoolean(string value, out bool parsedValue)
