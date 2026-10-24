@@ -56,14 +56,24 @@ public sealed partial class MetaDataTypeConversionService : IMetaDataTypeConvers
         var implementationById = implementations.ToDictionary(row => row.Id, StringComparer.Ordinal);
         var errors = new List<string>();
 
-        var templateIds = model.SqlConversionTemplateList.Select(row => row.Id).ToHashSet(StringComparer.Ordinal);
+        var snippetIds = model.SqlConversionSnippetList.Select(row => row.Id).ToHashSet(StringComparer.Ordinal);
         foreach (var implementation in implementations)
         {
-            if (implementation.SqlConversionTemplate is not { } template) continue;
-            if (!templateIds.Contains(template.Id))
-                errors.Add($"ConversionImplementation '{implementation.Id}' references missing SqlConversionTemplate '{template.Id}'.");
+            if (implementation.SqlConversionSnippet is not { } snippet) continue;
+            if (!snippetIds.Contains(snippet.Id))
+                errors.Add($"ConversionImplementation '{implementation.Id}' references missing SqlConversionSnippet '{snippet.Id}'.");
             if (implementation.Id is "MetaDataTypeConversion:implementation:direct" or "MetaDataTypeConversion:implementation:structural")
-                errors.Add($"ConversionImplementation '{implementation.Name}' cannot have a SQL value template; select a separate value-conversion implementation.");
+                errors.Add($"ConversionImplementation '{implementation.Name}' cannot have a SQL snippet; select a separate value-conversion implementation.");
+        }
+        var parameterIds = model.SqlConversionParameterList.Select(row => row.Id).ToHashSet(StringComparer.Ordinal);
+        foreach (var binding in model.SqlConversionParameterBindingList)
+        {
+            if (binding.SqlConversionSnippet is null || !snippetIds.Contains(binding.SqlConversionSnippet.Id))
+                errors.Add($"SqlConversionParameterBinding '{binding.Id}' references a missing SqlConversionSnippet.");
+            if (binding.SqlConversionParameter is null || !parameterIds.Contains(binding.SqlConversionParameter.Id))
+                errors.Add($"SqlConversionParameterBinding '{binding.Id}' references a missing SqlConversionParameter.");
+            if (string.IsNullOrWhiteSpace(binding.Name))
+                errors.Add($"SqlConversionParameterBinding '{binding.Id}' is missing its placeholder Name.");
         }
 
         foreach (var mapping in mappings)

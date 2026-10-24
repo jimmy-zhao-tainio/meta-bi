@@ -10,19 +10,19 @@ public sealed class SqlValueConversionTests
     private static readonly MetaDataTypeConversionService Service = new();
 
     [Fact]
-    public void RealMapping_UsesAuthoredTemplate_AndPreservesCompoundExpression()
+    public void RealMapping_UsesAuthoredSnippet_AndPreservesCompoundExpression()
     {
         var model = MetaDataTypeConversionInstance.CreateBuiltIn();
         var result = Generate(model, "sqlserver:type:int", new(Length: 24), "([s].[Quantity] + 2) * 3");
         Assert.Equal("sqlserver:type:nvarchar", result.Mapping.TargetDataTypeId);
-        Assert.Equal("CAST(([s].[Quantity] + 2) * 3 AS nvarchar(24))", Syntax.ExportScalarExpression(result.Expression));
+        Assert.Equal("CAST((([s].[Quantity] + 2) * 3) AS nvarchar(24))", Syntax.ExportScalarExpression(result.Expression));
         Assert.Single(result.Expression.Model.CastCallList);
 
-        // Same mapping, different authored reusable template; no generator changes.
-        model.ConversionImplementationList.Single(row => row.Name == "SqlCast").SqlConversionTemplate =
-            model.SqlConversionTemplateList.Single(row => row.Function == "Convert");
+        // Same mapping, different authored reusable snippet and bindings; no generator changes.
+        model.ConversionImplementationList.Single(row => row.Name == "SqlExpression").SqlConversionSnippet =
+            model.SqlConversionSnippetList.Single(row => row.Id == "sqlserver:snippet:convert");
         var changed = Generate(model, "sqlserver:type:int", new(Length: 24), "([s].[Quantity] + 2) * 3");
-        Assert.Equal("CONVERT(nvarchar(24), ([s].[Quantity] + 2) * 3)", Syntax.ExportScalarExpression(changed.Expression));
+        Assert.Equal("CONVERT(nvarchar(24), (([s].[Quantity] + 2) * 3))", Syntax.ExportScalarExpression(changed.Expression));
         Assert.Single(changed.Expression.Model.ConvertCallList);
     }
 
@@ -37,10 +37,10 @@ public sealed class SqlValueConversionTests
     {
         var model = MetaDataTypeConversionInstance.CreateBuiltIn();
         model.DataTypeMappingList.Single(row => row.SourceDataTypeId == source).ConversionImplementation =
-            model.ConversionImplementationList.Single(row => row.Name == "SqlCast");
+            model.ConversionImplementationList.Single(row => row.Name == "SqlExpression");
         var result = Generate(model, source, new(length, max, precision, scale));
         var sql = Syntax.ExportScalarExpression(result.Expression);
-        Assert.Equal($"CAST([s].[Value] AS {expectedType})", sql);
+        Assert.Equal($"CAST(([s].[Value]) AS {expectedType})", sql);
         // Syntax survives the existing sanctioned importer/emitter, including type parameter order.
         Assert.Equal(sql, Syntax.ExportScalarExpression(Syntax.ImportScalarExpression(sql)));
     }
@@ -54,30 +54,28 @@ public sealed class SqlValueConversionTests
     }
 
     [Theory]
-    [InlineData("TryCast")]
-    [InlineData("TryConvert")]
-    [InlineData("Parse")]
-    [InlineData("Unknown")]
-    public void UnsupportedFunctionsFailWithoutChangingFailureBehavior(string function)
+    [InlineData("TRY_CAST($(value) AS $(type))", "TRY_CAST(([s].[Value]) AS nvarchar(24))")]
+    [InlineData("CONVERT($(type), $(value), 112)", "CONVERT(nvarchar(24), ([s].[Value]), 112)")]
+    [InlineData("COALESCE(CONVERT($(type), $(value), 112), N'unknown')", "COALESCE(CONVERT(nvarchar(24), ([s].[Value]), 112), N'unknown')")]
+    [InlineData("CAST($(value) * 2 AS $(type))", "CAST(([s].[Value]) * 2 AS nvarchar(24))")]
+    public void AuthoredSnippetControlsFunctionsCompositionAndFixedArguments(string text, string expected)
     {
         var model = MetaDataTypeConversionInstance.CreateBuiltIn();
-        model.SqlConversionTemplateList.Single(row => row.Function == "Cast").Function = function;
-        var error = Assert.Throws<InvalidOperationException>(() => Generate(model, "sqlserver:type:int", new(Length: 24)));
-        Assert.Contains(function, error.Message);
-        Assert.Contains("strict", error.Message);
+        model.SqlConversionSnippetList.Single(row => row.Id == "sqlserver:snippet:cast").SqlText = text;
+        Assert.Equal(expected, Syntax.ExportScalarExpression(Generate(model, "sqlserver:type:int", new(Length: 24)).Expression));
         Assert.Equal("sqlserver:type:nvarchar", Service.Resolve(model, "sqlserver:type:int", "SqlServer").TargetDataTypeId);
         Assert.Single(Service.ResolveCompatibility(model, "sqlserver:type:int", "sqlserver:type:nvarchar").Path);
     }
 
     [Fact]
-    public void MissingImplementationTemplate_AndDanglingTemplate_FailWithIdentities()
+    public void MissingImplementationSnippet_AndDanglingSnippet_FailWithIdentities()
     {
         var model = MetaDataTypeConversionInstance.CreateBuiltIn();
-        var implementation = model.ConversionImplementationList.Single(row => row.Name == "SqlCast");
-        implementation.SqlConversionTemplate = null;
+        var implementation = model.ConversionImplementationList.Single(row => row.Name == "SqlExpression");
+        implementation.SqlConversionSnippet = null;
         Assert.Contains(implementation.Id, Assert.Throws<InvalidOperationException>(() => Generate(model, "sqlserver:type:int", new(Length: 24))).Message);
-        implementation.SqlConversionTemplate = new() { Id = "missing-template" };
-        Assert.Contains("missing-template", Assert.Throws<InvalidOperationException>(() => Generate(model, "sqlserver:type:int", new(Length: 24))).Message);
+        implementation.SqlConversionSnippet = new() { Id = "missing-snippet" };
+        Assert.Contains("missing-snippet", Assert.Throws<InvalidOperationException>(() => Generate(model, "sqlserver:type:int", new(Length: 24))).Message);
         var mapping = model.DataTypeMappingList.Single(row => row.Id.EndsWith(":int-to-nvarchar", StringComparison.Ordinal));
         mapping.ConversionImplementation = null!;
         Assert.Contains(mapping.Id, Assert.Throws<InvalidOperationException>(() => Generate(model, "sqlserver:type:int", new(Length: 24))).Message);
@@ -87,10 +85,10 @@ public sealed class SqlValueConversionTests
     public void UnsupportedDialect_AndMissingCatalogType_FailClearly()
     {
         var model = MetaDataTypeConversionInstance.CreateBuiltIn();
-        var template = model.SqlConversionTemplateList.Single(row => row.Function == "Cast");
-        template.Dialect = "PostgreSql";
+        var snippet = model.SqlConversionSnippetList.Single(row => row.Id == "sqlserver:snippet:cast");
+        snippet.Dialect = "PostgreSql";
         Assert.Contains("PostgreSql", Assert.Throws<InvalidOperationException>(() => Generate(model, "sqlserver:type:int", new(Length: 24))).Message);
-        template.Dialect = "SqlServer";
+        snippet.Dialect = "SqlServer";
         Assert.Contains("sqlserver:type:nvarchar", Assert.Throws<InvalidOperationException>(() => Service.GenerateSqlExpression(
             model, MetaDataTypeModel.CreateEmpty(), new("sqlserver:type:int", "SqlServer", "1", new(Length: 24)))).Message);
     }
@@ -139,8 +137,88 @@ public sealed class SqlValueConversionTests
     {
         var model = MetaDataTypeConversionInstance.CreateBuiltIn();
         model.DataTypeMappingList.Single(row => row.SourceDataTypeId == source).ConversionImplementation =
-            model.ConversionImplementationList.Single(row => row.Name == "SqlCast");
+            model.ConversionImplementationList.Single(row => row.Name == "SqlExpression");
         Assert.Throws<ArgumentException>(() => Generate(model, source, new(Precision: precision, Scale: scale)));
+    }
+
+    [Fact]
+    public void PlaceholderNamesAndBindingsAreAuthoredData_AndRepeatedUsesPreserveExpressionSemantics()
+    {
+        var model = MetaDataTypeConversionInstance.CreateBuiltIn();
+        var snippet = model.SqlConversionSnippetList.Single(row => row.Id == "sqlserver:snippet:cast");
+        snippet.SqlText = "CAST($( operand ) * 2 + $(operand) AS $(destination))";
+        foreach (var binding in model.SqlConversionParameterBindingList.Where(row => row.SqlConversionSnippet == snippet))
+            binding.Name = binding.Name == "value" ? "operand" : "destination";
+        Assert.Equal("CAST((1 + 2) * 2 + (1 + 2) AS nvarchar(24))",
+            Syntax.ExportScalarExpression(Generate(model, "sqlserver:type:int", new(Length: 24), "1 + 2").Expression));
+    }
+
+    [Fact]
+    public void EscapedMarkersAndMarkersInsideBoundSql_AreNotExpandedAgain()
+    {
+        var model = MetaDataTypeConversionInstance.CreateBuiltIn();
+        model.SqlConversionSnippetList.Single(row => row.Id == "sqlserver:snippet:cast").SqlText =
+            "COALESCE(CAST($(value) AS $(type)), N'$$(literal)')";
+        Assert.Equal("COALESCE(CAST((N'$(leave-alone)') AS nvarchar(24)), N'$(literal)')",
+            Syntax.ExportScalarExpression(Generate(model, "sqlserver:type:int", new(Length: 24), "N'$(leave-alone)'").Expression));
+    }
+
+    [Theory]
+    [InlineData("CAST($(missing) AS $(type))", "no binding")]
+    [InlineData("CAST($(value AS $(type))", "invalid placeholder")]
+    [InlineData("CAST($(value", "unclosed placeholder")]
+    [InlineData("CAST(1 AS $(type))", "unused placeholder")]
+    public void InvalidSnippetBindingsFailClearly(string text, string diagnostic)
+    {
+        var model = MetaDataTypeConversionInstance.CreateBuiltIn();
+        model.SqlConversionSnippetList.Single(row => row.Id == "sqlserver:snippet:cast").SqlText = text;
+        Assert.Contains(diagnostic, Assert.Throws<InvalidOperationException>(() => Generate(model, "sqlserver:type:int", new(Length: 24))).Message);
+    }
+
+    [Fact]
+    public void DuplicateBindingsAndUnsupportedInputsFailClearly()
+    {
+        var model = MetaDataTypeConversionInstance.CreateBuiltIn();
+        var original = model.SqlConversionParameterBindingList.Single(row => row.SqlConversionSnippet.Id == "sqlserver:snippet:cast" && row.Name == "value");
+        var duplicate = new SqlConversionParameterBinding
+        {
+            Id = "duplicate", Name = "VALUE", SqlConversionSnippet = original.SqlConversionSnippet,
+            SqlConversionParameter = original.SqlConversionParameter
+        };
+        model.SqlConversionParameterBindingList.Add(duplicate);
+        Assert.Contains("more than once", Assert.Throws<InvalidOperationException>(() => Generate(model, "sqlserver:type:int", new(Length: 24))).Message);
+        model.SqlConversionParameterBindingList.Remove(duplicate);
+        var unknown = new SqlConversionParameter { Id = "unknown-input", Name = "Unknown" };
+        model.SqlConversionParameterList.Add(unknown);
+        original.SqlConversionParameter = unknown;
+        Assert.Contains("unknown-input", Assert.Throws<InvalidOperationException>(() => Generate(model, "sqlserver:type:int", new(Length: 24))).Message);
+    }
+
+    [Fact]
+    public void NewImplementationAndSnippetAreUsableWithoutRegisteringGeneratorCode()
+    {
+        var model = MetaDataTypeConversionInstance.CreateBuiltIn();
+        var snippet = new SqlConversionSnippet
+        {
+            Id = "custom:format", Dialect = "SqlServer",
+            SqlText = "REPLACE(CONVERT($(destination), $(operand)), N'1', N'one')"
+        };
+        model.SqlConversionSnippetList.Add(snippet);
+        var implementation = new ConversionImplementation { Id = "custom:implementation", Name = "Custom", SqlConversionSnippet = snippet };
+        model.ConversionImplementationList.Add(implementation);
+        model.DataTypeMappingList.Single(row => row.Id.EndsWith(":int-to-nvarchar", StringComparison.Ordinal)).ConversionImplementation = implementation;
+        model.SqlConversionParameterBindingList.Add(new()
+        {
+            Id = "custom:operand", Name = "operand", SqlConversionSnippet = snippet,
+            SqlConversionParameter = model.SqlConversionParameterList.Single(row => row.Name == "SourceExpression")
+        });
+        model.SqlConversionParameterBindingList.Add(new()
+        {
+            Id = "custom:destination", Name = "destination", SqlConversionSnippet = snippet,
+            SqlConversionParameter = model.SqlConversionParameterList.Single(row => row.Name == "DestinationType")
+        });
+        Assert.Equal("REPLACE(CONVERT(nvarchar(24), (1)), N'1', N'one')",
+            Syntax.ExportScalarExpression(Generate(model, "sqlserver:type:int", new(Length: 24), "1").Expression));
     }
 
     private static SqlValueConversionResult Generate(MetaDataTypeConversionModel model, string source, SqlServerTypeFacets facets, string input = "[s].[Value]") =>

@@ -6,8 +6,6 @@ namespace MetaTransformScript.Sql;
 
 public sealed record SqlScalarExpression(MetaTransformScriptModel Model, ScalarExpression Root);
 
-public enum SqlConversionFunction { Cast, Convert }
-
 /// <summary>Explicit SQL Server target parameters. No SQL defaults are supplied.</summary>
 public sealed record SqlServerTypeFacets(int? Length = null, bool IsMax = false, int? Precision = null, int? Scale = null);
 
@@ -26,9 +24,8 @@ public sealed partial class MetaTransformScriptSqlService
         return new MetaTransformScriptSqlEmitter(expression.Model).RenderScalarExpressionForScriptObject(expression.Root);
     }
 
-    /// <summary>Compose existing sanctioned CAST/CONVERT nodes; no mapping policy is applied here.</summary>
-    public SqlScalarExpression CreateConversionExpression(
-        string inputSql, string targetTypeName, SqlServerTypeFacets facets, SqlConversionFunction function)
+    /// <summary>Render an explicitly parameterized type through the sanctioned syntax model.</summary>
+    public string RenderSqlServerDataType(string targetTypeName, SqlServerTypeFacets facets)
     {
         ArgumentNullException.ThrowIfNull(facets);
         var parameters = GetExplicitTypeParameters(targetTypeName, facets);
@@ -39,16 +36,10 @@ public sealed partial class MetaTransformScriptSqlService
         }
 
         var builder = new MetaTransformScriptSqlModelBuilder();
-        var input = ParseScalarInput(inputSql, builder);
         var type = builder.CreateSqlDataTypeReference(option, parameters.Select(value =>
             value == "max" ? builder.CreateMaxLiteral() : builder.CreateNumberLiteral(value)).ToArray());
-        var result = function switch
-        {
-            SqlConversionFunction.Cast => builder.CreateCastCall(input, type),
-            SqlConversionFunction.Convert => builder.CreateConvertCall(type, input),
-            _ => throw new InvalidOperationException($"Unsupported SQL conversion function '{function}'.")
-        };
-        return new(builder.Build(), result.GetRef<ScalarExpression>(nameof(ScalarExpression)));
+        return new MetaTransformScriptSqlEmitter(builder.Build()).RenderDataTypeReferenceForComposition(
+            type.GetRef<DataTypeReference>(nameof(DataTypeReference)));
     }
 
     private static BuiltNode ParseScalarInput(string sql, MetaTransformScriptSqlModelBuilder builder)

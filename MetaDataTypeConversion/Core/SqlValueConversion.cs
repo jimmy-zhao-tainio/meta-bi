@@ -1,3 +1,5 @@
+using System.Text;
+using System.Text.RegularExpressions;
 using MetaDataType;
 using MetaTransformScript.Sql;
 
@@ -20,37 +22,80 @@ public sealed partial class MetaDataTypeConversionService
         ArgumentNullException.ThrowIfNull(dataTypes);
         ArgumentNullException.ThrowIfNull(request);
         ArgumentNullException.ThrowIfNull(request.TargetFacets);
-        // Value generation executes exactly one selected mapping, never a compatibility path.
         var check = Check(model);
         if (check.HasErrors) throw new InvalidOperationException(string.Join(Environment.NewLine, check.Errors));
         var resolution = Resolve(model, request.SourceDataTypeId, request.TargetDataTypeSystemName);
-        var mapping = model.DataTypeMappingList.Single(row => row.Id == resolution.MappingId);
-        var implementation = model.ConversionImplementationList.Single(row => row.Id == resolution.ConversionImplementationId);
         var syntax = new MetaTransformScriptSqlService();
-        if (implementation.Id == "MetaDataTypeConversion:implementation:direct")
-        {
-            if (implementation.SqlConversionTemplate is not null)
-                throw new InvalidOperationException("Direct is a pass-through and cannot have a SQL conversion template. Select a value-conversion implementation instead.");
+        if (resolution.ConversionImplementationId == "MetaDataTypeConversion:implementation:direct")
             return new(resolution, syntax.ImportScalarExpression(request.InputExpression));
-        }
-        if (implementation.Id == "MetaDataTypeConversion:implementation:structural")
-            throw new InvalidOperationException($"Mapping '{mapping.Id}' is Structural; it has no scalar SQL value conversion.");
-        var reference = implementation.SqlConversionTemplate
-            ?? throw new InvalidOperationException($"Mapping '{mapping.Id}', implementation '{implementation.Id}' has no SQL conversion template.");
-        var template = model.SqlConversionTemplateList.SingleOrDefault(row => row.Id == reference.Id)
-            ?? throw new InvalidOperationException($"Implementation '{implementation.Id}' references missing SQL conversion template '{reference.Id}'.");
-        if (template.Dialect != "SqlServer" || !BelongsToDataTypeSystem(resolution.TargetDataTypeId, "SqlServer"))
-            throw new InvalidOperationException($"Template '{template.Id}' dialect '{template.Dialect}' cannot realize mapping '{mapping.Id}'; only SQL Server targets are supported.");
-        var function = template.Function switch
-        {
-            "Cast" => SqlConversionFunction.Cast,
-            "Convert" => SqlConversionFunction.Convert,
-            _ => throw new InvalidOperationException($"Template '{template.Id}' has unsupported SQL conversion function '{template.Function}'; supported strict functions are Cast and Convert.")
-        };
+        if (resolution.ConversionImplementationId == "MetaDataTypeConversion:implementation:structural")
+            throw new InvalidOperationException($"Mapping '{resolution.MappingId}' is Structural; it has no scalar SQL value conversion.");
+
+        var implementation = model.ConversionImplementationList.Single(row => row.Id == resolution.ConversionImplementationId);
+        var snippet = implementation.SqlConversionSnippet
+            ?? throw new InvalidOperationException($"Mapping '{resolution.MappingId}', implementation '{implementation.Id}' has no SQL conversion snippet.");
+        if (snippet.Dialect != "SqlServer" || !BelongsToDataTypeSystem(resolution.TargetDataTypeId, "SqlServer"))
+            throw new InvalidOperationException($"Snippet '{snippet.Id}' dialect '{snippet.Dialect}' cannot realize mapping '{resolution.MappingId}'; only SQL Server targets are supported.");
         var target = dataTypes.DataTypeList.SingleOrDefault(row => row.Id == resolution.TargetDataTypeId)
-            ?? throw new InvalidOperationException($"Mapping '{mapping.Id}' target '{resolution.TargetDataTypeId}' is absent from MetaDataType.");
+            ?? throw new InvalidOperationException($"Mapping '{resolution.MappingId}' target '{resolution.TargetDataTypeId}' is absent from MetaDataType.");
         if (!string.Equals(target.DataTypeSystem?.Name, "SqlServer", StringComparison.OrdinalIgnoreCase))
             throw new InvalidOperationException($"Target '{target.Id}' does not belong to the SqlServer data type system.");
-        return new(resolution, syntax.CreateConversionExpression(request.InputExpression, target.Name, request.TargetFacets, function));
+
+        // Only input preparation is code. SQL function choice, composition and fixed arguments are data.
+        var inputs = new Dictionary<string, string>(StringComparer.Ordinal)
+        {
+            ["MetaDataTypeConversion:parameter:source-expression"] =
+                "(" + syntax.ExportScalarExpression(syntax.ImportScalarExpression(request.InputExpression)) + ")",
+            ["MetaDataTypeConversion:parameter:destination-type"] =
+                syntax.RenderSqlServerDataType(target.Name, request.TargetFacets)
+        };
+        var parameters = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var binding in model.SqlConversionParameterBindingList.Where(row => row.SqlConversionSnippet.Id == snippet.Id))
+        {
+            if (!inputs.TryGetValue(binding.SqlConversionParameter.Id, out var sql))
+                throw new InvalidOperationException($"Binding '{binding.Id}' requires unsupported conversion input '{binding.SqlConversionParameter.Id}'.");
+            if (!parameters.TryAdd(binding.Name, sql))
+                throw new InvalidOperationException($"Snippet '{snippet.Id}' binds placeholder '{binding.Name}' more than once.");
+        }
+        return new(resolution, syntax.ImportScalarExpression(SubstituteSnippet(snippet, parameters)));
     }
+
+    private static string SubstituteSnippet(SqlConversionSnippet snippet, IReadOnlyDictionary<string, string> parameters)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(snippet.SqlText);
+        var result = new StringBuilder();
+        var used = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var text = snippet.SqlText;
+        for (var index = 0; index < text.Length;)
+        {
+            // Same $(name), optional whitespace and $$( escaping as the pattern text syntax.
+            if (text.AsSpan(index).StartsWith("$$(", StringComparison.Ordinal))
+            {
+                result.Append("$(");
+                index += 3;
+            }
+            else if (text.AsSpan(index).StartsWith("$(", StringComparison.Ordinal))
+            {
+                var end = text.IndexOf(')', index + 2);
+                if (end < 0)
+                    throw new InvalidOperationException($"Snippet '{snippet.Id}' has an unclosed placeholder at offset {index}.");
+                var name = text[(index + 2)..end].Trim();
+                if (!SnippetParameterName().IsMatch(name))
+                    throw new InvalidOperationException($"Snippet '{snippet.Id}' has invalid placeholder '{name}'; use $(name).");
+                if (!parameters.TryGetValue(name, out var value))
+                    throw new InvalidOperationException($"Snippet '{snippet.Id}' has no binding for placeholder '{name}'.");
+                result.Append(value); // Inserted SQL is never rescanned for placeholders.
+                used.Add(name);
+                index = end + 1;
+            }
+            else result.Append(text[index++]);
+        }
+        var unused = parameters.Keys.FirstOrDefault(name => !used.Contains(name));
+        if (unused is not null)
+            throw new InvalidOperationException($"Snippet '{snippet.Id}' binds unused placeholder '{unused}'.");
+        return result.ToString();
+    }
+
+    [GeneratedRegex("^[\\p{L}_][\\p{L}\\p{N}_.-]*$", RegexOptions.CultureInvariant)]
+    private static partial Regex SnippetParameterName();
 }

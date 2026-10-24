@@ -11,7 +11,7 @@ public sealed class SqlValueConversionWorkspaceTests
     [Theory]
     [InlineData("xml")]
     [InlineData("csharp")]
-    public async Task TemplateAndNaturalRelationships_RoundTrip_AndDriveProductionCli(string representation)
+    public async Task SnippetAndBindings_RoundTrip_AndDriveProductionCli(string representation)
     {
         var directory = Path.Combine(Path.GetTempPath(), "MetaDataTypeConversion-value-tests", Guid.NewGuid().ToString("N"));
         try
@@ -20,24 +20,27 @@ public sealed class SqlValueConversionWorkspaceTests
             var castPath = Path.Combine(directory, "cast");
             await TypedWorkspaceModelMapper.CreateAsync(original, castPath, representation);
             var loaded = TypedWorkspaceModelMapper.Load<MetaDataTypeConversionModel>(castPath, searchUpward: false);
-            var implementation = loaded.ConversionImplementationList.Single(row => row.Name == "SqlCast");
-            var template = loaded.SqlConversionTemplateList.Single(row => row.Function == "Cast");
-            Assert.Same(template, implementation.SqlConversionTemplate);
+            var implementation = loaded.ConversionImplementationList.Single(row => row.Name == "SqlExpression");
+            var snippet = loaded.SqlConversionSnippetList.Single(row => row.Id == "sqlserver:snippet:cast");
+            Assert.Same(snippet, implementation.SqlConversionSnippet);
+            var binding = loaded.SqlConversionParameterBindingList.Single(row => row.SqlConversionSnippet == snippet && row.Name == "value");
+            Assert.Same(snippet, binding.SqlConversionSnippet);
+            Assert.Same(loaded.SqlConversionParameterList.Single(row => row.Name == "SourceExpression"), binding.SqlConversionParameter);
             Assert.Same(implementation, loaded.DataTypeMappingList.Single(row => row.Id.EndsWith(":int-to-nvarchar", StringComparison.Ordinal)).ConversionImplementation);
-            Assert.Equal("SqlServer", template.Dialect);
+            Assert.Equal("SqlServer", snippet.Dialect);
             var first = GenerateWithCli(castPath);
             Assert.Equal(0, first.ExitCode);
-            Assert.Contains("CAST(([s].[Value] + 2) * 3 AS nvarchar(24))", first.Output);
+            Assert.Contains("CAST((([s].[Value] + 2) * 3) AS nvarchar(24))", first.Output);
 
-            // Author a different function on the SAME template, persist and reload it.
-            template.Function = "Convert";
+            // Author arbitrary expression composition and a fixed style argument in INSTANCE DATA.
+            snippet.SqlText = "COALESCE(CONVERT($(type), $(value), 112), N'unknown')";
             var convertPath = Path.Combine(directory, "convert");
             await TypedWorkspaceModelMapper.CreateAsync(loaded, convertPath, representation);
             var changed = TypedWorkspaceModelMapper.Load<MetaDataTypeConversionModel>(convertPath, searchUpward: false);
-            Assert.Equal("Convert", changed.SqlConversionTemplateList.Single(row => row.Id == template.Id).Function);
+            Assert.Equal(snippet.SqlText, changed.SqlConversionSnippetList.Single(row => row.Id == snippet.Id).SqlText);
             var second = GenerateWithCli(convertPath);
             Assert.Equal(0, second.ExitCode);
-            Assert.Contains("CONVERT(nvarchar(24), ([s].[Value] + 2) * 3)", second.Output);
+            Assert.Contains("COALESCE(CONVERT(nvarchar(24), (([s].[Value] + 2) * 3), 112), N'unknown')", second.Output);
             Assert.DoesNotContain("CAST(", second.Output);
 
             // Carry the composed syntax through the same workspace representation too.
@@ -47,7 +50,7 @@ public sealed class SqlValueConversionWorkspaceTests
             await TypedWorkspaceModelMapper.CreateAsync(result.Expression.Model, syntaxPath, representation);
             var syntaxModel = TypedWorkspaceModelMapper.Load<MetaTransformScript.MetaTransformScriptModel>(syntaxPath, searchUpward: false);
             var root = syntaxModel.ScalarExpressionList.Single(row => row.Id == result.Expression.Root.Id);
-            Assert.Equal("CONVERT(nvarchar(24), ([s].[Value] + 2) * 3)",
+            Assert.Equal("COALESCE(CONVERT(nvarchar(24), (([s].[Value] + 2) * 3), 112), N'unknown')",
                 new MetaTransformScriptSqlService().ExportScalarExpression(new(syntaxModel, root)));
         }
         finally

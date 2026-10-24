@@ -8,7 +8,7 @@ public sealed partial class ConversionImplementation
     public string Id { get; set; } = null!;
     public string? Description { get; set; }
     public string Name { get; set; } = null!;
-    public SqlConversionTemplate? SqlConversionTemplate { get; set; }
+    public SqlConversionSnippet? SqlConversionSnippet { get; set; }
 }
 
 public sealed partial class DataTypeMapping
@@ -20,11 +20,25 @@ public sealed partial class DataTypeMapping
     public ConversionImplementation ConversionImplementation { get; set; } = null!;
 }
 
-public sealed partial class SqlConversionTemplate
+public sealed partial class SqlConversionParameter
+{
+    public string Id { get; set; } = null!;
+    public string Name { get; set; } = null!;
+}
+
+public sealed partial class SqlConversionParameterBinding
+{
+    public string Id { get; set; } = null!;
+    public string Name { get; set; } = null!;
+    public SqlConversionParameter SqlConversionParameter { get; set; } = null!;
+    public SqlConversionSnippet SqlConversionSnippet { get; set; } = null!;
+}
+
+public sealed partial class SqlConversionSnippet
 {
     public string Id { get; set; } = null!;
     public string Dialect { get; set; } = null!;
-    public string Function { get; set; } = null!;
+    public string SqlText { get; set; } = null!;
 }
 
 public sealed partial class MetaDataTypeConversionModel
@@ -32,7 +46,9 @@ public sealed partial class MetaDataTypeConversionModel
     public static MetaDataTypeConversionModel CreateEmpty() => new();
     public List<ConversionImplementation> ConversionImplementationList { get; set; } = new();
     public List<DataTypeMapping> DataTypeMappingList { get; set; } = new();
-    public List<SqlConversionTemplate> SqlConversionTemplateList { get; set; } = new();
+    public List<SqlConversionParameter> SqlConversionParameterList { get; set; } = new();
+    public List<SqlConversionParameterBinding> SqlConversionParameterBindingList { get; set; } = new();
+    public List<SqlConversionSnippet> SqlConversionSnippetList { get; set; } = new();
 }
 
 public static partial class MetaDataTypeConversionInstance
@@ -52,9 +68,9 @@ public static partial class MetaDataTypeConversionInstance
         model.ConversionImplementationList.Add(record0);
         var record1 = new ConversionImplementation
         {
-            Id = "MetaDataTypeConversion:implementation:sql-cast",
-            Description = "Strict SQL Server value conversion; target facets are explicit inputs.",
-            Name = "SqlCast"
+            Id = "MetaDataTypeConversion:implementation:sql-expression",
+            Description = "Authored SQL conversion snippet with parameter bindings.",
+            Name = "SqlExpression"
         };
         model.ConversionImplementationList.Add(record1);
         var record2 = new ConversionImplementation
@@ -557,21 +573,57 @@ public static partial class MetaDataTypeConversionInstance
             TargetDataTypeId = "meta:type:Xml"
         };
         model.DataTypeMappingList.Add(record71);
-        var record72 = new SqlConversionTemplate
+        var record72 = new SqlConversionParameter
         {
-            Id = "sqlserver:template:strict-cast",
-            Dialect = "SqlServer",
-            Function = "Cast"
+            Id = "MetaDataTypeConversion:parameter:destination-type",
+            Name = "DestinationType"
         };
-        model.SqlConversionTemplateList.Add(record72);
-        var record73 = new SqlConversionTemplate
+        model.SqlConversionParameterList.Add(record72);
+        var record73 = new SqlConversionParameter
         {
-            Id = "sqlserver:template:strict-convert",
-            Dialect = "SqlServer",
-            Function = "Convert"
+            Id = "MetaDataTypeConversion:parameter:source-expression",
+            Name = "SourceExpression"
         };
-        model.SqlConversionTemplateList.Add(record73);
-        record1.SqlConversionTemplate = record72;
+        model.SqlConversionParameterList.Add(record73);
+        var record74 = new SqlConversionParameterBinding
+        {
+            Id = "sqlserver:binding:cast-type",
+            Name = "type"
+        };
+        model.SqlConversionParameterBindingList.Add(record74);
+        var record75 = new SqlConversionParameterBinding
+        {
+            Id = "sqlserver:binding:cast-value",
+            Name = "value"
+        };
+        model.SqlConversionParameterBindingList.Add(record75);
+        var record76 = new SqlConversionParameterBinding
+        {
+            Id = "sqlserver:binding:convert-type",
+            Name = "type"
+        };
+        model.SqlConversionParameterBindingList.Add(record76);
+        var record77 = new SqlConversionParameterBinding
+        {
+            Id = "sqlserver:binding:convert-value",
+            Name = "value"
+        };
+        model.SqlConversionParameterBindingList.Add(record77);
+        var record78 = new SqlConversionSnippet
+        {
+            Id = "sqlserver:snippet:cast",
+            Dialect = "SqlServer",
+            SqlText = "CAST($(value) AS $(type))"
+        };
+        model.SqlConversionSnippetList.Add(record78);
+        var record79 = new SqlConversionSnippet
+        {
+            Id = "sqlserver:snippet:convert",
+            Dialect = "SqlServer",
+            SqlText = "CONVERT($(type), $(value))"
+        };
+        model.SqlConversionSnippetList.Add(record79);
+        record1.SqlConversionSnippet = record78;
         record3.ConversionImplementation = record0;
         record4.ConversionImplementation = record0;
         record5.ConversionImplementation = record0;
@@ -641,6 +693,14 @@ public static partial class MetaDataTypeConversionInstance
         record69.ConversionImplementation = record0;
         record70.ConversionImplementation = record0;
         record71.ConversionImplementation = record2;
+        record74.SqlConversionParameter = record72;
+        record74.SqlConversionSnippet = record78;
+        record75.SqlConversionParameter = record73;
+        record75.SqlConversionSnippet = record78;
+        record76.SqlConversionParameter = record72;
+        record76.SqlConversionSnippet = record79;
+        record77.SqlConversionParameter = record73;
+        record77.SqlConversionSnippet = record79;
         return model;
     }
 }
