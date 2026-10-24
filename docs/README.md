@@ -16,6 +16,7 @@
 
 ## Domain Notes
 
+- [MetaDataTypeConversion SQL value conversion](data-type-conversion/SQL-VALUE-CONVERSION.md)
 - [MetaSchemaAdapter](meta-schema-adapter/README.md)
 - [MetaAnalytics](analytics/README.md)
 - [MetaBusiness boundary](meta-business/META-BUSINESS-BOUNDARY.md)

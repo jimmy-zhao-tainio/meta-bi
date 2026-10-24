@@ -34,5 +34,45 @@
       <Description>MetaDataTypeConversion workspace. Defaults to the current directory.</Description>
       <Name>workspace</Name>
     </Parameter>
+    <Parameter Id="param-sql-expression-data-types-workspace" ValueShapeId="shape-path">
+      <Description>MetaDataType catalog. Defaults to the sanctioned built-in types.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>data-types-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-sql-expression-input-expression" ValueShapeId="shape-text">
+      <Description>One SQL Server scalar expression; statement tails are rejected.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>input-expression</Name>
+    </Parameter>
+    <Parameter Id="param-sql-expression-length" ValueShapeId="shape-text">
+      <Description>Explicit target length, or max for a supported variable-length type.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>length</Name>
+    </Parameter>
+    <Parameter Id="param-sql-expression-precision" ValueShapeId="shape-text">
+      <Description>Explicit target numeric precision.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>precision</Name>
+    </Parameter>
+    <Parameter Id="param-sql-expression-scale" ValueShapeId="shape-text">
+      <Description>Explicit target numeric or fractional-second scale.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>scale</Name>
+    </Parameter>
+    <Parameter Id="param-sql-expression-source-data-type" ValueShapeId="shape-text">
+      <Description>Source data type whose standard target mapping is selected.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>source-data-type</Name>
+    </Parameter>
+    <Parameter Id="param-sql-expression-target-data-type-system" ValueShapeId="shape-text">
+      <Description>Target type system; value templates currently support SqlServer.</Description>
+      <IsRequired>true</IsRequired>
+      <Name>target-data-type-system</Name>
+    </Parameter>
+    <Parameter Id="param-sql-expression-workspace" ValueShapeId="shape-path">
+      <Description>MetaDataTypeConversion workspace. Defaults to the current directory.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
   </ParameterList>
 </MetaCli>

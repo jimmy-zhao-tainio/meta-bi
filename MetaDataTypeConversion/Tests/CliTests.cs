@@ -14,6 +14,7 @@ public sealed class CliTests
         Assert.Contains("create", result.Output);
         Assert.Contains("check", result.Output);
         Assert.Contains("resolve", result.Output);
+        Assert.Contains("sql-expression", result.Output);
     }
 
     [Fact]

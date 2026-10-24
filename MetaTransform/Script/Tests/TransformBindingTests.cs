@@ -4098,6 +4098,7 @@ INNER JOIN dbo.SourceB AS b
     {
         var transformModel = ParseCorpus("001_basic_select.sql");
         SetViewTargetSqlIdentifier(transformModel, transformModel.TransformScriptList[0], "dbo.CustomerSummary");
+        var authoredSql = new MetaTransformScriptSqlService().ExportToSqlCode(transformModel);
 
         var schemaModel = CreateSourceSchema(
             ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]),
@@ -4132,6 +4133,10 @@ INNER JOIN dbo.SourceB AS b
 
             Assert.Equal("sqlserver:type:int", customerIdCompatibility.SourceMetaDataTypeId);
             Assert.Equal("sqlserver:type:nvarchar", customerIdCompatibility.TargetMetaDataTypeId);
+            var unchanged = Meta.Integration.TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
+            Assert.Equal(authoredSql, new MetaTransformScriptSqlService().ExportToSqlCode(unchanged));
+            Assert.Empty(unchanged.CastCallList);
+            Assert.Empty(unchanged.ConvertCallList);
         }
         finally
         {

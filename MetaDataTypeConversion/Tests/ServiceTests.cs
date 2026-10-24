@@ -5,6 +5,19 @@ namespace MetaDataTypeConversion.Tests;
 public sealed class ServiceTests
 {
     [Fact]
+    public void Check_RejectsCompetingMappingsInOneTargetSystem()
+    {
+        var model = MetaDataTypeConversionInstance.CreateBuiltIn();
+        var original = model.DataTypeMappingList.First();
+        model.DataTypeMappingList.Add(new()
+        {
+            Id = "competing-mapping", SourceDataTypeId = original.SourceDataTypeId,
+            TargetDataTypeId = "sqlserver:type:nchar", ConversionImplementation = original.ConversionImplementation
+        });
+        Assert.Contains(new MetaDataTypeConversionService().Check(model).Errors, error => error.Contains("mapped more than once"));
+    }
+
+    [Fact]
     public void CreateWorkspace_ReturnsSanctionedModel()
     {
         var model = new MetaDataTypeConversionService().CreateWorkspace();

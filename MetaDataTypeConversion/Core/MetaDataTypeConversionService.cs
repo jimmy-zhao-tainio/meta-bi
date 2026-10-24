@@ -29,6 +29,7 @@ public sealed record MetaDataTypeConversionCheckResult(
 
 public interface IMetaDataTypeConversionService
 {
+    SqlValueConversionResult GenerateSqlExpression(MetaDataTypeConversionModel model, MetaDataType.MetaDataTypeModel dataTypes, SqlValueConversionRequest request);
     MetaDataTypeConversionModel CreateWorkspace();
     MetaDataTypeConversionCheckResult Check(MetaDataTypeConversionModel model);
     DataTypeMappingResolution Resolve(MetaDataTypeConversionModel model, string sourceDataTypeId);
@@ -36,7 +37,7 @@ public interface IMetaDataTypeConversionService
     DataTypeCompatibilityResolution ResolveCompatibility(MetaDataTypeConversionModel model, string sourceDataTypeId, string targetDataTypeId);
 }
 
-public sealed class MetaDataTypeConversionService : IMetaDataTypeConversionService
+public sealed partial class MetaDataTypeConversionService : IMetaDataTypeConversionService
 {
     public MetaDataTypeConversionModel CreateWorkspace() =>
         MetaDataTypeConversionInstance.BuiltIn;
@@ -54,6 +55,16 @@ public sealed class MetaDataTypeConversionService : IMetaDataTypeConversionServi
 
         var implementationById = implementations.ToDictionary(row => row.Id, StringComparer.Ordinal);
         var errors = new List<string>();
+
+        var templateIds = model.SqlConversionTemplateList.Select(row => row.Id).ToHashSet(StringComparer.Ordinal);
+        foreach (var implementation in implementations)
+        {
+            if (implementation.SqlConversionTemplate is not { } template) continue;
+            if (!templateIds.Contains(template.Id))
+                errors.Add($"ConversionImplementation '{implementation.Id}' references missing SqlConversionTemplate '{template.Id}'.");
+            if (implementation.Id is "MetaDataTypeConversion:implementation:direct" or "MetaDataTypeConversion:implementation:structural")
+                errors.Add($"ConversionImplementation '{implementation.Name}' cannot have a SQL value template; select a separate value-conversion implementation.");
+        }
 
         foreach (var mapping in mappings)
         {

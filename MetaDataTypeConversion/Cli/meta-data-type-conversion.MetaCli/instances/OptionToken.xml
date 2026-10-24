@@ -25,5 +25,29 @@
     <OptionToken Id="token-resolve-workspace" OptionId="opt-resolve-workspace">
       <Token>--workspace</Token>
     </OptionToken>
+    <OptionToken Id="token-sql-expression-data-types-workspace" OptionId="opt-sql-expression-data-types-workspace">
+      <Token>--data-types-workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-sql-expression-input-expression" OptionId="opt-sql-expression-input-expression">
+      <Token>--input-expression</Token>
+    </OptionToken>
+    <OptionToken Id="token-sql-expression-length" OptionId="opt-sql-expression-length">
+      <Token>--length</Token>
+    </OptionToken>
+    <OptionToken Id="token-sql-expression-precision" OptionId="opt-sql-expression-precision">
+      <Token>--precision</Token>
+    </OptionToken>
+    <OptionToken Id="token-sql-expression-scale" OptionId="opt-sql-expression-scale">
+      <Token>--scale</Token>
+    </OptionToken>
+    <OptionToken Id="token-sql-expression-source-data-type" OptionId="opt-sql-expression-source-data-type">
+      <Token>--source-data-type</Token>
+    </OptionToken>
+    <OptionToken Id="token-sql-expression-target-data-type-system" OptionId="opt-sql-expression-target-data-type-system">
+      <Token>--target-data-type-system</Token>
+    </OptionToken>
+    <OptionToken Id="token-sql-expression-workspace" OptionId="opt-sql-expression-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
   </OptionTokenList>
 </MetaCli>
