@@ -1,5 +1,4 @@
 using Meta.Integration;
-using MetaBi.Tests.Common;
 using MetaDataType;
 using MetaDataTypeConversion.Core;
 using MetaTransformScript.Sql;
@@ -11,12 +10,14 @@ public sealed class SqlValueConversionWorkspaceTests
     [Theory]
     [InlineData("xml")]
     [InlineData("csharp")]
-    public async Task SnippetAndBindings_RoundTrip_AndDriveProductionCli(string representation)
+    public async Task SnippetAndBindings_RoundTrip_AndSupportMetadataInstantiation(string representation)
     {
         var directory = Path.Combine(Path.GetTempPath(), "MetaDataTypeConversion-value-tests", Guid.NewGuid().ToString("N"));
         try
         {
             var original = MetaDataTypeConversionInstance.CreateBuiltIn();
+            original.DataTypeMappingList.Single(row => row.Id.EndsWith(":int-to-nvarchar", StringComparison.Ordinal)).ConversionImplementation =
+                original.ConversionImplementationList.Single(row => row.Name == "SqlExpression");
             var castPath = Path.Combine(directory, "cast");
             await TypedWorkspaceModelMapper.CreateAsync(original, castPath, representation);
             var loaded = TypedWorkspaceModelMapper.Load<MetaDataTypeConversionModel>(castPath, searchUpward: false);
@@ -28,9 +29,8 @@ public sealed class SqlValueConversionWorkspaceTests
             Assert.Same(loaded.SqlConversionParameterList.Single(row => row.Name == "SourceExpression"), binding.SqlConversionParameter);
             Assert.Same(implementation, loaded.DataTypeMappingList.Single(row => row.Id.EndsWith(":int-to-nvarchar", StringComparison.Ordinal)).ConversionImplementation);
             Assert.Equal("SqlServer", snippet.Dialect);
-            var first = GenerateWithCli(castPath);
-            Assert.Equal(0, first.ExitCode);
-            Assert.Contains("CAST((([s].[Value] + 2) * 3) AS nvarchar(24))", first.Output);
+            var first = Instantiate(loaded);
+            Assert.Equal("CAST((([s].[Value] + 2) * 3) AS nvarchar(24))", first);
 
             // Author arbitrary expression composition and a fixed style argument in INSTANCE DATA.
             snippet.SqlText = "COALESCE(CONVERT($(type), $(value), 112), N'unknown')";
@@ -38,10 +38,8 @@ public sealed class SqlValueConversionWorkspaceTests
             await TypedWorkspaceModelMapper.CreateAsync(loaded, convertPath, representation);
             var changed = TypedWorkspaceModelMapper.Load<MetaDataTypeConversionModel>(convertPath, searchUpward: false);
             Assert.Equal(snippet.SqlText, changed.SqlConversionSnippetList.Single(row => row.Id == snippet.Id).SqlText);
-            var second = GenerateWithCli(convertPath);
-            Assert.Equal(0, second.ExitCode);
-            Assert.Contains("COALESCE(CONVERT(nvarchar(24), (([s].[Value] + 2) * 3), 112), N'unknown')", second.Output);
-            Assert.DoesNotContain("CAST(", second.Output);
+            var second = Instantiate(changed);
+            Assert.Equal("COALESCE(CONVERT(nvarchar(24), (([s].[Value] + 2) * 3), 112), N'unknown')", second);
 
             // Carry the composed syntax through the same workspace representation too.
             var result = new MetaDataTypeConversionService().GenerateSqlExpression(changed, MetaDataTypeInstance.BuiltIn,
@@ -59,26 +57,10 @@ public sealed class SqlValueConversionWorkspaceTests
         }
     }
 
-    [Fact]
-    public void ProductionCli_ReportsRejectedGenerationAsFailure()
+    private static string Instantiate(MetaDataTypeConversionModel model)
     {
-        var workspace = Path.Combine(CliTestRunner.FindRepositoryRoot(), "MetaDataTypeConversion", "Workspace");
-        var missingLength = CliTestRunner.RunStandardCli("meta-data-type-conversion",
-            $"sql-expression --workspace \"{workspace}\" --source-data-type sqlserver:type:int --target-data-type-system SqlServer --input-expression 1");
-        Assert.NotEqual(0, missingLength.ExitCode);
-        Assert.Contains("explicit length", missingLength.Output);
-        var structural = CliTestRunner.RunStandardCli("meta-data-type-conversion",
-            $"sql-expression --workspace \"{workspace}\" --source-data-type meta:type:Xml --target-data-type-system SqlServer --input-expression 1");
-        Assert.NotEqual(0, structural.ExitCode);
-        Assert.Contains("Structural", structural.Output);
-        var invalidInput = CliTestRunner.RunStandardCli("meta-data-type-conversion",
-            $"sql-expression --workspace \"{workspace}\" --source-data-type sqlserver:type:int --target-data-type-system SqlServer --input-expression \"1; SELECT 2\" --length 24");
-        Assert.Equal(4, invalidInput.ExitCode);
-        Assert.Contains("Cannot generate SQL value conversion", invalidInput.Output);
-        Assert.Contains("EndOfFile", invalidInput.Output);
+        var result = new MetaDataTypeConversionService().GenerateSqlExpression(model, MetaDataTypeInstance.BuiltIn,
+            new("sqlserver:type:int", "SqlServer", "([s].[Value] + 2) * 3", new(Length: 24)));
+        return new MetaTransformScriptSqlService().ExportScalarExpression(result.Expression);
     }
-
-    private static (int ExitCode, string Output) GenerateWithCli(string workspace) =>
-        CliTestRunner.RunStandardCli("meta-data-type-conversion",
-            $"sql-expression --workspace \"{workspace}\" --source-data-type sqlserver:type:int --target-data-type-system SqlServer --input-expression \"([s].[Value] + 2) * 3\" --length 24");
 }

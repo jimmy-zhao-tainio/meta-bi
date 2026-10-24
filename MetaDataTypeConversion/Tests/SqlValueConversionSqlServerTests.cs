@@ -25,6 +25,9 @@ public sealed class SqlValueConversionSqlServerTests
         {
             Environment.SetEnvironmentVariable(environmentName, connectionString);
             var model = MetaDataTypeConversionInstance.CreateBuiltIn();
+            // This test authors a snippet selection locally; existing BI mappings are unchanged.
+            model.DataTypeMappingList.Single(row => row.Id.EndsWith(":int-to-nvarchar", StringComparison.Ordinal)).ConversionImplementation =
+                model.ConversionImplementationList.Single(row => row.Name == "SqlExpression");
             // The SQL surface requires model name == database name and creates the database itself.
             // Rename only this disposable test materialization, preserving all entity contracts.
             var workspace = TypedWorkspaceModelMapper.ToInMemoryWorkspace(model);

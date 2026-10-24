@@ -3,10 +3,6 @@ using Meta.Core.Presentation.Cli;
 using MetaCli.Core;
 using MetaDataTypeConversion;
 using MetaDataTypeConversion.Core;
-using System.Globalization;
-using Meta.Integration;
-using MetaDataType;
-using MetaTransformScript.Sql;
 
 internal sealed class MetaDataTypeConversionCommandHandlers
 {
@@ -90,40 +86,6 @@ internal sealed class MetaDataTypeConversionCommandHandlers
                 HelpCommand("resolve"),
                 4,
                 [$"  {ex.Message}"]);
-        }
-    }
-
-    public void RunSqlExpression(MetaCliInvocation invocation, MetaDataTypeConversionModel model)
-    {
-        try
-        {
-            int? ReadInteger(string name)
-            {
-                var text = invocation.Optional(name);
-                if (text is null) return null;
-                return int.TryParse(text, NumberStyles.None, CultureInfo.InvariantCulture, out var number)
-                    ? number : throw new ArgumentException($"--{name} requires a nonnegative integer.");
-            }
-            var lengthText = invocation.Optional("length");
-            var isMax = string.Equals(lengthText, "max", StringComparison.OrdinalIgnoreCase);
-            var facets = new SqlServerTypeFacets(isMax ? null : ReadInteger("length"), isMax, ReadInteger("precision"), ReadInteger("scale"));
-            var catalogPath = invocation.Optional("data-types-workspace");
-            var catalog = catalogPath is null ? MetaDataTypeInstance.BuiltIn
-                : TypedWorkspaceModelMapper.Load<MetaDataTypeModel>(Path.GetFullPath(catalogPath), searchUpward: false);
-            var result = service.GenerateSqlExpression(model, catalog, new(
-                invocation.Required("source-data-type"), invocation.Required("target-data-type-system"),
-                invocation.Required("input-expression"), facets));
-            presenter.WriteKeyValueBlock("MetaDataTypeConversion SQL expression", new[]
-            {
-                ("Mapping", result.Mapping.MappingId),
-                ("TargetDataTypeId", result.Mapping.TargetDataTypeId),
-                ("ConversionImplementation", result.Mapping.ConversionImplementationName),
-                ("Sql", new MetaTransformScriptSqlService().ExportScalarExpression(result.Expression))
-            });
-        }
-        catch (Exception ex) when (ex is InvalidOperationException or ArgumentException)
-        {
-            Fail("Cannot generate SQL value conversion.", HelpCommand("sql-expression"), 4, [$"  {ex.Message}"]);
         }
     }
 

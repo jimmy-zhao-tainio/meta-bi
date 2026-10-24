@@ -21,10 +21,5 @@
       <Name>resolve</Name>
       <Token>resolve</Token>
     </Command>
-    <Command Id="cmd-sql-expression" ApplicationId="app-meta-data-type-conversion">
-      <Description>Generate one mapped SQL value expression using its authored implementation.</Description>
-      <Name>sql-expression</Name>
-      <Token>sql-expression</Token>
-    </Command>
   </CommandList>
 </MetaCli>

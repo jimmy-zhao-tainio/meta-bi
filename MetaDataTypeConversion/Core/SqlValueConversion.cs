@@ -15,13 +15,13 @@ public sealed record SqlValueConversionResult(DataTypeMappingResolution Mapping,
 
 public sealed partial class MetaDataTypeConversionService
 {
+    /// <summary>Instantiate explicitly authored conversion metadata; existing BI consumers do not call this helper.</summary>
     public SqlValueConversionResult GenerateSqlExpression(
         MetaDataTypeConversionModel model, MetaDataTypeModel dataTypes, SqlValueConversionRequest request)
     {
         ArgumentNullException.ThrowIfNull(model);
         ArgumentNullException.ThrowIfNull(dataTypes);
         ArgumentNullException.ThrowIfNull(request);
-        ArgumentNullException.ThrowIfNull(request.TargetFacets);
         var check = Check(model);
         if (check.HasErrors) throw new InvalidOperationException(string.Join(Environment.NewLine, check.Errors));
         var resolution = Resolve(model, request.SourceDataTypeId, request.TargetDataTypeSystemName);
@@ -36,26 +36,30 @@ public sealed partial class MetaDataTypeConversionService
             ?? throw new InvalidOperationException($"Mapping '{resolution.MappingId}', implementation '{implementation.Id}' has no SQL conversion snippet.");
         if (snippet.Dialect != "SqlServer" || !BelongsToDataTypeSystem(resolution.TargetDataTypeId, "SqlServer"))
             throw new InvalidOperationException($"Snippet '{snippet.Id}' dialect '{snippet.Dialect}' cannot realize mapping '{resolution.MappingId}'; only SQL Server targets are supported.");
-        var target = dataTypes.DataTypeList.SingleOrDefault(row => row.Id == resolution.TargetDataTypeId)
-            ?? throw new InvalidOperationException($"Mapping '{resolution.MappingId}' target '{resolution.TargetDataTypeId}' is absent from MetaDataType.");
-        if (!string.Equals(target.DataTypeSystem?.Name, "SqlServer", StringComparison.OrdinalIgnoreCase))
-            throw new InvalidOperationException($"Target '{target.Id}' does not belong to the SqlServer data type system.");
-
         // Only input preparation is code. SQL function choice, composition and fixed arguments are data.
-        var inputs = new Dictionary<string, string>(StringComparer.Ordinal)
+        // Definitions are lazy: a source-only snippet must not require destination metadata or facets.
+        var inputs = new Dictionary<string, Lazy<string>>(StringComparer.Ordinal)
         {
             ["MetaDataTypeConversion:parameter:source-expression"] =
-                "(" + syntax.ExportScalarExpression(syntax.ImportScalarExpression(request.InputExpression)) + ")",
-            ["MetaDataTypeConversion:parameter:destination-type"] =
-                syntax.RenderSqlServerDataType(target.Name, request.TargetFacets)
+                new(() => "(" + syntax.ExportScalarExpression(syntax.ImportScalarExpression(request.InputExpression)) + ")"),
+            ["MetaDataTypeConversion:parameter:destination-type"] = new(() =>
+            {
+                ArgumentNullException.ThrowIfNull(request.TargetFacets);
+                var target = dataTypes.DataTypeList.SingleOrDefault(row => row.Id == resolution.TargetDataTypeId)
+                    ?? throw new InvalidOperationException($"Mapping '{resolution.MappingId}' target '{resolution.TargetDataTypeId}' is absent from MetaDataType.");
+                if (!string.Equals(target.DataTypeSystem?.Name, "SqlServer", StringComparison.OrdinalIgnoreCase))
+                    throw new InvalidOperationException($"Target '{target.Id}' does not belong to the SqlServer data type system.");
+                return syntax.RenderSqlServerDataType(target.Name, request.TargetFacets);
+            })
         };
         var parameters = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         foreach (var binding in model.SqlConversionParameterBindingList.Where(row => row.SqlConversionSnippet.Id == snippet.Id))
         {
-            if (!inputs.TryGetValue(binding.SqlConversionParameter.Id, out var sql))
+            if (!inputs.TryGetValue(binding.SqlConversionParameter.Id, out var input))
                 throw new InvalidOperationException($"Binding '{binding.Id}' requires unsupported conversion input '{binding.SqlConversionParameter.Id}'.");
-            if (!parameters.TryAdd(binding.Name, sql))
+            if (parameters.ContainsKey(binding.Name))
                 throw new InvalidOperationException($"Snippet '{snippet.Id}' binds placeholder '{binding.Name}' more than once.");
+            parameters.Add(binding.Name, input.Value);
         }
         return new(resolution, syntax.ImportScalarExpression(SubstituteSnippet(snippet, parameters)));
     }

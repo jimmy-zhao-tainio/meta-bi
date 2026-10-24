@@ -31,8 +31,7 @@ internal static class Program
                 [MetaCliWorkspace.Create("output", "xml", "csharp", "sql")],
                 handlers.RunCreate)
             .Bind("exec-check", handlers.RunCheck)
-            .Bind("exec-resolve", handlers.RunResolve)
-            .Bind("exec-sql-expression", handlers.RunSqlExpression);
+            .Bind("exec-resolve", handlers.RunResolve);
 
         runtime.Run(args);
         return Environment.ExitCode;

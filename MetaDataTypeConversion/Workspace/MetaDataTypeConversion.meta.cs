@@ -667,7 +667,7 @@ public static partial class MetaDataTypeConversionInstance
         record43.ConversionImplementation = record2;
         record44.ConversionImplementation = record2;
         record45.ConversionImplementation = record0;
-        record46.ConversionImplementation = record1;
+        record46.ConversionImplementation = record0;
         record47.ConversionImplementation = record0;
         record48.ConversionImplementation = record0;
         record49.ConversionImplementation = record0;

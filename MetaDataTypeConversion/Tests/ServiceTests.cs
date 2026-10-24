@@ -5,6 +5,14 @@ namespace MetaDataTypeConversion.Tests;
 public sealed class ServiceTests
 {
     [Fact]
+    public void BuiltInNumericTextMapping_RetainsOriginalDirectImplementation()
+    {
+        var result = new MetaDataTypeConversionService().Resolve(MetaDataTypeConversionInstance.CreateBuiltIn(), "sqlserver:type:int", "SqlServer");
+        Assert.Equal("sqlserver:type:nvarchar", result.TargetDataTypeId);
+        Assert.Equal("MetaDataTypeConversion:implementation:direct", result.ConversionImplementationId);
+    }
+
+    [Fact]
     public void Check_RejectsCompetingMappingsInOneTargetSystem()
     {
         var model = MetaDataTypeConversionInstance.CreateBuiltIn();

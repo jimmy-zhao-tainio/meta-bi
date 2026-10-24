@@ -9,13 +9,5 @@
     <ExecutableCommandParameter Id="exec-resolve:parameter:param-resolve-source-data-type" ExecutableCommandId="exec-resolve" ParameterId="param-resolve-source-data-type" />
     <ExecutableCommandParameter Id="exec-resolve:parameter:param-resolve-target-data-type-system" ExecutableCommandId="exec-resolve" ParameterId="param-resolve-target-data-type-system" />
     <ExecutableCommandParameter Id="exec-resolve:parameter:param-resolve-workspace" ExecutableCommandId="exec-resolve" ParameterId="param-resolve-workspace" />
-    <ExecutableCommandParameter Id="exec-sql-expression:parameter:param-sql-expression-data-types-workspace" ExecutableCommandId="exec-sql-expression" ParameterId="param-sql-expression-data-types-workspace" />
-    <ExecutableCommandParameter Id="exec-sql-expression:parameter:param-sql-expression-input-expression" ExecutableCommandId="exec-sql-expression" ParameterId="param-sql-expression-input-expression" />
-    <ExecutableCommandParameter Id="exec-sql-expression:parameter:param-sql-expression-length" ExecutableCommandId="exec-sql-expression" ParameterId="param-sql-expression-length" />
-    <ExecutableCommandParameter Id="exec-sql-expression:parameter:param-sql-expression-precision" ExecutableCommandId="exec-sql-expression" ParameterId="param-sql-expression-precision" />
-    <ExecutableCommandParameter Id="exec-sql-expression:parameter:param-sql-expression-scale" ExecutableCommandId="exec-sql-expression" ParameterId="param-sql-expression-scale" />
-    <ExecutableCommandParameter Id="exec-sql-expression:parameter:param-sql-expression-source-data-type" ExecutableCommandId="exec-sql-expression" ParameterId="param-sql-expression-source-data-type" />
-    <ExecutableCommandParameter Id="exec-sql-expression:parameter:param-sql-expression-target-data-type-system" ExecutableCommandId="exec-sql-expression" ParameterId="param-sql-expression-target-data-type-system" />
-    <ExecutableCommandParameter Id="exec-sql-expression:parameter:param-sql-expression-workspace" ExecutableCommandId="exec-sql-expression" ParameterId="param-sql-expression-workspace" />
   </ExecutableCommandParameterList>
 </MetaCli>

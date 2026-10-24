@@ -29,7 +29,6 @@ public sealed record MetaDataTypeConversionCheckResult(
 
 public interface IMetaDataTypeConversionService
 {
-    SqlValueConversionResult GenerateSqlExpression(MetaDataTypeConversionModel model, MetaDataType.MetaDataTypeModel dataTypes, SqlValueConversionRequest request);
     MetaDataTypeConversionModel CreateWorkspace();
     MetaDataTypeConversionCheckResult Check(MetaDataTypeConversionModel model);
     DataTypeMappingResolution Resolve(MetaDataTypeConversionModel model, string sourceDataTypeId);

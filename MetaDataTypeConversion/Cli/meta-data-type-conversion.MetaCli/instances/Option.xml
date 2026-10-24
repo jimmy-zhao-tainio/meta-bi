@@ -5,14 +5,6 @@
     <Option Id="opt-resolve-source-data-type" ParameterId="param-resolve-source-data-type" />
     <Option Id="opt-resolve-target-data-type-system" ParameterId="param-resolve-target-data-type-system" />
     <Option Id="opt-resolve-workspace" ParameterId="param-resolve-workspace" />
-    <Option Id="opt-sql-expression-data-types-workspace" ParameterId="param-sql-expression-data-types-workspace" />
-    <Option Id="opt-sql-expression-input-expression" ParameterId="param-sql-expression-input-expression" />
-    <Option Id="opt-sql-expression-length" ParameterId="param-sql-expression-length" />
-    <Option Id="opt-sql-expression-precision" ParameterId="param-sql-expression-precision" />
-    <Option Id="opt-sql-expression-scale" ParameterId="param-sql-expression-scale" />
-    <Option Id="opt-sql-expression-source-data-type" ParameterId="param-sql-expression-source-data-type" />
-    <Option Id="opt-sql-expression-target-data-type-system" ParameterId="param-sql-expression-target-data-type-system" />
-    <Option Id="opt-sql-expression-workspace" ParameterId="param-sql-expression-workspace" />
     <Option Id="option-create-connection-env" ParameterId="param-create-connection-env" />
     <Option Id="option-create-csharp" ParameterId="param-create-csharp" />
     <Option Id="option-create-sql" ParameterId="param-create-sql" />
