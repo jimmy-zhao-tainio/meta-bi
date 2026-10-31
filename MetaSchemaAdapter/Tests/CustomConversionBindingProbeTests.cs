@@ -156,7 +156,7 @@ public sealed class CustomConversionBindingProbeTests(ITestOutputHelper output)
                 Mapping: {mapping.Id}
                 Implementation: {implementation.Id}
                 Snippet: {snippet.Id}
-                Authored snippet: {snippet.SqlText}
+                Authored snippet: {snippet.TransformScript}
                 Binding errors: {binding.ErrorCount}
                 Sanctioned conversion assessments: {binding.Model.ValidationTargetColumnTypeSanctionedConversionList.Count}
                 Bound SQL (unchanged): {definition.SourceSql}

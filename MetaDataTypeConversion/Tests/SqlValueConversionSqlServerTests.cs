@@ -42,7 +42,7 @@ public sealed class SqlValueConversionSqlServerTests
             var implementation = loaded.ConversionImplementationList.Single(row => row.Name == "SqlExpression");
             var snippet = loaded.SqlConversionSnippetList.Single(row => row.Id == "sqlserver:snippet:cast");
             Assert.Same(snippet, implementation.SqlConversionSnippet);
-            Assert.Equal("CAST($(value) AS $(type))", snippet.SqlText);
+            Assert.Equal("CAST($(value) AS $(type))", snippet.TransformScript);
             var binding = loaded.SqlConversionParameterBindingList.Single(row => row.SqlConversionSnippet == snippet && row.Name == "value");
             Assert.Same(loaded.SqlConversionParameterList.Single(row => row.Name == "SourceExpression"), binding.SqlConversionParameter);
             var service = new MetaDataTypeConversionService();
@@ -55,12 +55,12 @@ public sealed class SqlValueConversionSqlServerTests
                 Assert.Equal("126", await command.ExecuteScalarAsync());
 
             // A data-only snippet change adds arithmetic. The bound compound operand must stay grouped.
-            snippet.SqlText = "CAST($(value) * 2 AS $(type))";
+            snippet.TransformScript = "CAST($(value) * 2 AS $(type))";
             var composed = service.GenerateSqlExpression(loaded, MetaDataTypeInstance.BuiltIn,
                 new("sqlserver:type:int", "SqlServer", "1 + 2", new(Length: 24)));
             using (var command = new SqlCommand("SELECT " + syntax.ExportScalarExpression(composed.Expression), connection))
                 Assert.Equal("6", await command.ExecuteScalarAsync());
-            snippet.SqlText = "CAST($(value) AS $(type))";
+            snippet.TransformScript = "CAST($(value) AS $(type))";
 
             loaded.DataTypeMappingList.Single(row => row.SourceDataTypeId == "meta:type:Decimal").ConversionImplementation = implementation;
             var decimalValue = service.GenerateSqlExpression(loaded, MetaDataTypeInstance.BuiltIn,

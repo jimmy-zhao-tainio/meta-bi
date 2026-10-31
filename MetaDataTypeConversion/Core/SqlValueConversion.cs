@@ -34,8 +34,8 @@ public sealed partial class MetaDataTypeConversionService
         var implementation = model.ConversionImplementationList.Single(row => row.Id == resolution.ConversionImplementationId);
         var snippet = implementation.SqlConversionSnippet
             ?? throw new InvalidOperationException($"Mapping '{resolution.MappingId}', implementation '{implementation.Id}' has no SQL conversion snippet.");
-        if (snippet.Dialect != "SqlServer" || !BelongsToDataTypeSystem(resolution.TargetDataTypeId, "SqlServer"))
-            throw new InvalidOperationException($"Snippet '{snippet.Id}' dialect '{snippet.Dialect}' cannot realize mapping '{resolution.MappingId}'; only SQL Server targets are supported.");
+        if (!BelongsToDataTypeSystem(resolution.TargetDataTypeId, "SqlServer"))
+            throw new InvalidOperationException($"Snippet '{snippet.Id}' cannot realize mapping '{resolution.MappingId}' to target '{resolution.TargetDataTypeId}'; only SQL Server targets are supported.");
         // Only input preparation is code. SQL function choice, composition and fixed arguments are data.
         // Definitions are lazy: a source-only snippet must not require destination metadata or facets.
         var inputs = new Dictionary<string, Lazy<string>>(StringComparer.Ordinal)
@@ -66,10 +66,10 @@ public sealed partial class MetaDataTypeConversionService
 
     private static string SubstituteSnippet(SqlConversionSnippet snippet, IReadOnlyDictionary<string, string> parameters)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(snippet.SqlText);
+        ArgumentException.ThrowIfNullOrWhiteSpace(snippet.TransformScript);
         var result = new StringBuilder();
         var used = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        var text = snippet.SqlText;
+        var text = snippet.TransformScript;
         for (var index = 0; index < text.Length;)
         {
             // Same $(name), optional whitespace and $$( escaping as the pattern text syntax.

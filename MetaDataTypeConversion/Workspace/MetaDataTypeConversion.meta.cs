@@ -37,8 +37,7 @@ public sealed partial class SqlConversionParameterBinding
 public sealed partial class SqlConversionSnippet
 {
     public string Id { get; set; } = null!;
-    public string Dialect { get; set; } = null!;
-    public string SqlText { get; set; } = null!;
+    public string TransformScript { get; set; } = null!;
 }
 
 public sealed partial class MetaDataTypeConversionModel
@@ -612,15 +611,13 @@ public static partial class MetaDataTypeConversionInstance
         var record78 = new SqlConversionSnippet
         {
             Id = "sqlserver:snippet:cast",
-            Dialect = "SqlServer",
-            SqlText = "CAST($(value) AS $(type))"
+            TransformScript = "CAST($(value) AS $(type))"
         };
         model.SqlConversionSnippetList.Add(record78);
         var record79 = new SqlConversionSnippet
         {
             Id = "sqlserver:snippet:convert",
-            Dialect = "SqlServer",
-            SqlText = "CONVERT($(type), $(value))"
+            TransformScript = "CONVERT($(type), $(value))"
         };
         model.SqlConversionSnippetList.Add(record79);
         record1.SqlConversionSnippet = record78;

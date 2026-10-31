@@ -61,7 +61,7 @@ public sealed class SqlValueConversionTests
     public void AuthoredSnippetControlsFunctionsCompositionAndFixedArguments(string text, string expected)
     {
         var model = CreateSnippetModel();
-        model.SqlConversionSnippetList.Single(row => row.Id == "sqlserver:snippet:cast").SqlText = text;
+        model.SqlConversionSnippetList.Single(row => row.Id == "sqlserver:snippet:cast").TransformScript = text;
         Assert.Equal(expected, Syntax.ExportScalarExpression(Generate(model, "sqlserver:type:int", new(Length: 24)).Expression));
         Assert.Equal("sqlserver:type:nvarchar", Service.Resolve(model, "sqlserver:type:int", "SqlServer").TargetDataTypeId);
         Assert.Single(Service.ResolveCompatibility(model, "sqlserver:type:int", "sqlserver:type:nvarchar").Path);
@@ -82,13 +82,9 @@ public sealed class SqlValueConversionTests
     }
 
     [Fact]
-    public void UnsupportedDialect_AndMissingCatalogType_FailClearly()
+    public void MissingCatalogType_FailsClearly()
     {
         var model = CreateSnippetModel();
-        var snippet = model.SqlConversionSnippetList.Single(row => row.Id == "sqlserver:snippet:cast");
-        snippet.Dialect = "PostgreSql";
-        Assert.Contains("PostgreSql", Assert.Throws<InvalidOperationException>(() => Generate(model, "sqlserver:type:int", new(Length: 24))).Message);
-        snippet.Dialect = "SqlServer";
         Assert.Contains("sqlserver:type:nvarchar", Assert.Throws<InvalidOperationException>(() => Service.GenerateSqlExpression(
             model, MetaDataTypeModel.CreateEmpty(), new("sqlserver:type:int", "SqlServer", "1", new(Length: 24)))).Message);
     }
@@ -146,7 +142,7 @@ public sealed class SqlValueConversionTests
     {
         var model = CreateSnippetModel();
         var snippet = model.SqlConversionSnippetList.Single(row => row.Id == "sqlserver:snippet:cast");
-        snippet.SqlText = "CAST($( operand ) * 2 + $(operand) AS $(destination))";
+        snippet.TransformScript = "CAST($( operand ) * 2 + $(operand) AS $(destination))";
         foreach (var binding in model.SqlConversionParameterBindingList.Where(row => row.SqlConversionSnippet == snippet))
             binding.Name = binding.Name == "value" ? "operand" : "destination";
         Assert.Equal("CAST((1 + 2) * 2 + (1 + 2) AS nvarchar(24))",
@@ -157,7 +153,7 @@ public sealed class SqlValueConversionTests
     public void EscapedMarkersAndMarkersInsideBoundSql_AreNotExpandedAgain()
     {
         var model = CreateSnippetModel();
-        model.SqlConversionSnippetList.Single(row => row.Id == "sqlserver:snippet:cast").SqlText =
+        model.SqlConversionSnippetList.Single(row => row.Id == "sqlserver:snippet:cast").TransformScript =
             "COALESCE(CAST($(value) AS $(type)), N'$$(literal)')";
         Assert.Equal("COALESCE(CAST((N'$(leave-alone)') AS nvarchar(24)), N'$(literal)')",
             Syntax.ExportScalarExpression(Generate(model, "sqlserver:type:int", new(Length: 24), "N'$(leave-alone)'").Expression));
@@ -171,7 +167,7 @@ public sealed class SqlValueConversionTests
     public void InvalidSnippetBindingsFailClearly(string text, string diagnostic)
     {
         var model = CreateSnippetModel();
-        model.SqlConversionSnippetList.Single(row => row.Id == "sqlserver:snippet:cast").SqlText = text;
+        model.SqlConversionSnippetList.Single(row => row.Id == "sqlserver:snippet:cast").TransformScript = text;
         Assert.Contains(diagnostic, Assert.Throws<InvalidOperationException>(() => Generate(model, "sqlserver:type:int", new(Length: 24))).Message);
     }
 
@@ -200,8 +196,8 @@ public sealed class SqlValueConversionTests
         var model = CreateSnippetModel();
         var snippet = new SqlConversionSnippet
         {
-            Id = "custom:format", Dialect = "SqlServer",
-            SqlText = "REPLACE(CONVERT($(destination), $(operand)), N'1', N'one')"
+            Id = "custom:format",
+            TransformScript = "REPLACE(CONVERT($(destination), $(operand)), N'1', N'one')"
         };
         model.SqlConversionSnippetList.Add(snippet);
         var implementation = new ConversionImplementation { Id = "custom:implementation", Name = "Custom", SqlConversionSnippet = snippet };
@@ -226,7 +222,7 @@ public sealed class SqlValueConversionTests
     {
         var model = CreateSnippetModel();
         var snippet = model.SqlConversionSnippetList.Single(row => row.Id == "sqlserver:snippet:cast");
-        snippet.SqlText = "CONVERT(nvarchar(8), $(value), 112)";
+        snippet.TransformScript = "CONVERT(nvarchar(8), $(value), 112)";
         model.SqlConversionParameterBindingList.RemoveAll(row => row.SqlConversionSnippet == snippet && row.Name == "type");
         // Missing target catalog entry and absent destination facets are irrelevant to this snippet.
         var result = Service.GenerateSqlExpression(model, MetaDataTypeModel.CreateEmpty(),
@@ -239,7 +235,7 @@ public sealed class SqlValueConversionTests
     {
         var model = CreateSnippetModel();
         var snippet = model.SqlConversionSnippetList.Single(row => row.Id == "sqlserver:snippet:cast");
-        snippet.SqlText = "CAST(NULL AS $(type))";
+        snippet.TransformScript = "CAST(NULL AS $(type))";
         model.SqlConversionParameterBindingList.RemoveAll(row => row.SqlConversionSnippet == snippet && row.Name == "value");
         var result = Generate(model, "sqlserver:type:int", new(Length: 24), "unused; not a scalar expression");
         Assert.Equal("CAST(NULL AS nvarchar(24))", Syntax.ExportScalarExpression(result.Expression));

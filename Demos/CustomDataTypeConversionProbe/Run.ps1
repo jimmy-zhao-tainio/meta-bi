@@ -28,7 +28,7 @@ Set-Content -LiteralPath (Join-Path $probeRoot 'Data/Wacky.tsv') -Value "WackyVa
 # All workspace authoring uses the existing modeled CLI. Sanctioned instances
 # seed this private copy; they are not treated as an immutable catalogue.
 Invoke-Meta create --source-workspace (Join-Path $repoRoot 'MetaDataTypeConversion/Workspace') --with-instances --xml $conversions
-Invoke-Meta insert SqlConversionSnippet probe:snippet:reversed --set Dialect=SqlServer --set 'SqlText=CAST(REVERSE(SUBSTRING($(value), 3, 8)) AS $(type))' --workspace $conversions
+Invoke-Meta insert SqlConversionSnippet probe:snippet:reversed --set 'TransformScript=CAST(REVERSE(SUBSTRING($(value), 3, 8)) AS $(type))' --workspace $conversions
 Invoke-Meta insert ConversionImplementation probe:implementation:reversed --set Name=ReversedDigits --set SqlConversionSnippet=probe:snippet:reversed --workspace $conversions
 Invoke-Meta insert SqlConversionParameterBinding probe:binding:value --set Name=value --set SqlConversionSnippet=probe:snippet:reversed --set SqlConversionParameter=MetaDataTypeConversion:parameter:source-expression --workspace $conversions
 Invoke-Meta insert SqlConversionParameterBinding probe:binding:type --set Name=type --set SqlConversionSnippet=probe:snippet:reversed --set SqlConversionParameter=MetaDataTypeConversion:parameter:destination-type --workspace $conversions
@@ -60,7 +60,7 @@ try {
     foreach ($expected in @(123, 246)) {
         if ($expected -eq 246) {
             # The only behavior change between runs is instance data.
-            Invoke-Meta instance update SqlConversionSnippet probe:snippet:reversed --set 'SqlText=CAST(REVERSE(SUBSTRING($(value), 3, 8)) AS $(type)) * 2' --workspace $conversions
+            Invoke-Meta instance update SqlConversionSnippet probe:snippet:reversed --set 'TransformScript=CAST(REVERSE(SUBSTRING($(value), 3, 8)) AS $(type)) * 2' --workspace $conversions
         }
         Set-Content -LiteralPath (Join-Path $probeRoot 'Expected.txt') -Value $expected -Encoding utf8
         & dotnet test $testBinary --nologo --filter FullyQualifiedName~CustomConversionBindingProbeTests --logger 'console;verbosity=normal'

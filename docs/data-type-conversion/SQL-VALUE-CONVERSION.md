@@ -63,13 +63,14 @@ traversal remains unchanged; the binding regression proves SQL is not rewritten.
 ## Authored instance data
 
 `ConversionImplementation.SqlConversionSnippet` is a natural reference to a
-reusable `SqlConversionSnippet` with `Dialect` and `SqlText`. The actual built-in
-snippet instances are:
+reusable `SqlConversionSnippet`. Its `TransformScript` property holds authored,
+parameterized text using TransformScript syntax. The actual built-in snippet
+instances are:
 
-| Snippet ID | Dialect | SqlText |
-| --- | --- | --- |
-| `sqlserver:snippet:cast` | `SqlServer` | `CAST($(value) AS $(type))` |
-| `sqlserver:snippet:convert` | `SqlServer` | `CONVERT($(type), $(value))` |
+| Snippet ID | TransformScript |
+| --- | --- |
+| `sqlserver:snippet:cast` | `CAST($(value) AS $(type))` |
+| `sqlserver:snippet:convert` | `CONVERT($(type), $(value))` |
 
 The `MetaDataTypeConversion:implementation:sql-expression` instance references
 `sqlserver:snippet:cast`. Each snippet owns two binding rows:
@@ -117,7 +118,7 @@ instantiates for `@source` as `CONVERT(nvarchar(8), (@source), 112)` without a
 separate destination length, destination facets or target catalog entry.
 A destination-only snippet likewise does not parse an unused source expression.
 
-Changing authored SqlText to:
+Changing authored `TransformScript` to:
 
 ```sql
 COALESCE(CONVERT($(type), $(value), 112), N'unknown')

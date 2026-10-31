@@ -28,16 +28,16 @@ public sealed class SqlValueConversionWorkspaceTests
             Assert.Same(snippet, binding.SqlConversionSnippet);
             Assert.Same(loaded.SqlConversionParameterList.Single(row => row.Name == "SourceExpression"), binding.SqlConversionParameter);
             Assert.Same(implementation, loaded.DataTypeMappingList.Single(row => row.Id.EndsWith(":int-to-nvarchar", StringComparison.Ordinal)).ConversionImplementation);
-            Assert.Equal("SqlServer", snippet.Dialect);
+            Assert.Equal("CAST($(value) AS $(type))", snippet.TransformScript);
             var first = Instantiate(loaded);
             Assert.Equal("CAST((([s].[Value] + 2) * 3) AS nvarchar(24))", first);
 
             // Author arbitrary expression composition and a fixed style argument in INSTANCE DATA.
-            snippet.SqlText = "COALESCE(CONVERT($(type), $(value), 112), N'unknown')";
+            snippet.TransformScript = "COALESCE(CONVERT($(type), $(value), 112), N'unknown')";
             var convertPath = Path.Combine(directory, "convert");
             await TypedWorkspaceModelMapper.CreateAsync(loaded, convertPath, representation);
             var changed = TypedWorkspaceModelMapper.Load<MetaDataTypeConversionModel>(convertPath, searchUpward: false);
-            Assert.Equal(snippet.SqlText, changed.SqlConversionSnippetList.Single(row => row.Id == snippet.Id).SqlText);
+            Assert.Equal(snippet.TransformScript, changed.SqlConversionSnippetList.Single(row => row.Id == snippet.Id).TransformScript);
             var second = Instantiate(changed);
             Assert.Equal("COALESCE(CONVERT(nvarchar(24), (([s].[Value] + 2) * 3), 112), N'unknown')", second);
 
