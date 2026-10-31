@@ -117,6 +117,12 @@ CONVERT(nvarchar(8), $(value), 112)
 instantiates for `@source` as `CONVERT(nvarchar(8), (@source), 112)` without a
 separate destination length, destination facets or target catalog entry.
 A destination-only snippet likewise does not parse an unused source expression.
+The target type system need not be named `SqlServer` when the authored snippet
+provides its own SQL type. For example, a mapping to `bdv:type:Text25` can use
+`CAST($(value) AS nvarchar(25))` with only the source binding. A snippet that
+binds the destination type still requires a SQL Server target catalog type;
+realizing a separate BDV type through an authored physical type is not yet
+supported.
 
 Changing authored `TransformScript` to:
 

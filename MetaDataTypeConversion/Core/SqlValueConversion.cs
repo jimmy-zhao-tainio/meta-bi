@@ -34,8 +34,6 @@ public sealed partial class MetaDataTypeConversionService
         var implementation = model.ConversionImplementationList.Single(row => row.Id == resolution.ConversionImplementationId);
         var snippet = implementation.SqlConversionSnippet
             ?? throw new InvalidOperationException($"Mapping '{resolution.MappingId}', implementation '{implementation.Id}' has no SQL conversion snippet.");
-        if (!BelongsToDataTypeSystem(resolution.TargetDataTypeId, "SqlServer"))
-            throw new InvalidOperationException($"Snippet '{snippet.Id}' cannot realize mapping '{resolution.MappingId}' to target '{resolution.TargetDataTypeId}'; only SQL Server targets are supported.");
         // Only input preparation is code. SQL function choice, composition and fixed arguments are data.
         // Definitions are lazy: a source-only snippet must not require destination metadata or facets.
         var inputs = new Dictionary<string, Lazy<string>>(StringComparer.Ordinal)

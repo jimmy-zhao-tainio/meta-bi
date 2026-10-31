@@ -231,6 +231,27 @@ public sealed class SqlValueConversionTests
     }
 
     [Fact]
+    public void SourceOnlySnippet_CanTargetASeparateTypeSystem()
+    {
+        var model = CreateSnippetModel();
+        var implementation = model.ConversionImplementationList.Single(row => row.Name == "SqlExpression");
+        var snippet = implementation.SqlConversionSnippet!;
+        snippet.TransformScript = "CAST($(value) AS nvarchar(25))";
+        model.SqlConversionParameterBindingList.RemoveAll(row => row.SqlConversionSnippet == snippet && row.Name == "type");
+        model.DataTypeMappingList.Add(new()
+        {
+            Id = "bdv:mapping:nvarchar", SourceDataTypeId = "sqlserver:type:nvarchar",
+            TargetDataTypeId = "bdv:type:Text25", ConversionImplementation = implementation
+        });
+
+        var result = Service.GenerateSqlExpression(model, MetaDataTypeModel.CreateEmpty(),
+            new("sqlserver:type:nvarchar", "bdv", "[source].[Name]", new()));
+
+        Assert.Equal("bdv:type:Text25", result.Mapping.TargetDataTypeId);
+        Assert.Equal("CAST(([source].[Name]) AS nvarchar(25))", Syntax.ExportScalarExpression(result.Expression));
+    }
+
+    [Fact]
     public void DestinationOnlySnippet_DoesNotParseUnusedSourceExpression()
     {
         var model = CreateSnippetModel();
