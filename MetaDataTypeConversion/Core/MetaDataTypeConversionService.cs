@@ -1,4 +1,5 @@
 using MetaDataTypeConversion;
+using MetaDataType;
 
 namespace MetaDataTypeConversion.Core;
 
@@ -41,7 +42,12 @@ public sealed partial class MetaDataTypeConversionService : IMetaDataTypeConvers
     public MetaDataTypeConversionModel CreateWorkspace() =>
         MetaDataTypeConversionInstance.BuiltIn;
 
-    public MetaDataTypeConversionCheckResult Check(MetaDataTypeConversionModel model)
+    public MetaDataTypeConversionCheckResult Check(MetaDataTypeConversionModel model) => CheckCore(model, null);
+
+    public MetaDataTypeConversionCheckResult Check(MetaDataTypeConversionModel model, MetaDataTypeModel dataTypes) =>
+        CheckCore(model, dataTypes ?? throw new ArgumentNullException(nameof(dataTypes)));
+
+    private static MetaDataTypeConversionCheckResult CheckCore(MetaDataTypeConversionModel model, MetaDataTypeModel? dataTypes)
     {
         ArgumentNullException.ThrowIfNull(model);
 
@@ -79,9 +85,11 @@ public sealed partial class MetaDataTypeConversionService : IMetaDataTypeConvers
         {
             var sourceDataTypeId = RequireValue(mapping.Id, mapping.SourceDataTypeId, nameof(DataTypeMapping.SourceDataTypeId));
             var targetDataTypeId = RequireValue(mapping.Id, mapping.TargetDataTypeId, nameof(DataTypeMapping.TargetDataTypeId));
-            if (string.IsNullOrWhiteSpace(TryGetDataTypeSystemName(targetDataTypeId)))
+            if (string.IsNullOrWhiteSpace(GetTargetSystemName(targetDataTypeId, dataTypes)))
             {
-                errors.Add($"DataTypeMapping '{mapping.Id}' has TargetDataTypeId '{targetDataTypeId}' with an unsupported data type id shape.");
+                errors.Add(dataTypes is null
+                    ? $"DataTypeMapping '{mapping.Id}' has TargetDataTypeId '{targetDataTypeId}' with an unsupported data type id shape."
+                    : $"DataTypeMapping '{mapping.Id}' target '{targetDataTypeId}' has no data type system in the supplied MetaDataType workspace.");
             }
 
             if (mapping.ConversionImplementation is null ||
@@ -97,11 +105,45 @@ public sealed partial class MetaDataTypeConversionService : IMetaDataTypeConvers
             }
         }
 
+        var mappingIds = mappings.Select(row => row.Id).ToHashSet(StringComparer.Ordinal);
+        var lengthThresholdsByMapping = new Dictionary<string, HashSet<long>>(StringComparer.Ordinal);
+        foreach (var rule in model.DataTypeMappingLengthRuleList)
+        {
+            if (rule.DataTypeMapping is null || !mappingIds.Contains(rule.DataTypeMapping.Id))
+            {
+                errors.Add($"DataTypeMappingLengthRule '{rule.Id}' references a missing DataTypeMapping.");
+                continue;
+            }
+
+            try
+            {
+                var threshold = ParseRuleLength(rule.SourceMaximumLength, rule.Id);
+                _ = ParseRuleLength(rule.TargetLength, rule.Id);
+                if (!lengthThresholdsByMapping.TryGetValue(rule.DataTypeMapping.Id, out var thresholds))
+                    lengthThresholdsByMapping.Add(rule.DataTypeMapping.Id, thresholds = []);
+                if (!thresholds.Add(threshold))
+                    errors.Add($"DataTypeMapping '{rule.DataTypeMapping.Id}' has duplicate source maximum lengths.");
+            }
+            catch (InvalidOperationException ex)
+            {
+                errors.Add(ex.Message);
+            }
+        }
+
+        foreach (var mapping in mappings.Where(row => lengthThresholdsByMapping.ContainsKey(row.Id)))
+        {
+            var snippet = mapping.ConversionImplementation?.SqlConversionSnippet;
+            if (snippet is null || !model.SqlConversionParameterBindingList.Any(binding =>
+                    binding.SqlConversionSnippet?.Id == snippet.Id &&
+                    binding.SqlConversionParameter?.Id == "MetaDataTypeConversion:parameter:destination-type"))
+                errors.Add($"DataTypeMapping '{mapping.Id}' has length rules but its SQL snippet does not bind the destination type.");
+        }
+
         var duplicateSources = mappings
             .GroupBy(
                 row => new DataTypeMappingKey(
                     RequireValue(row.Id, row.SourceDataTypeId, nameof(DataTypeMapping.SourceDataTypeId)),
-                    NormalizeDataTypeSystemName(TryGetDataTypeSystemName(RequireValue(row.Id, row.TargetDataTypeId, nameof(DataTypeMapping.TargetDataTypeId))) ?? string.Empty)),
+                    NormalizeDataTypeSystemName(GetTargetSystemName(RequireValue(row.Id, row.TargetDataTypeId, nameof(DataTypeMapping.TargetDataTypeId)), dataTypes) ?? string.Empty)),
                 DataTypeMappingKeyComparer.Instance)
             .Where(group => group.Count() > 1)
             .OrderBy(group => group.Key.SourceDataTypeId, StringComparer.Ordinal)
@@ -188,6 +230,27 @@ public sealed partial class MetaDataTypeConversionService : IMetaDataTypeConvers
         return CreateResolution(model, mappings[0]);
     }
 
+    public DataTypeMappingResolution Resolve(
+        MetaDataTypeConversionModel model,
+        MetaDataTypeModel dataTypes,
+        string sourceDataTypeId,
+        string targetDataTypeSystemName)
+    {
+        ArgumentNullException.ThrowIfNull(model);
+        ArgumentNullException.ThrowIfNull(dataTypes);
+        ArgumentException.ThrowIfNullOrWhiteSpace(sourceDataTypeId);
+        ArgumentException.ThrowIfNullOrWhiteSpace(targetDataTypeSystemName);
+        var check = Check(model, dataTypes);
+        if (check.HasErrors) throw new InvalidOperationException(string.Join(Environment.NewLine, check.Errors));
+        var mappings = model.DataTypeMappingList.Where(row =>
+                string.Equals(row.SourceDataTypeId, sourceDataTypeId, StringComparison.Ordinal) &&
+                string.Equals(GetTargetSystemName(row.TargetDataTypeId, dataTypes), targetDataTypeSystemName, StringComparison.OrdinalIgnoreCase))
+            .ToArray();
+        if (mappings.Length != 1)
+            throw new InvalidOperationException($"Expected one DataTypeMapping for source '{sourceDataTypeId}' and target system '{targetDataTypeSystemName}', found {mappings.Length}.");
+        return CreateResolution(model, mappings[0], GetTargetSystemName(mappings[0].TargetDataTypeId, dataTypes));
+    }
+
     public DataTypeCompatibilityResolution ResolveCompatibility(
         MetaDataTypeConversionModel model,
         string sourceDataTypeId,
@@ -256,7 +319,7 @@ public sealed partial class MetaDataTypeConversionService : IMetaDataTypeConvers
         throw new InvalidOperationException($"No sanctioned data type conversion path exists from '{source}' to '{target}'.");
     }
 
-    private static DataTypeMappingResolution CreateResolution(MetaDataTypeConversionModel model, DataTypeMapping mapping)
+    private static DataTypeMappingResolution CreateResolution(MetaDataTypeConversionModel model, DataTypeMapping mapping, string? targetSystemName = null)
     {
         var implementations = model.ConversionImplementationList
             .ToDictionary(row => row.Id, StringComparer.Ordinal);
@@ -278,7 +341,7 @@ public sealed partial class MetaDataTypeConversionService : IMetaDataTypeConvers
             mapping.Id,
             RequireValue(mapping.Id, mapping.SourceDataTypeId, nameof(DataTypeMapping.SourceDataTypeId)),
             targetDataTypeId,
-            TryGetDataTypeSystemName(targetDataTypeId) ?? string.Empty,
+            targetSystemName ?? TryGetDataTypeSystemName(targetDataTypeId) ?? string.Empty,
             implementation.Id,
             RequireValue(implementation.Id, implementation.Name, nameof(ConversionImplementation.Name)),
             mapping.Notes);
@@ -288,6 +351,13 @@ public sealed partial class MetaDataTypeConversionService : IMetaDataTypeConvers
         mappings.Any(mapping =>
             string.Equals(mapping.SourceDataTypeId, dataTypeId, StringComparison.Ordinal) ||
             string.Equals(mapping.TargetDataTypeId, dataTypeId, StringComparison.Ordinal));
+
+    private static string? GetTargetSystemName(string dataTypeId, MetaDataTypeModel? dataTypes)
+    {
+        if (dataTypes is null) return TryGetDataTypeSystemName(dataTypeId);
+        var dataType = dataTypes.DataTypeList.SingleOrDefault(row => string.Equals(row.Id, dataTypeId, StringComparison.Ordinal));
+        return dataType?.DataTypeSystem?.Name;
+    }
 
     public static string? TryGetDataTypeSystemName(string dataTypeId)
     {

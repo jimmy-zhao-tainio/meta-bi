@@ -25,8 +25,15 @@ public sealed class SqlValueConversionSqlServerTests
         {
             Environment.SetEnvironmentVariable(environmentName, connectionString);
             var model = MetaDataTypeConversionInstance.CreateBuiltIn();
+            model.DataTypeMappingLengthRuleList.Add(new()
+            {
+                Id = "test:length:25", SourceMaximumLength = "25", TargetLength = "25",
+                DataTypeMapping = model.DataTypeMappingList.Single(row => row.SourceDataTypeId == "meta:type:String")
+            });
             // This test authors a snippet selection locally; existing BI mappings are unchanged.
             model.DataTypeMappingList.Single(row => row.Id.EndsWith(":int-to-nvarchar", StringComparison.Ordinal)).ConversionImplementation =
+                model.ConversionImplementationList.Single(row => row.Name == "SqlExpression");
+            model.DataTypeMappingList.Single(row => row.SourceDataTypeId == "meta:type:String").ConversionImplementation =
                 model.ConversionImplementationList.Single(row => row.Name == "SqlExpression");
             // The SQL surface requires model name == database name and creates the database itself.
             // Rename only this disposable test materialization, preserving all entity contracts.
@@ -39,6 +46,10 @@ public sealed class SqlValueConversionSqlServerTests
             stored.Model.Name = "MetaDataTypeConversion";
             stored.Instance.ModelName = "MetaDataTypeConversion";
             var loaded = TypedWorkspaceModelMapper.FromInMemoryWorkspace(stored, MetaDataTypeConversionModel.CreateEmpty);
+            var lengthRule = Assert.Single(loaded.DataTypeMappingLengthRuleList);
+            Assert.Same(loaded.DataTypeMappingList.Single(row => row.SourceDataTypeId == "meta:type:String"), lengthRule.DataTypeMapping);
+            Assert.Equal("25", lengthRule.SourceMaximumLength);
+            Assert.Equal("25", lengthRule.TargetLength);
             var implementation = loaded.ConversionImplementationList.Single(row => row.Name == "SqlExpression");
             var snippet = loaded.SqlConversionSnippetList.Single(row => row.Id == "sqlserver:snippet:cast");
             Assert.Same(snippet, implementation.SqlConversionSnippet);

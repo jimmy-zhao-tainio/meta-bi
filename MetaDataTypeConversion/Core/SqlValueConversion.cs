@@ -1,5 +1,6 @@
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Globalization;
 using MetaDataType;
 using MetaTransformScript.Sql;
 
@@ -9,7 +10,8 @@ public sealed record SqlValueConversionRequest(
     string SourceDataTypeId,
     string TargetDataTypeSystemName,
     string InputExpression,
-    SqlServerTypeFacets TargetFacets);
+    SqlServerTypeFacets TargetFacets,
+    SqlServerTypeFacets? SourceFacets = null);
 
 public sealed record SqlValueConversionResult(DataTypeMappingResolution Mapping, SqlScalarExpression Expression);
 
@@ -22,9 +24,9 @@ public sealed partial class MetaDataTypeConversionService
         ArgumentNullException.ThrowIfNull(model);
         ArgumentNullException.ThrowIfNull(dataTypes);
         ArgumentNullException.ThrowIfNull(request);
-        var check = Check(model);
+        var check = Check(model, dataTypes);
         if (check.HasErrors) throw new InvalidOperationException(string.Join(Environment.NewLine, check.Errors));
-        var resolution = Resolve(model, request.SourceDataTypeId, request.TargetDataTypeSystemName);
+        var resolution = Resolve(model, dataTypes, request.SourceDataTypeId, request.TargetDataTypeSystemName);
         var syntax = new MetaTransformScriptSqlService();
         if (resolution.ConversionImplementationId == "MetaDataTypeConversion:implementation:direct")
             return new(resolution, syntax.ImportScalarExpression(request.InputExpression));
@@ -46,8 +48,18 @@ public sealed partial class MetaDataTypeConversionService
                 var target = dataTypes.DataTypeList.SingleOrDefault(row => row.Id == resolution.TargetDataTypeId)
                     ?? throw new InvalidOperationException($"Mapping '{resolution.MappingId}' target '{resolution.TargetDataTypeId}' is absent from MetaDataType.");
                 if (!string.Equals(target.DataTypeSystem?.Name, "SqlServer", StringComparison.OrdinalIgnoreCase))
-                    throw new InvalidOperationException($"Target '{target.Id}' does not belong to the SqlServer data type system.");
-                return syntax.RenderSqlServerDataType(target.Name, request.TargetFacets);
+                {
+                    var candidates = (from mapping in model.DataTypeMappingList
+                                      where mapping.SourceDataTypeId == target.Id
+                                      join dataType in dataTypes.DataTypeList on mapping.TargetDataTypeId equals dataType.Id
+                                      where string.Equals(dataType.DataTypeSystem?.Name, "SqlServer", StringComparison.OrdinalIgnoreCase)
+                                      select dataType).ToArray();
+                    if (candidates.Length != 1)
+                        throw new InvalidOperationException($"Target '{target.Id}' requires exactly one mapped SqlServer physical type; found {candidates.Length}.");
+                    target = candidates[0];
+                }
+                var facets = ResolveLengthPolicy(model, resolution.MappingId, request.SourceFacets, request.TargetFacets);
+                return syntax.RenderSqlServerDataType(target.Name, facets);
             })
         };
         var parameters = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
@@ -60,6 +72,36 @@ public sealed partial class MetaDataTypeConversionService
             parameters.Add(binding.Name, input.Value);
         }
         return new(resolution, syntax.ImportScalarExpression(SubstituteSnippet(snippet, parameters)));
+    }
+
+    private static SqlServerTypeFacets ResolveLengthPolicy(
+        MetaDataTypeConversionModel model, string mappingId,
+        SqlServerTypeFacets? source, SqlServerTypeFacets destination)
+    {
+        var rules = model.DataTypeMappingLengthRuleList
+            .Where(rule => rule.DataTypeMapping.Id == mappingId)
+            .Select(rule => (Rule: rule, Maximum: ParseRuleLength(rule.SourceMaximumLength, rule.Id)))
+            .ToArray();
+        if (rules.Length == 0) return destination;
+        if (source is null || (source.IsMax == source.Length.HasValue) || (source.Length.HasValue && source.Length <= 0))
+            throw new InvalidOperationException($"Mapping '{mappingId}' requires an explicit positive source length or MAX to select its length rule.");
+        if (rules.Select(rule => rule.Maximum).Distinct().Count() != rules.Length)
+            throw new InvalidOperationException($"Mapping '{mappingId}' has duplicate source maximum lengths.");
+        var sourceLength = source.IsMax ? (long)int.MaxValue + 1 : source.Length!.Value;
+        var selected = rules.Where(rule => sourceLength <= rule.Maximum).OrderBy(rule => rule.Maximum).FirstOrDefault();
+        if (selected.Rule is null)
+            throw new InvalidOperationException($"Mapping '{mappingId}' has no length rule for source length {(source.IsMax ? "MAX" : source.Length!.Value.ToString(CultureInfo.InvariantCulture))}.");
+        var targetLength = ParseRuleLength(selected.Rule.TargetLength, selected.Rule.Id);
+        return targetLength > int.MaxValue
+            ? destination with { Length = null, IsMax = true }
+            : destination with { Length = (int)targetLength, IsMax = false };
+    }
+
+    private static long ParseRuleLength(string value, string ruleId)
+    {
+        if (string.Equals(value?.Trim(), "MAX", StringComparison.OrdinalIgnoreCase)) return (long)int.MaxValue + 1;
+        if (int.TryParse(value, NumberStyles.None, CultureInfo.InvariantCulture, out var length) && length > 0) return length;
+        throw new InvalidOperationException($"Length rule '{ruleId}' has invalid length '{value}'; use a positive integer or MAX.");
     }
 
     private static string SubstituteSnippet(SqlConversionSnippet snippet, IReadOnlyDictionary<string, string> parameters)

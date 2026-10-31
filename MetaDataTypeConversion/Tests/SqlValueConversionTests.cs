@@ -224,8 +224,8 @@ public sealed class SqlValueConversionTests
         var snippet = model.SqlConversionSnippetList.Single(row => row.Id == "sqlserver:snippet:cast");
         snippet.TransformScript = "CONVERT(nvarchar(8), $(value), 112)";
         model.SqlConversionParameterBindingList.RemoveAll(row => row.SqlConversionSnippet == snippet && row.Name == "type");
-        // Missing target catalog entry and absent destination facets are irrelevant to this snippet.
-        var result = Service.GenerateSqlExpression(model, MetaDataTypeModel.CreateEmpty(),
+        // Mapping selection still uses the catalog, but this snippet needs no destination facets.
+        var result = Service.GenerateSqlExpression(model, MetaDataTypeInstance.CreateBuiltIn(),
             new("sqlserver:type:int", "SqlServer", "@source", new()));
         Assert.Equal("CONVERT(nvarchar(8), (@source), 112)", Syntax.ExportScalarExpression(result.Expression));
     }
@@ -244,11 +244,112 @@ public sealed class SqlValueConversionTests
             TargetDataTypeId = "bdv:type:Text25", ConversionImplementation = implementation
         });
 
-        var result = Service.GenerateSqlExpression(model, MetaDataTypeModel.CreateEmpty(),
+        var dataTypes = MetaDataTypeInstance.CreateBuiltIn();
+        var bdv = new DataTypeSystem { Id = "custom-system", Name = "BDV" };
+        dataTypes.DataTypeSystemList.Add(bdv);
+        dataTypes.DataTypeList.Add(new DataType { Id = "bdv:type:Text25", Name = "Text25", DataTypeSystem = bdv });
+        var result = Service.GenerateSqlExpression(model, dataTypes,
             new("sqlserver:type:nvarchar", "bdv", "[source].[Name]", new()));
 
         Assert.Equal("bdv:type:Text25", result.Mapping.TargetDataTypeId);
         Assert.Equal("CAST(([source].[Name]) AS nvarchar(25))", Syntax.ExportScalarExpression(result.Expression));
+    }
+
+    [Theory]
+    [InlineData(1, false, "nvarchar(25)")]
+    [InlineData(25, false, "nvarchar(25)")]
+    [InlineData(26, false, "nvarchar(250)")]
+    [InlineData(250, false, "nvarchar(250)")]
+    [InlineData(251, false, "nvarchar(max)")]
+    [InlineData(null, true, "nvarchar(max)")]
+    public void AuthoredLengthRules_SelectPhysicalTypeForSeparateTypeSystem(int? sourceLength, bool sourceMax, string expectedType)
+    {
+        var (model, dataTypes) = CreateLengthPolicyModel();
+        var result = Service.GenerateSqlExpression(model, dataTypes,
+            new("sqlserver:type:nvarchar", "BDV", "[s].[Name]", new(), new(Length: sourceLength, IsMax: sourceMax)));
+
+        Assert.Equal("bdv:type:nvarchar", result.Mapping.TargetDataTypeId);
+        Assert.Equal($"CAST(([s].[Name]) AS {expectedType})", Syntax.ExportScalarExpression(result.Expression));
+    }
+
+    [Fact]
+    public void LengthPolicy_RejectsMissingAndAmbiguousRules()
+    {
+        var (model, dataTypes) = CreateLengthPolicyModel();
+        Assert.Contains("source length", Assert.Throws<InvalidOperationException>(() => Service.GenerateSqlExpression(
+            model, dataTypes, new("sqlserver:type:nvarchar", "BDV", "[s].[Name]", new()))).Message);
+        var first = model.DataTypeMappingLengthRuleList.First();
+        model.DataTypeMappingLengthRuleList.Add(new()
+        {
+            Id = "duplicate", DataTypeMapping = first.DataTypeMapping,
+            SourceMaximumLength = first.SourceMaximumLength, TargetLength = "25"
+        });
+        Assert.Contains("duplicate", Assert.Throws<InvalidOperationException>(() => Service.GenerateSqlExpression(
+            model, dataTypes, new("sqlserver:type:nvarchar", "BDV", "[s].[Name]", new(), new(Length: 10)))).Message);
+    }
+
+    [Fact]
+    public void LengthPolicy_IsValidatedAndCannotBeSilentlyIgnored()
+    {
+        var (model, dataTypes) = CreateLengthPolicyModel();
+        var mapping = model.DataTypeMappingList.Single(row => row.Id == "bdv:mapping:nvarchar");
+        mapping.ConversionImplementation = model.ConversionImplementationList.Single(row => row.Name == "Direct");
+        Assert.Contains(Service.Check(model, dataTypes).Errors, error => error.Contains("does not bind the destination type"));
+        mapping.ConversionImplementation = model.ConversionImplementationList.Single(row => row.Name == "SqlExpression");
+        model.DataTypeMappingLengthRuleList.First().TargetLength = "-1";
+        Assert.Contains(Service.Check(model, dataTypes).Errors, error => error.Contains("invalid length"));
+    }
+
+    [Fact]
+    public void ConversionUsesTypeSystemRelationshipsInsteadOfIdentityPrefixes()
+    {
+        var (model, dataTypes) = CreateLengthPolicyModel();
+        var logical = dataTypes.DataTypeList.Single(row => row.Id == "bdv:type:nvarchar");
+        var physical = dataTypes.DataTypeList.Single(row => row.Id == "sqlserver:type:nvarchar");
+        var oldLogicalId = logical.Id;
+        var oldPhysicalId = physical.Id;
+        logical.Id = "custom-bdv-string";
+        physical.Id = "custom-sql-string";
+        foreach (var mapping in model.DataTypeMappingList)
+        {
+            if (mapping.SourceDataTypeId == oldLogicalId) mapping.SourceDataTypeId = logical.Id;
+            if (mapping.SourceDataTypeId == oldPhysicalId) mapping.SourceDataTypeId = physical.Id;
+            if (mapping.TargetDataTypeId == oldLogicalId) mapping.TargetDataTypeId = logical.Id;
+            if (mapping.TargetDataTypeId == oldPhysicalId) mapping.TargetDataTypeId = physical.Id;
+        }
+
+        var result = Service.GenerateSqlExpression(model, dataTypes,
+            new(physical.Id, "BDV", "[s].[Name]", new(), new(Length: 10)));
+
+        Assert.Equal(logical.Id, result.Mapping.TargetDataTypeId);
+        Assert.Equal("CAST(([s].[Name]) AS nvarchar(25))", Syntax.ExportScalarExpression(result.Expression));
+    }
+
+    internal static (MetaDataTypeConversionModel Model, MetaDataTypeModel DataTypes) CreateLengthPolicyModel()
+    {
+        var model = MetaDataTypeConversionInstance.CreateBuiltIn();
+        var dataTypes = MetaDataTypeInstance.CreateBuiltIn();
+        var bdv = new DataTypeSystem { Id = "BDV", Name = "BDV" };
+        dataTypes.DataTypeSystemList.Add(bdv);
+        dataTypes.DataTypeList.Add(new DataType { Id = "bdv:type:nvarchar", Name = "nvarchar", DataTypeSystem = bdv });
+        var mapping = new DataTypeMapping
+        {
+            Id = "bdv:mapping:nvarchar", SourceDataTypeId = "sqlserver:type:nvarchar", TargetDataTypeId = "bdv:type:nvarchar",
+            ConversionImplementation = model.ConversionImplementationList.Single(row => row.Name == "SqlExpression")
+        };
+        model.DataTypeMappingList.Add(mapping);
+        model.DataTypeMappingList.Add(new()
+        {
+            Id = "bdv:realization:nvarchar", SourceDataTypeId = "bdv:type:nvarchar", TargetDataTypeId = "sqlserver:type:nvarchar",
+            ConversionImplementation = model.ConversionImplementationList.Single(row => row.Name == "Direct")
+        });
+        foreach (var (maximum, target) in new[] { ("25", "25"), ("250", "250"), ("MAX", "MAX") })
+            model.DataTypeMappingLengthRuleList.Add(new()
+            {
+                Id = $"bdv:length:{maximum}", DataTypeMapping = mapping,
+                SourceMaximumLength = maximum, TargetLength = target
+            });
+        return (model, dataTypes);
     }
 
     [Fact]

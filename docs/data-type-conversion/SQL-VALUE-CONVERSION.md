@@ -101,7 +101,9 @@ The scalar-fragment parser, type formatter and SQL renderer are retained because
 they directly support preparing bound SQL fragments and checking the resulting
 metadata expression. No helper test is evidence of BI pipeline integration.
 
-Only inputs required by the selected snippet's binding rows are resolved.
+Mapping selection uses the supplied MetaDataType workspace to identify each
+target type's system; it does not infer the system from a type ID. Only inputs
+required by the selected snippet's binding rows are prepared.
 The source input parses as one supported scalar expression and is parenthesized
 to preserve compound operands. The destination input resolves the mapped target
 catalog type and explicit length/MAX, precision and scale only when bound.
@@ -115,14 +117,22 @@ CONVERT(nvarchar(8), $(value), 112)
 ```
 
 instantiates for `@source` as `CONVERT(nvarchar(8), (@source), 112)` without a
-separate destination length, destination facets or target catalog entry.
+separate destination length or destination facets.
 A destination-only snippet likewise does not parse an unused source expression.
 The target type system need not be named `SqlServer` when the authored snippet
 provides its own SQL type. For example, a mapping to `bdv:type:Text25` can use
 `CAST($(value) AS nvarchar(25))` with only the source binding. A snippet that
-binds the destination type still requires a SQL Server target catalog type;
-realizing a separate BDV type through an authored physical type is not yet
-supported.
+binds the destination type can use a separate BDV type when an authored mapping
+realizes that type as a SQL Server type in the supplied catalog.
+
+Optional `DataTypeMappingLengthRule` rows belong to a mapping. Each specifies
+the largest source length to which it applies and the resulting target length,
+as positive integers or `MAX`. The smallest applicable maximum wins; for
+example, rules 25 → 25, 250 → 250, and MAX → MAX select the three BDV lengths.
+Rules require an explicitly known source length and a snippet that binds the
+destination type. Missing coverage, malformed values and duplicate thresholds
+fail rather than choosing a default. This is model and helper support only;
+the TransformScript workspace generation command is not yet implemented.
 
 Changing authored `TransformScript` to:
 

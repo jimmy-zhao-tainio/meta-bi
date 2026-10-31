@@ -92,6 +92,14 @@ public sealed class TransformBindingValidationService
                 group => group.Key,
                 group => group.SelectMany(item => item.ColumnReferences).ToArray(),
                 StringComparer.Ordinal);
+        var runtimeOutputColumnsByBindingId = boundResults
+            .Where(item => item.TopLevelRowset is not null)
+            .GroupBy(item => $"{item.TransformScriptId}:binding", StringComparer.Ordinal)
+            .ToDictionary(
+                group => group.Key,
+                group => group.SelectMany(item => item.TopLevelRowset!.Columns)
+                    .ToDictionary(item => item.Id, StringComparer.Ordinal),
+                StringComparer.Ordinal);
 
         foreach (var binding in bindingModel.TransformBindingList)
         {
@@ -112,6 +120,7 @@ public sealed class TransformBindingValidationService
                 targetColumnTypeExactRows,
                 targetColumnTypeSanctionedConversionRows,
                 mutationEffectsByBindingId.GetValueOrDefault(binding.Id) ?? [],
+                runtimeOutputColumnsByBindingId.GetValueOrDefault(binding.Id),
                 rowsetsById,
                 columnsById,
                 runtimeColumnReferencesByBindingId.GetValueOrDefault(binding.Id) ?? [],
@@ -193,6 +202,7 @@ public sealed class TransformBindingValidationService
         List<ValidationTargetColumnTypeExact> targetColumnTypeExactRows,
         List<ValidationTargetColumnTypeSanctionedConversion> targetColumnTypeSanctionedConversionRows,
         IReadOnlyList<RuntimeMutationEffect> mutationEffects,
+        IReadOnlyDictionary<string, RuntimeColumn>? runtimeOutputColumns,
         IReadOnlyDictionary<string, Rowset> rowsetsById,
         IReadOnlyDictionary<string, Column> columnsById,
         IReadOnlyList<RuntimeColumnReference> runtimeColumnReferences,
@@ -275,6 +285,7 @@ public sealed class TransformBindingValidationService
                 targetColumnTypeExactRows,
                 targetColumnTypeSanctionedConversionRows,
                 mutationEffects,
+                runtimeOutputColumns,
                 rowsetsById,
                 columnsById,
                 runtimeColumnReferences,
@@ -441,6 +452,7 @@ public sealed class TransformBindingValidationService
         List<ValidationTargetColumnTypeExact> targetColumnTypeExactRows,
         List<ValidationTargetColumnTypeSanctionedConversion> targetColumnTypeSanctionedConversionRows,
         IReadOnlyList<RuntimeMutationEffect> mutationEffects,
+        IReadOnlyDictionary<string, RuntimeColumn>? runtimeOutputColumns,
         IReadOnlyDictionary<string, Rowset> rowsetsById,
         IReadOnlyDictionary<string, Column> columnsById,
         IReadOnlyList<RuntimeColumnReference> runtimeColumnReferences,
@@ -695,10 +707,18 @@ public sealed class TransformBindingValidationService
                 $"Target schema field '{resolution.Table.CanonicalSqlIdentifier}.{matchedTargetField.FieldName}'");
 
             var outputColumnName = actualWriteColumns[ordinal].Name;
-            if (sourceColumnTypeCandidatesByName.TryGetValue(outputColumnName, out var sourceCandidates) &&
-                sourceCandidates.Count == 1)
+            ResolvedSourceColumnType? sourceCandidate = null;
+            if (runtimeOutputColumns is not null)
             {
-                var sourceCandidate = sourceCandidates[0];
+                if (runtimeOutputColumns.TryGetValue(actualWriteColumns[ordinal].Id, out var runtimeColumn) &&
+                    runtimeColumn.DataType is { } resultType)
+                    sourceCandidate = new ResolvedSourceColumnType(outputColumnName, resultType.MetaDataTypeId,
+                        resultType.IsNullable, resultType.Length, resultType.Precision, resultType.Scale, resultType.DisplayName);
+            }
+            else if (sourceColumnTypeCandidatesByName.TryGetValue(outputColumnName, out var sourceCandidates) && sourceCandidates.Count == 1)
+                sourceCandidate = sourceCandidates[0];
+            if (sourceCandidate is not null)
+            {
                 var compatibility = ValidateTargetColumnTypeConformance(
                     dataTypeConversionService,
                     dataTypeConversionWorkspace,

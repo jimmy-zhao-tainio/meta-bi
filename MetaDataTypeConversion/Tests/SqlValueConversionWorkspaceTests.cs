@@ -10,6 +10,35 @@ public sealed class SqlValueConversionWorkspaceTests
     [Theory]
     [InlineData("xml")]
     [InlineData("csharp")]
+    public async Task AuthoredLengthRules_RoundTripAndChangeGeneratedType(string representation)
+    {
+        var directory = Path.Combine(Path.GetTempPath(), "MetaDataTypeConversion-length-tests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            var (model, dataTypes) = SqlValueConversionTests.CreateLengthPolicyModel();
+            await TypedWorkspaceModelMapper.CreateAsync(model, directory, representation);
+            var loaded = TypedWorkspaceModelMapper.Load<MetaDataTypeConversionModel>(directory, searchUpward: false);
+            var mapping = loaded.DataTypeMappingList.Single(row => row.Id == "bdv:mapping:nvarchar");
+            Assert.All(loaded.DataTypeMappingLengthRuleList, rule => Assert.Same(mapping, rule.DataTypeMapping));
+            var service = new MetaDataTypeConversionService();
+            var syntax = new MetaTransformScriptSqlService();
+            var first = service.GenerateSqlExpression(loaded, dataTypes,
+                new("sqlserver:type:nvarchar", "BDV", "s.Name", new(), new(Length: 30)));
+            Assert.Equal("CAST((s.Name) AS nvarchar(250))", syntax.ExportScalarExpression(first.Expression));
+            loaded.DataTypeMappingLengthRuleList.Single(row => row.SourceMaximumLength == "250").TargetLength = "100";
+            var changed = service.GenerateSqlExpression(loaded, dataTypes,
+                new("sqlserver:type:nvarchar", "BDV", "s.Name", new(), new(Length: 30)));
+            Assert.Equal("CAST((s.Name) AS nvarchar(100))", syntax.ExportScalarExpression(changed.Expression));
+        }
+        finally
+        {
+            if (Directory.Exists(directory)) Directory.Delete(directory, recursive: true);
+        }
+    }
+
+    [Theory]
+    [InlineData("xml")]
+    [InlineData("csharp")]
     public async Task SnippetAndBindings_RoundTrip_AndSupportMetadataInstantiation(string representation)
     {
         var directory = Path.Combine(Path.GetTempPath(), "MetaDataTypeConversion-value-tests", Guid.NewGuid().ToString("N"));

@@ -20,6 +20,14 @@ public sealed partial class DataTypeMapping
     public ConversionImplementation ConversionImplementation { get; set; } = null!;
 }
 
+public sealed partial class DataTypeMappingLengthRule
+{
+    public string Id { get; set; } = null!;
+    public string SourceMaximumLength { get; set; } = null!;
+    public string TargetLength { get; set; } = null!;
+    public DataTypeMapping DataTypeMapping { get; set; } = null!;
+}
+
 public sealed partial class SqlConversionParameter
 {
     public string Id { get; set; } = null!;
@@ -45,6 +53,7 @@ public sealed partial class MetaDataTypeConversionModel
     public static MetaDataTypeConversionModel CreateEmpty() => new();
     public List<ConversionImplementation> ConversionImplementationList { get; set; } = new();
     public List<DataTypeMapping> DataTypeMappingList { get; set; } = new();
+    public List<DataTypeMappingLengthRule> DataTypeMappingLengthRuleList { get; set; } = new();
     public List<SqlConversionParameter> SqlConversionParameterList { get; set; } = new();
     public List<SqlConversionParameterBinding> SqlConversionParameterBindingList { get; set; } = new();
     public List<SqlConversionSnippet> SqlConversionSnippetList { get; set; } = new();

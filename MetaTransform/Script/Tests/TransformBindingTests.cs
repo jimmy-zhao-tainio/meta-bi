@@ -54,6 +54,41 @@ public sealed class TransformBindingTests
         Assert.Equal(3, bound.ColumnReferences.Count);
     }
 
+    [Theory]
+    [InlineData(100, 25, 25, "Code", true)]
+    [InlineData(10, 100, 25, "Code", false)]
+    [InlineData(10, 10, 25, "Renamed", true)]
+    public void BindValidatedSelect_UsesActualProjectedExpressionType(int sourceLength, int castLength, int targetLength, string outputName, bool expectedValid)
+    {
+        var model = new MetaTransformScriptSqlParser().ParseSqlCode(
+            $"CREATE VIEW dbo.Customer AS SELECT CAST(s.Code AS varchar({castLength})) AS {outputName} FROM dbo.CustomerStage AS s;");
+        SetViewTargetSqlIdentifier(model, model.TransformScriptList[0], "dbo.Customer");
+        var source = CreateSchema("TestSystem", ("dbo", "CustomerStage", ["Code"]));
+        var target = CreateSchema("TestSystem", ("dbo", "Customer", [outputName]));
+        SetFieldMetaDataTypeId(source, "Table:1", "Code", "sqlserver:type:varchar");
+        SetFieldMetaDataTypeId(target, "Table:1", outputName, "sqlserver:type:varchar");
+        SetFieldDataTypeDetail(source, "Table:1", "Code", "Length", sourceLength);
+        SetFieldDataTypeDetail(target, "Table:1", outputName, "Length", targetLength);
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            if (expectedValid)
+            {
+                var result = BindValidated(tempRoot, model, source, target);
+                Assert.Single(result.Model.ValidationTargetColumnTypeExactList);
+            }
+            else
+            {
+                var ex = Assert.Throws<TransformBindingValidationException>(() => BindValidated(tempRoot, model, source, target));
+                Assert.Equal("TargetColumnLengthConformanceMismatch", ex.Code);
+            }
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot)) Directory.Delete(tempRoot, recursive: true);
+        }
+    }
+
     private static string CreateBindingFingerprint(TransformBindingResult result)
     {
         var lines = new List<string>
@@ -4469,6 +4504,7 @@ FROM SourceTable AS s;
         var schemaModel = CreateSourceSchema(
             ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]),
             ("dbo", "CustomerSummary", ["CustomerSummaryId", "CustomerId", "CustomerName", "CreatedAtAlias", "LiteralValue"]));
+        SetFieldMetaDataTypeId(schemaModel, "Table:2", "LiteralValue", "sqlserver:type:varchar");
 
         var identityField = Assert.Single(schemaModel.FieldList, item =>
             string.Equals(item.SchemaObject.Id, "Table:2", StringComparison.Ordinal) &&
