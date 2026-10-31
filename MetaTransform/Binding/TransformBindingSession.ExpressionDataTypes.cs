@@ -166,7 +166,7 @@ internal sealed partial class TransformBindingSession
         var typeOption = sqlDataTypeReference.SqlDataTypeOption;
         var typeName = MetaTransformScriptSqlServerDataTypes.RenderSqlName(typeOption);
         var length = IsLengthParameterizedType(typeOption)
-            ? TryGetDataTypeParameter(parameters, 0)
+            ? TryGetDataTypeLength(parameters)
             : null;
         var precision = IsPrecisionParameterizedType(typeOption)
             ? TryGetDataTypeParameter(parameters, 0)
@@ -332,6 +332,11 @@ internal sealed partial class TransformBindingSession
 
     private static bool IsScaleParameterizedType(string? sqlDataTypeOption) =>
         sqlDataTypeOption is "Decimal" or "Numeric";
+
+    private static int? TryGetDataTypeLength(IReadOnlyList<Literal> parameters) =>
+        parameters.Count > 0 && string.Equals(parameters[0].LiteralType, "Max", StringComparison.OrdinalIgnoreCase)
+            ? -1
+            : TryGetDataTypeParameter(parameters, 0);
 
     private static int? TryGetDataTypeParameter(IReadOnlyList<Literal> parameters, int index)
     {

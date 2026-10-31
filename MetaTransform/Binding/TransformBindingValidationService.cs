@@ -1340,7 +1340,15 @@ public sealed class TransformBindingValidationService
             return;
         }
 
-        if (sourceDetail.Value <= targetDetail.Value)
+        // SQL Server schema extraction represents MAX as -1, not as a
+        // negative capacity. Treat it as unbounded only for lengths.
+        var isLength = string.Equals(detailName, "Length", StringComparison.Ordinal);
+        if (isLength && targetDetail.Value == -1)
+        {
+            return;
+        }
+
+        if ((!isLength || sourceDetail.Value != -1) && sourceDetail.Value <= targetDetail.Value)
         {
             return;
         }

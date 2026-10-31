@@ -930,6 +930,48 @@ WHEN NOT MATCHED THEN
         }
     }
 
+    [Theory]
+    [InlineData(-1, 25, false, false)]
+    [InlineData(100, -1, false, true)]
+    [InlineData(-1, -1, false, true)]
+    [InlineData(25, 250, false, true)]
+    [InlineData(250, 25, false, false)]
+    [InlineData(25, 25, true, false)]
+    [InlineData(25, -1, true, true)]
+    public void BindValidatedUpdate_ValidatesMaxAndFiniteLengths(int sourceLength, int targetLength, bool castToMax, bool expectedValid)
+    {
+        var value = castToMax ? "CAST(s.Code AS varchar(max))" : "s.Code";
+        var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(
+            $"UPDATE dbo.Customer SET Code = {value} FROM dbo.CustomerStage AS s;",
+            bareSelectName: "update-customer");
+        var sourceSchemaModel = CreateSchema("TestSystem", ("dbo", "CustomerStage", ["Code"]));
+        var targetSchemaModel = CreateSchema("TestSystem", ("dbo", "Customer", ["Code"]));
+        SetFieldMetaDataTypeId(sourceSchemaModel, "Table:1", "Code", "sqlserver:type:varchar");
+        SetFieldMetaDataTypeId(targetSchemaModel, "Table:1", "Code", "sqlserver:type:varchar");
+        SetFieldDataTypeDetail(sourceSchemaModel, "Table:1", "Code", "Length", sourceLength);
+        SetFieldDataTypeDetail(targetSchemaModel, "Table:1", "Code", "Length", targetLength);
+
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            if (expectedValid)
+            {
+                var result = BindValidated(tempRoot, transformModel, sourceSchemaModel, targetSchemaModel);
+                Assert.Single(result.Model.ValidationTargetColumnTypeExactList);
+            }
+            else
+            {
+                var ex = Assert.Throws<TransformBindingValidationException>(() =>
+                    BindValidated(tempRoot, transformModel, sourceSchemaModel, targetSchemaModel));
+                Assert.Equal("TargetColumnLengthConformanceMismatch", ex.Code);
+            }
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot)) Directory.Delete(tempRoot, recursive: true);
+        }
+    }
+
     [Fact]
     public void BindValidatedUpdate_WithCastWriteExpressionTooWideForTarget_FailsHard()
     {
