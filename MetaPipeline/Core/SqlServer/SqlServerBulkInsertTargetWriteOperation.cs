@@ -9,8 +9,6 @@ public sealed class SqlServerBulkInsertTargetWriteOperation : IPipelineTargetWri
         string targetSqlIdentifier,
         PipelineRowStreamShape shape,
         MetaPipelineExecutionContext? executionContext = null,
-        string targetDataTypeSystemName = "SqlServer",
-        string? dataTypeConversionWorkspacePath = null,
         int? timeoutSeconds = null)
     {
         writer = new SqlServerBulkCopyRowStreamWriter(
@@ -18,8 +16,6 @@ public sealed class SqlServerBulkInsertTargetWriteOperation : IPipelineTargetWri
             targetSqlIdentifier,
             shape,
             executionContext,
-            targetDataTypeSystemName,
-            dataTypeConversionWorkspacePath,
             timeoutSeconds);
     }
 

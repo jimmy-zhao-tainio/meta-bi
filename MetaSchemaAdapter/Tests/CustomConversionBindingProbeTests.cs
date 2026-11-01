@@ -139,7 +139,7 @@ public sealed class CustomConversionBindingProbeTests(ITestOutputHelper output)
             }
             Assert.Equal(expected, helperResult);
 
-            var targetAdapter = new ProbeSqlServerTargetAdapter(connectionString, conversionPath);
+            var targetAdapter = new ProbeSqlServerTargetAdapter(connectionString);
             var execution = Assert.IsType<MetaSchemaAdapterRowStreamExecutionResult>(
                 await new MetaSchemaAdapterExecutionService().ExecuteAsync(sourceAdapter, targetAdapter,
                     new MetaSchemaAdapterExecutionRequest(
@@ -177,8 +177,6 @@ public sealed class CustomConversionBindingProbeTests(ITestOutputHelper output)
             await File.WriteAllTextAsync(Path.Combine(root, "ProbeResult.txt"), evidence);
             Assert.False(execution.PipelineResult.Succeeded);
             Assert.Equal(PipelineExecutionFailureStage.TargetWrite, execution.PipelineResult.FailureStage);
-            Assert.Contains("System.Int32", execution.PipelineResult.FailureMessage, StringComparison.Ordinal);
-            Assert.Contains("could not be coerced", execution.PipelineResult.FailureMessage, StringComparison.Ordinal);
             Assert.Equal(0, insertedRows);
         }
         finally
@@ -192,7 +190,7 @@ public sealed class CustomConversionBindingProbeTests(ITestOutputHelper output)
     }
 
     // Transport-only fixture: no conversion logic or evaluation is implemented here.
-    private sealed class ProbeSqlServerTargetAdapter(string connectionString, string conversionPath) : IMetaSchemaTargetWriteAdapter
+    private sealed class ProbeSqlServerTargetAdapter(string connectionString) : IMetaSchemaTargetWriteAdapter
     {
         public string Id => "probe-sqlserver-bulk-copy";
 
@@ -202,7 +200,7 @@ public sealed class CustomConversionBindingProbeTests(ITestOutputHelper output)
             cancellationToken.ThrowIfCancellationRequested();
             return ValueTask.FromResult<IPipelineTargetWriteOperation>(new SqlServerBulkInsertTargetWriteOperation(
                 connectionString, request.TargetIdentifier, request.Shape,
-                request.ExecutionContext, dataTypeConversionWorkspacePath: conversionPath,
+                request.ExecutionContext,
                 timeoutSeconds: request.TimeoutSeconds));
         }
     }

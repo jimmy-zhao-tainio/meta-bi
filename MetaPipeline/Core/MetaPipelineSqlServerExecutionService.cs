@@ -336,8 +336,6 @@ public sealed class MetaPipelineSqlServerExecutionService
             RequireValue(definition.TargetSqlIdentifier, "SELECT-kind execution requires a target SQL identifier."),
             definition.RowStreamShape ?? throw new MetaPipelineConfigurationException("SELECT-kind execution requires a row-stream shape."),
             request.ExecutionContext,
-            request.TargetDataTypeSystemName,
-            request.DataTypeConversionWorkspacePath,
             request.TimeoutSeconds);
     }
 
