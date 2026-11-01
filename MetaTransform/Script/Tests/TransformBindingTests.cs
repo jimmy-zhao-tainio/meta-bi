@@ -89,6 +89,28 @@ public sealed class TransformBindingTests
         }
     }
 
+    [Fact]
+    public void BindValidatedSelect_DoesNotClaimValidationForUnknownExpressionType()
+    {
+        var model = new MetaTransformScriptSqlParser().ParseSqlCode(
+            "CREATE VIEW dbo.Customer AS SELECT REVERSE(s.Code) AS Code FROM dbo.CustomerStage AS s;");
+        SetViewTargetSqlIdentifier(model, model.TransformScriptList[0], "dbo.Customer");
+        var source = CreateSchema("TestSystem", ("dbo", "CustomerStage", ["Code"]));
+        var target = CreateSchema("TestSystem", ("dbo", "Customer", ["Code"]));
+        SetFieldMetaDataTypeId(source, "Table:1", "Code", "sqlserver:type:varchar");
+        SetFieldMetaDataTypeId(target, "Table:1", "Code", "sqlserver:type:varchar");
+        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            var ex = Assert.Throws<TransformBindingValidationException>(() => BindValidated(tempRoot, model, source, target));
+            Assert.Equal("TargetOutputColumnTypeNotResolved", ex.Code);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot)) Directory.Delete(tempRoot, recursive: true);
+        }
+    }
+
     private static string CreateBindingFingerprint(TransformBindingResult result)
     {
         var lines = new List<string>

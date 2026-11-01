@@ -714,6 +714,10 @@ public sealed class TransformBindingValidationService
                     runtimeColumn.DataType is { } resultType)
                     sourceCandidate = new ResolvedSourceColumnType(outputColumnName, resultType.MetaDataTypeId,
                         resultType.IsNullable, resultType.Length, resultType.Precision, resultType.Scale, resultType.DisplayName);
+                else
+                    throw new TransformBindingValidationException(
+                        "TargetOutputColumnTypeNotResolved",
+                        $"Final output column '{outputColumnName}' for target '{targetSqlIdentifier}' has no proven expression data type.");
             }
             else if (sourceColumnTypeCandidatesByName.TryGetValue(outputColumnName, out var sourceCandidates) && sourceCandidates.Count == 1)
                 sourceCandidate = sourceCandidates[0];
