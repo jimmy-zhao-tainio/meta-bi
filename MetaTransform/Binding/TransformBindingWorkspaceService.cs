@@ -1,4 +1,5 @@
 using MetaSchema;
+using MetaDataType;
 using MetaTransformBinding;
 using MetaTransformScript;
 using MetaDataTypeConversion.Core;
@@ -16,7 +17,8 @@ public sealed class TransformBindingWorkspaceService
         string newWorkspacePath,
         TransformBindingValidationOptions? validationOptions = null,
         string? dataTypeConversionWorkspacePath = null,
-        bool allowPartial = false)
+        bool allowPartial = false,
+        string? dataTypeWorkspacePath = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(newWorkspacePath);
         var workspacePath = Path.GetFullPath(newWorkspacePath);
@@ -28,7 +30,8 @@ public sealed class TransformBindingWorkspaceService
             executeSystemDefaultSchemaName,
             validationOptions,
             dataTypeConversionWorkspacePath,
-            allowPartial);
+            allowPartial,
+            dataTypeWorkspacePath);
         Meta.Integration.TypedWorkspaceModelMapper.Create(result.Model, workspacePath, "xml");
         return result with { WorkspacePath = workspacePath };
     }
@@ -41,7 +44,8 @@ public sealed class TransformBindingWorkspaceService
         string? executeSystemDefaultSchemaName,
         TransformBindingValidationOptions? validationOptions = null,
         string? dataTypeConversionWorkspacePath = null,
-        bool allowPartial = false)
+        bool allowPartial = false,
+        string? dataTypeWorkspacePath = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(transformWorkspacePath);
         ArgumentNullException.ThrowIfNull(sourceSchemaWorkspacePaths);
@@ -55,6 +59,23 @@ public sealed class TransformBindingWorkspaceService
 
         var sourceSchemas = LoadSourceSchemaWorkspaces(sourceSchemaWorkspacePaths);
         var targetSchema = LoadSchemaWorkspace(targetSchemaWorkspaceFullPath, "target");
+
+        var dataTypes = string.IsNullOrWhiteSpace(dataTypeWorkspacePath)
+            ? MetaDataTypeInstance.BuiltIn
+            : Meta.Integration.TypedWorkspaceModelMapper.Load<MetaDataTypeModel>(Path.GetFullPath(dataTypeWorkspacePath), searchUpward: false);
+        var typeValidator = new SqlServerSchemaTypeValidator(dataTypes);
+        foreach (var source in sourceSchemas) ValidateSchemaTypes(source.Model, "Source");
+        ValidateSchemaTypes(targetSchema.Model, "Target");
+
+        void ValidateSchemaTypes(MetaSchemaModel schema, string role)
+        {
+            try { typeValidator.Validate(schema); }
+            catch (SchemaTypeValidationException ex)
+            {
+                throw new TransformBindingValidationException(role + "SchemaFieldMetaDataType" +
+                    (ex.Code == "Missing" ? "Missing" : "NotSanctioned"), ex.Message);
+            }
+        }
 
         var sourceSystemNames = sourceSchemas
             .Select(item => item.SystemName)
@@ -97,7 +118,7 @@ public sealed class TransformBindingWorkspaceService
         var dataTypeConversionWorkspace = MetaDataTypeConversionWorkspaceProvider.LoadOrDefault(dataTypeConversionWorkspacePath);
         var validationService = new TransformBindingValidationService(
             new MetaDataTypeConversionService(),
-            dataTypeConversionWorkspace);
+            dataTypeConversionWorkspace, dataTypes);
 
         var objectIssues = new List<BindWorkspaceObjectIssue>();
         MetaTransformBindingModel validatedModel;
@@ -110,7 +131,7 @@ public sealed class TransformBindingWorkspaceService
                 sourceResolver,
                 targetResolver,
                 normalizedExecuteSystemName,
-                normalizedExecuteSystemDefaultSchemaName);
+                normalizedExecuteSystemDefaultSchemaName, dataTypes);
             EnsureBindingSucceeded(packages);
 
             var bindingModel = BuildCombinedBindingModel(packages);
@@ -129,7 +150,7 @@ public sealed class TransformBindingWorkspaceService
                 sourceResolver,
                 targetResolver,
                 normalizedExecuteSystemName,
-                normalizedExecuteSystemDefaultSchemaName,
+                normalizedExecuteSystemDefaultSchemaName, dataTypes,
                 objectIssues);
 
             validatedModel = MetaTransformBindingModel.CreateEmpty();
@@ -349,14 +370,15 @@ public sealed class TransformBindingWorkspaceService
         MetaSchemaTableResolver sourceResolver,
         MetaSchemaTableResolver targetResolver,
         string executeSystemName,
-        string executeSystemDefaultSchemaName)
+        string executeSystemDefaultSchemaName,
+        MetaDataTypeModel dataTypes)
     {
         var context = new TransformBindingContext(
             transformModel,
             sourceResolver,
             targetResolver,
             executeSystemName,
-            executeSystemDefaultSchemaName);
+            executeSystemDefaultSchemaName, dataTypes);
         var packages = new List<ScriptBindingPackage>(transformScripts.Count);
 
         foreach (var transformScript in transformScripts)
@@ -376,6 +398,7 @@ public sealed class TransformBindingWorkspaceService
         MetaSchemaTableResolver targetResolver,
         string executeSystemName,
         string executeSystemDefaultSchemaName,
+        MetaDataTypeModel dataTypes,
         ICollection<BindWorkspaceObjectIssue> objectIssues)
     {
         var context = new TransformBindingContext(
@@ -383,7 +406,7 @@ public sealed class TransformBindingWorkspaceService
             sourceResolver,
             targetResolver,
             executeSystemName,
-            executeSystemDefaultSchemaName);
+            executeSystemDefaultSchemaName, dataTypes);
         var packages = new List<ScriptBindingPackage>(transformScripts.Count);
 
         foreach (var transformScript in transformScripts)

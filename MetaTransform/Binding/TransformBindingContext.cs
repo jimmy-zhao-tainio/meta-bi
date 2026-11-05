@@ -1,4 +1,5 @@
 using MetaSchema;
+using MetaDataType;
 using MetaTransformScript;
 
 namespace MetaTransform.Binding;
@@ -7,6 +8,7 @@ internal sealed class TransformBindingContext
 {
     private readonly MetaSchemaTableResolver? sourceSchemaResolver;
     private readonly MetaSchemaTableResolver? targetSchemaResolver;
+    private readonly MetaDataTypeModel dataTypes = MetaDataTypeInstance.BuiltIn;
     private readonly string executeSystemName;
     private readonly string executeSystemDefaultSchemaName;
 
@@ -37,9 +39,11 @@ internal sealed class TransformBindingContext
         MetaSchemaTableResolver? sourceSchemaResolver,
         MetaSchemaTableResolver? targetSchemaResolver,
         string? executeSystemName,
-        string? executeSystemDefaultSchemaName)
+        string? executeSystemDefaultSchemaName,
+        MetaDataTypeModel? dataTypes = null)
     {
         Navigator = new TransformScriptNavigator(model ?? throw new ArgumentNullException(nameof(model)));
+        this.dataTypes = dataTypes ?? MetaDataTypeInstance.BuiltIn;
         this.sourceSchemaResolver = sourceSchemaResolver;
         this.targetSchemaResolver = targetSchemaResolver;
         this.executeSystemName = executeSystemName?.Trim() ?? string.Empty;
@@ -56,7 +60,7 @@ internal sealed class TransformBindingContext
                 sourceSchemaResolver,
                 targetSchemaResolver,
                 executeSystemName,
-                executeSystemDefaultSchemaName)
+                executeSystemDefaultSchemaName, dataTypes)
             .BindTransform(transformScript);
     }
 }
