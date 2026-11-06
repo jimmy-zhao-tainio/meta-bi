@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using MetaPipeline;
+using MetaDataType;
 using MetaSchema;
 using MetaSchemaAdapter;
 using MetaTransformBinding;
@@ -11,7 +12,8 @@ namespace ExampleFileProvider;
 /// <summary>
 /// Test-only example of an adapter implemented in an external provider namespace.
 /// It deliberately supports one bounded semantic shape: a single-table projection with
-/// an optional equality predicate.
+/// an optional ordinal text equality predicate (not SQL Server collation semantics).
+/// Columns are non-null SQL Server nvarchar(max); tabs and newlines are not escaped.
 /// </summary>
 internal sealed class TabSeparatedTextAdapter :
     IMetaSchemaDiscoveryAdapter,
@@ -19,10 +21,14 @@ internal sealed class TabSeparatedTextAdapter :
     IMetaSchemaTargetWriteAdapter
 {
     private readonly IReadOnlyDictionary<string, string> rootsByConnectionReference;
+    private readonly SqlServerSchemaTypeValidator typeValidator;
+    private readonly string textTypeId;
 
-    public TabSeparatedTextAdapter(IReadOnlyDictionary<string, string> rootsByConnectionReference)
+    public TabSeparatedTextAdapter(IReadOnlyDictionary<string, string> rootsByConnectionReference, MetaDataTypeModel? catalog = null)
     {
         this.rootsByConnectionReference = rootsByConnectionReference;
+        typeValidator = new SqlServerSchemaTypeValidator(catalog ?? MetaDataTypeInstance.BuiltIn);
+        textTypeId = typeValidator.ResolveSqlTypeName("nvarchar");
     }
 
     public string Id => "tab-separated-text";
@@ -78,14 +84,19 @@ internal sealed class TabSeparatedTextAdapter :
             var headers = ReadHeaders(file);
             for (var ordinal = 0; ordinal < headers.Length; ordinal++)
             {
-                model.FieldList.Add(new Field
+                var field = new Field
                 {
                     Id = $"{tableId}:field:{NormalizeIdPart(headers[ordinal])}",
                     Name = headers[ordinal],
                     Ordinal = ordinal.ToString(CultureInfo.InvariantCulture),
-                    MetaDataTypeId = "meta:type:String",
-                    IsNullable = "true",
+                    MetaDataTypeId = textTypeId,
+                    IsNullable = "false",
                     SchemaObject = schemaObject
+                };
+                model.FieldList.Add(field);
+                model.FieldDataTypeDetailList.Add(new FieldDataTypeDetail
+                {
+                    Id = field.Id + ":length", Field = field, Name = "Length", Value = "-1"
                 });
             }
         }
@@ -106,6 +117,7 @@ internal sealed class TabSeparatedTextAdapter :
                 "BatchSize must be greater than zero.");
         }
 
+        ValidateTextSchema(request.Schema);
         var root = ResolveRoot(request.ConnectionReference);
         var plan = CompileProjection(request, root);
         return ValueTask.FromResult<IPipelineRowStreamSource>(
@@ -117,6 +129,7 @@ internal sealed class TabSeparatedTextAdapter :
         CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
+        ValidateTextSchema(request.Schema);
         var root = ResolveRoot(request.ConnectionReference);
         var target = ResolveSchemaObject(request.Schema, request.TargetIdentifier);
         var fields = request.Schema.FieldList
@@ -131,6 +144,17 @@ internal sealed class TabSeparatedTextAdapter :
             new TabSeparatedTargetWriteOperation(
                 Path.Combine(root, target.Name + ".tsv"),
                 request.Shape));
+    }
+
+    private void ValidateTextSchema(MetaSchemaModel schema)
+    {
+        typeValidator.Validate(schema);
+        foreach (var field in schema.FieldList)
+        {
+            var lengths = schema.FieldDataTypeDetailList.Where(detail => detail.Field.Id == field.Id && detail.Name == "Length").ToArray();
+            if (field.MetaDataTypeId != textTypeId || field.IsNullable != "false" || lengths.Length != 1 || lengths[0].Value != "-1")
+                throw new NotSupportedException($"TSV field '{field.Name}' must declare the selected catalog's non-null nvarchar(max) contract.");
+        }
     }
 
     private ProjectionPlan CompileProjection(MetaSchemaRowStreamRequest request, string root)
@@ -161,6 +185,17 @@ internal sealed class TabSeparatedTextAdapter :
         var query = request.Transforms.QuerySpecificationList.SingleOrDefault(item =>
                 string.Equals(item.QueryExpression.Id, queryLink.QueryExpression.Id, StringComparison.Ordinal))
             ?? throw Unsupported("one query specification");
+
+        // Do not silently ignore SQL operations outside this example provider's bounded plan.
+        if ((!string.IsNullOrWhiteSpace(query.UniqueRowFilter) && query.UniqueRowFilter != "NotSpecified" && query.UniqueRowFilter != "All") ||
+            request.Transforms.QuerySpecificationTopRowFilterLinkList.Any(link => link.QuerySpecification.Id == query.Id) ||
+            request.Transforms.QuerySpecificationGroupByClauseLinkList.Any(link => link.QuerySpecification.Id == query.Id) ||
+            request.Transforms.QuerySpecificationHavingClauseLinkList.Any(link => link.QuerySpecification.Id == query.Id) ||
+            request.Transforms.QuerySpecificationWindowClauseLinkList.Any(link => link.QuerySpecification.Id == query.Id) ||
+            request.Transforms.QueryExpressionOrderByClauseLinkList.Any(link => link.QueryExpression.Id == query.QueryExpression.Id) ||
+            request.Transforms.QueryExpressionOffsetClauseLinkList.Any(link => link.QueryExpression.Id == query.QueryExpression.Id) ||
+            request.Transforms.StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkList.Any(link => link.StatementWithCtesAndXmlNamespaces.Id == select.StatementWithCtesAndXmlNamespaces.Id))
+            throw Unsupported("a projection/filter without SELECT modifiers or CTEs");
 
         var from = request.Transforms.QuerySpecificationFromClauseLinkList.SingleOrDefault(item =>
                 string.Equals(item.QuerySpecification.Id, query.Id, StringComparison.Ordinal))
@@ -246,8 +281,8 @@ internal sealed class TabSeparatedTextAdapter :
         var firstValue = CompileScalar(request, binding, first.ScalarExpression);
         var secondValue = CompileScalar(request, binding, second.ScalarExpression);
         return row => string.Equals(
-            Convert.ToString(firstValue(row), CultureInfo.InvariantCulture),
-            Convert.ToString(secondValue(row), CultureInfo.InvariantCulture),
+            (string)firstValue(row)!,
+            (string)secondValue(row)!,
             StringComparison.Ordinal);
     }
 
@@ -273,7 +308,7 @@ internal sealed class TabSeparatedTextAdapter :
 
         var literal = request.Transforms.LiteralList.SingleOrDefault(item =>
             string.Equals(item.ValueExpression.PrimaryExpression.Id, primary.Id, StringComparison.Ordinal));
-        if (literal is not null)
+        if (literal is not null && string.Equals(literal.LiteralType, "String", StringComparison.OrdinalIgnoreCase))
         {
             return _ => literal.Value;
         }
@@ -447,9 +482,15 @@ internal sealed class TabSeparatedTextAdapter :
             CancellationToken cancellationToken = default)
         {
             var activeWriter = writer ?? throw new InvalidOperationException("The target operation has not started.");
+            Shape.EnsureCompatibleWith(batch.Shape, "batch shape");
+            // Check the whole batch before writing any row; TSV has no NULL/escape encoding.
+            foreach (var row in batch.Rows)
+                foreach (var value in row)
+                    if (value is not string text || text.IndexOfAny(['\t', '\r', '\n']) >= 0)
+                        throw new InvalidOperationException("TSV writes require non-null text without tab or newline characters; NULL is distinct from empty string.");
             foreach (var row in batch.Rows)
             {
-                var line = string.Join('\t', row.Select(value => Convert.ToString(value, CultureInfo.InvariantCulture)));
+                var line = string.Join('\t', row.Cast<string>());
                 await activeWriter.WriteLineAsync(line.AsMemory(), cancellationToken);
             }
         }
