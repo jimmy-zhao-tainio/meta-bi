@@ -11,6 +11,48 @@ using MetaTransformScript.Sql;
 public sealed class SqlServerSchemaTypeContractTests
 {
     [Theory]
+    [InlineData(8, -1, true)]
+    [InlineData(-1, -1, true)]
+    [InlineData(-1, 8, false)]
+    [InlineData(8, 25, true)]
+    [InlineData(25, 8, false)]
+    [InlineData(8, 8, true)]
+    [InlineData(null, 8, true)]
+    [InlineData(8, null, true)]
+    [InlineData(null, -1, true)]
+    [InlineData(-1, null, true)]
+    [InlineData(null, null, true)]
+    public void LengthConformance_HandlesMaxAndPreservesFiniteAndUnknownFacets(int? sourceLength, int? targetLength, bool accepted)
+    {
+        using var fixture = new Fixture("sqlserver:type:nvarchar", "sqlserver:type:nvarchar",
+            sourceLength: sourceLength, targetLength: targetLength);
+        if (accepted)
+        {
+            var result = fixture.Bind();
+            Assert.Equal(0, result.ErrorCount);
+            Assert.Single(result.Model.ValidationTargetColumnTypeExactList);
+            Assert.Empty(result.Model.ValidationTargetColumnTypeSanctionedConversionList);
+        }
+        else
+        {
+            var ex = Assert.Throws<TransformBindingValidationException>(() => fixture.Bind());
+            Assert.Equal("TargetColumnLengthConformanceMismatch", ex.Code);
+            Assert.Contains($"Length '{sourceLength}'", ex.Message);
+            Assert.Contains($"Length '{targetLength}'", ex.Message);
+        }
+    }
+
+    [Fact]
+    public void NationalStringLiteral_BindsItsFiniteResultLengthToMaxTarget()
+    {
+        using var fixture = new Fixture("sqlserver:type:nvarchar", "sqlserver:type:nvarchar", "N'constant'",
+            sourceLength: -1, targetLength: -1);
+        var result = fixture.Bind();
+        Assert.Equal(0, result.ErrorCount);
+        Assert.Single(result.Model.ValidationTargetColumnTypeExactList);
+    }
+
+    [Theory]
     [InlineData(false)]
     [InlineData(true)]
     public void DefaultSqlTypes_NeedNoConversionMappings(bool partial)
@@ -181,10 +223,13 @@ public sealed class SqlServerSchemaTypeContractTests
         public string Conversions => Path.Combine(Root, "Conversions");
         private bool selectedCatalog;
 
-        public Fixture(string sourceId, string targetId, string expression = "s.Value", bool? extraInvalidTarget = null)
+        public Fixture(string sourceId, string targetId, string expression = "s.Value", bool? extraInvalidTarget = null,
+            int? sourceLength = null, int? targetLength = null)
         {
             var source = Schema("SourceRows", sourceId);
             var target = Schema("TargetRows", targetId);
+            AddLength(source, sourceLength);
+            AddLength(target, targetLength);
             if (extraInvalidTarget.HasValue)
             {
                 var schema = extraInvalidTarget.Value ? target : source;
@@ -208,6 +253,16 @@ public sealed class SqlServerSchemaTypeContractTests
             dataTypeConversionWorkspacePath: Conversions, allowPartial: partial, dataTypeWorkspacePath: selectedCatalog ? Catalog : null);
 
         public void Dispose() { if (Directory.Exists(Root)) Directory.Delete(Root, recursive: true); }
+
+        private static void AddLength(MetaSchemaModel model, int? length)
+        {
+            if (length.HasValue)
+                model.FieldDataTypeDetailList.Add(new FieldDataTypeDetail
+                {
+                    Id = "value:length", Field = model.FieldList.Single(), Name = "Length",
+                    Value = length.Value.ToString(global::System.Globalization.CultureInfo.InvariantCulture)
+                });
+        }
 
         private static MetaSchemaModel Schema(string tableName, string typeId)
         {

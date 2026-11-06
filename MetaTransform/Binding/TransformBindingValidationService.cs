@@ -1349,7 +1349,12 @@ public sealed class TransformBindingValidationService
             return;
         }
 
-        if (sourceDetail.Value <= targetDetail.Value)
+        // SQL Server uses -1 for MAX length, rather than a negative capacity.
+        // Other facets retain their numeric comparison; absent facets are handled above.
+        var conforms = detailName == "Length" && (sourceDetail.Value == -1 || targetDetail.Value == -1)
+            ? targetDetail.Value == -1
+            : sourceDetail.Value <= targetDetail.Value;
+        if (conforms)
         {
             return;
         }
