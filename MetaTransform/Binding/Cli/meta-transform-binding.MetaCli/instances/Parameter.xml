@@ -25,6 +25,10 @@
       <Description>Optional sanctioned conversion policy workspace. Omitted uses built-in defaults.</Description>
       <Name>data-type-conversion-workspace</Name>
     </Parameter>
+    <Parameter Id="param-data-type-workspace" ValueShapeId="shape-path">
+      <Description>MetaDataType catalog for schema validation and SQL expression types. Defaults to BuiltIn.</Description>
+      <Name>data-type-workspace</Name>
+    </Parameter>
     <Parameter Id="param-execute-system" ValueShapeId="shape-text">
       <Description>Execution context for one/two-part source identifiers.</Description>
       <IsRequired>true</IsRequired>

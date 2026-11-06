@@ -154,10 +154,7 @@ internal sealed partial class TransformBindingSession
                 expression,
                 out var dataTypeReference,
                 out var inputExpression) ||
-            navigator.TryGetSqlDataTypeReference(dataTypeReference) is not { } sqlDataTypeReference ||
-            !MetaTransformScriptSqlServerDataTypes.TryGetMetaDataTypeId(
-                sqlDataTypeReference.SqlDataTypeOption,
-                out var metaDataTypeId))
+            navigator.TryGetSqlDataTypeReference(dataTypeReference) is not { } sqlDataTypeReference)
         {
             return null;
         }
@@ -176,7 +173,7 @@ internal sealed partial class TransformBindingSession
             : null;
 
         return new RuntimeColumnDataType(
-            metaDataTypeId,
+            typeValidator.ResolveSqlTypeName(typeName),
             TryResolveExpressionNullability(inputExpression),
             length,
             precision,
@@ -352,7 +349,7 @@ internal sealed partial class TransformBindingSession
         return literalType.ToUpperInvariant() switch
         {
             "STRING" => new RuntimeColumnDataType(
-                navigator.IsNationalStringLiteral(literal) ? "sqlserver:type:nvarchar" : "sqlserver:type:varchar",
+                typeValidator.ResolveSqlTypeName(navigator.IsNationalStringLiteral(literal) ? "nvarchar" : "varchar"),
                 IsNullable: false,
                 Length: value.Length,
                 Precision: null,
@@ -361,14 +358,14 @@ internal sealed partial class TransformBindingSession
             "INTEGER" => CreateIntegerLiteralDataType(value),
             "NUMERIC" => CreateNumericLiteralDataType(value),
             "REAL" => new RuntimeColumnDataType(
-                "sqlserver:type:float",
+                typeValidator.ResolveSqlTypeName("float"),
                 IsNullable: false,
                 Length: null,
                 Precision: null,
                 Scale: null,
                 DisplayName: "real literal"),
             "BINARY" => new RuntimeColumnDataType(
-                "sqlserver:type:varbinary",
+                typeValidator.ResolveSqlTypeName("varbinary"),
                 IsNullable: false,
                 Length: Math.Max(0, (value.Length - 2) / 2),
                 Precision: null,
@@ -378,7 +375,7 @@ internal sealed partial class TransformBindingSession
         };
     }
 
-    private static RuntimeColumnDataType? CreateIntegerLiteralDataType(string value)
+    private RuntimeColumnDataType? CreateIntegerLiteralDataType(string value)
     {
         if (!long.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var number))
         {
@@ -386,7 +383,7 @@ internal sealed partial class TransformBindingSession
         }
 
         return new RuntimeColumnDataType(
-            number is >= int.MinValue and <= int.MaxValue ? "sqlserver:type:int" : "sqlserver:type:bigint",
+            typeValidator.ResolveSqlTypeName(number is >= int.MinValue and <= int.MaxValue ? "int" : "bigint"),
             IsNullable: false,
             Length: null,
             Precision: null,
@@ -394,7 +391,7 @@ internal sealed partial class TransformBindingSession
             DisplayName: "integer literal");
     }
 
-    private static RuntimeColumnDataType? CreateNumericLiteralDataType(string value)
+    private RuntimeColumnDataType? CreateNumericLiteralDataType(string value)
     {
         var normalized = value.Trim();
         if (normalized.StartsWith('+') || normalized.StartsWith('-'))
@@ -410,7 +407,7 @@ internal sealed partial class TransformBindingSession
 
         var precision = parts[0].Length + parts[1].Length;
         return new RuntimeColumnDataType(
-            "sqlserver:type:decimal",
+            typeValidator.ResolveSqlTypeName("decimal"),
             IsNullable: false,
             Length: null,
             Precision: precision,
