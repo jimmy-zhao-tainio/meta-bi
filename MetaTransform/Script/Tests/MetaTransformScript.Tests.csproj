@@ -28,6 +28,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="../../../MetaConvert/TransformScriptConversion/MetaConvert.TransformScriptConversion.csproj" />
+    <ProjectReference Include="../../../MetaSchema/Extractors.SqlServer/MetaSchema.Extractors.SqlServer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\\..\\..\\Tests\\Common\\MetaBi.Tests.Common.csproj" />
     <ProjectReference Include="..\\..\\..\\MetaConvert\\SqlToTransformScript\\MetaConvert.SqlToTransformScript.csproj" />
     <ProjectReference Include="..\\..\\..\\MetaConvert\\TransformPatternToSqlScript\\MetaConvert.TransformPatternToSqlScript.csproj" />

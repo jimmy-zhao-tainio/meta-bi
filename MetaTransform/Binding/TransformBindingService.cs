@@ -6,6 +6,17 @@ namespace MetaTransform.Binding;
 
 public sealed class TransformBindingService
 {
+    /// <summary>Analyze source expressions using the caller's selected type catalog. Applies no conversions.</summary>
+    public TransformBindingResult BindTransform(
+        MetaTransformScriptModel model, TransformScript script, MetaSchemaModel sourceSchema,
+        MetaDataType.MetaDataTypeModel dataTypes)
+    {
+        new MetaSchema.SqlServerSchemaTypeValidator(dataTypes).Validate(sourceSchema);
+        var resolver = new MetaSchemaTableResolver(sourceSchema);
+        return new TransformBindingSession(model, resolver, resolver, string.Empty, string.Empty, dataTypes)
+            .BindTransform(script);
+    }
+
     public IReadOnlyList<TransformBindingResult> BindTransforms(
         MetaTransformScriptModel model,
         IEnumerable<TransformScript> transformScripts,

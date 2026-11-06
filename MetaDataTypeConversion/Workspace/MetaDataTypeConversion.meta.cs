@@ -5,18 +5,39 @@ using System.Collections.Generic;
 namespace MetaDataTypeConversion;
 public sealed partial class ConversionImplementation
 {
-    public string Id { get; set; } = null !;
+    public string Id { get; set; } = null!;
     public string? Description { get; set; }
-    public string Name { get; set; } = null !;
+    public string Name { get; set; } = null!;
+    public SqlConversionSnippet? SqlConversionSnippet { get; set; }
 }
 
 public sealed partial class DataTypeMapping
 {
-    public string Id { get; set; } = null !;
+    public string Id { get; set; } = null!;
     public string? Notes { get; set; }
-    public string SourceDataTypeId { get; set; } = null !;
-    public string TargetDataTypeId { get; set; } = null !;
-    public ConversionImplementation ConversionImplementation { get; set; } = null !;
+    public string SourceDataTypeId { get; set; } = null!;
+    public string TargetDataTypeId { get; set; } = null!;
+    public ConversionImplementation ConversionImplementation { get; set; } = null!;
+}
+
+public sealed partial class SqlConversionParameter
+{
+    public string Id { get; set; } = null!;
+    public string Name { get; set; } = null!;
+}
+
+public sealed partial class SqlConversionParameterBinding
+{
+    public string Id { get; set; } = null!;
+    public string Name { get; set; } = null!;
+    public SqlConversionParameter SqlConversionParameter { get; set; } = null!;
+    public SqlConversionSnippet SqlConversionSnippet { get; set; } = null!;
+}
+
+public sealed partial class SqlConversionSnippet
+{
+    public string Id { get; set; } = null!;
+    public string TransformScript { get; set; } = null!;
 }
 
 public sealed partial class MetaDataTypeConversionModel
@@ -24,6 +45,9 @@ public sealed partial class MetaDataTypeConversionModel
     public static MetaDataTypeConversionModel CreateEmpty() => new();
     public List<ConversionImplementation> ConversionImplementationList { get; set; } = new();
     public List<DataTypeMapping> DataTypeMappingList { get; set; } = new();
+    public List<SqlConversionParameter> SqlConversionParameterList { get; set; } = new();
+    public List<SqlConversionParameterBinding> SqlConversionParameterBindingList { get; set; } = new();
+    public List<SqlConversionSnippet> SqlConversionSnippetList { get; set; } = new();
 }
 
 public static partial class MetaDataTypeConversionInstance
