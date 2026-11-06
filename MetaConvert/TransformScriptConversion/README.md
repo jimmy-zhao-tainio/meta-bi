@@ -83,9 +83,11 @@ conformance can accept a narrower expression into a wider target.
 - Existing Binding expression inference bounds the accepted inputs and snippets.
   Arithmetic and general function result typing are not added. Unknown facets are
   not evidence that a generated expression meets an exact requested contract.
-  In particular, MAX, temporal fractional precision and float precision destinations
-  currently fail the exact result-facet check; this operation does not extend
-  Binding inference to make them pass.
+  MAX length, temporal fractional precision (`time`, `datetime2`, `datetimeoffset`)
+  and `float` precision destinations are explicitly rejected before snippet
+  composition or output materialization. Diagnostics identify the projection,
+  catalog type and unsupported facet. Binding result-facet fixes belong to a
+  separate task; this operation does not change Binding inference.
 - No Pipeline coercion, TransformScript interpreter, or conversion-graph change.
 
 Integration coverage is in `TransformScriptConversionIntegrationTests` in the

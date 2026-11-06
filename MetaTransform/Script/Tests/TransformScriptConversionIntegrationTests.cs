@@ -14,6 +14,33 @@ using System.Data;
 public sealed class TransformScriptConversionIntegrationTests
 {
     [Theory]
+    [InlineData("nvarchar")]
+    [InlineData("varchar")]
+    [InlineData("varbinary")]
+    [InlineData("time")]
+    [InlineData("datetime2")]
+    [InlineData("datetimeoffset")]
+    [InlineData("float")]
+    public void UnsupportedDestinationFacets_FailClearlyBeforeWritingOutput(string destination)
+    {
+        var facets = destination switch
+        {
+            "float" => new SqlServerTypeFacets(Precision: 24),
+            "time" or "datetime2" or "datetimeoffset" => new SqlServerTypeFacets(Scale: 3),
+            _ => new SqlServerTypeFacets(IsMax: true)
+        };
+        using var fixture = new Fixture(destination, true, targetFacets: facets);
+        var before = fixture.AllInputArtifacts();
+        var ex = Assert.Throws<NotSupportedException>(() => fixture.Convert("UnsupportedDestination"));
+        Assert.Contains("Projection '", ex.Message);
+        Assert.Contains("user-" + destination, ex.Message);
+        Assert.Contains("unsupported in this slice", ex.Message);
+        Assert.Contains("no output workspace has been written", ex.Message);
+        Assert.False(Directory.Exists(Path.Combine(fixture.Root, "UnsupportedDestination")));
+        Assert.Equal(before, fixture.AllInputArtifacts());
+    }
+
+    [Theory]
     [InlineData(false)]
     [InlineData(true)]
     public void PersistConvertReloadExportAndBind_UsesAuthoredSnippetAndSelectedCatalog(bool arbitraryIds)
@@ -196,7 +223,7 @@ public sealed class TransformScriptConversionIntegrationTests
         private readonly string projectionId;
         private string PathOf(string name) => Path.Combine(Root, name);
 
-        public Fixture(string destination, bool arbitraryIds, string? expression = null)
+        public Fixture(string destination, bool arbitraryIds, string? expression = null, SqlServerTypeFacets? targetFacets = null)
         {
             if (arbitraryIds)
             {
@@ -205,9 +232,9 @@ public sealed class TransformScriptConversionIntegrationTests
             }
             string Id(string name) => Catalog.DataTypeList.Single(type => type.DataTypeSystem.Name == "SqlServer" && type.Name == name).Id;
             destinationId = Id(destination);
-            facets = destination switch { "nvarchar" => new(Length: 25), "decimal" => new(Precision: 8, Scale: 2), _ => new() };
+            facets = targetFacets ?? (destination switch { "nvarchar" => new(Length: 25), "decimal" => new(Precision: 8, Scale: 2), _ => new() });
             Source = Schema("SourceRows", Id("int"), Id("nvarchar"), -1);
-            var target = Schema("TargetRows", Id("int"), destinationId, facets.Length, facets.Precision, facets.Scale,
+            var target = Schema("TargetRows", Id("int"), destinationId, facets.IsMax ? -1 : facets.Length, facets.Precision, facets.Scale,
                 expression == "s.TextValue" ? "TextValue" : "Converted");
             TypedWorkspaceModelMapper.Create(Source, PathOf("Source"), "xml");
             TypedWorkspaceModelMapper.Create(target, PathOf("Target"), "xml");

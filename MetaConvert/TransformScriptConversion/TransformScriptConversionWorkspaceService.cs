@@ -63,6 +63,7 @@ public sealed class TransformScriptConversionWorkspaceService
                 ?? throw new InvalidOperationException($"Unsupported expression typing for projection '{projection.Id}' ('{column.Name}').");
             types.Resolve(contract.MetaDataTypeId, $"Source expression '{projection.Id}'");
             var destination = types.Resolve(requirement.DestinationDataTypeId, $"Destination requirement '{projection.Id}'");
+            RejectUnsupportedDestinationFacets(projection.Id, destination, requirement.Facets);
             var mappings = conversions.DataTypeMappingList.Where(row => row.SourceDataTypeId == contract.MetaDataTypeId && row.TargetDataTypeId == destination.Id).ToArray();
             if (mappings.Length != 1)
                 throw new InvalidOperationException($"Projection '{projection.Id}': expected one authored conversion '{contract.MetaDataTypeId}' → '{destination.Id}'; found {mappings.Length} (missing or ambiguous mapping).");
@@ -93,6 +94,19 @@ public sealed class TransformScriptConversionWorkspaceService
         }
         TypedWorkspaceModelMapper.Create(normalized, output, "xml");
         return new(output, expected.Count);
+    }
+
+    private static void RejectUnsupportedDestinationFacets(string projectionId, DataType destination, SqlServerTypeFacets facets)
+    {
+        ArgumentNullException.ThrowIfNull(facets);
+        var reason = facets.IsMax || facets.Length == -1 ? "MAX length" : destination.Name.ToLowerInvariant() switch
+        {
+            "time" or "datetime2" or "datetimeoffset" => "temporal fractional precision",
+            "float" => "float precision",
+            _ => null
+        };
+        if (reason is not null)
+            throw new NotSupportedException($"Projection '{projectionId}', destination '{destination.Id}' ({destination.Name}): {reason} destinations are unsupported in this slice. Binding result-facet support is a separate task; no output workspace has been written.");
     }
 
     private static TransformBindingResult Analyze(MetaTransformScriptModel model, TransformScript script,
