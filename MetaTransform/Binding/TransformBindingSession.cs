@@ -1,10 +1,12 @@
 using MetaTransformScript;
 using MetaSchema;
+using MetaDataType;
 
 namespace MetaTransform.Binding;
 
 internal sealed partial class TransformBindingSession
 {
+    private readonly SqlServerSchemaTypeValidator typeValidator;
     private readonly TransformScriptNavigator navigator;
     private readonly List<TransformBindingIssue> issues = [];
     private readonly List<RuntimeTableSource> boundTableSources = [];
@@ -48,13 +50,14 @@ internal sealed partial class TransformBindingSession
         MetaSchemaTableResolver? sourceSchemaResolver,
         MetaSchemaTableResolver? targetSchemaResolver,
         string? executeSystemName,
-        string? executeSystemDefaultSchemaName)
+        string? executeSystemDefaultSchemaName,
+        MetaDataTypeModel? dataTypes = null)
         : this(
             new TransformScriptNavigator(model ?? throw new ArgumentNullException(nameof(model))),
             sourceSchemaResolver,
             targetSchemaResolver,
             executeSystemName,
-            executeSystemDefaultSchemaName)
+            executeSystemDefaultSchemaName, dataTypes)
     {
     }
 
@@ -63,8 +66,10 @@ internal sealed partial class TransformBindingSession
         MetaSchemaTableResolver? sourceSchemaResolver,
         MetaSchemaTableResolver? targetSchemaResolver,
         string? executeSystemName,
-        string? executeSystemDefaultSchemaName)
+        string? executeSystemDefaultSchemaName,
+        MetaDataTypeModel? dataTypes = null)
     {
+        typeValidator = new SqlServerSchemaTypeValidator(dataTypes ?? MetaDataTypeInstance.BuiltIn);
         this.navigator = navigator ?? throw new ArgumentNullException(nameof(navigator));
         this.sourceSchemaResolver = sourceSchemaResolver;
         this.targetSchemaResolver = targetSchemaResolver;

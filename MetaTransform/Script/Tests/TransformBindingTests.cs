@@ -4422,6 +4422,7 @@ FROM SourceTable AS s;
         var schemaModel = CreateSourceSchema(
             ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]),
             ("dbo", "CustomerSummary", ["CustomerSummaryId", "CustomerId", "CustomerName", "CreatedAtAlias", "LiteralValue"]));
+        SetFieldMetaDataTypeId(schemaModel, "Table:2", "LiteralValue", "sqlserver:type:varchar");
 
         var identityField = Assert.Single(schemaModel.FieldList, item =>
             string.Equals(item.SchemaObject.Id, "Table:2", StringComparison.Ordinal) &&

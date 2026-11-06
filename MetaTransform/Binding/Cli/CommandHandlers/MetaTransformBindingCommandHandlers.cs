@@ -27,6 +27,7 @@ internal sealed class MetaTransformBindingCommandHandlers
         MetaCliWorkspaces workspaces)
     {
         var parse = ReadBindArgs(invocation);
+        var dataTypeWorkspacePath = invocation.Optional("data-type-workspace");
         if (!parse.Ok)
         {
             Fail(parse.ErrorMessage, HelpCommand("bind"));
@@ -49,7 +50,8 @@ internal sealed class MetaTransformBindingCommandHandlers
                 parse.ExecuteSystemDefaultSchemaName,
                 validationOptions: options,
                 dataTypeConversionWorkspacePath: parse.DataTypeConversionWorkspacePath,
-                allowPartial: parse.AllowPartial);
+                allowPartial: parse.AllowPartial,
+                dataTypeWorkspacePath: dataTypeWorkspacePath);
             await workspaces.CreateAsync("output", result.Model).ConfigureAwait(false);
 
             var partialReportFullPath = partialReportService.Write(parse.PartialReportPath, result.ObjectIssues ?? []);
@@ -76,6 +78,7 @@ internal sealed class MetaTransformBindingCommandHandlers
                     $"  TransformWorkspace: {Path.GetFullPath(parse.TransformWorkspacePath)}",
                     $"  SourceSchemas: {string.Join(", ", parse.SourceSchemaWorkspacePaths.Select(Path.GetFullPath))}",
                     $"  TargetSchema: {Path.GetFullPath(parse.TargetSchemaWorkspacePath)}",
+                    $"  DataTypeWorkspace: {(string.IsNullOrWhiteSpace(dataTypeWorkspacePath) ? "<BuiltIn>" : Path.GetFullPath(dataTypeWorkspacePath))}",
                     $"  DataTypeConversionWorkspace: {(string.IsNullOrWhiteSpace(parse.DataTypeConversionWorkspacePath) ? "<default>" : Path.GetFullPath(parse.DataTypeConversionWorkspacePath))}",
                     $"  ExecuteSystem: {parse.ExecuteSystemName}",
                     $"  ExecuteSystemDefaultSchemaName: {(string.IsNullOrWhiteSpace(parse.ExecuteSystemDefaultSchemaName) ? "<none>" : parse.ExecuteSystemDefaultSchemaName)}",
@@ -94,6 +97,7 @@ internal sealed class MetaTransformBindingCommandHandlers
                     $"  TransformWorkspace: {Path.GetFullPath(parse.TransformWorkspacePath)}",
                     $"  SourceSchemas: {string.Join(", ", parse.SourceSchemaWorkspacePaths.Select(Path.GetFullPath))}",
                     $"  TargetSchema: {Path.GetFullPath(parse.TargetSchemaWorkspacePath)}",
+                    $"  DataTypeWorkspace: {(string.IsNullOrWhiteSpace(dataTypeWorkspacePath) ? "<BuiltIn>" : Path.GetFullPath(dataTypeWorkspacePath))}",
                     $"  DataTypeConversionWorkspace: {(string.IsNullOrWhiteSpace(parse.DataTypeConversionWorkspacePath) ? "<default>" : Path.GetFullPath(parse.DataTypeConversionWorkspacePath))}",
                     $"  ExecuteSystem: {parse.ExecuteSystemName}",
                     $"  ExecuteSystemDefaultSchemaName: {(string.IsNullOrWhiteSpace(parse.ExecuteSystemDefaultSchemaName) ? "<none>" : parse.ExecuteSystemDefaultSchemaName)}",
