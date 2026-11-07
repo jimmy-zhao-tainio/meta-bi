@@ -93,9 +93,10 @@
       <IsRequired>true</IsRequired>
       <Name>pipeline-workspace</Name>
     </Parameter>
-    <Parameter Id="param-execute-data-type-conversion-workspace" ValueShapeId="shape-path">
-      <Description>Conversion policy workspace passed to child workers.</Description>
-      <Name>data-type-conversion-workspace</Name>
+    <Parameter Id="param-execute-data-type-workspace" ValueShapeId="shape-path">
+      <Description>MetaDataType catalog used for SQL Server execution contracts. Defaults to BuiltIn.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>data-type-workspace</Name>
     </Parameter>
     <Parameter Id="param-execute-max-degree-of-parallelism" ValueShapeId="shape-count">
       <DefaultValue>1</DefaultValue>

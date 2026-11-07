@@ -7,8 +7,8 @@ public sealed class SqlServerBulkCopyRowStreamWriterTests
     {
         var shape = new PipelineRowStreamShape(
             [
-                new PipelineColumn("CustomerId", 1),
-                new PipelineColumn("CustomerName", 2),
+                new PipelineColumn("CustomerId", 1, "sqlserver:type:int", "sqlserver:type:int"),
+                new PipelineColumn("CustomerName", 2, "sqlserver:type:nvarchar", "sqlserver:type:nvarchar"),
             ]);
 
         var writer = new SqlServerBulkCopyRowStreamWriter(
@@ -29,7 +29,7 @@ public sealed class SqlServerBulkCopyRowStreamWriterTests
             new SqlServerBulkCopyRowStreamWriter(
                 "Server=.;Database=DoesNotOpen;Integrated Security=true;TrustServerCertificate=true;Encrypt=false",
                 " ",
-                new PipelineRowStreamShape([new PipelineColumn("CustomerId", 1)])));
+                new PipelineRowStreamShape([new PipelineColumn("CustomerId", 1, "sqlserver:type:int", "sqlserver:type:int")])));
 
         Assert.Contains("targetSqlIdentifier", exception.Message, StringComparison.Ordinal);
     }

@@ -15,7 +15,7 @@ public sealed class MetaOrchestrationSupervisorEvidenceTests
                 PipelineWorkspacePath: Path.Combine(root, "PipelineWS"),
                 TransformWorkspacePath: Path.Combine(root, "TransformWS"),
                 BindingWorkspacePath: Path.Combine(root, "BindingWS"),
-                DataTypeConversionWorkspacePath: string.Empty,
+                DataTypeWorkspacePath: string.Empty,
                 PipelineDbConnectionEnvironmentVariableName: string.Empty,
                 MaxDegreeOfParallelism: 1,
                 RunArtifactsRootPath: root);

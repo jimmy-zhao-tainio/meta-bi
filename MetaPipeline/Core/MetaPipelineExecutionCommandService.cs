@@ -18,7 +18,7 @@ public sealed record MetaPipelineExecutionPipelineCommandRequest(
     string PipelineName,
     string TransformWorkspacePath,
     string BindingWorkspacePath,
-    string DataTypeConversionWorkspacePath,
+    string DataTypeWorkspacePath,
     string PipelineDbConnectionEnvironmentVariableName);
 
 public sealed record MetaPipelineExecutionStepCommandRequest(
@@ -28,7 +28,7 @@ public sealed record MetaPipelineExecutionStepCommandRequest(
     string StepName,
     string TransformWorkspacePath,
     string BindingWorkspacePath,
-    string DataTypeConversionWorkspacePath,
+    string DataTypeWorkspacePath,
     string PipelineDbConnectionEnvironmentVariableName);
 
 public sealed record MetaPipelineWorkerExecutionCommandRequest(
@@ -37,7 +37,7 @@ public sealed record MetaPipelineWorkerExecutionCommandRequest(
     string PipelineName,
     string TransformWorkspacePath,
     string BindingWorkspacePath,
-    string DataTypeConversionWorkspacePath,
+    string DataTypeWorkspacePath,
     string PipelineDbConnectionEnvironmentVariableName,
     string WorkerControlPipeName,
     int? ControlPipeConnectTimeoutSeconds);
@@ -53,7 +53,7 @@ public sealed record MetaPipelineDirectSqlServerExecutionCommandRequest(
     int BatchSize,
     int? TimeoutSeconds,
     string TargetDataTypeSystemName,
-    string DataTypeConversionWorkspacePath,
+    string DataTypeWorkspacePath,
     string PipelineDbConnectionEnvironmentVariableName);
 
 public enum MetaPipelineExecutionCommandStatus
@@ -151,7 +151,7 @@ public sealed class MetaPipelineExecutionCommandService
                 plan,
                 operationalDb,
                 operationalRunId,
-                request.DataTypeConversionWorkspacePath,
+                request.DataTypeWorkspacePath,
                 progress).ConfigureAwait(false);
 
             if (operationalDb is not null && operationalRunId is Guid completedRunId)
@@ -332,7 +332,7 @@ public sealed class MetaPipelineExecutionCommandService
                 plan,
                 operationalDb,
                 operationalRunId,
-                request.DataTypeConversionWorkspacePath,
+                request.DataTypeWorkspacePath,
                 progress).ConfigureAwait(false);
 
             if (operationalDb is not null && operationalRunId is Guid completedRunId)
@@ -516,7 +516,7 @@ public sealed class MetaPipelineExecutionCommandService
                 plan,
                 operationalDb,
                 operationalRunId,
-                request.DataTypeConversionWorkspacePath,
+                request.DataTypeWorkspacePath,
                 workerChannel,
                 startCommand.TaskId,
                 executableVersion)
@@ -677,7 +677,7 @@ public sealed class MetaPipelineExecutionCommandService
                         request.TimeoutSeconds,
                         ExecutionContext: executionContext,
                         TargetDataTypeSystemName: request.TargetDataTypeSystemName,
-                        DataTypeConversionWorkspacePath: request.DataTypeConversionWorkspacePath),
+                        DataTypeWorkspacePath: request.DataTypeWorkspacePath),
                     progress).ConfigureAwait(false);
                 progress?.CompleteStep(result.Succeeded, result.RowCount, result.BatchCount);
             }
@@ -792,7 +792,7 @@ public sealed class MetaPipelineExecutionCommandService
         MetaPipelineModeledExecutionPlan plan,
         MetaPipelineOperationalDbStore? operationalDb,
         Guid? operationalRunId,
-        string? dataTypeConversionWorkspacePath,
+        string? dataTypeWorkspacePath,
         IMetaPipelineExecutionProgress? progress)
     {
         var startedAtUtc = DateTimeOffset.UtcNow;
@@ -813,7 +813,7 @@ public sealed class MetaPipelineExecutionCommandService
                     step,
                     operationalDb,
                     operationalRunId,
-                    dataTypeConversionWorkspacePath,
+                    dataTypeWorkspacePath,
                     progress).ConfigureAwait(false);
             }
             catch
@@ -862,7 +862,7 @@ public sealed class MetaPipelineExecutionCommandService
         MetaPipelineModeledExecutionPlan plan,
         MetaPipelineOperationalDbStore? operationalDb,
         Guid? operationalRunId,
-        string? dataTypeConversionWorkspacePath,
+        string? dataTypeWorkspacePath,
         OrchestrationWorkerProtocolChannel workerChannel,
         string resumeTaskId,
         string executableVersion)
@@ -958,7 +958,7 @@ public sealed class MetaPipelineExecutionCommandService
                         step,
                         operationalDb,
                         operationalRunId,
-                        dataTypeConversionWorkspacePath,
+                        dataTypeWorkspacePath,
                         progress: null).ConfigureAwait(false);
                 }
                 catch (Exception ex)
@@ -1075,7 +1075,7 @@ public sealed class MetaPipelineExecutionCommandService
         MetaPipelineModeledExecutionStep step,
         MetaPipelineOperationalDbStore? operationalDb,
         Guid? operationalRunId,
-        string? dataTypeConversionWorkspacePath,
+        string? dataTypeWorkspacePath,
         IProgress<BufferedPipelineExecutionProgress>? progress)
     {
         if (step.StepKind == MetaPipelineModeledExecutionStepKind.Executable)
@@ -1134,7 +1134,7 @@ public sealed class MetaPipelineExecutionCommandService
                 step.TargetWriteTaskName,
                 executionContext,
                 step.TargetDataTypeSystemName ?? "SqlServer",
-                dataTypeConversionWorkspacePath),
+                dataTypeWorkspacePath),
             progress).ConfigureAwait(false);
     }
 

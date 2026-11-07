@@ -198,11 +198,13 @@ public sealed class TransformScriptConversionIntegrationTests
     }
 
     [Theory]
-    [InlineData("int")]
-    [InlineData("nvarchar")]
-    public async Task CliCollectionThenIndependentBindingAndPipeline_ExecutesExactSourceDrivenSemantics(string destination)
+    [InlineData("int", false)]
+    [InlineData("nvarchar", false)]
+    [InlineData("int", true)]
+    [InlineData("nvarchar", true)]
+    public async Task CliCollectionThenIndependentBindingAndPipeline_ExecutesExactSourceDrivenSemantics(string destination, bool arbitraryIds)
     {
-        using var f = new Fixture(false, destination: destination);
+        using var f = new Fixture(arbitraryIds, destination: destination);
         if (destination == "int")
         {
             var error = Assert.Throws<TransformBindingValidationException>(() => f.AssertBound(f.Input));
@@ -234,10 +236,25 @@ public sealed class TransformScriptConversionIntegrationTests
             foreach (var script in scripts.TransformScriptList)
             {
                 var binding = bindings.TransformBindingList.Single(row => row.MetaTransformScriptTransformScriptId == script.Id);
-                var execution = await new MetaPipelineSqlServerExecutionService().ExecuteAsync(new(output, output + "-Binding", cs, cs, script.Id, binding.Id, BatchSize: 2));
-                Assert.True(execution.Succeeded, execution.FailureMessage);
                 var selected = script.Name == "Second" && destination == "int" ? new[] { 0, 1 } : Enumerable.Range(0, values.Length).ToArray();
-                Assert.Equal(selected.Length, execution.RowCount);
+                if (arbitraryIds)
+                {
+                    var env = "METABI_CONVERSION_" + Guid.NewGuid().ToString("N");
+                    Environment.SetEnvironmentVariable(env, cs);
+                    try
+                    {
+                        var cli = CliTestRunner.RunStandardCli("meta-pipeline",
+                            $"execute-sqlserver --transform-workspace \"{output}\" --binding-workspace \"{output}-Binding\" --execution-connection-env {env} --target-connection-env {env} --script {script.Name} --binding {binding.Id} --batch-size 2 --data-type-workspace \"{Path.Combine(f.Root, "Catalog")}\"");
+                        Assert.True(cli.ExitCode == 0, cli.Output);
+                    }
+                    finally { Environment.SetEnvironmentVariable(env, null); }
+                }
+                else
+                {
+                    var execution = await new MetaPipelineSqlServerExecutionService().ExecuteAsync(new(output, output + "-Binding", cs, cs, script.Id, binding.Id, BatchSize: 2));
+                    Assert.True(execution.Succeeded, execution.FailureMessage);
+                    Assert.Equal(selected.Length, execution.RowCount);
+                }
                 var target = scripts.ScriptObjectViewList.Single(view => view.TransformScript.Id == script.Id).TargetSqlIdentifier;
                 await using var verify = new SqlCommand($"SELECT Id,Converted FROM {target} ORDER BY Id", db);
                 await using var reader = await verify.ExecuteReaderAsync();

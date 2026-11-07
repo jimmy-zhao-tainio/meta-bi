@@ -11,7 +11,7 @@ internal sealed partial class MetaPipelineCommandHandlers
         string StepName,
         string TransformWorkspacePath,
         string BindingWorkspacePath,
-        string DataTypeConversionWorkspacePath,
+        string DataTypeWorkspacePath,
         string PipelineDbConnectionEnvironmentVariableName,
         string ErrorMessage) ReadExecuteStepArgs(MetaCliInvocation invocation)
     {
@@ -20,7 +20,7 @@ internal sealed partial class MetaPipelineCommandHandlers
         var stepName = Required(invocation, "step-name");
         var transformWorkspacePath = Optional(invocation, "transform-workspace");
         var bindingWorkspacePath = Optional(invocation, "binding-workspace");
-        var dataTypeConversionWorkspacePath = Optional(invocation, "data-type-conversion-workspace");
+        var dataTypeWorkspacePath = Optional(invocation, "data-type-workspace");
         var pipelineDbConnectionEnvironmentVariableName = Optional(invocation, "pipeline-db-connection-env");
 
         if (string.IsNullOrWhiteSpace(pipelineName)) return FailParse("missing required option --pipeline <name>.");
@@ -33,12 +33,12 @@ internal sealed partial class MetaPipelineCommandHandlers
             stepName,
             transformWorkspacePath,
             bindingWorkspacePath,
-            dataTypeConversionWorkspacePath,
+            dataTypeWorkspacePath,
             pipelineDbConnectionEnvironmentVariableName,
             string.Empty);
 
-        (bool Ok, string PipelineWorkspacePath, string PipelineName, string StepName, string TransformWorkspacePath, string BindingWorkspacePath, string DataTypeConversionWorkspacePath, string PipelineDbConnectionEnvironmentVariableName, string ErrorMessage) FailParse(string message) =>
-            (false, pipelineWorkspacePath, pipelineName, stepName, transformWorkspacePath, bindingWorkspacePath, dataTypeConversionWorkspacePath, pipelineDbConnectionEnvironmentVariableName, message);
+        (bool Ok, string PipelineWorkspacePath, string PipelineName, string StepName, string TransformWorkspacePath, string BindingWorkspacePath, string DataTypeWorkspacePath, string PipelineDbConnectionEnvironmentVariableName, string ErrorMessage) FailParse(string message) =>
+            (false, pipelineWorkspacePath, pipelineName, stepName, transformWorkspacePath, bindingWorkspacePath, dataTypeWorkspacePath, pipelineDbConnectionEnvironmentVariableName, message);
     }
 
     private static (
@@ -47,7 +47,7 @@ internal sealed partial class MetaPipelineCommandHandlers
         string PipelineName,
         string TransformWorkspacePath,
         string BindingWorkspacePath,
-        string DataTypeConversionWorkspacePath,
+        string DataTypeWorkspacePath,
         string PipelineDbConnectionEnvironmentVariableName,
         string WorkerControlPipeName,
         int? ControlPipeConnectTimeoutSeconds,
@@ -57,7 +57,7 @@ internal sealed partial class MetaPipelineCommandHandlers
         var pipelineName = Required(invocation, "pipeline");
         var transformWorkspacePath = Optional(invocation, "transform-workspace");
         var bindingWorkspacePath = Optional(invocation, "binding-workspace");
-        var dataTypeConversionWorkspacePath = Optional(invocation, "data-type-conversion-workspace");
+        var dataTypeWorkspacePath = Optional(invocation, "data-type-workspace");
         var pipelineDbConnectionEnvironmentVariableName = Optional(invocation, "pipeline-db-connection-env");
         var workerControlPipeName = Optional(invocation, "control-pipe");
         var controlPipeConnectTimeout = ReadOptionalNonNegativeInt(invocation, "control-pipe-connect-timeout-seconds", "--control-pipe-connect-timeout-seconds");
@@ -71,14 +71,14 @@ internal sealed partial class MetaPipelineCommandHandlers
             pipelineName,
             transformWorkspacePath,
             bindingWorkspacePath,
-            dataTypeConversionWorkspacePath,
+            dataTypeWorkspacePath,
             pipelineDbConnectionEnvironmentVariableName,
             workerControlPipeName,
             controlPipeConnectTimeout.Value,
             string.Empty);
 
-        (bool Ok, string PipelineWorkspacePath, string PipelineName, string TransformWorkspacePath, string BindingWorkspacePath, string DataTypeConversionWorkspacePath, string PipelineDbConnectionEnvironmentVariableName, string WorkerControlPipeName, int? ControlPipeConnectTimeoutSeconds, string ErrorMessage) FailParse(string message) =>
-            (false, pipelineWorkspacePath, pipelineName, transformWorkspacePath, bindingWorkspacePath, dataTypeConversionWorkspacePath, pipelineDbConnectionEnvironmentVariableName, workerControlPipeName, controlPipeConnectTimeout.Value, message);
+        (bool Ok, string PipelineWorkspacePath, string PipelineName, string TransformWorkspacePath, string BindingWorkspacePath, string DataTypeWorkspacePath, string PipelineDbConnectionEnvironmentVariableName, string WorkerControlPipeName, int? ControlPipeConnectTimeoutSeconds, string ErrorMessage) FailParse(string message) =>
+            (false, pipelineWorkspacePath, pipelineName, transformWorkspacePath, bindingWorkspacePath, dataTypeWorkspacePath, pipelineDbConnectionEnvironmentVariableName, workerControlPipeName, controlPipeConnectTimeout.Value, message);
     }
 
     private static (
@@ -93,7 +93,7 @@ internal sealed partial class MetaPipelineCommandHandlers
         int BatchSize,
         int? TimeoutSeconds,
         string TargetDataTypeSystemName,
-        string DataTypeConversionWorkspacePath,
+        string DataTypeWorkspacePath,
         string PipelineDbConnectionEnvironmentVariableName,
         string ErrorMessage) ReadExecuteSqlServerArgs(MetaCliInvocation invocation)
     {
@@ -107,7 +107,7 @@ internal sealed partial class MetaPipelineCommandHandlers
         var batchSize = ReadPositiveInt(invocation, "batch-size", "--batch-size");
         var timeoutSeconds = ReadOptionalNonNegativeInt(invocation, "timeout-seconds", "--timeout-seconds");
         var targetDataTypeSystemName = Required(invocation, "target-data-type-system");
-        var dataTypeConversionWorkspacePath = Optional(invocation, "data-type-conversion-workspace");
+        var dataTypeWorkspacePath = Optional(invocation, "data-type-workspace");
         var pipelineDbConnectionEnvironmentVariableName = Optional(invocation, "pipeline-db-connection-env");
 
         if (!batchSize.Ok) return FailParse(batchSize.ErrorMessage);
@@ -130,12 +130,12 @@ internal sealed partial class MetaPipelineCommandHandlers
             batchSize.Value,
             timeoutSeconds.Value,
             targetDataTypeSystemName,
-            dataTypeConversionWorkspacePath,
+            dataTypeWorkspacePath,
             pipelineDbConnectionEnvironmentVariableName,
             string.Empty);
 
-        (bool Ok, string TransformWorkspacePath, string BindingWorkspacePath, string ExecutionConnectionEnvironmentVariableName, string TargetConnectionEnvironmentVariableName, string Script, string Binding, string? TargetSqlIdentifier, int BatchSize, int? TimeoutSeconds, string TargetDataTypeSystemName, string DataTypeConversionWorkspacePath, string PipelineDbConnectionEnvironmentVariableName, string ErrorMessage) FailParse(string message) =>
-            (false, transformWorkspacePath, bindingWorkspacePath, executionConnectionEnvironmentVariableName, targetConnectionEnvironmentVariableName, script, binding, targetSqlIdentifier, batchSize.Value, timeoutSeconds.Value, targetDataTypeSystemName, dataTypeConversionWorkspacePath, pipelineDbConnectionEnvironmentVariableName, message);
+        (bool Ok, string TransformWorkspacePath, string BindingWorkspacePath, string ExecutionConnectionEnvironmentVariableName, string TargetConnectionEnvironmentVariableName, string Script, string Binding, string? TargetSqlIdentifier, int BatchSize, int? TimeoutSeconds, string TargetDataTypeSystemName, string DataTypeWorkspacePath, string PipelineDbConnectionEnvironmentVariableName, string ErrorMessage) FailParse(string message) =>
+            (false, transformWorkspacePath, bindingWorkspacePath, executionConnectionEnvironmentVariableName, targetConnectionEnvironmentVariableName, script, binding, targetSqlIdentifier, batchSize.Value, timeoutSeconds.Value, targetDataTypeSystemName, dataTypeWorkspacePath, pipelineDbConnectionEnvironmentVariableName, message);
     }
 
     private static (

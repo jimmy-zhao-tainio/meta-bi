@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <Compile Include="..\Workspaces\MetaPipeline\MetaPipeline.meta.cs" Link="MetaPipeline.meta.cs" />
-    <ProjectReference Include="..\..\MetaDataTypeConversion\Core\MetaDataTypeConversion.Core.csproj" />
+    <ProjectReference Include="..\..\MetaDataType\Core\MetaDataType.Core.csproj" />
     <ProjectReference Include="..\..\MetaOrchestration\WorkerProtocol\MetaOrchestration.WorkerProtocol.csproj" />
     <ProjectReference Include="..\..\MetaTransform\Binding\MetaTransform.Binding.csproj" />
     <ProjectReference Include="..\..\MetaTransform\Script\Sql\MetaTransformScript.Sql.csproj" />

@@ -97,8 +97,8 @@
     <OptionToken Id="token-execute-binding-workspace" OptionId="opt-execute-binding-workspace">
       <Token>--binding-workspace</Token>
     </OptionToken>
-    <OptionToken Id="token-execute-data-type-conversion-workspace" OptionId="opt-execute-data-type-conversion-workspace">
-      <Token>--data-type-conversion-workspace</Token>
+    <OptionToken Id="token-execute-data-type-workspace" OptionId="opt-execute-data-type-workspace">
+      <Token>--data-type-workspace</Token>
     </OptionToken>
     <OptionToken Id="token-execute-pipeline" OptionId="opt-execute-pipeline">
       <Token>--pipeline</Token>
@@ -115,8 +115,8 @@
     <OptionToken Id="token-execute-sqlserver-binding-workspace" OptionId="opt-execute-sqlserver-binding-workspace">
       <Token>--binding-workspace</Token>
     </OptionToken>
-    <OptionToken Id="token-execute-sqlserver-data-type-conversion-workspace" OptionId="opt-execute-sqlserver-data-type-conversion-workspace">
-      <Token>--data-type-conversion-workspace</Token>
+    <OptionToken Id="token-execute-sqlserver-data-type-workspace" OptionId="opt-execute-sqlserver-data-type-workspace">
+      <Token>--data-type-workspace</Token>
     </OptionToken>
     <OptionToken Id="token-execute-sqlserver-execution-connection-env" OptionId="opt-execute-sqlserver-execution-connection-env">
       <Token>--execution-connection-env</Token>
@@ -145,8 +145,8 @@
     <OptionToken Id="token-execute-step-binding-workspace" OptionId="opt-execute-step-binding-workspace">
       <Token>--binding-workspace</Token>
     </OptionToken>
-    <OptionToken Id="token-execute-step-data-type-conversion-workspace" OptionId="opt-execute-step-data-type-conversion-workspace">
-      <Token>--data-type-conversion-workspace</Token>
+    <OptionToken Id="token-execute-step-data-type-workspace" OptionId="opt-execute-step-data-type-workspace">
+      <Token>--data-type-workspace</Token>
     </OptionToken>
     <OptionToken Id="token-execute-step-pipeline" OptionId="opt-execute-step-pipeline">
       <Token>--pipeline</Token>
@@ -175,8 +175,8 @@
     <OptionToken Id="token-execute-worker-control-pipe-connect-timeout-seconds" OptionId="opt-execute-worker-control-pipe-connect-timeout-seconds">
       <Token>--control-pipe-connect-timeout-seconds</Token>
     </OptionToken>
-    <OptionToken Id="token-execute-worker-data-type-conversion-workspace" OptionId="opt-execute-worker-data-type-conversion-workspace">
-      <Token>--data-type-conversion-workspace</Token>
+    <OptionToken Id="token-execute-worker-data-type-workspace" OptionId="opt-execute-worker-data-type-workspace">
+      <Token>--data-type-workspace</Token>
     </OptionToken>
     <OptionToken Id="token-execute-worker-pipeline" OptionId="opt-execute-worker-pipeline">
       <Token>--pipeline</Token>

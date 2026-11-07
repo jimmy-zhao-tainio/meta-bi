@@ -143,9 +143,10 @@
       <Description>MetaTransformBinding workspace path used for operational run context.</Description>
       <Name>binding-workspace</Name>
     </Parameter>
-    <Parameter Id="param-execute-data-type-conversion-workspace" ValueShapeId="shape-path">
-      <Description>Conversion policy workspace; omitted uses built-in defaults.</Description>
-      <Name>data-type-conversion-workspace</Name>
+    <Parameter Id="param-execute-data-type-workspace" ValueShapeId="shape-path">
+      <Description>MetaDataType catalog used for SQL Server execution contracts. Defaults to BuiltIn.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>data-type-workspace</Name>
     </Parameter>
     <Parameter Id="param-execute-pipeline" ValueShapeId="shape-text">
       <Description>Pipeline name to execute.</Description>
@@ -170,9 +171,10 @@
       <IsRequired>true</IsRequired>
       <Name>binding-workspace</Name>
     </Parameter>
-    <Parameter Id="param-execute-sqlserver-data-type-conversion-workspace" ValueShapeId="shape-path">
-      <Description>Conversion policy workspace; omitted uses built-in defaults.</Description>
-      <Name>data-type-conversion-workspace</Name>
+    <Parameter Id="param-execute-sqlserver-data-type-workspace" ValueShapeId="shape-path">
+      <Description>MetaDataType catalog used for SQL Server execution contracts. Defaults to BuiltIn.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>data-type-workspace</Name>
     </Parameter>
     <Parameter Id="param-execute-sqlserver-execution-connection-env" ValueShapeId="shape-text">
       <Description>Environment variable for the execution SQL Server connection.</Description>
@@ -214,9 +216,10 @@
       <Description>MetaTransformBinding workspace path used for operational run context.</Description>
       <Name>binding-workspace</Name>
     </Parameter>
-    <Parameter Id="param-execute-step-data-type-conversion-workspace" ValueShapeId="shape-path">
-      <Description>Conversion policy workspace; omitted uses built-in defaults.</Description>
-      <Name>data-type-conversion-workspace</Name>
+    <Parameter Id="param-execute-step-data-type-workspace" ValueShapeId="shape-path">
+      <Description>MetaDataType catalog used for SQL Server execution contracts. Defaults to BuiltIn.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>data-type-workspace</Name>
     </Parameter>
     <Parameter Id="param-execute-step-pipeline" ValueShapeId="shape-text">
       <Description>Pipeline name containing the step.</Description>
@@ -257,9 +260,10 @@
       <Description>Timeout while connecting to the orchestration control pipe. 0 or omitted means no timeout.</Description>
       <Name>control-pipe-connect-timeout-seconds</Name>
     </Parameter>
-    <Parameter Id="param-execute-worker-data-type-conversion-workspace" ValueShapeId="shape-path">
-      <Description>Conversion policy workspace; omitted uses built-in defaults.</Description>
-      <Name>data-type-conversion-workspace</Name>
+    <Parameter Id="param-execute-worker-data-type-workspace" ValueShapeId="shape-path">
+      <Description>MetaDataType catalog used for SQL Server execution contracts. Defaults to BuiltIn.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>data-type-workspace</Name>
     </Parameter>
     <Parameter Id="param-execute-worker-pipeline" ValueShapeId="shape-text">
       <Description>Pipeline name to execute as a worker.</Description>

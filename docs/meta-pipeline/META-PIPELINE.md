@@ -58,8 +58,21 @@ Sanctioned modeled target movement currently includes:
 `InsertRows` records the runtime target data type system through
 `InsertRowsTargetWriteTask.TargetDataTypeSystemName`.
 If omitted, SQL Server execution defaults it to `SqlServer`.
-Binding and execution can also be supplied a `MetaDataTypeConversion` workspace so source/target
-type normalization remains a sanctioned policy workspace, not a pipeline-owned type table.
+SQL Server execution requires `SqlServer`; it does not map another system's types.
+Pipeline execution commands accept `--data-type-workspace` to resolve validated
+type IDs through the selected MetaDataType catalog and its DataTypeSystem
+relationships. BuiltIn is the default. Arbitrary catalog IDs are supported.
+`meta-orchestration execute` forwards that catalog selection to Pipeline workers.
+
+Binding validates the resulting SQL expression against the target contract.
+Pipeline never selects conversion mappings or instantiates snippets. Prepare those
+expressions with `meta-transform-script apply-conversions`, then bind the produced
+script. The retired `--data-type-conversion-workspace` execution option is rejected.
+
+Bulk copy retains SQL Server driver type representations, but converts no values.
+Values must already have the CLR representation required by their validated SQL
+Server type. Incompatible values fail before their batch is written; `null` and
+`DBNull.Value` are transported as SQL NULL, distinct from an empty string.
 
 ## Stage 1 nucleus
 

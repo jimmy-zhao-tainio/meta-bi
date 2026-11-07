@@ -22,7 +22,7 @@
     <ExecutableCommandParameter Id="exec-create:parameter:param-create-output-sql" ExecutableCommandId="exec-create" ParameterId="param-create-output-sql" />
     <ExecutableCommandParameter Id="exec-create:parameter:param-create-output-xml" ExecutableCommandId="exec-create" ParameterId="param-create-output-xml" />
     <ExecutableCommandParameter Id="exec-create:parameter:param-create-pipeline-workspace" ExecutableCommandId="exec-create" ParameterId="param-create-pipeline-workspace" />
-    <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-data-type-conversion-workspace" ExecutableCommandId="exec-execute" ParameterId="param-execute-data-type-conversion-workspace" />
+    <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-data-type-workspace" ExecutableCommandId="exec-execute" ParameterId="param-execute-data-type-workspace" />
     <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-max-degree-of-parallelism" ExecutableCommandId="exec-execute" ParameterId="param-execute-max-degree-of-parallelism" />
     <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-pipeline-db-connection-env" ExecutableCommandId="exec-execute" ParameterId="param-execute-pipeline-db-connection-env" />
     <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-pipeline-workspace" ExecutableCommandId="exec-execute" ParameterId="param-execute-pipeline-workspace" />

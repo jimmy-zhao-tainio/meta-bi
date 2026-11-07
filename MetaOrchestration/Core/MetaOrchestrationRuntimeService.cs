@@ -929,9 +929,9 @@ public sealed class MetaOrchestrationRuntimeService
             BindingWorkspacePath = string.IsNullOrWhiteSpace(request.BindingWorkspacePath)
                 ? string.Empty
                 : Path.GetFullPath(request.BindingWorkspacePath),
-            DataTypeConversionWorkspacePath = string.IsNullOrWhiteSpace(request.DataTypeConversionWorkspacePath)
+            DataTypeWorkspacePath = string.IsNullOrWhiteSpace(request.DataTypeWorkspacePath)
                 ? string.Empty
-                : Path.GetFullPath(request.DataTypeConversionWorkspacePath),
+                : Path.GetFullPath(request.DataTypeWorkspacePath),
             RunArtifactsRootPath = string.IsNullOrWhiteSpace(request.RunArtifactsRootPath)
                 ? string.Empty
                 : Path.GetFullPath(request.RunArtifactsRootPath),
@@ -1112,10 +1112,10 @@ public sealed class MetaOrchestrationRuntimeService
             startInfo.ArgumentList.Add(request.PipelineWorkspacePath);
             startInfo.ArgumentList.Add("--pipeline");
             startInfo.ArgumentList.Add(pipelineName);
-            if (!string.IsNullOrWhiteSpace(request.DataTypeConversionWorkspacePath))
+            if (!string.IsNullOrWhiteSpace(request.DataTypeWorkspacePath))
             {
-                startInfo.ArgumentList.Add("--data-type-conversion-workspace");
-                startInfo.ArgumentList.Add(request.DataTypeConversionWorkspacePath);
+                startInfo.ArgumentList.Add("--data-type-workspace");
+                startInfo.ArgumentList.Add(request.DataTypeWorkspacePath);
             }
 
             if (!string.IsNullOrWhiteSpace(request.PipelineDbConnectionEnvironmentVariableName))
@@ -1555,7 +1555,7 @@ public sealed record OrchestrationRuntimeRequest(
     string PipelineWorkspacePath,
     string TransformWorkspacePath,
     string BindingWorkspacePath,
-    string DataTypeConversionWorkspacePath,
+    string DataTypeWorkspacePath,
     string PipelineDbConnectionEnvironmentVariableName,
     int MaxDegreeOfParallelism,
     string PipelineExecutableName = "meta-pipeline",

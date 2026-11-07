@@ -35,7 +35,7 @@
     <ExecutableCommandParameter Id="exec-execute-sqlserver:parameter:param-execute-sqlserver-batch-size" ExecutableCommandId="exec-execute-sqlserver" ParameterId="param-execute-sqlserver-batch-size" />
     <ExecutableCommandParameter Id="exec-execute-sqlserver:parameter:param-execute-sqlserver-binding" ExecutableCommandId="exec-execute-sqlserver" ParameterId="param-execute-sqlserver-binding" />
     <ExecutableCommandParameter Id="exec-execute-sqlserver:parameter:param-execute-sqlserver-binding-workspace" ExecutableCommandId="exec-execute-sqlserver" ParameterId="param-execute-sqlserver-binding-workspace" />
-    <ExecutableCommandParameter Id="exec-execute-sqlserver:parameter:param-execute-sqlserver-data-type-conversion-workspace" ExecutableCommandId="exec-execute-sqlserver" ParameterId="param-execute-sqlserver-data-type-conversion-workspace" />
+    <ExecutableCommandParameter Id="exec-execute-sqlserver:parameter:param-execute-sqlserver-data-type-workspace" ExecutableCommandId="exec-execute-sqlserver" ParameterId="param-execute-sqlserver-data-type-workspace" />
     <ExecutableCommandParameter Id="exec-execute-sqlserver:parameter:param-execute-sqlserver-execution-connection-env" ExecutableCommandId="exec-execute-sqlserver" ParameterId="param-execute-sqlserver-execution-connection-env" />
     <ExecutableCommandParameter Id="exec-execute-sqlserver:parameter:param-execute-sqlserver-pipeline-db-connection-env" ExecutableCommandId="exec-execute-sqlserver" ParameterId="param-execute-sqlserver-pipeline-db-connection-env" />
     <ExecutableCommandParameter Id="exec-execute-sqlserver:parameter:param-execute-sqlserver-script" ExecutableCommandId="exec-execute-sqlserver" ParameterId="param-execute-sqlserver-script" />
@@ -45,7 +45,7 @@
     <ExecutableCommandParameter Id="exec-execute-sqlserver:parameter:param-execute-sqlserver-timeout-seconds" ExecutableCommandId="exec-execute-sqlserver" ParameterId="param-execute-sqlserver-timeout-seconds" />
     <ExecutableCommandParameter Id="exec-execute-sqlserver:parameter:param-execute-sqlserver-transform-workspace" ExecutableCommandId="exec-execute-sqlserver" ParameterId="param-execute-sqlserver-transform-workspace" />
     <ExecutableCommandParameter Id="exec-execute-step:parameter:param-execute-step-binding-workspace" ExecutableCommandId="exec-execute-step" ParameterId="param-execute-step-binding-workspace" />
-    <ExecutableCommandParameter Id="exec-execute-step:parameter:param-execute-step-data-type-conversion-workspace" ExecutableCommandId="exec-execute-step" ParameterId="param-execute-step-data-type-conversion-workspace" />
+    <ExecutableCommandParameter Id="exec-execute-step:parameter:param-execute-step-data-type-workspace" ExecutableCommandId="exec-execute-step" ParameterId="param-execute-step-data-type-workspace" />
     <ExecutableCommandParameter Id="exec-execute-step:parameter:param-execute-step-pipeline" ExecutableCommandId="exec-execute-step" ParameterId="param-execute-step-pipeline" />
     <ExecutableCommandParameter Id="exec-execute-step:parameter:param-execute-step-pipeline-db-connection-env" ExecutableCommandId="exec-execute-step" ParameterId="param-execute-step-pipeline-db-connection-env" />
     <ExecutableCommandParameter Id="exec-execute-step:parameter:param-execute-step-step-name" ExecutableCommandId="exec-execute-step" ParameterId="param-execute-step-step-name" />
@@ -54,13 +54,13 @@
     <ExecutableCommandParameter Id="exec-execute-worker:parameter:param-execute-worker-binding-workspace" ExecutableCommandId="exec-execute-worker" ParameterId="param-execute-worker-binding-workspace" />
     <ExecutableCommandParameter Id="exec-execute-worker:parameter:param-execute-worker-control-pipe" ExecutableCommandId="exec-execute-worker" ParameterId="param-execute-worker-control-pipe" />
     <ExecutableCommandParameter Id="exec-execute-worker:parameter:param-execute-worker-control-pipe-connect-timeout-seconds" ExecutableCommandId="exec-execute-worker" ParameterId="param-execute-worker-control-pipe-connect-timeout-seconds" />
-    <ExecutableCommandParameter Id="exec-execute-worker:parameter:param-execute-worker-data-type-conversion-workspace" ExecutableCommandId="exec-execute-worker" ParameterId="param-execute-worker-data-type-conversion-workspace" />
+    <ExecutableCommandParameter Id="exec-execute-worker:parameter:param-execute-worker-data-type-workspace" ExecutableCommandId="exec-execute-worker" ParameterId="param-execute-worker-data-type-workspace" />
     <ExecutableCommandParameter Id="exec-execute-worker:parameter:param-execute-worker-pipeline" ExecutableCommandId="exec-execute-worker" ParameterId="param-execute-worker-pipeline" />
     <ExecutableCommandParameter Id="exec-execute-worker:parameter:param-execute-worker-pipeline-db-connection-env" ExecutableCommandId="exec-execute-worker" ParameterId="param-execute-worker-pipeline-db-connection-env" />
     <ExecutableCommandParameter Id="exec-execute-worker:parameter:param-execute-worker-transform-workspace" ExecutableCommandId="exec-execute-worker" ParameterId="param-execute-worker-transform-workspace" />
     <ExecutableCommandParameter Id="exec-execute-worker:parameter:param-execute-worker-workspace" ExecutableCommandId="exec-execute-worker" ParameterId="param-execute-worker-workspace" />
     <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-binding-workspace" ExecutableCommandId="exec-execute" ParameterId="param-execute-binding-workspace" />
-    <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-data-type-conversion-workspace" ExecutableCommandId="exec-execute" ParameterId="param-execute-data-type-conversion-workspace" />
+    <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-data-type-workspace" ExecutableCommandId="exec-execute" ParameterId="param-execute-data-type-workspace" />
     <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-pipeline" ExecutableCommandId="exec-execute" ParameterId="param-execute-pipeline" />
     <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-pipeline-db-connection-env" ExecutableCommandId="exec-execute" ParameterId="param-execute-pipeline-db-connection-env" />
     <ExecutableCommandParameter Id="exec-execute:parameter:param-execute-transform-workspace" ExecutableCommandId="exec-execute" ParameterId="param-execute-transform-workspace" />

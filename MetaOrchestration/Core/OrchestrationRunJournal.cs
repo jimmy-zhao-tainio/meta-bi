@@ -53,9 +53,9 @@ internal sealed class OrchestrationRunJournal
             journal.WriteEvent("BindingWorkspace", Path.GetFullPath(request.BindingWorkspacePath), string.Empty);
         }
 
-        if (!string.IsNullOrWhiteSpace(request.DataTypeConversionWorkspacePath))
+        if (!string.IsNullOrWhiteSpace(request.DataTypeWorkspacePath))
         {
-            journal.WriteEvent("DataTypeConversionWorkspace", Path.GetFullPath(request.DataTypeConversionWorkspacePath), string.Empty);
+            journal.WriteEvent("DataTypeWorkspace", Path.GetFullPath(request.DataTypeWorkspacePath), string.Empty);
         }
 
         if (!string.IsNullOrWhiteSpace(request.PipelineDbConnectionEnvironmentVariableName))

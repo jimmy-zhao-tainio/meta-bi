@@ -64,8 +64,8 @@
     <OptionToken Id="token-create-pipeline-workspace" OptionId="opt-create-pipeline-workspace">
       <Token>--pipeline-workspace</Token>
     </OptionToken>
-    <OptionToken Id="token-execute-data-type-conversion-workspace" OptionId="opt-execute-data-type-conversion-workspace">
-      <Token>--data-type-conversion-workspace</Token>
+    <OptionToken Id="token-execute-data-type-workspace" OptionId="opt-execute-data-type-workspace">
+      <Token>--data-type-workspace</Token>
     </OptionToken>
     <OptionToken Id="token-execute-max-degree-of-parallelism" OptionId="opt-execute-max-degree-of-parallelism">
       <Token>--max-degree-of-parallelism</Token>

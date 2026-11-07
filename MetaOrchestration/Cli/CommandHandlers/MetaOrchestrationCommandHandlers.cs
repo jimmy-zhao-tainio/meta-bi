@@ -273,7 +273,7 @@ internal sealed class MetaOrchestrationCommandHandlers
     {
         var workspacePath = ResolveWorkspacePath(invocation);
         var pipelineWorkspacePath = invocation.Required("pipeline-workspace");
-        var dataTypeConversionWorkspacePath = invocation.Optional("data-type-conversion-workspace") ?? string.Empty;
+        var dataTypeWorkspacePath = invocation.Optional("data-type-workspace") ?? string.Empty;
         var pipelineDbConnectionEnvironmentVariableName = invocation.Optional("pipeline-db-connection-env") ?? string.Empty;
         var maxDegreeOfParallelism = ReadPositiveInt(
             invocation.Optional("max-degree-of-parallelism") ?? "1",
@@ -302,7 +302,7 @@ internal sealed class MetaOrchestrationCommandHandlers
                         pipelineWorkspacePath,
                         TransformWorkspacePath: string.Empty,
                         BindingWorkspacePath: string.Empty,
-                        dataTypeConversionWorkspacePath,
+                        dataTypeWorkspacePath,
                         pipelineDbConnectionEnvironmentVariableName,
                         maxDegreeOfParallelism,
                         RunArtifactsRootPath: runArtifactsRootPath,

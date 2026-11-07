@@ -15,4 +15,4 @@ public sealed record MetaPipelineSqlServerExecutionRequest(
     string? TargetWriteTaskName = null,
     MetaPipelineExecutionContext? ExecutionContext = null,
     string TargetDataTypeSystemName = "SqlServer",
-    string? DataTypeConversionWorkspacePath = null);
+    string? DataTypeWorkspacePath = null);

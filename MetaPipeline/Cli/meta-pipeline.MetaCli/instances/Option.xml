@@ -29,13 +29,13 @@
     <Option Id="opt-create-pipeline-db-pipeline-db-connection-env" ParameterId="param-create-pipeline-db-pipeline-db-connection-env" />
     <Option Id="opt-create-pipeline-db-pipeline-db-name" ParameterId="param-create-pipeline-db-pipeline-db-name" />
     <Option Id="opt-execute-binding-workspace" ParameterId="param-execute-binding-workspace" />
-    <Option Id="opt-execute-data-type-conversion-workspace" ParameterId="param-execute-data-type-conversion-workspace" />
+    <Option Id="opt-execute-data-type-workspace" ParameterId="param-execute-data-type-workspace" />
     <Option Id="opt-execute-pipeline" ParameterId="param-execute-pipeline" />
     <Option Id="opt-execute-pipeline-db-connection-env" ParameterId="param-execute-pipeline-db-connection-env" />
     <Option Id="opt-execute-sqlserver-batch-size" ParameterId="param-execute-sqlserver-batch-size" />
     <Option Id="opt-execute-sqlserver-binding" ParameterId="param-execute-sqlserver-binding" />
     <Option Id="opt-execute-sqlserver-binding-workspace" ParameterId="param-execute-sqlserver-binding-workspace" />
-    <Option Id="opt-execute-sqlserver-data-type-conversion-workspace" ParameterId="param-execute-sqlserver-data-type-conversion-workspace" />
+    <Option Id="opt-execute-sqlserver-data-type-workspace" ParameterId="param-execute-sqlserver-data-type-workspace" />
     <Option Id="opt-execute-sqlserver-execution-connection-env" ParameterId="param-execute-sqlserver-execution-connection-env" />
     <Option Id="opt-execute-sqlserver-pipeline-db-connection-env" ParameterId="param-execute-sqlserver-pipeline-db-connection-env" />
     <Option Id="opt-execute-sqlserver-script" ParameterId="param-execute-sqlserver-script" />
@@ -45,7 +45,7 @@
     <Option Id="opt-execute-sqlserver-timeout-seconds" ParameterId="param-execute-sqlserver-timeout-seconds" />
     <Option Id="opt-execute-sqlserver-transform-workspace" ParameterId="param-execute-sqlserver-transform-workspace" />
     <Option Id="opt-execute-step-binding-workspace" ParameterId="param-execute-step-binding-workspace" />
-    <Option Id="opt-execute-step-data-type-conversion-workspace" ParameterId="param-execute-step-data-type-conversion-workspace" />
+    <Option Id="opt-execute-step-data-type-workspace" ParameterId="param-execute-step-data-type-workspace" />
     <Option Id="opt-execute-step-pipeline" ParameterId="param-execute-step-pipeline" />
     <Option Id="opt-execute-step-pipeline-db-connection-env" ParameterId="param-execute-step-pipeline-db-connection-env" />
     <Option Id="opt-execute-step-step-name" ParameterId="param-execute-step-step-name" />
@@ -55,7 +55,7 @@
     <Option Id="opt-execute-worker-binding-workspace" ParameterId="param-execute-worker-binding-workspace" />
     <Option Id="opt-execute-worker-control-pipe" ParameterId="param-execute-worker-control-pipe" />
     <Option Id="opt-execute-worker-control-pipe-connect-timeout-seconds" ParameterId="param-execute-worker-control-pipe-connect-timeout-seconds" />
-    <Option Id="opt-execute-worker-data-type-conversion-workspace" ParameterId="param-execute-worker-data-type-conversion-workspace" />
+    <Option Id="opt-execute-worker-data-type-workspace" ParameterId="param-execute-worker-data-type-workspace" />
     <Option Id="opt-execute-worker-pipeline" ParameterId="param-execute-worker-pipeline" />
     <Option Id="opt-execute-worker-pipeline-db-connection-env" ParameterId="param-execute-worker-pipeline-db-connection-env" />
     <Option Id="opt-execute-worker-transform-workspace" ParameterId="param-execute-worker-transform-workspace" />

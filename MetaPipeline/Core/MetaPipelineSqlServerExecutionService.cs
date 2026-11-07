@@ -337,7 +337,7 @@ public sealed class MetaPipelineSqlServerExecutionService
             definition.RowStreamShape ?? throw new MetaPipelineConfigurationException("SELECT-kind execution requires a row-stream shape."),
             request.ExecutionContext,
             request.TargetDataTypeSystemName,
-            request.DataTypeConversionWorkspacePath,
+            request.DataTypeWorkspacePath,
             request.TimeoutSeconds);
     }
 

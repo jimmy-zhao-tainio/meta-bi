@@ -25,6 +25,11 @@ The supervisor should log its own managed exceptions with a compact runtime stat
 
 ## Ownership Boundary
 
+`meta-orchestration execute --data-type-workspace <catalog>` forwards the selected
+MetaDataType catalog to Pipeline workers; omission uses BuiltIn. Orchestration
+neither selects conversions nor accepts a conversion workspace. Value conversion
+belongs in the prepared TransformScript, before schema-aware Binding.
+
 `MetaOrchestration` owns:
 
 - reading a `RunPlan`
@@ -90,7 +95,7 @@ meta-pipeline execute-worker ^
   --transform-workspace .\TransformWS ^
   --binding-workspace .\BindingWS ^
   --control-pipe <pipe-name> ^
-  [--data-type-conversion-workspace .\DataTypeConversionWS] ^
+  [--data-type-workspace .\DataTypeWS] ^
   [--pipeline-db-connection-env META_PIPELINE_OPERATIONAL_SQL]
 ```
 
@@ -573,7 +578,7 @@ meta-orchestration execute ^
   --pipeline-workspace .\PipelineWS ^
   --transform-workspace .\TransformWS ^
   --binding-workspace .\BindingWS ^
-  [--data-type-conversion-workspace .\DataTypeConversionWS] ^
+  [--data-type-workspace .\DataTypeWS] ^
   [--pipeline-db-connection-env META_PIPELINE_OPERATIONAL_SQL] ^
   [--max-degree-of-parallelism 4] ^
   [--run-artifacts-root .\TestRuns] ^

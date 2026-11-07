@@ -19,7 +19,7 @@ internal sealed partial class MetaPipelineCommandHandlers
                 parse.PipelineName,
                 parse.TransformWorkspacePath,
                 parse.BindingWorkspacePath,
-                parse.DataTypeConversionWorkspacePath,
+                parse.DataTypeWorkspacePath,
                 parse.PipelineDbConnectionEnvironmentVariableName),
             CreateProgress)
             .ConfigureAwait(false);
@@ -53,7 +53,7 @@ internal sealed partial class MetaPipelineCommandHandlers
                 parse.PipelineName,
                 parse.TransformWorkspacePath,
                 parse.BindingWorkspacePath,
-                parse.DataTypeConversionWorkspacePath,
+                parse.DataTypeWorkspacePath,
                 parse.PipelineDbConnectionEnvironmentVariableName,
                 parse.WorkerControlPipeName,
                 parse.ControlPipeConnectTimeoutSeconds))
@@ -80,7 +80,7 @@ internal sealed partial class MetaPipelineCommandHandlers
                 parse.StepName,
                 parse.TransformWorkspacePath,
                 parse.BindingWorkspacePath,
-                parse.DataTypeConversionWorkspacePath,
+                parse.DataTypeWorkspacePath,
                 parse.PipelineDbConnectionEnvironmentVariableName),
             CreateProgress)
             .ConfigureAwait(false);
@@ -108,7 +108,7 @@ internal sealed partial class MetaPipelineCommandHandlers
                 parse.BatchSize,
                 parse.TimeoutSeconds,
                 parse.TargetDataTypeSystemName,
-                parse.DataTypeConversionWorkspacePath,
+                parse.DataTypeWorkspacePath,
                 parse.PipelineDbConnectionEnvironmentVariableName),
             CreateProgress)
             .ConfigureAwait(false);

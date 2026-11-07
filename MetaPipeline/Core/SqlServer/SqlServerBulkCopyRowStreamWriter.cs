@@ -1,6 +1,7 @@
 using Microsoft.Data.SqlClient;
-using MetaDataTypeConversion;
-using MetaDataTypeConversion.Core;
+using MetaDataType;
+using Meta.Integration;
+using MetaSchema;
 using System.Data;
 using System.Globalization;
 
@@ -11,9 +12,7 @@ public sealed class SqlServerBulkCopyRowStreamWriter : IPipelineRowStreamWriter,
     private readonly string connectionString;
     private readonly string destinationTableName;
     private readonly MetaPipelineExecutionContext? executionContext;
-    private readonly string targetDataTypeSystemName;
-    private readonly MetaDataTypeConversionModel dataTypeConversionWorkspace;
-    private readonly IMetaDataTypeConversionService dataTypeConversionService = new MetaDataTypeConversionService();
+    private readonly Type[] columnTypes;
     private readonly int? timeoutSeconds;
     private SqlConnection? connection;
     private bool disposed;
@@ -24,7 +23,7 @@ public sealed class SqlServerBulkCopyRowStreamWriter : IPipelineRowStreamWriter,
         PipelineRowStreamShape shape,
         MetaPipelineExecutionContext? executionContext = null,
         string targetDataTypeSystemName = "SqlServer",
-        string? dataTypeConversionWorkspacePath = null,
+        string? dataTypeWorkspacePath = null,
         int? timeoutSeconds = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(connectionString);
@@ -33,12 +32,14 @@ public sealed class SqlServerBulkCopyRowStreamWriter : IPipelineRowStreamWriter,
 
         this.connectionString = connectionString;
         this.executionContext = executionContext;
-        this.targetDataTypeSystemName = string.IsNullOrWhiteSpace(targetDataTypeSystemName)
-            ? "SqlServer"
-            : targetDataTypeSystemName.Trim();
+        if (!string.Equals(targetDataTypeSystemName, "SqlServer", StringComparison.OrdinalIgnoreCase))
+            throw new MetaPipelineConfigurationException("SQL Server bulk copy requires the SqlServer type system.");
         this.timeoutSeconds = timeoutSeconds;
-        dataTypeConversionWorkspace = MetaDataTypeConversionWorkspaceProvider.LoadOrDefault(dataTypeConversionWorkspacePath);
         Shape = shape;
+        var catalog = string.IsNullOrWhiteSpace(dataTypeWorkspacePath) ? MetaDataTypeInstance.BuiltIn
+            : TypedWorkspaceModelMapper.Load<MetaDataTypeModel>(Path.GetFullPath(dataTypeWorkspacePath), searchUpward: false);
+        var validator = new SqlServerSchemaTypeValidator(catalog);
+        columnTypes = Shape.Columns.Select(column => ResolveColumnClrType(column, validator)).ToArray();
         destinationTableName = SqlServerMultipartIdentifier.Parse(targetSqlIdentifier).RenderBracketQuoted();
     }
 
@@ -55,9 +56,9 @@ public sealed class SqlServerBulkCopyRowStreamWriter : IPipelineRowStreamWriter,
             return;
         }
 
+        using var table = CreateDataTable(batch);
         var currentConnection = await EnsureConnectionAsync(cancellationToken).ConfigureAwait(false);
         await using var transaction = await currentConnection.BeginTransactionAsync(cancellationToken).ConfigureAwait(false);
-        using var table = CreateDataTable(batch);
         using var bulkCopy = new SqlBulkCopy(
             currentConnection,
             SqlBulkCopyOptions.Default,
@@ -106,73 +107,39 @@ public sealed class SqlServerBulkCopyRowStreamWriter : IPipelineRowStreamWriter,
 
     private DataTable CreateDataTable(PipelineDataBatch batch)
     {
-        var columnTypes = Shape.Columns
-            .Select(ResolveColumnClrType)
-            .ToArray();
-        var table = new DataTable
-        {
-            Locale = CultureInfo.InvariantCulture,
-        };
-        for (var index = 0; index < Shape.Columns.Count; index++)
-        {
-            table.Columns.Add(Shape.Columns[index].Name, columnTypes[index]);
-        }
-
+        // Validate the entire batch before allocating the transport table or opening a connection.
         foreach (var row in batch.Rows)
-        {
-            var values = new object[Shape.ColumnCount];
             for (var ordinal = 0; ordinal < row.Length; ordinal++)
-            {
-                values[ordinal] = CoerceValue(row[ordinal], columnTypes[ordinal], Shape.Columns[ordinal]);
-            }
+                if (row[ordinal] is { } value && value is not DBNull && !columnTypes[ordinal].IsInstanceOfType(value))
+                    throw new MetaPipelineConfigurationException(
+                        $"Column '{Shape.Columns[ordinal].Name}' supplies CLR type '{value.GetType().FullName}', but its validated SQL Server contract requires '{columnTypes[ordinal].FullName}'. Apply value conversions in the TransformScript before execution.");
 
-            table.Rows.Add(values);
-        }
-
+        var table = new DataTable { Locale = CultureInfo.InvariantCulture };
+        for (var index = 0; index < Shape.Columns.Count; index++)
+            table.Columns.Add(Shape.Columns[index].Name, columnTypes[index]);
+        foreach (var row in batch.Rows)
+            table.Rows.Add(row.Select(value => value ?? DBNull.Value).ToArray());
         return table;
     }
 
-    private Type ResolveColumnClrType(PipelineColumn column)
+    private static Type ResolveColumnClrType(PipelineColumn column, SqlServerSchemaTypeValidator validator)
     {
-        if (string.IsNullOrWhiteSpace(column.TargetMetaDataTypeId))
-        {
-            return typeof(object);
-        }
-
-        var targetDataTypeId = ResolveRuntimeTargetDataTypeId(column);
-        return ResolveSqlServerClrType(targetDataTypeId, column);
-    }
-
-    private string ResolveRuntimeTargetDataTypeId(PipelineColumn column)
-    {
-        var modeledTargetDataTypeId = column.TargetMetaDataTypeId?.Trim() ?? string.Empty;
-        if (MetaDataTypeConversionService.BelongsToDataTypeSystem(modeledTargetDataTypeId, targetDataTypeSystemName))
-        {
-            return modeledTargetDataTypeId;
-        }
-
         try
         {
-            return dataTypeConversionService
-                .Resolve(dataTypeConversionWorkspace, modeledTargetDataTypeId, targetDataTypeSystemName)
-                .TargetDataTypeId;
+            var target = validator.Resolve(column.TargetMetaDataTypeId, $"Pipeline column '{column.Name}'");
+            if (column.SourceMetaDataTypeId is { } sourceId && !string.Equals(sourceId, target.Id, StringComparison.Ordinal))
+                throw new MetaPipelineConfigurationException($"Column '{column.Name}' must carry matching resulting expression and target type IDs.");
+            return ResolveSqlServerClrType(target.Name, column);
         }
-        catch (Exception ex) when (ex is InvalidOperationException or ArgumentException)
+        catch (SchemaTypeValidationException ex)
         {
-            throw new MetaPipelineConfigurationException(
-                $"Column '{column.Name}' declares target MetaDataTypeId '{modeledTargetDataTypeId}', but no sanctioned conversion resolves it to target data type system '{targetDataTypeSystemName}'. {ex.Message}");
+            throw new MetaPipelineConfigurationException(ex.Message);
         }
     }
 
-    private static Type ResolveSqlServerClrType(string targetDataTypeId, PipelineColumn column)
+    // SQL Server driver representation, never a value-conversion policy.
+    private static Type ResolveSqlServerClrType(string typeName, PipelineColumn column)
     {
-        if (!MetaDataTypeConversionService.BelongsToDataTypeSystem(targetDataTypeId, "SqlServer"))
-        {
-            throw new MetaPipelineConfigurationException(
-                $"Column '{column.Name}' resolved to target data type '{targetDataTypeId}', but SQL Server InsertRows requires a SqlServer data type.");
-        }
-
-        var typeName = ExtractTypeName(targetDataTypeId);
         return typeName.ToLowerInvariant() switch
         {
             "bigint" => typeof(long),
@@ -206,87 +173,8 @@ public sealed class SqlServerBulkCopyRowStreamWriter : IPipelineRowStreamWriter,
             "varchar" => typeof(string),
             "xml" => typeof(string),
             _ => throw new MetaPipelineConfigurationException(
-                $"Column '{column.Name}' resolved to unsupported SQL Server data type '{targetDataTypeId}'."),
+                $"Column '{column.Name}' resolved to unsupported SQL Server data type '{typeName}'."),
         };
     }
 
-    private static object CoerceValue(object? value, Type targetType, PipelineColumn column)
-    {
-        if (value is null || value is DBNull)
-        {
-            return DBNull.Value;
-        }
-
-        if (targetType == typeof(object) || targetType.IsInstanceOfType(value))
-        {
-            return value;
-        }
-
-        try
-        {
-            if (targetType == typeof(string))
-            {
-                var text = Convert.ToString(value, CultureInfo.InvariantCulture);
-                return text ?? (object)DBNull.Value;
-            }
-
-            if (targetType == typeof(Guid))
-            {
-                return value is string text
-                    ? Guid.Parse(text)
-                    : (Guid)value;
-            }
-
-            if (targetType == typeof(DateTime))
-            {
-                return value is string text
-                    ? DateTime.Parse(text, CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind)
-                    : Convert.ToDateTime(value, CultureInfo.InvariantCulture);
-            }
-
-            if (targetType == typeof(DateTimeOffset))
-            {
-                return value switch
-                {
-                    string text => DateTimeOffset.Parse(text, CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind),
-                    DateTime dateTime => new DateTimeOffset(dateTime),
-                    _ => (DateTimeOffset)value,
-                };
-            }
-
-            if (targetType == typeof(TimeSpan))
-            {
-                return value is string text
-                    ? TimeSpan.Parse(text, CultureInfo.InvariantCulture)
-                    : (TimeSpan)value;
-            }
-
-            if (targetType == typeof(byte[]))
-            {
-                return value is byte[] bytes
-                    ? bytes
-                    : throw new InvalidCastException($"Value type '{value.GetType().FullName}' cannot be coerced to byte[].");
-            }
-
-            return Convert.ChangeType(value, targetType, CultureInfo.InvariantCulture);
-        }
-        catch (Exception ex) when (ex is InvalidCastException or FormatException or OverflowException)
-        {
-            throw new MetaPipelineConfigurationException(
-                $"Column '{column.Name}' value of CLR type '{value.GetType().FullName}' could not be coerced to '{targetType.FullName}' for SQL Server bulk copy. {ex.Message}");
-        }
-    }
-
-    private static string ExtractTypeName(string dataTypeId)
-    {
-        const string marker = ":type:";
-        var markerIndex = dataTypeId.IndexOf(marker, StringComparison.Ordinal);
-        if (markerIndex < 0)
-        {
-            throw new MetaPipelineConfigurationException(
-                $"Data type id '{dataTypeId}' does not use the expected '<system>:type:<name>' shape.");
-        }
-
-        return dataTypeId[(markerIndex + marker.Length)..];
-    }
 }

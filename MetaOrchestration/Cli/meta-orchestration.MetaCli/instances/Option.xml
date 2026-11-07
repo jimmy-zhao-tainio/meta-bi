@@ -22,7 +22,7 @@
     <Option Id="opt-create-output-sql" ParameterId="param-create-output-sql" />
     <Option Id="opt-create-output-xml" ParameterId="param-create-output-xml" />
     <Option Id="opt-create-pipeline-workspace" ParameterId="param-create-pipeline-workspace" />
-    <Option Id="opt-execute-data-type-conversion-workspace" ParameterId="param-execute-data-type-conversion-workspace" />
+    <Option Id="opt-execute-data-type-workspace" ParameterId="param-execute-data-type-workspace" />
     <Option Id="opt-execute-max-degree-of-parallelism" ParameterId="param-execute-max-degree-of-parallelism" />
     <Option Id="opt-execute-pipeline-db-connection-env" ParameterId="param-execute-pipeline-db-connection-env" />
     <Option Id="opt-execute-pipeline-workspace" ParameterId="param-execute-pipeline-workspace" />
