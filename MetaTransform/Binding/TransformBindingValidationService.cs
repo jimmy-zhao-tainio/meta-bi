@@ -1392,7 +1392,7 @@ public sealed class TransformBindingValidationService
         {
             throw new TransformBindingValidationException(
                 "TargetColumnTypeConformanceMismatch",
-                $"Write column '{outputColumnName}' for target '{targetSqlIdentifier}' resolves from '{sourceDisplayName}' with MetaDataTypeId '{sourceMetaDataTypeId}', but target field '{targetTableSqlIdentifier}.{targetField.FieldName}' declares MetaDataTypeId '{targetMetaDataTypeId}'. The resulting expression type must match the target; apply an authored conversion to the TransformScript before Binding.");
+                $"Write column '{outputColumnName}' for target '{targetSqlIdentifier}' resolves from '{sourceDisplayName}' with MetaDataTypeId '{sourceMetaDataTypeId}', but target field '{targetTableSqlIdentifier}.{targetField.FieldName}' declares MetaDataTypeId '{targetMetaDataTypeId}'. The resulting expression type must match the target contract.");
         }
 
         if (sourceIsNullable == true && targetField.IsNullable == false)

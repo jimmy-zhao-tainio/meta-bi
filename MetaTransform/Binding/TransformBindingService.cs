@@ -6,7 +6,7 @@ namespace MetaTransform.Binding;
 
 public sealed class TransformBindingService
 {
-    /// <summary>Analyze source expressions using the caller's selected type catalog. Applies no conversions.</summary>
+    /// <summary>Analyze source expressions using the caller's selected type catalog.</summary>
     public TransformBindingResult BindTransform(
         MetaTransformScriptModel model, TransformScript script, MetaSchemaModel sourceSchema,
         MetaDataType.MetaDataTypeModel dataTypes)
