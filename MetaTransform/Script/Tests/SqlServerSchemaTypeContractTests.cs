@@ -92,15 +92,15 @@ public sealed class SqlServerSchemaTypeContractTests
     public void MissingType_IsRejectedBySchemaAwareValidation(bool target)
     {
         // Typed workspace authoring itself rejects a missing required MetaDataTypeId.
-        // Exercise the production validation entry point with a missing in-memory value too.
+        // Verify the owning MetaSchema validator also rejects a missing value after loading.
         using var fixture = new Fixture("sqlserver:type:int", "sqlserver:type:int");
-        var binding = fixture.Bind();
+        fixture.Bind();
         var source = TypedWorkspaceModelMapper.Load<MetaSchemaModel>(fixture.Source, searchUpward: false);
         var destination = TypedWorkspaceModelMapper.Load<MetaSchemaModel>(fixture.Target, searchUpward: false);
         (target ? destination : source).FieldList.Single().MetaDataTypeId = "";
-        var ex = Assert.Throws<TransformBindingValidationException>(() =>
-            new TransformBindingValidationService().ApplyValidation(binding.Model, source, destination));
-        Assert.Equal((target ? "Target" : "Source") + "SchemaFieldMetaDataTypeMissing", ex.Code);
+        var ex = Assert.Throws<SchemaTypeValidationException>(() =>
+            new SqlServerSchemaTypeValidator(MetaDataTypeInstance.BuiltIn).Validate(target ? destination : source));
+        Assert.Equal("Missing", ex.Code);
         Assert.Contains(target ? "TargetRows.Value" : "SourceRows.Value", ex.Message);
     }
 
@@ -207,6 +207,29 @@ public sealed class SqlServerSchemaTypeContractTests
         var ex = Assert.Throws<TransformBindingValidationException>(() => fixture.Bind());
         Assert.Contains("Unused", ex.Message);
         Assert.Contains("unknown-unused-type", ex.Message);
+    }
+
+    [Theory]
+    [InlineData("int", true)]
+    [InlineData("nvarchar", false)]
+    public void CastResultWithSourceColumnName_UsesExpressionEvidence(string target, bool accepted)
+    {
+        using var fixture = new Fixture("sqlserver:type:nvarchar", "sqlserver:type:" + target,
+            "CAST(s.Value AS int)", sourceLength: 50, targetLength: target == "nvarchar" ? 50 : null);
+        if (accepted)
+        {
+            var result = fixture.Bind();
+            var exact = Assert.Single(result.Model.ValidationTargetColumnTypeExactList);
+            Assert.Equal("sqlserver:type:int", exact.SourceMetaDataTypeId);
+            Assert.Equal("sqlserver:type:int", exact.TargetMetaDataTypeId);
+        }
+        else
+        {
+            var error = Assert.Throws<TransformBindingValidationException>(() => fixture.Bind());
+            Assert.Equal("TargetColumnTypeConformanceMismatch", error.Code);
+            Assert.Contains("sqlserver:type:int", error.Message);
+            Assert.Contains("sqlserver:type:nvarchar", error.Message);
+        }
     }
 
     private static MetaDataTypeModel CustomCatalog()

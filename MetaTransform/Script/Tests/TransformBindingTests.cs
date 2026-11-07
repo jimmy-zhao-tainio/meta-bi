@@ -804,56 +804,6 @@ WHEN NOT MATCHED THEN
         }
     }
 
-    [Theory]
-    [InlineData("insert")]
-    [InlineData("update")]
-    [InlineData("merge")]
-    [InlineData("delete")]
-    [InlineData("truncate")]
-    public void ValidationService_StructureOnlyRevalidation_RejectsPersistedMutationWithoutChangingEvidence(
-        string mutationKind)
-    {
-        var transformModel = CreateMutationTransform(mutationKind);
-        var sourceSchemaModel = CreateSchema(
-            "TestSystem",
-            ("dbo", "CustomerStage", ["CustomerId", "Name"]));
-        var targetSchemaModel = CreateSchema(
-            "TestSystem",
-            ("dbo", "Customer", ["CustomerId", "Name"]));
-        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
-
-        try
-        {
-            var result = BindValidated(
-                tempRoot,
-                transformModel,
-                sourceSchemaModel,
-                targetSchemaModel);
-            var persisted = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(
-                result.WorkspacePath,
-                searchUpward: false);
-            AssertMutationEvidencePresent(persisted, mutationKind);
-            var evidenceBeforeRevalidation = CaptureMutationEvidence(persisted);
-
-            var exception = Assert.Throws<TransformBindingValidationException>(() =>
-                new TransformBindingValidationService().ApplyValidation(
-                    persisted,
-                    sourceSchemaModel,
-                    targetSchemaModel));
-
-            Assert.Equal("StrictMutationTargetEvidenceMissing", exception.Code);
-            Assert.Equal(evidenceBeforeRevalidation, CaptureMutationEvidence(persisted));
-            AssertMutationEvidencePresent(persisted, mutationKind);
-        }
-        finally
-        {
-            if (Directory.Exists(tempRoot))
-            {
-                Directory.Delete(tempRoot, recursive: true);
-            }
-        }
-    }
-
     [Fact]
     public void BindValidatedUpdate_WithUnresolvedWriteExpression_FailsHard()
     {
@@ -3500,17 +3450,13 @@ GO
         {
             MetaTransformScriptTestHelper.SaveXml(transformModel, transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
-                transformWorkspacePath,
-                Path.Combine(tempRoot, "BindingWorkspace"));
-
-            var validated = new TransformBindingValidationService().ApplyValidation(bindingResult.Model, schemaModel, schemaModel);
+            var validated = ValidateScript(transformModel, schemaModel, schemaModel);
 
             var validation = Assert.Single(validated.ValidationList);
             Assert.Equal($"{validated.TransformBindingList[0].Id}:validation", validation.Id);
 
             var sourceValidation = Assert.Single(validated.ValidationSourceRowsetLinkList);
-            Assert.Equal("Table:1", sourceValidation.MetaSchemaTableId);
+            Assert.Equal("source:TestSystem:schema-object:Table:1", sourceValidation.MetaSchemaTableId);
             Assert.Equal("TestSystem.dbo.SourceTable", sourceValidation.ResolvedSqlIdentifier);
             Assert.Equal(validation.Id, sourceValidation.Validation.Id);
 
@@ -3521,7 +3467,7 @@ GO
 
             Assert.Equal(3, validated.ValidationSourceColumnLinkList.Count);
             Assert.Equal(4, validated.ValidationTargetColumnLinkList.Count);
-            Assert.Equal(2, validated.ValidationTargetColumnTypeExactList.Count);
+            Assert.Equal(4, validated.ValidationTargetColumnTypeExactList.Count);
 
             Assert.Empty(validated.ValidationTargetIgnoredColumnList);
 
@@ -3589,12 +3535,8 @@ GO
         {
             MetaTransformScriptTestHelper.SaveXml(transformModel, transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
-                transformWorkspacePath,
-                Path.Combine(tempRoot, "BindingWorkspace"));
-
             var ex = Assert.Throws<TransformBindingValidationException>(() =>
-                new TransformBindingValidationService().ApplyValidation(bindingResult.Model, schemaModel, schemaModel));
+                ValidateScript(transformModel, schemaModel, schemaModel));
             Assert.Equal("TargetRowsetColumnCountMismatch", ex.Code);
             Assert.Contains("non-identity column(s)", ex.Message);
         }
@@ -3631,16 +3573,11 @@ FROM dbo.SourceTable AS s;
         {
             MetaTransformScriptTestHelper.SaveXml(transformModel, transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
-                transformWorkspacePath,
-                Path.Combine(tempRoot, "BindingWorkspace"));
-
-            var validated = new TransformBindingValidationService().ApplyValidation(
-                bindingResult.Model,
+            var validated = ValidateScript(transformModel,
                 schemaModel,
                 schemaModel);
             Assert.Single(validated.ValidationTargetColumnLinkList);
-            Assert.Equal("CustomerId", Assert.Single(bindingResult.Model.ColumnList, item =>
+            Assert.Equal("CustomerId", Assert.Single(validated.ColumnList, item =>
                 string.Equals(item.Id, validated.ValidationTargetColumnLinkList[0].Column.Id, StringComparison.Ordinal)).Name);
         }
         finally
@@ -3679,11 +3616,7 @@ INNER JOIN dbo.SourceB AS b
         {
             MetaTransformScriptTestHelper.SaveXml(transformModel, transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
-                transformWorkspacePath,
-                Path.Combine(tempRoot, "BindingWorkspace"));
-
-            var validated = new TransformBindingValidationService().ApplyValidation(bindingResult.Model, schemaModel, schemaModel);
+            var validated = ValidateScript(transformModel, schemaModel, schemaModel);
             Assert.Single(validated.ValidationTargetColumnLinkList);
         }
         finally
@@ -3712,12 +3645,7 @@ INNER JOIN dbo.SourceB AS b
         {
             MetaTransformScriptTestHelper.SaveXml(transformModel, transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
-                transformWorkspacePath,
-                Path.Combine(tempRoot, "BindingWorkspace"));
-
-            var validated = new TransformBindingValidationService().ApplyValidation(
-                bindingResult.Model,
+            var validated = ValidateScript(transformModel,
                 schemaModel,
                 schemaModel,
                 TransformBindingValidationOptions.Create(["LoadUtc"]));
@@ -3763,12 +3691,7 @@ INNER JOIN dbo.SourceB AS b
         {
             MetaTransformScriptTestHelper.SaveXml(transformModel, transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
-                transformWorkspacePath,
-                Path.Combine(tempRoot, "BindingWorkspace"));
-
-            var validated = new TransformBindingValidationService().ApplyValidation(
-                bindingResult.Model,
+            var validated = ValidateScript(transformModel,
                 schemaModel,
                 schemaModel,
                 TransformBindingValidationOptions.Create(
@@ -3811,12 +3734,7 @@ INNER JOIN dbo.SourceB AS b
         {
             MetaTransformScriptTestHelper.SaveXml(transformModel, transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
-                transformWorkspacePath,
-                Path.Combine(tempRoot, "BindingWorkspace"));
-
-            var validated = new TransformBindingValidationService().ApplyValidation(
-                bindingResult.Model,
+            var validated = ValidateScript(transformModel,
                 schemaModel,
                 schemaModel,
                 TransformBindingValidationOptions.Create(
@@ -3855,11 +3773,7 @@ INNER JOIN dbo.SourceB AS b
         {
             MetaTransformScriptTestHelper.SaveXml(transformModel, transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
-                transformWorkspacePath,
-                Path.Combine(tempRoot, "BindingWorkspace"));
-
-            var validated = new TransformBindingValidationService().ApplyValidation(bindingResult.Model, schemaModel, schemaModel);
+            var validated = ValidateScript(transformModel, schemaModel, schemaModel);
 
             Assert.Equal(4, validated.ValidationTargetColumnLinkList.Count);
             Assert.DoesNotContain(validated.ValidationTargetColumnLinkList, item =>
@@ -3892,13 +3806,8 @@ INNER JOIN dbo.SourceB AS b
         {
             MetaTransformScriptTestHelper.SaveXml(transformModel, transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
-                transformWorkspacePath,
-                Path.Combine(tempRoot, "BindingWorkspace"));
-
             var ex = Assert.Throws<TransformBindingValidationException>(() =>
-                new TransformBindingValidationService().ApplyValidation(
-                    bindingResult.Model,
+                ValidateScript(transformModel,
                     schemaModel,
                     schemaModel));
             Assert.Equal("TargetRequiredColumnMissing", ex.Code);
@@ -3930,13 +3839,8 @@ INNER JOIN dbo.SourceB AS b
         {
             MetaTransformScriptTestHelper.SaveXml(transformModel, transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
-                transformWorkspacePath,
-                Path.Combine(tempRoot, "BindingWorkspace"));
-
             var ex = Assert.Throws<TransformBindingValidationException>(() =>
-                new TransformBindingValidationService().ApplyValidation(
-                    bindingResult.Model,
+                ValidateScript(transformModel,
                     schemaModel,
                     schemaModel,
                     TransformBindingValidationOptions.Create(["DoesNotExist"])));
@@ -3977,12 +3881,8 @@ INNER JOIN dbo.SourceB AS b
         {
             MetaTransformScriptTestHelper.SaveXml(transformModel, transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
-                transformWorkspacePath,
-                Path.Combine(tempRoot, "BindingWorkspace"));
-
             var ex = Assert.Throws<TransformBindingValidationException>(() =>
-                new TransformBindingValidationService().ApplyValidation(bindingResult.Model, schemaModel, schemaModel));
+                ValidateScript(transformModel, schemaModel, schemaModel));
             Assert.Equal("TargetColumnTypeConformanceMismatch", ex.Code);
             Assert.Contains("CustomerId", ex.Message);
         }
@@ -4015,7 +3915,7 @@ INNER JOIN dbo.SourceB AS b
             MetaTransformScriptTestHelper.SaveXml(transform, input);
             var binding = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(input, Path.Combine(root, "Binding"));
             var ex = Assert.Throws<TransformBindingValidationException>(() =>
-                new TransformBindingValidationService().ApplyValidation(binding.Model, schema, schema));
+                ValidateScript(transform, schema, schema));
             Assert.Equal("TargetColumnTypeConformanceMismatch", ex.Code);
             Assert.Contains("sqlserver:type:" + source, ex.Message);
             Assert.Contains("sqlserver:type:" + target, ex.Message);
@@ -4043,12 +3943,8 @@ INNER JOIN dbo.SourceB AS b
         {
             MetaTransformScriptTestHelper.SaveXml(transformModel, transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
-                transformWorkspacePath,
-                Path.Combine(tempRoot, "BindingWorkspace"));
-
             var ex = Assert.Throws<TransformBindingValidationException>(() =>
-                new TransformBindingValidationService().ApplyValidation(bindingResult.Model, schemaModel, schemaModel));
+                ValidateScript(transformModel, schemaModel, schemaModel));
             Assert.Equal("TargetColumnNullabilityConformanceMismatch", ex.Code);
             Assert.Contains("CustomerId", ex.Message);
         }
@@ -4083,12 +3979,8 @@ INNER JOIN dbo.SourceB AS b
         {
             MetaTransformScriptTestHelper.SaveXml(transformModel, transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
-                transformWorkspacePath,
-                Path.Combine(tempRoot, "BindingWorkspace"));
-
             var ex = Assert.Throws<TransformBindingValidationException>(() =>
-                new TransformBindingValidationService().ApplyValidation(bindingResult.Model, schemaModel, schemaModel));
+                ValidateScript(transformModel, schemaModel, schemaModel));
             Assert.Equal("TargetColumnLengthConformanceMismatch", ex.Code);
             Assert.Contains("CustomerName", ex.Message);
         }
@@ -4123,12 +4015,8 @@ INNER JOIN dbo.SourceB AS b
         {
             MetaTransformScriptTestHelper.SaveXml(transformModel, transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
-                transformWorkspacePath,
-                Path.Combine(tempRoot, "BindingWorkspace"));
-
             var ex = Assert.Throws<TransformBindingValidationException>(() =>
-                new TransformBindingValidationService().ApplyValidation(bindingResult.Model, schemaModel, schemaModel));
+                ValidateScript(transformModel, schemaModel, schemaModel));
             Assert.Equal("TargetColumnPrecisionConformanceMismatch", ex.Code);
             Assert.Contains("CustomerId", ex.Message);
         }
@@ -4163,12 +4051,8 @@ INNER JOIN dbo.SourceB AS b
         {
             MetaTransformScriptTestHelper.SaveXml(transformModel, transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
-                transformWorkspacePath,
-                Path.Combine(tempRoot, "BindingWorkspace"));
-
             var ex = Assert.Throws<TransformBindingValidationException>(() =>
-                new TransformBindingValidationService().ApplyValidation(bindingResult.Model, schemaModel, schemaModel));
+                ValidateScript(transformModel, schemaModel, schemaModel));
             Assert.Equal("TargetColumnScaleConformanceMismatch", ex.Code);
             Assert.Contains("CustomerId", ex.Message);
         }
@@ -4200,12 +4084,8 @@ INNER JOIN dbo.SourceB AS b
         {
             MetaTransformScriptTestHelper.SaveXml(transformModel, transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
-                transformWorkspacePath,
-                Path.Combine(tempRoot, "BindingWorkspace"));
-
             var ex = Assert.Throws<TransformBindingValidationException>(() =>
-                new TransformBindingValidationService().ApplyValidation(bindingResult.Model, schemaModel, schemaModel));
+                ValidateScript(transformModel, schemaModel, schemaModel));
             Assert.Equal("SourceSchemaFieldMetaDataTypeNotSanctioned", ex.Code);
             Assert.Contains("custom:type:unsupported", ex.Message);
         }
@@ -4219,7 +4099,7 @@ INNER JOIN dbo.SourceB AS b
     }
 
     [Fact]
-    public void ValidationService_WithAmbiguousOnePartSourceIdentifier_FailsHard()
+    public void ValidationService_WithOnePartSourceIdentifier_UsesExecutionDefaultSchema()
     {
         var sql = """
 CREATE VIEW dbo.v_ambiguous_source AS
@@ -4242,13 +4122,8 @@ FROM SourceTable AS s;
         {
             MetaTransformScriptTestHelper.SaveXml(transformModel, transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
-                transformWorkspacePath,
-                Path.Combine(tempRoot, "BindingWorkspace"));
-
-            var ex = Assert.Throws<TransformBindingValidationException>(() =>
-                new TransformBindingValidationService().ApplyValidation(bindingResult.Model, schemaModel, schemaModel));
-            Assert.Equal("SourceSchemaTableAmbiguous", ex.Code);
+            var validated = ValidateScript(transformModel, schemaModel, schemaModel);
+            Assert.Equal("TestSystem.dbo.SourceTable", Assert.Single(validated.ValidationSourceRowsetLinkList).ResolvedSqlIdentifier);
         }
         finally
         {
@@ -4277,12 +4152,8 @@ FROM SourceTable AS s;
         {
             MetaTransformScriptTestHelper.SaveXml(transformModel, transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
-                transformWorkspacePath,
-                Path.Combine(tempRoot, "BindingWorkspace"));
-
             var ex = Assert.Throws<TransformBindingValidationException>(() =>
-                new TransformBindingValidationService().ApplyValidation(bindingResult.Model, schemaModel, schemaModel));
+                ValidateScript(transformModel, schemaModel, schemaModel));
             Assert.Equal("TargetSchemaTableAmbiguous", ex.Code);
         }
         finally
@@ -4361,11 +4232,7 @@ FROM SourceTable AS s;
         {
             MetaTransformScriptTestHelper.SaveXml(transformModel, transformWorkspacePath);
 
-            var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
-                transformWorkspacePath,
-                Path.Combine(tempRoot, "BindingWorkspace"));
-
-            var validated = new TransformBindingValidationService().ApplyValidation(bindingResult.Model, schemaModel, schemaModel);
+            var validated = ValidateScript(transformModel, schemaModel, schemaModel);
             MetaTransformScriptTestHelper.SaveXml(validated, validatedWorkspacePath);
 
             var reloaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(validatedWorkspacePath, searchUpward: false);
@@ -4931,7 +4798,8 @@ GO
                     Id = $"Field:{tableOrdinal}:{i + 1}",
                     SchemaObject = schemaObject,
                     Name = table.Columns[i],
-                    MetaDataTypeId = "sqlserver:type:int",
+                    // The basic corpus authors 'literal' AS LiteralValue (varchar).
+                    MetaDataTypeId = table.Columns[i] == "LiteralValue" ? "sqlserver:type:varchar" : "sqlserver:type:int",
                     IsNullable = "false",
                     Ordinal = i.ToString()
                 });
@@ -4939,6 +4807,23 @@ GO
         }
 
         return model;
+    }
+
+    private static MetaTransformBindingModel ValidateScript(MetaTransformScriptModel script,
+        MetaSchemaModel source, MetaSchemaModel target, TransformBindingValidationOptions? options = null)
+    {
+        var root = Path.Combine(Path.GetTempPath(), "MetaBiBindingValidation", Guid.NewGuid().ToString("N"));
+        try
+        {
+            MetaTransformScriptTestHelper.SaveXml(script, Path.Combine(root, "Script"));
+            MetaTransformScriptTestHelper.SaveXml(source, Path.Combine(root, "Source"));
+            MetaTransformScriptTestHelper.SaveXml(target, Path.Combine(root, "Target"));
+            return new TransformBindingWorkspaceService().BindValidated(Path.Combine(root, "Script"),
+                [Path.Combine(root, "Source")], Path.Combine(root, "Target"),
+                string.IsNullOrWhiteSpace(options?.ExecuteSystemName) ? "TestSystem" : options.ExecuteSystemName,
+                string.IsNullOrWhiteSpace(options?.ExecuteSystemDefaultSchemaName) ? "dbo" : options.ExecuteSystemDefaultSchemaName, options).Model;
+        }
+        finally { if (Directory.Exists(root)) Directory.Delete(root, true); }
     }
 
     private static BindToWorkspaceResult BindValidated(
@@ -4962,70 +4847,6 @@ GO
             "TestSystem",
             "dbo",
             bindingWorkspacePath);
-    }
-
-    private static MetaTransformScriptModel CreateMutationTransform(string mutationKind)
-    {
-        var sql = mutationKind switch
-        {
-            "insert" =>
-                "INSERT INTO dbo.Customer (CustomerId, Name) SELECT source.CustomerId, source.Name FROM dbo.CustomerStage AS source;",
-            "update" =>
-                "UPDATE dbo.Customer SET Name = source.Name FROM dbo.CustomerStage AS source WHERE source.CustomerId = dbo.Customer.CustomerId;",
-            "merge" =>
-                "MERGE dbo.Customer AS target USING dbo.CustomerStage AS source ON target.CustomerId = source.CustomerId " +
-                "WHEN MATCHED THEN UPDATE SET Name = source.Name " +
-                "WHEN NOT MATCHED THEN INSERT (CustomerId, Name) VALUES (source.CustomerId, source.Name);",
-            "delete" =>
-                "DELETE FROM dbo.Customer FROM dbo.CustomerStage AS source WHERE source.CustomerId = dbo.Customer.CustomerId;",
-            "truncate" => "TRUNCATE TABLE dbo.Customer;",
-            _ => throw new ArgumentOutOfRangeException(nameof(mutationKind), mutationKind, "Unknown mutation test kind.")
-        };
-
-        return new MetaTransformScriptSqlParser().ParseSqlCode(sql, bareSelectName: $"{mutationKind}-customer");
-    }
-
-    private static void AssertMutationEvidencePresent(MetaTransformBindingModel model, string mutationKind)
-    {
-        switch (mutationKind)
-        {
-            case "insert":
-                Assert.Single(model.InsertQueryWriteList);
-                break;
-            case "update":
-                Assert.Single(model.UpdateWriteList);
-                break;
-            case "merge":
-                Assert.Single(model.MergeInsertWriteList);
-                Assert.Single(model.MergeUpdateWriteList);
-                break;
-            case "delete":
-                Assert.Single(model.DeleteList);
-                break;
-            case "truncate":
-                Assert.Single(model.TruncateList);
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(mutationKind), mutationKind, "Unknown mutation test kind.");
-        }
-    }
-
-    private static string CaptureMutationEvidence(MetaTransformBindingModel model)
-    {
-        var rows = new List<string>();
-        rows.AddRange(model.WriteList.Select(static item => $"Write:{item.Id}"));
-        rows.AddRange(model.WriteValueList.Select(static item => $"WriteValue:{item.Id}"));
-        rows.AddRange(model.WriteValueScalarExpressionList.Select(static item => $"WriteValueScalarExpression:{item.Id}"));
-        rows.AddRange(model.InsertQueryWriteList.Select(static item => $"InsertQueryWrite:{item.Id}"));
-        rows.AddRange(model.InsertValuesWriteList.Select(static item => $"InsertValuesWrite:{item.Id}"));
-        rows.AddRange(model.UpdateWriteList.Select(static item => $"UpdateWrite:{item.Id}"));
-        rows.AddRange(model.MergeInsertWriteList.Select(static item => $"MergeInsertWrite:{item.Id}"));
-        rows.AddRange(model.MergeUpdateWriteList.Select(static item => $"MergeUpdateWrite:{item.Id}"));
-        rows.AddRange(model.DeleteList.Select(static item => $"Delete:{item.Id}"));
-        rows.AddRange(model.MergeDeleteList.Select(static item => $"MergeDelete:{item.Id}"));
-        rows.AddRange(model.TruncateList.Select(static item => $"Truncate:{item.Id}"));
-        rows.AddRange(model.TargetColumnReferenceList.Select(static item => $"TargetColumnReference:{item.Id}"));
-        return string.Join("\n", rows.OrderBy(static item => item, StringComparer.Ordinal));
     }
 
     private static void SetFieldMetaDataTypeId(MetaSchemaModel schemaModel, string tableId, string fieldName, string metaDataTypeId)

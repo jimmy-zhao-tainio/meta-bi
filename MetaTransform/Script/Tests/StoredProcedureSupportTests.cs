@@ -360,17 +360,7 @@ public sealed class StoredProcedureSupportTests
             Assert.Equal("ExecutionDb.src.SourceCustomer", resolvedOperations[$"{contract.Id}:read"]);
             Assert.Equal("WarehouseDb.dbo.StageCustomer", resolvedOperations[$"{contract.Id}:append"]);
 
-            var sourceSchema = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MS.MetaSchemaModel>(sourceSchemaWorkspacePath, searchUpward: false);
-            var targetSchema = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MS.MetaSchemaModel>(targetSchemaWorkspacePath, searchUpward: false);
-            var revalidated = new TransformBindingValidationService().ApplyValidation(
-                bindingModel,
-                sourceSchema,
-                targetSchema,
-                TransformBindingValidationOptions.Create(
-                    ignoredTargetColumnNames: null,
-                    executeSystemName: "ExecutionDb",
-                    executeSystemDefaultSchemaName: null));
-            Assert.Equal(2, revalidated.ValidationStoredProcedureOperationLinkList.Count);
+
         }
         finally
         {

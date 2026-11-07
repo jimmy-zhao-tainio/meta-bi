@@ -4,26 +4,12 @@ using MetaTransformBinding;
 
 namespace MetaTransform.Binding;
 
-public sealed class TransformBindingValidationService
+internal sealed class TransformBindingValidationService
 {
     private readonly SqlServerSchemaTypeValidator typeValidator;
     public TransformBindingValidationService(MetaDataTypeModel? dataTypes = null)
     {
         typeValidator = new SqlServerSchemaTypeValidator(dataTypes ?? MetaDataTypeInstance.BuiltIn);
-    }
-
-    public MetaTransformBindingModel ApplyValidation(
-        MetaTransformBindingModel bindingModel,
-        MetaSchemaModel sourceSchemaModel,
-        MetaSchemaModel targetSchemaModel,
-        TransformBindingValidationOptions? options = null)
-    {
-        return ApplyValidation(
-            bindingModel,
-            sourceSchemaModel,
-            targetSchemaModel,
-            boundResults: [],
-            options);
     }
 
     internal MetaTransformBindingModel ApplyValidation(
@@ -37,6 +23,11 @@ public sealed class TransformBindingValidationService
         ArgumentNullException.ThrowIfNull(sourceSchemaModel);
         ArgumentNullException.ThrowIfNull(targetSchemaModel);
         ArgumentNullException.ThrowIfNull(boundResults);
+
+        foreach (var binding in bindingModel.TransformBindingList)
+            if (!boundResults.Any(result => binding.MetaTransformScriptTransformScriptId == result.TransformScriptId))
+                throw new TransformBindingValidationException("ExpressionEvidenceMissing",
+                    $"Transform '{binding.TransformScriptName}' requires expression evidence derived from its TransformScript.");
 
         var resolvedOptions = options ?? TransformBindingValidationOptions.Default;
         var sourceResolver = new MetaSchemaTableResolver(sourceSchemaModel);
@@ -222,7 +213,6 @@ public sealed class TransformBindingValidationService
                     .ThenBy(item => item.Name, StringComparer.OrdinalIgnoreCase)
                     .ToArray(),
                 StringComparer.Ordinal);
-        var sourceColumnTypeCandidatesByName = new Dictionary<string, List<ResolvedSourceColumnType>>(StringComparer.OrdinalIgnoreCase);
 
         foreach (var sourceRowset in model.RowsetList.Where(item =>
                      string.Equals(item.TransformBinding.Id, binding.Id, StringComparison.Ordinal) &&
@@ -235,7 +225,6 @@ public sealed class TransformBindingValidationService
                 sourceResolver,
                 options,
                 rowsetColumnsByRowsetId,
-                sourceColumnTypeCandidatesByName,
                 sourceRowsetLinks,
                 sourceColumnLinks);
         }
@@ -250,7 +239,6 @@ public sealed class TransformBindingValidationService
                 options.IgnoredTargetColumnNamesIfPresent,
                 finalRowset,
                 rowsetColumnsByRowsetId,
-                sourceColumnTypeCandidatesByName,
                 targetRowsetLinks,
                 targetColumnLinks,
                 targetColumnTypeExactRows,
@@ -331,7 +319,6 @@ public sealed class TransformBindingValidationService
         MetaSchemaTableResolver sourceResolver,
         TransformBindingValidationOptions options,
         IReadOnlyDictionary<string, Column[]> rowsetColumnsByRowsetId,
-        Dictionary<string, List<ResolvedSourceColumnType>> sourceColumnTypeCandidatesByName,
         List<ValidationSourceRowsetLink> sourceRowsetLinks,
         List<ValidationSourceColumnLink> sourceColumnLinks)
     {
@@ -385,20 +372,7 @@ public sealed class TransformBindingValidationService
                 MetaSchemaFieldId = matchedField.FieldId
             });
 
-            if (!sourceColumnTypeCandidatesByName.TryGetValue(actualColumn.Name, out var candidates))
-            {
-                candidates = [];
-                sourceColumnTypeCandidatesByName.Add(actualColumn.Name, candidates);
-            }
 
-            candidates.Add(new ResolvedSourceColumnType(
-                actualColumn.Name,
-                sourceMetaDataTypeId,
-                matchedField.IsNullable,
-                matchedField.Length,
-                matchedField.Precision,
-                matchedField.Scale,
-                $"{resolution.Table.CanonicalSqlIdentifier}.{matchedField.FieldName}"));
         }
     }
 
@@ -410,7 +384,6 @@ public sealed class TransformBindingValidationService
         IReadOnlySet<string> ignoredTargetColumnNamesIfPresent,
         Rowset? finalRowset,
         IReadOnlyDictionary<string, Column[]> rowsetColumnsByRowsetId,
-        IReadOnlyDictionary<string, List<ResolvedSourceColumnType>> sourceColumnTypeCandidatesByName,
         List<ValidationTargetRowsetLink> targetRowsetLinks,
         List<ValidationTargetColumnLink> targetColumnLinks,
         List<ValidationTargetColumnTypeExact> targetColumnTypeExactRows,
@@ -665,23 +638,16 @@ public sealed class TransformBindingValidationService
                 $"Target schema field '{resolution.Table.CanonicalSqlIdentifier}.{matchedTargetField.FieldName}'");
 
             var outputColumnName = actualWriteColumns[ordinal].Name;
-            ResolvedSourceColumnType? sourceCandidate = null;
-            if (runtimeOutputColumns is not null)
-            {
-                if (runtimeOutputColumns.TryGetValue(actualWriteColumns[ordinal].Id, out var output) && output.DataType is { } type)
-                    sourceCandidate = new(outputColumnName, type.MetaDataTypeId, type.IsNullable, type.Length, type.Precision, type.Scale, type.DisplayName);
-            }
-            else if (sourceColumnTypeCandidatesByName.TryGetValue(outputColumnName, out var candidates) && candidates.Count == 1)
-                sourceCandidate = candidates[0];
+            var sourceCandidate = runtimeOutputColumns?.GetValueOrDefault(actualWriteColumns[ordinal].Id)?.DataType;
             if (sourceCandidate is not null)
             {
                 ValidateTargetColumnTypeConformance(
-                    sourceCandidate.SourceMetaDataTypeId,
+                    sourceCandidate.MetaDataTypeId,
                     sourceCandidate.IsNullable,
                     sourceCandidate.Length,
                     sourceCandidate.Precision,
                     sourceCandidate.Scale,
-                    sourceCandidate.SourceDisplayName,
+                    sourceCandidate.DisplayName,
                     targetMetaDataTypeId,
                     matchedTargetField,
                     outputColumnName,
@@ -698,7 +664,7 @@ public sealed class TransformBindingValidationService
                 targetColumnLinks.Add(targetColumnLink);
                 AppendTargetColumnTypeAssessment(
                     targetColumnLink,
-                    sourceCandidate.SourceMetaDataTypeId,
+                    sourceCandidate.MetaDataTypeId,
                     targetMetaDataTypeId,
                     targetColumnTypeExactRows);
             }
@@ -1430,15 +1396,6 @@ public sealed class TransformBindingValidationService
             sourceDisplayName,
             $"{targetTableSqlIdentifier}.{targetField.FieldName}");
     }
-
-    private sealed record ResolvedSourceColumnType(
-        string ColumnName,
-        string SourceMetaDataTypeId,
-        bool? IsNullable,
-        int? Length,
-        int? Precision,
-        int? Scale,
-        string SourceDisplayName);
 
     private sealed record TargetWriteValidation(
         ValidationTargetRowsetLink TargetRowsetLink,
