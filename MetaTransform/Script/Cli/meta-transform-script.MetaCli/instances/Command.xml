@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <CommandList>
+    <Command Id="cmd-apply-conversions" ApplicationId="app-meta-transform-script">
+      <Description>Apply authored type conversions to source-column reads in a new workspace.</Description>
+      <Name>apply-conversions</Name>
+      <Token>apply-conversions</Token>
+    </Command>
     <Command Id="cmd-from" ApplicationId="app-meta-transform-script">
       <Description>Import SQL file/code into a new or existing workspace.</Description>
       <Name>from</Name>

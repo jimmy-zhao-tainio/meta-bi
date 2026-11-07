@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ParameterGroupList>
+    <ParameterGroup Id="group-apply-conversions-output" ExecutableCommandId="exec-apply-conversions">
+      <AllowsMultiple>false</AllowsMultiple>
+      <IsRequired>true</IsRequired>
+      <Name>output</Name>
+    </ParameterGroup>
     <ParameterGroup Id="group-from-sql-code-target" ExecutableCommandId="exec-from-sql-code">
       <Description>Choose one workspace target.</Description>
       <IsRequired>false</IsRequired>

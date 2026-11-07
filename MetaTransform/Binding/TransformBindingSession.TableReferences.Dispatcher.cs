@@ -172,9 +172,15 @@ internal sealed partial class TransformBindingSession
 
             TrackRowset(joinRowset);
 
+            var visibleSources = first.VisibleTableSources.Concat(second.VisibleTableSources).ToArray();
+            if (navigator.TryGetJoinSearchCondition(tableReference) is { } condition)
+                BindBooleanExpression(condition,
+                    new BindingScope(visibleSources.Concat(inheritedVisibleTableSources).ToArray(), visibleSources.Length),
+                    joinRowset, groupingContext: null);
+
             return new RuntimeTableReferenceBinding(
                 joinRowset,
-                first.VisibleTableSources.Concat(second.VisibleTableSources).ToArray());
+                visibleSources);
         }
 
         issues.Add(new TransformBindingIssue(

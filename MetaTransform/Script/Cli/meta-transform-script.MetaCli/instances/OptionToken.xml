@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <OptionTokenList>
+    <OptionToken Id="token-apply-conversions-data-type-conversion-workspace" OptionId="opt-apply-conversions-data-type-conversion-workspace">
+      <Token>--data-type-conversion-workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-apply-conversions-data-type-workspace" OptionId="opt-apply-conversions-data-type-workspace">
+      <Token>--data-type-workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-apply-conversions-output-connection-env" OptionId="opt-apply-conversions-output-connection-env">
+      <Token>--output-connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-apply-conversions-output-csharp" OptionId="opt-apply-conversions-output-csharp">
+      <Token>--output-csharp</Token>
+    </OptionToken>
+    <OptionToken Id="token-apply-conversions-output-sql" OptionId="opt-apply-conversions-output-sql">
+      <Token>--output-sql</Token>
+    </OptionToken>
+    <OptionToken Id="token-apply-conversions-output-xml" OptionId="opt-apply-conversions-output-xml">
+      <Token>--output-xml</Token>
+    </OptionToken>
+    <OptionToken Id="token-apply-conversions-source-schema" OptionId="opt-apply-conversions-source-schema">
+      <Token>--source-schema</Token>
+    </OptionToken>
+    <OptionToken Id="token-apply-conversions-workspace" OptionId="opt-apply-conversions-workspace">
+      <Token>--workspace</Token>
+    </OptionToken>
     <OptionToken Id="token-from-sql-code-code" OptionId="opt-from-sql-code-code">
       <Token>--code</Token>
     </OptionToken>

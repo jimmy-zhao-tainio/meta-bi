@@ -4,8 +4,6 @@ namespace MetaTransformScript.Sql;
 
 internal sealed partial class MetaTransformScriptSqlEmitter
 {
-    internal string RenderDataTypeReferenceForComposition(DataTypeReference reference) => RenderDataTypeReference(reference);
-
     private string RenderCoalesceExpression(CoalesceExpression coalesceExpression)
     {
         var expressions = GetOrderedItems(model.CoalesceExpressionExpressionsItemList, coalesceExpression.Id)

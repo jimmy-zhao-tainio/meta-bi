@@ -7,7 +7,7 @@ using MetaTransformScript.Sql;
 using MTS = global::MetaTransformScript;
 using MSS = global::MetaSqlScript;
 
-internal sealed class MetaTransformScriptCommandHandlers
+internal sealed partial class MetaTransformScriptCommandHandlers
 {
     private readonly ConsolePresenter presenter;
     private readonly MetaTransformScriptSqlService service;

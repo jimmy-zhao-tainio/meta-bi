@@ -1,96 +1,93 @@
-# Apply authored conversions to SELECT projections
+﻿# Apply authored conversions to source-column reads
 
-`TransformScriptConversionWorkspaceService.Apply` loads an existing TransformScript,
-a selected MetaDataType catalog, a MetaDataTypeConversion workspace, and a source
-MetaSchema workspace. Each `ProjectionConversionRequirement` identifies a
-`SelectScalarExpression` in the input and supplies its destination type ID and
-explicit SQL Server facets. The destination requirement belongs to the caller.
-
-```csharp
-var result = new TransformScriptConversionWorkspaceService().Apply(new(
-    InputWorkspace: inputPath,
-    DataTypeWorkspace: catalogPath,
-    ConversionWorkspace: conversionsPath,
-    SourceSchemaWorkspace: sourcePath,
-    Requirements: [new(projectionId, destinationId, new(Length: 25))],
-    OutputWorkspace: newPath));
+```powershell
+meta-transform-script apply-conversions `
+  --workspace Transform `
+  --source-schema SourceSchema `
+  --data-type-workspace Types `
+  --data-type-conversion-workspace Conversions `
+  --output-xml ConvertedTransform
 ```
 
-This is a programmatic workspace operation. It does not add a CLI command in this
-slice. The output must not exist or be nested in an input workspace. Input
-artifacts are left intact; the result is a new XML TransformScript workspace.
+The operation processes the collection of scripts in a TransformScript workspace.
+Source MetaSchema evidence identifies each original source-column read and its
+type. A matching authored DataTypeMapping supplies the destination type and
+conversion implementation. There is no target-schema input or requirements file.
+A source type without a rule is unchanged; multiple rules for a source type in
+the selected conversion workspace are ambiguous and fail.
+
+The CLI also supports `--output-csharp` and `--output-sql` (with
+`--output-connection-env`). Exactly one output representation is required. The
+output must be new and separate from all inputs. Conversion completes in memory
+before output materialization; rejected conversions leave the inputs intact.
 
 ## Ownership and call chain
 
-1. MetaConvert owns preparation of the new script. It loads the selected catalog
-   and source schema. MetaSchema validates SQL Server type membership through the
-   catalog's modeled DataTypeSystem relationships.
-2. Binding's read-only analysis resolves source references and expression contracts
-   using that same catalog. Unknown/unsupported expression types are rejected.
-   Binding selects no mappings and applies no conversions.
-3. The producing service selects exactly one authored DataTypeMapping with the
-   resolved source ID and the explicitly required destination ID. It follows no
-   compatibility graph and supplies no implicit direct conversion.
-4. MetaDataTypeConversion owns the implementation/snippet and its parameter
-   bindings. `SqlConversionSnippetService` instantiates the authored text.
-5. TransformScript.Sql parses the snippet as one scalar expression and composes it
-   into the selected projection. The whole original expression is parenthesized;
-   aliases (including implicit column names), column order, references and predicates
-   are retained. Export/re-import normalizes the graph and removes detached operands.
-6. Existing Binding analysis must establish the exact requested resulting type and
-   facets before materialization. The caller can then use ordinary schema-aware
-   Binding against its destination schema, followed by execution of the exported SQL.
+1. The modeled MetaTransformScript CLI loads the selected workspaces through its
+   workspace runtime and calls `TransformScriptConversionWorkspaceService.Convert`
+   in MetaConvert. The programmatic `Apply` wrapper loads and writes XML workspaces.
+2. MetaSchema validates SQL Server source types through the selected MetaDataType
+   catalog and its modeled DataTypeSystem relationships. Arbitrary catalog IDs work.
+3. Binding's read-only source analysis resolves column references, including SQL
+   aliases and JOIN predicates. It selects no conversion rule and knows no snippets.
+4. MetaConvert selects the source-type rule. MetaDataTypeConversion owns its
+   reusable snippet and parameter bindings; `SqlConversionSnippetService`
+   instantiates the authored expression using the existing substitution syntax.
+5. TransformScript.Sql parses and structurally composes the expression around each
+   original source-column occurrence, including occurrences inside projection
+   expressions, predicates, joins and ordering. Parentheses preserve precedence.
+   Inserted references are not recursively converted. SQL export/import normalizes
+   the resulting graph, preserving script names, target identifiers, column order
+   and aliases, including implicit direct-column output names. Internal syntax IDs
+   may change. Output-alias references remain output-alias references.
+6. The caller independently runs schema-aware Binding against its destination
+   contract and executes the validated result through Pipeline. Conversion does
+   not approve compatibility or validate the output against a target schema.
 
 ## Authored snippet data
 
 `ConversionImplementation.SqlConversionSnippet` references a reusable
-`SqlConversionSnippet` whose `TransformScript` contains the scalar SQL expression.
-For example, `CAST($(source) AS $(destination))` and
-`CONVERT($(destination), $(source))` require no different C# conversion branches.
+`SqlConversionSnippet` whose `TransformScript` contains one scalar expression.
+Function choice, composition, fixed arguments, facets and NULL policy are authored
+data. For example:
+
+```sql
+CAST($(source) AS $(destination)(25))
+CONVERT($(destination), COALESCE($(source), N'0'))
+```
 
 Each `SqlConversionParameterBinding` belongs to the snippet, names a placeholder,
-and references a `SqlConversionParameter`. Supported parameter **names** are:
+and references a `SqlConversionParameter`. Supported parameter names are:
 
 | Parameter name | Supplied value |
 | --- | --- |
-| `SourceExpression` | The complete selected expression, parenthesized |
-| `DestinationType` | Catalog-resolved SQL type name with explicit destination facets |
+| `SourceExpression` | The original source-column reference, parenthesized |
+| `DestinationType` | The mapping's catalog-resolved SQL Server type name |
 
-Parameter and snippet identities are authored data. A binding named `source`
-references the parameter named `SourceExpression`; a binding named `destination`
-references `DestinationType`. Placeholder names are case-insensitive, permit
-surrounding whitespace, and use the existing TransformPattern text syntax:
-`$(name)` substitutes and `$$(name)` emits a literal `$(name)`. Inserted SQL is
-never rescanned for placeholders. Missing, duplicate and unused bindings fail.
+Facet arguments such as `(25)` belong in the authored snippet. They are not
+invented from the source or supplied by a separate destination-requirements API.
+Placeholder names are case-insensitive and permit surrounding whitespace.
+`$(name)` substitutes; `$$(name)` emits literal `$(name)`. Inserted text is never
+rescanned for placeholders. Missing, duplicate and unused bindings fail clearly.
 
-Snippet function choice, composition, fixed arguments and NULL policy are data.
-For example `CAST(COALESCE($(source), N'0') AS $(destination))` changes NULL's result
-to zero without a generator change. A fixed expression producing `nvarchar(100)`
-cannot satisfy a requirement for `nvarchar(25)` even though ordinary destination
-conformance can accept a narrower expression into a wider target.
+## Supported boundaries
 
-## First-slice boundaries
+- Collections of SELECT scripts with view/target identifiers, explicit projections
+  and one query specification per script. Joins are supported. CTEs, nested/set
+  queries, non-SELECT statements and `SELECT *` are rejected. Column-valued method
+  call targets are also explicitly unsupported for substitution.
+- Source and mapped destination types must resolve to SQL Server through the
+  selected catalog. Physical destination names must be supported SQL Server syntax
+  names; arbitrary SQL alias/user-defined type names are unsupported.
+- MAX-length snippets and `time`, `datetime2`, `datetimeoffset` and `float`
+  destinations remain explicitly unsupported before output is written. Binding's
+  existing result-facet limits are unchanged and belong to a separate task.
+- Supported source analysis is bounded by existing Binding syntax support. This
+  operation adds no general function/arithmetic result typing. Final Binding may
+  reject a resulting expression whose contract it cannot establish.
+- No conversion graph, Pipeline coercion or DV/DW physical schema generation is
+  introduced. Type/facet validity of the final expression remains Binding's job.
 
-- Exactly one SELECT script with a view/target contract and one query specification;
-  no CTEs, nested queries or set queries. Only explicitly selected scalar projections
-  are rewritten. Predicates, joins and other occurrences of source columns are not
-  rewritten by this operation.
-- SQL Server source and destination types must resolve in the selected catalog;
-  arbitrary type/system IDs work. Supported physical type names are the sanctioned
-  SQL Server syntax names, not arbitrary SQL alias/user-defined types.
-- Destination facets are explicit caller inputs in this slice. No source-length
-  policy selection or DV/DW physical schema realization is introduced.
-- Existing Binding expression inference bounds the accepted inputs and snippets.
-  Arithmetic and general function result typing are not added. Unknown facets are
-  not evidence that a generated expression meets an exact requested contract.
-  MAX length, temporal fractional precision (`time`, `datetime2`, `datetimeoffset`)
-  and `float` precision destinations are explicitly rejected before snippet
-  composition or output materialization. Diagnostics identify the projection,
-  catalog type and unsupported facet. Binding result-facet fixes belong to a
-  separate task; this operation does not change Binding inference.
-- No Pipeline coercion, TransformScript interpreter, or conversion-graph change.
-
-Integration coverage is in `TransformScriptConversionIntegrationTests` in the
-existing TransformScript Integration-profile project. It persists/reloads real
-workspaces, changes snippet data, validates exact resulting contracts, and executes
-representative generated SQL on the development SQL Server with NULL verification.
+`TransformScriptConversionIntegrationTests` exercises persisted XML/C# workspaces,
+the modeled CLI, changed authored snippets, arbitrary catalog IDs, independent
+Binding and actual SQL Server Pipeline execution with exact values and NULLs.

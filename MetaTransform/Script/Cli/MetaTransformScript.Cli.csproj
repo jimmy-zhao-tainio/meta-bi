@@ -13,6 +13,7 @@
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
     <PackageReference Include="MetaCli.Core" Version="$(MetaFoundationPackageVersion)" />
     <ProjectReference Include="..\Sql\MetaTransformScript.Sql.csproj" />
+    <ProjectReference Include="../../../MetaConvert/TransformScriptConversion/MetaConvert.TransformScriptConversion.csproj" />
   </ItemGroup>
 
   <ItemGroup>

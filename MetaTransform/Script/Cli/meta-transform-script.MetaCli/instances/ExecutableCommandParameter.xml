@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ExecutableCommandParameterList>
+    <ExecutableCommandParameter Id="exec-apply-conversions:parameter:param-apply-conversions-data-type-conversion-workspace" ExecutableCommandId="exec-apply-conversions" ParameterId="param-apply-conversions-data-type-conversion-workspace" />
+    <ExecutableCommandParameter Id="exec-apply-conversions:parameter:param-apply-conversions-data-type-workspace" ExecutableCommandId="exec-apply-conversions" ParameterId="param-apply-conversions-data-type-workspace" />
+    <ExecutableCommandParameter Id="exec-apply-conversions:parameter:param-apply-conversions-output-connection-env" ExecutableCommandId="exec-apply-conversions" ParameterId="param-apply-conversions-output-connection-env" />
+    <ExecutableCommandParameter Id="exec-apply-conversions:parameter:param-apply-conversions-output-csharp" ExecutableCommandId="exec-apply-conversions" ParameterId="param-apply-conversions-output-csharp" />
+    <ExecutableCommandParameter Id="exec-apply-conversions:parameter:param-apply-conversions-output-sql" ExecutableCommandId="exec-apply-conversions" ParameterId="param-apply-conversions-output-sql" />
+    <ExecutableCommandParameter Id="exec-apply-conversions:parameter:param-apply-conversions-output-xml" ExecutableCommandId="exec-apply-conversions" ParameterId="param-apply-conversions-output-xml" />
+    <ExecutableCommandParameter Id="exec-apply-conversions:parameter:param-apply-conversions-source-schema" ExecutableCommandId="exec-apply-conversions" ParameterId="param-apply-conversions-source-schema" />
+    <ExecutableCommandParameter Id="exec-apply-conversions:parameter:param-apply-conversions-workspace" ExecutableCommandId="exec-apply-conversions" ParameterId="param-apply-conversions-workspace" />
     <ExecutableCommandParameter Id="exec-from-sql-code:parameter:param-from-sql-code-code" ExecutableCommandId="exec-from-sql-code" ParameterId="param-from-sql-code-code" />
     <ExecutableCommandParameter Id="exec-from-sql-code:parameter:param-from-sql-code-name" ExecutableCommandId="exec-from-sql-code" ParameterId="param-from-sql-code-name" />
     <ExecutableCommandParameter Id="exec-from-sql-code:parameter:param-from-sql-code-output-connection-env" ExecutableCommandId="exec-from-sql-code" ParameterId="param-from-sql-code-output-connection-env" />

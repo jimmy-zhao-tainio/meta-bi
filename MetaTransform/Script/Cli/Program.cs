@@ -27,6 +27,7 @@ internal static class Program
         Environment.ExitCode = 0;
         var runtime = new MetaCliRuntime<MetaTransformScriptModel>(CommandWorkspacePath, ApplicationId)
             .UseDefaultHelp()
+            .Bind("exec-apply-conversions", ConversionWorkspaces(), handlers.RunApplyConversionsAsync)
             .BindTarget("exec-from-sql-file", OutputWorkspace(), handlers.RunFromSqlFileAsync)
             .BindTarget("exec-from-sql-files", OutputWorkspace(), handlers.RunFromSqlFilesAsync)
             .BindTarget("exec-from-sql-code", OutputWorkspace(), handlers.RunFromSqlCodeAsync)
@@ -53,6 +54,15 @@ internal static class Program
             "output-csharp",
             "output-sql",
             "output-connection-env")
+    ];
+
+    private static MetaCliWorkspaceParameter[] ConversionWorkspaces() =>
+    [
+        MetaCliWorkspace.Open("workspace"),
+        MetaCliWorkspace.Open("source-schema"),
+        MetaCliWorkspace.Open("data-type-workspace"),
+        MetaCliWorkspace.Open("data-type-conversion-workspace"),
+        .. OutputWorkspace()
     ];
 
     private static void RunAsync(Func<Task> action) =>

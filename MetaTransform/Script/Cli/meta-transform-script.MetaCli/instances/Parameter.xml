@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ParameterList>
+    <Parameter Id="param-apply-conversions-data-type-conversion-workspace" ValueShapeId="shape-path">
+      <IsRequired>true</IsRequired>
+      <Name>data-type-conversion-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-apply-conversions-data-type-workspace" ValueShapeId="shape-path">
+      <IsRequired>true</IsRequired>
+      <Name>data-type-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-apply-conversions-output-connection-env" ValueShapeId="shape-text">
+      <IsRequired>false</IsRequired>
+      <Name>output-connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-apply-conversions-output-csharp" ValueShapeId="shape-path">
+      <IsRequired>false</IsRequired>
+      <Name>output-csharp</Name>
+    </Parameter>
+    <Parameter Id="param-apply-conversions-output-sql" ValueShapeId="shape-path">
+      <IsRequired>false</IsRequired>
+      <Name>output-sql</Name>
+    </Parameter>
+    <Parameter Id="param-apply-conversions-output-xml" ValueShapeId="shape-path">
+      <IsRequired>false</IsRequired>
+      <Name>output-xml</Name>
+    </Parameter>
+    <Parameter Id="param-apply-conversions-source-schema" ValueShapeId="shape-path">
+      <IsRequired>true</IsRequired>
+      <Name>source-schema</Name>
+    </Parameter>
+    <Parameter Id="param-apply-conversions-workspace" ValueShapeId="shape-path">
+      <DefaultValue>.</DefaultValue>
+      <IsRequired>false</IsRequired>
+      <Name>workspace</Name>
+    </Parameter>
     <Parameter Id="param-from-sql-code-code" ValueShapeId="shape-sql">
       <Description>SQL text to import.</Description>
       <IsRepeatable>false</IsRepeatable>

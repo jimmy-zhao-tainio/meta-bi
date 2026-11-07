@@ -1,4 +1,4 @@
-using System.Globalization;
+using System.Collections;
 using MetaTransformScript.Sql.Parsing;
 using static MetaTransformScript.Sql.Parsing.MetaTransformScriptSqlModelBuilder;
 
@@ -6,29 +6,37 @@ namespace MetaTransformScript.Sql;
 
 public sealed record SqlScalarExpression(MetaTransformScriptModel Model, ScalarExpression Root);
 
-/// <summary>Explicit SQL Server target parameters. No SQL defaults are supplied.</summary>
-public sealed record SqlServerTypeFacets(int? Length = null, bool IsMax = false, int? Precision = null, int? Scale = null);
-
 public sealed partial class MetaTransformScriptSqlService
 {
-    /// <summary>Replace a projection operand structurally, retaining its alias and other query clauses.</summary>
-    public void ReplaceProjectionExpression(MetaTransformScriptModel model, string projectionId, string sql, string outputName)
+    /// <summary>Substitute one source-column occurrence structurally, including occurrences inside larger expressions.</summary>
+    public void ReplaceColumnReference(MetaTransformScriptModel model, ColumnReferenceExpression reference, string sql, string outputName)
     {
-        var projection = model.SelectScalarExpressionList.Single(row => row.Id == projectionId);
-        var link = model.SelectScalarExpressionExpressionLinkList.Single(row => row.SelectScalarExpression.Id == projectionId);
+        var original = reference.PrimaryExpression.ScalarExpression;
         var builder = new MetaTransformScriptSqlModelBuilder();
         var root = ParseScalarInput(sql, builder).GetRef<ScalarExpression>(nameof(ScalarExpression));
-        var needsAlias = !model.SelectScalarExpressionColumnNameLinkList.Any(row => row.SelectScalarExpression.Id == projectionId);
-        var alias = needsAlias ? builder.CreateIdentifierOrValueExpression(builder.CreateIdentifier(outputName, "SquareBracket"))
-            .GetRef<IdentifierOrValueExpression>(nameof(IdentifierOrValueExpression)) : null;
+        var aliases = new List<(SelectScalarExpression Projection, IdentifierOrValueExpression Alias)>();
+        foreach (var link in model.SelectScalarExpressionExpressionLinkList.Where(row => row.ScalarExpression.Id == original.Id))
+        {
+            if (!model.SelectScalarExpressionColumnNameLinkList.Any(row => row.SelectScalarExpression.Id == link.SelectScalarExpression.Id))
+                aliases.Add((link.SelectScalarExpression, builder.CreateIdentifierOrValueExpression(builder.CreateIdentifier(outputName, "SquareBracket"))
+                    .GetRef<IdentifierOrValueExpression>(nameof(IdentifierOrValueExpression))));
+        }
         var fragment = builder.Build();
         RemapModelIds(fragment, ReadNextIdState(model));
+        model.ColumnReferenceExpressionList.Remove(reference);
+        model.PrimaryExpressionList.RemoveAll(row => row.Id == reference.PrimaryExpression.Id);
+        model.ScalarExpressionList.RemoveAll(row => row.Id == original.Id);
+        // Rewrite scalar edges, not SQL text. The detached identifier subgraph is discarded at normalization.
+        foreach (var list in GetModelListProperties())
+            foreach (var row in (IEnumerable)list.GetValue(model)!)
+                foreach (var property in row.GetType().GetProperties().Where(property => property.CanWrite && property.PropertyType == typeof(ScalarExpression)))
+                    if (property.GetValue(row) is ScalarExpression expression && expression.Id == original.Id)
+                        property.SetValue(row, root);
         AppendModelRows(model, fragment);
-        link.ScalarExpression = root;
-        if (alias is not null)
+        foreach (var alias in aliases)
             model.SelectScalarExpressionColumnNameLinkList.Add(new SelectScalarExpressionColumnNameLink
             {
-                Id = "projection-alias:" + projectionId, SelectScalarExpression = projection, IdentifierOrValueExpression = alias
+                Id = "column-alias:" + alias.Projection.Id, SelectScalarExpression = alias.Projection, IdentifierOrValueExpression = alias.Alias
             });
     }
 
@@ -45,78 +53,9 @@ public sealed partial class MetaTransformScriptSqlService
         return new MetaTransformScriptSqlEmitter(expression.Model).RenderScalarExpressionForScriptObject(expression.Root);
     }
 
-    /// <summary>Render an explicitly parameterized type through the sanctioned syntax model.</summary>
-    public string RenderSqlServerDataType(string targetTypeName, SqlServerTypeFacets facets)
-    {
-        ArgumentNullException.ThrowIfNull(facets);
-        var parameters = GetExplicitTypeParameters(targetTypeName, facets);
-        if (!MetaTransformScriptSqlServerDataTypes.TryMapSqlName(targetTypeName, out var option) ||
-            !string.Equals(MetaTransformScriptSqlServerDataTypes.RenderSqlName(option), targetTypeName, StringComparison.OrdinalIgnoreCase))
-        {
-            throw new InvalidOperationException($"SQL conversion target '{targetTypeName}' must be a supported canonical SQL Server type.");
-        }
-
-        var builder = new MetaTransformScriptSqlModelBuilder();
-        var type = builder.CreateSqlDataTypeReference(option, parameters.Select(value =>
-            value == "max" ? builder.CreateMaxLiteral() : builder.CreateNumberLiteral(value)).ToArray());
-        return new MetaTransformScriptSqlEmitter(builder.Build()).RenderDataTypeReferenceForComposition(
-            type.GetRef<DataTypeReference>(nameof(DataTypeReference)));
-    }
-
     private static BuiltNode ParseScalarInput(string sql, MetaTransformScriptSqlModelBuilder builder)
     {
-        try
-        {
-            return new MetaTransformScriptSqlParser().ParseScalarFragment(sql, builder);
-        }
-        catch (MetaTransformScriptSqlParserException exception)
-        {
-            throw CreateImportException(exception, sourcePath: null);
-        }
-    }
-
-    private static IReadOnlyList<string> GetExplicitTypeParameters(string name, SqlServerTypeFacets facets)
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(name);
-        var type = name.ToLowerInvariant();
-        var lengthType = type is "char" or "varchar" or "nchar" or "nvarchar" or "binary" or "varbinary";
-        var decimalType = type is "decimal" or "numeric";
-        var temporalType = type is "time" or "datetime2" or "datetimeoffset";
-        var floatType = type == "float";
-        void Reject(string reason) => throw new ArgumentException($"Target type '{name}': {reason}", nameof(facets));
-        if (!lengthType && (facets.Length.HasValue || facets.IsMax)) Reject("length/MAX is not applicable.");
-        if (!decimalType && !floatType && facets.Precision.HasValue) Reject("precision is not applicable.");
-        if (!decimalType && !temporalType && facets.Scale.HasValue) Reject("scale is not applicable.");
-        string Number(int? value) => value!.Value.ToString(CultureInfo.InvariantCulture);
-        if (lengthType)
-        {
-            if (facets.IsMax)
-            {
-                if (facets.Length.HasValue || type is not ("varchar" or "nvarchar" or "varbinary"))
-                    Reject("MAX requires a variable-length type and cannot be combined with length.");
-                return ["max"];
-            }
-            var limit = type is "nchar" or "nvarchar" ? 4000 : 8000;
-            if (!facets.Length.HasValue || facets.Length < 1 || facets.Length > limit)
-                Reject($"an explicit length from 1 through {limit} (or supported MAX) is required.");
-            return [Number(facets.Length)];
-        }
-        if (decimalType)
-        {
-            if (facets.Precision is null or < 1 or > 38 || facets.Scale is null or < 0 || facets.Scale > facets.Precision)
-                Reject("explicit precision (1..38) and scale (0..precision) are required.");
-            return [Number(facets.Precision), Number(facets.Scale)];
-        }
-        if (temporalType)
-        {
-            if (facets.Scale is null or < 0 or > 7) Reject("an explicit fractional-second scale (0..7) is required.");
-            return [Number(facets.Scale)];
-        }
-        if (floatType)
-        {
-            if (facets.Precision is null or < 1 or > 53) Reject("an explicit precision (1..53) is required.");
-            return [Number(facets.Precision)];
-        }
-        return [];
+        try { return new MetaTransformScriptSqlParser().ParseScalarFragment(sql, builder); }
+        catch (MetaTransformScriptSqlParserException exception) { throw CreateImportException(exception, sourcePath: null); }
     }
 }

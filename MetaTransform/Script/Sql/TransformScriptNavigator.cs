@@ -1081,6 +1081,13 @@ public sealed partial class TransformScriptNavigator
             tableReferenceById.GetValueOrDefault(secondLink.TableReference.Id));
     }
 
+    public BooleanExpression? TryGetJoinSearchCondition(TableReference tableReference)
+    {
+        if (!joinTableReferenceByTableReferenceId.TryGetValue(tableReference.Id, out var joinBase) ||
+            !qualifiedJoinByBaseId.TryGetValue(joinBase.Id, out var join)) return null;
+        return model.QualifiedJoinSearchConditionLinkList.SingleOrDefault(link => link.QualifiedJoin.Id == join.Id)?.BooleanExpression;
+    }
+
     public string? TryGetJoinOperator(TableReference tableReference)
     {
         if (!joinTableReferenceByTableReferenceId.TryGetValue(tableReference.Id, out var joinBase))

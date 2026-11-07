@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ParameterGroupMemberList>
+    <ParameterGroupMember Id="member-apply-conversions-output-csharp" ParameterGroupId="group-apply-conversions-output" ParameterId="param-apply-conversions-output-csharp" PreviousMemberId="member-apply-conversions-output-xml" />
+    <ParameterGroupMember Id="member-apply-conversions-output-sql" ParameterGroupId="group-apply-conversions-output" ParameterId="param-apply-conversions-output-sql" PreviousMemberId="member-apply-conversions-output-csharp" />
+    <ParameterGroupMember Id="member-apply-conversions-output-xml" ParameterGroupId="group-apply-conversions-output" ParameterId="param-apply-conversions-output-xml" />
     <ParameterGroupMember Id="member-from-sql-code-target-first" ParameterGroupId="group-from-sql-code-target" ParameterId="param-from-sql-code-workspace" />
     <ParameterGroupMember Id="member-from-sql-code-target-output-csharp" ParameterGroupId="group-from-sql-code-target" ParameterId="param-from-sql-code-output-csharp" PreviousMemberId="member-from-sql-code-target-output-xml" />
     <ParameterGroupMember Id="member-from-sql-code-target-output-sql" ParameterGroupId="group-from-sql-code-target" ParameterId="param-from-sql-code-output-sql" PreviousMemberId="member-from-sql-code-target-output-csharp" />

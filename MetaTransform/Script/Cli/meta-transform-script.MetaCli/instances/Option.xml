@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <OptionList>
+    <Option Id="opt-apply-conversions-data-type-conversion-workspace" ParameterId="param-apply-conversions-data-type-conversion-workspace" />
+    <Option Id="opt-apply-conversions-data-type-workspace" ParameterId="param-apply-conversions-data-type-workspace" />
+    <Option Id="opt-apply-conversions-output-connection-env" ParameterId="param-apply-conversions-output-connection-env" />
+    <Option Id="opt-apply-conversions-output-csharp" ParameterId="param-apply-conversions-output-csharp" />
+    <Option Id="opt-apply-conversions-output-sql" ParameterId="param-apply-conversions-output-sql" />
+    <Option Id="opt-apply-conversions-output-xml" ParameterId="param-apply-conversions-output-xml" />
+    <Option Id="opt-apply-conversions-source-schema" ParameterId="param-apply-conversions-source-schema" />
+    <Option Id="opt-apply-conversions-workspace" ParameterId="param-apply-conversions-workspace" />
     <Option Id="opt-from-sql-code-code" ParameterId="param-from-sql-code-code" />
     <Option Id="opt-from-sql-code-name" ParameterId="param-from-sql-code-name" />
     <Option Id="opt-from-sql-code-target" ParameterId="param-from-sql-code-target" />

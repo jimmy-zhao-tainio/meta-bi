@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <ExecutableCommandList>
+    <ExecutableCommand Id="exec-apply-conversions" CommandId="cmd-apply-conversions" />
     <ExecutableCommand Id="exec-from-sql-code" CommandId="cmd-from-sql-code" />
     <ExecutableCommand Id="exec-from-sql-file" CommandId="cmd-from-sql-file" />
     <ExecutableCommand Id="exec-from-sql-files" CommandId="cmd-from-sql-files" />
