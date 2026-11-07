@@ -30,6 +30,7 @@
   <ItemGroup>
     <ProjectReference Include="../../../MetaConvert/TransformScriptConversion/MetaConvert.TransformScriptConversion.csproj" />
     <ProjectReference Include="../../../MetaSchema/Extractors.SqlServer/MetaSchema.Extractors.SqlServer.csproj" />
+    <ProjectReference Include="../../../MetaPipeline/Core/MetaPipeline.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

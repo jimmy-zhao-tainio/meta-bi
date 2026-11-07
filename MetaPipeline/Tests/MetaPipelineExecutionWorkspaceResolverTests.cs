@@ -180,8 +180,10 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
         }
     }
 
-    [Fact]
-    public async Task Resolve_UsesValidationTypeMetadataForOutputColumns()
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public async Task Resolve_UsesExactValidationTypeMetadataAndRejectsForgedMismatch(bool mismatched)
     {
         var tempRoot = CreateTempRoot();
         var transformWorkspacePath = Path.Combine(tempRoot, "transform");
@@ -206,7 +208,15 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
                     "warehouse.CustomerLoad",
                     ["CustomerId"],
                     [0],
-                    [("sqlserver:type:int", "sqlserver:type:nvarchar")]));
+                    [("sqlserver:type:int", mismatched ? "sqlserver:type:nvarchar" : "sqlserver:type:int")]));
+
+            if (mismatched)
+            {
+                var ex = Assert.Throws<MetaPipelineConfigurationException>(() => new MetaPipelineExecutionWorkspaceResolver().ResolveByIds(
+                    transformWorkspacePath, bindingWorkspacePath, script.Id, "binding:1"));
+                Assert.Contains("different source and target types", ex.Message);
+                return;
+            }
 
             var result = new MetaPipelineExecutionWorkspaceResolver().ResolveByIds(
                 transformWorkspacePath,
@@ -217,7 +227,7 @@ public sealed class MetaPipelineExecutionWorkspaceResolverTests
             var column = Assert.Single(result.Columns);
             Assert.Equal("CustomerId", column.Name);
             Assert.Equal("sqlserver:type:int", column.SourceMetaDataTypeId);
-            Assert.Equal("sqlserver:type:nvarchar", column.TargetMetaDataTypeId);
+            Assert.Equal("sqlserver:type:int", column.TargetMetaDataTypeId);
         }
         finally
         {
@@ -906,26 +916,13 @@ END
                     };
                     model.ValidationTargetColumnLinkList.Add(columnLink);
                     var (sourceMetaDataTypeId, targetMetaDataTypeId) = binding.TypeAssessments[index];
-                    if (string.Equals(sourceMetaDataTypeId, targetMetaDataTypeId, StringComparison.Ordinal))
+                    model.ValidationTargetColumnTypeExactList.Add(new ValidationTargetColumnTypeExact
                     {
-                        model.ValidationTargetColumnTypeExactList.Add(new ValidationTargetColumnTypeExact
-                        {
-                            Id = $"{columnLink.Id}:type-exact",
-                            ValidationTargetColumnLink = columnLink,
-                            SourceMetaDataTypeId = sourceMetaDataTypeId,
-                            TargetMetaDataTypeId = targetMetaDataTypeId,
-                        });
-                    }
-                    else
-                    {
-                        model.ValidationTargetColumnTypeSanctionedConversionList.Add(new ValidationTargetColumnTypeSanctionedConversion
-                        {
-                            Id = $"{columnLink.Id}:type-sanctioned-conversion",
-                            ValidationTargetColumnLink = columnLink,
-                            SourceMetaDataTypeId = sourceMetaDataTypeId,
-                            TargetMetaDataTypeId = targetMetaDataTypeId,
-                        });
-                    }
+                        Id = $"{columnLink.Id}:type-exact",
+                        ValidationTargetColumnLink = columnLink,
+                        SourceMetaDataTypeId = sourceMetaDataTypeId,
+                        TargetMetaDataTypeId = targetMetaDataTypeId,
+                    });
                 }
             }
         }

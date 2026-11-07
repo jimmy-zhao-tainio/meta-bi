@@ -49,7 +49,6 @@ internal sealed class MetaTransformBindingCommandHandlers
                 parse.ExecuteSystemName,
                 parse.ExecuteSystemDefaultSchemaName,
                 validationOptions: options,
-                dataTypeConversionWorkspacePath: parse.DataTypeConversionWorkspacePath,
                 allowPartial: parse.AllowPartial,
                 dataTypeWorkspacePath: dataTypeWorkspacePath);
             await workspaces.CreateAsync("output", result.Model).ConfigureAwait(false);
@@ -79,7 +78,6 @@ internal sealed class MetaTransformBindingCommandHandlers
                     $"  SourceSchemas: {string.Join(", ", parse.SourceSchemaWorkspacePaths.Select(Path.GetFullPath))}",
                     $"  TargetSchema: {Path.GetFullPath(parse.TargetSchemaWorkspacePath)}",
                     $"  DataTypeWorkspace: {(string.IsNullOrWhiteSpace(dataTypeWorkspacePath) ? "<BuiltIn>" : Path.GetFullPath(dataTypeWorkspacePath))}",
-                    $"  DataTypeConversionWorkspace: {(string.IsNullOrWhiteSpace(parse.DataTypeConversionWorkspacePath) ? "<default>" : Path.GetFullPath(parse.DataTypeConversionWorkspacePath))}",
                     $"  ExecuteSystem: {parse.ExecuteSystemName}",
                     $"  ExecuteSystemDefaultSchemaName: {(string.IsNullOrWhiteSpace(parse.ExecuteSystemDefaultSchemaName) ? "<none>" : parse.ExecuteSystemDefaultSchemaName)}",
                     $"  Code: {ex.Code}",
@@ -98,7 +96,6 @@ internal sealed class MetaTransformBindingCommandHandlers
                     $"  SourceSchemas: {string.Join(", ", parse.SourceSchemaWorkspacePaths.Select(Path.GetFullPath))}",
                     $"  TargetSchema: {Path.GetFullPath(parse.TargetSchemaWorkspacePath)}",
                     $"  DataTypeWorkspace: {(string.IsNullOrWhiteSpace(dataTypeWorkspacePath) ? "<BuiltIn>" : Path.GetFullPath(dataTypeWorkspacePath))}",
-                    $"  DataTypeConversionWorkspace: {(string.IsNullOrWhiteSpace(parse.DataTypeConversionWorkspacePath) ? "<default>" : Path.GetFullPath(parse.DataTypeConversionWorkspacePath))}",
                     $"  ExecuteSystem: {parse.ExecuteSystemName}",
                     $"  ExecuteSystemDefaultSchemaName: {(string.IsNullOrWhiteSpace(parse.ExecuteSystemDefaultSchemaName) ? "<none>" : parse.ExecuteSystemDefaultSchemaName)}",
                     $"  {ex.Message}",
@@ -142,7 +139,6 @@ internal sealed class MetaTransformBindingCommandHandlers
             invocation.Optional("execute-system-default-schema-name") ?? string.Empty,
             ignoredTargetColumns,
             ignoredTargetColumnsIfPresent,
-            invocation.Optional("data-type-conversion-workspace") ?? string.Empty,
             allowPartial,
             partialReportPath,
             string.Empty);
@@ -235,7 +231,6 @@ internal sealed class MetaTransformBindingCommandHandlers
         string ExecuteSystemDefaultSchemaName,
         string[] IgnoredTargetColumns,
         string[] IgnoredTargetColumnsIfPresent,
-        string DataTypeConversionWorkspacePath,
         bool AllowPartial,
         string PartialReportPath,
         string ErrorMessage)
@@ -250,7 +245,6 @@ internal sealed class MetaTransformBindingCommandHandlers
                 string.Empty,
                 [],
                 [],
-                string.Empty,
                 false,
                 string.Empty,
                 message);

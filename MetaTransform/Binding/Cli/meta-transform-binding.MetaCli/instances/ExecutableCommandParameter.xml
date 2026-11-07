@@ -6,7 +6,6 @@
     <ExecutableCommandParameter Id="exec-bind:parameter:param-bind-output-csharp" ExecutableCommandId="exec-bind" ParameterId="param-bind-output-csharp" />
     <ExecutableCommandParameter Id="exec-bind:parameter:param-bind-output-sql" ExecutableCommandId="exec-bind" ParameterId="param-bind-output-sql" />
     <ExecutableCommandParameter Id="exec-bind:parameter:param-bind-output-xml" ExecutableCommandId="exec-bind" ParameterId="param-bind-output-xml" />
-    <ExecutableCommandParameter Id="exec-bind:parameter:param-data-type-conversion-workspace" ExecutableCommandId="exec-bind" ParameterId="param-data-type-conversion-workspace" />
     <ExecutableCommandParameter Id="exec-bind:parameter:param-data-type-workspace" ExecutableCommandId="exec-bind" ParameterId="param-data-type-workspace" />
     <ExecutableCommandParameter Id="exec-bind:parameter:param-execute-system" ExecutableCommandId="exec-bind" ParameterId="param-execute-system" />
     <ExecutableCommandParameter Id="exec-bind:parameter:param-execute-system-default-schema-name" ExecutableCommandId="exec-bind" ParameterId="param-execute-system-default-schema-name" />

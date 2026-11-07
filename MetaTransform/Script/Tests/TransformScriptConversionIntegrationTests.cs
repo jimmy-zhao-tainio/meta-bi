@@ -3,6 +3,7 @@ using MetaConvert.TransformScriptConversion;
 using MetaDataType;
 using MetaDataTypeConversion;
 using MetaSchema;
+using MetaPipeline;
 using MetaTransform.Binding;
 using MetaTransformBinding;
 using MetaTransformScript;
@@ -13,6 +14,73 @@ using System.Data;
 [Trait("Category", "Integration")]
 public sealed class TransformScriptConversionIntegrationTests
 {
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void BindingRejectsUnconvertedType_EvenWithAuthoredMapping_ThenAcceptsConvertedScript(bool partial)
+    {
+        using var fixture = new Fixture("int", true);
+        Assert.Single(fixture.Conversions.DataTypeMappingList);
+        var ex = Assert.Throws<TransformBindingValidationException>(() =>
+            new TransformBindingWorkspaceService().BindValidatedToXmlWorkspace(
+                Path.Combine(fixture.Root, "Input"), [Path.Combine(fixture.Root, "Source")], Path.Combine(fixture.Root, "Target"),
+                "TestSystem", "dbo", Path.Combine(fixture.Root, "UnconvertedBinding"),
+                dataTypeWorkspacePath: Path.Combine(fixture.Root, "Catalog")));
+        Assert.Equal("TargetColumnTypeConformanceMismatch", ex.Code);
+        Assert.Contains("user-nvarchar", ex.Message);
+        Assert.Contains("user-int", ex.Message);
+        var result = new TransformBindingWorkspaceService().BindValidated(
+            Path.Combine(fixture.Root, "Input"), [Path.Combine(fixture.Root, "Source")], Path.Combine(fixture.Root, "Target"),
+            "TestSystem", "dbo", allowPartial: true, dataTypeWorkspacePath: Path.Combine(fixture.Root, "Catalog"));
+        Assert.True(result.ErrorCount > 0);
+        Assert.Empty(result.Model.TransformBindingList);
+        fixture.AssertBound(fixture.Convert("Converted"), partial);
+    }
+
+    [Fact]
+    public async Task ConvertedScript_BindsAndExecutesThroughPipelineOnSqlServer()
+    {
+        using var fixture = new Fixture("int", false);
+        var output = fixture.Convert("PipelineInput");
+        fixture.AssertBound(output);
+        var scriptModel = TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(output, searchUpward: false);
+        var bindingModel = TypedWorkspaceModelMapper.Load<MetaTransformBindingModel>(output + "-Binding", searchUpward: false);
+        var database = "MetaBiConvertedPipeline_" + Guid.NewGuid().ToString("N");
+        await using var master = new SqlConnection("Server=.;Database=master;Integrated Security=true;TrustServerCertificate=true;Encrypt=false;Pooling=false");
+        await master.OpenAsync();
+        await using (var create = new SqlCommand($"CREATE DATABASE [{database}]", master)) await create.ExecuteNonQueryAsync();
+        try
+        {
+            var cs = new SqlConnectionStringBuilder(master.ConnectionString) { InitialCatalog = database }.ConnectionString;
+            await using var db = new SqlConnection(cs);
+            await db.OpenAsync();
+            await using (var setup = new SqlCommand("CREATE TABLE dbo.SourceRows(Id int NOT NULL, TextValue nvarchar(max) NULL); CREATE TABLE dbo.TargetRows(Id int NOT NULL, Converted int NULL); INSERT dbo.SourceRows VALUES(1,N'12'),(2,N'-7'),(3,NULL),(0,N'999');", db))
+                await setup.ExecuteNonQueryAsync();
+            var execution = await new MetaPipelineSqlServerExecutionService().ExecuteAsync(new(output, output + "-Binding", cs, cs,
+                scriptModel.TransformScriptList.Single().Id, bindingModel.TransformBindingList.Single().Id, BatchSize: 2));
+            Assert.True(execution.Succeeded, execution.FailureMessage);
+            Assert.Equal(3, execution.RowCount);
+            Assert.Equal(2, execution.BatchCount);
+            await using var verify = new SqlCommand("SELECT Id,Converted FROM dbo.TargetRows ORDER BY Id", db);
+            await using var reader = await verify.ExecuteReaderAsync();
+            foreach (var row in new (int Id, int? Value)[] { (1, 12), (2, -7), (3, null) })
+            {
+                Assert.True(await reader.ReadAsync());
+                Assert.Equal(row.Id, reader.GetInt32(0));
+                Assert.Equal(row.Value, reader.IsDBNull(1) ? (int?)null : reader.GetInt32(1));
+            }
+            Assert.False(await reader.ReadAsync());
+        }
+        finally
+        {
+            await using var drop = new SqlCommand($"ALTER DATABASE [{database}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; DROP DATABASE [{database}]", master);
+            await drop.ExecuteNonQueryAsync();
+            await using var check = new SqlCommand("SELECT COUNT(*) FROM sys.databases WHERE name=@name", master);
+            check.Parameters.AddWithValue("@name", database);
+            Assert.Equal(0, (int)(await check.ExecuteScalarAsync())!);
+        }
+    }
+
     [Theory]
     [InlineData("nvarchar")]
     [InlineData("varchar")]
@@ -266,13 +334,13 @@ public sealed class TransformScriptConversionIntegrationTests
             return result.WorkspacePath;
         }
 
-        public void AssertBound(string output)
+        public void AssertBound(string output, bool partial = false)
         {
             var result = new TransformBindingWorkspaceService().BindValidatedToXmlWorkspace(output, [PathOf("Source")], PathOf("Target"),
-                "TestSystem", "dbo", output + "-Binding", dataTypeWorkspacePath: PathOf("Catalog"));
+                "TestSystem", "dbo", output + "-Binding", allowPartial: partial, dataTypeWorkspacePath: PathOf("Catalog"));
             Assert.Equal(0, result.ErrorCount);
             Assert.Equal(2, result.Model.ValidationTargetColumnTypeExactList.Count);
-            Assert.Empty(result.Model.ValidationTargetColumnTypeSanctionedConversionList);
+
             var model = TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(output, searchUpward: false);
             var bound = new TransformBindingService().BindTransform(model, model.TransformScriptList.Single(), Source, Catalog);
             var type = bound.TopLevelRowset!.Columns[1].DataType!;

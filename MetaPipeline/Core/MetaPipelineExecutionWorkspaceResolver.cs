@@ -470,39 +470,15 @@ public sealed class MetaPipelineExecutionWorkspaceResolver
             .ToArray();
         var exactByLinkId = bindingModel.ValidationTargetColumnTypeExactList
             .ToDictionary(item => item.ValidationTargetColumnLink.Id, StringComparer.Ordinal);
-        var sanctionedByLinkId = bindingModel.ValidationTargetColumnTypeSanctionedConversionList
-            .ToDictionary(item => item.ValidationTargetColumnLink.Id, StringComparer.Ordinal);
         var result = new Dictionary<string, ResolvedColumnDataTypes>(StringComparer.Ordinal);
 
         foreach (var columnLink in targetColumnLinks)
         {
-            var assessmentCount = 0;
-            string? sourceMetaDataTypeId = null;
-            string? targetMetaDataTypeId = null;
-
             if (exactByLinkId.TryGetValue(columnLink.Id, out var exact))
             {
-                assessmentCount++;
-                sourceMetaDataTypeId = exact.SourceMetaDataTypeId;
-                targetMetaDataTypeId = exact.TargetMetaDataTypeId;
-            }
-
-            if (sanctionedByLinkId.TryGetValue(columnLink.Id, out var sanctioned))
-            {
-                assessmentCount++;
-                sourceMetaDataTypeId = sanctioned.SourceMetaDataTypeId;
-                targetMetaDataTypeId = sanctioned.TargetMetaDataTypeId;
-            }
-
-            if (assessmentCount > 1)
-            {
-                throw new MetaPipelineConfigurationException(
-                    $"Binding target column link '{columnLink.Id}' has multiple type assessment rows.");
-            }
-
-            if (assessmentCount == 1)
-            {
-                result[columnLink.Column.Id] = new ResolvedColumnDataTypes(sourceMetaDataTypeId, targetMetaDataTypeId);
+                if (!string.Equals(exact.SourceMetaDataTypeId, exact.TargetMetaDataTypeId, StringComparison.Ordinal))
+                    throw new MetaPipelineConfigurationException($"Binding target column link '{columnLink.Id}' claims an exact assessment with different source and target types.");
+                result[columnLink.Column.Id] = new ResolvedColumnDataTypes(exact.SourceMetaDataTypeId, exact.TargetMetaDataTypeId);
             }
         }
 

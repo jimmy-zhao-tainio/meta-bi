@@ -2,7 +2,6 @@ using MetaSchema;
 using MetaDataType;
 using MetaTransformBinding;
 using MetaTransformScript;
-using MetaDataTypeConversion.Core;
 
 namespace MetaTransform.Binding;
 
@@ -16,7 +15,6 @@ public sealed class TransformBindingWorkspaceService
         string? executeSystemDefaultSchemaName,
         string newWorkspacePath,
         TransformBindingValidationOptions? validationOptions = null,
-        string? dataTypeConversionWorkspacePath = null,
         bool allowPartial = false,
         string? dataTypeWorkspacePath = null)
     {
@@ -29,7 +27,6 @@ public sealed class TransformBindingWorkspaceService
             executeSystemName,
             executeSystemDefaultSchemaName,
             validationOptions,
-            dataTypeConversionWorkspacePath,
             allowPartial,
             dataTypeWorkspacePath);
         Meta.Integration.TypedWorkspaceModelMapper.Create(result.Model, workspacePath, "xml");
@@ -43,7 +40,6 @@ public sealed class TransformBindingWorkspaceService
         string executeSystemName,
         string? executeSystemDefaultSchemaName,
         TransformBindingValidationOptions? validationOptions = null,
-        string? dataTypeConversionWorkspacePath = null,
         bool allowPartial = false,
         string? dataTypeWorkspacePath = null)
     {
@@ -115,10 +111,8 @@ public sealed class TransformBindingWorkspaceService
             normalizedExecuteSystemName,
             normalizedExecuteSystemDefaultSchemaName);
 
-        var dataTypeConversionWorkspace = MetaDataTypeConversionWorkspaceProvider.LoadOrDefault(dataTypeConversionWorkspacePath);
         var validationService = new TransformBindingValidationService(
-            new MetaDataTypeConversionService(),
-            dataTypeConversionWorkspace, dataTypes);
+            dataTypes);
 
         var objectIssues = new List<BindWorkspaceObjectIssue>();
         MetaTransformBindingModel validatedModel;
@@ -491,7 +485,6 @@ public sealed class TransformBindingWorkspaceService
         MergeById(destination.ValidationSourceColumnLinkList, source.ValidationSourceColumnLinkList, static item => item.Id, "ValidationSourceColumnLink", transformScriptName);
         MergeById(destination.ValidationTargetColumnLinkList, source.ValidationTargetColumnLinkList, static item => item.Id, "ValidationTargetColumnLink", transformScriptName);
         MergeById(destination.ValidationTargetColumnTypeExactList, source.ValidationTargetColumnTypeExactList, static item => item.Id, "ValidationTargetColumnTypeExact", transformScriptName);
-        MergeById(destination.ValidationTargetColumnTypeSanctionedConversionList, source.ValidationTargetColumnTypeSanctionedConversionList, static item => item.Id, "ValidationTargetColumnTypeSanctionedConversion", transformScriptName);
         MergeById(destination.ValidationTargetIgnoredColumnList, source.ValidationTargetIgnoredColumnList, static item => item.Id, "ValidationTargetIgnoredColumn", transformScriptName);
         MergeById(destination.TargetColumnReferenceList, source.TargetColumnReferenceList, static item => item.Id, "TargetColumnReference", transformScriptName);
         MergeById(destination.WriteList, source.WriteList, static item => item.Id, "Write", transformScriptName);

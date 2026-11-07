@@ -21,10 +21,6 @@
       <Description>Create the output on the selected workspace surface.</Description>
       <Name>output-xml</Name>
     </Parameter>
-    <Parameter Id="param-data-type-conversion-workspace" ValueShapeId="shape-path">
-      <Description>Optional sanctioned conversion policy workspace. Omitted uses built-in defaults.</Description>
-      <Name>data-type-conversion-workspace</Name>
-    </Parameter>
     <Parameter Id="param-data-type-workspace" ValueShapeId="shape-path">
       <Description>MetaDataType catalog for schema validation and SQL expression types. Defaults to BuiltIn.</Description>
       <Name>data-type-workspace</Name>

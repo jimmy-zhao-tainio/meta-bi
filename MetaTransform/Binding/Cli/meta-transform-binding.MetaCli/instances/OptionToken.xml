@@ -16,9 +16,6 @@
     <OptionToken Id="token-bind-output-xml" OptionId="option-bind-output-xml">
       <Token>--output-xml</Token>
     </OptionToken>
-    <OptionToken Id="token-data-type-conversion-workspace" OptionId="opt-data-type-conversion-workspace">
-      <Token>--data-type-conversion-workspace</Token>
-    </OptionToken>
     <OptionToken Id="token-data-type-workspace" OptionId="opt-data-type-workspace">
       <Token>--data-type-workspace</Token>
     </OptionToken>

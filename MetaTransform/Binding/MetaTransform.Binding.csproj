@@ -22,7 +22,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Script\Sql\MetaTransformScript.Sql.csproj" />
     <ProjectReference Include="..\..\MetaSchema\Core\MetaSchema.Core.csproj" />
-    <ProjectReference Include="..\..\MetaDataTypeConversion\Core\MetaDataTypeConversion.Core.csproj" />
   </ItemGroup>
 
 </Project>

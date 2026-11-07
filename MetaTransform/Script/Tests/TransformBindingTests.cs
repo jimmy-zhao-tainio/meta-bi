@@ -180,7 +180,7 @@ FROM src;
                     .Select(item => targetSchemaModel.FieldList.Single(field => field.Id == item.MetaSchemaFieldId).Name)
                     .ToArray());
             Assert.Equal(2, result.Model.ValidationTargetColumnTypeExactList.Count);
-            Assert.Empty(result.Model.ValidationTargetColumnTypeSanctionedConversionList);
+
             var write = Assert.Single(result.Model.WriteList);
             Assert.Equal(result.Model.ValidationTargetRowsetLinkList.Single().Id, write.ValidationTargetRowsetLink.Id);
             Assert.Equal(2, result.Model.WriteValueList.Count);
@@ -3522,7 +3522,7 @@ GO
             Assert.Equal(3, validated.ValidationSourceColumnLinkList.Count);
             Assert.Equal(4, validated.ValidationTargetColumnLinkList.Count);
             Assert.Equal(2, validated.ValidationTargetColumnTypeExactList.Count);
-            Assert.Empty(validated.ValidationTargetColumnTypeSanctionedConversionList);
+
             Assert.Empty(validated.ValidationTargetIgnoredColumnList);
 
         }
@@ -3995,151 +3995,32 @@ INNER JOIN dbo.SourceB AS b
         }
     }
 
-    [Fact]
-    public void ValidationService_WithSanctionedTypeConversion_RecordsConformanceKind()
+    [Theory]
+    [InlineData("smallmoney", "decimal")]
+    [InlineData("varchar", "nvarchar")]
+    [InlineData("int", "nvarchar")]
+    public void ValidationService_WithDifferentResultType_RejectsGraphCompatibility(string source, string target)
     {
-        var transformModel = ParseCorpus("001_basic_select.sql");
-        SetViewTargetSqlIdentifier(transformModel, transformModel.TransformScriptList[0], "dbo.CustomerSummary");
-
-        var schemaModel = CreateSourceSchema(
+        var transform = ParseCorpus("001_basic_select.sql");
+        SetViewTargetSqlIdentifier(transform, transform.TransformScriptList[0], "dbo.CustomerSummary");
+        var schema = CreateSourceSchema(
             ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]),
             ("dbo", "CustomerSummary", ["CustomerId", "CustomerName", "CreatedAtAlias", "LiteralValue"]));
-
-        SetFieldMetaDataTypeId(schemaModel, "Table:1", "CustomerId", "sqlserver:type:smallmoney");
-        SetFieldMetaDataTypeId(schemaModel, "Table:2", "CustomerId", "sqlserver:type:decimal");
-
-        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
-        var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
-
+        SetFieldMetaDataTypeId(schema, "Table:1", "CustomerId", "sqlserver:type:" + source);
+        SetFieldMetaDataTypeId(schema, "Table:2", "CustomerId", "sqlserver:type:" + target);
+        var root = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
         try
         {
-            MetaTransformScriptTestHelper.SaveXml(transformModel, transformWorkspacePath);
-
-            var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
-                transformWorkspacePath,
-                Path.Combine(tempRoot, "BindingWorkspace"));
-
-            var validated = new TransformBindingValidationService().ApplyValidation(bindingResult.Model, schemaModel, schemaModel);
-            var targetColumnLinks = validated.ValidationTargetColumnLinkList;
-            Assert.Equal(4, targetColumnLinks.Count);
-            Assert.Single(validated.ValidationTargetColumnTypeExactList);
-            Assert.Single(validated.ValidationTargetColumnTypeSanctionedConversionList);
-
-            var customerIdColumn = Assert.Single(bindingResult.Model.ColumnList, item =>
-                string.Equals(item.Name, "CustomerId", StringComparison.Ordinal) &&
-                string.Equals(item.Rowset.Id, bindingResult.Model.OutputRowsetList[0].Rowset.Id, StringComparison.Ordinal));
-            var customerIdTargetColumnLink = Assert.Single(targetColumnLinks, item =>
-                string.Equals(item.Column.Id, customerIdColumn.Id, StringComparison.Ordinal));
-            var customerIdCompatibility = Assert.Single(validated.ValidationTargetColumnTypeSanctionedConversionList, item =>
-                string.Equals(item.ValidationTargetColumnLink.Id, customerIdTargetColumnLink.Id, StringComparison.Ordinal));
-            Assert.Equal("sqlserver:type:smallmoney", customerIdCompatibility.SourceMetaDataTypeId);
-            Assert.Equal("sqlserver:type:decimal", customerIdCompatibility.TargetMetaDataTypeId);
+            var input = Path.Combine(root, "Transform");
+            MetaTransformScriptTestHelper.SaveXml(transform, input);
+            var binding = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(input, Path.Combine(root, "Binding"));
+            var ex = Assert.Throws<TransformBindingValidationException>(() =>
+                new TransformBindingValidationService().ApplyValidation(binding.Model, schema, schema));
+            Assert.Equal("TargetColumnTypeConformanceMismatch", ex.Code);
+            Assert.Contains("sqlserver:type:" + source, ex.Message);
+            Assert.Contains("sqlserver:type:" + target, ex.Message);
         }
-        finally
-        {
-            if (Directory.Exists(tempRoot))
-            {
-                Directory.Delete(tempRoot, recursive: true);
-            }
-        }
-    }
-
-    [Fact]
-    public void ValidationService_WithAnsiStringToUnicodeTarget_RecordsSanctionedConversion()
-    {
-        var transformModel = ParseCorpus("001_basic_select.sql");
-        SetViewTargetSqlIdentifier(transformModel, transformModel.TransformScriptList[0], "dbo.CustomerSummary");
-
-        var schemaModel = CreateSourceSchema(
-            ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]),
-            ("dbo", "CustomerSummary", ["CustomerId", "CustomerName", "CreatedAtAlias", "LiteralValue"]));
-
-        SetFieldMetaDataTypeId(schemaModel, "Table:1", "CustomerId", "sqlserver:type:char");
-        SetFieldMetaDataTypeId(schemaModel, "Table:2", "CustomerId", "sqlserver:type:nvarchar");
-
-        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
-        var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
-
-        try
-        {
-            MetaTransformScriptTestHelper.SaveXml(transformModel, transformWorkspacePath);
-
-            var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
-                transformWorkspacePath,
-                Path.Combine(tempRoot, "BindingWorkspace"));
-
-            var validated = new TransformBindingValidationService().ApplyValidation(
-                bindingResult.Model,
-                schemaModel,
-                schemaModel);
-            var targetColumnLinks = validated.ValidationTargetColumnLinkList;
-            var customerIdColumn = Assert.Single(bindingResult.Model.ColumnList, item =>
-                string.Equals(item.Name, "CustomerId", StringComparison.Ordinal) &&
-                string.Equals(item.Rowset.Id, bindingResult.Model.OutputRowsetList[0].Rowset.Id, StringComparison.Ordinal));
-            var customerIdTargetColumnLink = Assert.Single(targetColumnLinks, item =>
-                string.Equals(item.Column.Id, customerIdColumn.Id, StringComparison.Ordinal));
-            var customerIdCompatibility = Assert.Single(validated.ValidationTargetColumnTypeSanctionedConversionList, item =>
-                string.Equals(item.ValidationTargetColumnLink.Id, customerIdTargetColumnLink.Id, StringComparison.Ordinal));
-
-            Assert.Equal("sqlserver:type:char", customerIdCompatibility.SourceMetaDataTypeId);
-            Assert.Equal("sqlserver:type:nvarchar", customerIdCompatibility.TargetMetaDataTypeId);
-        }
-        finally
-        {
-            if (Directory.Exists(tempRoot))
-            {
-                Directory.Delete(tempRoot, recursive: true);
-            }
-        }
-    }
-
-    [Fact]
-    public void ValidationService_WithNumericToUnicodeTarget_RecordsSanctionedConversion()
-    {
-        var transformModel = ParseCorpus("001_basic_select.sql");
-        SetViewTargetSqlIdentifier(transformModel, transformModel.TransformScriptList[0], "dbo.CustomerSummary");
-
-        var schemaModel = CreateSourceSchema(
-            ("dbo", "SourceTable", ["CustomerId", "CustomerName", "CreatedAt"]),
-            ("dbo", "CustomerSummary", ["CustomerId", "CustomerName", "CreatedAtAlias", "LiteralValue"]));
-
-        SetFieldMetaDataTypeId(schemaModel, "Table:1", "CustomerId", "sqlserver:type:int");
-        SetFieldMetaDataTypeId(schemaModel, "Table:2", "CustomerId", "sqlserver:type:nvarchar");
-
-        var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
-        var transformWorkspacePath = Path.Combine(tempRoot, "TransformWorkspace");
-
-        try
-        {
-            MetaTransformScriptTestHelper.SaveXml(transformModel, transformWorkspacePath);
-
-            var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
-                transformWorkspacePath,
-                Path.Combine(tempRoot, "BindingWorkspace"));
-
-            var validated = new TransformBindingValidationService().ApplyValidation(
-                bindingResult.Model,
-                schemaModel,
-                schemaModel);
-            var targetColumnLinks = validated.ValidationTargetColumnLinkList;
-            var customerIdColumn = Assert.Single(bindingResult.Model.ColumnList, item =>
-                string.Equals(item.Name, "CustomerId", StringComparison.Ordinal) &&
-                string.Equals(item.Rowset.Id, bindingResult.Model.OutputRowsetList[0].Rowset.Id, StringComparison.Ordinal));
-            var customerIdTargetColumnLink = Assert.Single(targetColumnLinks, item =>
-                string.Equals(item.Column.Id, customerIdColumn.Id, StringComparison.Ordinal));
-            var customerIdCompatibility = Assert.Single(validated.ValidationTargetColumnTypeSanctionedConversionList, item =>
-                string.Equals(item.ValidationTargetColumnLink.Id, customerIdTargetColumnLink.Id, StringComparison.Ordinal));
-
-            Assert.Equal("sqlserver:type:int", customerIdCompatibility.SourceMetaDataTypeId);
-            Assert.Equal("sqlserver:type:nvarchar", customerIdCompatibility.TargetMetaDataTypeId);
-        }
-        finally
-        {
-            if (Directory.Exists(tempRoot))
-            {
-                Directory.Delete(tempRoot, recursive: true);
-            }
-        }
+        finally { if (Directory.Exists(root)) Directory.Delete(root, true); }
     }
 
     [Fact]

@@ -2,7 +2,6 @@
 <MetaCli>
   <OptionList>
     <Option Id="opt-allow-partial" ParameterId="param-allow-partial" />
-    <Option Id="opt-data-type-conversion-workspace" ParameterId="param-data-type-conversion-workspace" />
     <Option Id="opt-data-type-workspace" ParameterId="param-data-type-workspace" />
     <Option Id="opt-execute-system" ParameterId="param-execute-system" />
     <Option Id="opt-execute-system-default-schema-name" ParameterId="param-execute-system-default-schema-name" />

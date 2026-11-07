@@ -1,7 +1,6 @@
 using Meta.Integration;
 using MetaBi.Tests.Common;
 using MetaDataType;
-using MetaDataTypeConversion;
 using MetaSchema;
 using MetaTransform.Binding;
 using MetaTransformBinding;
@@ -10,6 +9,14 @@ using MetaTransformScript.Sql;
 [Trait("Category", "Integration")]
 public sealed class SqlServerSchemaTypeContractTests
 {
+    [Fact]
+    public void Cli_RejectsRetiredConversionWorkspaceOption()
+    {
+        var result = CliTestRunner.RunStandardCli("meta-transform-binding", "bind --data-type-conversion-workspace unused");
+        Assert.NotEqual(0, result.ExitCode);
+        Assert.Contains("data-type-conversion-workspace", result.Output);
+    }
+
     [Theory]
     [InlineData(8, -1, true)]
     [InlineData(-1, -1, true)]
@@ -31,7 +38,7 @@ public sealed class SqlServerSchemaTypeContractTests
             var result = fixture.Bind();
             Assert.Equal(0, result.ErrorCount);
             Assert.Single(result.Model.ValidationTargetColumnTypeExactList);
-            Assert.Empty(result.Model.ValidationTargetColumnTypeSanctionedConversionList);
+
         }
         else
         {
@@ -60,7 +67,7 @@ public sealed class SqlServerSchemaTypeContractTests
         using var fixture = new Fixture("sqlserver:type:int", "sqlserver:type:int");
         var result = fixture.Bind(partial: partial);
         Assert.Single(result.Model.ValidationTargetColumnTypeExactList);
-        Assert.Empty(result.Model.ValidationTargetColumnTypeSanctionedConversionList);
+
     }
 
     [Theory]
@@ -166,7 +173,7 @@ public sealed class SqlServerSchemaTypeContractTests
     {
         using var fixture = new Fixture("user-nvarchar", "user-int", "CAST(s.Value AS int)");
         fixture.SaveCatalog(CustomCatalog());
-        var args = $"bind --transform-workspace \"{fixture.Transform}\" --source-schema \"{fixture.Source}\" --target-schema \"{fixture.Target}\" --execute-system TestSystem --execute-system-default-schema-name dbo --data-type-workspace \"{fixture.Catalog}\" --data-type-conversion-workspace \"{fixture.Conversions}\" --output-xml \"{fixture.Output}\"";
+        var args = $"bind --transform-workspace \"{fixture.Transform}\" --source-schema \"{fixture.Source}\" --target-schema \"{fixture.Target}\" --execute-system TestSystem --execute-system-default-schema-name dbo --data-type-workspace \"{fixture.Catalog}\" --output-xml \"{fixture.Output}\"";
         var result = CliTestRunner.RunStandardCli("meta-transform-binding", args);
         Assert.True(result.ExitCode == 0, result.Output);
         var binding = TypedWorkspaceModelMapper.Load<MetaTransformBindingModel>(fixture.Output, searchUpward: false);
@@ -220,7 +227,6 @@ public sealed class SqlServerSchemaTypeContractTests
         public string Transform => Path.Combine(Root, "Transform");
         public string Output => Path.Combine(Root, "Binding");
         public string Catalog => Path.Combine(Root, "Catalog");
-        public string Conversions => Path.Combine(Root, "Conversions");
         private bool selectedCatalog;
 
         public Fixture(string sourceId, string targetId, string expression = "s.Value", bool? extraInvalidTarget = null,
@@ -239,7 +245,6 @@ public sealed class SqlServerSchemaTypeContractTests
             MetaTransformScriptTestHelper.SaveXml(target, Target);
             new MetaTransformScriptSqlService().ImportFromSqlCodeToXmlWorkspaceAsync(
                 $"SELECT {expression} AS Value FROM dbo.SourceRows AS s;", "dbo.TargetRows", Transform, "dbo.TypeContract").GetAwaiter().GetResult();
-            TypedWorkspaceModelMapper.Create(MetaDataTypeConversionModel.CreateEmpty(), Conversions, "xml");
         }
 
         public void SaveCatalog(MetaDataTypeModel catalog)
@@ -250,7 +255,7 @@ public sealed class SqlServerSchemaTypeContractTests
 
         public BindToWorkspaceResult Bind(bool partial = false) => new TransformBindingWorkspaceService().BindValidatedToXmlWorkspace(
             Transform, [Source], Target, "TestSystem", "dbo", Output,
-            dataTypeConversionWorkspacePath: Conversions, allowPartial: partial, dataTypeWorkspacePath: selectedCatalog ? Catalog : null);
+            allowPartial: partial, dataTypeWorkspacePath: selectedCatalog ? Catalog : null);
 
         public void Dispose() { if (Directory.Exists(Root)) Directory.Delete(Root, recursive: true); }
 

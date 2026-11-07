@@ -1,5 +1,14 @@
 # AdventureWorks full BI stack
 
+The recorded `Runs/*/Binding` workspaces predate strict resulting-type validation
+and contain retired `ValidationTargetColumnTypeSanctionedConversion` assessments
+(for example, an `int` source approved for an `nvarchar` target). They are historical
+run artifacts, not current validation evidence. Before replaying these loads,
+apply explicit authored conversions to the affected TransformScripts and regenerate
+Binding against the source and target schemas. Conversion-graph reachability no
+longer makes an unconverted expression conform. This change does not regenerate
+the demo's DV/DW load expressions or edit its generated workspaces.
+
 ## A complete BI stack built by an agent
 
 The AdventureWorks stack was fully designed and built by an agent using the
