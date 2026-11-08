@@ -9,6 +9,11 @@ Binding against the source and target schemas. Conversion-graph reachability no
 longer makes an unconverted expression conform. This change does not regenerate
 the demo's DV/DW load expressions or edit its generated workspaces.
 
+The [current conversion review](CONVERSION-REVIEW.md) records statement coverage,
+strict Binding results against the checked-in contracts, and the remaining mesh
+and schema discrepancies. A global source-type conversion is not established by
+those discrepancies.
+
 ## A complete BI stack built by an agent
 
 The AdventureWorks stack was fully designed and built by an agent using the
@@ -43,7 +48,7 @@ Each product owns a concrete part of the resulting stack:
 | Preserve source history | 71 Raw hubs, 90 links, 71 satellites, and 341 satellite attributes | `meta-datavault-raw` and `meta-convert` turn the source contract into `MetaRawDataVault`, then into 232 deployable `MetaSql` tables through an explicit implementation model. |
 | Establish business meaning | 14 Business hubs, 19 links, 14 satellites, stable business names, and the Online/Store derivation | `meta-datavault-business` authors `MetaBusinessDataVault` concepts separately from the source-shaped Raw layer. |
 | Fix analytical grain | 3 facts, 8 conformed dimensions, 10 warehouse measures, 40 dimension attributes, and 19 fact-to-dimension relationships | `meta-data-warehouse` authors `MetaDataWarehouse`; `meta-convert` projects it through an implementation model into an 11-table physical warehouse. |
-| Make transformations provable | 53 source-to-Raw, 47 Raw-to-Business, and 20 Business-to-warehouse transformations, each strictly bound | `meta-transform-script` models the T-SQL program; `meta-transform-binding`, `MetaSchema`, `MetaDataType`, and `MetaDataTypeConversion` prove its reads, writes, target shape, and type compatibility. |
+| Make transformations provable | 53 source-to-Raw, 47 Raw-to-Business, and 20 Business-to-warehouse transformations; recorded bindings require regeneration under current validation | `meta-transform-script` models the T-SQL program; Binding validates its resulting contracts through `MetaSchema` and the selected `MetaDataType` catalog. Authored conversions are applied separately before Binding. |
 | Turn evidence into quality checks | 167 promoted checks covering orphan joins, multiplicity expansion, duplicate risk, and outer-join null expansion | `meta-data-quality` derives reviewable `MetaDataQuality` candidates and `meta-convert` emits executable quality SQL. |
 | Operate the load | 3 pipelines containing 120 transformation tasks, plus one inferred orchestration plan over the same 120 tasks | `meta-pipeline` executes and records work; `meta-orchestration` derives and governs runtime dependencies. |
 | Publish portable analytics | 11 analytical tables, 72 attributes, 11 base measures, 3 hierarchies, and 19 relationships | `meta-analytics` carries engine-neutral `MetaAnalytics`; `meta-convert` and `meta-tabular` produce and operate the Analysis Services model. |

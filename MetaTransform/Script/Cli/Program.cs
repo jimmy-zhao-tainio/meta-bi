@@ -59,7 +59,6 @@ internal static class Program
     private static MetaCliWorkspaceParameter[] ConversionWorkspaces() =>
     [
         MetaCliWorkspace.Open("workspace"),
-        MetaCliWorkspace.Open("source-schema"),
         MetaCliWorkspace.Open("data-type-workspace"),
         MetaCliWorkspace.Open("data-type-conversion-workspace"),
         .. OutputWorkspace()

@@ -11,6 +11,7 @@ internal sealed partial class TransformBindingSession
     private readonly List<TransformBindingIssue> issues = [];
     private readonly List<RuntimeTableSource> boundTableSources = [];
     private readonly List<RuntimeColumnReference> boundColumnReferences = [];
+    private readonly List<RuntimeSelectStarExpansion> boundSelectStars = [];
     private readonly List<RuntimeRowset> boundRowsets = [];
     private readonly List<RuntimeMutationEffect> mutationEffects = [];
     private readonly List<RuntimeStoredProcedureOperationBinding> storedProcedureOperationBindings = [];
@@ -645,6 +646,7 @@ internal sealed partial class TransformBindingSession
             boundRowsets,
             issues)
         {
+            SelectStarExpansions = boundSelectStars.ToArray(),
             MutationEffects = mutationEffects.ToArray(),
             StoredProcedureOperationBindings = storedProcedureOperationBindings.ToArray()
         };

@@ -26,6 +26,8 @@
       <Name>output-xml</Name>
     </Parameter>
     <Parameter Id="param-apply-conversions-source-schema" ValueShapeId="shape-path">
+      <Description>Read schema evidence; repeat for each referenced system.</Description>
+      <IsRepeatable>true</IsRepeatable>
       <IsRequired>true</IsRequired>
       <Name>source-schema</Name>
     </Parameter>

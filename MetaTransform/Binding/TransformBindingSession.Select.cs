@@ -258,10 +258,12 @@ internal sealed partial class TransformBindingSession
             return;
         }
 
+        var expanded = new List<RuntimeColumnReference>();
         foreach (var source in sourcesToExpand)
         {
             foreach (var column in source.Rowset.Columns)
             {
+                expanded.Add(new RuntimeColumnReference(selectStarExpression.Id, [source.ExposedName, column.Name], column, source));
                 outputColumns.Add(new RuntimeColumn(
                     $"{selectElement.Id}:output:{outputColumns.Count}",
                     column.Name,
@@ -269,6 +271,7 @@ internal sealed partial class TransformBindingSession
                     column.DataType));
             }
         }
+        boundSelectStars.Add(new(selectStarExpression.Id, expanded));
     }
 
     private RuntimeColumnReference? BindColumnReference(

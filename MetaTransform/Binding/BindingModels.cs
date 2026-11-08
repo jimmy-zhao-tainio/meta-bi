@@ -50,6 +50,8 @@ public sealed record RuntimeColumnReference(
     RuntimeColumn ResolvedColumn,
     RuntimeTableSource ResolvedTableSource);
 
+public sealed record RuntimeSelectStarExpansion(string SyntaxSelectStarId, IReadOnlyList<RuntimeColumnReference> Columns);
+
 public sealed record BindingScope(
     IReadOnlyList<RuntimeTableSource> VisibleTableSources,
     int LocalVisibleTableSourceCount = 0);
@@ -181,6 +183,8 @@ public sealed record TransformBindingResult(
 {
     internal IReadOnlyList<RuntimeMutationEffect> MutationEffects { get; init; } = [];
     internal IReadOnlyList<RuntimeStoredProcedureOperationBinding> StoredProcedureOperationBindings { get; init; } = [];
+
+    public IReadOnlyList<RuntimeSelectStarExpansion> SelectStarExpansions { get; init; } = [];
 
     public bool HasErrors => Issues.Count > 0;
 }

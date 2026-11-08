@@ -9,6 +9,18 @@ internal sealed class MetaSchemaTableResolver
     private readonly IReadOnlyDictionary<string, ResolvedSchemaTable> tablesById;
     private readonly IReadOnlyList<ResolvedSchemaTable> tables;
 
+    public MetaSchemaTableResolver(IReadOnlyList<MetaSchemaModel> models)
+    {
+        ArgumentNullException.ThrowIfNull(models);
+        // Workspace-local identities may repeat between independent schema contracts.
+        tables = models.SelectMany((model, index) => new MetaSchemaTableResolver(model).tables.Select(table => table with
+        {
+            TableId = $"source:{index}:{table.TableId}",
+            Fields = table.Fields.Select(field => field with { FieldId = $"source:{index}:{field.FieldId}" }).ToArray()
+        })).ToArray();
+        tablesById = tables.ToDictionary(item => item.TableId, StringComparer.Ordinal);
+    }
+
     public MetaSchemaTableResolver(MetaSchemaModel model)
     {
         ArgumentNullException.ThrowIfNull(model);

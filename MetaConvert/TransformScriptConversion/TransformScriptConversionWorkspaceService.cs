@@ -10,7 +10,7 @@ using MetaTransformScript.Sql;
 namespace MetaConvert.TransformScriptConversion;
 
 public sealed record TransformScriptConversionRequest(string InputWorkspace, string DataTypeWorkspace,
-    string ConversionWorkspace, string SourceSchemaWorkspace, string OutputWorkspace);
+    string ConversionWorkspace, IReadOnlyList<string> SourceSchemaWorkspaces, string OutputWorkspace);
 
 public sealed record TransformScriptConversionResult(string WorkspacePath, int ScriptCount, int ConvertedReferenceCount);
 public sealed record TransformScriptConversionModelResult(MetaTransformScriptModel Model, int ScriptCount, int ConvertedReferenceCount);
@@ -21,33 +21,46 @@ public sealed class TransformScriptConversionWorkspaceService
     public TransformScriptConversionResult Apply(TransformScriptConversionRequest request)
     {
         ArgumentNullException.ThrowIfNull(request);
-        EnsureSeparateOutput(request.OutputWorkspace, request.InputWorkspace, request.DataTypeWorkspace, request.ConversionWorkspace, request.SourceSchemaWorkspace);
+        EnsureSeparateOutput(request.OutputWorkspace, [request.InputWorkspace, request.DataTypeWorkspace, request.ConversionWorkspace, .. request.SourceSchemaWorkspaces]);
         var result = Convert(
             TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(request.InputWorkspace, searchUpward: false),
             TypedWorkspaceModelMapper.Load<MetaDataTypeModel>(request.DataTypeWorkspace, searchUpward: false),
             TypedWorkspaceModelMapper.Load<MetaDataTypeConversionModel>(request.ConversionWorkspace, searchUpward: false),
-            TypedWorkspaceModelMapper.Load<MetaSchemaModel>(request.SourceSchemaWorkspace, searchUpward: false));
+            request.SourceSchemaWorkspaces.Select(path => TypedWorkspaceModelMapper.Load<MetaSchemaModel>(path, searchUpward: false)).ToArray());
         TypedWorkspaceModelMapper.Create(result.Model, Path.GetFullPath(request.OutputWorkspace), "xml");
         return new(Path.GetFullPath(request.OutputWorkspace), result.ScriptCount, result.ConvertedReferenceCount);
     }
 
     public TransformScriptConversionModelResult Convert(MetaTransformScriptModel input, MetaDataTypeModel catalog,
         MetaDataTypeConversionModel conversions, MetaSchemaModel source)
+        => Convert(input, catalog, conversions, new[] { source });
+
+    public TransformScriptConversionModelResult Convert(MetaTransformScriptModel input, MetaDataTypeModel catalog,
+        MetaDataTypeConversionModel conversions, IReadOnlyList<MetaSchemaModel> source)
     {
         ArgumentNullException.ThrowIfNull(input);
         ArgumentNullException.ThrowIfNull(conversions);
         var types = new SqlServerSchemaTypeValidator(catalog);
-        types.Validate(source);
-        EnsureSupportedScripts(input);
+        ArgumentNullException.ThrowIfNull(source);
+        if (source.Count == 0) throw new ArgumentException("At least one source schema workspace is required.", nameof(source));
+        foreach (var schema in source) types.Validate(schema);
+        if (input.TransformScriptList.Count == 0) throw new InvalidOperationException("The input workspace contains no TransformScripts.");
         var syntax = new MetaTransformScriptSqlService();
-        var model = CopyScripts(input, syntax);
+        var model = TypedWorkspaceModelMapper.FromInMemoryWorkspace(
+            TypedWorkspaceModelMapper.ToInMemoryWorkspace(input), MetaTransformScriptModel.CreateEmpty);
+        // Expand implicit physical reads using Binding's resolved star evidence, not alias guesses.
+        foreach (var script in model.TransformScriptList)
+        {
+            var analysis = Analyze(model, script, source, catalog);
+            foreach (var star in analysis.SelectStarExpansions.DistinctBy(item => item.SyntaxSelectStarId))
+                if (star.Columns.Any(read => IsPhysicalRead(read) && conversions.DataTypeMappingList.Any(mapping => mapping.SourceDataTypeId == read.ResolvedColumn.DataType?.MetaDataTypeId)))
+                    syntax.ExpandSelectStar(model, star.SyntaxSelectStarId, star.Columns.Select(read => read.IdentifierParts).ToArray());
+        }
         var edits = new Dictionary<string, (string Sql, string Column)>();
         foreach (var script in model.TransformScriptList)
         {
-            var analysis = new TransformBindingService().BindTransform(model, script, source, catalog);
-            if (analysis.HasErrors)
-                throw new InvalidOperationException($"Cannot resolve source reads in '{script.Name}': " + string.Join("; ", analysis.Issues.Select(issue => issue.Message)));
-            foreach (var read in analysis.ColumnReferences.Where(read => read.ResolvedTableSource.Rowset.DerivationKind == "Source")
+            var analysis = Analyze(model, script, source, catalog);
+            foreach (var read in analysis.ColumnReferences.Where(IsPhysicalRead)
                 .DistinctBy(read => read.SyntaxColumnReferenceId))
             {
                 var column = read.ResolvedColumn;
@@ -74,7 +87,10 @@ public sealed class TransformScriptConversionWorkspaceService
                     var parsed = syntax.ImportScalarExpression(sql);
                     if (parsed.Model.MaxLiteralList.Count > 0)
                         throw new NotSupportedException("MAX length destinations remain unsupported in this slice.");
-                    edits.Add(reference.Id, ("(" + sql + ")", column.Name));
+                    var edit = (Sql: "(" + sql + ")", Column: column.Name);
+                    if (edits.TryGetValue(reference.Id, out var previous) && previous != edit)
+                        throw new InvalidOperationException($"Conflicting source evidence for '{display}'.");
+                    edits[reference.Id] = edit;
                 }
                 catch (Exception ex) when (ex is InvalidOperationException or ArgumentException or NotSupportedException or MetaTransformScriptSqlImportException)
                 {
@@ -85,7 +101,8 @@ public sealed class TransformScriptConversionWorkspaceService
         // Only original source references are selected. Inserted snippet references are never rewritten again.
         foreach (var edit in edits)
             syntax.ReplaceColumnReference(model, model.ColumnReferenceExpressionList.Single(row => row.Id == edit.Key), edit.Value.Sql, edit.Value.Column);
-        return new(CopyScripts(model, syntax), model.TransformScriptList.Count, edits.Count);
+        _ = TypedWorkspaceModelMapper.ToInMemoryWorkspace(model); // Prove graph integrity before materializing output.
+        return new(model, model.TransformScriptList.Count, edits.Count);
     }
 
     public static void EnsureSeparateOutput(string outputWorkspace, params string[] inputWorkspaces)
@@ -100,25 +117,15 @@ public sealed class TransformScriptConversionWorkspaceService
         if (Directory.Exists(output) || File.Exists(output)) throw new InvalidOperationException($"Output '{output}' already exists.");
     }
 
-    private static void EnsureSupportedScripts(MetaTransformScriptModel model)
-    {
-        var count = model.TransformScriptList.Count;
-        if (count == 0 || model.ScriptObjectViewList.Count != count || model.SelectStatementList.Count != count ||
-            model.TransformScriptStatementLinkList.Count != count || model.QuerySpecificationList.Count != count ||
-            model.StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkList.Count != 0)
-            throw new NotSupportedException("Source conversion supports a collection of SELECT scripts with explicit projections; CTEs, nested queries, set queries and non-SELECT scripts are unsupported.");
-        if (model.SelectStarExpressionList.Count != 0)
-            throw new NotSupportedException("SELECT * is unsupported for source conversion; declare explicit column reads.");
-    }
+    private static bool IsPhysicalRead(RuntimeColumnReference read) =>
+        read.ResolvedTableSource.Rowset.DerivationKind is "Source" or "Target";
 
-    private static MetaTransformScriptModel CopyScripts(MetaTransformScriptModel input, MetaTransformScriptSqlService syntax)
+    private static TransformBindingResult Analyze(MetaTransformScriptModel model, TransformScript script,
+        IReadOnlyList<MetaSchemaModel> source, MetaDataTypeModel catalog)
     {
-        var copy = MetaTransformScriptModel.CreateEmpty();
-        foreach (var script in input.TransformScriptList)
-        {
-            var target = input.ScriptObjectViewList.Single(row => row.TransformScript.Id == script.Id);
-            syntax.ImportSqlCode(copy, syntax.ExportToSqlCode(input, script.Name), target.TargetSqlIdentifier, script.Name);
-        }
-        return copy;
+        var analysis = new TransformBindingService().BindTransform(model, script, source, catalog);
+        if (analysis.HasErrors)
+            throw new InvalidOperationException($"Cannot resolve source reads in '{script.Name}': " + string.Join("; ", analysis.Issues.Select(issue => issue.Message)));
+        return analysis;
     }
 }

@@ -10,9 +10,16 @@ public sealed class TransformBindingService
     public TransformBindingResult BindTransform(
         MetaTransformScriptModel model, TransformScript script, MetaSchemaModel sourceSchema,
         MetaDataType.MetaDataTypeModel dataTypes)
+        => BindTransform(model, script, new[] { sourceSchema }, dataTypes);
+
+    /// <summary>Analyze reads across the supplied schema contracts, using the selected catalog.</summary>
+    public TransformBindingResult BindTransform(
+        MetaTransformScriptModel model, TransformScript script, IReadOnlyList<MetaSchemaModel> sourceSchemas,
+        MetaDataType.MetaDataTypeModel dataTypes)
     {
-        new MetaSchema.SqlServerSchemaTypeValidator(dataTypes).Validate(sourceSchema);
-        var resolver = new MetaSchemaTableResolver(sourceSchema);
+        var validator = new MetaSchema.SqlServerSchemaTypeValidator(dataTypes);
+        foreach (var schema in sourceSchemas) validator.Validate(schema);
+        var resolver = new MetaSchemaTableResolver(sourceSchemas);
         return new TransformBindingSession(model, resolver, resolver, string.Empty, string.Empty, dataTypes)
             .BindTransform(script);
     }

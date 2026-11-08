@@ -15,6 +15,29 @@ using System.Data;
 [Trait("Category", "Integration")]
 public sealed class TransformScriptConversionIntegrationTests
 {
+    [Fact]
+    public void Cli_ResolvesReadsFromRepeatedSchemaInputs_WithWorkspaceLocalIdentities()
+    {
+        using var f = new Fixture(true, onlyFirst: true,
+            firstSql: "SELECT a.Id, a.TextValue AS Converted FROM TestSystem.dbo.SourceRows a JOIN OtherSystem.dbo.SourceRows b ON a.TextValue = b.TextValue;");
+        var other = TypedWorkspaceModelMapper.FromInMemoryWorkspace(
+            TypedWorkspaceModelMapper.ToInMemoryWorkspace(f.Source), MetaSchemaModel.CreateEmpty);
+        other.SystemList.Single().Name = "OtherSystem";
+        var otherPath = f.PathOf("OtherSource");
+        TypedWorkspaceModelMapper.Create(other, otherPath, "csharp");
+        var before = f.Snapshot();
+        var result = CliTestRunner.RunStandardCli("meta-transform-script",
+            $"apply-conversions --workspace \"{f.Input}\" --source-schema \"{f.SourcePath}\" --source-schema \"{otherPath}\" --data-type-workspace \"{f.PathOf("Catalog")}\" --data-type-conversion-workspace \"{f.PathOf("Conversions")}\" --output-xml \"{f.PathOf("MultiSystem")}\"");
+        Assert.True(result.ExitCode == 0, result.Output);
+        var model = TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(f.PathOf("MultiSystem"), searchUpward: false);
+        Assert.Equal(3, model.CastCallList.Count);
+        var sql = f.Syntax.ExportToSqlCode(model);
+        Assert.Contains("TestSystem.dbo.SourceRows", sql);
+        Assert.Contains("OtherSystem.dbo.SourceRows", sql);
+        Assert.Equal(before, f.Snapshot());
+        Assert.Equal("OtherSystem", TypedWorkspaceModelMapper.Load<MetaSchemaModel>(otherPath, searchUpward: false).SystemList.Single().Name);
+    }
+
     [Theory]
     [InlineData("xml", false)]
     [InlineData("csharp", true)]
@@ -25,7 +48,7 @@ public sealed class TransformScriptConversionIntegrationTests
         var output = f.RunCli("Converted", surface);
         var model = TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(output, searchUpward: false);
         Assert.Equal(new[] { "First", "Second" }, model.TransformScriptList.Select(script => script.Name));
-        Assert.Equal(new[] { "dbo.TargetOne", "dbo.TargetTwo" }, model.ScriptObjectViewList.Select(view => view.TargetSqlIdentifier));
+        Assert.Equal(new[] { "dbo.TargetOne", "dbo.TargetTwo" }, model.TransformScriptList.Select(script => model.ScriptObjectViewList.Single(view => view.TransformScript.Id == script.Id).TargetSqlIdentifier));
         Assert.True(model.CastCallList.Count == 8, string.Join("\n", model.TransformScriptList.Select(script => f.Syntax.ExportToSqlCode(model, script.Name))));
         var sql = f.Syntax.ExportToSqlCode(model, "First");
         Assert.Contains("JOIN dbo.LookupRows", sql);
@@ -151,12 +174,10 @@ public sealed class TransformScriptConversionIntegrationTests
     }
 
     [Theory]
-    [InlineData("SELECT * FROM dbo.SourceRows s;", "SELECT *")]
     [InlineData("SELECT x.TextValue FROM dbo.SourceRows s;", "Cannot resolve source reads")]
     [InlineData("SELECT s.Missing FROM dbo.SourceRows s;", "Cannot resolve source reads")]
     [InlineData("SELECT s.Id FROM dbo.SourceRows s JOIN dbo.LookupRows l ON s.TextValue = x.TextValue;", "Cannot resolve source reads")]
     [InlineData("SELECT s.TextValue.value(N'.', N'nvarchar(50)') AS Converted FROM dbo.SourceRows s;", "conversion of method call targets is unsupported")]
-    [InlineData("SELECT s.TextValue FROM dbo.SourceRows s WHERE s.Id IN (SELECT l.Id FROM dbo.LookupRows l);", "nested queries")]
     public void UnsupportedOrUnresolvedReads_FailBeforeOutput(string sql, string diagnostic)
     {
         using var f = new Fixture(true, firstSql: sql, onlyFirst: true);
@@ -278,6 +299,135 @@ public sealed class TransformScriptConversionIntegrationTests
         }
     }
 
+    [Theory]
+    [InlineData("SELECT s.* FROM dbo.SourceRows s ORDER BY s.TextValue;")]
+    [InlineData("WITH c AS (SELECT s.* FROM dbo.SourceRows s) SELECT c.TextValue FROM c;")]
+    [InlineData("SELECT s.TextValue FROM dbo.SourceRows s WHERE EXISTS (SELECT 1 FROM dbo.LookupRows l WHERE l.TextValue=s.TextValue);")]
+    [InlineData("SELECT s.TextValue FROM dbo.SourceRows s UNION ALL SELECT l.TextValue FROM dbo.LookupRows l;")]
+    [InlineData("SELECT s.TextValue, COUNT(*) AS C FROM dbo.SourceRows s GROUP BY s.TextValue HAVING COUNT(s.TextValue)>0;")]
+    [InlineData("SELECT s.Id, ROW_NUMBER() OVER (PARTITION BY s.TextValue ORDER BY s.TextValue) AS Position FROM dbo.SourceRows s;")]
+    public void Cli_UsesExistingQueryScopesAndExpandsImplicitReads(string sql)
+    {
+        using var f = new Fixture(true, firstSql: sql, onlyFirst: true);
+        var before = f.Snapshot();
+        var output = f.RunCli("QueryScopes", "csharp");
+        var model = TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(output, searchUpward: false);
+        Assert.NotEmpty(model.CastCallList);
+        Assert.Empty(model.SelectStarExpressionList);
+        Assert.Equal(before, f.Snapshot());
+        Assert.Contains("CAST(", f.Syntax.ExportToSqlCode(model));
+    }
+
+    [Fact]
+    public void Cli_PreservesFunctionEnvelopeAndAuthoredMetadata()
+    {
+        using var f = new Fixture(true, firstSql: "CREATE FUNCTION dbo.ReadRows() RETURNS TABLE AS RETURN (SELECT s.Id, s.TextValue FROM dbo.SourceRows s);", onlyFirst: true, statement: true);
+        var original = TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(f.Input, searchUpward: false);
+        var output = f.RunCli("Function");
+        var model = TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(output, searchUpward: false);
+        Assert.Equal(original.TransformScriptList.Single().Id, model.TransformScriptList.Single().Id);
+        Assert.Equal(original.ScriptObjectTVFList.Single().Id, model.ScriptObjectTVFList.Single().Id);
+        Assert.Single(model.CastCallList);
+        Assert.Contains("CAST(", f.Syntax.ExportModuleDefinitions(model).Single().DefinitionSql);
+    }
+
+    [Theory]
+    [InlineData("insert")]
+    [InlineData("cte-insert")]
+    [InlineData("update")]
+    [InlineData("merge")]
+    [InlineData("delete")]
+    [InlineData("truncate")]
+    [InlineData("values")]
+    public async Task Cli_ConvertsMutationReads_AndBindingAndPipelineExecuteThem(string operation)
+    {
+        var sql = operation switch
+        {
+            "insert" => "INSERT dbo.TargetOne (Id, Converted) SELECT s.Id, s.TextValue FROM dbo.SourceRows s;",
+            "cte-insert" => "WITH c AS (SELECT s.* FROM dbo.SourceRows s) INSERT dbo.TargetOne (Id, Converted) SELECT c.Id,c.TextValue FROM c WHERE c.TextValue>=N'2';",
+            "update" => "UPDATE t SET Converted=s.TextValue FROM dbo.TargetOne t INNER JOIN dbo.SourceRows s ON s.Id=t.Id;",
+            "merge" => "MERGE dbo.TargetOne AS t USING (SELECT s.Id,s.TextValue FROM dbo.SourceRows s) AS src ON t.Id=src.Id WHEN MATCHED THEN UPDATE SET Converted=src.TextValue WHEN NOT MATCHED THEN INSERT (Id,Converted) VALUES(src.Id,src.TextValue);",
+            "delete" => "DELETE t FROM dbo.TargetOne t WHERE EXISTS (SELECT 1 FROM dbo.SourceRows s WHERE s.Id=t.Id AND s.TextValue>=N'2');",
+            "truncate" => "TRUNCATE TABLE dbo.TargetOne;",
+            "values" => "INSERT dbo.TargetOne(Id,Converted) VALUES(4,12);",
+            _ => throw new ArgumentOutOfRangeException(nameof(operation))
+        };
+        using var f = new Fixture(true, firstSql: sql, onlyFirst: true, statement: true);
+        var before = f.Snapshot();
+        var output = f.RunCli("Mutation");
+        Assert.Equal(before, f.Snapshot());
+        var model = TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(output, searchUpward: false);
+        var bound = f.Bind(output);
+        Assert.Equal(0, bound.ErrorCount);
+        if (operation is "values" or "truncate") Assert.Empty(model.CastCallList);
+        else Assert.NotEmpty(model.CastCallList);
+        var database = "MetaBiConvertedMutation_" + Guid.NewGuid().ToString("N");
+        await using var master = new SqlConnection("Server=.;Database=master;Integrated Security=true;TrustServerCertificate=true;Encrypt=false;Pooling=false");
+        await master.OpenAsync();
+        await using (var create = new SqlCommand($"CREATE DATABASE [{database}]", master)) await create.ExecuteNonQueryAsync();
+        try
+        {
+            var cs = new SqlConnectionStringBuilder(master.ConnectionString) { InitialCatalog = database }.ConnectionString;
+            await using var db = new SqlConnection(cs);
+            await db.OpenAsync();
+            await using (var setup = new SqlCommand("CREATE TABLE dbo.SourceRows(Id int NOT NULL, TextValue nvarchar(50) NULL); INSERT dbo.SourceRows VALUES(1,N'2'),(2,N'10'),(3,NULL); CREATE TABLE dbo.TargetOne(Id int NOT NULL, Converted int NULL);", db)) await setup.ExecuteNonQueryAsync();
+            if (operation is "update" or "merge" or "delete" or "truncate")
+                await using (var seed = new SqlCommand("INSERT dbo.TargetOne VALUES(1,0),(2,0),(3,0),(9,99)", db)) await seed.ExecuteNonQueryAsync();
+            var script = model.TransformScriptList.Single();
+            var execution = await new MetaPipelineSqlServerExecutionService().ExecuteAsync(new(output, output + "-Binding", cs, null,
+                script.Id, bound.Model.TransformBindingList.Single().Id, TargetWriteModelName: "None"));
+            Assert.True(execution.Succeeded, execution.FailureMessage);
+            (int Id, int? Value)[] expected = operation switch
+            {
+                "insert" => [(1,2),(2,10),(3,null)],
+                "cte-insert" => [(1,2),(2,10)],
+                "update" or "merge" => [(1,2),(2,10),(3,null),(9,99)],
+                "delete" => [(3,0),(9,99)],
+                "values" => [(4,12)],
+                _ => []
+            };
+            await using var verify = new SqlCommand("SELECT Id,Converted FROM dbo.TargetOne ORDER BY Id", db);
+            await using var reader = await verify.ExecuteReaderAsync();
+            foreach (var row in expected)
+            {
+                Assert.True(await reader.ReadAsync());
+                Assert.Equal(row.Id, reader.GetInt32(0));
+                Assert.Equal(row.Value, reader.IsDBNull(1) ? (int?)null : reader.GetInt32(1));
+            }
+            Assert.False(await reader.ReadAsync());
+        }
+        finally
+        {
+            await using var drop = new SqlCommand($"ALTER DATABASE [{database}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; DROP DATABASE [{database}]", master);
+            await drop.ExecuteNonQueryAsync();
+            await using var check = new SqlCommand("SELECT COUNT(*) FROM sys.databases WHERE name=@name", master);
+            check.Parameters.AddWithValue("@name", database);
+            Assert.Equal(0, (int)(await check.ExecuteScalarAsync())!);
+        }
+    }
+
+    [Fact]
+    public void Cli_PreservesStoredProcedureContractOnOpaqueInvocation()
+    {
+        using var f = new Fixture(true, firstSql: "CREATE PROCEDURE dbo.ReadStored AS BEGIN SELECT 1 AS Value; END;", onlyFirst: true, statement: true);
+        var original = TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(f.Input, searchUpward: false);
+        var script = original.TransformScriptList.Single();
+        script.SourcePath = "authored-procedure.sql";
+        f.Syntax.AddStoredProcedureContract(original, script.Name, new StoredProcedureContractDeclaration(
+            [new StoredProcedureContractOperationDeclaration(10, "Call", "dbo.ReadStored")], [], "Keep authored contract"));
+        TypedWorkspaceModelMapper.Save(original, f.Input);
+        var before = f.Snapshot();
+        var output = f.RunCli("Procedure", "csharp");
+        var model = TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(output, searchUpward: false);
+        Assert.Equal(before, f.Snapshot());
+        Assert.Equal(script.Id, model.TransformScriptList.Single().Id);
+        Assert.Equal(script.SourcePath, model.TransformScriptList.Single().SourcePath);
+        Assert.Equal(original.StoredProcedureContractList.Single().Id, model.StoredProcedureContractList.Single().Id);
+        Assert.Equal("Keep authored contract", model.StoredProcedureContractList.Single().Notes);
+        Assert.Equal("dbo.ReadStored", model.StoredProcedureContractOperationList.Single().SqlIdentifier);
+        Assert.Equal(f.Syntax.ExportToSqlCode(original), f.Syntax.ExportToSqlCode(model));
+    }
+
     private sealed class Fixture : IDisposable
     {
         public string Root { get; } = Path.Combine(Path.GetTempPath(), "SourceConversion", Guid.NewGuid().ToString("N"));
@@ -287,21 +437,21 @@ public sealed class TransformScriptConversionIntegrationTests
         public MetaDataTypeModel Catalog { get; } = MetaDataTypeInstance.CreateBuiltIn();
         public MetaDataTypeConversionModel Conversions { get; } = MetaDataTypeConversionModel.CreateEmpty();
         public MetaSchemaModel Source { get; }
-        private string PathOf(string name) => Path.Combine(Root, name);
+        public string PathOf(string name) => Path.Combine(Root, name);
         public string TypeId(string name) => Catalog.DataTypeList.Single(type => type.Name == name && type.DataTypeSystem.Name == "SqlServer").Id;
-        public Fixture(bool arbitraryIds, bool complex = false, string destination = "int", string? firstSql = null, bool onlyFirst = false)
+        public Fixture(bool arbitraryIds, bool complex = false, string destination = "int", string? firstSql = null, bool onlyFirst = false, bool statement = false)
         {
             if (arbitraryIds)
             {
                 foreach (var type in Catalog.DataTypeList.Where(type => type.DataTypeSystem.Name == "SqlServer")) type.Id = "user-" + type.Name;
                 Catalog.DataTypeSystemList.Single(system => system.Name == "SqlServer").Id = "arbitrary-system";
             }
-            Source = Schema(("SourceRows", "TextValue", "nvarchar", 50), ("LookupRows", "TextValue", "nvarchar", 50));
+            Source = Schema(("SourceRows", "TextValue", "nvarchar", 50), ("LookupRows", "TextValue", "nvarchar", 50), ("TargetOne", "Converted", destination, destination == "nvarchar" ? 25 : null));
             TypedWorkspaceModelMapper.Create(Source, SourcePath, "xml");
             TypedWorkspaceModelMapper.Create(Schema(("TargetOne", "Converted", destination, destination == "nvarchar" ? 25 : null), ("TargetTwo", "Converted", destination, destination == "nvarchar" ? 25 : null)), PathOf("Target"), "xml");
             TypedWorkspaceModelMapper.Create(Catalog, PathOf("Catalog"), "xml");
             firstSql ??= complex ? "SELECT s.TextValue AS Converted, s.Id, LEN(s.TextValue) AS Size, N's.TextValue' AS Literal FROM dbo.SourceRows s JOIN dbo.LookupRows l ON s.TextValue = l.TextValue WHERE s.TextValue IS NULL OR s.TextValue > N'0' ORDER BY s.TextValue;" : "SELECT s.Id, s.TextValue AS Converted FROM dbo.SourceRows s WHERE s.Id > 0;";
-            Syntax.ImportFromSqlCodeToXmlWorkspaceAsync(firstSql, "dbo.TargetOne", Input, "First").GetAwaiter().GetResult();
+            Syntax.ImportFromSqlCodeToXmlWorkspaceAsync(firstSql, statement ? null : "dbo.TargetOne", Input, "First").GetAwaiter().GetResult();
             if (!onlyFirst)
             {
                 var second = complex ? "SELECT s.TextValue, s.Id FROM dbo.SourceRows s ORDER BY TextValue;" : destination == "int" ? "SELECT s.Id, s.TextValue AS Converted FROM dbo.SourceRows s WHERE s.Id > 0 AND s.TextValue >= N'2';" : "SELECT s.Id, s.TextValue AS Converted FROM dbo.SourceRows s WHERE s.Id > 0;";
@@ -320,7 +470,7 @@ public sealed class TransformScriptConversionIntegrationTests
             SaveConversions();
         }
         public void SaveConversions() => TypedWorkspaceModelMapper.Create(Conversions, PathOf("Conversions"), "xml");
-        public TransformScriptConversionRequest Request(string output) => new(Input, PathOf("Catalog"), PathOf("Conversions"), SourcePath, PathOf(output));
+        public TransformScriptConversionRequest Request(string output) => new(Input, PathOf("Catalog"), PathOf("Conversions"), [SourcePath], PathOf(output));
         public (int ExitCode, string Output) Cli(string output, string surface = "xml") => CliTestRunner.RunStandardCli("meta-transform-script",
             $"apply-conversions --workspace \"{Input}\" --source-schema \"{SourcePath}\" --data-type-workspace \"{PathOf("Catalog")}\" --data-type-conversion-workspace \"{PathOf("Conversions")}\" --output-{surface} \"{PathOf(output)}\"");
         public string RunCli(string output, string surface = "xml")
@@ -332,10 +482,12 @@ public sealed class TransformScriptConversionIntegrationTests
         }
         public void AssertBound(string output)
         {
-            var result = new TransformBindingWorkspaceService().BindValidatedToXmlWorkspace(output, [SourcePath], PathOf("Target"), "TestSystem", "dbo", output + "-Binding", dataTypeWorkspacePath: PathOf("Catalog"));
+            var result = Bind(output);
             Assert.Equal(0, result.ErrorCount);
             Assert.Equal(4, result.Model.ValidationTargetColumnTypeExactList.Count);
         }
+        public BindToWorkspaceResult Bind(string output) => new TransformBindingWorkspaceService().BindValidatedToXmlWorkspace(
+            output, [SourcePath], PathOf("Target"), "TestSystem", "dbo", output + "-Binding", dataTypeWorkspacePath: PathOf("Catalog"));
         public string Snapshot() => string.Join("\n", new[] { "Input", "Source", "Target", "Catalog", "Conversions" }.SelectMany(name => Directory.GetFiles(PathOf(name), "*", SearchOption.AllDirectories)).OrderBy(path => path).Select(path => Path.GetRelativePath(Root, path) + ":" + System.Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(File.ReadAllBytes(path)))));
         public void Dispose() { if (Directory.Exists(Root)) Directory.Delete(Root, true); }
         private MetaSchemaModel Schema(params (string Table, string Column, string Type, int? Length)[] tables)
