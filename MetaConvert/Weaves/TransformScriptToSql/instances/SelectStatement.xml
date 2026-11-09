@@ -8,6 +8,8 @@
     <SelectStatement Id="SelectStatement:104" StatementWithCtesId="StatementWithCtes:104" />
     <SelectStatement Id="SelectStatement:105" StatementWithCtesId="StatementWithCtes:105" />
     <SelectStatement Id="SelectStatement:107" StatementWithCtesId="StatementWithCtes:107" />
+    <SelectStatement Id="SelectStatement:108" StatementWithCtesId="StatementWithCtes:108" />
+    <SelectStatement Id="SelectStatement:109" StatementWithCtesId="StatementWithCtes:109" />
     <SelectStatement Id="SelectStatement:19" StatementWithCtesId="StatementWithCtes:19" />
     <SelectStatement Id="SelectStatement:3" StatementWithCtesId="StatementWithCtes:3" />
     <SelectStatement Id="SelectStatement:4" StatementWithCtesId="StatementWithCtes:4" />
@@ -28,7 +30,5 @@
     <SelectStatement Id="SelectStatement:92" StatementWithCtesId="StatementWithCtes:92" />
     <SelectStatement Id="SelectStatement:94" StatementWithCtesId="StatementWithCtes:94" />
     <SelectStatement Id="SelectStatement:97" StatementWithCtesId="StatementWithCtes:97" />
-    <SelectStatement Id="SelectStatement:98" StatementWithCtesId="StatementWithCtes:98" />
-    <SelectStatement Id="SelectStatement:99" StatementWithCtesId="StatementWithCtes:99" />
   </SelectStatementList>
 </MetaWeave>

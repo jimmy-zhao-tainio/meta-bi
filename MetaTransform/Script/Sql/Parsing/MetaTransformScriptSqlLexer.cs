@@ -348,8 +348,11 @@ internal sealed class MetaTransformScriptSqlLexer
                     startColumn);
             }
 
-            builder.Append(Current);
+            var characterStart = index;
             Advance();
+            // Advance consumes CRLF as one line break for source locations;
+            // both characters still belong to the SQL literal value.
+            builder.Append(text, characterStart, index - characterStart);
         }
 
         throw Error(

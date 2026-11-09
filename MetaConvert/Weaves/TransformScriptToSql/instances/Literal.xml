@@ -3859,350 +3859,6 @@ x</Value>
     <Literal Id="Literal:74112" ValueExpressionId="ValueExpression:74228">
       <Value>ScalarFunction</Value>
     </Literal>
-    <Literal Id="Literal:74113" ValueExpressionId="ValueExpression:74229">
-      <Value></Value>
-    </Literal>
-    <Literal Id="Literal:74114" ValueExpressionId="ValueExpression:74230">
-      <Value></Value>
-    </Literal>
-    <Literal Id="Literal:74115" ValueExpressionId="ValueExpression:74231">
-      <Value></Value>
-    </Literal>
-    <Literal Id="Literal:74116" ValueExpressionId="ValueExpression:74232">
-      <Value>(</Value>
-    </Literal>
-    <Literal Id="Literal:74117" ValueExpressionId="ValueExpression:74233">
-      <Value>x
-x</Value>
-    </Literal>
-    <Literal Id="Literal:74118" ValueExpressionId="ValueExpression:74234">
-      <Value>2</Value>
-    </Literal>
-    <Literal Id="Literal:74119" ValueExpressionId="ValueExpression:74235">
-      <Value>1</Value>
-    </Literal>
-    <Literal Id="Literal:74120" ValueExpressionId="ValueExpression:74236">
-      <Value>x    x</Value>
-    </Literal>
-    <Literal Id="Literal:74121" ValueExpressionId="ValueExpression:74237">
-      <Value>2</Value>
-    </Literal>
-    <Literal Id="Literal:74122" ValueExpressionId="ValueExpression:74238">
-      <Value>4</Value>
-    </Literal>
-    <Literal Id="Literal:74123" ValueExpressionId="ValueExpression:74239">
-      <Value>x x</Value>
-    </Literal>
-    <Literal Id="Literal:74124" ValueExpressionId="ValueExpression:74240">
-      <Value>2</Value>
-    </Literal>
-    <Literal Id="Literal:74125" ValueExpressionId="ValueExpression:74241">
-      <Value>1</Value>
-    </Literal>
-    <Literal Id="Literal:74126" ValueExpressionId="ValueExpression:74242">
-      <Value>,</Value>
-    </Literal>
-    <Literal Id="Literal:74127" ValueExpressionId="ValueExpression:74243">
-      <Value>x
-x</Value>
-    </Literal>
-    <Literal Id="Literal:74128" ValueExpressionId="ValueExpression:74244">
-      <Value>2</Value>
-    </Literal>
-    <Literal Id="Literal:74129" ValueExpressionId="ValueExpression:74245">
-      <Value>1</Value>
-    </Literal>
-    <Literal Id="Literal:74130" ValueExpressionId="ValueExpression:74246">
-      <Value>0000000000</Value>
-    </Literal>
-    <Literal Id="Literal:74131" ValueExpressionId="ValueExpression:74247">
-      <Value>10</Value>
-    </Literal>
-    <Literal Id="Literal:74132" ValueExpressionId="ValueExpression:74248">
-      <Value>x
-x</Value>
-    </Literal>
-    <Literal Id="Literal:74133" ValueExpressionId="ValueExpression:74249">
-      <Value>2</Value>
-    </Literal>
-    <Literal Id="Literal:74134" ValueExpressionId="ValueExpression:74250">
-      <Value>1</Value>
-    </Literal>
-    <Literal Id="Literal:74135" ValueExpressionId="ValueExpression:74251">
-      <Value>)</Value>
-    </Literal>
-    <Literal Id="Literal:74136" ValueExpressionId="ValueExpression:74253">
-      <Value>.</Value>
-    </Literal>
-    <Literal Id="Literal:74137" ValueExpressionId="ValueExpression:74254">
-      <Value>.</Value>
-    </Literal>
-    <Literal Id="Literal:74138" ValueExpressionId="ValueExpression:74255">
-      <Value>InlineTableValuedFunction</Value>
-    </Literal>
-    <Literal Id="Literal:74139" ValueExpressionId="ValueExpression:74256">
-      <Value>CREATE FUNCTION </Value>
-    </Literal>
-    <Literal Id="Literal:74140" ValueExpressionId="ValueExpression:74257">
-      <Value>.</Value>
-    </Literal>
-    <Literal Id="Literal:74141" ValueExpressionId="ValueExpression:74258">
-      <Value>x
-x</Value>
-    </Literal>
-    <Literal Id="Literal:74142" ValueExpressionId="ValueExpression:74259">
-      <Value>2</Value>
-    </Literal>
-    <Literal Id="Literal:74143" ValueExpressionId="ValueExpression:74260">
-      <Value>1</Value>
-    </Literal>
-    <Literal Id="Literal:74144" ValueExpressionId="ValueExpression:74261">
-      <Value>()</Value>
-    </Literal>
-    <Literal Id="Literal:74145" ValueExpressionId="ValueExpression:74262">
-      <Value>x
-x</Value>
-    </Literal>
-    <Literal Id="Literal:74146" ValueExpressionId="ValueExpression:74263">
-      <Value>2</Value>
-    </Literal>
-    <Literal Id="Literal:74147" ValueExpressionId="ValueExpression:74264">
-      <Value>1</Value>
-    </Literal>
-    <Literal Id="Literal:74148" ValueExpressionId="ValueExpression:74265">
-      <Value>RETURNS TABLE</Value>
-    </Literal>
-    <Literal Id="Literal:74149" ValueExpressionId="ValueExpression:74266">
-      <Value>x
-x</Value>
-    </Literal>
-    <Literal Id="Literal:74150" ValueExpressionId="ValueExpression:74267">
-      <Value>2</Value>
-    </Literal>
-    <Literal Id="Literal:74151" ValueExpressionId="ValueExpression:74268">
-      <Value>1</Value>
-    </Literal>
-    <Literal Id="Literal:74152" ValueExpressionId="ValueExpression:74269">
-      <Value>AS</Value>
-    </Literal>
-    <Literal Id="Literal:74153" ValueExpressionId="ValueExpression:74270">
-      <Value>x
-x</Value>
-    </Literal>
-    <Literal Id="Literal:74154" ValueExpressionId="ValueExpression:74271">
-      <Value>2</Value>
-    </Literal>
-    <Literal Id="Literal:74155" ValueExpressionId="ValueExpression:74272">
-      <Value>1</Value>
-    </Literal>
-    <Literal Id="Literal:74156" ValueExpressionId="ValueExpression:74273">
-      <Value>RETURN</Value>
-    </Literal>
-    <Literal Id="Literal:74157" ValueExpressionId="ValueExpression:74274">
-      <Value>x
-x</Value>
-    </Literal>
-    <Literal Id="Literal:74158" ValueExpressionId="ValueExpression:74275">
-      <Value>2</Value>
-    </Literal>
-    <Literal Id="Literal:74159" ValueExpressionId="ValueExpression:74276">
-      <Value>1</Value>
-    </Literal>
-    <Literal Id="Literal:74160" ValueExpressionId="ValueExpression:74277">
-      <Value>(</Value>
-    </Literal>
-    <Literal Id="Literal:74161" ValueExpressionId="ValueExpression:74278">
-      <Value>x
-x</Value>
-    </Literal>
-    <Literal Id="Literal:74162" ValueExpressionId="ValueExpression:74279">
-      <Value>2</Value>
-    </Literal>
-    <Literal Id="Literal:74163" ValueExpressionId="ValueExpression:74280">
-      <Value>1</Value>
-    </Literal>
-    <Literal Id="Literal:74164" ValueExpressionId="ValueExpression:74281">
-      <Value>x    x</Value>
-    </Literal>
-    <Literal Id="Literal:74165" ValueExpressionId="ValueExpression:74282">
-      <Value>2</Value>
-    </Literal>
-    <Literal Id="Literal:74166" ValueExpressionId="ValueExpression:74283">
-      <Value>4</Value>
-    </Literal>
-    <Literal Id="Literal:74167" ValueExpressionId="ValueExpression:74284">
-      <Value>x
-x</Value>
-    </Literal>
-    <Literal Id="Literal:74168" ValueExpressionId="ValueExpression:74285">
-      <Value>2</Value>
-    </Literal>
-    <Literal Id="Literal:74169" ValueExpressionId="ValueExpression:74286">
-      <Value>1</Value>
-    </Literal>
-    <Literal Id="Literal:74170" ValueExpressionId="ValueExpression:74287">
-      <Value>x
-x</Value>
-    </Literal>
-    <Literal Id="Literal:74171" ValueExpressionId="ValueExpression:74288">
-      <Value>2</Value>
-    </Literal>
-    <Literal Id="Literal:74172" ValueExpressionId="ValueExpression:74289">
-      <Value>1</Value>
-    </Literal>
-    <Literal Id="Literal:74173" ValueExpressionId="ValueExpression:74290">
-      <Value>x    x</Value>
-    </Literal>
-    <Literal Id="Literal:74174" ValueExpressionId="ValueExpression:74291">
-      <Value>2</Value>
-    </Literal>
-    <Literal Id="Literal:74175" ValueExpressionId="ValueExpression:74292">
-      <Value>4</Value>
-    </Literal>
-    <Literal Id="Literal:74176" ValueExpressionId="ValueExpression:74293">
-      <Value>x
-x</Value>
-    </Literal>
-    <Literal Id="Literal:74177" ValueExpressionId="ValueExpression:74294">
-      <Value>2</Value>
-    </Literal>
-    <Literal Id="Literal:74178" ValueExpressionId="ValueExpression:74295">
-      <Value>1</Value>
-    </Literal>
-    <Literal Id="Literal:74179" ValueExpressionId="ValueExpression:74296">
-      <Value>)</Value>
-    </Literal>
-    <Literal Id="Literal:74180" ValueExpressionId="ValueExpression:74297">
-      <Value>CREATE FUNCTION </Value>
-    </Literal>
-    <Literal Id="Literal:74181" ValueExpressionId="ValueExpression:74298">
-      <Value>.</Value>
-    </Literal>
-    <Literal Id="Literal:74182" ValueExpressionId="ValueExpression:74299">
-      <Value>x
-x</Value>
-    </Literal>
-    <Literal Id="Literal:74183" ValueExpressionId="ValueExpression:74300">
-      <Value>2</Value>
-    </Literal>
-    <Literal Id="Literal:74184" ValueExpressionId="ValueExpression:74301">
-      <Value>1</Value>
-    </Literal>
-    <Literal Id="Literal:74185" ValueExpressionId="ValueExpression:74302">
-      <Value>()</Value>
-    </Literal>
-    <Literal Id="Literal:74186" ValueExpressionId="ValueExpression:74303">
-      <Value>x
-x</Value>
-    </Literal>
-    <Literal Id="Literal:74187" ValueExpressionId="ValueExpression:74304">
-      <Value>2</Value>
-    </Literal>
-    <Literal Id="Literal:74188" ValueExpressionId="ValueExpression:74305">
-      <Value>1</Value>
-    </Literal>
-    <Literal Id="Literal:74189" ValueExpressionId="ValueExpression:74306">
-      <Value>RETURNS </Value>
-    </Literal>
-    <Literal Id="Literal:74190" ValueExpressionId="ValueExpression:74307">
-      <Value>x
-x</Value>
-    </Literal>
-    <Literal Id="Literal:74191" ValueExpressionId="ValueExpression:74308">
-      <Value>2</Value>
-    </Literal>
-    <Literal Id="Literal:74192" ValueExpressionId="ValueExpression:74309">
-      <Value>1</Value>
-    </Literal>
-    <Literal Id="Literal:74193" ValueExpressionId="ValueExpression:74310">
-      <Value>AS</Value>
-    </Literal>
-    <Literal Id="Literal:74194" ValueExpressionId="ValueExpression:74311">
-      <Value>x
-x</Value>
-    </Literal>
-    <Literal Id="Literal:74195" ValueExpressionId="ValueExpression:74312">
-      <Value>2</Value>
-    </Literal>
-    <Literal Id="Literal:74196" ValueExpressionId="ValueExpression:74313">
-      <Value>1</Value>
-    </Literal>
-    <Literal Id="Literal:74197" ValueExpressionId="ValueExpression:74314">
-      <Value>BEGIN</Value>
-    </Literal>
-    <Literal Id="Literal:74198" ValueExpressionId="ValueExpression:74315">
-      <Value>x
-x</Value>
-    </Literal>
-    <Literal Id="Literal:74199" ValueExpressionId="ValueExpression:74316">
-      <Value>2</Value>
-    </Literal>
-    <Literal Id="Literal:74200" ValueExpressionId="ValueExpression:74317">
-      <Value>1</Value>
-    </Literal>
-    <Literal Id="Literal:74201" ValueExpressionId="ValueExpression:74318">
-      <Value>    RETURN </Value>
-    </Literal>
-    <Literal Id="Literal:74202" ValueExpressionId="ValueExpression:74319">
-      <Value>x
-x</Value>
-    </Literal>
-    <Literal Id="Literal:74203" ValueExpressionId="ValueExpression:74320">
-      <Value>2</Value>
-    </Literal>
-    <Literal Id="Literal:74204" ValueExpressionId="ValueExpression:74321">
-      <Value>1</Value>
-    </Literal>
-    <Literal Id="Literal:74205" ValueExpressionId="ValueExpression:74322">
-      <Value>x
-x</Value>
-    </Literal>
-    <Literal Id="Literal:74206" ValueExpressionId="ValueExpression:74323">
-      <Value>2</Value>
-    </Literal>
-    <Literal Id="Literal:74207" ValueExpressionId="ValueExpression:74324">
-      <Value>1</Value>
-    </Literal>
-    <Literal Id="Literal:74208" ValueExpressionId="ValueExpression:74325">
-      <Value>x    x</Value>
-    </Literal>
-    <Literal Id="Literal:74209" ValueExpressionId="ValueExpression:74326">
-      <Value>2</Value>
-    </Literal>
-    <Literal Id="Literal:74210" ValueExpressionId="ValueExpression:74327">
-      <Value>4</Value>
-    </Literal>
-    <Literal Id="Literal:74211" ValueExpressionId="ValueExpression:74328">
-      <Value>x
-x</Value>
-    </Literal>
-    <Literal Id="Literal:74212" ValueExpressionId="ValueExpression:74329">
-      <Value>2</Value>
-    </Literal>
-    <Literal Id="Literal:74213" ValueExpressionId="ValueExpression:74330">
-      <Value>1</Value>
-    </Literal>
-    <Literal Id="Literal:74214" ValueExpressionId="ValueExpression:74331">
-      <Value>END</Value>
-    </Literal>
-    <Literal Id="Literal:74215" ValueExpressionId="ValueExpression:74332">
-      <Value>InlineTableValuedFunction</Value>
-    </Literal>
-    <Literal Id="Literal:74216" ValueExpressionId="ValueExpression:74333">
-      <Value>InlineTableValuedFunction</Value>
-    </Literal>
-    <Literal Id="Literal:74217" ValueExpressionId="ValueExpression:74334">
-      <Value>ScalarFunction</Value>
-    </Literal>
-    <Literal Id="Literal:74218" ValueExpressionId="ValueExpression:74336">
-      <Value>.</Value>
-    </Literal>
-    <Literal Id="Literal:74219" ValueExpressionId="ValueExpression:74337">
-      <Value>InlineTableValuedFunction</Value>
-    </Literal>
-    <Literal Id="Literal:74220" ValueExpressionId="ValueExpression:74338">
-      <Value>ScalarFunction</Value>
-    </Literal>
     <Literal Id="Literal:74221" ValueExpressionId="ValueExpression:74339">
       <Value>(</Value>
     </Literal>
@@ -9616,6 +9272,339 @@ x</Value>
     </Literal>
     <Literal Id="Literal:76175" ValueExpressionId="ValueExpression:76295">
       <Value></Value>
+    </Literal>
+    <Literal Id="Literal:76176" ValueExpressionId="ValueExpression:76296">
+      <Value></Value>
+    </Literal>
+    <Literal Id="Literal:76177" ValueExpressionId="ValueExpression:76297">
+      <Value></Value>
+    </Literal>
+    <Literal Id="Literal:76178" ValueExpressionId="ValueExpression:76298">
+      <Value>0</Value>
+    </Literal>
+    <Literal Id="Literal:76179" ValueExpressionId="ValueExpression:76299">
+      <Value>Literal</Value>
+    </Literal>
+    <Literal Id="Literal:76180" ValueExpressionId="ValueExpression:76300">
+      <Value>1</Value>
+    </Literal>
+    <Literal Id="Literal:76181" ValueExpressionId="ValueExpression:76301">
+      <Value>0</Value>
+    </Literal>
+    <Literal Id="Literal:76182" ValueExpressionId="ValueExpression:76302">
+      <Value></Value>
+    </Literal>
+    <Literal Id="Literal:76183" ValueExpressionId="ValueExpression:76303">
+      <Value>1</Value>
+    </Literal>
+    <Literal Id="Literal:76184" ValueExpressionId="ValueExpression:76304">
+      <Value>x
+x</Value>
+    </Literal>
+    <Literal Id="Literal:76185" ValueExpressionId="ValueExpression:76305">
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:76186" ValueExpressionId="ValueExpression:76306">
+      <Value>1</Value>
+    </Literal>
+    <Literal Id="Literal:76187" ValueExpressionId="ValueExpression:76307">
+      <Value>x
+x</Value>
+    </Literal>
+    <Literal Id="Literal:76188" ValueExpressionId="ValueExpression:76308">
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:76189" ValueExpressionId="ValueExpression:76309">
+      <Value>1</Value>
+    </Literal>
+    <Literal Id="Literal:76190" ValueExpressionId="ValueExpression:76310">
+      <Value>x    x</Value>
+    </Literal>
+    <Literal Id="Literal:76191" ValueExpressionId="ValueExpression:76311">
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:76192" ValueExpressionId="ValueExpression:76312">
+      <Value>4</Value>
+    </Literal>
+    <Literal Id="Literal:76193" ValueExpressionId="ValueExpression:76313">
+      <Value></Value>
+    </Literal>
+    <Literal Id="Literal:76194" ValueExpressionId="ValueExpression:76314">
+      <Value>(</Value>
+    </Literal>
+    <Literal Id="Literal:76195" ValueExpressionId="ValueExpression:76315">
+      <Value>x
+x</Value>
+    </Literal>
+    <Literal Id="Literal:76196" ValueExpressionId="ValueExpression:76316">
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:76197" ValueExpressionId="ValueExpression:76317">
+      <Value>1</Value>
+    </Literal>
+    <Literal Id="Literal:76198" ValueExpressionId="ValueExpression:76318">
+      <Value>x    x</Value>
+    </Literal>
+    <Literal Id="Literal:76199" ValueExpressionId="ValueExpression:76319">
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:76200" ValueExpressionId="ValueExpression:76320">
+      <Value>4</Value>
+    </Literal>
+    <Literal Id="Literal:76201" ValueExpressionId="ValueExpression:76321">
+      <Value>x x</Value>
+    </Literal>
+    <Literal Id="Literal:76202" ValueExpressionId="ValueExpression:76322">
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:76203" ValueExpressionId="ValueExpression:76323">
+      <Value>1</Value>
+    </Literal>
+    <Literal Id="Literal:76204" ValueExpressionId="ValueExpression:76324">
+      <Value>,</Value>
+    </Literal>
+    <Literal Id="Literal:76205" ValueExpressionId="ValueExpression:76325">
+      <Value>x
+x</Value>
+    </Literal>
+    <Literal Id="Literal:76206" ValueExpressionId="ValueExpression:76326">
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:76207" ValueExpressionId="ValueExpression:76327">
+      <Value>1</Value>
+    </Literal>
+    <Literal Id="Literal:76208" ValueExpressionId="ValueExpression:76328">
+      <Value>0000000000</Value>
+    </Literal>
+    <Literal Id="Literal:76209" ValueExpressionId="ValueExpression:76329">
+      <Value>10</Value>
+    </Literal>
+    <Literal Id="Literal:76210" ValueExpressionId="ValueExpression:76330">
+      <Value>x
+x</Value>
+    </Literal>
+    <Literal Id="Literal:76211" ValueExpressionId="ValueExpression:76331">
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:76212" ValueExpressionId="ValueExpression:76332">
+      <Value>1</Value>
+    </Literal>
+    <Literal Id="Literal:76213" ValueExpressionId="ValueExpression:76333">
+      <Value>)</Value>
+    </Literal>
+    <Literal Id="Literal:76214" ValueExpressionId="ValueExpression:76335">
+      <Value>.</Value>
+    </Literal>
+    <Literal Id="Literal:76215" ValueExpressionId="ValueExpression:76336">
+      <Value>.</Value>
+    </Literal>
+    <Literal Id="Literal:76216" ValueExpressionId="ValueExpression:76337">
+      <Value>InlineTableValuedFunction</Value>
+    </Literal>
+    <Literal Id="Literal:76217" ValueExpressionId="ValueExpression:76338">
+      <Value>CREATE FUNCTION </Value>
+    </Literal>
+    <Literal Id="Literal:76218" ValueExpressionId="ValueExpression:76339">
+      <Value>.</Value>
+    </Literal>
+    <Literal Id="Literal:76219" ValueExpressionId="ValueExpression:76340">
+      <Value>x
+x</Value>
+    </Literal>
+    <Literal Id="Literal:76220" ValueExpressionId="ValueExpression:76341">
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:76221" ValueExpressionId="ValueExpression:76342">
+      <Value>1</Value>
+    </Literal>
+    <Literal Id="Literal:76222" ValueExpressionId="ValueExpression:76343">
+      <Value>()</Value>
+    </Literal>
+    <Literal Id="Literal:76223" ValueExpressionId="ValueExpression:76344">
+      <Value>x
+x</Value>
+    </Literal>
+    <Literal Id="Literal:76224" ValueExpressionId="ValueExpression:76345">
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:76225" ValueExpressionId="ValueExpression:76346">
+      <Value>1</Value>
+    </Literal>
+    <Literal Id="Literal:76226" ValueExpressionId="ValueExpression:76347">
+      <Value>RETURNS TABLE</Value>
+    </Literal>
+    <Literal Id="Literal:76227" ValueExpressionId="ValueExpression:76348">
+      <Value>x
+x</Value>
+    </Literal>
+    <Literal Id="Literal:76228" ValueExpressionId="ValueExpression:76349">
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:76229" ValueExpressionId="ValueExpression:76350">
+      <Value>1</Value>
+    </Literal>
+    <Literal Id="Literal:76230" ValueExpressionId="ValueExpression:76351">
+      <Value>AS</Value>
+    </Literal>
+    <Literal Id="Literal:76231" ValueExpressionId="ValueExpression:76352">
+      <Value>x
+x</Value>
+    </Literal>
+    <Literal Id="Literal:76232" ValueExpressionId="ValueExpression:76353">
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:76233" ValueExpressionId="ValueExpression:76354">
+      <Value>1</Value>
+    </Literal>
+    <Literal Id="Literal:76234" ValueExpressionId="ValueExpression:76355">
+      <Value>RETURN</Value>
+    </Literal>
+    <Literal Id="Literal:76235" ValueExpressionId="ValueExpression:76356">
+      <Value>x
+x</Value>
+    </Literal>
+    <Literal Id="Literal:76236" ValueExpressionId="ValueExpression:76357">
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:76237" ValueExpressionId="ValueExpression:76358">
+      <Value>1</Value>
+    </Literal>
+    <Literal Id="Literal:76238" ValueExpressionId="ValueExpression:76359">
+      <Value>(</Value>
+    </Literal>
+    <Literal Id="Literal:76239" ValueExpressionId="ValueExpression:76360">
+      <Value>x
+x</Value>
+    </Literal>
+    <Literal Id="Literal:76240" ValueExpressionId="ValueExpression:76361">
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:76241" ValueExpressionId="ValueExpression:76362">
+      <Value>1</Value>
+    </Literal>
+    <Literal Id="Literal:76242" ValueExpressionId="ValueExpression:76363">
+      <Value>x    x</Value>
+    </Literal>
+    <Literal Id="Literal:76243" ValueExpressionId="ValueExpression:76364">
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:76244" ValueExpressionId="ValueExpression:76365">
+      <Value>4</Value>
+    </Literal>
+    <Literal Id="Literal:76245" ValueExpressionId="ValueExpression:76366">
+      <Value>x
+x</Value>
+    </Literal>
+    <Literal Id="Literal:76246" ValueExpressionId="ValueExpression:76367">
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:76247" ValueExpressionId="ValueExpression:76368">
+      <Value>1</Value>
+    </Literal>
+    <Literal Id="Literal:76248" ValueExpressionId="ValueExpression:76369">
+      <Value>)</Value>
+    </Literal>
+    <Literal Id="Literal:76249" ValueExpressionId="ValueExpression:76370">
+      <Value>CREATE FUNCTION </Value>
+    </Literal>
+    <Literal Id="Literal:76250" ValueExpressionId="ValueExpression:76371">
+      <Value>.</Value>
+    </Literal>
+    <Literal Id="Literal:76251" ValueExpressionId="ValueExpression:76372">
+      <Value>x
+x</Value>
+    </Literal>
+    <Literal Id="Literal:76252" ValueExpressionId="ValueExpression:76373">
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:76253" ValueExpressionId="ValueExpression:76374">
+      <Value>1</Value>
+    </Literal>
+    <Literal Id="Literal:76254" ValueExpressionId="ValueExpression:76375">
+      <Value>()</Value>
+    </Literal>
+    <Literal Id="Literal:76255" ValueExpressionId="ValueExpression:76376">
+      <Value>x
+x</Value>
+    </Literal>
+    <Literal Id="Literal:76256" ValueExpressionId="ValueExpression:76377">
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:76257" ValueExpressionId="ValueExpression:76378">
+      <Value>1</Value>
+    </Literal>
+    <Literal Id="Literal:76258" ValueExpressionId="ValueExpression:76379">
+      <Value>RETURNS </Value>
+    </Literal>
+    <Literal Id="Literal:76259" ValueExpressionId="ValueExpression:76380">
+      <Value>x
+x</Value>
+    </Literal>
+    <Literal Id="Literal:76260" ValueExpressionId="ValueExpression:76381">
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:76261" ValueExpressionId="ValueExpression:76382">
+      <Value>1</Value>
+    </Literal>
+    <Literal Id="Literal:76262" ValueExpressionId="ValueExpression:76383">
+      <Value>AS</Value>
+    </Literal>
+    <Literal Id="Literal:76263" ValueExpressionId="ValueExpression:76384">
+      <Value>x
+x</Value>
+    </Literal>
+    <Literal Id="Literal:76264" ValueExpressionId="ValueExpression:76385">
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:76265" ValueExpressionId="ValueExpression:76386">
+      <Value>1</Value>
+    </Literal>
+    <Literal Id="Literal:76266" ValueExpressionId="ValueExpression:76387">
+      <Value>BEGIN</Value>
+    </Literal>
+    <Literal Id="Literal:76267" ValueExpressionId="ValueExpression:76388">
+      <Value>x
+x</Value>
+    </Literal>
+    <Literal Id="Literal:76268" ValueExpressionId="ValueExpression:76389">
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:76269" ValueExpressionId="ValueExpression:76390">
+      <Value>1</Value>
+    </Literal>
+    <Literal Id="Literal:76270" ValueExpressionId="ValueExpression:76391">
+      <Value>    RETURN </Value>
+    </Literal>
+    <Literal Id="Literal:76271" ValueExpressionId="ValueExpression:76392">
+      <Value>x
+x</Value>
+    </Literal>
+    <Literal Id="Literal:76272" ValueExpressionId="ValueExpression:76393">
+      <Value>2</Value>
+    </Literal>
+    <Literal Id="Literal:76273" ValueExpressionId="ValueExpression:76394">
+      <Value>1</Value>
+    </Literal>
+    <Literal Id="Literal:76274" ValueExpressionId="ValueExpression:76395">
+      <Value>END</Value>
+    </Literal>
+    <Literal Id="Literal:76275" ValueExpressionId="ValueExpression:76396">
+      <Value>InlineTableValuedFunction</Value>
+    </Literal>
+    <Literal Id="Literal:76276" ValueExpressionId="ValueExpression:76397">
+      <Value>InlineTableValuedFunction</Value>
+    </Literal>
+    <Literal Id="Literal:76277" ValueExpressionId="ValueExpression:76398">
+      <Value>ScalarFunction</Value>
+    </Literal>
+    <Literal Id="Literal:76278" ValueExpressionId="ValueExpression:76400">
+      <Value>.</Value>
+    </Literal>
+    <Literal Id="Literal:76279" ValueExpressionId="ValueExpression:76401">
+      <Value>InlineTableValuedFunction</Value>
+    </Literal>
+    <Literal Id="Literal:76280" ValueExpressionId="ValueExpression:76402">
+      <Value>ScalarFunction</Value>
     </Literal>
     <Literal Id="Literal:8" ValueExpressionId="ValueExpression:14">
       <Value>MetaTransformScript</Value>

@@ -3757,66 +3757,6 @@
     <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:76022" QuerySpecificationId="QuerySpecification:15589" SelectElementId="SelectElement:76022">
       <Ordinal>2</Ordinal>
     </QuerySpecificationSelectElementsItem>
-    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:76023" QuerySpecificationId="QuerySpecification:15590" SelectElementId="SelectElement:76023">
-      <Ordinal>0</Ordinal>
-    </QuerySpecificationSelectElementsItem>
-    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:76024" QuerySpecificationId="QuerySpecification:15590" SelectElementId="SelectElement:76024">
-      <Ordinal>1</Ordinal>
-    </QuerySpecificationSelectElementsItem>
-    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:76025" QuerySpecificationId="QuerySpecification:15590" SelectElementId="SelectElement:76025">
-      <Ordinal>2</Ordinal>
-    </QuerySpecificationSelectElementsItem>
-    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:76026" QuerySpecificationId="QuerySpecification:15590" SelectElementId="SelectElement:76026">
-      <Ordinal>3</Ordinal>
-    </QuerySpecificationSelectElementsItem>
-    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:76027" QuerySpecificationId="QuerySpecification:15590" SelectElementId="SelectElement:76027">
-      <Ordinal>4</Ordinal>
-    </QuerySpecificationSelectElementsItem>
-    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:76028" QuerySpecificationId="QuerySpecification:15591" SelectElementId="SelectElement:76028">
-      <Ordinal>0</Ordinal>
-    </QuerySpecificationSelectElementsItem>
-    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:76029" QuerySpecificationId="QuerySpecification:15591" SelectElementId="SelectElement:76029">
-      <Ordinal>1</Ordinal>
-    </QuerySpecificationSelectElementsItem>
-    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:76030" QuerySpecificationId="QuerySpecification:15591" SelectElementId="SelectElement:76030">
-      <Ordinal>2</Ordinal>
-    </QuerySpecificationSelectElementsItem>
-    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:76031" QuerySpecificationId="QuerySpecification:15591" SelectElementId="SelectElement:76031">
-      <Ordinal>3</Ordinal>
-    </QuerySpecificationSelectElementsItem>
-    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:76032" QuerySpecificationId="QuerySpecification:15591" SelectElementId="SelectElement:76032">
-      <Ordinal>4</Ordinal>
-    </QuerySpecificationSelectElementsItem>
-    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:76033" QuerySpecificationId="QuerySpecification:15592" SelectElementId="SelectElement:76033">
-      <Ordinal>0</Ordinal>
-    </QuerySpecificationSelectElementsItem>
-    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:76034" QuerySpecificationId="QuerySpecification:15592" SelectElementId="SelectElement:76034">
-      <Ordinal>1</Ordinal>
-    </QuerySpecificationSelectElementsItem>
-    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:76035" QuerySpecificationId="QuerySpecification:15593" SelectElementId="SelectElement:76035">
-      <Ordinal>0</Ordinal>
-    </QuerySpecificationSelectElementsItem>
-    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:76036" QuerySpecificationId="QuerySpecification:15593" SelectElementId="SelectElement:76036">
-      <Ordinal>1</Ordinal>
-    </QuerySpecificationSelectElementsItem>
-    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:76037" QuerySpecificationId="QuerySpecification:15594" SelectElementId="SelectElement:76037">
-      <Ordinal>0</Ordinal>
-    </QuerySpecificationSelectElementsItem>
-    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:76038" QuerySpecificationId="QuerySpecification:15594" SelectElementId="SelectElement:76038">
-      <Ordinal>1</Ordinal>
-    </QuerySpecificationSelectElementsItem>
-    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:76039" QuerySpecificationId="QuerySpecification:15594" SelectElementId="SelectElement:76039">
-      <Ordinal>2</Ordinal>
-    </QuerySpecificationSelectElementsItem>
-    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:76040" QuerySpecificationId="QuerySpecification:15594" SelectElementId="SelectElement:76040">
-      <Ordinal>3</Ordinal>
-    </QuerySpecificationSelectElementsItem>
-    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:76041" QuerySpecificationId="QuerySpecification:15594" SelectElementId="SelectElement:76041">
-      <Ordinal>4</Ordinal>
-    </QuerySpecificationSelectElementsItem>
-    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:76042" QuerySpecificationId="QuerySpecification:15594" SelectElementId="SelectElement:76042">
-      <Ordinal>5</Ordinal>
-    </QuerySpecificationSelectElementsItem>
     <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:76043" QuerySpecificationId="QuerySpecification:15595" SelectElementId="SelectElement:76043">
       <Ordinal>0</Ordinal>
     </QuerySpecificationSelectElementsItem>
@@ -9806,6 +9746,75 @@
       <Ordinal>4</Ordinal>
     </QuerySpecificationSelectElementsItem>
     <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:78239" QuerySpecificationId="QuerySpecification:16236" SelectElementId="SelectElement:78190">
+      <Ordinal>5</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:78240" QuerySpecificationId="QuerySpecification:16237" SelectElementId="SelectElement:78240">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:78241" QuerySpecificationId="QuerySpecification:16237" SelectElementId="SelectElement:78241">
+      <Ordinal>1</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:78242" QuerySpecificationId="QuerySpecification:16237" SelectElementId="SelectElement:78242">
+      <Ordinal>2</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:78243" QuerySpecificationId="QuerySpecification:16237" SelectElementId="SelectElement:78243">
+      <Ordinal>3</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:78244" QuerySpecificationId="QuerySpecification:16237" SelectElementId="SelectElement:78244">
+      <Ordinal>4</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:78245" QuerySpecificationId="QuerySpecification:16237" SelectElementId="SelectElement:78245">
+      <Ordinal>5</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:78246" QuerySpecificationId="QuerySpecification:16238" SelectElementId="SelectElement:78246">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:78247" QuerySpecificationId="QuerySpecification:16238" SelectElementId="SelectElement:78247">
+      <Ordinal>1</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:78248" QuerySpecificationId="QuerySpecification:16238" SelectElementId="SelectElement:78248">
+      <Ordinal>2</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:78249" QuerySpecificationId="QuerySpecification:16238" SelectElementId="SelectElement:78249">
+      <Ordinal>3</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:78250" QuerySpecificationId="QuerySpecification:16238" SelectElementId="SelectElement:78250">
+      <Ordinal>4</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:78251" QuerySpecificationId="QuerySpecification:16238" SelectElementId="SelectElement:78251">
+      <Ordinal>5</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:78252" QuerySpecificationId="QuerySpecification:16239" SelectElementId="SelectElement:78252">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:78253" QuerySpecificationId="QuerySpecification:16239" SelectElementId="SelectElement:78253">
+      <Ordinal>1</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:78254" QuerySpecificationId="QuerySpecification:16239" SelectElementId="SelectElement:78254">
+      <Ordinal>2</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:78255" QuerySpecificationId="QuerySpecification:16240" SelectElementId="SelectElement:78255">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:78256" QuerySpecificationId="QuerySpecification:16240" SelectElementId="SelectElement:78256">
+      <Ordinal>1</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:78257" QuerySpecificationId="QuerySpecification:16241" SelectElementId="SelectElement:78257">
+      <Ordinal>0</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:78258" QuerySpecificationId="QuerySpecification:16241" SelectElementId="SelectElement:78258">
+      <Ordinal>1</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:78259" QuerySpecificationId="QuerySpecification:16241" SelectElementId="SelectElement:78259">
+      <Ordinal>2</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:78260" QuerySpecificationId="QuerySpecification:16241" SelectElementId="SelectElement:78260">
+      <Ordinal>3</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:78261" QuerySpecificationId="QuerySpecification:16241" SelectElementId="SelectElement:78261">
+      <Ordinal>4</Ordinal>
+    </QuerySpecificationSelectElementsItem>
+    <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:78262" QuerySpecificationId="QuerySpecification:16241" SelectElementId="SelectElement:78262">
       <Ordinal>5</Ordinal>
     </QuerySpecificationSelectElementsItem>
     <QuerySpecificationSelectElementsItem Id="QuerySpecificationSelectElementsItem:79" QuerySpecificationId="QuerySpecification:32" SelectElementId="SelectElement:79">

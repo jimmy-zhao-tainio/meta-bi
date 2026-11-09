@@ -11,7 +11,7 @@
     <DirectionRelation Id="forward/module_render_roots" DirectionId="forward" SelectStatementId="SelectStatement:97" />
     <DirectionRelation Id="forward/ordered_modules" DirectionId="forward" SelectStatementId="SelectStatement:80" />
     <DirectionRelation Id="forward/query_render_events" DirectionId="forward" SelectStatementId="SelectStatement:104" />
-    <DirectionRelation Id="forward/rendered_module_bodies" DirectionId="forward" SelectStatementId="SelectStatement:98" />
+    <DirectionRelation Id="forward/rendered_module_bodies" DirectionId="forward" SelectStatementId="SelectStatement:108" />
     <DirectionRelation Id="forward/rendered_names" DirectionId="forward" SelectStatementId="SelectStatement:81" />
     <DirectionRelation Id="forward/rendered_type_parameters" DirectionId="forward" SelectStatementId="SelectStatement:82" />
     <DirectionRelation Id="forward/render_events" DirectionId="forward" SelectStatementId="SelectStatement:94" />

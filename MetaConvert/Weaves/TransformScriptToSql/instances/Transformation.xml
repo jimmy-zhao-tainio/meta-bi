@@ -4,7 +4,7 @@
     <Transformation Id="forward/Database" DirectionId="forward" SelectStatementId="SelectStatement:1">
       <TargetEntityName>Database</TargetEntityName>
     </Transformation>
-    <Transformation Id="forward/Function" DirectionId="forward" SelectStatementId="SelectStatement:99">
+    <Transformation Id="forward/Function" DirectionId="forward" SelectStatementId="SelectStatement:109">
       <TargetEntityName>Function</TargetEntityName>
     </Transformation>
     <Transformation Id="forward/Schema" DirectionId="forward" SelectStatementId="SelectStatement:85">

@@ -11061,806 +11061,6 @@
       <QuoteType>NotQuoted</QuoteType>
       <Value>ModuleKind</Value>
     </Identifier>
-    <Identifier Id="Identifier:160644">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>walk</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160645">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>r</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160646">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>TransformScriptId</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160647">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>TransformScriptId</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160648">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>r</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160649">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>RootKind</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160650">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>NodeKind</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160651">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>r</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160652">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>RootId</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160653">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>NodeId</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160654">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SortPath</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160655">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>Token</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160656">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>module_render_roots</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160657">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>r</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160658">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>w</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160659">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>TransformScriptId</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160660">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>TransformScriptId</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160661">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>e</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160662">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>ChildKind</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160663">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>NodeKind</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160664">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>e</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160665">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>ChildId</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160666">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>NodeId</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160667">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>w</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160668">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SortPath</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160669">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>e</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160670">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SlotPath</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160671">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>CONCAT</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160672">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SortPath</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160673">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>e</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160674">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>Token</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160675">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>Token</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160676">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>walk</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160677">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>w</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160678">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>render_events</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160679">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>e</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160680">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>e</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160681">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>ParentKind</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160682">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>w</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160683">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>NodeKind</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160684">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>e</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160685">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>ParentId</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160686">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>w</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160687">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>NodeId</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160688">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>w</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160689">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>Token</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160690">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>w</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160691">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>TransformScriptId</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160692">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>TransformScriptId</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160693">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>w</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160694">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>Token</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160695">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>STRING_AGG</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160696">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>w</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160697">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SortPath</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160698">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>BodySql</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160699">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>walk</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160700">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>w</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160701">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>w</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160702">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>Token</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160703">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>w</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160704">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>TransformScriptId</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160705">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>function_parameter_lists</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160706">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>p</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160707">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>TransformScriptId</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160708">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>TransformScriptId</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160709">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160710">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160711">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>i</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160712">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SqlText</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160713">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160714">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>d</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160715">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SqlText</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160716">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>CONCAT</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160717">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160718">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>CONCAT</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160719">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>STRING_AGG</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160720">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>p</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160721">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>Ordinal</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160722">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>CONCAT</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160723">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>RIGHT</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160724">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>p</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160725">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>Id</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160726">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160727">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>CONCAT</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160728">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>ParameterSql</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160729">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>transform</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160730">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>TransformScriptFunctionParametersItem</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160731">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>p</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160732">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>body_identifiers</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160733">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>i</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160734">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>i</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160735">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>IdentifierId</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160736">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>p</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160737">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>IdentifierId</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160738">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>data_types</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160739">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>d</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160740">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>d</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160741">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>DataTypeReferenceId</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160742">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>p</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160743">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>DataTypeReferenceId</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160744">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>p</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160745">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>TransformScriptId</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160746">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>m</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160747">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SchemaName</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160748">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>m</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160749">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>ObjectName</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160750">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>CONCAT</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160751">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>Id</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160752">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>m</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160753">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>ModuleKind</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160754">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>m</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160755">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SchemaSql</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160756">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>m</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160757">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>ObjectSql</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160758">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160759">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>p</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160760">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>ParameterSql</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160761">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160762">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160763">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160764">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160765">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160766">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160767">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>r</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160768">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>BodySql</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160769">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160770">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160771">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160772">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>CONCAT</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160773">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>REPLACE</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160774">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160775">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>CONCAT</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160776">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>m</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160777">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SchemaSql</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160778">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>m</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160779">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>ObjectSql</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160780">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160781">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>p</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160782">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>ParameterSql</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160783">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160784">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>d</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160785">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SqlText</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160786">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160787">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160788">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160789">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>r</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160790">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>BodySql</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160791">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>TRIM</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160792">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160793">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160794">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160795">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>CONCAT</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160796">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>REPLACE</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160797">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160798">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>CONCAT</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160799">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>DefinitionSql</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160800">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>m</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160801">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>DeployOrdinal</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160802">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>DeployOrdinal</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160803">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>m</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160804">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>ModuleKind</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160805">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>FunctionKind</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160806">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>m</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160807">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>ObjectName</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160808">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>Name</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160809">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>m</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160810">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SchemaName</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160811">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>CONCAT</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160812">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SchemaId</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160813">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>ordered_modules</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160814">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>m</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160815">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>rendered_module_bodies</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160816">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>r</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160817">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>r</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160818">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>TransformScriptId</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160819">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>m</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160820">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>TransformScriptId</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160821">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>function_parameter_lists</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160822">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>p</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160823">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>p</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160824">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>TransformScriptId</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160825">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>m</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160826">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>TransformScriptId</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160827">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>transform</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160828">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>ScriptObjectScalarFunction</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160829">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>f</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160830">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>f</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160831">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>TransformScriptId</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160832">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>m</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160833">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>TransformScriptId</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160834">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>data_types</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160835">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>d</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160836">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>d</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160837">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>DataTypeReferenceId</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160838">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>f</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160839">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>DataTypeReferenceId</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160840">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>m</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160841">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>ModuleKind</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160842">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>m</Value>
-    </Identifier>
-    <Identifier Id="Identifier:160843">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>ModuleKind</Value>
-    </Identifier>
     <Identifier Id="Identifier:160844">
       <QuoteType>NotQuoted</QuoteType>
       <Value>ordered_view_columns</Value>
@@ -31072,6 +30272,842 @@
     <Identifier Id="Identifier:167463">
       <QuoteType>NotQuoted</QuoteType>
       <Value>ChildId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167464">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>walk</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167465">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>r</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167466">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>TransformScriptId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167467">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>TransformScriptId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167468">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>r</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167469">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>RootKind</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167470">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>NodeKind</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167471">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>r</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167472">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>RootId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167473">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>NodeId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167474">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SortPath</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167475">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>Token</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167476">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>PreserveTokenText</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167477">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>module_render_roots</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167478">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>r</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167479">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>w</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167480">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>TransformScriptId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167481">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>TransformScriptId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167482">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>e</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167483">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ChildKind</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167484">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>NodeKind</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167485">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>e</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167486">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ChildId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167487">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>NodeId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167488">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>w</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167489">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SortPath</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167490">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>e</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167491">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SlotPath</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167492">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CONCAT</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167493">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SortPath</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167494">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>e</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167495">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>Token</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167496">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>Token</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167497">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>e</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167498">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ParentKind</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167499">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>PreserveTokenText</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167500">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>walk</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167501">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>w</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167502">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>render_events</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167503">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>e</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167504">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>e</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167505">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ParentKind</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167506">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>w</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167507">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>NodeKind</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167508">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>e</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167509">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ParentId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167510">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>w</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167511">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>NodeId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167512">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>w</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167513">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>Token</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167514">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>w</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167515">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>TransformScriptId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167516">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>TransformScriptId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167517">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>w</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167518">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>Token</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167519">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>STRING_AGG</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167520">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>w</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167521">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SortPath</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167522">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>BodySql</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167523">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>w</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167524">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>PreserveTokenText</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167525">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>w</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167526">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>Token</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167527">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>w</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167528">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>Token</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167529">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SUBSTRING</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167530">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SUBSTRING</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167531">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SUBSTRING</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167532">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CONCAT</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167533">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>REPLACE</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167534">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>STRING_AGG</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167535">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>w</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167536">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SortPath</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167537">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>IndentedBodySql</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167538">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>walk</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167539">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>w</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167540">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>w</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167541">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>Token</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167542">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>w</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167543">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>TransformScriptId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167544">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>function_parameter_lists</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167545">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>p</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167546">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>TransformScriptId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167547">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>TransformScriptId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167548">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SUBSTRING</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167549">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SUBSTRING</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167550">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>i</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167551">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SqlText</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167552">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SUBSTRING</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167553">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>d</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167554">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SqlText</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167555">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CONCAT</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167556">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SUBSTRING</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167557">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CONCAT</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167558">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>STRING_AGG</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167559">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>p</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167560">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>Ordinal</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167561">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CONCAT</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167562">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>RIGHT</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167563">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>p</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167564">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>Id</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167565">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SUBSTRING</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167566">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CONCAT</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167567">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ParameterSql</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167568">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>transform</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167569">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>TransformScriptFunctionParametersItem</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167570">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>p</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167571">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>body_identifiers</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167572">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>i</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167573">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>i</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167574">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>IdentifierId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167575">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>p</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167576">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>IdentifierId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167577">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>data_types</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167578">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>d</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167579">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>d</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167580">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>DataTypeReferenceId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167581">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>p</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167582">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>DataTypeReferenceId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167583">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>p</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167584">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>TransformScriptId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167585">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>m</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167586">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SchemaName</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167587">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>m</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167588">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ObjectName</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167589">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CONCAT</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167590">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>Id</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167591">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>m</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167592">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ModuleKind</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167593">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>m</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167594">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SchemaSql</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167595">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>m</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167596">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ObjectSql</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167597">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SUBSTRING</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167598">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>p</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167599">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ParameterSql</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167600">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SUBSTRING</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167601">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SUBSTRING</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167602">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SUBSTRING</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167603">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SUBSTRING</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167604">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SUBSTRING</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167605">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SUBSTRING</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167606">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>r</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167607">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>IndentedBodySql</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167608">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SUBSTRING</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167609">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CONCAT</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167610">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>m</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167611">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SchemaSql</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167612">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>m</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167613">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ObjectSql</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167614">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SUBSTRING</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167615">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>p</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167616">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ParameterSql</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167617">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SUBSTRING</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167618">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>d</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167619">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SqlText</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167620">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SUBSTRING</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167621">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SUBSTRING</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167622">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SUBSTRING</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167623">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>r</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167624">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>IndentedBodySql</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167625">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>TRIM</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167626">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SUBSTRING</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167627">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CONCAT</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167628">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>DefinitionSql</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167629">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>m</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167630">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>DeployOrdinal</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167631">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>DeployOrdinal</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167632">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>m</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167633">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ModuleKind</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167634">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>FunctionKind</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167635">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>m</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167636">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ObjectName</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167637">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>Name</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167638">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>m</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167639">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SchemaName</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167640">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CONCAT</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167641">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>SchemaId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167642">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ordered_modules</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167643">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>m</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167644">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>rendered_module_bodies</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167645">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>r</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167646">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>r</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167647">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>TransformScriptId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167648">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>m</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167649">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>TransformScriptId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167650">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>function_parameter_lists</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167651">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>p</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167652">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>p</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167653">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>TransformScriptId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167654">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>m</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167655">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>TransformScriptId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167656">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>transform</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167657">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ScriptObjectScalarFunction</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167658">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>f</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167659">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>f</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167660">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>TransformScriptId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167661">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>m</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167662">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>TransformScriptId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167663">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>data_types</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167664">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>d</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167665">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>d</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167666">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>DataTypeReferenceId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167667">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>f</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167668">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>DataTypeReferenceId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167669">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>m</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167670">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ModuleKind</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167671">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>m</Value>
+    </Identifier>
+    <Identifier Id="Identifier:167672">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ModuleKind</Value>
     </Identifier>
     <Identifier Id="Identifier:2">
       <QuoteType>NotQuoted</QuoteType>

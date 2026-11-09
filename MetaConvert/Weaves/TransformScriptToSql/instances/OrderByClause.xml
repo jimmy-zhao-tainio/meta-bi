@@ -18,8 +18,6 @@
     <OrderByClause Id="OrderByClause:818" />
     <OrderByClause Id="OrderByClause:827" />
     <OrderByClause Id="OrderByClause:828" />
-    <OrderByClause Id="OrderByClause:833" />
-    <OrderByClause Id="OrderByClause:834" />
     <OrderByClause Id="OrderByClause:835" />
     <OrderByClause Id="OrderByClause:836" />
     <OrderByClause Id="OrderByClause:837" />
@@ -42,5 +40,8 @@
     <OrderByClause Id="OrderByClause:854" />
     <OrderByClause Id="OrderByClause:855" />
     <OrderByClause Id="OrderByClause:857" />
+    <OrderByClause Id="OrderByClause:858" />
+    <OrderByClause Id="OrderByClause:859" />
+    <OrderByClause Id="OrderByClause:860" />
   </OrderByClauseList>
 </MetaWeave>

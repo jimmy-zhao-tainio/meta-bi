@@ -12,6 +12,26 @@ using MetaWeaveScript.Sql;
 public sealed class TransformScriptToSqlWeaveTests
 {
     [Fact]
+    public async Task ForwardWeave_PreservesMultilineLiteralValuesInFunctions()
+    {
+        const string value = "first\r\nsecond\nthird";
+        var service = new MetaTransformScriptSqlService();
+        var source = service.ImportFromSqlCode(
+            "CREATE FUNCTION dbo.ScalarWhitespace() RETURNS nvarchar(50) AS BEGIN RETURN N'" + value + "'; END;");
+        service.ImportSqlCode(source,
+            "CREATE FUNCTION dbo.TableWhitespace() RETURNS TABLE AS RETURN (SELECT N'" + value + "' AS [Value]);", null);
+        var result = await ExecuteWeaveAsync(source, "ProbeDb");
+        Assert.True(result.IsSuccess, FormatIssues(result));
+        var actual = TypedWorkspaceModelMapper.FromInMemoryWorkspace(result.OutputWorkspace!, static () => new MetaSqlModel());
+        Assert.Equal(2, actual.FunctionList.Count);
+        foreach (var function in actual.FunctionList)
+        {
+            var reimported = service.ImportFromSqlCode(function.DefinitionSql);
+            Assert.Equal(value, Assert.Single(reimported.LiteralList, literal => literal.LiteralType == "String").Value);
+        }
+    }
+
+    [Fact]
     public async Task ForwardWeave_ModuleShellMatchesEstablishedConverter()
     {
         var source = CreateModuleWorkspace();

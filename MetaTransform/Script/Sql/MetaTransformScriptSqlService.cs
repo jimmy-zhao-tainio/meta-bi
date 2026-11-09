@@ -704,17 +704,31 @@ public sealed partial class MetaTransformScriptSqlService
         var batches = new List<SqlImportBatch>();
         var builder = new StringBuilder();
         var reader = new StringReader(sql);
+        var offset = 0;
         string? line;
         while ((line = reader.ReadLine()) is not null)
         {
+            var nextOffset = offset + line.Length;
+            if (nextOffset < sql.Length && sql[nextOffset] == '\r')
+            {
+                nextOffset++;
+            }
+            if (nextOffset < sql.Length && sql[nextOffset] == '\n')
+            {
+                nextOffset++;
+            }
+
             if (string.Equals(line.Trim(), "GO", StringComparison.OrdinalIgnoreCase))
             {
                 batches.Add(new SqlImportBatch(builder.ToString(), sourcePath, bareSelectName));
                 builder.Clear();
+                offset = nextOffset;
                 continue;
             }
 
-            builder.AppendLine(line);
+            // Keep source line endings inside literal values unchanged.
+            builder.Append(sql, offset, nextOffset - offset);
+            offset = nextOffset;
         }
 
         batches.Add(new SqlImportBatch(builder.ToString(), sourcePath, bareSelectName));
@@ -1137,11 +1151,7 @@ public sealed partial class MetaTransformScriptSqlService
         builder.AppendLine("AS");
         builder.AppendLine("RETURN");
         builder.AppendLine("(");
-        foreach (var line in SplitLines(trimmedBody))
-        {
-            builder.Append("    ");
-            builder.AppendLine(line);
-        }
+        builder.AppendLine(IndentSqlOutsideQuotedTokens(trimmedBody));
 
         builder.AppendLine(")");
         AppendBatchSeparator(builder, includeBatchSeparator);
@@ -1170,11 +1180,7 @@ public sealed partial class MetaTransformScriptSqlService
         builder.AppendLine(returnDataType);
         builder.AppendLine("AS");
         builder.AppendLine("BEGIN");
-        foreach (var line in SplitLines("RETURN " + returnExpression.Trim()))
-        {
-            builder.Append("    ");
-            builder.AppendLine(line);
-        }
+        builder.AppendLine(IndentSqlOutsideQuotedTokens("RETURN " + returnExpression.Trim()));
 
         builder.AppendLine("END");
         AppendBatchSeparator(builder, includeBatchSeparator);
@@ -1693,14 +1699,39 @@ public sealed partial class MetaTransformScriptSqlService
         return literal.Value ?? throw new InvalidOperationException($"Literal '{literalId}' is missing its required value.");
     }
 
-    private static IEnumerable<string> SplitLines(string text)
+    private static string IndentSqlOutsideQuotedTokens(string sql)
     {
-        using var reader = new StringReader(text);
-        string? line;
-        while ((line = reader.ReadLine()) is not null)
+        var quotedTokens = new MetaTransformScriptSqlLexer(sql).Tokenize()
+            .Where(token => token.Kind == MetaTransformScriptSqlTokenKind.StringLiteral
+                || !string.IsNullOrEmpty(token.QuoteType))
+            .ToArray();
+        var builder = new StringBuilder();
+        var tokenIndex = 0;
+        var lineStart = true;
+        for (var index = 0; index < sql.Length; index++)
         {
-            yield return line;
+            while (tokenIndex < quotedTokens.Length
+                && index >= quotedTokens[tokenIndex].Offset + quotedTokens[tokenIndex].Text.Length)
+            {
+                tokenIndex++;
+            }
+
+            if (lineStart)
+            {
+                var insideQuotedToken = tokenIndex < quotedTokens.Length
+                    && index > quotedTokens[tokenIndex].Offset;
+                if (!insideQuotedToken)
+                {
+                    builder.Append("    ");
+                }
+            }
+
+            builder.Append(sql[index]);
+            lineStart = sql[index] == '\n'
+                || sql[index] == '\r' && (index + 1 == sql.Length || sql[index + 1] != '\n');
         }
+
+        return builder.ToString();
     }
 
     private static MTS.Identifier? ResolveOptionalIdentifier(MTS.MetaTransformScriptModel model, object? link)

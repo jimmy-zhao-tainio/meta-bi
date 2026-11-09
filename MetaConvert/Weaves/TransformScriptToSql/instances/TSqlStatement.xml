@@ -8,6 +8,8 @@
     <TSqlStatement Id="TSqlStatement:104" />
     <TSqlStatement Id="TSqlStatement:105" />
     <TSqlStatement Id="TSqlStatement:107" />
+    <TSqlStatement Id="TSqlStatement:108" />
+    <TSqlStatement Id="TSqlStatement:109" />
     <TSqlStatement Id="TSqlStatement:19" />
     <TSqlStatement Id="TSqlStatement:3" />
     <TSqlStatement Id="TSqlStatement:4" />
@@ -28,7 +30,5 @@
     <TSqlStatement Id="TSqlStatement:92" />
     <TSqlStatement Id="TSqlStatement:94" />
     <TSqlStatement Id="TSqlStatement:97" />
-    <TSqlStatement Id="TSqlStatement:98" />
-    <TSqlStatement Id="TSqlStatement:99" />
   </TSqlStatementList>
 </MetaWeave>
