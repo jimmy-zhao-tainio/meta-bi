@@ -8,7 +8,7 @@ FROM [AdventureWorksRawVault].[dbo].[HS_Store_Store] AS existing
 INSERT INTO [AdventureWorksRawVault].[dbo].[HS_Store_Store] ([HubHashKey], [Name], [Demographics], [rowguid], [ModifiedDate], [HashDiff], [LoadTimestamp], [RecordSource], [AuditId])
 SELECT
     CONVERT(binary(32), HASHBYTES('SHA2_256', CONVERT(binary(4), DATALENGTH(CONVERT(varbinary(max), source.[BusinessEntityID]))) + CONVERT(varbinary(max), source.[BusinessEntityID]))) AS HubHashKey,
-    source.[Name],
+    CONVERT(nvarchar(50), source.[Name]) AS [Name],
     source.[Demographics],
     source.[rowguid],
     source.[ModifiedDate],

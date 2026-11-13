@@ -237,6 +237,14 @@
       <SourceMetaDataTypeId>sqlserver:type:nvarchar</SourceMetaDataTypeId>
       <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
     </ValidationTargetColumnTypeExact>
+    <ValidationTargetColumnTypeExact Id="TransformScript:19:binding:validation:target:11:column:65:type-exact" ValidationTargetColumnLinkId="TransformScript:19:binding:validation:target:11:column:65">
+      <SourceMetaDataTypeId>sqlserver:type:decimal</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeExact>
+    <ValidationTargetColumnTypeExact Id="TransformScript:19:binding:validation:target:11:column:66:type-exact" ValidationTargetColumnLinkId="TransformScript:19:binding:validation:target:11:column:66">
+      <SourceMetaDataTypeId>sqlserver:type:decimal</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeExact>
     <ValidationTargetColumnTypeExact Id="TransformScript:19:binding:validation:target:11:column:67:type-exact" ValidationTargetColumnLinkId="TransformScript:19:binding:validation:target:11:column:67">
       <SourceMetaDataTypeId>sqlserver:type:nvarchar</SourceMetaDataTypeId>
       <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
@@ -341,6 +349,18 @@
       <SourceMetaDataTypeId>sqlserver:type:bigint</SourceMetaDataTypeId>
       <TargetMetaDataTypeId>sqlserver:type:bigint</TargetMetaDataTypeId>
     </ValidationTargetColumnTypeExact>
+    <ValidationTargetColumnTypeExact Id="TransformScript:22:binding:validation:target:15:column:100:type-exact" ValidationTargetColumnLinkId="TransformScript:22:binding:validation:target:15:column:100">
+      <SourceMetaDataTypeId>sqlserver:type:decimal</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeExact>
+    <ValidationTargetColumnTypeExact Id="TransformScript:22:binding:validation:target:15:column:101:type-exact" ValidationTargetColumnLinkId="TransformScript:22:binding:validation:target:15:column:101">
+      <SourceMetaDataTypeId>sqlserver:type:decimal</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeExact>
+    <ValidationTargetColumnTypeExact Id="TransformScript:22:binding:validation:target:15:column:102:type-exact" ValidationTargetColumnLinkId="TransformScript:22:binding:validation:target:15:column:102">
+      <SourceMetaDataTypeId>sqlserver:type:decimal</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeExact>
     <ValidationTargetColumnTypeExact Id="TransformScript:22:binding:validation:target:15:column:103:type-exact" ValidationTargetColumnLinkId="TransformScript:22:binding:validation:target:15:column:103">
       <SourceMetaDataTypeId>sqlserver:type:binary</SourceMetaDataTypeId>
       <TargetMetaDataTypeId>sqlserver:type:binary</TargetMetaDataTypeId>
@@ -381,6 +401,10 @@
       <SourceMetaDataTypeId>sqlserver:type:bit</SourceMetaDataTypeId>
       <TargetMetaDataTypeId>sqlserver:type:bit</TargetMetaDataTypeId>
     </ValidationTargetColumnTypeExact>
+    <ValidationTargetColumnTypeExact Id="TransformScript:22:binding:validation:target:15:column:99:type-exact" ValidationTargetColumnLinkId="TransformScript:22:binding:validation:target:15:column:99">
+      <SourceMetaDataTypeId>sqlserver:type:decimal</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeExact>
     <ValidationTargetColumnTypeExact Id="TransformScript:23:binding:validation:target:16:column:107:type-exact" ValidationTargetColumnLinkId="TransformScript:23:binding:validation:target:16:column:107">
       <SourceMetaDataTypeId>sqlserver:type:binary</SourceMetaDataTypeId>
       <TargetMetaDataTypeId>sqlserver:type:binary</TargetMetaDataTypeId>
@@ -388,6 +412,14 @@
     <ValidationTargetColumnTypeExact Id="TransformScript:23:binding:validation:target:16:column:108:type-exact" ValidationTargetColumnLinkId="TransformScript:23:binding:validation:target:16:column:108">
       <SourceMetaDataTypeId>sqlserver:type:smallint</SourceMetaDataTypeId>
       <TargetMetaDataTypeId>sqlserver:type:smallint</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeExact>
+    <ValidationTargetColumnTypeExact Id="TransformScript:23:binding:validation:target:16:column:109:type-exact" ValidationTargetColumnLinkId="TransformScript:23:binding:validation:target:16:column:109">
+      <SourceMetaDataTypeId>sqlserver:type:decimal</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeExact>
+    <ValidationTargetColumnTypeExact Id="TransformScript:23:binding:validation:target:16:column:110:type-exact" ValidationTargetColumnLinkId="TransformScript:23:binding:validation:target:16:column:110">
+      <SourceMetaDataTypeId>sqlserver:type:decimal</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
     </ValidationTargetColumnTypeExact>
     <ValidationTargetColumnTypeExact Id="TransformScript:23:binding:validation:target:16:column:111:type-exact" ValidationTargetColumnLinkId="TransformScript:23:binding:validation:target:16:column:111">
       <SourceMetaDataTypeId>sqlserver:type:decimal</SourceMetaDataTypeId>
@@ -413,7 +445,23 @@
       <SourceMetaDataTypeId>sqlserver:type:binary</SourceMetaDataTypeId>
       <TargetMetaDataTypeId>sqlserver:type:binary</TargetMetaDataTypeId>
     </ValidationTargetColumnTypeExact>
+    <ValidationTargetColumnTypeExact Id="TransformScript:24:binding:validation:target:17:column:117:type-exact" ValidationTargetColumnLinkId="TransformScript:24:binding:validation:target:17:column:117">
+      <SourceMetaDataTypeId>sqlserver:type:decimal</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeExact>
+    <ValidationTargetColumnTypeExact Id="TransformScript:24:binding:validation:target:17:column:118:type-exact" ValidationTargetColumnLinkId="TransformScript:24:binding:validation:target:17:column:118">
+      <SourceMetaDataTypeId>sqlserver:type:decimal</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeExact>
     <ValidationTargetColumnTypeExact Id="TransformScript:24:binding:validation:target:17:column:119:type-exact" ValidationTargetColumnLinkId="TransformScript:24:binding:validation:target:17:column:119">
+      <SourceMetaDataTypeId>sqlserver:type:decimal</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeExact>
+    <ValidationTargetColumnTypeExact Id="TransformScript:24:binding:validation:target:17:column:120:type-exact" ValidationTargetColumnLinkId="TransformScript:24:binding:validation:target:17:column:120">
+      <SourceMetaDataTypeId>sqlserver:type:decimal</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeExact>
+    <ValidationTargetColumnTypeExact Id="TransformScript:24:binding:validation:target:17:column:121:type-exact" ValidationTargetColumnLinkId="TransformScript:24:binding:validation:target:17:column:121">
       <SourceMetaDataTypeId>sqlserver:type:decimal</SourceMetaDataTypeId>
       <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
     </ValidationTargetColumnTypeExact>
@@ -436,6 +484,10 @@
     <ValidationTargetColumnTypeExact Id="TransformScript:25:binding:validation:target:18:column:126:type-exact" ValidationTargetColumnLinkId="TransformScript:25:binding:validation:target:18:column:126">
       <SourceMetaDataTypeId>sqlserver:type:binary</SourceMetaDataTypeId>
       <TargetMetaDataTypeId>sqlserver:type:binary</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeExact>
+    <ValidationTargetColumnTypeExact Id="TransformScript:25:binding:validation:target:18:column:127:type-exact" ValidationTargetColumnLinkId="TransformScript:25:binding:validation:target:18:column:127">
+      <SourceMetaDataTypeId>sqlserver:type:decimal</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
     </ValidationTargetColumnTypeExact>
     <ValidationTargetColumnTypeExact Id="TransformScript:25:binding:validation:target:18:column:128:type-exact" ValidationTargetColumnLinkId="TransformScript:25:binding:validation:target:18:column:128">
       <SourceMetaDataTypeId>sqlserver:type:binary</SourceMetaDataTypeId>
@@ -464,6 +516,22 @@
     <ValidationTargetColumnTypeExact Id="TransformScript:26:binding:validation:target:19:column:134:type-exact" ValidationTargetColumnLinkId="TransformScript:26:binding:validation:target:19:column:134">
       <SourceMetaDataTypeId>sqlserver:type:nvarchar</SourceMetaDataTypeId>
       <TargetMetaDataTypeId>sqlserver:type:nvarchar</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeExact>
+    <ValidationTargetColumnTypeExact Id="TransformScript:26:binding:validation:target:19:column:135:type-exact" ValidationTargetColumnLinkId="TransformScript:26:binding:validation:target:19:column:135">
+      <SourceMetaDataTypeId>sqlserver:type:decimal</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeExact>
+    <ValidationTargetColumnTypeExact Id="TransformScript:26:binding:validation:target:19:column:136:type-exact" ValidationTargetColumnLinkId="TransformScript:26:binding:validation:target:19:column:136">
+      <SourceMetaDataTypeId>sqlserver:type:decimal</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeExact>
+    <ValidationTargetColumnTypeExact Id="TransformScript:26:binding:validation:target:19:column:137:type-exact" ValidationTargetColumnLinkId="TransformScript:26:binding:validation:target:19:column:137">
+      <SourceMetaDataTypeId>sqlserver:type:decimal</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
+    </ValidationTargetColumnTypeExact>
+    <ValidationTargetColumnTypeExact Id="TransformScript:26:binding:validation:target:19:column:138:type-exact" ValidationTargetColumnLinkId="TransformScript:26:binding:validation:target:19:column:138">
+      <SourceMetaDataTypeId>sqlserver:type:decimal</SourceMetaDataTypeId>
+      <TargetMetaDataTypeId>sqlserver:type:decimal</TargetMetaDataTypeId>
     </ValidationTargetColumnTypeExact>
     <ValidationTargetColumnTypeExact Id="TransformScript:26:binding:validation:target:19:column:139:type-exact" ValidationTargetColumnLinkId="TransformScript:26:binding:validation:target:19:column:139">
       <SourceMetaDataTypeId>sqlserver:type:binary</SourceMetaDataTypeId>

@@ -1,11 +1,11 @@
 INSERT INTO [AdventureWorksBusinessVault].[dbo].[BHS_SalesPerson_SalesPersonProfile] ([HubHashKey], [SalesQuota], [Bonus], [CommissionPercent], [SalesYearToDate], [SalesLastYear], [HashDiff], [LoadTimestamp], [RecordSource], [AuditId])
 SELECT
     source.[HubHashKey],
-    source.[SalesQuota],
-    source.[Bonus],
-    source.[CommissionPct],
-    source.[SalesYTD],
-    source.[SalesLastYear],
+    CONVERT(decimal(19,4), source.[SalesQuota]) AS [SalesQuota],
+    CONVERT(decimal(19,4), source.[Bonus]) AS [Bonus],
+    CONVERT(decimal(19,4), source.[CommissionPct]) AS [CommissionPct],
+    CONVERT(decimal(19,4), source.[SalesYTD]) AS [SalesYTD],
+    CONVERT(decimal(19,4), source.[SalesLastYear]) AS [SalesLastYear],
     CONVERT(binary(32), HASHBYTES('SHA2_256', (CASE
     WHEN source.[SalesQuota] IS NULL THEN CONVERT(varbinary(max), 0x00)
     ELSE CONVERT(varbinary(max), 0x01) + CONVERT(binary(4), DATALENGTH(CONVERT(varbinary(max), source.[SalesQuota]))) + CONVERT(varbinary(max), source.[SalesQuota])

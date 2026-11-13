@@ -27,6 +27,7 @@ Metadata.code-workspace
 /Demos/**/_downloads/
 !/Demos/AdventureWorksBiStackDemo/Runs/
 !/Demos/AdventureWorksBiStackDemo/Runs/**
+/Demos/AdventureWorksBiStackDemo/Runs/_downloads/
 /Demos/AdventureWorksBiStackDemo/Runs/ops/RunArtifacts/
 /Demos/BusinessDataVaultCliIntegration/BusinessDataVaultCliIntegrationWorkspace/
 /Demos/BusinessDataVaultCliIntegration/CurrentMetaSqlWorkspace/

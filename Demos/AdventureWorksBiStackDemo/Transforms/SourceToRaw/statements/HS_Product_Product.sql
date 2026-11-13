@@ -8,10 +8,10 @@ FROM [AdventureWorksRawVault].[dbo].[HS_Product_Product] AS existing
 INSERT INTO [AdventureWorksRawVault].[dbo].[HS_Product_Product] ([HubHashKey], [Name], [ProductNumber], [MakeFlag], [FinishedGoodsFlag], [Color], [SafetyStockLevel], [ReorderPoint], [StandardCost], [ListPrice], [Size], [Weight], [DaysToManufacture], [ProductLine], [Class], [Style], [SellStartDate], [SellEndDate], [DiscontinuedDate], [rowguid], [ModifiedDate], [HashDiff], [LoadTimestamp], [RecordSource], [AuditId])
 SELECT
     CONVERT(binary(32), HASHBYTES('SHA2_256', CONVERT(binary(4), DATALENGTH(CONVERT(varbinary(max), source.[ProductID]))) + CONVERT(varbinary(max), source.[ProductID]))) AS HubHashKey,
-    source.[Name],
+    CONVERT(nvarchar(50), source.[Name]) AS [Name],
     source.[ProductNumber],
-    source.[MakeFlag],
-    source.[FinishedGoodsFlag],
+    CONVERT(bit, source.[MakeFlag]) AS [MakeFlag],
+    CONVERT(bit, source.[FinishedGoodsFlag]) AS [FinishedGoodsFlag],
     source.[Color],
     source.[SafetyStockLevel],
     source.[ReorderPoint],

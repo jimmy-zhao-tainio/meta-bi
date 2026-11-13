@@ -20,6 +20,42 @@ namespace MetaDataVault.Tests;
 public sealed class ConvertToMetaSqlTests
 {
     [Fact]
+    [Trait("Category", "Integration")]
+    public async Task ConvertAsync_PreservesNativeIntegerAndSmallMoneyFields()
+    {
+        var repoRoot = CliTestSupport.FindRepositoryRoot();
+        var root = Path.Combine(Path.GetTempPath(), "metadatavault-tests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            var model = MetaRawDataVaultModel.CreateEmpty();
+            var hub = new RawHub { Id = "product", Name = "Product" };
+            var satellite = new RawHubSatellite { Id = "details", Name = "Details", SatelliteKind = "standard", RawHub = hub };
+            var key = new Field { Id = "id", Name = "ProductID", DataTypeId = "sqlserver:type:int" };
+            var days = new Field { Id = "days", Name = "DaysToManufacture", DataTypeId = "sqlserver:type:int" };
+            var amount = new Field { Id = "amount", Name = "Amount", DataTypeId = "sqlserver:type:smallmoney" };
+            model.RawHubList.Add(hub);
+            model.RawHubSatelliteList.Add(satellite);
+            model.FieldList.AddRange([key, days, amount]);
+            model.RawHubKeyPartList.Add(new RawHubKeyPart { Id = "key", Name = key.Name, Field = key, RawHub = hub });
+            foreach (var field in new[] { days, amount })
+                model.RawHubSatelliteAttributeList.Add(new RawHubSatelliteAttribute { Id = field.Id, Name = field.Name, Field = field, RawHubSatellite = satellite });
+            var input = Path.Combine(root, "Raw");
+            TypedWorkspaceModelMapper.Create(model, input, "xml");
+            var generated = await Converter.ConvertAsync(input, GetImplementationWorkspacePath(repoRoot), "RawVault");
+            var output = Path.Combine(root, "Sql");
+            TypedWorkspaceModelMapper.Create(TypedWorkspaceModelMapper.FromInMemoryWorkspace(generated, MetaSqlModel.CreateEmpty), output, "xml");
+            var reloaded = TypedWorkspaceModelMapper.Load<MetaSqlModel>(output, searchUpward: false);
+            foreach (var field in new[] { key, days, amount })
+            {
+                var column = reloaded.TableColumnList.Single(item => item.Name == field.Name);
+                Assert.Equal(field.DataTypeId, column.MetaDataTypeId);
+                Assert.DoesNotContain(reloaded.TableColumnDataTypeDetailList, detail => detail.TableColumn.Id == column.Id && detail.Name == "Length");
+            }
+        }
+        finally { DeleteDirectoryIfExists(root); }
+    }
+
+    [Fact]
     public async Task RawProductConverter_ExecutesSanctionedWeave_ForCompleteSample()
     {
         var repoRoot = CliTestSupport.FindRepositoryRoot();

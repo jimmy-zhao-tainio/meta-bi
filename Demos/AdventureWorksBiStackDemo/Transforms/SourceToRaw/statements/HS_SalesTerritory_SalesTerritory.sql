@@ -8,7 +8,7 @@ FROM [AdventureWorksRawVault].[dbo].[HS_SalesTerritory_SalesTerritory] AS existi
 INSERT INTO [AdventureWorksRawVault].[dbo].[HS_SalesTerritory_SalesTerritory] ([HubHashKey], [Name], [Group], [SalesYTD], [SalesLastYear], [CostYTD], [CostLastYear], [rowguid], [ModifiedDate], [HashDiff], [LoadTimestamp], [RecordSource], [AuditId])
 SELECT
     CONVERT(binary(32), HASHBYTES('SHA2_256', CONVERT(binary(4), DATALENGTH(CONVERT(varbinary(max), source.[TerritoryID]))) + CONVERT(varbinary(max), source.[TerritoryID]))) AS HubHashKey,
-    source.[Name],
+    CONVERT(nvarchar(50), source.[Name]) AS [Name],
     source.[Group],
     source.[SalesYTD],
     source.[SalesLastYear],

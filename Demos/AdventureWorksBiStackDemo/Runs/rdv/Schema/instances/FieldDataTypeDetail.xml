@@ -361,10 +361,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Document_Document:field:ChangeNumber:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Document_Document:field:ChangeNumber">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Document_Document:field:Document:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Document_Document:field:Document">
       <Name>Length</Name>
       <Value>-1</Value>
@@ -493,29 +489,13 @@
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ErrorLog_ErrorLog:field:ErrorLine:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ErrorLog_ErrorLog:field:ErrorLine">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ErrorLog_ErrorLog:field:ErrorMessage:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ErrorLog_ErrorLog:field:ErrorMessage">
       <Name>Length</Name>
       <Value>4000</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ErrorLog_ErrorLog:field:ErrorNumber:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ErrorLog_ErrorLog:field:ErrorNumber">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ErrorLog_ErrorLog:field:ErrorProcedure:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ErrorLog_ErrorLog:field:ErrorProcedure">
       <Name>Length</Name>
       <Value>126</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ErrorLog_ErrorLog:field:ErrorSeverity:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ErrorLog_ErrorLog:field:ErrorSeverity">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ErrorLog_ErrorLog:field:ErrorState:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ErrorLog_ErrorLog:field:ErrorState">
-      <Name>Length</Name>
-      <Value>256</Value>
     </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ErrorLog_ErrorLog:field:HashDiff:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ErrorLog_ErrorLog:field:HashDiff">
       <Name>Length</Name>
@@ -576,14 +556,6 @@
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Location_Location:field:Availability:detail:Scale" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Location_Location:field:Availability">
       <Name>Scale</Name>
       <Value>2</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Location_Location:field:CostRate:detail:Precision" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Location_Location:field:CostRate">
-      <Name>Precision</Name>
-      <Value>18</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Location_Location:field:CostRate:detail:Scale" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Location_Location:field:CostRate">
-      <Name>Scale</Name>
-      <Value>4</Value>
     </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Location_Location:field:HashDiff:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Location_Location:field:HashDiff">
       <Name>Length</Name>
@@ -658,10 +630,6 @@
       <Value>7</Value>
     </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_PersonPhone_PersonPhone:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_PersonPhone_PersonPhone:field:RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Person_Person:field:EmailPromotion:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Person_Person:field:EmailPromotion">
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
@@ -953,10 +921,6 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductReview_ProductReview:field:Rating:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductReview_ProductReview:field:Rating">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductReview_ProductReview:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductReview_ProductReview:field:RecordSource">
       <Name>Length</Name>
       <Value>256</Value>
@@ -985,10 +949,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductVendor_ProductVendor:field:AverageLeadTime:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductVendor_ProductVendor:field:AverageLeadTime">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductVendor_ProductVendor:field:HashDiff:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductVendor_ProductVendor:field:HashDiff">
       <Name>Length</Name>
       <Value>32</Value>
@@ -1001,18 +961,6 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductVendor_ProductVendor:field:MaxOrderQty:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductVendor_ProductVendor:field:MaxOrderQty">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductVendor_ProductVendor:field:MinOrderQty:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductVendor_ProductVendor:field:MinOrderQty">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductVendor_ProductVendor:field:OnOrderQty:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductVendor_ProductVendor:field:OnOrderQty">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductVendor_ProductVendor:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductVendor_ProductVendor:field:RecordSource">
       <Name>Length</Name>
       <Value>256</Value>
@@ -1024,10 +972,6 @@
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product:field:Color:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product:field:Color">
       <Name>Length</Name>
       <Value>15</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product:field:DaysToManufacture:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product:field:DaysToManufacture">
-      <Name>Length</Name>
-      <Value>256</Value>
     </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product:field:HashDiff:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product:field:HashDiff">
       <Name>Length</Name>
@@ -1225,14 +1169,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesPerson_SalesPerson:field:CommissionPct:detail:Precision" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesPerson_SalesPerson:field:CommissionPct">
-      <Name>Precision</Name>
-      <Value>18</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesPerson_SalesPerson:field:CommissionPct:detail:Scale" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesPerson_SalesPerson:field:CommissionPct">
-      <Name>Scale</Name>
-      <Value>4</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesPerson_SalesPerson:field:HashDiff:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesPerson_SalesPerson:field:HashDiff">
       <Name>Length</Name>
       <Value>32</Value>
@@ -1292,14 +1228,6 @@
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTaxRate_SalesTaxRate:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTaxRate_SalesTaxRate:field:RecordSource">
       <Name>Length</Name>
       <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTaxRate_SalesTaxRate:field:TaxRate:detail:Precision" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTaxRate_SalesTaxRate:field:TaxRate">
-      <Name>Precision</Name>
-      <Value>18</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTaxRate_SalesTaxRate:field:TaxRate:detail:Scale" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTaxRate_SalesTaxRate:field:TaxRate">
-      <Name>Scale</Name>
-      <Value>4</Value>
     </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTerritoryHistory_SalesTerritoryHistory:field:HashDiff:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTerritoryHistory_SalesTerritoryHistory:field:HashDiff">
       <Name>Length</Name>
@@ -1421,10 +1349,6 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ShoppingCartItem_ShoppingCartItem:field:Quantity:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ShoppingCartItem_ShoppingCartItem:field:Quantity">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ShoppingCartItem_ShoppingCartItem:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ShoppingCartItem_ShoppingCartItem:field:RecordSource">
       <Name>Length</Name>
       <Value>256</Value>
@@ -1457,14 +1381,6 @@
       <Name>Length</Name>
       <Value>255</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SpecialOffer_SpecialOffer:field:DiscountPct:detail:Precision" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SpecialOffer_SpecialOffer:field:DiscountPct">
-      <Name>Precision</Name>
-      <Value>18</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SpecialOffer_SpecialOffer:field:DiscountPct:detail:Scale" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SpecialOffer_SpecialOffer:field:DiscountPct">
-      <Name>Scale</Name>
-      <Value>4</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SpecialOffer_SpecialOffer:field:HashDiff:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SpecialOffer_SpecialOffer:field:HashDiff">
       <Name>Length</Name>
       <Value>32</Value>
@@ -1476,14 +1392,6 @@
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SpecialOffer_SpecialOffer:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SpecialOffer_SpecialOffer:field:LoadTimestamp">
       <Name>Precision</Name>
       <Value>7</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SpecialOffer_SpecialOffer:field:MaxQty:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SpecialOffer_SpecialOffer:field:MaxQty">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SpecialOffer_SpecialOffer:field:MinQty:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SpecialOffer_SpecialOffer:field:MinQty">
-      <Name>Length</Name>
-      <Value>256</Value>
     </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SpecialOffer_SpecialOffer:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SpecialOffer_SpecialOffer:field:RecordSource">
       <Name>Length</Name>
@@ -1549,23 +1457,7 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistoryArchive_TransactionHistoryArchive:field:ProductID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistoryArchive_TransactionHistoryArchive:field:ProductID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistoryArchive_TransactionHistoryArchive:field:Quantity:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistoryArchive_TransactionHistoryArchive:field:Quantity">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistoryArchive_TransactionHistoryArchive:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistoryArchive_TransactionHistoryArchive:field:RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistoryArchive_TransactionHistoryArchive:field:ReferenceOrderID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistoryArchive_TransactionHistoryArchive:field:ReferenceOrderID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistoryArchive_TransactionHistoryArchive:field:ReferenceOrderLineID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistoryArchive_TransactionHistoryArchive:field:ReferenceOrderLineID">
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
@@ -1585,19 +1477,7 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistory_TransactionHistory:field:Quantity:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistory_TransactionHistory:field:Quantity">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistory_TransactionHistory:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistory_TransactionHistory:field:RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistory_TransactionHistory:field:ReferenceOrderID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistory_TransactionHistory:field:ReferenceOrderID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistory_TransactionHistory:field:ReferenceOrderLineID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistory_TransactionHistory:field:ReferenceOrderLineID">
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
@@ -1689,19 +1569,7 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_WorkOrder_WorkOrder:field:OrderQty:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_WorkOrder_WorkOrder:field:OrderQty">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_WorkOrder_WorkOrder:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_WorkOrder_WorkOrder:field:RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_WorkOrder_WorkOrder:field:StockedQty:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_WorkOrder_WorkOrder:field:StockedQty">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Address:field:AddressID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Address:field:AddressID">
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
@@ -1714,10 +1582,6 @@
       <Value>7</Value>
     </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Address:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Address:field:RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_AddressType:field:AddressTypeID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_AddressType:field:AddressTypeID">
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
@@ -1745,10 +1609,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BillOfMaterials:field:BillOfMaterialsID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BillOfMaterials:field:BillOfMaterialsID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BillOfMaterials:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BillOfMaterials:field:HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -1758,10 +1618,6 @@
       <Value>7</Value>
     </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BillOfMaterials:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BillOfMaterials:field:RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntity:field:BusinessEntityID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntity:field:BusinessEntityID">
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
@@ -1777,18 +1633,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityAddress:field:AddressID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityAddress:field:AddressID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityAddress:field:AddressTypeID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityAddress:field:AddressTypeID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityAddress:field:BusinessEntityID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityAddress:field:BusinessEntityID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityAddress:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityAddress:field:HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -1801,14 +1645,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityContact:field:BusinessEntityID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityContact:field:BusinessEntityID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityContact:field:ContactTypeID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityContact:field:ContactTypeID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityContact:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityContact:field:HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -1817,15 +1653,7 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityContact:field:PersonID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityContact:field:PersonID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityContact:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityContact:field:RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ContactType:field:ContactTypeID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ContactType:field:ContactTypeID">
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
@@ -1877,10 +1705,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CreditCard:field:CreditCardID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CreditCard:field:CreditCardID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CreditCard:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CreditCard:field:HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -1925,10 +1749,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CurrencyRate:field:CurrencyRateID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CurrencyRate:field:CurrencyRateID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CurrencyRate:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CurrencyRate:field:HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -1941,10 +1761,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer:field:CustomerID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer:field:CustomerID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer:field:HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -1954,10 +1770,6 @@
       <Value>7</Value>
     </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer:field:RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_DatabaseLog:field:DatabaseLogID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_DatabaseLog:field:DatabaseLogID">
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
@@ -1997,14 +1809,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmailAddress:field:BusinessEntityID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmailAddress:field:BusinessEntityID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmailAddress:field:EmailAddressID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmailAddress:field:EmailAddressID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmailAddress:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmailAddress:field:HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -2014,10 +1818,6 @@
       <Value>7</Value>
     </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmailAddress:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmailAddress:field:RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Employee:field:BusinessEntityID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Employee:field:BusinessEntityID">
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
@@ -2033,10 +1833,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeeDepartmentHistory:field:BusinessEntityID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeeDepartmentHistory:field:BusinessEntityID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeeDepartmentHistory:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeeDepartmentHistory:field:HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -2049,10 +1845,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeePayHistory:field:BusinessEntityID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeePayHistory:field:BusinessEntityID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeePayHistory:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeePayHistory:field:HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -2062,10 +1854,6 @@
       <Value>7</Value>
     </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeePayHistory:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeePayHistory:field:RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ErrorLog:field:ErrorLogID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ErrorLog:field:ErrorLogID">
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
@@ -2085,10 +1873,6 @@
       <Name>Length</Name>
       <Value>32</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Illustration:field:IllustrationID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Illustration:field:IllustrationID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Illustration:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Illustration:field:LoadTimestamp">
       <Name>Precision</Name>
       <Value>7</Value>
@@ -2100,10 +1884,6 @@
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_JobCandidate:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_JobCandidate:field:HashKey">
       <Name>Length</Name>
       <Value>32</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_JobCandidate:field:JobCandidateID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_JobCandidate:field:JobCandidateID">
-      <Name>Length</Name>
-      <Value>256</Value>
     </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_JobCandidate:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_JobCandidate:field:LoadTimestamp">
       <Name>Precision</Name>
@@ -2125,10 +1905,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Password:field:BusinessEntityID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Password:field:BusinessEntityID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Password:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Password:field:HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -2138,10 +1914,6 @@
       <Value>7</Value>
     </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Password:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Password:field:RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Person:field:BusinessEntityID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Person:field:BusinessEntityID">
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
@@ -2157,14 +1929,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonCreditCard:field:BusinessEntityID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonCreditCard:field:BusinessEntityID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonCreditCard:field:CreditCardID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonCreditCard:field:CreditCardID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonCreditCard:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonCreditCard:field:HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -2174,10 +1938,6 @@
       <Value>7</Value>
     </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonCreditCard:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonCreditCard:field:RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonPhone:field:BusinessEntityID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonPhone:field:BusinessEntityID">
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
@@ -2193,10 +1953,6 @@
       <Name>Length</Name>
       <Value>25</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonPhone:field:PhoneNumberTypeID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonPhone:field:PhoneNumberTypeID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonPhone:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonPhone:field:RecordSource">
       <Name>Length</Name>
       <Value>256</Value>
@@ -2208,10 +1964,6 @@
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PhoneNumberType:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PhoneNumberType:field:LoadTimestamp">
       <Name>Precision</Name>
       <Value>7</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PhoneNumberType:field:PhoneNumberTypeID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PhoneNumberType:field:PhoneNumberTypeID">
-      <Name>Length</Name>
-      <Value>256</Value>
     </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PhoneNumberType:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PhoneNumberType:field:RecordSource">
       <Name>Length</Name>
@@ -2225,10 +1977,6 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product:field:ProductID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product:field:ProductID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product:field:RecordSource">
       <Name>Length</Name>
       <Value>256</Value>
@@ -2240,10 +1988,6 @@
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCategory:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCategory:field:LoadTimestamp">
       <Name>Precision</Name>
       <Value>7</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCategory:field:ProductCategoryID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCategory:field:ProductCategoryID">
-      <Name>Length</Name>
-      <Value>256</Value>
     </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCategory:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCategory:field:RecordSource">
       <Name>Length</Name>
@@ -2257,10 +2001,6 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCostHistory:field:ProductID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCostHistory:field:ProductID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCostHistory:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCostHistory:field:RecordSource">
       <Name>Length</Name>
       <Value>256</Value>
@@ -2272,10 +2012,6 @@
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductDescription:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductDescription:field:LoadTimestamp">
       <Name>Precision</Name>
       <Value>7</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductDescription:field:ProductDescriptionID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductDescription:field:ProductDescriptionID">
-      <Name>Length</Name>
-      <Value>256</Value>
     </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductDescription:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductDescription:field:RecordSource">
       <Name>Length</Name>
@@ -2289,10 +2025,6 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductDocument:field:ProductID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductDocument:field:ProductID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductDocument:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductDocument:field:RecordSource">
       <Name>Length</Name>
       <Value>256</Value>
@@ -2304,10 +2036,6 @@
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductInventory:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductInventory:field:LoadTimestamp">
       <Name>Precision</Name>
       <Value>7</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductInventory:field:ProductID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductInventory:field:ProductID">
-      <Name>Length</Name>
-      <Value>256</Value>
     </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductInventory:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductInventory:field:RecordSource">
       <Name>Length</Name>
@@ -2321,10 +2049,6 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductListPriceHistory:field:ProductID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductListPriceHistory:field:ProductID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductListPriceHistory:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductListPriceHistory:field:RecordSource">
       <Name>Length</Name>
       <Value>256</Value>
@@ -2337,10 +2061,6 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModel:field:ProductModelID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModel:field:ProductModelID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModel:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModel:field:RecordSource">
       <Name>Length</Name>
       <Value>256</Value>
@@ -2349,17 +2069,9 @@
       <Name>Length</Name>
       <Value>32</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelIllustration:field:IllustrationID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelIllustration:field:IllustrationID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelIllustration:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelIllustration:field:LoadTimestamp">
       <Name>Precision</Name>
       <Value>7</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelIllustration:field:ProductModelID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelIllustration:field:ProductModelID">
-      <Name>Length</Name>
-      <Value>256</Value>
     </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelIllustration:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelIllustration:field:RecordSource">
       <Name>Length</Name>
@@ -2377,14 +2089,6 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelProductDescriptionCulture:field:ProductDescriptionID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelProductDescriptionCulture:field:ProductDescriptionID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelProductDescriptionCulture:field:ProductModelID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelProductDescriptionCulture:field:ProductModelID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelProductDescriptionCulture:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelProductDescriptionCulture:field:RecordSource">
       <Name>Length</Name>
       <Value>256</Value>
@@ -2396,10 +2100,6 @@
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductPhoto:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductPhoto:field:LoadTimestamp">
       <Name>Precision</Name>
       <Value>7</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductPhoto:field:ProductPhotoID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductPhoto:field:ProductPhotoID">
-      <Name>Length</Name>
-      <Value>256</Value>
     </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductPhoto:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductPhoto:field:RecordSource">
       <Name>Length</Name>
@@ -2413,14 +2113,6 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductProductPhoto:field:ProductID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductProductPhoto:field:ProductID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductProductPhoto:field:ProductPhotoID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductProductPhoto:field:ProductPhotoID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductProductPhoto:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductProductPhoto:field:RecordSource">
       <Name>Length</Name>
       <Value>256</Value>
@@ -2432,10 +2124,6 @@
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductReview:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductReview:field:LoadTimestamp">
       <Name>Precision</Name>
       <Value>7</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductReview:field:ProductReviewID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductReview:field:ProductReviewID">
-      <Name>Length</Name>
-      <Value>256</Value>
     </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductReview:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductReview:field:RecordSource">
       <Name>Length</Name>
@@ -2449,15 +2137,7 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductSubcategory:field:ProductSubcategoryID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductSubcategory:field:ProductSubcategoryID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductSubcategory:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductSubcategory:field:RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductVendor:field:BusinessEntityID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductVendor:field:BusinessEntityID">
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
@@ -2468,10 +2148,6 @@
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductVendor:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductVendor:field:LoadTimestamp">
       <Name>Precision</Name>
       <Value>7</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductVendor:field:ProductID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductVendor:field:ProductID">
-      <Name>Length</Name>
-      <Value>256</Value>
     </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductVendor:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductVendor:field:RecordSource">
       <Name>Length</Name>
@@ -2485,14 +2161,6 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderDetail:field:PurchaseOrderDetailID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderDetail:field:PurchaseOrderDetailID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderDetail:field:PurchaseOrderID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderDetail:field:PurchaseOrderID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderDetail:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderDetail:field:RecordSource">
       <Name>Length</Name>
       <Value>256</Value>
@@ -2504,10 +2172,6 @@
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderHeader:field:LoadTimestamp:detail:Precision" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderHeader:field:LoadTimestamp">
       <Name>Precision</Name>
       <Value>7</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderHeader:field:PurchaseOrderID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderHeader:field:PurchaseOrderID">
-      <Name>Length</Name>
-      <Value>256</Value>
     </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderHeader:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderHeader:field:RecordSource">
       <Name>Length</Name>
@@ -2525,14 +2189,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderDetail:field:SalesOrderDetailID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderDetail:field:SalesOrderDetailID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderDetail:field:SalesOrderID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderDetail:field:SalesOrderID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader:field:HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -2542,10 +2198,6 @@
       <Value>7</Value>
     </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader:field:RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader:field:SalesOrderID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader:field:SalesOrderID">
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
@@ -2561,18 +2213,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeaderSalesReason:field:SalesOrderID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeaderSalesReason:field:SalesOrderID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeaderSalesReason:field:SalesReasonID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeaderSalesReason:field:SalesReasonID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson:field:BusinessEntityID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson:field:BusinessEntityID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson:field:HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -2582,10 +2222,6 @@
       <Value>7</Value>
     </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson:field:RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPersonQuotaHistory:field:BusinessEntityID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPersonQuotaHistory:field:BusinessEntityID">
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
@@ -2613,10 +2249,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesReason:field:SalesReasonID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesReason:field:SalesReasonID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTaxRate:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTaxRate:field:HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -2626,10 +2258,6 @@
       <Value>7</Value>
     </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTaxRate:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTaxRate:field:RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTaxRate:field:SalesTaxRateID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTaxRate:field:SalesTaxRateID">
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
@@ -2645,14 +2273,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory:field:TerritoryID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory:field:TerritoryID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritoryHistory:field:BusinessEntityID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritoryHistory:field:BusinessEntityID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritoryHistory:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritoryHistory:field:HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -2662,10 +2282,6 @@
       <Value>7</Value>
     </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritoryHistory:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritoryHistory:field:RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritoryHistory:field:TerritoryID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritoryHistory:field:TerritoryID">
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
@@ -2705,10 +2321,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ShipMethod:field:ShipMethodID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ShipMethod:field:ShipMethodID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ShoppingCartItem:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ShoppingCartItem:field:HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -2718,10 +2330,6 @@
       <Value>7</Value>
     </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ShoppingCartItem:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ShoppingCartItem:field:RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ShoppingCartItem:field:ShoppingCartItemID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ShoppingCartItem:field:ShoppingCartItemID">
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
@@ -2737,10 +2345,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOffer:field:SpecialOfferID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOffer:field:SpecialOfferID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct:field:HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -2749,15 +2353,7 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct:field:ProductID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct:field:ProductID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct:field:RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct:field:SpecialOfferID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct:field:SpecialOfferID">
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
@@ -2770,14 +2366,6 @@
       <Value>7</Value>
     </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_StateProvince:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_StateProvince:field:RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_StateProvince:field:StateProvinceID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_StateProvince:field:StateProvinceID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Store:field:BusinessEntityID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Store:field:BusinessEntityID">
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
@@ -2805,10 +2393,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_TransactionHistory:field:TransactionID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_TransactionHistory:field:TransactionID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_TransactionHistoryArchive:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_TransactionHistoryArchive:field:HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -2818,10 +2402,6 @@
       <Value>7</Value>
     </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_TransactionHistoryArchive:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_TransactionHistoryArchive:field:RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_TransactionHistoryArchive:field:TransactionID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_TransactionHistoryArchive:field:TransactionID">
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
@@ -2840,10 +2420,6 @@
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_UnitMeasure:field:UnitMeasureCode:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_UnitMeasure:field:UnitMeasureCode">
       <Name>Length</Name>
       <Value>3</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Vendor:field:BusinessEntityID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Vendor:field:BusinessEntityID">
-      <Name>Length</Name>
-      <Value>256</Value>
     </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Vendor:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Vendor:field:HashKey">
       <Name>Length</Name>
@@ -2869,10 +2445,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrder:field:WorkOrderID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrder:field:WorkOrderID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrderRouting:field:HashKey:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrderRouting:field:HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -2881,15 +2453,7 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrderRouting:field:ProductID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrderRouting:field:ProductID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
     <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrderRouting:field:RecordSource:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrderRouting:field:RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </FieldDataTypeDetail>
-    <FieldDataTypeDetail Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrderRouting:field:WorkOrderID:detail:Length" FieldId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrderRouting:field:WorkOrderID">
       <Name>Length</Name>
       <Value>256</Value>
     </FieldDataTypeDetail>

@@ -6,10 +6,10 @@ SELECT
     source.[ShipDate],
     CONVERT(int, source.[Status]),
     source.[OnlineOrderFlag],
-    source.[SubTotal],
-    source.[TaxAmt],
-    source.[Freight],
-    source.[TotalDue],
+    CONVERT(decimal(19,4), source.[SubTotal]) AS [SubTotal],
+    CONVERT(decimal(19,4), source.[TaxAmt]) AS [TaxAmt],
+    CONVERT(decimal(19,4), source.[Freight]) AS [Freight],
+    CONVERT(decimal(19,4), source.[TotalDue]) AS [TotalDue],
     CONVERT(binary(32), HASHBYTES('SHA2_256', (CASE
     WHEN source.[OrderDate] IS NULL THEN CONVERT(varbinary(max), 0x00)
     ELSE CONVERT(varbinary(max), 0x01) + CONVERT(binary(4), DATALENGTH(CONVERT(varbinary(max), source.[OrderDate]))) + CONVERT(varbinary(max), source.[OrderDate])

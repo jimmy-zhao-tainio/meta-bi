@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <CSharpWorkspaceList>
+    <CSharpWorkspace Id="csharp-workspace:data-type" WorkspaceId="workspace:data-type">
+      <Path>..\..\MetaDataType\Workspace</Path>
+    </CSharpWorkspace>
+  </CSharpWorkspaceList>
+</MetaMesh>

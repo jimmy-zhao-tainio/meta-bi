@@ -957,7 +957,25 @@
     <ParameterizedDataTypeReference Id="ParameterizedDataTypeReference:958" DataTypeReferenceId="DataTypeReference:958" />
     <ParameterizedDataTypeReference Id="ParameterizedDataTypeReference:959" DataTypeReferenceId="DataTypeReference:959" />
     <ParameterizedDataTypeReference Id="ParameterizedDataTypeReference:96" DataTypeReferenceId="DataTypeReference:96" />
+    <ParameterizedDataTypeReference Id="ParameterizedDataTypeReference:960" DataTypeReferenceId="DataTypeReference:960" />
+    <ParameterizedDataTypeReference Id="ParameterizedDataTypeReference:961" DataTypeReferenceId="DataTypeReference:961" />
+    <ParameterizedDataTypeReference Id="ParameterizedDataTypeReference:962" DataTypeReferenceId="DataTypeReference:962" />
+    <ParameterizedDataTypeReference Id="ParameterizedDataTypeReference:963" DataTypeReferenceId="DataTypeReference:963" />
+    <ParameterizedDataTypeReference Id="ParameterizedDataTypeReference:964" DataTypeReferenceId="DataTypeReference:964" />
+    <ParameterizedDataTypeReference Id="ParameterizedDataTypeReference:965" DataTypeReferenceId="DataTypeReference:965" />
+    <ParameterizedDataTypeReference Id="ParameterizedDataTypeReference:966" DataTypeReferenceId="DataTypeReference:966" />
+    <ParameterizedDataTypeReference Id="ParameterizedDataTypeReference:967" DataTypeReferenceId="DataTypeReference:967" />
+    <ParameterizedDataTypeReference Id="ParameterizedDataTypeReference:968" DataTypeReferenceId="DataTypeReference:968" />
+    <ParameterizedDataTypeReference Id="ParameterizedDataTypeReference:969" DataTypeReferenceId="DataTypeReference:969" />
     <ParameterizedDataTypeReference Id="ParameterizedDataTypeReference:97" DataTypeReferenceId="DataTypeReference:97" />
+    <ParameterizedDataTypeReference Id="ParameterizedDataTypeReference:970" DataTypeReferenceId="DataTypeReference:970" />
+    <ParameterizedDataTypeReference Id="ParameterizedDataTypeReference:971" DataTypeReferenceId="DataTypeReference:971" />
+    <ParameterizedDataTypeReference Id="ParameterizedDataTypeReference:972" DataTypeReferenceId="DataTypeReference:972" />
+    <ParameterizedDataTypeReference Id="ParameterizedDataTypeReference:973" DataTypeReferenceId="DataTypeReference:973" />
+    <ParameterizedDataTypeReference Id="ParameterizedDataTypeReference:974" DataTypeReferenceId="DataTypeReference:974" />
+    <ParameterizedDataTypeReference Id="ParameterizedDataTypeReference:975" DataTypeReferenceId="DataTypeReference:975" />
+    <ParameterizedDataTypeReference Id="ParameterizedDataTypeReference:976" DataTypeReferenceId="DataTypeReference:976" />
+    <ParameterizedDataTypeReference Id="ParameterizedDataTypeReference:977" DataTypeReferenceId="DataTypeReference:977" />
     <ParameterizedDataTypeReference Id="ParameterizedDataTypeReference:98" DataTypeReferenceId="DataTypeReference:98" />
     <ParameterizedDataTypeReference Id="ParameterizedDataTypeReference:99" DataTypeReferenceId="DataTypeReference:99" />
   </ParameterizedDataTypeReferenceList>

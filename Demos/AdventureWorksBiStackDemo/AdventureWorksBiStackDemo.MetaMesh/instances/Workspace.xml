@@ -46,6 +46,11 @@
       <ModelName>MetaDataQuality</ModelName>
       <Name>data-quality</Name>
     </Workspace>
+    <Workspace Id="workspace:data-type" MeshId="mesh:default">
+      <Description>SQL Server type catalog selected for Binding and execution.</Description>
+      <ModelName>MetaDataType</ModelName>
+      <Name>data-type</Name>
+    </Workspace>
     <Workspace Id="workspace:data-type-conversion" MeshId="mesh:default">
       <Description>Sanctioned cross-platform data type conversion policy.</Description>
       <ModelName>MetaDataTypeConversion</ModelName>

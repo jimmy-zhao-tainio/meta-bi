@@ -8,7 +8,7 @@ FROM [AdventureWorksRawVault].[dbo].[HS_CountryRegion_CountryRegion] AS existing
 INSERT INTO [AdventureWorksRawVault].[dbo].[HS_CountryRegion_CountryRegion] ([HubHashKey], [Name], [ModifiedDate], [HashDiff], [LoadTimestamp], [RecordSource], [AuditId])
 SELECT
     CONVERT(binary(32), HASHBYTES('SHA2_256', CONVERT(binary(4), DATALENGTH(CONVERT(varbinary(max), source.[CountryRegionCode]))) + CONVERT(varbinary(max), source.[CountryRegionCode]))) AS HubHashKey,
-    source.[Name],
+    CONVERT(nvarchar(50), source.[Name]) AS [Name],
     source.[ModifiedDate],
     CONVERT(binary(32), HASHBYTES('SHA2_256', (CASE
     WHEN source.[Name] IS NULL THEN CONVERT(varbinary(max), 0x00)

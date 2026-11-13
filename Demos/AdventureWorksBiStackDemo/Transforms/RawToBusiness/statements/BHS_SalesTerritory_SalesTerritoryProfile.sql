@@ -3,10 +3,10 @@ SELECT
     source.[HubHashKey],
     source.[Name],
     source.[Group],
-    source.[SalesYTD],
-    source.[SalesLastYear],
-    source.[CostYTD],
-    source.[CostLastYear],
+    CONVERT(decimal(19,4), source.[SalesYTD]) AS [SalesYTD],
+    CONVERT(decimal(19,4), source.[SalesLastYear]) AS [SalesLastYear],
+    CONVERT(decimal(19,4), source.[CostYTD]) AS [CostYTD],
+    CONVERT(decimal(19,4), source.[CostLastYear]) AS [CostLastYear],
     CONVERT(binary(32), HASHBYTES('SHA2_256', (CASE
     WHEN source.[Name] IS NULL THEN CONVERT(varbinary(max), 0x00)
     ELSE CONVERT(varbinary(max), 0x01) + CONVERT(binary(4), DATALENGTH(CONVERT(varbinary(max), source.[Name]))) + CONVERT(varbinary(max), source.[Name])

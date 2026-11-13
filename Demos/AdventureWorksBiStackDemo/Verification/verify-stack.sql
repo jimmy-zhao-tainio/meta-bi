@@ -15,6 +15,45 @@ IF DB_ID(N'AdventureWorksAnalytics') IS NULL
 IF DB_ID(N'AdventureWorksMetaPipeline') IS NULL
     THROW 51000, N'AdventureWorksMetaPipeline is not available.', 1;
 
+IF
+(
+    SELECT COUNT_BIG(*)
+    FROM AdventureWorksRawVault.sys.columns AS columnContract
+    INNER JOIN AdventureWorksRawVault.sys.tables AS tableContract
+        ON tableContract.object_id = columnContract.object_id
+    INNER JOIN AdventureWorksRawVault.sys.schemas AS schemaContract
+        ON schemaContract.schema_id = tableContract.schema_id
+    INNER JOIN AdventureWorksRawVault.sys.types AS typeContract
+        ON typeContract.user_type_id = columnContract.user_type_id
+    WHERE schemaContract.name = N'dbo'
+      AND typeContract.name = N'int'
+      AND typeContract.is_user_defined = 0
+      AND ((tableContract.name = N'H_Product' AND columnContract.name = N'ProductID')
+        OR (tableContract.name = N'HS_Product_Product' AND columnContract.name = N'DaysToManufacture'))
+) <> 2
+    THROW 51000, N'Raw ProductID and DaysToManufacture must retain native SQL Server int types.', 1;
+
+IF EXISTS
+(
+    SELECT 1
+    FROM AdventureWorks2022.Production.Product AS sourceProduct
+    LEFT JOIN AdventureWorksRawVault.dbo.H_Product AS rawProduct
+        ON rawProduct.ProductID = sourceProduct.ProductID
+    OUTER APPLY
+    (
+        SELECT TOP (1) Name, DaysToManufacture
+        FROM AdventureWorksRawVault.dbo.HS_Product_Product AS history
+        WHERE history.HubHashKey = rawProduct.HashKey
+        ORDER BY history.LoadTimestamp DESC, history.AuditId DESC
+    ) AS currentProduct
+    WHERE rawProduct.HashKey IS NULL
+       OR currentProduct.DaysToManufacture IS NULL
+       OR currentProduct.DaysToManufacture <> sourceProduct.DaysToManufacture
+       OR currentProduct.Name IS NULL
+       OR CONVERT(varbinary(max), currentProduct.Name) <> CONVERT(varbinary(max), sourceProduct.Name)
+)
+    THROW 51000, N'Raw product values or exact Unicode names differ from the source.', 1;
+
 DECLARE @SourceSalesOrderRows bigint =
 (
     SELECT COUNT_BIG(*)
@@ -126,22 +165,27 @@ DECLARE @WarehouseQuotaAmount decimal(38, 4) =
 IF @SourceQuotaAmount <> @WarehouseQuotaAmount
     THROW 51000, N'Warehouse quota amount does not reconcile to the source.', 1;
 
+-- Execute the complete deployed review once. Findings are wanted review
+-- evidence; SQL errors still fail this batch and the owning CLI operation.
+SELECT CandidateId, CandidateKind, ResultRowCount, RowsReturned
+INTO #DataQualityReview
+FROM AdventureWorksAnalytics.dq.v_DataQualityReview;
+
 DECLARE @DataQualityChecks bigint =
 (
     SELECT COUNT_BIG(*)
-    FROM AdventureWorksAnalytics.dq.v_DataQualityReview
+    FROM #DataQualityReview
 );
 
 IF @DataQualityChecks <> 167
     THROW 51000, N'The deployed Data Quality review does not contain the 167 promoted checks.', 1;
 
-IF EXISTS
+DECLARE @DataQualityChecksWithFindings bigint =
 (
-    SELECT 1
-    FROM AdventureWorksAnalytics.dq.v_DataQualityReview
+    SELECT COUNT_BIG(*)
+    FROM #DataQualityReview
     WHERE COALESCE(ResultRowCount, RowsReturned, 0) <> 0
-)
-    THROW 51000, N'Data Quality checks returned findings.', 1;
+);
 
 IF NOT EXISTS
 (
@@ -229,4 +273,16 @@ SELECT
     @WarehouseTotalDue AS TotalDue,
     @WarehouseLineSales AS LineSales,
     @WarehouseQuotaAmount AS QuotaAmount,
-    @DataQualityChecks AS DataQualityChecks;
+    @DataQualityChecks AS DataQualityChecks,
+    @DataQualityChecksWithFindings AS DataQualityChecksWithFindings;
+
+SELECT
+    CandidateKind,
+    COUNT_BIG(*) AS Checks,
+    SUM(CASE WHEN COALESCE(ResultRowCount, RowsReturned, 0) <> 0 THEN 1 ELSE 0 END) AS ChecksWithFindings,
+    SUM(COALESCE(ResultRowCount, RowsReturned, 0)) AS FindingGroups
+FROM #DataQualityReview
+GROUP BY CandidateKind
+ORDER BY CandidateKind;
+
+DROP TABLE #DataQualityReview;

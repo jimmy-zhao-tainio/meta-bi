@@ -361,10 +361,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_Document_Document.ChangeNumber.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_Document_Document.ChangeNumber">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_Document_Document.Document.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_Document_Document.Document">
       <Name>Length</Name>
       <Value>-1</Value>
@@ -493,29 +489,13 @@
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_ErrorLog_ErrorLog.ErrorLine.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_ErrorLog_ErrorLog.ErrorLine">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_ErrorLog_ErrorLog.ErrorMessage.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_ErrorLog_ErrorLog.ErrorMessage">
       <Name>Length</Name>
       <Value>4000</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_ErrorLog_ErrorLog.ErrorNumber.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_ErrorLog_ErrorLog.ErrorNumber">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_ErrorLog_ErrorLog.ErrorProcedure.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_ErrorLog_ErrorLog.ErrorProcedure">
       <Name>Length</Name>
       <Value>126</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_ErrorLog_ErrorLog.ErrorSeverity.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_ErrorLog_ErrorLog.ErrorSeverity">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_ErrorLog_ErrorLog.ErrorState.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_ErrorLog_ErrorLog.ErrorState">
-      <Name>Length</Name>
-      <Value>256</Value>
     </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_ErrorLog_ErrorLog.HashDiff.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_ErrorLog_ErrorLog.HashDiff">
       <Name>Length</Name>
@@ -576,14 +556,6 @@
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_Location_Location.Availability.detail.Scale" TableColumnId="AdventureWorksRawVault.dbo.HS_Location_Location.Availability">
       <Name>Scale</Name>
       <Value>2</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_Location_Location.CostRate.detail.Precision" TableColumnId="AdventureWorksRawVault.dbo.HS_Location_Location.CostRate">
-      <Name>Precision</Name>
-      <Value>18</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_Location_Location.CostRate.detail.Scale" TableColumnId="AdventureWorksRawVault.dbo.HS_Location_Location.CostRate">
-      <Name>Scale</Name>
-      <Value>4</Value>
     </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_Location_Location.HashDiff.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_Location_Location.HashDiff">
       <Name>Length</Name>
@@ -658,10 +630,6 @@
       <Value>7</Value>
     </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_PersonPhone_PersonPhone.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_PersonPhone_PersonPhone.RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_Person_Person.EmailPromotion.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_Person_Person.EmailPromotion">
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
@@ -953,10 +921,6 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_ProductReview_ProductReview.Rating.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_ProductReview_ProductReview.Rating">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_ProductReview_ProductReview.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_ProductReview_ProductReview.RecordSource">
       <Name>Length</Name>
       <Value>256</Value>
@@ -985,10 +949,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_ProductVendor_ProductVendor.AverageLeadTime.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_ProductVendor_ProductVendor.AverageLeadTime">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_ProductVendor_ProductVendor.HashDiff.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_ProductVendor_ProductVendor.HashDiff">
       <Name>Length</Name>
       <Value>32</Value>
@@ -1001,18 +961,6 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_ProductVendor_ProductVendor.MaxOrderQty.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_ProductVendor_ProductVendor.MaxOrderQty">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_ProductVendor_ProductVendor.MinOrderQty.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_ProductVendor_ProductVendor.MinOrderQty">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_ProductVendor_ProductVendor.OnOrderQty.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_ProductVendor_ProductVendor.OnOrderQty">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_ProductVendor_ProductVendor.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_ProductVendor_ProductVendor.RecordSource">
       <Name>Length</Name>
       <Value>256</Value>
@@ -1024,10 +972,6 @@
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_Product_Product.Color.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_Product_Product.Color">
       <Name>Length</Name>
       <Value>15</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_Product_Product.DaysToManufacture.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_Product_Product.DaysToManufacture">
-      <Name>Length</Name>
-      <Value>256</Value>
     </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_Product_Product.HashDiff.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_Product_Product.HashDiff">
       <Name>Length</Name>
@@ -1225,14 +1169,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_SalesPerson_SalesPerson.CommissionPct.detail.Precision" TableColumnId="AdventureWorksRawVault.dbo.HS_SalesPerson_SalesPerson.CommissionPct">
-      <Name>Precision</Name>
-      <Value>18</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_SalesPerson_SalesPerson.CommissionPct.detail.Scale" TableColumnId="AdventureWorksRawVault.dbo.HS_SalesPerson_SalesPerson.CommissionPct">
-      <Name>Scale</Name>
-      <Value>4</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_SalesPerson_SalesPerson.HashDiff.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_SalesPerson_SalesPerson.HashDiff">
       <Name>Length</Name>
       <Value>32</Value>
@@ -1292,14 +1228,6 @@
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_SalesTaxRate_SalesTaxRate.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_SalesTaxRate_SalesTaxRate.RecordSource">
       <Name>Length</Name>
       <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_SalesTaxRate_SalesTaxRate.TaxRate.detail.Precision" TableColumnId="AdventureWorksRawVault.dbo.HS_SalesTaxRate_SalesTaxRate.TaxRate">
-      <Name>Precision</Name>
-      <Value>18</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_SalesTaxRate_SalesTaxRate.TaxRate.detail.Scale" TableColumnId="AdventureWorksRawVault.dbo.HS_SalesTaxRate_SalesTaxRate.TaxRate">
-      <Name>Scale</Name>
-      <Value>4</Value>
     </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_SalesTerritoryHistory_SalesTerritoryHistory.HashDiff.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_SalesTerritoryHistory_SalesTerritoryHistory.HashDiff">
       <Name>Length</Name>
@@ -1421,10 +1349,6 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_ShoppingCartItem_ShoppingCartItem.Quantity.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_ShoppingCartItem_ShoppingCartItem.Quantity">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_ShoppingCartItem_ShoppingCartItem.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_ShoppingCartItem_ShoppingCartItem.RecordSource">
       <Name>Length</Name>
       <Value>256</Value>
@@ -1457,14 +1381,6 @@
       <Name>Length</Name>
       <Value>255</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_SpecialOffer_SpecialOffer.DiscountPct.detail.Precision" TableColumnId="AdventureWorksRawVault.dbo.HS_SpecialOffer_SpecialOffer.DiscountPct">
-      <Name>Precision</Name>
-      <Value>18</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_SpecialOffer_SpecialOffer.DiscountPct.detail.Scale" TableColumnId="AdventureWorksRawVault.dbo.HS_SpecialOffer_SpecialOffer.DiscountPct">
-      <Name>Scale</Name>
-      <Value>4</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_SpecialOffer_SpecialOffer.HashDiff.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_SpecialOffer_SpecialOffer.HashDiff">
       <Name>Length</Name>
       <Value>32</Value>
@@ -1476,14 +1392,6 @@
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_SpecialOffer_SpecialOffer.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksRawVault.dbo.HS_SpecialOffer_SpecialOffer.LoadTimestamp">
       <Name>Precision</Name>
       <Value>7</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_SpecialOffer_SpecialOffer.MaxQty.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_SpecialOffer_SpecialOffer.MaxQty">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_SpecialOffer_SpecialOffer.MinQty.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_SpecialOffer_SpecialOffer.MinQty">
-      <Name>Length</Name>
-      <Value>256</Value>
     </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_SpecialOffer_SpecialOffer.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_SpecialOffer_SpecialOffer.RecordSource">
       <Name>Length</Name>
@@ -1549,23 +1457,7 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_TransactionHistoryArchive_TransactionHistoryArchive.ProductID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_TransactionHistoryArchive_TransactionHistoryArchive.ProductID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_TransactionHistoryArchive_TransactionHistoryArchive.Quantity.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_TransactionHistoryArchive_TransactionHistoryArchive.Quantity">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_TransactionHistoryArchive_TransactionHistoryArchive.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_TransactionHistoryArchive_TransactionHistoryArchive.RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_TransactionHistoryArchive_TransactionHistoryArchive.ReferenceOrderID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_TransactionHistoryArchive_TransactionHistoryArchive.ReferenceOrderID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_TransactionHistoryArchive_TransactionHistoryArchive.ReferenceOrderLineID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_TransactionHistoryArchive_TransactionHistoryArchive.ReferenceOrderLineID">
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
@@ -1585,19 +1477,7 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_TransactionHistory_TransactionHistory.Quantity.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_TransactionHistory_TransactionHistory.Quantity">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_TransactionHistory_TransactionHistory.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_TransactionHistory_TransactionHistory.RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_TransactionHistory_TransactionHistory.ReferenceOrderID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_TransactionHistory_TransactionHistory.ReferenceOrderID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_TransactionHistory_TransactionHistory.ReferenceOrderLineID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_TransactionHistory_TransactionHistory.ReferenceOrderLineID">
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
@@ -1689,19 +1569,7 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_WorkOrder_WorkOrder.OrderQty.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_WorkOrder_WorkOrder.OrderQty">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_WorkOrder_WorkOrder.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_WorkOrder_WorkOrder.RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.HS_WorkOrder_WorkOrder.StockedQty.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.HS_WorkOrder_WorkOrder.StockedQty">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_Address.AddressID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_Address.AddressID">
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
@@ -1714,10 +1582,6 @@
       <Value>7</Value>
     </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_Address.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_Address.RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_AddressType.AddressTypeID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_AddressType.AddressTypeID">
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
@@ -1745,10 +1609,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_BillOfMaterials.BillOfMaterialsID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_BillOfMaterials.BillOfMaterialsID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_BillOfMaterials.HashKey.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_BillOfMaterials.HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -1758,10 +1618,6 @@
       <Value>7</Value>
     </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_BillOfMaterials.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_BillOfMaterials.RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_BusinessEntity.BusinessEntityID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_BusinessEntity.BusinessEntityID">
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
@@ -1777,18 +1633,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_BusinessEntityAddress.AddressID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_BusinessEntityAddress.AddressID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_BusinessEntityAddress.AddressTypeID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_BusinessEntityAddress.AddressTypeID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_BusinessEntityAddress.BusinessEntityID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_BusinessEntityAddress.BusinessEntityID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_BusinessEntityAddress.HashKey.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_BusinessEntityAddress.HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -1801,14 +1645,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_BusinessEntityContact.BusinessEntityID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_BusinessEntityContact.BusinessEntityID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_BusinessEntityContact.ContactTypeID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_BusinessEntityContact.ContactTypeID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_BusinessEntityContact.HashKey.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_BusinessEntityContact.HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -1817,15 +1653,7 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_BusinessEntityContact.PersonID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_BusinessEntityContact.PersonID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_BusinessEntityContact.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_BusinessEntityContact.RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ContactType.ContactTypeID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ContactType.ContactTypeID">
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
@@ -1877,10 +1705,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_CreditCard.CreditCardID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_CreditCard.CreditCardID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_CreditCard.HashKey.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_CreditCard.HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -1925,10 +1749,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_CurrencyRate.CurrencyRateID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_CurrencyRate.CurrencyRateID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_CurrencyRate.HashKey.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_CurrencyRate.HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -1941,10 +1761,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_Customer.CustomerID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_Customer.CustomerID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_Customer.HashKey.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_Customer.HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -1954,10 +1770,6 @@
       <Value>7</Value>
     </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_Customer.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_Customer.RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_DatabaseLog.DatabaseLogID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_DatabaseLog.DatabaseLogID">
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
@@ -1997,14 +1809,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_EmailAddress.BusinessEntityID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_EmailAddress.BusinessEntityID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_EmailAddress.EmailAddressID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_EmailAddress.EmailAddressID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_EmailAddress.HashKey.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_EmailAddress.HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -2014,10 +1818,6 @@
       <Value>7</Value>
     </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_EmailAddress.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_EmailAddress.RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_Employee.BusinessEntityID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_Employee.BusinessEntityID">
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
@@ -2033,10 +1833,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_EmployeeDepartmentHistory.BusinessEntityID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_EmployeeDepartmentHistory.BusinessEntityID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_EmployeeDepartmentHistory.HashKey.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_EmployeeDepartmentHistory.HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -2049,10 +1845,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_EmployeePayHistory.BusinessEntityID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_EmployeePayHistory.BusinessEntityID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_EmployeePayHistory.HashKey.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_EmployeePayHistory.HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -2062,10 +1854,6 @@
       <Value>7</Value>
     </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_EmployeePayHistory.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_EmployeePayHistory.RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ErrorLog.ErrorLogID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ErrorLog.ErrorLogID">
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
@@ -2085,10 +1873,6 @@
       <Name>Length</Name>
       <Value>32</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_Illustration.IllustrationID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_Illustration.IllustrationID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_Illustration.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksRawVault.dbo.H_Illustration.LoadTimestamp">
       <Name>Precision</Name>
       <Value>7</Value>
@@ -2100,10 +1884,6 @@
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_JobCandidate.HashKey.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_JobCandidate.HashKey">
       <Name>Length</Name>
       <Value>32</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_JobCandidate.JobCandidateID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_JobCandidate.JobCandidateID">
-      <Name>Length</Name>
-      <Value>256</Value>
     </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_JobCandidate.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksRawVault.dbo.H_JobCandidate.LoadTimestamp">
       <Name>Precision</Name>
@@ -2125,10 +1905,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_Password.BusinessEntityID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_Password.BusinessEntityID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_Password.HashKey.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_Password.HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -2138,10 +1914,6 @@
       <Value>7</Value>
     </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_Password.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_Password.RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_Person.BusinessEntityID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_Person.BusinessEntityID">
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
@@ -2157,14 +1929,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_PersonCreditCard.BusinessEntityID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_PersonCreditCard.BusinessEntityID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_PersonCreditCard.CreditCardID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_PersonCreditCard.CreditCardID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_PersonCreditCard.HashKey.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_PersonCreditCard.HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -2174,10 +1938,6 @@
       <Value>7</Value>
     </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_PersonCreditCard.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_PersonCreditCard.RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_PersonPhone.BusinessEntityID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_PersonPhone.BusinessEntityID">
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
@@ -2193,10 +1953,6 @@
       <Name>Length</Name>
       <Value>25</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_PersonPhone.PhoneNumberTypeID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_PersonPhone.PhoneNumberTypeID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_PersonPhone.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_PersonPhone.RecordSource">
       <Name>Length</Name>
       <Value>256</Value>
@@ -2208,10 +1964,6 @@
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_PhoneNumberType.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksRawVault.dbo.H_PhoneNumberType.LoadTimestamp">
       <Name>Precision</Name>
       <Value>7</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_PhoneNumberType.PhoneNumberTypeID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_PhoneNumberType.PhoneNumberTypeID">
-      <Name>Length</Name>
-      <Value>256</Value>
     </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_PhoneNumberType.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_PhoneNumberType.RecordSource">
       <Name>Length</Name>
@@ -2225,10 +1977,6 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_Product.ProductID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_Product.ProductID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_Product.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_Product.RecordSource">
       <Name>Length</Name>
       <Value>256</Value>
@@ -2240,10 +1988,6 @@
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductCategory.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksRawVault.dbo.H_ProductCategory.LoadTimestamp">
       <Name>Precision</Name>
       <Value>7</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductCategory.ProductCategoryID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ProductCategory.ProductCategoryID">
-      <Name>Length</Name>
-      <Value>256</Value>
     </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductCategory.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ProductCategory.RecordSource">
       <Name>Length</Name>
@@ -2257,10 +2001,6 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductCostHistory.ProductID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ProductCostHistory.ProductID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductCostHistory.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ProductCostHistory.RecordSource">
       <Name>Length</Name>
       <Value>256</Value>
@@ -2272,10 +2012,6 @@
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductDescription.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksRawVault.dbo.H_ProductDescription.LoadTimestamp">
       <Name>Precision</Name>
       <Value>7</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductDescription.ProductDescriptionID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ProductDescription.ProductDescriptionID">
-      <Name>Length</Name>
-      <Value>256</Value>
     </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductDescription.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ProductDescription.RecordSource">
       <Name>Length</Name>
@@ -2289,10 +2025,6 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductDocument.ProductID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ProductDocument.ProductID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductDocument.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ProductDocument.RecordSource">
       <Name>Length</Name>
       <Value>256</Value>
@@ -2304,10 +2036,6 @@
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductInventory.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksRawVault.dbo.H_ProductInventory.LoadTimestamp">
       <Name>Precision</Name>
       <Value>7</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductInventory.ProductID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ProductInventory.ProductID">
-      <Name>Length</Name>
-      <Value>256</Value>
     </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductInventory.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ProductInventory.RecordSource">
       <Name>Length</Name>
@@ -2321,10 +2049,6 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductListPriceHistory.ProductID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ProductListPriceHistory.ProductID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductListPriceHistory.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ProductListPriceHistory.RecordSource">
       <Name>Length</Name>
       <Value>256</Value>
@@ -2337,10 +2061,6 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductModel.ProductModelID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ProductModel.ProductModelID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductModel.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ProductModel.RecordSource">
       <Name>Length</Name>
       <Value>256</Value>
@@ -2349,17 +2069,9 @@
       <Name>Length</Name>
       <Value>32</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductModelIllustration.IllustrationID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ProductModelIllustration.IllustrationID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductModelIllustration.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksRawVault.dbo.H_ProductModelIllustration.LoadTimestamp">
       <Name>Precision</Name>
       <Value>7</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductModelIllustration.ProductModelID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ProductModelIllustration.ProductModelID">
-      <Name>Length</Name>
-      <Value>256</Value>
     </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductModelIllustration.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ProductModelIllustration.RecordSource">
       <Name>Length</Name>
@@ -2377,14 +2089,6 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductModelProductDescriptionCulture.ProductDescriptionID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ProductModelProductDescriptionCulture.ProductDescriptionID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductModelProductDescriptionCulture.ProductModelID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ProductModelProductDescriptionCulture.ProductModelID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductModelProductDescriptionCulture.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ProductModelProductDescriptionCulture.RecordSource">
       <Name>Length</Name>
       <Value>256</Value>
@@ -2396,10 +2100,6 @@
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductPhoto.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksRawVault.dbo.H_ProductPhoto.LoadTimestamp">
       <Name>Precision</Name>
       <Value>7</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductPhoto.ProductPhotoID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ProductPhoto.ProductPhotoID">
-      <Name>Length</Name>
-      <Value>256</Value>
     </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductPhoto.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ProductPhoto.RecordSource">
       <Name>Length</Name>
@@ -2413,14 +2113,6 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductProductPhoto.ProductID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ProductProductPhoto.ProductID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductProductPhoto.ProductPhotoID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ProductProductPhoto.ProductPhotoID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductProductPhoto.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ProductProductPhoto.RecordSource">
       <Name>Length</Name>
       <Value>256</Value>
@@ -2432,10 +2124,6 @@
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductReview.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksRawVault.dbo.H_ProductReview.LoadTimestamp">
       <Name>Precision</Name>
       <Value>7</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductReview.ProductReviewID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ProductReview.ProductReviewID">
-      <Name>Length</Name>
-      <Value>256</Value>
     </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductReview.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ProductReview.RecordSource">
       <Name>Length</Name>
@@ -2449,15 +2137,7 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductSubcategory.ProductSubcategoryID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ProductSubcategory.ProductSubcategoryID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductSubcategory.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ProductSubcategory.RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductVendor.BusinessEntityID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ProductVendor.BusinessEntityID">
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
@@ -2468,10 +2148,6 @@
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductVendor.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksRawVault.dbo.H_ProductVendor.LoadTimestamp">
       <Name>Precision</Name>
       <Value>7</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductVendor.ProductID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ProductVendor.ProductID">
-      <Name>Length</Name>
-      <Value>256</Value>
     </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ProductVendor.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ProductVendor.RecordSource">
       <Name>Length</Name>
@@ -2485,14 +2161,6 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_PurchaseOrderDetail.PurchaseOrderDetailID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_PurchaseOrderDetail.PurchaseOrderDetailID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_PurchaseOrderDetail.PurchaseOrderID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_PurchaseOrderDetail.PurchaseOrderID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_PurchaseOrderDetail.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_PurchaseOrderDetail.RecordSource">
       <Name>Length</Name>
       <Value>256</Value>
@@ -2504,10 +2172,6 @@
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_PurchaseOrderHeader.LoadTimestamp.detail.Precision" TableColumnId="AdventureWorksRawVault.dbo.H_PurchaseOrderHeader.LoadTimestamp">
       <Name>Precision</Name>
       <Value>7</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_PurchaseOrderHeader.PurchaseOrderID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_PurchaseOrderHeader.PurchaseOrderID">
-      <Name>Length</Name>
-      <Value>256</Value>
     </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_PurchaseOrderHeader.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_PurchaseOrderHeader.RecordSource">
       <Name>Length</Name>
@@ -2525,14 +2189,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_SalesOrderDetail.SalesOrderDetailID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_SalesOrderDetail.SalesOrderDetailID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_SalesOrderDetail.SalesOrderID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_SalesOrderDetail.SalesOrderID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_SalesOrderHeader.HashKey.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_SalesOrderHeader.HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -2542,10 +2198,6 @@
       <Value>7</Value>
     </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_SalesOrderHeader.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_SalesOrderHeader.RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_SalesOrderHeader.SalesOrderID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_SalesOrderHeader.SalesOrderID">
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
@@ -2561,18 +2213,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_SalesOrderHeaderSalesReason.SalesOrderID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_SalesOrderHeaderSalesReason.SalesOrderID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_SalesOrderHeaderSalesReason.SalesReasonID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_SalesOrderHeaderSalesReason.SalesReasonID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_SalesPerson.BusinessEntityID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_SalesPerson.BusinessEntityID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_SalesPerson.HashKey.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_SalesPerson.HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -2582,10 +2222,6 @@
       <Value>7</Value>
     </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_SalesPerson.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_SalesPerson.RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_SalesPersonQuotaHistory.BusinessEntityID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_SalesPersonQuotaHistory.BusinessEntityID">
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
@@ -2613,10 +2249,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_SalesReason.SalesReasonID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_SalesReason.SalesReasonID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_SalesTaxRate.HashKey.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_SalesTaxRate.HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -2626,10 +2258,6 @@
       <Value>7</Value>
     </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_SalesTaxRate.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_SalesTaxRate.RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_SalesTaxRate.SalesTaxRateID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_SalesTaxRate.SalesTaxRateID">
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
@@ -2645,14 +2273,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_SalesTerritory.TerritoryID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_SalesTerritory.TerritoryID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_SalesTerritoryHistory.BusinessEntityID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_SalesTerritoryHistory.BusinessEntityID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_SalesTerritoryHistory.HashKey.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_SalesTerritoryHistory.HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -2662,10 +2282,6 @@
       <Value>7</Value>
     </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_SalesTerritoryHistory.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_SalesTerritoryHistory.RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_SalesTerritoryHistory.TerritoryID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_SalesTerritoryHistory.TerritoryID">
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
@@ -2705,10 +2321,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ShipMethod.ShipMethodID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ShipMethod.ShipMethodID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ShoppingCartItem.HashKey.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ShoppingCartItem.HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -2718,10 +2330,6 @@
       <Value>7</Value>
     </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ShoppingCartItem.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ShoppingCartItem.RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_ShoppingCartItem.ShoppingCartItemID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_ShoppingCartItem.ShoppingCartItemID">
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
@@ -2737,10 +2345,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_SpecialOffer.SpecialOfferID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_SpecialOffer.SpecialOfferID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_SpecialOfferProduct.HashKey.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_SpecialOfferProduct.HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -2749,15 +2353,7 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_SpecialOfferProduct.ProductID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_SpecialOfferProduct.ProductID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_SpecialOfferProduct.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_SpecialOfferProduct.RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_SpecialOfferProduct.SpecialOfferID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_SpecialOfferProduct.SpecialOfferID">
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
@@ -2770,14 +2366,6 @@
       <Value>7</Value>
     </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_StateProvince.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_StateProvince.RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_StateProvince.StateProvinceID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_StateProvince.StateProvinceID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_Store.BusinessEntityID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_Store.BusinessEntityID">
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
@@ -2805,10 +2393,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_TransactionHistory.TransactionID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_TransactionHistory.TransactionID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_TransactionHistoryArchive.HashKey.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_TransactionHistoryArchive.HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -2818,10 +2402,6 @@
       <Value>7</Value>
     </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_TransactionHistoryArchive.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_TransactionHistoryArchive.RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_TransactionHistoryArchive.TransactionID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_TransactionHistoryArchive.TransactionID">
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
@@ -2840,10 +2420,6 @@
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_UnitMeasure.UnitMeasureCode.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_UnitMeasure.UnitMeasureCode">
       <Name>Length</Name>
       <Value>3</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_Vendor.BusinessEntityID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_Vendor.BusinessEntityID">
-      <Name>Length</Name>
-      <Value>256</Value>
     </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_Vendor.HashKey.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_Vendor.HashKey">
       <Name>Length</Name>
@@ -2869,10 +2445,6 @@
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_WorkOrder.WorkOrderID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_WorkOrder.WorkOrderID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_WorkOrderRouting.HashKey.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_WorkOrderRouting.HashKey">
       <Name>Length</Name>
       <Value>32</Value>
@@ -2881,15 +2453,7 @@
       <Name>Precision</Name>
       <Value>7</Value>
     </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_WorkOrderRouting.ProductID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_WorkOrderRouting.ProductID">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
     <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_WorkOrderRouting.RecordSource.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_WorkOrderRouting.RecordSource">
-      <Name>Length</Name>
-      <Value>256</Value>
-    </TableColumnDataTypeDetail>
-    <TableColumnDataTypeDetail Id="AdventureWorksRawVault.dbo.H_WorkOrderRouting.WorkOrderID.detail.Length" TableColumnId="AdventureWorksRawVault.dbo.H_WorkOrderRouting.WorkOrderID">
       <Name>Length</Name>
       <Value>256</Value>
     </TableColumnDataTypeDetail>

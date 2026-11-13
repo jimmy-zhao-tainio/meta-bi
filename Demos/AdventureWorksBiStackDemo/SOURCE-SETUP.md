@@ -6,6 +6,7 @@ Official sources:
 
 - [AdventureWorks sample databases](https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure)
 - [SQL Server sample releases](https://github.com/microsoft/sql-server-samples/releases/tag/adventureworks)
+- [AdventureWorks2022 OLTP backup](https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks/AdventureWorks2022.bak), the helper's default download.
 
 Restore `AdventureWorks2022.bak` through your normal SQL Server tooling, or run the local setup helper:
 
@@ -16,6 +17,11 @@ $env:AW_SOURCE_DATABASE = "AdventureWorks2022"
 ```
 
 Set `AW_RESTORE_REPLACE=1` when the helper should replace an existing database. `AW_BACKUP_URL` and `AW_RUN_ROOT` override the download source and local backup cache when needed.
+
+The default cache is `Runs\_downloads\AdventureWorks2022.bak`, excluded from Git.
+The helper reuses a matching cached download and validates an existing database
+unless replacement is explicitly requested. The similarly named
+`AdventureWorksDW2022.bak` is a different sample and is not this stack's source.
 
 Set the source and administrative connections used by the mesh:
 

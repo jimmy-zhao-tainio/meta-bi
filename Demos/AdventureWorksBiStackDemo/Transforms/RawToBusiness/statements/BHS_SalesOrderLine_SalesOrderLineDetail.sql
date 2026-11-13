@@ -2,8 +2,8 @@ INSERT INTO [AdventureWorksBusinessVault].[dbo].[BHS_SalesOrderLine_SalesOrderLi
 SELECT
     source.[HubHashKey],
     source.[OrderQty],
-    source.[UnitPrice],
-    source.[UnitPriceDiscount],
+    CONVERT(decimal(19,4), source.[UnitPrice]) AS [UnitPrice],
+    CONVERT(decimal(19,4), source.[UnitPriceDiscount]) AS [UnitPriceDiscount],
     CONVERT(decimal(19,4), source.[LineTotal]),
     CONVERT(binary(32), HASHBYTES('SHA2_256', (CASE
     WHEN source.[OrderQty] IS NULL THEN CONVERT(varbinary(max), 0x00)

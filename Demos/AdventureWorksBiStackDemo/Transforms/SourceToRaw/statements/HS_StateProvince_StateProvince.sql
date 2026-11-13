@@ -9,8 +9,8 @@ INSERT INTO [AdventureWorksRawVault].[dbo].[HS_StateProvince_StateProvince] ([Hu
 SELECT
     CONVERT(binary(32), HASHBYTES('SHA2_256', CONVERT(binary(4), DATALENGTH(CONVERT(varbinary(max), source.[StateProvinceID]))) + CONVERT(varbinary(max), source.[StateProvinceID]))) AS HubHashKey,
     source.[StateProvinceCode],
-    source.[IsOnlyStateProvinceFlag],
-    source.[Name],
+    CONVERT(bit, source.[IsOnlyStateProvinceFlag]) AS [IsOnlyStateProvinceFlag],
+    CONVERT(nvarchar(50), source.[Name]) AS [Name],
     source.[rowguid],
     source.[ModifiedDate],
     CONVERT(binary(32), HASHBYTES('SHA2_256', (CASE

@@ -172,5 +172,6 @@ A clean run must prove:
 - repeat execution does not duplicate hubs, links, or unchanged satellites;
 - warehouse fact counts and core measures reconcile to AdventureWorks source queries;
 - DQ SQL is generated from promoted modeled candidates;
+- DQ findings remain visible as review evidence; the recorded sample has 45 nonempty checks out of 167, rather than an expectation of no findings (see [README.md](README.md#data-quality-findings));
 - the analytics and Tabular workspaces expose the requested business questions;
 - any unavailable external Tabular runtime is reported as an environment limitation, not represented as a successful deployment.

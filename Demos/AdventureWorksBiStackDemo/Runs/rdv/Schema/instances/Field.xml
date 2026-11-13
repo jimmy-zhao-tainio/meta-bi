@@ -849,7 +849,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Document_Document:field:ChangeNumber" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Document_Document">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ChangeNumber</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -1209,7 +1209,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ErrorLog_ErrorLog:field:ErrorLine" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ErrorLog_ErrorLog">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ErrorLine</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -1221,7 +1221,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ErrorLog_ErrorLog:field:ErrorNumber" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ErrorLog_ErrorLog">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ErrorNumber</Name>
       <Ordinal>4</Ordinal>
     </Field>
@@ -1233,13 +1233,13 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ErrorLog_ErrorLog:field:ErrorSeverity" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ErrorLog_ErrorLog">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ErrorSeverity</Name>
       <Ordinal>6</Ordinal>
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ErrorLog_ErrorLog:field:ErrorState" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ErrorLog_ErrorLog">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ErrorState</Name>
       <Ordinal>7</Ordinal>
     </Field>
@@ -1377,7 +1377,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Location_Location:field:CostRate" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Location_Location">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:smallmoney</MetaDataTypeId>
       <Name>CostRate</Name>
       <Ordinal>3</Ordinal>
     </Field>
@@ -1563,7 +1563,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Person_Person:field:EmailPromotion" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Person_Person">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>EmailPromotion</Name>
       <Ordinal>4</Ordinal>
     </Field>
@@ -2253,7 +2253,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductReview_ProductReview:field:Rating" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductReview_ProductReview">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>Rating</Name>
       <Ordinal>5</Ordinal>
     </Field>
@@ -2331,7 +2331,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductVendor_ProductVendor:field:AverageLeadTime" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductVendor_ProductVendor">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>AverageLeadTime</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -2367,13 +2367,13 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductVendor_ProductVendor:field:MaxOrderQty" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductVendor_ProductVendor">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>MaxOrderQty</Name>
       <Ordinal>5</Ordinal>
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductVendor_ProductVendor:field:MinOrderQty" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductVendor_ProductVendor">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>MinOrderQty</Name>
       <Ordinal>6</Ordinal>
     </Field>
@@ -2385,7 +2385,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductVendor_ProductVendor:field:OnOrderQty" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ProductVendor_ProductVendor">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>OnOrderQty</Name>
       <Ordinal>8</Ordinal>
     </Field>
@@ -2421,7 +2421,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product:field:DaysToManufacture" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_Product_Product">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>DaysToManufacture</Name>
       <Ordinal>4</Ordinal>
     </Field>
@@ -3015,7 +3015,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesPerson_SalesPerson:field:CommissionPct" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesPerson_SalesPerson">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:smallmoney</MetaDataTypeId>
       <Name>CommissionPct</Name>
       <Ordinal>3</Ordinal>
     </Field>
@@ -3171,7 +3171,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTaxRate_SalesTaxRate:field:TaxRate" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SalesTaxRate_SalesTaxRate">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:smallmoney</MetaDataTypeId>
       <Name>TaxRate</Name>
       <Ordinal>5</Ordinal>
     </Field>
@@ -3501,7 +3501,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ShoppingCartItem_ShoppingCartItem:field:Quantity" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_ShoppingCartItem_ShoppingCartItem">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>Quantity</Name>
       <Ordinal>4</Ordinal>
     </Field>
@@ -3579,7 +3579,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SpecialOffer_SpecialOffer:field:DiscountPct" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SpecialOffer_SpecialOffer">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:decimal</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:smallmoney</MetaDataTypeId>
       <Name>DiscountPct</Name>
       <Ordinal>4</Ordinal>
     </Field>
@@ -3609,13 +3609,13 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SpecialOffer_SpecialOffer:field:MaxQty" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SpecialOffer_SpecialOffer">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>MaxQty</Name>
       <Ordinal>6</Ordinal>
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SpecialOffer_SpecialOffer:field:MinQty" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_SpecialOffer_SpecialOffer">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>MinQty</Name>
       <Ordinal>7</Ordinal>
     </Field>
@@ -3801,13 +3801,13 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistoryArchive_TransactionHistoryArchive:field:ProductID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistoryArchive_TransactionHistoryArchive">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ProductID</Name>
       <Ordinal>4</Ordinal>
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistoryArchive_TransactionHistoryArchive:field:Quantity" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistoryArchive_TransactionHistoryArchive">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>Quantity</Name>
       <Ordinal>5</Ordinal>
     </Field>
@@ -3819,13 +3819,13 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistoryArchive_TransactionHistoryArchive:field:ReferenceOrderID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistoryArchive_TransactionHistoryArchive">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ReferenceOrderID</Name>
       <Ordinal>6</Ordinal>
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistoryArchive_TransactionHistoryArchive:field:ReferenceOrderLineID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistoryArchive_TransactionHistoryArchive">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ReferenceOrderLineID</Name>
       <Ordinal>7</Ordinal>
     </Field>
@@ -3879,7 +3879,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistory_TransactionHistory:field:Quantity" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistory_TransactionHistory">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>Quantity</Name>
       <Ordinal>4</Ordinal>
     </Field>
@@ -3891,13 +3891,13 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistory_TransactionHistory:field:ReferenceOrderID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistory_TransactionHistory">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ReferenceOrderID</Name>
       <Ordinal>5</Ordinal>
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistory_TransactionHistory:field:ReferenceOrderLineID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_TransactionHistory_TransactionHistory">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ReferenceOrderLineID</Name>
       <Ordinal>6</Ordinal>
     </Field>
@@ -4149,7 +4149,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_WorkOrder_WorkOrder:field:OrderQty" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_WorkOrder_WorkOrder">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>OrderQty</Name>
       <Ordinal>5</Ordinal>
     </Field>
@@ -4173,13 +4173,13 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_WorkOrder_WorkOrder:field:StockedQty" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:HS_WorkOrder_WorkOrder">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>StockedQty</Name>
       <Ordinal>8</Ordinal>
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Address:field:AddressID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Address">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>AddressID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -4209,7 +4209,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_AddressType:field:AddressTypeID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_AddressType">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>AddressTypeID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -4275,7 +4275,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BillOfMaterials:field:BillOfMaterialsID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BillOfMaterials">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>BillOfMaterialsID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -4305,7 +4305,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntity:field:BusinessEntityID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntity">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>BusinessEntityID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -4329,13 +4329,13 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityAddress:field:AddressID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityAddress">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>AddressID</Name>
       <Ordinal>2</Ordinal>
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityAddress:field:AddressTypeID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityAddress">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>AddressTypeID</Name>
       <Ordinal>3</Ordinal>
     </Field>
@@ -4347,7 +4347,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityAddress:field:BusinessEntityID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityAddress">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>BusinessEntityID</Name>
       <Ordinal>4</Ordinal>
     </Field>
@@ -4377,13 +4377,13 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityContact:field:BusinessEntityID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityContact">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>BusinessEntityID</Name>
       <Ordinal>2</Ordinal>
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityContact:field:ContactTypeID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityContact">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ContactTypeID</Name>
       <Ordinal>3</Ordinal>
     </Field>
@@ -4401,7 +4401,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityContact:field:PersonID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_BusinessEntityContact">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>PersonID</Name>
       <Ordinal>4</Ordinal>
     </Field>
@@ -4419,7 +4419,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ContactType:field:ContactTypeID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ContactType">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ContactTypeID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -4515,7 +4515,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CreditCard:field:CreditCardID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CreditCard">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>CreditCardID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -4605,7 +4605,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CurrencyRate:field:CurrencyRateID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_CurrencyRate">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>CurrencyRateID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -4635,7 +4635,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer:field:CustomerID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Customer">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>CustomerID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -4665,7 +4665,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_DatabaseLog:field:DatabaseLogID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_DatabaseLog">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>DatabaseLogID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -4755,13 +4755,13 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmailAddress:field:BusinessEntityID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmailAddress">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>BusinessEntityID</Name>
       <Ordinal>2</Ordinal>
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmailAddress:field:EmailAddressID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmailAddress">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>EmailAddressID</Name>
       <Ordinal>3</Ordinal>
     </Field>
@@ -4791,7 +4791,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Employee:field:BusinessEntityID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Employee">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>BusinessEntityID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -4821,7 +4821,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeeDepartmentHistory:field:BusinessEntityID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeeDepartmentHistory">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>BusinessEntityID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -4869,7 +4869,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeePayHistory:field:BusinessEntityID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_EmployeePayHistory">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>BusinessEntityID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -4905,7 +4905,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ErrorLog:field:ErrorLogID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ErrorLog">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ErrorLogID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -4941,7 +4941,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Illustration:field:IllustrationID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Illustration">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>IllustrationID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -4971,7 +4971,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_JobCandidate:field:JobCandidateID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_JobCandidate">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>JobCandidateID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -5025,7 +5025,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Password:field:BusinessEntityID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Password">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>BusinessEntityID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -5055,7 +5055,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Person:field:BusinessEntityID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Person">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>BusinessEntityID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -5085,13 +5085,13 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonCreditCard:field:BusinessEntityID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonCreditCard">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>BusinessEntityID</Name>
       <Ordinal>2</Ordinal>
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonCreditCard:field:CreditCardID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonCreditCard">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>CreditCardID</Name>
       <Ordinal>3</Ordinal>
     </Field>
@@ -5121,7 +5121,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonPhone:field:BusinessEntityID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonPhone">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>BusinessEntityID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -5145,7 +5145,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonPhone:field:PhoneNumberTypeID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PersonPhone">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>PhoneNumberTypeID</Name>
       <Ordinal>4</Ordinal>
     </Field>
@@ -5175,7 +5175,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PhoneNumberType:field:PhoneNumberTypeID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PhoneNumberType">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>PhoneNumberTypeID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -5205,7 +5205,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product:field:ProductID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Product">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ProductID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -5235,7 +5235,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCategory:field:ProductCategoryID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCategory">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ProductCategoryID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -5265,7 +5265,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCostHistory:field:ProductID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductCostHistory">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ProductID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -5301,7 +5301,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductDescription:field:ProductDescriptionID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductDescription">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ProductDescriptionID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -5337,7 +5337,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductDocument:field:ProductID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductDocument">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ProductID</Name>
       <Ordinal>3</Ordinal>
     </Field>
@@ -5373,7 +5373,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductInventory:field:ProductID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductInventory">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ProductID</Name>
       <Ordinal>3</Ordinal>
     </Field>
@@ -5403,7 +5403,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductListPriceHistory:field:ProductID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductListPriceHistory">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ProductID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -5439,7 +5439,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModel:field:ProductModelID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModel">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ProductModelID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -5463,7 +5463,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelIllustration:field:IllustrationID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelIllustration">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>IllustrationID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -5475,7 +5475,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelIllustration:field:ProductModelID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelIllustration">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ProductModelID</Name>
       <Ordinal>3</Ordinal>
     </Field>
@@ -5511,13 +5511,13 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelProductDescriptionCulture:field:ProductDescriptionID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelProductDescriptionCulture">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ProductDescriptionID</Name>
       <Ordinal>3</Ordinal>
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelProductDescriptionCulture:field:ProductModelID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductModelProductDescriptionCulture">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ProductModelID</Name>
       <Ordinal>4</Ordinal>
     </Field>
@@ -5547,7 +5547,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductPhoto:field:ProductPhotoID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductPhoto">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ProductPhotoID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -5577,13 +5577,13 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductProductPhoto:field:ProductID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductProductPhoto">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ProductID</Name>
       <Ordinal>2</Ordinal>
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductProductPhoto:field:ProductPhotoID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductProductPhoto">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ProductPhotoID</Name>
       <Ordinal>3</Ordinal>
     </Field>
@@ -5613,7 +5613,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductReview:field:ProductReviewID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductReview">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ProductReviewID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -5643,7 +5643,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductSubcategory:field:ProductSubcategoryID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductSubcategory">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ProductSubcategoryID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -5661,7 +5661,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductVendor:field:BusinessEntityID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductVendor">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>BusinessEntityID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -5679,7 +5679,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductVendor:field:ProductID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ProductVendor">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ProductID</Name>
       <Ordinal>3</Ordinal>
     </Field>
@@ -5709,13 +5709,13 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderDetail:field:PurchaseOrderDetailID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderDetail">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>PurchaseOrderDetailID</Name>
       <Ordinal>2</Ordinal>
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderDetail:field:PurchaseOrderID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderDetail">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>PurchaseOrderID</Name>
       <Ordinal>3</Ordinal>
     </Field>
@@ -5745,7 +5745,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderHeader:field:PurchaseOrderID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_PurchaseOrderHeader">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>PurchaseOrderID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -5781,13 +5781,13 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderDetail:field:SalesOrderDetailID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderDetail">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>SalesOrderDetailID</Name>
       <Ordinal>2</Ordinal>
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderDetail:field:SalesOrderID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderDetail">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>SalesOrderID</Name>
       <Ordinal>3</Ordinal>
     </Field>
@@ -5817,7 +5817,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader:field:SalesOrderID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeader">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>SalesOrderID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -5847,13 +5847,13 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeaderSalesReason:field:SalesOrderID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeaderSalesReason">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>SalesOrderID</Name>
       <Ordinal>2</Ordinal>
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeaderSalesReason:field:SalesReasonID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesOrderHeaderSalesReason">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>SalesReasonID</Name>
       <Ordinal>3</Ordinal>
     </Field>
@@ -5865,7 +5865,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson:field:BusinessEntityID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPerson">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>BusinessEntityID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -5895,7 +5895,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPersonQuotaHistory:field:BusinessEntityID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesPersonQuotaHistory">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>BusinessEntityID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -5949,7 +5949,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesReason:field:SalesReasonID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesReason">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>SalesReasonID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -5979,7 +5979,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTaxRate:field:SalesTaxRateID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTaxRate">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>SalesTaxRateID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -6009,7 +6009,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory:field:TerritoryID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritory">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>TerritoryID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -6021,7 +6021,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritoryHistory:field:BusinessEntityID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritoryHistory">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>BusinessEntityID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -6051,7 +6051,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritoryHistory:field:TerritoryID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SalesTerritoryHistory">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>TerritoryID</Name>
       <Ordinal>4</Ordinal>
     </Field>
@@ -6141,7 +6141,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ShipMethod:field:ShipMethodID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ShipMethod">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ShipMethodID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -6171,7 +6171,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ShoppingCartItem:field:ShoppingCartItemID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_ShoppingCartItem">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ShoppingCartItemID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -6201,7 +6201,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOffer:field:SpecialOfferID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOffer">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>SpecialOfferID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -6225,7 +6225,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct:field:ProductID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ProductID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -6237,7 +6237,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct:field:SpecialOfferID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_SpecialOfferProduct">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>SpecialOfferID</Name>
       <Ordinal>3</Ordinal>
     </Field>
@@ -6267,7 +6267,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_StateProvince:field:StateProvinceID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_StateProvince">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>StateProvinceID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -6279,7 +6279,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Store:field:BusinessEntityID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Store">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>BusinessEntityID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -6327,7 +6327,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_TransactionHistory:field:TransactionID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_TransactionHistory">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>TransactionID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -6357,7 +6357,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_TransactionHistoryArchive:field:TransactionID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_TransactionHistoryArchive">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>TransactionID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -6399,7 +6399,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Vendor:field:BusinessEntityID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_Vendor">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>BusinessEntityID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -6447,7 +6447,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrder:field:WorkOrderID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrder">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>WorkOrderID</Name>
       <Ordinal>2</Ordinal>
     </Field>
@@ -6477,7 +6477,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrderRouting:field:ProductID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrderRouting">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>ProductID</Name>
       <Ordinal>3</Ordinal>
     </Field>
@@ -6489,7 +6489,7 @@
     </Field>
     <Field Id="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrderRouting:field:WorkOrderID" SchemaObjectId="sqlserver:AdventureWorksRawVault:schema:dbo:table:H_WorkOrderRouting">
       <IsNullable>true</IsNullable>
-      <MetaDataTypeId>sqlserver:type:nvarchar</MetaDataTypeId>
+      <MetaDataTypeId>sqlserver:type:int</MetaDataTypeId>
       <Name>WorkOrderID</Name>
       <Ordinal>4</Ordinal>
     </Field>

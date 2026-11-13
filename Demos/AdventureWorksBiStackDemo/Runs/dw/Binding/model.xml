@@ -94,6 +94,15 @@
         <Relationship entity="Rowset" role="Target" />
       </RelationshipList>
     </Entity>
+    <Entity name="StoredProcedureOperationBinding">
+      <PropertyList>
+        <Property name="MetaTransformScriptStoredProcedureContractOperationId" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="Rowset" />
+        <Relationship entity="TransformBinding" />
+      </RelationshipList>
+    </Entity>
     <Entity name="TableSource">
       <PropertyList>
         <Property name="ExposedName" />
@@ -168,6 +177,16 @@
         <Relationship entity="Validation" />
       </RelationshipList>
     </Entity>
+    <Entity name="ValidationStoredProcedureOperationLink">
+      <PropertyList>
+        <Property name="MetaSchemaTableId" />
+        <Property name="ResolvedSqlIdentifier" />
+      </PropertyList>
+      <RelationshipList>
+        <Relationship entity="StoredProcedureOperationBinding" />
+        <Relationship entity="Validation" />
+      </RelationshipList>
+    </Entity>
     <Entity name="ValidationTargetColumnLink">
       <PropertyList>
         <Property name="MetaSchemaFieldId" />
@@ -178,15 +197,6 @@
       </RelationshipList>
     </Entity>
     <Entity name="ValidationTargetColumnTypeExact">
-      <PropertyList>
-        <Property name="SourceMetaDataTypeId" />
-        <Property name="TargetMetaDataTypeId" />
-      </PropertyList>
-      <RelationshipList>
-        <Relationship entity="ValidationTargetColumnLink" />
-      </RelationshipList>
-    </Entity>
-    <Entity name="ValidationTargetColumnTypeSanctionedConversion">
       <PropertyList>
         <Property name="SourceMetaDataTypeId" />
         <Property name="TargetMetaDataTypeId" />

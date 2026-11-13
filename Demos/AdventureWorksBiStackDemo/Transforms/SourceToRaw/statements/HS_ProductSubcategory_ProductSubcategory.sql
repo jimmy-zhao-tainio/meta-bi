@@ -8,7 +8,7 @@ FROM [AdventureWorksRawVault].[dbo].[HS_ProductSubcategory_ProductSubcategory] A
 INSERT INTO [AdventureWorksRawVault].[dbo].[HS_ProductSubcategory_ProductSubcategory] ([HubHashKey], [Name], [rowguid], [ModifiedDate], [HashDiff], [LoadTimestamp], [RecordSource], [AuditId])
 SELECT
     CONVERT(binary(32), HASHBYTES('SHA2_256', CONVERT(binary(4), DATALENGTH(CONVERT(varbinary(max), source.[ProductSubcategoryID]))) + CONVERT(varbinary(max), source.[ProductSubcategoryID]))) AS HubHashKey,
-    source.[Name],
+    CONVERT(nvarchar(50), source.[Name]) AS [Name],
     source.[rowguid],
     source.[ModifiedDate],
     CONVERT(binary(32), HASHBYTES('SHA2_256', (CASE

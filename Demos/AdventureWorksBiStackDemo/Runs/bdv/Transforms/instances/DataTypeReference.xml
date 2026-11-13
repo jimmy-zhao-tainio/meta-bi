@@ -957,7 +957,25 @@
     <DataTypeReference Id="DataTypeReference:958" />
     <DataTypeReference Id="DataTypeReference:959" />
     <DataTypeReference Id="DataTypeReference:96" />
+    <DataTypeReference Id="DataTypeReference:960" />
+    <DataTypeReference Id="DataTypeReference:961" />
+    <DataTypeReference Id="DataTypeReference:962" />
+    <DataTypeReference Id="DataTypeReference:963" />
+    <DataTypeReference Id="DataTypeReference:964" />
+    <DataTypeReference Id="DataTypeReference:965" />
+    <DataTypeReference Id="DataTypeReference:966" />
+    <DataTypeReference Id="DataTypeReference:967" />
+    <DataTypeReference Id="DataTypeReference:968" />
+    <DataTypeReference Id="DataTypeReference:969" />
     <DataTypeReference Id="DataTypeReference:97" />
+    <DataTypeReference Id="DataTypeReference:970" />
+    <DataTypeReference Id="DataTypeReference:971" />
+    <DataTypeReference Id="DataTypeReference:972" />
+    <DataTypeReference Id="DataTypeReference:973" />
+    <DataTypeReference Id="DataTypeReference:974" />
+    <DataTypeReference Id="DataTypeReference:975" />
+    <DataTypeReference Id="DataTypeReference:976" />
+    <DataTypeReference Id="DataTypeReference:977" />
     <DataTypeReference Id="DataTypeReference:98" />
     <DataTypeReference Id="DataTypeReference:99" />
   </DataTypeReferenceList>

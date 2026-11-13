@@ -36,7 +36,7 @@ public sealed class ServiceTests
     }
 
     [Theory]
-    [InlineData("sqlserver:type:int", "sqlserver:type:nvarchar")]
+    [InlineData("sqlserver:type:int", "meta:type:Int32")]
     public void ResolveCompatibility_AllowsSanctionedPath(string sourceDataTypeId, string targetDataTypeId)
     {
         var resolution = new MetaDataTypeConversionService().ResolveCompatibility(

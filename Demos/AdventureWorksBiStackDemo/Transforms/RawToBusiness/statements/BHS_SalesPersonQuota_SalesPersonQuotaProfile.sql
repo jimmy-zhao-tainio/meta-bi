@@ -1,7 +1,7 @@
 INSERT INTO [AdventureWorksBusinessVault].[dbo].[BHS_SalesPersonQuota_SalesPersonQuotaProfile] ([HubHashKey], [SalesQuota], [HashDiff], [LoadTimestamp], [RecordSource], [AuditId])
 SELECT
     source.[HubHashKey],
-    source.[SalesQuota],
+    CONVERT(decimal(19,4), source.[SalesQuota]) AS [SalesQuota],
     CONVERT(binary(32), HASHBYTES('SHA2_256', (CASE
     WHEN source.[SalesQuota] IS NULL THEN CONVERT(varbinary(max), 0x00)
     ELSE CONVERT(varbinary(max), 0x01) + CONVERT(binary(4), DATALENGTH(CONVERT(varbinary(max), source.[SalesQuota]))) + CONVERT(varbinary(max), source.[SalesQuota])

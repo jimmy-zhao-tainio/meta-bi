@@ -378,193 +378,177 @@ public static partial class MetaDataTypeConversionInstance
         model.DataTypeMappingList.Add(record44);
         var record45 = new DataTypeMapping
         {
-            Id = "MetaDataTypeConversion:mapping:sqlserver:int-to-nvarchar",
-            Notes = "SQL Server write compatibility for text normalization.",
-            SourceDataTypeId = "sqlserver:type:int",
-            TargetDataTypeId = "sqlserver:type:nvarchar"
-        };
-        model.DataTypeMappingList.Add(record45);
-        var record46 = new DataTypeMapping
-        {
             Id = "MetaDataTypeConversion:mapping:sqlserver:money",
             SourceDataTypeId = "sqlserver:type:money",
             TargetDataTypeId = "meta:type:Decimal"
         };
-        model.DataTypeMappingList.Add(record46);
-        var record47 = new DataTypeMapping
+        model.DataTypeMappingList.Add(record45);
+        var record46 = new DataTypeMapping
         {
             Id = "MetaDataTypeConversion:mapping:sqlserver:Name",
             SourceDataTypeId = "sqlserver:type:Name",
             TargetDataTypeId = "meta:type:String"
         };
-        model.DataTypeMappingList.Add(record47);
-        var record48 = new DataTypeMapping
+        model.DataTypeMappingList.Add(record46);
+        var record47 = new DataTypeMapping
         {
             Id = "MetaDataTypeConversion:mapping:sqlserver:Name-to-nvarchar",
             Notes = "SQL Server alias/user-defined type compatibility.",
             SourceDataTypeId = "sqlserver:type:Name",
             TargetDataTypeId = "sqlserver:type:nvarchar"
         };
-        model.DataTypeMappingList.Add(record48);
-        var record49 = new DataTypeMapping
+        model.DataTypeMappingList.Add(record47);
+        var record48 = new DataTypeMapping
         {
             Id = "MetaDataTypeConversion:mapping:sqlserver:NameStyle",
             SourceDataTypeId = "sqlserver:type:NameStyle",
             TargetDataTypeId = "meta:type:Boolean"
         };
-        model.DataTypeMappingList.Add(record49);
-        var record50 = new DataTypeMapping
+        model.DataTypeMappingList.Add(record48);
+        var record49 = new DataTypeMapping
         {
             Id = "MetaDataTypeConversion:mapping:sqlserver:NameStyle-to-bit",
             Notes = "SQL Server alias/user-defined type compatibility.",
             SourceDataTypeId = "sqlserver:type:NameStyle",
             TargetDataTypeId = "sqlserver:type:bit"
         };
-        model.DataTypeMappingList.Add(record50);
-        var record51 = new DataTypeMapping
+        model.DataTypeMappingList.Add(record49);
+        var record50 = new DataTypeMapping
         {
             Id = "MetaDataTypeConversion:mapping:sqlserver:nchar",
             SourceDataTypeId = "sqlserver:type:nchar",
             TargetDataTypeId = "meta:type:StringFixedLength"
         };
-        model.DataTypeMappingList.Add(record51);
-        var record52 = new DataTypeMapping
+        model.DataTypeMappingList.Add(record50);
+        var record51 = new DataTypeMapping
         {
             Id = "MetaDataTypeConversion:mapping:sqlserver:numeric",
             SourceDataTypeId = "sqlserver:type:numeric",
             TargetDataTypeId = "meta:type:Decimal"
         };
-        model.DataTypeMappingList.Add(record52);
-        var record53 = new DataTypeMapping
+        model.DataTypeMappingList.Add(record51);
+        var record52 = new DataTypeMapping
         {
             Id = "MetaDataTypeConversion:mapping:sqlserver:nvarchar",
             SourceDataTypeId = "sqlserver:type:nvarchar",
             TargetDataTypeId = "meta:type:String"
         };
-        model.DataTypeMappingList.Add(record53);
-        var record54 = new DataTypeMapping
+        model.DataTypeMappingList.Add(record52);
+        var record53 = new DataTypeMapping
         {
             Id = "MetaDataTypeConversion:mapping:sqlserver:OrderNumber",
             SourceDataTypeId = "sqlserver:type:OrderNumber",
             TargetDataTypeId = "meta:type:String"
         };
-        model.DataTypeMappingList.Add(record54);
-        var record55 = new DataTypeMapping
+        model.DataTypeMappingList.Add(record53);
+        var record54 = new DataTypeMapping
         {
             Id = "MetaDataTypeConversion:mapping:sqlserver:OrderNumber-to-nvarchar",
             Notes = "SQL Server alias/user-defined type compatibility.",
             SourceDataTypeId = "sqlserver:type:OrderNumber",
             TargetDataTypeId = "sqlserver:type:nvarchar"
         };
-        model.DataTypeMappingList.Add(record55);
-        var record56 = new DataTypeMapping
+        model.DataTypeMappingList.Add(record54);
+        var record55 = new DataTypeMapping
         {
             Id = "MetaDataTypeConversion:mapping:sqlserver:Phone",
             SourceDataTypeId = "sqlserver:type:Phone",
             TargetDataTypeId = "meta:type:String"
         };
-        model.DataTypeMappingList.Add(record56);
-        var record57 = new DataTypeMapping
+        model.DataTypeMappingList.Add(record55);
+        var record56 = new DataTypeMapping
         {
             Id = "MetaDataTypeConversion:mapping:sqlserver:Phone-to-nvarchar",
             Notes = "SQL Server alias/user-defined type compatibility.",
             SourceDataTypeId = "sqlserver:type:Phone",
             TargetDataTypeId = "sqlserver:type:nvarchar"
         };
-        model.DataTypeMappingList.Add(record57);
-        var record58 = new DataTypeMapping
+        model.DataTypeMappingList.Add(record56);
+        var record57 = new DataTypeMapping
         {
             Id = "MetaDataTypeConversion:mapping:sqlserver:real",
             SourceDataTypeId = "sqlserver:type:real",
             TargetDataTypeId = "meta:type:Single"
         };
-        model.DataTypeMappingList.Add(record58);
-        var record59 = new DataTypeMapping
+        model.DataTypeMappingList.Add(record57);
+        var record58 = new DataTypeMapping
         {
             Id = "MetaDataTypeConversion:mapping:sqlserver:smallint",
             SourceDataTypeId = "sqlserver:type:smallint",
             TargetDataTypeId = "meta:type:Int16"
         };
-        model.DataTypeMappingList.Add(record59);
-        var record60 = new DataTypeMapping
+        model.DataTypeMappingList.Add(record58);
+        var record59 = new DataTypeMapping
         {
             Id = "MetaDataTypeConversion:mapping:sqlserver:smallmoney",
             SourceDataTypeId = "sqlserver:type:smallmoney",
             TargetDataTypeId = "meta:type:Decimal"
         };
-        model.DataTypeMappingList.Add(record60);
-        var record61 = new DataTypeMapping
-        {
-            Id = "MetaDataTypeConversion:mapping:sqlserver:smallmoney-to-decimal",
-            Notes = "SQL Server write compatibility for decimal normalization.",
-            SourceDataTypeId = "sqlserver:type:smallmoney",
-            TargetDataTypeId = "sqlserver:type:decimal"
-        };
-        model.DataTypeMappingList.Add(record61);
-        var record62 = new DataTypeMapping
+        model.DataTypeMappingList.Add(record59);
+        var record60 = new DataTypeMapping
         {
             Id = "MetaDataTypeConversion:mapping:sqlserver:sql_variant",
             SourceDataTypeId = "sqlserver:type:sql_variant",
             TargetDataTypeId = "meta:type:Object"
         };
-        model.DataTypeMappingList.Add(record62);
-        var record63 = new DataTypeMapping
+        model.DataTypeMappingList.Add(record60);
+        var record61 = new DataTypeMapping
         {
             Id = "MetaDataTypeConversion:mapping:sqlserver:sysname",
             SourceDataTypeId = "sqlserver:type:sysname",
             TargetDataTypeId = "meta:type:String"
         };
-        model.DataTypeMappingList.Add(record63);
-        var record64 = new DataTypeMapping
+        model.DataTypeMappingList.Add(record61);
+        var record62 = new DataTypeMapping
         {
             Id = "MetaDataTypeConversion:mapping:sqlserver:sysname-to-nvarchar",
             Notes = "SQL Server alias/user-defined type compatibility.",
             SourceDataTypeId = "sqlserver:type:sysname",
             TargetDataTypeId = "sqlserver:type:nvarchar"
         };
-        model.DataTypeMappingList.Add(record64);
-        var record65 = new DataTypeMapping
+        model.DataTypeMappingList.Add(record62);
+        var record63 = new DataTypeMapping
         {
             Id = "MetaDataTypeConversion:mapping:sqlserver:time",
             SourceDataTypeId = "sqlserver:type:time",
             TargetDataTypeId = "meta:type:Time"
         };
-        model.DataTypeMappingList.Add(record65);
-        var record66 = new DataTypeMapping
+        model.DataTypeMappingList.Add(record63);
+        var record64 = new DataTypeMapping
         {
             Id = "MetaDataTypeConversion:mapping:sqlserver:tinyint",
             SourceDataTypeId = "sqlserver:type:tinyint",
             TargetDataTypeId = "meta:type:Byte"
         };
-        model.DataTypeMappingList.Add(record66);
-        var record67 = new DataTypeMapping
+        model.DataTypeMappingList.Add(record64);
+        var record65 = new DataTypeMapping
         {
             Id = "MetaDataTypeConversion:mapping:sqlserver:uniqueidentifier",
             SourceDataTypeId = "sqlserver:type:uniqueidentifier",
             TargetDataTypeId = "meta:type:Guid"
         };
-        model.DataTypeMappingList.Add(record67);
-        var record68 = new DataTypeMapping
+        model.DataTypeMappingList.Add(record65);
+        var record66 = new DataTypeMapping
         {
             Id = "MetaDataTypeConversion:mapping:sqlserver:varbinary",
             SourceDataTypeId = "sqlserver:type:varbinary",
             TargetDataTypeId = "meta:type:Binary"
         };
-        model.DataTypeMappingList.Add(record68);
-        var record69 = new DataTypeMapping
+        model.DataTypeMappingList.Add(record66);
+        var record67 = new DataTypeMapping
         {
             Id = "MetaDataTypeConversion:mapping:sqlserver:varchar",
             SourceDataTypeId = "sqlserver:type:varchar",
             TargetDataTypeId = "meta:type:AnsiString"
         };
-        model.DataTypeMappingList.Add(record69);
-        var record70 = new DataTypeMapping
+        model.DataTypeMappingList.Add(record67);
+        var record68 = new DataTypeMapping
         {
             Id = "MetaDataTypeConversion:mapping:sqlserver:xml",
             SourceDataTypeId = "sqlserver:type:xml",
             TargetDataTypeId = "meta:type:Xml"
         };
-        model.DataTypeMappingList.Add(record70);
+        model.DataTypeMappingList.Add(record68);
         record2.ConversionImplementation = record0;
         record3.ConversionImplementation = record0;
         record4.ConversionImplementation = record0;
@@ -623,17 +607,15 @@ public static partial class MetaDataTypeConversionInstance
         record57.ConversionImplementation = record0;
         record58.ConversionImplementation = record0;
         record59.ConversionImplementation = record0;
-        record60.ConversionImplementation = record0;
+        record60.ConversionImplementation = record1;
         record61.ConversionImplementation = record0;
-        record62.ConversionImplementation = record1;
+        record62.ConversionImplementation = record0;
         record63.ConversionImplementation = record0;
         record64.ConversionImplementation = record0;
         record65.ConversionImplementation = record0;
         record66.ConversionImplementation = record0;
         record67.ConversionImplementation = record0;
-        record68.ConversionImplementation = record0;
-        record69.ConversionImplementation = record0;
-        record70.ConversionImplementation = record1;
+        record68.ConversionImplementation = record1;
         return model;
     }
 }

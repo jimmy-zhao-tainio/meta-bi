@@ -2003,7 +2003,7 @@
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-business-warehouse-transforms:bind-business-warehouse-transforms" OperationId="operation:create-business-warehouse-transforms" PreviousStepId="operation-step:create-business-warehouse-transforms:import-business-warehouse-transforms">
-      <Arguments>bind --transform-workspace {workspace:business-warehouse-transforms.location} --source-schema {workspace:business-vault-schema.location} --source-schema {workspace:dimensional-warehouse-schema.location} --target-schema {workspace:dimensional-warehouse-schema.location} --execute-system AdventureWorksAnalytics --output-xml {workspace:business-warehouse-binding.location} --data-type-conversion-workspace {workspace:data-type-conversion.location}</Arguments>
+      <Arguments>bind --transform-workspace {workspace:business-warehouse-transforms.location} --source-schema {workspace:business-vault-schema.location} --source-schema {workspace:dimensional-warehouse-schema.location} --target-schema {workspace:dimensional-warehouse-schema.location} --execute-system AdventureWorksAnalytics --output-xml {workspace:business-warehouse-binding.location} --data-type-workspace {workspace:data-type.location}</Arguments>
       <Description>Bind the Business-to-warehouse transforms against the deployed Business Vault and warehouse contracts.</Description>
       <Executable>meta-transform-binding.exe</Executable>
       <Name>bind-business-warehouse-transforms</Name>
@@ -3066,7 +3066,7 @@
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-raw-business-transforms:bind-raw-business-transforms" OperationId="operation:create-raw-business-transforms" PreviousStepId="operation-step:create-raw-business-transforms:import-raw-business-transforms">
-      <Arguments>bind --transform-workspace {workspace:raw-business-transforms.location} --source-schema {workspace:raw-vault-schema.location} --source-schema {workspace:business-vault-schema.location} --target-schema {workspace:business-vault-schema.location} --execute-system AdventureWorksBusinessVault --output-xml {workspace:raw-business-binding.location} --data-type-conversion-workspace {workspace:data-type-conversion.location}</Arguments>
+      <Arguments>bind --transform-workspace {workspace:raw-business-transforms.location} --source-schema {workspace:raw-vault-schema.location} --source-schema {workspace:business-vault-schema.location} --target-schema {workspace:business-vault-schema.location} --execute-system AdventureWorksBusinessVault --output-xml {workspace:raw-business-binding.location} --data-type-workspace {workspace:data-type.location}</Arguments>
       <Executable>meta-transform-binding.exe</Executable>
       <Name>bind-raw-business-transforms</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
@@ -3437,7 +3437,7 @@
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-source-raw-transforms:bind-source-raw-transforms" OperationId="operation:create-source-raw-transforms" PreviousStepId="operation-step:create-source-raw-transforms:import-source-raw-transforms">
-      <Arguments>bind --transform-workspace {workspace:source-raw-transforms.location} --source-schema {workspace:source-schema.location} --source-schema {workspace:raw-vault-schema.location} --target-schema {workspace:raw-vault-schema.location} --execute-system AdventureWorksRawVault --output-xml {workspace:source-raw-binding.location} --data-type-conversion-workspace {workspace:data-type-conversion.location}</Arguments>
+      <Arguments>bind --transform-workspace {workspace:source-raw-transforms.location} --source-schema {workspace:source-schema.location} --source-schema {workspace:raw-vault-schema.location} --target-schema {workspace:raw-vault-schema.location} --execute-system AdventureWorksRawVault --output-xml {workspace:source-raw-binding.location} --data-type-workspace {workspace:data-type.location}</Arguments>
       <Executable>meta-transform-binding.exe</Executable>
       <Name>bind-source-raw-transforms</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
@@ -3661,21 +3661,21 @@
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:load-business-vault:execute-raw-business-pipeline" OperationId="operation:load-business-vault">
-      <Arguments>execute --workspace "{workspace:pipelines.location}" --pipeline RawToBusiness --pipeline-db-connection-env {env:AW_PIPELINE_SQL} --data-type-conversion-workspace "{workspace:data-type-conversion.location}"</Arguments>
+      <Arguments>execute --workspace "{workspace:pipelines.location}" --pipeline RawToBusiness --pipeline-db-connection-env {env:AW_PIPELINE_SQL} --data-type-workspace "{workspace:data-type.location}"</Arguments>
       <Description>Execute all Raw-to-Business transform tasks in modeled order.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>execute-raw-business-pipeline</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:load-dimensional-warehouse:execute-business-warehouse-pipeline" OperationId="operation:load-dimensional-warehouse">
-      <Arguments>execute --workspace "{workspace:pipelines.location}" --pipeline BusinessToWarehouse --pipeline-db-connection-env {env:AW_PIPELINE_SQL} --data-type-conversion-workspace "{workspace:data-type-conversion.location}"</Arguments>
+      <Arguments>execute --workspace "{workspace:pipelines.location}" --pipeline BusinessToWarehouse --pipeline-db-connection-env {env:AW_PIPELINE_SQL} --data-type-workspace "{workspace:data-type.location}"</Arguments>
       <Description>Execute all Business-to-warehouse transform tasks in modeled order.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>execute-business-warehouse-pipeline</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:load-raw-vault:execute-source-raw-pipeline" OperationId="operation:load-raw-vault">
-      <Arguments>execute --workspace "{workspace:pipelines.location}" --pipeline SourceToRaw --pipeline-db-connection-env {env:AW_PIPELINE_SQL} --data-type-conversion-workspace "{workspace:data-type-conversion.location}"</Arguments>
+      <Arguments>execute --workspace "{workspace:pipelines.location}" --pipeline SourceToRaw --pipeline-db-connection-env {env:AW_PIPELINE_SQL} --data-type-workspace "{workspace:data-type.location}"</Arguments>
       <Description>Execute all source-to-Raw transform tasks in modeled order.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>execute-source-raw-pipeline</Name>
@@ -3688,7 +3688,7 @@
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:run-etl:execute-orchestration" OperationId="operation:run-etl">
-      <Arguments>execute --workspace "{workspace:orchestration.location}" --pipeline-workspace "{workspace:pipelines.location}" --data-type-conversion-workspace "{workspace:data-type-conversion.location}" --pipeline-db-connection-env {env:AW_PIPELINE_SQL} --max-degree-of-parallelism 3 --run-artifacts-root "{mesh.root}\Runs\ops\RunArtifacts"</Arguments>
+      <Arguments>execute --workspace "{workspace:orchestration.location}" --pipeline-workspace "{workspace:pipelines.location}" --data-type-workspace "{workspace:data-type.location}" --pipeline-db-connection-env {env:AW_PIPELINE_SQL} --max-degree-of-parallelism 3 --run-artifacts-root "{mesh.root}\Runs\ops\RunArtifacts"</Arguments>
       <Description>Coordinate the deterministic full-stack run plan through MetaPipeline workers.</Description>
       <Executable>meta-orchestration.exe</Executable>
       <Name>execute-orchestration</Name>
