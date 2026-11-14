@@ -39,7 +39,7 @@ public interface IMetaDataTypeConversionService
 public sealed class MetaDataTypeConversionService : IMetaDataTypeConversionService
 {
     public MetaDataTypeConversionModel CreateWorkspace() =>
-        MetaDataTypeConversionInstance.BuiltIn;
+        MetaDataTypeConversionInstance.CreateBuiltIn();
 
     public MetaDataTypeConversionCheckResult Check(MetaDataTypeConversionModel model)
     {

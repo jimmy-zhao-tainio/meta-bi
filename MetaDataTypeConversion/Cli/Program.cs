@@ -24,7 +24,8 @@ internal static class Program
             AppName);
 
         Environment.ExitCode = 0;
-        var runtime = new MetaCliRuntime<MetaDataTypeConversionModel>(CommandWorkspacePath, ApplicationId)
+        var runtime = new MetaCliRuntime<MetaDataTypeConversionModel>(CommandWorkspacePath,
+                new MetaDataTypeConversionWorkspaceBinding(), ApplicationId)
             .UseDefaultHelp()
             .Bind(
                 "exec-create",

@@ -23,7 +23,6 @@
 
   <ItemGroup>
     <Compile Include="UnitTestAssembly.cs" />
-    <Compile Include="../../MetaDataTypeConversion/Tests/ServiceTests.cs" />
     <Compile Include="../../MetaDataVault/Tests/BusinessDataVaultRulesTests.cs" />
     <Compile Include="../../MetaOrchestration/Tests/MetaOrchestrationSqlObjectIdentityTests.cs" />
     <Compile Include="../../MetaPipeline/Tests/BufferedPipelineExecutionServiceTests.cs" />

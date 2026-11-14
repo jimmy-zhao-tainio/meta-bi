@@ -24,15 +24,15 @@ internal sealed class MetaDataTypeConversionCommandHandlers
         MetaCliInvocation invocation,
         MetaCliWorkspaces workspaces)
     {
-        var model = service.CreateWorkspace();
-        await workspaces.CreateAsync("output", model).ConfigureAwait(false);
+        var workspace = await MetaDataTypeConversionWorkspaceProvider.LoadDefaultStateAsync().ConfigureAwait(false);
+        await workspaces.CreateAsync("output", workspace).ConfigureAwait(false);
 
         presenter.WriteOk(
             "MetaDataTypeConversion workspace created",
             ("Path", MetaCliWorkspace.OutputLocation(invocation)),
             ("Model", "MetaDataTypeConversion"),
-            ("ConversionImplementations", model.ConversionImplementationList.Count.ToString()),
-            ("DataTypeMappings", model.DataTypeMappingList.Count.ToString()));
+            ("ConversionImplementations", workspace.Instance.RecordsByEntity["ConversionImplementation"].Count.ToString()),
+            ("DataTypeMappings", workspace.Instance.RecordsByEntity["DataTypeMapping"].Count.ToString()));
     }
 
     public void RunCheck(MetaCliInvocation invocation, MetaDataTypeConversionModel model)
