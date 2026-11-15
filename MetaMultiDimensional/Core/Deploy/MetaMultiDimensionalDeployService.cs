@@ -1391,9 +1391,9 @@ public sealed class MetaMultiDimensionalDeployService
             : $"{sourceColumnName}_Name";
     }
 
-    private static Type MapClrDataType(MetaDataTypeModel catalog, string? dataTypeId)
+    private static Type MapClrDataType(MetaDataTypeModel catalog, string? dataTypeId, string usage = "dimension attribute")
     {
-        var value = ResolveMetaTypeName(catalog, dataTypeId, "Multidimensional type").ToUpperInvariant();
+        var value = ResolveMetaTypeName(catalog, dataTypeId, "Multidimensional type", usage).ToUpperInvariant();
         return value switch
         {
             "BOOLEAN" or "BOOL" => typeof(bool),
@@ -1404,23 +1404,25 @@ public sealed class MetaMultiDimensionalDeployService
             "INT32" or "INTEGER" => typeof(int),
             "INT64" or "LONG" => typeof(long),
             "BINARY" => typeof(byte[]),
-            _ => typeof(string),
+            "STRING" => typeof(string),
+            _ => throw UnsupportedDataType(catalog, dataTypeId, "Multidimensional type", usage),
         };
     }
 
     private static Type MapMeasureClrDataType(MetaDataTypeModel catalog, string? dataTypeId)
     {
-        var value = ResolveMetaTypeName(catalog, dataTypeId, "Multidimensional type").ToUpperInvariant();
+        var value = ResolveMetaTypeName(catalog, dataTypeId, "Multidimensional type", "measure").ToUpperInvariant();
         return value switch
         {
             "DECIMAL" or "NUMERIC" => typeof(double),
-            _ => MapClrDataType(catalog, dataTypeId),
+            _ => MapClrDataType(catalog, dataTypeId, "measure"),
         };
     }
 
-    private static Amo.DataType MapAmoDataType(MetaDataTypeModel catalog, string? dataTypeId)
+    private static Amo.DataType MapAmoDataType(MetaDataTypeModel catalog, string? dataTypeId,
+        string description = "Multidimensional type", string usage = "dimension attribute")
     {
-        var value = ResolveMetaTypeName(catalog, dataTypeId, "Multidimensional type").ToUpperInvariant();
+        var value = ResolveMetaTypeName(catalog, dataTypeId, description, usage).ToUpperInvariant();
         return value switch
         {
             "BOOLEAN" or "BOOL" => Amo.DataType.Boolean,
@@ -1431,7 +1433,8 @@ public sealed class MetaMultiDimensionalDeployService
             "INT32" or "INTEGER" => Amo.DataType.Int32,
             "INT64" or "LONG" => Amo.DataType.Int64,
             "BINARY" => Amo.DataType.Binary,
-            _ => Amo.DataType.String,
+            "STRING" => Amo.DataType.String,
+            _ => throw UnsupportedDataType(catalog, dataTypeId, description, usage),
         };
     }
 
@@ -1517,9 +1520,10 @@ public sealed class MetaMultiDimensionalDeployService
                 : ParseEnum<Amo.AggregationFunction>(value, "Measure.AggregateFunction");
     }
 
-    private static Amo.MeasureDataType MapMeasureDataType(MetaDataTypeModel catalog, string? dataTypeId)
+    private static Amo.MeasureDataType MapMeasureDataType(MetaDataTypeModel catalog, string? dataTypeId,
+        string description = "Multidimensional type")
     {
-        var value = ResolveMetaTypeName(catalog, dataTypeId, "Multidimensional type").ToUpperInvariant();
+        var value = ResolveMetaTypeName(catalog, dataTypeId, description, "measure").ToUpperInvariant();
         return value switch
         {
             "BOOLEAN" or "BOOL" => Amo.MeasureDataType.Boolean,
@@ -1530,17 +1534,17 @@ public sealed class MetaMultiDimensionalDeployService
             "INT16" => Amo.MeasureDataType.SmallInt,
             "INT32" or "INTEGER" => Amo.MeasureDataType.Integer,
             "INT64" or "LONG" => Amo.MeasureDataType.BigInt,
-            _ => Amo.MeasureDataType.Double,
+            _ => throw UnsupportedDataType(catalog, dataTypeId, description, "measure"),
         };
     }
 
     private static Amo.DataType MapMeasureSourceDataType(MetaDataTypeModel catalog, string? dataTypeId)
     {
-        var value = ResolveMetaTypeName(catalog, dataTypeId, "Multidimensional type").ToUpperInvariant();
+        var value = ResolveMetaTypeName(catalog, dataTypeId, "Multidimensional type", "measure").ToUpperInvariant();
         return value switch
         {
             "DECIMAL" or "NUMERIC" => Amo.DataType.Double,
-            _ => MapAmoDataType(catalog, dataTypeId),
+            _ => MapAmoDataType(catalog, dataTypeId, usage: "measure"),
         };
     }
 
@@ -1704,24 +1708,30 @@ public sealed class MetaMultiDimensionalDeployService
     private static void ValidateDataTypes(MetaMultiDimensionalModel source, MetaDataTypeModel catalog)
     {
         foreach (var attribute in source.DimensionAttributeList)
-            ResolveMetaTypeName(catalog, attribute.DataTypeId, $"DimensionAttribute '{attribute.Id}'");
+            MapAmoDataType(catalog, attribute.DataTypeId, $"DimensionAttribute '{attribute.Id}' ('{attribute.Name}')");
         foreach (var measure in source.MeasureList)
-            ResolveMetaTypeName(catalog, measure.DataTypeId, $"Measure '{measure.Id}'");
+            MapMeasureDataType(catalog, measure.DataTypeId, $"Measure '{measure.Id}' ('{measure.Name}')");
     }
 
-    // Preserve the existing native fallback for catalog-resolved types without a
-    // Meta mapping. Selecting a stricter unsupported-type policy is separate work.
-    private static string ResolveMetaTypeName(MetaDataTypeModel catalog, string? id, string description)
+    private static string ResolveMetaTypeName(MetaDataTypeModel catalog, string? id, string description, string usage)
     {
-        if (string.IsNullOrWhiteSpace(id)) return string.Empty;
+        if (string.IsNullOrWhiteSpace(id))
+            throw new InvalidOperationException($"{description} is missing DataTypeId; no explicit SSAS {usage} mapping can be selected.");
         var matches = catalog.DataTypeList.Where(type => type.Id == id).ToArray();
         if (matches.Length != 1)
-            throw new InvalidOperationException($"{description} has DataTypeId '{id}', which resolves to {matches.Length} types in the selected MetaDataType catalog; expected one.");
+            throw new InvalidOperationException($"{description} has DataTypeId '{id}', which resolves to {matches.Length} types in the selected MetaDataType catalog; expected one for an explicit SSAS {usage} mapping.");
         var systems = catalog.DataTypeSystemList.Where(system => system.Id == matches[0].DataTypeSystem?.Id).ToArray();
         if (systems.Length != 1)
-            throw new InvalidOperationException($"{description} type '{id}' does not have one DataTypeSystem relationship in the selected MetaDataType catalog.");
-        return string.Equals(systems[0].Name, "Meta", StringComparison.OrdinalIgnoreCase)
-            ? matches[0].Name?.Trim() ?? string.Empty
-            : string.Empty;
+            throw new InvalidOperationException($"{description} type '{id}' does not have one DataTypeSystem relationship in the selected MetaDataType catalog; cannot select an explicit SSAS {usage} mapping.");
+        if (!string.Equals(systems[0].Name, "Meta", StringComparison.OrdinalIgnoreCase))
+            throw UnsupportedDataType(catalog, id, description, usage);
+        return matches[0].Name?.Trim() ?? string.Empty;
+    }
+
+    private static InvalidOperationException UnsupportedDataType(MetaDataTypeModel catalog, string? id, string description, string usage)
+    {
+        var type = catalog.DataTypeList.Single(row => row.Id == id);
+        var system = catalog.DataTypeSystemList.Single(row => row.Id == type.DataTypeSystem?.Id);
+        return new InvalidOperationException($"{description} has DataTypeId '{id}' (type '{type.Name}' in data type system '{system.Name}'), which has no explicit SSAS {usage} mapping.");
     }
 }

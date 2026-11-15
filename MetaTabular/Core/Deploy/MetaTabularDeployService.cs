@@ -193,12 +193,12 @@ public sealed class MetaTabularDeployService
                 ? new Tom.DataColumn
                 {
                     SourceColumn = string.IsNullOrWhiteSpace(row.SourceName) ? row.Name : row.SourceName,
-                    DataType = MapTabularDataType(catalog, row.DataTypeId),
+                    DataType = MapTabularDataType(catalog, row.DataTypeId, DescribeColumn(row)),
                 }
                 : new Tom.CalculatedColumn
                 {
                     Expression = row.Expression,
-                    DataType = MapTabularDataType(catalog, row.DataTypeId),
+                    DataType = MapTabularDataType(catalog, row.DataTypeId, DescribeColumn(row)),
                 };
 
             column.Name = row.Name;
@@ -1080,9 +1080,10 @@ public sealed class MetaTabularDeployService
         };
     }
 
-    private static Tom.DataType MapTabularDataType(MetaDataTypeModel catalog, string? dataTypeId)
+    private static Tom.DataType MapTabularDataType(MetaDataTypeModel catalog, string? dataTypeId, string description)
     {
-        var value = ResolveMetaTypeName(catalog, dataTypeId, "Tabular column").ToUpperInvariant();
+        var (type, system) = ResolveMetaType(catalog, dataTypeId, description);
+        var value = type.Name?.Trim().ToUpperInvariant();
         return value switch
         {
             "BOOLEAN" or "BOOL" => Tom.DataType.Boolean,
@@ -1091,7 +1092,8 @@ public sealed class MetaTabularDeployService
             "DOUBLE" or "FLOAT" or "REAL" => Tom.DataType.Double,
             "INT16" or "INT32" or "INT64" or "INTEGER" or "LONG" => Tom.DataType.Int64,
             "BINARY" => Tom.DataType.Binary,
-            _ => Tom.DataType.String,
+            "STRING" => Tom.DataType.String,
+            _ => throw UnsupportedType(description, type, system),
         };
     }
 
@@ -1207,24 +1209,29 @@ public sealed class MetaTabularDeployService
     private static void ValidateDataTypes(MetaTabularModel source, MetaDataTypeModel catalog)
     {
         foreach (var column in source.TabularColumnList)
-            ResolveMetaTypeName(catalog, column.DataTypeId, $"TabularColumn '{column.Id}'");
+            MapTabularDataType(catalog, column.DataTypeId, DescribeColumn(column));
     }
 
-    // Preserve the existing native fallback for catalog-resolved types without a
-    // Meta mapping. Selecting a stricter unsupported-type policy is separate work.
-    private static string ResolveMetaTypeName(MetaDataTypeModel catalog, string? id, string description)
+    private static string DescribeColumn(TabularColumn column) =>
+        $"TabularColumn '{column.Id}' ('{column.TabularTable?.Name}.{column.Name}')";
+
+    private static (DataType Type, DataTypeSystem System) ResolveMetaType(MetaDataTypeModel catalog, string? id, string description)
     {
-        if (string.IsNullOrWhiteSpace(id)) return string.Empty;
+        if (string.IsNullOrWhiteSpace(id))
+            throw new InvalidOperationException($"{description} is missing DataTypeId. SSAS Tabular deployment requires a supported Meta type from the selected catalog.");
         var matches = catalog.DataTypeList.Where(type => type.Id == id).ToArray();
         if (matches.Length != 1)
             throw new InvalidOperationException($"{description} has DataTypeId '{id}', which resolves to {matches.Length} types in the selected MetaDataType catalog; expected one.");
         var systems = catalog.DataTypeSystemList.Where(system => system.Id == matches[0].DataTypeSystem?.Id).ToArray();
         if (systems.Length != 1)
-            throw new InvalidOperationException($"{description} type '{id}' does not have one DataTypeSystem relationship in the selected MetaDataType catalog.");
-        return string.Equals(systems[0].Name, "Meta", StringComparison.OrdinalIgnoreCase)
-            ? matches[0].Name?.Trim() ?? string.Empty
-            : string.Empty;
+            throw new InvalidOperationException($"{description} has DataTypeId '{id}' (type '{matches[0].Name}'), which does not have one DataTypeSystem relationship in the selected MetaDataType catalog.");
+        if (!string.Equals(systems[0].Name, "Meta", StringComparison.OrdinalIgnoreCase))
+            throw UnsupportedType(description, matches[0], systems[0]);
+        return (matches[0], systems[0]);
     }
+
+    private static InvalidOperationException UnsupportedType(string description, DataType type, DataTypeSystem system) =>
+        new($"{description} has DataTypeId '{type.Id}' (type '{type.Name}' in DataTypeSystem '{system.Name}', ID '{system.Id}'), which has no supported SSAS Tabular mapping.");
 
     private static string ToDaxMeasureReference(string measureName)
     {
