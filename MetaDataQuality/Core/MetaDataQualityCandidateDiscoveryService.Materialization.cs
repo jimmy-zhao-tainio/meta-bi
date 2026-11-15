@@ -1,4 +1,4 @@
-﻿using MetaDataQuality;
+using MetaDataQuality;
 using System.Globalization;
 using MetaTransformScript;
 

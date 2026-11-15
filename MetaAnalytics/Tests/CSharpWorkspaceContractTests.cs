@@ -12,7 +12,7 @@ public sealed class CSharpWorkspaceContractTests
     public void MetaAnalyticsModel_IsProducedAndConsumedByTheCSharpSurfaceContract()
     {
         var sourceState = TypedWorkspaceModelMapper.ToInMemoryWorkspace(
-            TestModels.LoadSampleCommerce());
+            TestModels.LoadSampleCommerce(), global::MetaAnalytics.Core.AnalyticsModels.LoadContract(), new global::MetaAnalytics.MetaAnalyticsWorkspaceBinding());
 
         var csharp = MetaCSharpWriter.Write(sourceState);
         var source = Assert.Single(csharp.Sources.Values);
@@ -26,7 +26,7 @@ public sealed class CSharpWorkspaceContractTests
         var readState = MetaCSharpReader.Read(csharp);
         var consumed = TypedWorkspaceModelMapper.FromInMemoryWorkspace(
             readState,
-            static () => new MetaAnalyticsModel());
+            new global::MetaAnalytics.MetaAnalyticsWorkspaceBinding());
 
         Assert.Null(InMemoryWorkspaceComparer.FindDifference(
             sourceState,

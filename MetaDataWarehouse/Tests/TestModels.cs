@@ -12,6 +12,6 @@ internal static class TestModels
             "MetaDataWarehouse",
             "Workspaces",
             "SampleDataWarehouseCommerce");
-        return TypedWorkspaceXmlSerializer.Load<MetaDataWarehouseModel>(workspacePath, searchUpward: false);
+        return TypedWorkspaceXmlSerializer.Load<MetaDataWarehouseModel>(workspacePath, new global::MetaDataWarehouse.MetaDataWarehouseWorkspaceBinding(), searchUpward: false);
     }
 }

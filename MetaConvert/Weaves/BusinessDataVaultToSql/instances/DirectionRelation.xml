@@ -14,6 +14,6 @@
     <DirectionRelation Id="forward/BusinessReferenceKeyPartOrder" DirectionId="forward" SelectStatementId="SelectStatement:5" />
     <DirectionRelation Id="forward/BusinessTables" DirectionId="forward" SelectStatementId="SelectStatement:3" />
     <DirectionRelation Id="forward/ImplementationSchemas" DirectionId="forward" SelectStatementId="SelectStatement:1" />
-    <DirectionRelation Id="forward/LoweredTypes" DirectionId="forward" SelectStatementId="SelectStatement:2" />
+    <DirectionRelation Id="forward/LoweredTypes" DirectionId="forward" SelectStatementId="SelectStatement:38" />
   </DirectionRelationList>
 </MetaWeave>

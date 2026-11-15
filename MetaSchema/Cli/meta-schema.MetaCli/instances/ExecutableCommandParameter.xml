@@ -4,6 +4,7 @@
     <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-all-schemas" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-all-schemas" />
     <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-all-tables" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-all-tables" />
     <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-connection-env" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-connection-env" />
+    <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-data-type-workspace" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-data-type-workspace" />
     <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-output-connection-env" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-output-connection-env" />
     <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-output-csharp" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-output-csharp" />
     <ExecutableCommandParameter Id="exec-extract-sqlserver:parameter:param-extract-sqlserver-output-sql" ExecutableCommandId="exec-extract-sqlserver" ParameterId="param-extract-sqlserver-output-sql" />

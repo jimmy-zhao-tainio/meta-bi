@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Reflection;
 using MetaTransformScript.Sql.Parsing;
 using MTS = global::MetaTransformScript;
 
@@ -7,16 +5,6 @@ namespace MetaTransformScript.Sql;
 
 public sealed partial class MetaTransformScriptSqlService
 {
-    private static readonly IReadOnlyList<PropertyInfo> ModelListProperties =
-        typeof(MTS.MetaTransformScriptModel)
-            .GetProperties(BindingFlags.Public | BindingFlags.Instance)
-            .Where(static property =>
-                property.Name.EndsWith("List", StringComparison.Ordinal) &&
-                typeof(IList).IsAssignableFrom(property.PropertyType) &&
-                property.GetIndexParameters().Length == 0)
-            .OrderBy(static property => property.Name, StringComparer.Ordinal)
-            .ToArray();
-
     public async Task<ImportSqlFilesToWorkspaceResult> ImportSqlFilesToNewXmlWorkspaceAsync(
         IEnumerable<SqlFileImportRequest> requests,
         string newWorkspacePath,
@@ -238,79 +226,67 @@ public sealed partial class MetaTransformScriptSqlService
 
     private static void RemapModelIds(
         MTS.MetaTransformScriptModel model,
-        IDictionary<string, int> nextIds)
-    {
-        foreach (var property in GetModelListProperties())
-        {
-            var entityName = property.Name[..^"List".Length];
-            foreach (var row in ReadRows(property, model))
-            {
-                var idProperty = row.GetType().GetProperty("Id", BindingFlags.Public | BindingFlags.Instance);
-                if (idProperty is null || !idProperty.CanWrite || idProperty.PropertyType != typeof(string))
-                {
-                    continue;
-                }
-
-                nextIds.TryGetValue(entityName, out var nextId);
-                nextId++;
-                nextIds[entityName] = nextId;
-                idProperty.SetValue(row, $"{entityName}:{nextId}");
-            }
-        }
-    }
+        IDictionary<string, int> nextIds) =>
+        MTS.MetaTransformScriptModelAccess.VisitCollections(new RemapIdsVisitor(model, nextIds));
 
     private static void AppendModelRows(
         MTS.MetaTransformScriptModel target,
-        MTS.MetaTransformScriptModel source)
-    {
-        foreach (var property in GetModelListProperties())
-        {
-            if (property.GetValue(target) is not IList targetRows)
-            {
-                throw new InvalidOperationException($"MetaTransformScript model list '{property.Name}' is not appendable.");
-            }
-
-            foreach (var row in ReadRows(property, source))
-            {
-                targetRows.Add(row);
-            }
-        }
-    }
+        MTS.MetaTransformScriptModel source) =>
+        MTS.MetaTransformScriptModelAccess.VisitCollections(new AppendRowsVisitor(target, source));
 
     private static Dictionary<string, int> ReadNextIdState(MTS.MetaTransformScriptModel model)
     {
         var nextIds = new Dictionary<string, int>(StringComparer.Ordinal);
-        foreach (var property in GetModelListProperties())
+        MTS.MetaTransformScriptModelAccess.VisitCollections(new ReadIdsVisitor(model, nextIds));
+        return nextIds;
+    }
+
+    private sealed class RemapIdsVisitor(MTS.MetaTransformScriptModel model, IDictionary<string, int> nextIds)
+        : MTS.IMetaTransformScriptCollectionVisitor
+    {
+        public void Visit<TEntity>(string entityName, Func<MTS.MetaTransformScriptModel, IList<TEntity>> collection,
+            Func<TEntity, string> readId, Action<TEntity, string> writeId) where TEntity : class
         {
-            var entityName = property.Name[..^"List".Length];
-            foreach (var row in ReadRows(property, model))
+            foreach (var row in collection(model))
             {
-                var idValue = row.GetType().GetProperty("Id", BindingFlags.Public | BindingFlags.Instance)?.GetValue(row) as string;
-                if (TryReadEntityId(idValue, entityName, out var numericId) &&
+                if (row is null) continue;
+                nextIds.TryGetValue(entityName, out var nextId);
+                nextId++;
+                nextIds[entityName] = nextId;
+                writeId(row, $"{entityName}:{nextId}");
+            }
+        }
+    }
+
+    private sealed class AppendRowsVisitor(MTS.MetaTransformScriptModel target, MTS.MetaTransformScriptModel source)
+        : MTS.IMetaTransformScriptCollectionVisitor
+    {
+        public void Visit<TEntity>(string entityName, Func<MTS.MetaTransformScriptModel, IList<TEntity>> collection,
+            Func<TEntity, string> readId, Action<TEntity, string> writeId) where TEntity : class
+        {
+            var targetRows = collection(target)
+                ?? throw new InvalidOperationException($"MetaTransformScript model list '{entityName}List' is not appendable.");
+            foreach (var row in collection(source))
+            {
+                if (row is not null) targetRows.Add(row);
+            }
+        }
+    }
+
+    private sealed class ReadIdsVisitor(MTS.MetaTransformScriptModel model, IDictionary<string, int> nextIds)
+        : MTS.IMetaTransformScriptCollectionVisitor
+    {
+        public void Visit<TEntity>(string entityName, Func<MTS.MetaTransformScriptModel, IList<TEntity>> collection,
+            Func<TEntity, string> readId, Action<TEntity, string> writeId) where TEntity : class
+        {
+            foreach (var row in collection(model))
+            {
+                if (row is null) continue;
+                if (TryReadEntityId(readId(row), entityName, out var numericId) &&
                     (!nextIds.TryGetValue(entityName, out var current) || numericId > current))
                 {
                     nextIds[entityName] = numericId;
                 }
-            }
-        }
-
-        return nextIds;
-    }
-
-    private static IReadOnlyList<PropertyInfo> GetModelListProperties() => ModelListProperties;
-
-    private static IEnumerable<object> ReadRows(PropertyInfo property, MTS.MetaTransformScriptModel model)
-    {
-        if (property.GetValue(model) is not IEnumerable rows)
-        {
-            yield break;
-        }
-
-        foreach (var row in rows)
-        {
-            if (row is not null)
-            {
-                yield return row;
             }
         }
     }

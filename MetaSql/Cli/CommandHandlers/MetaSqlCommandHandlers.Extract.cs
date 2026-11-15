@@ -47,7 +47,7 @@ internal sealed partial class MetaSqlCommandHandlers
                 [$"  {exception.Message}"]));
         }
 
-        await workspaces.CreateAsync("output", model).ConfigureAwait(false);
+        await workspaces.CreateAsync("output", model, global::MetaSql.MetaSqlModels.LoadContract(), new global::MetaSql.MetaSqlWorkspaceBinding()).ConfigureAwait(false);
 
         Presenter.WriteInfo($"Extracted {Path.GetFileName(output)}");
         Presenter.WriteKeyValueBlock("Summary", new[]
@@ -65,6 +65,7 @@ internal sealed partial class MetaSqlCommandHandlers
     {
         var request = new SqlServerExtractRequest
         {
+            DataTypeWorkspacePath = invocation.Optional("data-type-workspace"),
             SchemaName = invocation.Optional("schema"),
             TableName = invocation.Optional("table"),
             AllowEmpty = invocation.Flag("allow-empty"),

@@ -1,0 +1,11 @@
+<Project>
+  <ItemGroup>
+    <_MetaConvertDataQualityFiles Include="$(MSBuildThisFileDirectory)../contentFiles/any/any/**/*" />
+  </ItemGroup>
+  <Target Name="CopyMetaConvertDataQualityFilesToOutput" AfterTargets="CopyFilesToOutputDirectory" Condition="'$(DesignTimeBuild)' != 'true'">
+    <Copy SourceFiles="@(_MetaConvertDataQualityFiles)" DestinationFiles="@(_MetaConvertDataQualityFiles -> '$(OutDir)%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+  <Target Name="CopyMetaConvertDataQualityFilesToPublish" AfterTargets="Publish" Condition="'$(DesignTimeBuild)' != 'true' and '$(PublishDir)' != ''">
+    <Copy SourceFiles="@(_MetaConvertDataQualityFiles)" DestinationFiles="@(_MetaConvertDataQualityFiles -> '$(PublishDir)%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+</Project>

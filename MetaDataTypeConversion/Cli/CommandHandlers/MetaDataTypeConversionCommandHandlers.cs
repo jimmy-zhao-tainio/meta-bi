@@ -3,20 +3,18 @@ using Meta.Core.Presentation.Cli;
 using MetaCli.Core;
 using MetaDataTypeConversion;
 using MetaDataTypeConversion.Core;
+using MetaDataType.Core;
 
 internal sealed class MetaDataTypeConversionCommandHandlers
 {
     private readonly ConsolePresenter presenter;
-    private readonly IMetaDataTypeConversionService service;
     private readonly string appName;
 
     public MetaDataTypeConversionCommandHandlers(
         ConsolePresenter presenter,
-        IMetaDataTypeConversionService service,
         string appName)
     {
         this.presenter = presenter;
-        this.service = service;
         this.appName = appName;
     }
 
@@ -37,6 +35,8 @@ internal sealed class MetaDataTypeConversionCommandHandlers
 
     public void RunCheck(MetaCliInvocation invocation, MetaDataTypeConversionModel model)
     {
+        var service = new MetaDataTypeConversionService(
+            MetaDataTypeWorkspaceProvider.LoadOrDefault(invocation.Optional("data-type-workspace")));
         var result = service.Check(model);
         if (result.HasErrors)
         {
@@ -56,6 +56,8 @@ internal sealed class MetaDataTypeConversionCommandHandlers
 
     public void RunResolve(MetaCliInvocation invocation, MetaDataTypeConversionModel model)
     {
+        var service = new MetaDataTypeConversionService(
+            MetaDataTypeWorkspaceProvider.LoadOrDefault(invocation.Optional("data-type-workspace")));
         var sourceDataTypeId = invocation.Required("source-data-type");
         var targetDataTypeSystemName = invocation.Optional("target-data-type-system");
 

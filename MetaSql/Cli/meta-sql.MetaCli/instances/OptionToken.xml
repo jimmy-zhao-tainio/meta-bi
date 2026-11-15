@@ -4,6 +4,9 @@
     <OptionToken Id="token-deploy-connection-env" OptionId="opt-deploy-connection-env">
       <Token>--connection-env</Token>
     </OptionToken>
+    <OptionToken Id="token-deploy-data-type-workspace" OptionId="opt-deploy-data-type-workspace">
+      <Token>--data-type-workspace</Token>
+    </OptionToken>
     <OptionToken Id="token-deploy-manifest-workspace" OptionId="opt-deploy-manifest-workspace">
       <Token>--manifest-workspace</Token>
     </OptionToken>
@@ -21,6 +24,9 @@
     </OptionToken>
     <OptionToken Id="token-deploy-plan-connection-env" OptionId="opt-deploy-plan-connection-env">
       <Token>--connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-deploy-plan-data-type-workspace" OptionId="opt-deploy-plan-data-type-workspace">
+      <Token>--data-type-workspace</Token>
     </OptionToken>
     <OptionToken Id="token-deploy-plan-output-connection-env" OptionId="option-deploy-plan-output-connection-env">
       <Token>--output-connection-env</Token>
@@ -63,6 +69,9 @@
     </OptionToken>
     <OptionToken Id="token-extract-sqlserver-connection-env" OptionId="opt-extract-sqlserver-connection-env">
       <Token>--connection-env</Token>
+    </OptionToken>
+    <OptionToken Id="token-extract-sqlserver-data-type-workspace" OptionId="opt-extract-sqlserver-data-type-workspace">
+      <Token>--data-type-workspace</Token>
     </OptionToken>
     <OptionToken Id="token-extract-sqlserver-include-functions" OptionId="opt-extract-sqlserver-include-functions">
       <Token>--include-functions</Token>

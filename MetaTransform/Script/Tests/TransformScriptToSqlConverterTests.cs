@@ -33,7 +33,7 @@ SELECT
                 "Staging",
                 "xml");
 
-            var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaSqlModel>(metaSqlWorkspacePath, searchUpward: false);
+            var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaSqlModel>(metaSqlWorkspacePath, new global::MetaSql.MetaSqlWorkspaceBinding(), searchUpward: false);
             var schema = Assert.Single(model.SchemaList);
             Assert.Equal("stage", schema.Name);
 
@@ -167,7 +167,7 @@ RETURN
                 "Warehouse");
             var model = Meta.Integration.TypedWorkspaceModelMapper.FromInMemoryWorkspace(
                 result,
-                static () => new MetaSqlModel());
+                new global::MetaSql.MetaSqlWorkspaceBinding());
 
             var function = Assert.Single(model.FunctionList);
             Assert.Equal("fnCustomerOrders", function.Name);

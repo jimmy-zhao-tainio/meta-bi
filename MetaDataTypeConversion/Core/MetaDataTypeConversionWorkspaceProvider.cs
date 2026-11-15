@@ -13,6 +13,9 @@ public static class MetaDataTypeConversionWorkspaceProvider
 
     public static MetaDataTypeConversionModel GetDefaultWorkspace() => LoadOrDefault(null);
 
+    public static GenericModel LoadContract() =>
+        LoadDefaultStateAsync().GetAwaiter().GetResult().Model;
+
     public static Task<InMemoryWorkspace> LoadDefaultStateAsync(CancellationToken cancellationToken = default) =>
         TypedWorkspaceModelMapper.LoadStateAsync(DefaultWorkspacePath, cancellationToken);
 

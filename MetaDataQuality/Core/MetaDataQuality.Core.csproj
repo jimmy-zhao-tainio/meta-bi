@@ -7,10 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Meta.TypedModels" Version="$(MetaFoundationPackageVersion)" />
     <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
     <Compile Include="..\Workspaces\MetaDataQuality\MetaDataQuality.meta.cs" Link="MetaDataQuality.meta.cs" />
     <ProjectReference Include="..\..\MetaTransform\Script\Sql\MetaTransformScript.Sql.csproj" />
     <ProjectReference Include="..\..\MetaTransform\Binding\MetaTransform.Binding.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Include="..\Workspaces\MetaDataQuality\**\*">
+      <Link>Workspaces\MetaDataQuality\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+      <PackagePath>contentFiles\any\any\Workspaces\MetaDataQuality\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
+    <None Update="Package\MetaDataQuality.Core.targets" Pack="true" PackagePath="buildTransitive\MetaDataQuality.Core.targets" />
   </ItemGroup>
 
 </Project>

@@ -144,7 +144,7 @@
       <Name>binding-workspace</Name>
     </Parameter>
     <Parameter Id="param-execute-data-type-workspace" ValueShapeId="shape-path">
-      <Description>MetaDataType catalog used for SQL Server execution contracts. Defaults to BuiltIn.</Description>
+      <Description>MetaDataType catalog used for SQL Server execution contracts. Defaults to the packaged authored workspace.</Description>
       <IsRequired>false</IsRequired>
       <Name>data-type-workspace</Name>
     </Parameter>
@@ -172,7 +172,7 @@
       <Name>binding-workspace</Name>
     </Parameter>
     <Parameter Id="param-execute-sqlserver-data-type-workspace" ValueShapeId="shape-path">
-      <Description>MetaDataType catalog used for SQL Server execution contracts. Defaults to BuiltIn.</Description>
+      <Description>MetaDataType catalog used for SQL Server execution contracts. Defaults to the packaged authored workspace.</Description>
       <IsRequired>false</IsRequired>
       <Name>data-type-workspace</Name>
     </Parameter>
@@ -217,7 +217,7 @@
       <Name>binding-workspace</Name>
     </Parameter>
     <Parameter Id="param-execute-step-data-type-workspace" ValueShapeId="shape-path">
-      <Description>MetaDataType catalog used for SQL Server execution contracts. Defaults to BuiltIn.</Description>
+      <Description>MetaDataType catalog used for SQL Server execution contracts. Defaults to the packaged authored workspace.</Description>
       <IsRequired>false</IsRequired>
       <Name>data-type-workspace</Name>
     </Parameter>
@@ -261,7 +261,7 @@
       <Name>control-pipe-connect-timeout-seconds</Name>
     </Parameter>
     <Parameter Id="param-execute-worker-data-type-workspace" ValueShapeId="shape-path">
-      <Description>MetaDataType catalog used for SQL Server execution contracts. Defaults to BuiltIn.</Description>
+      <Description>MetaDataType catalog used for SQL Server execution contracts. Defaults to the packaged authored workspace.</Description>
       <IsRequired>false</IsRequired>
       <Name>data-type-workspace</Name>
     </Parameter>

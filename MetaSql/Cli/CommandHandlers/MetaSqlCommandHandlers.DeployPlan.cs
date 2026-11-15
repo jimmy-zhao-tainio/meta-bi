@@ -4,6 +4,7 @@ using Meta.Core.Connections;
 using Meta.Operations.Domain;
 using Meta.Integration;
 using MetaCli.Core;
+using MetaDataType.Core;
 
 internal sealed partial class MetaSqlCommandHandlers
 {
@@ -37,10 +38,15 @@ internal sealed partial class MetaSqlCommandHandlers
         try
         {
             Directory.CreateDirectory(tempRootPath);
+            var catalogPath = invocation.Optional("data-type-workspace");
+            var catalog = MetaDataTypeWorkspaceProvider.LoadOrDefault(catalogPath);
+            var types = new SqlServerDataTypeCatalog(catalog);
 
             var sourceWorkspace = await Meta.Integration.TypedWorkspaceModelMapper
                 .LoadStateAsync(sourceWorkspacePath)
                 .ConfigureAwait(false);
+
+            types.ValidateColumns(sourceWorkspace, "Source workspace");
 
             var liveDatabasePresence = await SqlServerDatabaseRuntime
                 .GetPresenceAsync(connectionString)
@@ -58,12 +64,12 @@ internal sealed partial class MetaSqlCommandHandlers
                 {
                     ConnectionString = connectionString,
                     AllowEmpty = true,
-                });
+                }, catalog);
             }
 
             var differenceService = new MetaSqlDifferenceService();
             var differences = differenceService.BuildDifferences(sourceWorkspace, liveWorkspace);
-            var feasibilityBlockers = await new MetaSqlDifferenceFeasibilityService()
+            var feasibilityBlockers = await new MetaSqlDifferenceFeasibilityService(catalog)
                 .BuildBlockersAsync(
                     differences,
                     sourceWorkspace,
@@ -71,7 +77,7 @@ internal sealed partial class MetaSqlCommandHandlers
                     connectionString)
                 .ConfigureAwait(false);
 
-            var manifestService = new MetaSqlDeployManifestService();
+            var manifestService = new MetaSqlDeployManifestService(catalog);
             var manifest = manifestService.BuildManifest(
                 sourceWorkspace,
                 liveWorkspace,
@@ -85,14 +91,14 @@ internal sealed partial class MetaSqlCommandHandlers
             if (File.Exists(outputMetaPath))
             {
                 await Meta.Integration.TypedWorkspaceModelMapper
-                    .SaveAsync(manifest.ManifestModel, outputPath)
+                    .SaveAsync(manifest.ManifestModel, outputPath, new global::MetaSqlDeployManifest.MetaSqlDeployManifestWorkspaceBinding())
                     .ConfigureAwait(false);
             }
             else
             {
                 await workspaces.CreateAsync(
                         "output",
-                        manifest.ManifestModel)
+                        manifest.ManifestModel, global::MetaSqlDeployManifest.MetaSqlDeployManifestModels.LoadContract(), new global::MetaSqlDeployManifest.MetaSqlDeployManifestWorkspaceBinding())
                     .ConfigureAwait(false);
             }
 
@@ -117,7 +123,7 @@ internal sealed partial class MetaSqlCommandHandlers
                 "deploy-plan produced a non-deployable manifest.",
                 "review block entries in the manifest output and fix source/live drift.",
                 4,
-                RenderManifestIssues(manifest.ManifestModel, outputPath, sourceWorkspace, liveWorkspace));
+                RenderManifestIssues(manifest.ManifestModel, outputPath, sourceWorkspace, liveWorkspace, types));
         }
         catch (Exception ex)
         {
@@ -145,7 +151,8 @@ internal sealed partial class MetaSqlCommandHandlers
         MetaSqlDeployManifest.MetaSqlDeployManifestModel manifestModel,
         string outputPath,
         InMemoryWorkspace sourceWorkspace,
-        InMemoryWorkspace liveWorkspace)
+        InMemoryWorkspace liveWorkspace,
+        SqlServerDataTypeCatalog types)
     {
         var lines = new List<string>
         {
@@ -155,7 +162,7 @@ internal sealed partial class MetaSqlCommandHandlers
         AddBlockSummaryLines(
             lines,
             manifestModel.BlockTableDifferenceList.Select(row => ("BlockTableDifference", row.DifferenceSummary)));
-        AddTableColumnBlockLines(lines, manifestModel.BlockTableColumnDifferenceList, sourceWorkspace, liveWorkspace);
+        AddTableColumnBlockLines(lines, manifestModel.BlockTableColumnDifferenceList, sourceWorkspace, liveWorkspace, types);
         AddBlockSummaryLines(
             lines,
             manifestModel.BlockPrimaryKeyDifferenceList.Select(row => ("BlockPrimaryKeyDifference", row.DifferenceSummary)));
@@ -182,7 +189,8 @@ internal sealed partial class MetaSqlCommandHandlers
         List<string> lines,
         IEnumerable<MetaSqlDeployManifest.BlockTableColumnDifference> rows,
         InMemoryWorkspace sourceWorkspace,
-        InMemoryWorkspace liveWorkspace)
+        InMemoryWorkspace liveWorkspace,
+        SqlServerDataTypeCatalog types)
     {
         var sourceColumnsById = BuildRecordIndex(sourceWorkspace, "TableColumn");
         var liveColumnsById = BuildRecordIndex(liveWorkspace, "TableColumn");
@@ -214,12 +222,12 @@ internal sealed partial class MetaSqlCommandHandlers
 
             if (sourceColumn is not null)
             {
-                lines.Add($"  Source: {FormatColumnShape(sourceColumn, sourceDetailsByColumnId)}");
+                lines.Add($"  Source: {FormatColumnShape(sourceColumn, sourceDetailsByColumnId, types)}");
             }
 
             if (liveColumn is not null)
             {
-                lines.Add($"  Live: {FormatColumnShape(liveColumn, liveDetailsByColumnId)}");
+                lines.Add($"  Live: {FormatColumnShape(liveColumn, liveDetailsByColumnId, types)}");
             }
 
             lines.Add($"  Why blocked: {TrimDisplayPrefix(row.DifferenceSummary, displayName)}");
@@ -312,9 +320,10 @@ internal sealed partial class MetaSqlCommandHandlers
 
     private static string FormatColumnShape(
         GenericRecord column,
-        IReadOnlyDictionary<string, List<GenericRecord>> detailsByColumnId)
+        IReadOnlyDictionary<string, List<GenericRecord>> detailsByColumnId,
+        SqlServerDataTypeCatalog types)
     {
-        var typeName = GetSqlServerTypeName(column.Values.GetValueOrDefault("MetaDataTypeId"));
+        var typeName = types.ResolveId(column.Values.GetValueOrDefault("MetaDataTypeId"), $"Column '{column.Id}'").Name;
         var detailMap = BuildNormalizedDetailMap(detailsByColumnId, column.Id);
         var shape = BuildTypeShape(typeName, detailMap);
         var isNullable = string.Equals(column.Values.GetValueOrDefault("IsNullable"), "true", StringComparison.OrdinalIgnoreCase);
@@ -366,19 +375,6 @@ internal sealed partial class MetaSqlCommandHandlers
         }
 
         return map;
-    }
-
-    private static string GetSqlServerTypeName(string? metaDataTypeId)
-    {
-        if (string.IsNullOrWhiteSpace(metaDataTypeId))
-        {
-            return "(unknown type)";
-        }
-
-        var separator = metaDataTypeId.LastIndexOf(':');
-        return separator >= 0 && separator + 1 < metaDataTypeId.Length
-            ? metaDataTypeId[(separator + 1)..]
-            : metaDataTypeId;
     }
 
     private static string TrimDisplayPrefix(string summary, string displayName)

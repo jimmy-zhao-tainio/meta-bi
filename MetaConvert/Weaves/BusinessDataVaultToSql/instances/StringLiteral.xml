@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaWeave>
   <StringLiteralList>
-    <StringLiteral Id="StringLiteral:1" LiteralId="Literal:2" />
     <StringLiteral Id="StringLiteral:10" LiteralId="Literal:11" />
     <StringLiteral Id="StringLiteral:100" LiteralId="Literal:157" />
     <StringLiteral Id="StringLiteral:101" LiteralId="Literal:158" />
@@ -112,7 +111,6 @@
     <StringLiteral Id="StringLiteral:197" LiteralId="Literal:348" />
     <StringLiteral Id="StringLiteral:198" LiteralId="Literal:351" />
     <StringLiteral Id="StringLiteral:199" LiteralId="Literal:352" />
-    <StringLiteral Id="StringLiteral:2" LiteralId="Literal:3" />
     <StringLiteral Id="StringLiteral:20" LiteralId="Literal:21" />
     <StringLiteral Id="StringLiteral:200" LiteralId="Literal:353" />
     <StringLiteral Id="StringLiteral:201" LiteralId="Literal:354" />
@@ -223,7 +221,6 @@
     <StringLiteral Id="StringLiteral:297" LiteralId="Literal:537" />
     <StringLiteral Id="StringLiteral:298" LiteralId="Literal:538" />
     <StringLiteral Id="StringLiteral:299" LiteralId="Literal:539" />
-    <StringLiteral Id="StringLiteral:3" LiteralId="Literal:4" />
     <StringLiteral Id="StringLiteral:30" LiteralId="Literal:31" />
     <StringLiteral Id="StringLiteral:300" LiteralId="Literal:542" />
     <StringLiteral Id="StringLiteral:301" LiteralId="Literal:543" />
@@ -582,9 +579,7 @@
     <StringLiteral Id="StringLiteral:626" LiteralId="Literal:1023" />
     <StringLiteral Id="StringLiteral:627" LiteralId="Literal:1024" />
     <StringLiteral Id="StringLiteral:628" LiteralId="Literal:1025" />
-    <StringLiteral Id="StringLiteral:629" LiteralId="Literal:1027" />
     <StringLiteral Id="StringLiteral:63" LiteralId="Literal:83" />
-    <StringLiteral Id="StringLiteral:630" LiteralId="Literal:1028" />
     <StringLiteral Id="StringLiteral:631" LiteralId="Literal:1030" />
     <StringLiteral Id="StringLiteral:632" LiteralId="Literal:1031" />
     <StringLiteral Id="StringLiteral:633" LiteralId="Literal:1032" />
@@ -620,7 +615,6 @@
     <StringLiteral Id="StringLiteral:660" LiteralId="Literal:1093" />
     <StringLiteral Id="StringLiteral:661" LiteralId="Literal:1097" />
     <StringLiteral Id="StringLiteral:662" LiteralId="Literal:1101" />
-    <StringLiteral Id="StringLiteral:663" LiteralId="Literal:1110" />
     <StringLiteral Id="StringLiteral:664" LiteralId="Literal:1114" />
     <StringLiteral Id="StringLiteral:665" LiteralId="Literal:1116" />
     <StringLiteral Id="StringLiteral:666" LiteralId="Literal:1118" />
@@ -643,6 +637,12 @@
     <StringLiteral Id="StringLiteral:681" LiteralId="Literal:1139" />
     <StringLiteral Id="StringLiteral:682" LiteralId="Literal:1141" />
     <StringLiteral Id="StringLiteral:683" LiteralId="Literal:1142" />
+    <StringLiteral Id="StringLiteral:684" LiteralId="Literal:1145" />
+    <StringLiteral Id="StringLiteral:685" LiteralId="Literal:1146" />
+    <StringLiteral Id="StringLiteral:686" LiteralId="Literal:1147" />
+    <StringLiteral Id="StringLiteral:687" LiteralId="Literal:1149" />
+    <StringLiteral Id="StringLiteral:688" LiteralId="Literal:1150" />
+    <StringLiteral Id="StringLiteral:689" LiteralId="Literal:1151" />
     <StringLiteral Id="StringLiteral:69" LiteralId="Literal:98" />
     <StringLiteral Id="StringLiteral:7" LiteralId="Literal:8" />
     <StringLiteral Id="StringLiteral:70" LiteralId="Literal:99" />

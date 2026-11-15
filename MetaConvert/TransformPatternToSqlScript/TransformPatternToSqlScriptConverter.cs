@@ -2,7 +2,9 @@ using Meta.Integration;
 using Meta.Operations.Domain;
 using MetaSqlScript;
 using MetaTransformPattern;
+using MetaTransformPattern.Core;
 using MetaTransformPatternInstance;
+using MetaTransformPatternInstance.Core;
 using MetaWeave.Core;
 using MetaWeaveScript.Execution;
 
@@ -24,6 +26,15 @@ public static class TransformPatternToSqlScriptConverter
         MetaTransformPatternModel patterns,
         MetaTransformPatternInstanceModel instances,
         Action<MetaWeaveScriptExecutionProgress>? progress)
+        => new MetaSqlScriptWorkspaceBinding().Read(Convert(
+            new MetaTransformPatternWorkspaceBinding().Write(patterns, MetaTransformPatternModels.LoadContract()),
+            new MetaTransformPatternInstanceWorkspaceBinding().Write(instances, MetaTransformPatternInstanceModels.LoadContract()),
+            progress));
+
+    public static InMemoryWorkspace Convert(
+        InMemoryWorkspace patterns,
+        InMemoryWorkspace instances,
+        Action<MetaWeaveScriptExecutionProgress>? progress = null)
     {
         ArgumentNullException.ThrowIfNull(patterns);
         ArgumentNullException.ThrowIfNull(instances);
@@ -32,10 +43,10 @@ public static class TransformPatternToSqlScriptConverter
             ForwardDirection.Value,
             new Dictionary<string, InMemoryWorkspace>(StringComparer.OrdinalIgnoreCase)
             {
-                ["pattern"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(patterns),
-                ["instance"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(instances),
+                ["pattern"] = patterns,
+                ["instance"] = instances,
             },
-            TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaSqlScriptModel.CreateEmpty()),
+            new InMemoryWorkspace(MetaSqlScriptModels.LoadContract(), new GenericInstance { ModelName = "MetaSqlScript" }),
             progress: progress);
 
         if (!result.IsSuccess)
@@ -49,9 +60,7 @@ public static class TransformPatternToSqlScriptConverter
                         $"{issue.Code}: {issue.Message}")));
         }
 
-        return TypedWorkspaceModelMapper.FromInMemoryWorkspace(
-            result.OutputWorkspace!,
-            MetaSqlScriptModel.CreateEmpty);
+        return result.OutputWorkspace!;
     }
 
     private static string ResolveWeaveWorkspacePath()

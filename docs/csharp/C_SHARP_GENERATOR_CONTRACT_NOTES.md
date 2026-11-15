@@ -36,10 +36,11 @@ Generate typed workspace projections with the foundation CLI:
 meta export csharp-bindings --workspace <model-workspace> --out <new-directory>
 ```
 
-Keep the resulting `.bindings.cs` file in the consuming project's `Bindings`
-directory, outside the authored workspace's source set. It contains access code,
-not instance data or a replacement model. Regenerate and compile it when the
-modeled contract changes. A stale binding rejects a different model contract.
+Keep the resulting `.bindings.cs` and `.access.cs` files in the consuming
+project's `Bindings` directory, outside the authored workspace's source set.
+They contain direct member access, not instance data or a replacement model.
+Regenerate and compile them when the modeled contract changes. A stale binding
+rejects a different model contract.
 
 `ITypedWorkspaceBinding<TModel>.Read` projects selected workspace data into a
 fresh graph with canonical object references. `Write` requires the actual generic
@@ -48,11 +49,19 @@ creation paths load the packaged authored model rather than reconstructing its
 schema from a CLR class. Typed algorithms continue to use natural object
 references.
 
+The BCL-only access file supplies collection and relationship visitors with
+typed selectors and setters. Parser and composition algorithms use these
+selectors to traverse incomplete graphs without CLR discovery. Typed CLIs pass
+an explicit binding to their runtime; typed creation paths also supply an actual
+model-contract factory.
+
 The catalog and conversion workspace providers load the supplied workspace, or
 their packaged workspace when no path is supplied. Each load has independent
 mutable state. A compiled seed factory remains a convenience for constructing
-starting data; it does not replace a selected workspace. Migration of older
-reflective consumers is incomplete; new consumers use the explicit overloads.
+starting data; it does not replace a selected workspace. BI consumers use the
+explicit binding overloads. Generic converter stages pass the selected generic
+workspace directly to Weave and retain its generic output; they do not project
+it into typed objects merely to reconstruct the same generic data.
 
 Packages that load authored model files own their delivery to build and publish
 outputs, including when the package is a transitive dependency. Verify that

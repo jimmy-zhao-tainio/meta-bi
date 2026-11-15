@@ -2,6 +2,7 @@ using Meta.Core.Presentation;
 using Meta.Core.Presentation.Cli;
 using MetaCli;
 using MetaCli.Core;
+using Meta.Integration;
 
 internal static class Program
 {
@@ -21,7 +22,10 @@ internal static class Program
         var handlers = new MetaConvertCommandHandlers(Presenter, AppName);
 
         Environment.ExitCode = 0;
-        var runtime = new MetaCliRuntime<MetaCliModel>(CommandWorkspacePath, ApplicationId)
+        var runtime = new MetaCliRuntime<MetaCliModel>(CommandWorkspacePath,
+                new MetaCliWorkspaceBinding(),
+                () => TypedWorkspaceModelMapper.LoadStateAsync(CommandWorkspacePath).GetAwaiter().GetResult().Model,
+                ApplicationId)
             .UseDefaultHelp()
             .Bind(
                 "exec-schema-to-raw-datavault",

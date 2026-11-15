@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaWeave>
   <SqlDataTypeReferenceList>
-    <SqlDataTypeReference Id="SqlDataTypeReference:1" ParameterizedDataTypeReferenceId="ParameterizedDataTypeReference:1">
-      <SqlDataTypeOption>Int</SqlDataTypeOption>
-    </SqlDataTypeReference>
     <SqlDataTypeReference Id="SqlDataTypeReference:2" ParameterizedDataTypeReferenceId="ParameterizedDataTypeReference:2">
       <SqlDataTypeOption>Int</SqlDataTypeOption>
     </SqlDataTypeReference>
@@ -11,6 +8,9 @@
       <SqlDataTypeOption>Int</SqlDataTypeOption>
     </SqlDataTypeReference>
     <SqlDataTypeReference Id="SqlDataTypeReference:4" ParameterizedDataTypeReferenceId="ParameterizedDataTypeReference:4">
+      <SqlDataTypeOption>Int</SqlDataTypeOption>
+    </SqlDataTypeReference>
+    <SqlDataTypeReference Id="SqlDataTypeReference:5" ParameterizedDataTypeReferenceId="ParameterizedDataTypeReference:5">
       <SqlDataTypeOption>Int</SqlDataTypeOption>
     </SqlDataTypeReference>
   </SqlDataTypeReferenceList>

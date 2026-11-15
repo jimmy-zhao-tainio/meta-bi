@@ -1,4 +1,6 @@
 using MetaDataTypeConversion;
+using MetaDataType;
+using MetaDataType.Core;
 
 namespace MetaDataTypeConversion.Core;
 
@@ -38,8 +40,18 @@ public interface IMetaDataTypeConversionService
 
 public sealed class MetaDataTypeConversionService : IMetaDataTypeConversionService
 {
+    private readonly IReadOnlyDictionary<string, DataType> dataTypes;
+    private readonly IReadOnlyDictionary<string, DataTypeSystem> systems;
+
+    public MetaDataTypeConversionService(MetaDataTypeModel? catalog = null)
+    {
+        catalog ??= MetaDataTypeWorkspaceProvider.GetDefaultWorkspace();
+        dataTypes = catalog.DataTypeList.ToDictionary(row => row.Id, StringComparer.Ordinal);
+        systems = catalog.DataTypeSystemList.ToDictionary(row => row.Id, StringComparer.Ordinal);
+    }
+
     public MetaDataTypeConversionModel CreateWorkspace() =>
-        MetaDataTypeConversionInstance.CreateBuiltIn();
+        MetaDataTypeConversionWorkspaceProvider.GetDefaultWorkspace();
 
     public MetaDataTypeConversionCheckResult Check(MetaDataTypeConversionModel model)
     {
@@ -59,9 +71,14 @@ public sealed class MetaDataTypeConversionService : IMetaDataTypeConversionServi
         {
             var sourceDataTypeId = RequireValue(mapping.Id, mapping.SourceDataTypeId, nameof(DataTypeMapping.SourceDataTypeId));
             var targetDataTypeId = RequireValue(mapping.Id, mapping.TargetDataTypeId, nameof(DataTypeMapping.TargetDataTypeId));
-            if (string.IsNullOrWhiteSpace(TryGetDataTypeSystemName(targetDataTypeId)))
+            if (TryGetDataTypeSystemName(sourceDataTypeId) is null)
             {
-                errors.Add($"DataTypeMapping '{mapping.Id}' has TargetDataTypeId '{targetDataTypeId}' with an unsupported data type id shape.");
+                errors.Add($"DataTypeMapping '{mapping.Id}' has SourceDataTypeId '{sourceDataTypeId}' that does not resolve through the selected MetaDataType catalog and its DataTypeSystem relationship.");
+            }
+
+            if (TryGetDataTypeSystemName(targetDataTypeId) is null)
+            {
+                errors.Add($"DataTypeMapping '{mapping.Id}' has TargetDataTypeId '{targetDataTypeId}' that does not resolve through the selected MetaDataType catalog and its DataTypeSystem relationship.");
             }
 
             if (mapping.ConversionImplementation is null ||
@@ -236,7 +253,7 @@ public sealed class MetaDataTypeConversionService : IMetaDataTypeConversionServi
         throw new InvalidOperationException($"No sanctioned data type conversion path exists from '{source}' to '{target}'.");
     }
 
-    private static DataTypeMappingResolution CreateResolution(MetaDataTypeConversionModel model, DataTypeMapping mapping)
+    private DataTypeMappingResolution CreateResolution(MetaDataTypeConversionModel model, DataTypeMapping mapping)
     {
         var implementations = model.ConversionImplementationList
             .ToDictionary(row => row.Id, StringComparer.Ordinal);
@@ -269,33 +286,13 @@ public sealed class MetaDataTypeConversionService : IMetaDataTypeConversionServi
             string.Equals(mapping.SourceDataTypeId, dataTypeId, StringComparison.Ordinal) ||
             string.Equals(mapping.TargetDataTypeId, dataTypeId, StringComparison.Ordinal));
 
-    public static string? TryGetDataTypeSystemName(string dataTypeId)
+    private string? TryGetDataTypeSystemName(string dataTypeId)
     {
-        if (string.IsNullOrWhiteSpace(dataTypeId))
-        {
+        if (!dataTypes.TryGetValue(dataTypeId, out var dataType) || dataType.DataTypeSystem is null ||
+            !systems.TryGetValue(dataType.DataTypeSystem.Id, out var system) || string.IsNullOrWhiteSpace(system.Name))
             return null;
-        }
-
-        var markerIndex = dataTypeId.IndexOf(":type:", StringComparison.Ordinal);
-        if (markerIndex <= 0)
-        {
-            return null;
-        }
-
-        return dataTypeId[..markerIndex];
+        return system.Name;
     }
-
-    public static bool BelongsToDataTypeSystem(string dataTypeId, string dataTypeSystemName)
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(dataTypeId);
-        ArgumentException.ThrowIfNullOrWhiteSpace(dataTypeSystemName);
-
-        return string.Equals(
-            NormalizeDataTypeSystemName(TryGetDataTypeSystemName(dataTypeId) ?? string.Empty),
-            NormalizeDataTypeSystemName(dataTypeSystemName),
-            StringComparison.Ordinal);
-    }
-
     private static string NormalizeDataTypeSystemName(string value) => value.Trim().ToLowerInvariant();
 
     private static string RequireValue(string recordId, string? value, string propertyName)

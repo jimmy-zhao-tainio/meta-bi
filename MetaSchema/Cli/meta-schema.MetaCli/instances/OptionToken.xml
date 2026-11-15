@@ -10,6 +10,9 @@
     <OptionToken Id="token-extract-sqlserver-connection-env" OptionId="opt-extract-sqlserver-connection-env">
       <Token>--connection-env</Token>
     </OptionToken>
+    <OptionToken Id="token-extract-sqlserver-data-type-workspace" OptionId="opt-extract-sqlserver-data-type-workspace">
+      <Token>--data-type-workspace</Token>
+    </OptionToken>
     <OptionToken Id="token-extract-sqlserver-output-connection-env" OptionId="option-extract-sqlserver-output-connection-env">
       <Token>--output-connection-env</Token>
     </OptionToken>

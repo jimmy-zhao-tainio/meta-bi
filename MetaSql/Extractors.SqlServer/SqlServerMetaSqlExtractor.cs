@@ -2,6 +2,8 @@ using System.Data;
 using Microsoft.Data.SqlClient;
 using Meta.Operations.Domain;
 using Meta.Integration;
+using MetaDataType.Core;
+using MetaDataType;
 
 namespace MetaSql.Extractors.SqlServer;
 
@@ -11,11 +13,26 @@ public sealed class SqlServerMetaSqlExtractor
     {
         ArgumentNullException.ThrowIfNull(request);
         var model = ExtractMetaSqlModel(request);
-        return TypedWorkspaceModelMapper.ToInMemoryWorkspace(model);
+        return new MetaSqlWorkspaceBinding().Write(model, MetaSqlModels.LoadContract());
+    }
+
+    public InMemoryWorkspace ExtractMetaSqlWorkspace(SqlServerExtractRequest request, MetaDataTypeModel catalog)
+    {
+        var model = ExtractMetaSqlModel(request, catalog);
+        return new MetaSqlWorkspaceBinding().Write(model, MetaSqlModels.LoadContract());
     }
 
     public MetaSqlModel ExtractMetaSqlModel(SqlServerExtractRequest request)
     {
+        ArgumentNullException.ThrowIfNull(request);
+        if (string.IsNullOrWhiteSpace(request.ConnectionString))
+            throw new InvalidOperationException("extract sqlserver requires a connection string.");
+        return ExtractMetaSqlModel(request, MetaDataTypeWorkspaceProvider.LoadOrDefault(request.DataTypeWorkspacePath));
+    }
+
+    public MetaSqlModel ExtractMetaSqlModel(SqlServerExtractRequest request, MetaDataTypeModel catalog)
+    {
+        ArgumentNullException.ThrowIfNull(catalog);
         ArgumentNullException.ThrowIfNull(request);
         if (string.IsNullOrWhiteSpace(request.ConnectionString))
         {
@@ -149,7 +166,8 @@ public sealed class SqlServerMetaSqlExtractor
             indexColumnsByTableKey,
             viewRows,
             functionRows,
-            storedProcedureRows);
+            storedProcedureRows,
+            catalog);
     }
 
     private static List<string> LoadSchemas(SqlConnection connection, string? schemaName)
@@ -697,6 +715,7 @@ public sealed class SqlServerExtractRequest
     public string? TableName { get; set; }
     public SqlServerExtractObjectKinds ObjectKinds { get; set; } = SqlServerExtractObjectKinds.All;
     public bool AllowEmpty { get; set; }
+    public string? DataTypeWorkspacePath { get; set; }
 }
 
 [Flags]

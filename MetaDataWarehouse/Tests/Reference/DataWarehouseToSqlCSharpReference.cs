@@ -24,15 +24,17 @@ internal static class DataWarehouseToSqlCSharpReference
 
         var model = await Meta.Integration.TypedWorkspaceModelMapper.LoadAsync<Dw.MetaDataWarehouseModel>(
             dataWarehouseWorkspacePath,
-            searchUpward: false,
+                new global::MetaDataWarehouse.MetaDataWarehouseWorkspaceBinding(),            searchUpward: false,
             cancellationToken).ConfigureAwait(false);
         var implementation = await Meta.Integration.TypedWorkspaceModelMapper.LoadAsync<Dwi.MetaDataWarehouseImplementationModel>(
             implementationWorkspacePath,
-            searchUpward: false,
+                new global::MetaDataWarehouseImplementation.MetaDataWarehouseImplementationWorkspaceBinding(),            searchUpward: false,
             cancellationToken).ConfigureAwait(false);
 
         var metaSql = ConvertToMetaSql(model, implementation, databaseName);
-        return Meta.Integration.TypedWorkspaceModelMapper.ToInMemoryWorkspace(metaSql);
+        var contract = (await TypedWorkspaceModelMapper.LoadStateAsync(
+            Path.Combine(AppContext.BaseDirectory, "Workspaces", "MetaSql"), cancellationToken).ConfigureAwait(false)).Model;
+        return new MetaSqlWorkspaceBinding().Write(metaSql, contract);
     }
 
     public static MetaSqlModel ConvertToMetaSql(

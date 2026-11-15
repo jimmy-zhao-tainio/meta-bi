@@ -56,7 +56,7 @@ public sealed class SqlServerMetaSqlExtractorTests
             indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase)
             {
                 ["dbo.Customer"] = [new("IX_Customer_Name", 1, "CustomerName", false, false)],
-            }));
+            }), global::MetaSql.MetaSqlModels.LoadContract(), new global::MetaSql.MetaSqlWorkspaceBinding());
 
         Assert.Equal("MetaSql", workspace.Model.Name);
 
@@ -121,7 +121,7 @@ public sealed class SqlServerMetaSqlExtractorTests
             indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase)
             {
                 ["dbo.Customer"] = [new("IX_Customer_Name", 1, "CustomerName", true, true)],
-            }));
+            }), global::MetaSql.MetaSqlModels.LoadContract(), new global::MetaSql.MetaSqlWorkspaceBinding());
 
         var columns = workspace.Instance.GetOrCreateEntityRecords("TableColumn");
         var details = workspace.Instance.GetOrCreateEntityRecords("TableColumnDataTypeDetail");
@@ -165,7 +165,7 @@ public sealed class SqlServerMetaSqlExtractorTests
             indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase)
             {
                 ["dbo.Customer"] = [new("IX_Customer_Code_Filtered", 1, "CustomerCode", false, false)],
-            }));
+            }), global::MetaSql.MetaSqlModels.LoadContract(), new global::MetaSql.MetaSqlWorkspaceBinding());
 
         var columns = workspace.Instance.GetOrCreateEntityRecords("TableColumn");
         var indexes = workspace.Instance.GetOrCreateEntityRecords("Index");
@@ -203,7 +203,7 @@ public sealed class SqlServerMetaSqlExtractorTests
             indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase),
             viewRows: [new("dq", "v_DataQualityReview", viewDefinition, 2)],
             functionRows: [new("dbo", "fnAddOne", "ScalarFunction", functionDefinition, 1)],
-            storedProcedureRows: [new("dbo", "Run", procedureDefinition, 3)]));
+            storedProcedureRows: [new("dbo", "Run", procedureDefinition, 3)]), global::MetaSql.MetaSqlModels.LoadContract(), new global::MetaSql.MetaSqlWorkspaceBinding());
 
         var schemas = workspace.Instance.GetOrCreateEntityRecords("Schema");
         var views = workspace.Instance.GetOrCreateEntityRecords("View");
@@ -279,7 +279,7 @@ public sealed class SqlServerMetaSqlExtractorTests
             });
             await WorkspaceSurface.CreateAsync(extractedWorkspace, workspacePath, "xml");
 
-            var model = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlModel>(workspacePath, searchUpward: false);
+            var model = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlModel>(workspacePath, new global::MetaSql.MetaSqlWorkspaceBinding(), searchUpward: false);
             var identityColumn = model.TableColumnList.Single(row => row.Id == $"{databaseName}.raw.Customer.CustomerId");
             var computedColumn = model.TableColumnList.Single(row => row.Id == $"{databaseName}.raw.Customer.CustomerCodeUpper");
             var filteredIndex = model.IndexList.Single(row => row.Id == $"{databaseName}.raw.Customer.index.IX_Customer_Code_Filtered");
@@ -330,7 +330,7 @@ public sealed class SqlServerMetaSqlExtractorTests
                 ["dbo.Order"] = [new("FK_Order_Customer", 1, "CustomerId", "CustomerId")],
             },
             indexesByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexRow>>(StringComparer.OrdinalIgnoreCase),
-            indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase)));
+            indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase)), global::MetaSql.MetaSqlModels.LoadContract(), new global::MetaSql.MetaSqlWorkspaceBinding());
 
         var foreignKeys = workspace.Instance.GetOrCreateEntityRecords("ForeignKey");
         var foreignKeyColumns = workspace.Instance.GetOrCreateEntityRecords("ForeignKeyColumn");

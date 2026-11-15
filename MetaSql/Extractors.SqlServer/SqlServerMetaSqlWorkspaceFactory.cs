@@ -12,7 +12,7 @@ public static class SqlServerMetaSqlWorkspaceFactory
         IEnumerable<string>? schemaNames = null)
     {
         var model = CreateEmptyModel(databaseName, schemaNames);
-        return TypedWorkspaceModelMapper.ToInMemoryWorkspace(model);
+        return new MetaSqlWorkspaceBinding().Write(model, MetaSqlModels.LoadContract());
     }
 
     public static MetaSqlModel CreateEmptyModel(

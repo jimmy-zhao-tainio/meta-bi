@@ -8,9 +8,9 @@ public sealed class WorkspaceRoundTripTests
         var path = CreateTempPath();
         try
         {
-            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(TestModels.LoadSampleCommerce(), path);
+            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(TestModels.LoadSampleCommerce(), path, global::MetaAnalytics.Core.AnalyticsModels.LoadContract(), new global::MetaAnalytics.MetaAnalyticsWorkspaceBinding());
 
-            var loaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaAnalyticsModel>(path, searchUpward: false);
+            var loaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaAnalyticsModel>(path, new global::MetaAnalytics.MetaAnalyticsWorkspaceBinding(), searchUpward: false);
             var sales = Assert.Single(loaded.TableList, row => row.Id == "table:sales");
             var date = Assert.Single(loaded.TableList, row => row.Id == "table:date");
             var salesAmount = Assert.Single(loaded.MeasureList, row => row.Id == "measure:sales-amount");
@@ -58,7 +58,7 @@ public sealed class WorkspaceRoundTripTests
         var path = CreateTempPath();
         try
         {
-            Assert.Throws<InvalidOperationException>(() => Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(model, path));
+            Assert.Throws<InvalidOperationException>(() => Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(model, path, global::MetaAnalytics.Core.AnalyticsModels.LoadContract(), new global::MetaAnalytics.MetaAnalyticsWorkspaceBinding()));
         }
         finally
         {

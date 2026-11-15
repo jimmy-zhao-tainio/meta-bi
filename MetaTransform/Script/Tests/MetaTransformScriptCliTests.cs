@@ -104,7 +104,7 @@ public sealed class MetaTransformScriptCliTests
                 Name = "ClearCustomerStage",
                 SqlText = "DELETE FROM stage.Customer WHERE IsReady = 0;",
             });
-            TypedWorkspaceModelMapper.Create(source, sourcePath, "xml");
+            TypedWorkspaceModelMapper.Create(source, global::MetaSqlScript.MetaSqlScriptModels.LoadContract(), new global::MetaSqlScript.MetaSqlScriptWorkspaceBinding(), sourcePath, "xml");
 
             var result = RunCli(
                 $"from sql-script-workspace --source-workspace \"{sourcePath}\" --output-xml \"{outputPath}\"");
@@ -113,7 +113,7 @@ public sealed class MetaTransformScriptCliTests
             Assert.Contains("Scripts: 2", result.Output);
             var transformed = TypedWorkspaceModelMapper.Load<MTS.MetaTransformScriptModel>(
                 outputPath,
-                searchUpward: false);
+                new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding(),                searchUpward: false);
             Assert.Equal(2, transformed.TransformScriptList.Count);
             Assert.Contains(transformed.TransformScriptList, script => script.Name == "LoadCustomer");
             Assert.Contains(transformed.TransformScriptList, script => script.Name == "ClearCustomerStage");

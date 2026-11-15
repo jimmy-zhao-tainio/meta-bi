@@ -1,5 +1,6 @@
 using MetaSchema;
 using MetaDataType;
+using MetaDataType.Core;
 using MetaTransformBinding;
 
 namespace MetaTransform.Binding;
@@ -9,7 +10,7 @@ internal sealed class TransformBindingValidationService
     private readonly SqlServerSchemaTypeValidator typeValidator;
     public TransformBindingValidationService(MetaDataTypeModel? dataTypes = null)
     {
-        typeValidator = new SqlServerSchemaTypeValidator(dataTypes ?? MetaDataTypeInstance.BuiltIn);
+        typeValidator = new SqlServerSchemaTypeValidator(dataTypes ?? MetaDataTypeWorkspaceProvider.GetDefaultWorkspace());
     }
 
     internal MetaTransformBindingModel ApplyValidation(

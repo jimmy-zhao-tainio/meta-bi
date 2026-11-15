@@ -29,7 +29,6 @@
     <Compile Include="../../MetaPipeline/Tests/MetaPipelineModelValidationServiceTests.cs" />
     <Compile Include="../../MetaPipeline/Tests/PipelineRowStreamShapeTests.cs" />
     <Compile Include="../../MetaPipeline/Tests/SqlServerMultipartIdentifierTests.cs" />
-    <Compile Include="../../MetaSql/Tests/MetaSqlCanonicalizerTests.cs" />
     <Compile Include="../../MetaTransform/Script/Tests/TransformScriptSqlIdentifierTests.cs" />
   </ItemGroup>
 

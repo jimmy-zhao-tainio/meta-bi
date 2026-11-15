@@ -21,7 +21,8 @@ internal static class Program
         var handlers = new MetaOrchestrationCommandHandlers(Presenter, AppName);
 
         Environment.ExitCode = 0;
-        var runtime = new MetaCliRuntime<MetaOrchestrationModel>(CommandWorkspacePath, ApplicationId)
+        var runtime = new MetaCliRuntime<MetaOrchestrationModel>(CommandWorkspacePath,
+                new global::MetaOrchestration.MetaOrchestrationWorkspaceBinding(), global::MetaOrchestration.Core.MetaOrchestrationModels.LoadContract, ApplicationId)
             .UseDefaultHelp()
             .Bind(
                 "exec-create",

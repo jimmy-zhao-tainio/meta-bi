@@ -1,15 +1,17 @@
+using MetaSql.Extractors.SqlServer;
+
 namespace MetaSql;
 
 /// <summary>
 /// Renders SQL Server deploy SQL from ordered abstract deploy plans.
 /// </summary>
-internal sealed class SqlServerDeploySqlRenderer
+internal sealed class SqlServerDeploySqlRenderer(SqlServerDataTypeCatalog catalog)
 {
     private readonly SqlServerSchemaSqlRenderer schemaSqlRenderer = new();
-    private readonly SqlServerAlterColumnSqlRenderer alterColumnSqlRenderer = new();
-    private readonly SqlServerTruncateColumnDataSqlRenderer truncateColumnDataSqlRenderer = new();
+    private readonly SqlServerAlterColumnSqlRenderer alterColumnSqlRenderer = new(catalog);
+    private readonly SqlServerTruncateColumnDataSqlRenderer truncateColumnDataSqlRenderer = new(catalog);
     private readonly SqlServerConstraintSqlRenderer constraintSqlRenderer = new();
-    private readonly SqlServerTableSqlRenderer tableSqlRenderer = new();
+    private readonly SqlServerTableSqlRenderer tableSqlRenderer = new(catalog);
     private readonly SqlServerModuleSqlRenderer moduleSqlRenderer = new();
 
     public IReadOnlyList<string> Render(DeployStatementPlan plan)

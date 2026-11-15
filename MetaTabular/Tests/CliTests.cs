@@ -38,6 +38,7 @@ public sealed class CliTests
         Assert.Contains("Create modeled tabular database objects", result.Output);
         Assert.Contains("calculation groups", result.Output);
         Assert.Contains("--drop-existing", result.Output);
+        Assert.Contains("--data-type-workspace <path>", result.Output);
         Assert.Contains("--no-process", result.Output);
         Assert.Contains("processing failures fail the command", result.Output);
         Assert.DoesNotContain("--replace", result.Output);
@@ -129,7 +130,7 @@ public sealed class CliTests
             Assert.Equal(0, RunCli($"add-tabular-calculation-group --workspace \"{path}\" --id TimeIntelligence --tabular-model Commerce --name TimeIntelligence --precedence 10").ExitCode);
             Assert.Equal(0, RunCli($"add-tabular-calculation-item --workspace \"{path}\" --id TimeYtd --tabular-calculation-group TimeIntelligence --name YTD --expression \"SELECTEDMEASURE()\"").ExitCode);
 
-            var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTabularModel>(path, searchUpward: false);
+            var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTabularModel>(path, new global::MetaTabular.MetaTabularWorkspaceBinding(), searchUpward: false);
             Assert.Single(model.TabularModelList);
             Assert.Single(model.TabularCalculationGroupList);
             Assert.Single(model.TabularCalculationItemList);
@@ -155,7 +156,7 @@ public sealed class CliTests
                 workingDirectory: path);
 
             Assert.Equal(0, add.ExitCode);
-            var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTabularModel>(path, searchUpward: false);
+            var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTabularModel>(path, new global::MetaTabular.MetaTabularWorkspaceBinding(), searchUpward: false);
             var tabularModel = Assert.Single(model.TabularModelList);
             Assert.Equal("Commerce", tabularModel.Name);
         }

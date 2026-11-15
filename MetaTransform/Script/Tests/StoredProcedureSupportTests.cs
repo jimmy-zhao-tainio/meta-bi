@@ -26,7 +26,7 @@ public sealed class StoredProcedureSupportTests
                 targetSqlIdentifier: null,
                 newWorkspacePath: workspacePath);
 
-            var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(workspacePath, searchUpward: false);
+            var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(workspacePath, new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding(), searchUpward: false);
             var script = Assert.Single(model.TransformScriptList);
             Assert.Equal("dq.RunReview", script.Name);
             Assert.Empty(model.TransformScriptStatementLinkList);
@@ -253,7 +253,7 @@ public sealed class StoredProcedureSupportTests
                 targetSqlIdentifier: null,
                 workspacePath: transformWorkspacePath);
 
-            var transformModel = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
+            var transformModel = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding(), searchUpward: false);
             AddSingleReadContract(transformModel, "etl.FirstLoad", "src.SharedSource");
             AddSingleReadContract(transformModel, "etl.SecondLoad", "src.SharedSource");
             MetaTransformScriptTestHelper.SaveXml(transformModel, transformWorkspacePath);
@@ -267,7 +267,7 @@ public sealed class StoredProcedureSupportTests
                 executeSystemDefaultSchemaName: null,
                 newWorkspacePath: bindingWorkspacePath);
 
-            var bindingModel = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
+            var bindingModel = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, new global::MetaTransformBinding.MetaTransformBindingWorkspaceBinding(), searchUpward: false);
             Assert.Equal(2, result.TransformBindingCount);
             Assert.Equal(bindingModel.ColumnList.Count, bindingModel.ColumnList.Select(static item => item.Id).Distinct(StringComparer.Ordinal).Count());
             Assert.Equal(2, bindingModel.RowsetList.Count(static item =>
@@ -302,7 +302,7 @@ public sealed class StoredProcedureSupportTests
                 targetSqlIdentifier: null,
                 newWorkspacePath: transformWorkspacePath);
 
-            var transformModel = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
+            var transformModel = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding(), searchUpward: false);
             var storedProcedure = Assert.Single(transformModel.ScriptObjectStoredProcedureList);
             var contract = CreateContract(storedProcedure);
             contract.Id = $"{storedProcedure.Id}:contract";
@@ -344,7 +344,7 @@ public sealed class StoredProcedureSupportTests
                 newWorkspacePath: bindingWorkspacePath);
 
             Assert.Equal(0, result.ErrorCount);
-            var bindingModel = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, searchUpward: false);
+            var bindingModel = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspacePath, new global::MetaTransformBinding.MetaTransformBindingWorkspaceBinding(), searchUpward: false);
             var operationBindings = bindingModel.StoredProcedureOperationBindingList
                 .OrderBy(static item => item.MetaTransformScriptStoredProcedureContractOperationId, StringComparer.Ordinal)
                 .ToArray();
@@ -384,7 +384,7 @@ public sealed class StoredProcedureSupportTests
                 targetSqlIdentifier: null,
                 newWorkspacePath: transformWorkspacePath);
 
-            var transformModel = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
+            var transformModel = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding(), searchUpward: false);
             var storedProcedure = Assert.Single(transformModel.ScriptObjectStoredProcedureList);
             var contract = CreateContract(storedProcedure);
             contract.Id = $"{storedProcedure.Id}:contract";
@@ -400,7 +400,7 @@ public sealed class StoredProcedureSupportTests
             MetaTransformScriptTestHelper.SaveXml(transformModel, transformWorkspacePath);
 
             SaveSchemaWorkspace(targetSchemaWorkspacePath, "WarehouseDb", "dbo.StageCustomer");
-            var targetSchema = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MS.MetaSchemaModel>(targetSchemaWorkspacePath, searchUpward: false);
+            var targetSchema = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MS.MetaSchemaModel>(targetSchemaWorkspacePath, new global::MetaSchema.MetaSchemaWorkspaceBinding(), searchUpward: false);
             var table = Assert.Single(targetSchema.TableList);
             targetSchema.TableList.Clear();
             targetSchema.ViewList.Add(new MS.View

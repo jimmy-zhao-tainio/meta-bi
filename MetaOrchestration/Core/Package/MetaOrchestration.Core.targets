@@ -1,0 +1,11 @@
+<Project>
+  <ItemGroup>
+    <_MetaOrchestrationPackagedWorkspace Include="$(MSBuildThisFileDirectory)../contentFiles/any/any/Workspaces/MetaOrchestration/**/*" />
+  </ItemGroup>
+  <Target Name="CopyMetaOrchestrationPackagedWorkspaceToOutput" AfterTargets="CopyFilesToOutputDirectory" Condition="'$(DesignTimeBuild)' != 'true'">
+    <Copy SourceFiles="@(_MetaOrchestrationPackagedWorkspace)" DestinationFiles="@(_MetaOrchestrationPackagedWorkspace -> '$(OutDir)Workspaces/MetaOrchestration/%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+  <Target Name="CopyMetaOrchestrationPackagedWorkspaceToPublish" AfterTargets="Publish" Condition="'$(DesignTimeBuild)' != 'true' and '$(PublishDir)' != ''">
+    <Copy SourceFiles="@(_MetaOrchestrationPackagedWorkspace)" DestinationFiles="@(_MetaOrchestrationPackagedWorkspace -> '$(PublishDir)Workspaces/MetaOrchestration/%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+</Project>

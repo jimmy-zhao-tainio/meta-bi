@@ -25,7 +25,8 @@ internal static class Program
             new DataWarehouseAuthoringService());
 
         Environment.ExitCode = 0;
-        var runtime = new MetaCliRuntime<MetaDataWarehouseModel>(CommandWorkspacePath, ApplicationId)
+        var runtime = new MetaCliRuntime<MetaDataWarehouseModel>(CommandWorkspacePath,
+                new global::MetaDataWarehouse.MetaDataWarehouseWorkspaceBinding(), DataWarehouseModels.LoadContract, ApplicationId)
             .UseDefaultHelp()
             .Bind(
                 "exec-create",

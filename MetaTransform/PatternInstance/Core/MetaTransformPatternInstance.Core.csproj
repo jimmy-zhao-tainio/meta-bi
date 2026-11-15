@@ -7,9 +7,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Meta.TypedModels" Version="$(MetaFoundationPackageVersion)" />
     <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
     <Compile Include="..\Workspace\MetaTransformPatternInstance.meta.cs" Link="MetaTransformPatternInstance.meta.cs" />
     <ProjectReference Include="..\..\Pattern\Core\MetaTransformPattern.Core.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Include="..\Workspace\**\*">
+      <Link>Workspaces\MetaTransformPatternInstance\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+      <PackagePath>contentFiles\any\any\Workspaces\MetaTransformPatternInstance\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
+    <None Update="Package\MetaTransformPatternInstance.Core.targets" Pack="true" PackagePath="buildTransitive\MetaTransformPatternInstance.Core.targets" />
   </ItemGroup>
 
 </Project>

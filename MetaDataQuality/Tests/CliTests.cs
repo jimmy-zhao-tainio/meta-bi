@@ -66,7 +66,7 @@ public sealed class CliTests
             Assert.True(File.Exists(Path.Combine(qualityWorkspacePath, "workspace.meta")));
             Assert.True(File.Exists(Path.Combine(qualityWorkspacePath, "model.xml")));
 
-            var model = TypedWorkspaceXmlSerializer.Load<MetaDataQualityModel>(qualityWorkspacePath, searchUpward: false);
+            var model = TypedWorkspaceXmlSerializer.Load<MetaDataQualityModel>(qualityWorkspacePath, new global::MetaDataQuality.MetaDataQualityWorkspaceBinding(), searchUpward: false);
             Assert.NotEmpty(model.DataQualityCandidateList);
             Assert.NotEmpty(model.OuterJoinNullExpansionList);
             Assert.NotEmpty(model.CorpusRelationshipList);
@@ -90,7 +90,7 @@ public sealed class CliTests
             Assert.DoesNotContain("Ok", promoted.Output, StringComparison.Ordinal);
             Assert.DoesNotContain("Next:", promoted.Output, StringComparison.Ordinal);
 
-            var reloaded = TypedWorkspaceXmlSerializer.Load<MetaDataQualityModel>(qualityWorkspacePath, searchUpward: false);
+            var reloaded = TypedWorkspaceXmlSerializer.Load<MetaDataQualityModel>(qualityWorkspacePath, new global::MetaDataQuality.MetaDataQualityWorkspaceBinding(), searchUpward: false);
             var promotedRow = Assert.Single(
                 reloaded.DataQualityCandidateList,
                 item => string.Equals(item.Id, firstCandidate.Id, StringComparison.Ordinal));
@@ -158,7 +158,7 @@ public sealed class CliTests
                 DominantPattern = dominantPattern,
             });
 
-            TypedWorkspaceXmlSerializer.Save(model, qualityWorkspacePath);
+            TypedWorkspaceXmlSerializer.Save(model, qualityWorkspacePath, global::MetaDataQuality.Core.MetaDataQualityModels.LoadContract(), new global::MetaDataQuality.MetaDataQualityWorkspaceBinding());
             MetaCliWorkspace.DescribeXml(qualityWorkspacePath);
 
             var promoted = RunCli(
@@ -168,7 +168,7 @@ public sealed class CliTests
             Assert.True(promoted.ExitCode == 0, promoted.Output);
             Assert.Contains("Candidates promoted this run: 2", promoted.Output, StringComparison.Ordinal);
 
-            var reloaded = TypedWorkspaceXmlSerializer.Load<MetaDataQualityModel>(qualityWorkspacePath, searchUpward: false);
+            var reloaded = TypedWorkspaceXmlSerializer.Load<MetaDataQualityModel>(qualityWorkspacePath, new global::MetaDataQuality.MetaDataQualityWorkspaceBinding(), searchUpward: false);
             Assert.Equal(
                 CandidateStatuses.Discovered,
                 reloaded.DataQualityCandidateList.Single(row => string.Equals(row.Id, plainCandidate.Id, StringComparison.Ordinal)).Status);
@@ -207,7 +207,7 @@ public sealed class CliTests
                 transformWorkspacePath,
                 "dbo.v_missing_payments");
 
-            var transformModel = TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
+            var transformModel = TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding(), searchUpward: false);
             var boundScript = transformModel.TransformScriptList.Single(item =>
                 string.Equals(item.Name, "dbo.v_customer_orders", StringComparison.OrdinalIgnoreCase));
             var bindingModel = MetaTransformBindingModel.CreateEmpty();
@@ -223,7 +223,7 @@ public sealed class CliTests
                 Id = $"{binding.Id}:validation",
                 TransformBinding = binding
             });
-            TypedWorkspaceXmlSerializer.Save(bindingModel, bindingWorkspacePath);
+            TypedWorkspaceXmlSerializer.Save(bindingModel, bindingWorkspacePath, global::MetaTransform.Binding.TransformBindingModels.LoadContract(), new global::MetaTransformBinding.MetaTransformBindingWorkspaceBinding());
 
             var generated = RunCli(
                 $"from-transform-workspace --transform-workspace \"{transformWorkspacePath}\" --binding-workspace \"{bindingWorkspacePath}\" --output-xml \"{qualityWorkspacePath}\"");
@@ -231,7 +231,7 @@ public sealed class CliTests
             Assert.Equal(0, generated.ExitCode);
             Assert.Contains("Transform scripts scanned: 1/2", generated.Output, StringComparison.Ordinal);
 
-            var model = TypedWorkspaceXmlSerializer.Load<MetaDataQualityModel>(qualityWorkspacePath, searchUpward: false);
+            var model = TypedWorkspaceXmlSerializer.Load<MetaDataQualityModel>(qualityWorkspacePath, new global::MetaDataQuality.MetaDataQualityWorkspaceBinding(), searchUpward: false);
             Assert.NotEmpty(model.DataQualityCandidateList);
             Assert.Contains(model.JoinPatternOccurrenceList, item =>
                 string.Equals(item.TransformScriptName, "dbo.v_customer_orders", StringComparison.OrdinalIgnoreCase));
@@ -751,7 +751,7 @@ LEFT OUTER JOIN dbo.[Order] o
                 candidate.Status = CandidateStatuses.Promoted;
             }
 
-            TypedWorkspaceXmlSerializer.Save(discovery.Model, qualityWorkspacePath);
+            TypedWorkspaceXmlSerializer.Save(discovery.Model, qualityWorkspacePath, global::MetaDataQuality.Core.MetaDataQualityModels.LoadContract(), new global::MetaDataQuality.MetaDataQualityWorkspaceBinding());
 
             var result = new DataQualityToSqlConverter().Convert(qualityWorkspacePath, outputPath);
             var sql = File.ReadAllText(outputPath);
@@ -823,7 +823,7 @@ LEFT OUTER JOIN dbo.[Order] o
             Assert.Equal("CustomerId", keyPart.FirstJoinInputColumnName);
             Assert.Equal("CustomerHubId", keyPart.SecondJoinInputColumnName);
 
-            TypedWorkspaceXmlSerializer.Save(discovery.Model, qualityWorkspacePath);
+            TypedWorkspaceXmlSerializer.Save(discovery.Model, qualityWorkspacePath, global::MetaDataQuality.Core.MetaDataQualityModels.LoadContract(), new global::MetaDataQuality.MetaDataQualityWorkspaceBinding());
 
             new DataQualityToSqlConverter().Convert(qualityWorkspacePath, outputPath);
             var sql = File.ReadAllText(outputPath);
@@ -850,7 +850,7 @@ LEFT OUTER JOIN dbo.[Order] o
         {
             Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(
                 MetaDataQualityModel.CreateEmpty(),
-                qualityWorkspacePath);
+                qualityWorkspacePath, global::MetaDataQuality.Core.MetaDataQualityModels.LoadContract(), new global::MetaDataQuality.MetaDataQualityWorkspaceBinding());
 
             var result = new DataQualityToSqlConverter().Convert(qualityWorkspacePath, outputPath);
             var sql = File.ReadAllText(outputPath);
@@ -916,7 +916,7 @@ LEFT OUTER JOIN dbo.[Order] o
                 rightTable: "sales.Order");
 
             new MetaDataQualityCorpusInferenceService().Apply(model, BuildOptionalityOnlyThresholdsForCli());
-            TypedWorkspaceXmlSerializer.Save(model, qualityWorkspacePath);
+            TypedWorkspaceXmlSerializer.Save(model, qualityWorkspacePath, global::MetaDataQuality.Core.MetaDataQualityModels.LoadContract(), new global::MetaDataQuality.MetaDataQualityWorkspaceBinding());
             MetaCliWorkspace.DescribeXml(qualityWorkspacePath);
 
             var inspect = RunCli($"inspect --workspace \"{qualityWorkspacePath}\"");
@@ -956,7 +956,7 @@ LEFT OUTER JOIN dbo.[Order] o
                 leftTable: "sales.ExpressionSource",
                 rightTable: "sales.CalendarException");
             AddDiscoveredJoinOrphanCandidateForCli(model, "JoinPattern.Scalar.Cli");
-            TypedWorkspaceXmlSerializer.Save(model, qualityWorkspacePath);
+            TypedWorkspaceXmlSerializer.Save(model, qualityWorkspacePath, global::MetaDataQuality.Core.MetaDataQualityModels.LoadContract(), new global::MetaDataQuality.MetaDataQualityWorkspaceBinding());
             MetaCliWorkspace.DescribeXml(qualityWorkspacePath);
 
             var inspect = RunCli($"inspect --workspace \"{qualityWorkspacePath}\" --show-cases --top-cases 1");

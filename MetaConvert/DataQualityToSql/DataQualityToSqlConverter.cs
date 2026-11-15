@@ -1,5 +1,4 @@
 using System.Globalization;
-using System.Reflection;
 using System.Text;
 using Meta.Integration;
 using Meta.Operations.Domain;
@@ -15,8 +14,7 @@ public sealed class DataQualityToSqlConverter
 {
     private const string DashboardViewName = "v_DataQualityReview";
     private const string MetaSqlDatabaseName = "DataQuality";
-    private const string OperationalSqlResourceName =
-        "MetaConvert.DataQualityToSql.MetaDQ.Operational.sql";
+    private const string OperationalSqlFileName = "MetaDQ.Operational.sql";
 
     private static readonly Lazy<MetaWeaveScriptDirection> ForwardDirection = new(
         static () => new MetaWeaveScriptDirectionLoader().Load(
@@ -36,10 +34,9 @@ public sealed class DataQualityToSqlConverter
         ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(outputPath);
 
-        var source = TypedWorkspaceModelMapper.Load<MetaDataQualityModel>(
-            workspacePath,
-            searchUpward: false);
-        var metaSql = Materialize(source, progress);
+        var sourceState = TypedWorkspaceModelMapper.LoadStateAsync(workspacePath).GetAwaiter().GetResult();
+        var source = new MetaDataQualityWorkspaceBinding().Read(sourceState);
+        var metaSql = Materialize(sourceState, progress);
         var dashboard = ResolveDashboard(metaSql);
         var candidateViews = metaSql.ViewList
             .Where(view => !string.Equals(view.Name, DashboardViewName, StringComparison.Ordinal))
@@ -97,16 +94,18 @@ public sealed class DataQualityToSqlConverter
     }
 
     private static MetaSqlModel Materialize(
-        MetaDataQualityModel source,
+        InMemoryWorkspace source,
         Action<MetaWeaveScriptExecutionProgress>? progress)
     {
         var result = new MetaWeaveScriptExecutionService().ExecuteDirection(
             ForwardDirection.Value,
             new Dictionary<string, InMemoryWorkspace>(StringComparer.OrdinalIgnoreCase)
             {
-                ["quality"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(source),
+                ["quality"] = source,
             },
-            TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaSqlModel.CreateEmpty()),
+            new InMemoryWorkspace(
+                TypedWorkspaceModelMapper.LoadStateAsync(Path.Combine(AppContext.BaseDirectory, "Workspaces", "MetaSql")).GetAwaiter().GetResult().Model,
+                new GenericInstance { ModelName = "MetaSql" }),
             new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
             {
                 ["databaseName"] = MetaSqlDatabaseName,
@@ -124,9 +123,7 @@ public sealed class DataQualityToSqlConverter
                         $"{issue.Code}: {issue.Message}")));
         }
 
-        return TypedWorkspaceModelMapper.FromInMemoryWorkspace(
-            result.OutputWorkspace!,
-            MetaSqlModel.CreateEmpty);
+        return new MetaSqlWorkspaceBinding().Read(result.OutputWorkspace!);
     }
 
     private static View ResolveDashboard(MetaSqlModel metaSql)
@@ -243,19 +240,7 @@ public sealed class DataQualityToSqlConverter
 
     private static string LoadOperationalSql()
     {
-        using var stream = typeof(DataQualityToSqlConverter).Assembly
-            .GetManifestResourceStream(OperationalSqlResourceName);
-        if (stream is null)
-        {
-            throw new InvalidOperationException(
-                $"The fixed MetaDQ operational SQL resource '{OperationalSqlResourceName}' was not found.");
-        }
-
-        using var reader = new StreamReader(
-            stream,
-            Encoding.UTF8,
-            detectEncodingFromByteOrderMarks: true);
-        return reader.ReadToEnd();
+        return File.ReadAllText(Path.Combine(AppContext.BaseDirectory, OperationalSqlFileName), Encoding.UTF8);
     }
 
     private static string ResolveWeaveWorkspacePath()

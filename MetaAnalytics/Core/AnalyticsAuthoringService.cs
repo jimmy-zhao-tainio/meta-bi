@@ -1,5 +1,6 @@
-using System.Collections;
-using System.Reflection;
+using Meta.Integration;
+using Meta.Operations;
+using Meta.Operations.Domain;
 using AnalyticsAttribute = MetaAnalytics.Attribute;
 using AnalyticsModel = MetaAnalytics.AnalyticsModel;
 using AnalyticsTable = MetaAnalytics.Table;
@@ -33,245 +34,116 @@ public sealed class AnalyticsAuthoringService : IAnalyticsAuthoringService
 {
     private const string ModelName = "MetaAnalytics";
 
-    private static readonly Type ModelType = typeof(MetaAnalyticsModel);
-
     public MetaAnalyticsModel CreateWorkspace() => MetaAnalyticsModel.CreateEmpty();
 
-    public MetaAnalyticsModel AddRecord(AnalyticsAuthoringRequest request)
-    {
-        ValidateRequest(request);
-        var workspacePath = Path.GetFullPath(request.WorkspacePath);
-        var model = Meta.Integration.TypedWorkspaceModelMapper.Load<MetaAnalyticsModel>(workspacePath);
-        AddRecord(model, request);
-        Meta.Integration.TypedWorkspaceModelMapper.Save(model, workspacePath);
-        return model;
-    }
+    public MetaAnalyticsModel AddRecord(AnalyticsAuthoringRequest request) =>
+        AddRecordAsync(request).GetAwaiter().GetResult();
 
-    public MetaAnalyticsModel AddMeasure(
-        AnalyticsAuthoringRequest request,
-        string aggregateFunctionKind)
-    {
-        ValidateRequest(request);
-        ArgumentException.ThrowIfNullOrWhiteSpace(aggregateFunctionKind);
-        if (!string.Equals(request.EntityName, nameof(Measure), StringComparison.Ordinal))
-        {
-            throw new InvalidOperationException($"A measure request must target entity '{nameof(Measure)}'.");
-        }
-
-        var workspacePath = Path.GetFullPath(request.WorkspacePath);
-        var model = Meta.Integration.TypedWorkspaceModelMapper.Load<MetaAnalyticsModel>(workspacePath);
-        var aggregateFunction = new AggregateFunction
-        {
-            Id = $"{request.RecordId}:aggregate-function",
-        };
-        model.AggregateFunctionList.Add(aggregateFunction);
-        AddAggregateFunctionVariant(model, aggregateFunction, aggregateFunctionKind);
-        AddRecord(model, request, row => ((Measure)row).AggregateFunction = aggregateFunction);
-        Meta.Integration.TypedWorkspaceModelMapper.Save(model, workspacePath);
-        return model;
-    }
-
-    private static void ValidateRequest(AnalyticsAuthoringRequest request)
+    private static async Task<MetaAnalyticsModel> AddRecordAsync(AnalyticsAuthoringRequest request, string? aggregateFunctionKind = null)
     {
         ArgumentNullException.ThrowIfNull(request);
         ArgumentException.ThrowIfNullOrWhiteSpace(request.WorkspacePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(request.EntityName);
         ArgumentException.ThrowIfNullOrWhiteSpace(request.RecordId);
-    }
-
-    private static object AddRecord(
-        MetaAnalyticsModel model,
-        AnalyticsAuthoringRequest request,
-        Action<object>? configure = null)
-    {
-        var entityType = ResolveEntityType(request.EntityName);
-        var rows = GetEntityRows(model, entityType, request.EntityName);
-        if (rows.Cast<object>().Any(row => string.Equals(ReadId(row), request.RecordId, StringComparison.Ordinal)))
+        await using var workspace = await WorkspaceSurface.OpenAsync(Path.GetFullPath(request.WorkspacePath)).ConfigureAwait(false);
+        var state = await WorkspaceComposition.MaterializeAsync(workspace).ConfigureAwait(false);
+        var binding = new MetaAnalyticsWorkspaceBinding();
+        _ = binding.Read(state);
+        var values = new Dictionary<string, string>(request.Values, StringComparer.OrdinalIgnoreCase);
+        var relationships = request.Relationships.Select(item => (item.ColumnName, item.TargetEntityName, item.TargetRecordId)).ToList();
+        var operations = new List<Operation>();
+        if (aggregateFunctionKind is not null)
         {
-            throw new InvalidOperationException($"{request.EntityName} '{request.RecordId}' already exists.");
+            var functionId = request.RecordId + ":aggregate-function";
+            var variant = aggregateFunctionKind.Trim().ToUpperInvariant() switch
+            {
+                "SUM" => nameof(SumAggregateFunction),
+                "AVERAGE" => nameof(AverageAggregateFunction),
+                "COUNT" => nameof(CountAggregateFunction),
+                "DISTINCTCOUNT" => nameof(DistinctCountAggregateFunction),
+                "MINIMUM" => nameof(MinimumAggregateFunction),
+                "MAXIMUM" => nameof(MaximumAggregateFunction),
+                _ => throw new InvalidOperationException($"Aggregate function kind '{aggregateFunctionKind}' is not modeled by MetaAnalytics."),
+            };
+            operations.Add(BuildInsert(state, nameof(AggregateFunction), functionId, new(), []));
+            operations.Add(BuildInsert(state, variant, functionId + ":type", new(), [("AggregateFunctionId", nameof(AggregateFunction), functionId)]));
+            relationships.RemoveAll(item => item.ColumnName is "AggregateFunction" or "AggregateFunctionId");
+            relationships.Add(("AggregateFunctionId", nameof(AggregateFunction), functionId));
         }
-
-        var rowToAdd = Activator.CreateInstance(entityType)
-            ?? throw new InvalidOperationException($"Could not create {request.EntityName} row.");
-        SetText(rowToAdd, "Id", request.RecordId, request.EntityName);
-
-        foreach (var value in request.Values)
+        operations.Add(BuildInsert(state, request.EntityName, request.RecordId, values, relationships));
+        var candidate = InMemoryOperations.ApplyBatch(state, operations);
+        var model = binding.Read(candidate);
+        object? added = state.Model.FindEntity(request.EntityName)!.Name switch
         {
-            SetText(rowToAdd, value.Key, value.Value, request.EntityName);
-        }
-
-        foreach (var relationship in request.Relationships)
-        {
-            AssignRelationship(model, rowToAdd, request.EntityName, relationship);
-        }
-
-        configure?.Invoke(rowToAdd);
-        AssignOrdinalIfMissing(model, rowToAdd, request);
-        rows.Add(rowToAdd);
-        ValidateDomainRules(model, rowToAdd);
-        return rowToAdd;
-    }
-
-    private static void AddAggregateFunctionVariant(
-        MetaAnalyticsModel model,
-        AggregateFunction aggregateFunction,
-        string aggregateFunctionKind)
-    {
-        var variantId = $"{aggregateFunction.Id}:type";
-        switch (aggregateFunctionKind.Trim().ToUpperInvariant())
-        {
-            case "SUM":
-                model.SumAggregateFunctionList.Add(new SumAggregateFunction { Id = variantId, AggregateFunction = aggregateFunction });
-                break;
-            case "AVERAGE":
-                model.AverageAggregateFunctionList.Add(new AverageAggregateFunction { Id = variantId, AggregateFunction = aggregateFunction });
-                break;
-            case "COUNT":
-                model.CountAggregateFunctionList.Add(new CountAggregateFunction { Id = variantId, AggregateFunction = aggregateFunction });
-                break;
-            case "DISTINCTCOUNT":
-                model.DistinctCountAggregateFunctionList.Add(new DistinctCountAggregateFunction { Id = variantId, AggregateFunction = aggregateFunction });
-                break;
-            case "MINIMUM":
-                model.MinimumAggregateFunctionList.Add(new MinimumAggregateFunction { Id = variantId, AggregateFunction = aggregateFunction });
-                break;
-            case "MAXIMUM":
-                model.MaximumAggregateFunctionList.Add(new MaximumAggregateFunction { Id = variantId, AggregateFunction = aggregateFunction });
-                break;
-            default:
-                throw new InvalidOperationException(
-                    $"Aggregate function kind '{aggregateFunctionKind}' is not modeled by MetaAnalytics.");
-        }
-    }
-
-    private static Type ResolveEntityType(string entityName)
-    {
-        var type = ModelType.Assembly.GetType($"MetaAnalytics.{entityName}", throwOnError: false);
-        if (type is null)
-        {
-            throw new InvalidOperationException($"Entity '{entityName}' was not found in model '{ModelName}'.");
-        }
-
-        return type;
-    }
-
-    private static IList GetEntityRows(MetaAnalyticsModel model, Type entityType, string entityName)
-    {
-        var listProperty = ModelType.GetProperty($"{entityName}List", BindingFlags.Instance | BindingFlags.Public);
-        if (listProperty is null)
-        {
-            throw new InvalidOperationException($"Model '{ModelName}' does not expose {entityName}List.");
-        }
-
-        if (!listProperty.PropertyType.IsGenericType ||
-            listProperty.PropertyType.GetGenericTypeDefinition() != typeof(List<>) ||
-            listProperty.PropertyType.GetGenericArguments()[0] != entityType)
-        {
-            throw new InvalidOperationException($"Model list '{listProperty.Name}' is not List<{entityName}>.");
-        }
-
-        return (IList)(listProperty.GetValue(model)
-            ?? throw new InvalidOperationException($"Model list '{listProperty.Name}' is null."));
-    }
-
-    private static object ResolveRow(MetaAnalyticsModel model, string entityName, string id)
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(id);
-
-        var targetType = ResolveEntityType(entityName);
-        var rows = GetEntityRows(model, targetType, entityName);
-        var matches = rows.Cast<object>()
-            .Where(row => string.Equals(ReadId(row), id, StringComparison.Ordinal))
-            .Take(2)
-            .ToArray();
-
-        return matches.Length switch
-        {
-            1 => matches[0],
-            0 => throw new InvalidOperationException($"{entityName} '{id}' was not found."),
-            _ => throw new InvalidOperationException($"{entityName} '{id}' matched more than one row.")
+            nameof(SortByAttribute) => model.SortByAttributeList.Single(row => row.Id == request.RecordId),
+            nameof(AttributeRelationship) => model.AttributeRelationshipList.Single(row => row.Id == request.RecordId),
+            nameof(HierarchyLevel) => model.HierarchyLevelList.Single(row => row.Id == request.RecordId),
+            nameof(Relationship) => model.RelationshipList.Single(row => row.Id == request.RecordId),
+            nameof(Measure) => model.MeasureList.Single(row => row.Id == request.RecordId),
+            nameof(PerspectiveTable) => model.PerspectiveTableList.Single(row => row.Id == request.RecordId),
+            nameof(PerspectiveAttribute) => model.PerspectiveAttributeList.Single(row => row.Id == request.RecordId),
+            nameof(PerspectiveHierarchy) => model.PerspectiveHierarchyList.Single(row => row.Id == request.RecordId),
+            nameof(PerspectiveMeasure) => model.PerspectiveMeasureList.Single(row => row.Id == request.RecordId),
+            nameof(TablePermission) => model.TablePermissionList.Single(row => row.Id == request.RecordId),
+            nameof(AttributePermission) => model.AttributePermissionList.Single(row => row.Id == request.RecordId),
+            nameof(TableTranslation) => model.TableTranslationList.Single(row => row.Id == request.RecordId),
+            nameof(AttributeTranslation) => model.AttributeTranslationList.Single(row => row.Id == request.RecordId),
+            nameof(HierarchyTranslation) => model.HierarchyTranslationList.Single(row => row.Id == request.RecordId),
+            nameof(MeasureTranslation) => model.MeasureTranslationList.Single(row => row.Id == request.RecordId),
+            nameof(PerspectiveTranslation) => model.PerspectiveTranslationList.Single(row => row.Id == request.RecordId),
+            _ => null,
         };
+        if (added is not null) ValidateDomainRules(model, added);
+        await workspace.ExecuteAsync(operations).ConfigureAwait(false);
+        return model;
     }
 
-    private static void SetText(object row, string propertyName, string value, string entityName)
+    public MetaAnalyticsModel AddMeasure(AnalyticsAuthoringRequest request, string aggregateFunctionKind)
     {
-        var property = row.GetType().GetProperty(propertyName, BindingFlags.Instance | BindingFlags.Public)
-            ?? throw new InvalidOperationException($"Entity '{entityName}' does not define property '{propertyName}'.");
-        if (!property.CanWrite || property.PropertyType != typeof(string))
+        ArgumentNullException.ThrowIfNull(request);
+        ArgumentException.ThrowIfNullOrWhiteSpace(aggregateFunctionKind);
+        if (request.EntityName != nameof(Measure))
+            throw new InvalidOperationException($"A measure request must target entity '{nameof(Measure)}'.");
+        return AddRecordAsync(request, aggregateFunctionKind).GetAwaiter().GetResult();
+    }
+
+    private static Operation BuildInsert(InMemoryWorkspace state, string entityName, string id,
+        Dictionary<string, string> values,
+        IReadOnlyList<(string ColumnName, string TargetEntityName, string TargetRecordId)> relationships)
+    {
+        var entity = state.Model.FindEntity(entityName)
+            ?? throw new InvalidOperationException($"Entity '{entityName}' was not found in model '{ModelName}'.");
+        var rows = state.Instance.RecordsByEntity.TryGetValue(entity.Name, out var existing)
+            ? existing.AsEnumerable() : Enumerable.Empty<GenericRecord>();
+        if (rows.Any(row => row.Id == id))
+            throw new InvalidOperationException($"{entityName} '{id}' already exists.");
+        foreach (var value in values)
+            if (!entity.Properties.Any(property => string.Equals(property.Name, value.Key, StringComparison.OrdinalIgnoreCase)))
+                throw new InvalidOperationException($"Entity '{entityName}' does not define property '{value.Key}'.");
+        var references = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var assignment in relationships)
         {
-            throw new InvalidOperationException($"Entity '{entityName}' property '{propertyName}' is not a text property.");
+            var column = assignment.ColumnName.EndsWith("Id", StringComparison.Ordinal)
+                ? assignment.ColumnName : assignment.ColumnName + "Id";
+            var relationship = entity.FindRelationshipByColumnName(column)
+                ?? throw new InvalidOperationException($"Entity '{entityName}' does not define relationship '{column[..^2]}'.");
+            if (!string.Equals(relationship.Entity, assignment.TargetEntityName, StringComparison.OrdinalIgnoreCase))
+                throw new InvalidOperationException($"Entity '{entityName}' relationship '{column[..^2]}' cannot reference {assignment.TargetEntityName}.");
+            references.Add(relationship.GetColumnName(), assignment.TargetRecordId);
         }
-
-        property.SetValue(row, value);
-    }
-
-    private static void AssignRelationship(
-        MetaAnalyticsModel model,
-        object row,
-        string entityName,
-        AnalyticsRelationshipAssignment relationship)
-    {
-        var propertyName = RelationshipPropertyName(relationship.ColumnName);
-        var property = row.GetType().GetProperty(propertyName, BindingFlags.Instance | BindingFlags.Public)
-            ?? throw new InvalidOperationException($"Entity '{entityName}' does not define relationship '{propertyName}'.");
-
-        var target = ResolveRow(model, relationship.TargetEntityName, relationship.TargetRecordId);
-        if (!CanAssignRelationship(property.PropertyType, target.GetType()))
+        if (entity.Properties.Any(property => property.Name == "Ordinal") && !values.ContainsKey("Ordinal"))
         {
-            throw new InvalidOperationException(
-                $"Entity '{entityName}' relationship '{propertyName}' cannot reference {relationship.TargetEntityName}.");
+            if (relationships.Count > 0)
+            {
+                var first = relationships[0];
+                var ownerColumn = first.ColumnName.EndsWith("Id", StringComparison.Ordinal) ? first.ColumnName : first.ColumnName + "Id";
+                rows = rows.Where(row => row.RelationshipIds.TryGetValue(ownerColumn, out var owner) && owner == first.TargetRecordId);
+            }
+            var max = rows.Select(row => row.Values.TryGetValue("Ordinal", out var ordinal) && int.TryParse(ordinal, out var parsed) ? parsed : 0)
+                .DefaultIfEmpty(0).Max();
+            values["Ordinal"] = (max + 10).ToString();
         }
-
-        property.SetValue(row, target);
-    }
-
-    private static bool CanAssignRelationship(Type propertyType, Type targetType)
-    {
-        var nullableTarget = Nullable.GetUnderlyingType(propertyType);
-        return (nullableTarget ?? propertyType).IsAssignableFrom(targetType);
-    }
-
-    private static string RelationshipPropertyName(string columnName) =>
-        columnName.EndsWith("Id", StringComparison.Ordinal)
-            ? columnName[..^2]
-            : columnName;
-
-    private static string ReadId(object row)
-    {
-        var property = row.GetType().GetProperty("Id", BindingFlags.Instance | BindingFlags.Public)
-            ?? throw new InvalidOperationException($"Entity '{row.GetType().Name}' does not define Id.");
-        return (string?)property.GetValue(row) ?? string.Empty;
-    }
-
-    private static void AssignOrdinalIfMissing(
-        MetaAnalyticsModel model,
-        object rowToAdd,
-        AnalyticsAuthoringRequest request)
-    {
-        var ordinalProperty = rowToAdd.GetType().GetProperty("Ordinal", BindingFlags.Instance | BindingFlags.Public);
-        if (ordinalProperty is null || request.Values.ContainsKey("Ordinal"))
-        {
-            return;
-        }
-
-        var rows = GetEntityRows(model, rowToAdd.GetType(), request.EntityName).Cast<object>();
-        var ownerRelationship = request.Relationships.FirstOrDefault();
-        if (ownerRelationship is not null)
-        {
-            var ownerPropertyName = RelationshipPropertyName(ownerRelationship.ColumnName);
-            var ownerProperty = rowToAdd.GetType().GetProperty(ownerPropertyName, BindingFlags.Instance | BindingFlags.Public)
-                ?? throw new InvalidOperationException($"Entity '{request.EntityName}' does not define relationship '{ownerPropertyName}'.");
-            var owner = ownerProperty.GetValue(rowToAdd);
-            rows = rows.Where(row => ReferenceEquals(ownerProperty.GetValue(row), owner));
-        }
-
-        var maxOrdinal = rows
-            .Select(row => (string?)ordinalProperty.GetValue(row))
-            .Select(value => int.TryParse(value, out var parsed) ? parsed : 0)
-            .DefaultIfEmpty(0)
-            .Max();
-
-        ordinalProperty.SetValue(rowToAdd, (maxOrdinal + 10).ToString());
+        return new Operation.InsertRecord(entity.Name, id, values, references);
     }
 
     private static void ValidateDomainRules(MetaAnalyticsModel model, object row)

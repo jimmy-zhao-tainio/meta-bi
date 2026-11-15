@@ -12,7 +12,7 @@ internal sealed class LegacyDataQualityToSqlOracle
 
     public LegacyDataQualityToSqlOracleResult Convert(string workspacePath, string outputPath)
     {
-        var model = Meta.Integration.TypedWorkspaceModelMapper.Load<MetaDataQualityModel>(workspacePath, searchUpward: false);
+        var model = Meta.Integration.TypedWorkspaceModelMapper.Load<MetaDataQualityModel>(workspacePath, new global::MetaDataQuality.MetaDataQualityWorkspaceBinding(), searchUpward: false);
         var candidateTypes = ResolveCandidateTypeMap(model);
         var candidateEvidenceByCandidateId = model.DataQualityCandidateEvidenceList
             .GroupBy(item => item.DataQualityCandidate.Id, StringComparer.Ordinal)

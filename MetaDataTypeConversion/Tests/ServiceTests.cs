@@ -32,7 +32,7 @@ public sealed class ServiceTests
 
         Assert.Equal("meta:type:String", resolution.SourceDataTypeId);
         Assert.Equal("sqlserver:type:nvarchar", resolution.TargetDataTypeId);
-        Assert.Equal("sqlserver", resolution.TargetDataTypeSystemName);
+        Assert.Equal("SqlServer", resolution.TargetDataTypeSystemName);
     }
 
     [Theory]

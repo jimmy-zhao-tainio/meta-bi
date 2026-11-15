@@ -1,9 +1,9 @@
 using Meta.Integration;
 using Meta.Operations.Domain;
 using MetaAnalytics;
+using MetaAnalytics.Core;
 using MetaConvert.AnalyticsToTabular;
-using Meta.Surfaces.Xml;
-using Meta.TypedModels;
+using MetaTabular.Core;
 using MetaBi.Tests.Common;
 using MetaWeave.Core;
 using MetaWeaveScript.Execution;
@@ -16,12 +16,12 @@ public sealed class AnalyticsToTabularConverterTests
     public async Task SanctionedWeave_MatchesEstablishedConverter()
     {
         var source = LoadSampleCommerce();
-        var expected = TypedModelMapper.ToWorkspace(AnalyticsToTabularCSharpReference.Convert(source));
+        var expected = ToState(AnalyticsToTabularCSharpReference.Convert(source));
         var progress = new List<MetaWeaveScriptExecutionProgress>();
-        var converted = TypedModelMapper.ToWorkspace(
+        var converted = ToState(
             AnalyticsToTabularConverter.Convert(source, progress.Add));
 
-        var actual = await ExecuteSanctionedWeaveAsync(TypedModelMapper.ToWorkspace(source));
+        var actual = await ExecuteSanctionedWeaveAsync(ToState(source));
 
         Assert.True(actual.IsSuccess, FormatIssues(actual));
         Assert.Null(InMemoryWorkspaceComparer.FindDifference(expected, converted));
@@ -60,10 +60,10 @@ public sealed class AnalyticsToTabularConverterTests
             Table = source.TableList[0],
             MetadataPermission = "Read",
         });
-        var expected = TypedModelMapper.ToWorkspace(AnalyticsToTabularCSharpReference.Convert(source));
-        var converted = TypedModelMapper.ToWorkspace(AnalyticsToTabularConverter.Convert(source));
+        var expected = ToState(AnalyticsToTabularCSharpReference.Convert(source));
+        var converted = ToState(AnalyticsToTabularConverter.Convert(source));
 
-        var actual = await ExecuteSanctionedWeaveAsync(TypedModelMapper.ToWorkspace(source));
+        var actual = await ExecuteSanctionedWeaveAsync(ToState(source));
 
         Assert.True(actual.IsSuccess, FormatIssues(actual));
         var output = Assert.IsType<InMemoryWorkspace>(actual.OutputWorkspace);
@@ -101,7 +101,7 @@ public sealed class AnalyticsToTabularConverterTests
                 row => ReferenceEquals(row.AggregateFunction, aggregateFunction));
         }
 
-        var result = await ExecuteSanctionedWeaveAsync(TypedModelMapper.ToWorkspace(source));
+        var result = await ExecuteSanctionedWeaveAsync(ToState(source));
 
         Assert.False(result.IsSuccess);
         Assert.Null(result.OutputWorkspace);
@@ -148,7 +148,7 @@ public sealed class AnalyticsToTabularConverterTests
 
         var expected = AnalyticsToTabularCSharpReference.Convert(source);
         var converted = AnalyticsToTabularConverter.Convert(source);
-        var woven = await ExecuteSanctionedWeaveAsync(TypedModelMapper.ToWorkspace(source));
+        var woven = await ExecuteSanctionedWeaveAsync(ToState(source));
 
         Assert.StartsWith(
             daxFunction + "(",
@@ -156,10 +156,10 @@ public sealed class AnalyticsToTabularConverterTests
             StringComparison.Ordinal);
         Assert.True(woven.IsSuccess, FormatIssues(woven));
         Assert.Null(InMemoryWorkspaceComparer.FindDifference(
-            TypedModelMapper.ToWorkspace(expected),
-            TypedModelMapper.ToWorkspace(converted)));
+            ToState(expected),
+            ToState(converted)));
         Assert.Null(InMemoryWorkspaceComparer.FindDifference(
-            TypedModelMapper.ToWorkspace(converted),
+            ToState(converted),
             woven.OutputWorkspace!));
     }
 
@@ -210,9 +210,13 @@ public sealed class AnalyticsToTabularConverterTests
     }
 
     private static MetaAnalyticsModel CloneSample() =>
-        TypedModelMapper.FromWorkspace(
-            TypedModelMapper.ToWorkspace(LoadSampleCommerce()),
-            MetaAnalyticsModel.CreateEmpty);
+        new MetaAnalyticsWorkspaceBinding().Read(ToState(LoadSampleCommerce()));
+
+    private static InMemoryWorkspace ToState(MetaAnalyticsModel model) =>
+        new MetaAnalyticsWorkspaceBinding().Write(model, AnalyticsModels.LoadContract());
+
+    private static InMemoryWorkspace ToState(MetaTabularModel model) =>
+        new MetaTabularWorkspaceBinding().Write(model, TabularModels.LoadContract());
 
     private static MetaAnalyticsModel LoadSampleCommerce()
     {
@@ -221,7 +225,7 @@ public sealed class AnalyticsToTabularConverterTests
             "MetaAnalytics",
             "Workspaces",
             "SampleAnalyticsCommerce");
-        return TypedWorkspaceXmlSerializer.Load<MetaAnalyticsModel>(workspacePath, searchUpward: false);
+        return TypedWorkspaceModelMapper.Load(workspacePath, new MetaAnalyticsWorkspaceBinding());
     }
 
     private static async Task<MetaWeaveScriptApplicationResult> ExecuteSanctionedWeaveAsync(

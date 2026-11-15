@@ -2,6 +2,7 @@ using System.Data;
 using System.Globalization;
 using Microsoft.Data.SqlClient;
 using MS = global::MetaSchema;
+using MetaDataType.Core;
 
 namespace MetaSchema.Extractors.SqlServer;
 
@@ -83,6 +84,7 @@ public sealed class SqlServerSchemaExtractor
             throw new InvalidOperationException("extract sqlserver does not allow --table with --all-tables.");
         }
 
+        var types = new MS.SqlServerSchemaTypeValidator(MetaDataTypeWorkspaceProvider.LoadOrDefault(request.DataTypeWorkspacePath));
         using var connection = new SqlConnection(request.ConnectionString);
         connection.Open();
 
@@ -212,7 +214,7 @@ public sealed class SqlServerSchemaExtractor
                 {
                     Id = BuildFieldId(databaseName, columnRow.SchemaName, columnRow.TableName, columnRow.ColumnName),
                     Name = columnRow.ColumnName,
-                    MetaDataTypeId = BuildDataTypeId(columnRow.DataTypeName),
+                    MetaDataTypeId = ResolveDataTypeId(types, columnRow),
                     Ordinal = columnRow.OrdinalPosition.ToString(CultureInfo.InvariantCulture),
                     IsNullable = tableRow.IsView ? null : columnRow.IsNullable ? "true" : "false",
                     IsIdentity = tableRow.IsView || !columnRow.IsIdentity ? null : "true",
@@ -645,8 +647,15 @@ public sealed class SqlServerSchemaExtractor
     private static string BuildSchemaObjectId(string databaseName, string schemaName, string tableName) =>
         "sqlserver:" + databaseName + ":schema:" + schemaName + ":table:" + tableName;
 
-    private static string BuildDataTypeId(string dataTypeName) =>
-        "sqlserver:type:" + dataTypeName;
+    private static string ResolveDataTypeId(MS.SqlServerSchemaTypeValidator types, ColumnRow column)
+    {
+        try { return types.ResolveSqlTypeName(column.DataTypeName); }
+        catch (MS.SchemaTypeValidationException exception)
+        {
+            throw new MS.SchemaTypeValidationException(exception.Code,
+                $"SQL Server column '{column.SchemaName}.{column.TableName}.{column.ColumnName}': {exception.Message}");
+        }
+    }
 
     private static string BuildScopedObjectKey(string schemaName, string objectName) =>
         schemaName + "." + objectName;
@@ -757,6 +766,7 @@ public sealed class SqlServerSchemaExtractor
 public sealed class SqlServerExtractRequest
 {
     public string NewWorkspacePath { get; set; } = string.Empty;
+    public string? DataTypeWorkspacePath { get; set; }
     public string ConnectionString { get; set; } = string.Empty;
     public string SystemName { get; set; } = string.Empty;
     public string SchemaName { get; set; } = string.Empty;

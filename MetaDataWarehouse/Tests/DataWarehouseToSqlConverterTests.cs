@@ -1,6 +1,5 @@
 using Meta.Integration;
 using Meta.Operations.Domain;
-using Meta.TypedModels;
 using MetaConvert.DataWarehouseToSql;
 using MetaDataType;
 using MetaDataTypeConversion;
@@ -17,10 +16,10 @@ public sealed class DataWarehouseToSqlConverterTests
     {
         var warehouse = TestModels.LoadSampleSales();
         var implementation = MetaDataWarehouseImplementation.MetaDataWarehouseImplementationInstance.BuiltIn;
-        var expected = TypedWorkspaceModelMapper.ToInMemoryWorkspace(
+        var expected = ToSqlState(
             DataWarehouseToSqlCSharpReference.ConvertToMetaSql(warehouse, implementation, "CommerceDw"));
         var progress = new List<MetaWeaveScriptExecutionProgress>();
-        var converted = TypedWorkspaceModelMapper.ToInMemoryWorkspace(
+        var converted = ToSqlState(
             DataWarehouseToSqlConverter.ConvertToMetaSql(
                 warehouse,
                 implementation,
@@ -42,9 +41,9 @@ public sealed class DataWarehouseToSqlConverterTests
         var implementation = MetaDataWarehouseImplementation.MetaDataWarehouseImplementationInstance.BuiltIn;
         warehouse.DimensionAttributeList[0].Ordinal = "not-an-integer";
         warehouse.DimensionAttributeList[1].Ordinal = "also-not-an-integer";
-        var expected = TypedWorkspaceModelMapper.ToInMemoryWorkspace(
+        var expected = ToSqlState(
             DataWarehouseToSqlCSharpReference.ConvertToMetaSql(warehouse, implementation, "CommerceDw"));
-        var converted = TypedWorkspaceModelMapper.ToInMemoryWorkspace(
+        var converted = ToSqlState(
             DataWarehouseToSqlConverter.ConvertToMetaSql(warehouse, implementation, "CommerceDw"));
 
         var actual = await ExecuteSanctionedWeaveAsync(warehouse, implementation, "CommerceDw");
@@ -116,10 +115,10 @@ public sealed class DataWarehouseToSqlConverterTests
     [Fact]
     public async Task SanctionedWeave_RejectsMissingImplementationContract()
     {
-        var implementation = TypedModelMapper.FromWorkspace(
-            TypedModelMapper.ToWorkspace(
-                MetaDataWarehouseImplementation.MetaDataWarehouseImplementationInstance.BuiltIn),
-            MetaDataWarehouseImplementation.MetaDataWarehouseImplementationModel.CreateEmpty);
+        var implementationBinding = new MetaDataWarehouseImplementation.MetaDataWarehouseImplementationWorkspaceBinding();
+        var implementation = implementationBinding.Read(implementationBinding.Write(
+            MetaDataWarehouseImplementation.MetaDataWarehouseImplementationInstance.BuiltIn,
+            MetaDataWarehouse.Core.DataWarehouseImplementationModels.LoadContract()));
         implementation.FactTableImplementationList.Clear();
 
         var result = await ExecuteSanctionedWeaveAsync(
@@ -181,10 +180,10 @@ public sealed class DataWarehouseToSqlConverterTests
             new GenericInstance { ModelName = targetContract.Model.Name });
         var sources = new Dictionary<string, InMemoryWorkspace>(StringComparer.OrdinalIgnoreCase)
         {
-            ["warehouse"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(warehouse),
-            ["implementation"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(implementation),
-            ["dataTypes"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaDataTypeInstance.BuiltIn),
-            ["typeConversions"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaDataTypeConversionInstance.BuiltIn),
+            ["warehouse"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(warehouse, global::MetaDataWarehouse.Core.DataWarehouseModels.LoadContract(), new global::MetaDataWarehouse.MetaDataWarehouseWorkspaceBinding()),
+            ["implementation"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(implementation, global::MetaDataWarehouse.Core.DataWarehouseImplementationModels.LoadContract(), new global::MetaDataWarehouseImplementation.MetaDataWarehouseImplementationWorkspaceBinding()),
+            ["dataTypes"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaDataTypeInstance.BuiltIn, global::MetaDataType.Core.MetaDataTypeWorkspaceProvider.LoadContract(), new global::MetaDataType.MetaDataTypeWorkspaceBinding()),
+            ["typeConversions"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaDataTypeConversionInstance.BuiltIn, global::MetaDataTypeConversion.Core.MetaDataTypeConversionWorkspaceProvider.LoadContract(), new global::MetaDataTypeConversion.MetaDataTypeConversionWorkspaceBinding()),
         };
 
         return new MetaWeaveScriptExecutionService().ExecuteDirection(
@@ -199,6 +198,13 @@ public sealed class DataWarehouseToSqlConverterTests
 
     private static string FormatIssues(MetaWeaveScriptApplicationResult result) =>
         string.Join(Environment.NewLine, result.Issues.Select(issue => $"{issue.Code}: {issue.Message}"));
+
+    private static InMemoryWorkspace ToSqlState(MetaSql.MetaSqlModel model)
+    {
+        var contract = TypedWorkspaceModelMapper.LoadStateAsync(
+            Path.Combine(AppContext.BaseDirectory, "Workspaces", "MetaSql")).GetAwaiter().GetResult().Model;
+        return new MetaSql.MetaSqlWorkspaceBinding().Write(model, contract);
+    }
 
     private static MetaWeaveScriptDirection LoadSanctionedDirection() =>
         new MetaWeaveScriptDirectionLoader().Load(

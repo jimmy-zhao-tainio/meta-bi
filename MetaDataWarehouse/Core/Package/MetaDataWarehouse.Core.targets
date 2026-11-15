@@ -1,0 +1,11 @@
+<Project>
+  <ItemGroup>
+    <_MetaDataWarehousePackagedWorkspace Include="$(MSBuildThisFileDirectory)../contentFiles/any/any/Workspaces/**/*" />
+  </ItemGroup>
+  <Target Name="CopyMetaDataWarehousePackagedWorkspaceToOutput" AfterTargets="CopyFilesToOutputDirectory" Condition="'$(DesignTimeBuild)' != 'true'">
+    <Copy SourceFiles="@(_MetaDataWarehousePackagedWorkspace)" DestinationFiles="@(_MetaDataWarehousePackagedWorkspace -> '$(OutDir)Workspaces/%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+  <Target Name="CopyMetaDataWarehousePackagedWorkspaceToPublish" AfterTargets="Publish" Condition="'$(DesignTimeBuild)' != 'true' and '$(PublishDir)' != ''">
+    <Copy SourceFiles="@(_MetaDataWarehousePackagedWorkspace)" DestinationFiles="@(_MetaDataWarehousePackagedWorkspace -> '$(PublishDir)Workspaces/%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+</Project>

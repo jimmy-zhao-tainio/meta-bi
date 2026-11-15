@@ -1,8 +1,11 @@
 using Meta.Integration;
 using Meta.Operations.Domain;
+using MetaDataType.Core;
+using MetaSql.Extractors.SqlServer;
 
 namespace MetaSql.Tests;
 
+[Trait("Category", "Integration")]
 public sealed class MetaSqlCanonicalizerTests
 {
     [Fact]
@@ -56,9 +59,10 @@ public sealed class MetaSqlCanonicalizerTests
 
         Assert.False(service.BuildEqualDiffWorkspace(authored, canonical).HasDifferences);
         Assert.Empty(new MetaSqlDifferenceService().BuildDifferences(authored, canonical));
+        var catalog = new SqlServerDataTypeCatalog(MetaDataTypeWorkspaceProvider.GetDefaultWorkspace());
         Assert.Equal(
-            MetaSqlInstanceFingerprint.Compute(authored),
-            MetaSqlInstanceFingerprint.Compute(canonical));
+            MetaSqlInstanceFingerprint.Compute(authored, catalog),
+            MetaSqlInstanceFingerprint.Compute(canonical, catalog));
 
         var changed = canonical.Clone();
         GetRecord(changed, "TableColumn", "SalesDb.dbo.Customer.DisplayName").Values["IsNullable"] = "false";
@@ -169,7 +173,7 @@ public sealed class MetaSqlCanonicalizerTests
         model.IndexList.Add(index);
         model.IndexColumnList.Add(indexColumn);
         model.ViewList.Add(view);
-        return TypedWorkspaceModelMapper.ToInMemoryWorkspace(model);
+        return TypedWorkspaceModelMapper.ToInMemoryWorkspace(model, global::MetaSql.MetaSqlModels.LoadContract(), new global::MetaSql.MetaSqlWorkspaceBinding());
     }
 
     private static GenericRecord GetRecord(InMemoryWorkspace workspace, string entityName, string id)

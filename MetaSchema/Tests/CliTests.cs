@@ -29,6 +29,7 @@ public sealed class CliTests
         Assert.Contains("--connection-env <value>", result.Output);
         Assert.Contains("Options:", result.Output);
         Assert.Contains("--system", result.Output);
+        Assert.Contains("--data-type-workspace <path>", result.Output);
         Assert.Contains("--schema <value>", result.Output);
         Assert.Contains("--all-schemas", result.Output);
         Assert.Contains("--table <value>", result.Output);

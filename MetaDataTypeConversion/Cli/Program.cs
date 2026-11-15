@@ -20,7 +20,6 @@ internal static class Program
 
         var handlers = new MetaDataTypeConversionCommandHandlers(
             Presenter,
-            new MetaDataTypeConversionService(),
             AppName);
 
         Environment.ExitCode = 0;

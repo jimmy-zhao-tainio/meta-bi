@@ -1,5 +1,5 @@
+using Meta.Operations.Domain;
 using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
 using System.Text;
 using Meta.Core.Presentation;
 using Meta.Core.Presentation.Cli;
@@ -47,7 +47,7 @@ internal sealed class MetaMultiDimensionalCommandHandlers
         MetaCliInvocation invocation,
         MetaCliWorkspaces workspaces)
     {
-        await workspaces.CreateAsync("output", authoringService.CreateWorkspace()).ConfigureAwait(false);
+        await workspaces.CreateAsync("output", authoringService.CreateWorkspace(), MultiDimensionalModels.LoadContract(), new MetaMultiDimensionalWorkspaceBinding()).ConfigureAwait(false);
         presenter.WriteKeyValueBlock(
             "MetaMultiDimensional workspace created",
             [("Path", MetaCliWorkspace.OutputLocation(invocation)), ("Model", "MetaMultiDimensional"), ("Rows", "0")]);
@@ -116,6 +116,7 @@ internal sealed class MetaMultiDimensionalCommandHandlers
                     WorkspacePath = Path.GetFullPath(invocation.Optional("workspace") ?? Directory.GetCurrentDirectory()),
                     Server = invocation.Required("server"),
                     DatabaseName = invocation.Optional("database-name"),
+                    DataTypeWorkspacePath = invocation.Optional("data-type-workspace"),
                     DropExisting = invocation.Flag("drop-existing"),
                     Process = !invocation.Flag("no-process"),
                 })
@@ -201,56 +202,20 @@ internal sealed class MetaMultiDimensionalCommandHandlers
 
     private static IReadOnlyList<AuthoringCommandSpec> BuildAuthoringCommands()
     {
-        var modelType = typeof(MetaMultiDimensionalModel);
-        return modelType.Assembly.GetTypes()
-            .Where(type => type.Namespace == "MetaMultiDimensional" &&
-                           type.IsClass &&
-                           type.GetProperty("Id", BindingFlags.Instance | BindingFlags.Public)?.PropertyType == typeof(string) &&
-                           modelType.GetProperty($"{type.Name}List", BindingFlags.Instance | BindingFlags.Public) is not null)
-            .OrderBy(static type => type.Name, StringComparer.Ordinal)
-            .Select(BuildAuthoringCommand)
-            .ToArray();
+        var entities = MultiDimensionalModels.LoadContract().Entities;
+        return entities.OrderBy(entity => entity.Name, StringComparer.Ordinal)
+            .Select(BuildAuthoringCommand).ToArray();
     }
 
-    private static AuthoringCommandSpec BuildAuthoringCommand(Type entityType)
+    private static AuthoringCommandSpec BuildAuthoringCommand(GenericEntity entity)
     {
-        var properties = entityType.GetProperties(BindingFlags.Instance | BindingFlags.Public)
-            .Where(static property => property.CanWrite &&
-                                      property.PropertyType == typeof(string) &&
-                                      !string.Equals(property.Name, "Id", StringComparison.Ordinal))
-            .OrderBy(static property => property.Name, StringComparer.Ordinal)
-            .Select(static property => new PropertySpec(ToKebabCase(property.Name), property.Name))
-            .ToArray();
-
-        var relationships = entityType.GetProperties(BindingFlags.Instance | BindingFlags.Public)
-            .Where(IsRelationshipProperty)
-            .OrderBy(static property => $"{property.Name}Id", StringComparer.Ordinal)
-            .Select(static property => new RelationshipSpec(
-                ToKebabCase(property.Name),
-                $"{property.Name}Id",
-                property.PropertyType.Name))
-            .ToArray();
-
+        var properties = entity.Properties.OrderBy(property => property.Name, StringComparer.Ordinal)
+            .Select(property => new PropertySpec(ToKebabCase(property.Name), property.Name)).ToArray();
+        var relationships = entity.Relationships.OrderBy(relationship => relationship.GetColumnName(), StringComparer.Ordinal)
+            .Select(relationship => new RelationshipSpec(
+                ToKebabCase(relationship.GetRoleOrDefault()), relationship.GetColumnName(), relationship.Entity)).ToArray();
         return new AuthoringCommandSpec(
-            "add-" + ToKebabCase(entityType.Name),
-            entityType.Name,
-            properties,
-            relationships);
-    }
-
-    private static bool IsRelationshipProperty(PropertyInfo property)
-    {
-        if (!property.CanWrite || property.PropertyType == typeof(string))
-        {
-            return false;
-        }
-
-        if (!property.PropertyType.IsClass)
-        {
-            return false;
-        }
-
-        return property.PropertyType.Namespace == "MetaMultiDimensional";
+            "add-" + ToKebabCase(entity.Name), entity.Name, properties, relationships );
     }
 
     private static string ToKebabCase(string value)
@@ -304,10 +269,8 @@ internal sealed class MetaMultiDimensionalCommandHandlers
 
     private static bool IsExpectedDeployException(Exception ex)
     {
-        var fullName = ex.GetType().FullName ?? string.Empty;
         return ex is ArgumentException or InvalidOperationException or IOException or UnauthorizedAccessException ||
-               fullName.Contains("Adomd", StringComparison.OrdinalIgnoreCase) ||
-               fullName.Contains("AnalysisServices", StringComparison.OrdinalIgnoreCase);
+               ex is Microsoft.AnalysisServices.AmoException or Microsoft.AnalysisServices.ConnectionException;
     }
 
     private sealed record AuthoringCommandSpec(

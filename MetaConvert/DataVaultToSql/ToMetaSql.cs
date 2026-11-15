@@ -3,6 +3,8 @@ using Meta.Integration;
 using MetaDataVaultImplementation;
 using MetaDataType;
 using MetaDataTypeConversion;
+using MetaDataType.Core;
+using MetaDataTypeConversion.Core;
 using MetaBusinessDataVault;
 using MetaRawDataVault;
 using MetaSql;
@@ -23,24 +25,48 @@ public static partial class Converter
             ResolveBusinessWeaveWorkspacePath(),
             "forward"));
 
-    public static async Task<InMemoryWorkspace> ConvertAsync(
+    public static Task<InMemoryWorkspace> ConvertAsync(
         string dataVaultWorkspacePath,
         string implementationWorkspacePath,
         string databaseName,
         CancellationToken cancellationToken = default)
-        => await ConvertAsync(
+        => ConvertCoreAsync(
             dataVaultWorkspacePath,
             implementationWorkspacePath,
             databaseName,
             cancellationToken,
-            progress: null).ConfigureAwait(false);
+            progress: null,
+            dataTypeWorkspacePath: null,
+            dataTypeConversionWorkspacePath: null);
 
-    public static async Task<InMemoryWorkspace> ConvertAsync(
+    public static Task<InMemoryWorkspace> ConvertAsync(
         string dataVaultWorkspacePath,
         string implementationWorkspacePath,
         string databaseName,
         CancellationToken cancellationToken,
         Action<MetaWeaveScriptExecutionProgress>? progress)
+        => ConvertCoreAsync(dataVaultWorkspacePath, implementationWorkspacePath, databaseName,
+            cancellationToken, progress, dataTypeWorkspacePath: null, dataTypeConversionWorkspacePath: null);
+
+    public static Task<InMemoryWorkspace> ConvertAsync(
+        string dataVaultWorkspacePath,
+        string implementationWorkspacePath,
+        string databaseName,
+        string? dataTypeWorkspacePath,
+        string? dataTypeConversionWorkspacePath,
+        CancellationToken cancellationToken = default,
+        Action<MetaWeaveScriptExecutionProgress>? progress = null)
+        => ConvertCoreAsync(dataVaultWorkspacePath, implementationWorkspacePath, databaseName,
+            cancellationToken, progress, dataTypeWorkspacePath, dataTypeConversionWorkspacePath);
+
+    private static async Task<InMemoryWorkspace> ConvertCoreAsync(
+        string dataVaultWorkspacePath,
+        string implementationWorkspacePath,
+        string databaseName,
+        CancellationToken cancellationToken,
+        Action<MetaWeaveScriptExecutionProgress>? progress,
+        string? dataTypeWorkspacePath,
+        string? dataTypeConversionWorkspacePath)
     {
         if (string.IsNullOrWhiteSpace(dataVaultWorkspacePath))
         {
@@ -57,26 +83,37 @@ public static partial class Converter
             throw new ArgumentException("Database name is required.", nameof(databaseName));
         }
 
-        var dataVaultWorkspace = await Meta.Integration.TypedWorkspaceModelMapper
-            .LoadStateAsync(dataVaultWorkspacePath, cancellationToken)
-            .ConfigureAwait(false);
-        var implementationModel = await Meta.Integration.TypedWorkspaceModelMapper.LoadAsync<MetaDataVaultImplementationModel>(implementationWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
+        var sourceTask = TypedWorkspaceModelMapper.LoadStateAsync(dataVaultWorkspacePath, cancellationToken);
+        var implementationTask = TypedWorkspaceModelMapper.LoadStateAsync(implementationWorkspacePath, cancellationToken);
+        var dataTypesTask = string.IsNullOrWhiteSpace(dataTypeWorkspacePath)
+            ? MetaDataTypeWorkspaceProvider.LoadDefaultStateAsync(cancellationToken)
+            : TypedWorkspaceModelMapper.LoadStateAsync(dataTypeWorkspacePath, cancellationToken);
+        var conversionsTask = string.IsNullOrWhiteSpace(dataTypeConversionWorkspacePath)
+            ? MetaDataTypeConversionWorkspaceProvider.LoadDefaultStateAsync(cancellationToken)
+            : TypedWorkspaceModelMapper.LoadStateAsync(dataTypeConversionWorkspacePath, cancellationToken);
+        var targetContractTask = TypedWorkspaceModelMapper.LoadStateAsync(
+            Path.Combine(AppContext.BaseDirectory, "Workspaces", "MetaSql"), cancellationToken);
+        await Task.WhenAll(sourceTask, implementationTask, dataTypesTask, conversionsTask, targetContractTask).ConfigureAwait(false);
+        var dataVaultWorkspace = await sourceTask.ConfigureAwait(false);
+        var implementationWorkspace = await implementationTask.ConfigureAwait(false);
+        var dataTypes = await dataTypesTask.ConfigureAwait(false);
+        var typeConversions = await conversionsTask.ConfigureAwait(false);
+        var targetContract = (await targetContractTask.ConfigureAwait(false)).Model;
 
         switch (dataVaultWorkspace.Model.Name)
         {
             case "MetaRawDataVault":
                 {
-                    var rawModel = await Meta.Integration.TypedWorkspaceModelMapper.LoadAsync<MetaRawDataVaultModel>(dataVaultWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
                     var result = new MetaWeaveScriptExecutionService().ExecuteDirection(
                         RawForwardDirection.Value,
                         new Dictionary<string, InMemoryWorkspace>(StringComparer.OrdinalIgnoreCase)
                         {
-                            ["raw"] = Meta.Integration.TypedWorkspaceModelMapper.ToInMemoryWorkspace(rawModel),
-                            ["implementation"] = Meta.Integration.TypedWorkspaceModelMapper.ToInMemoryWorkspace(implementationModel),
-                            ["dataTypes"] = Meta.Integration.TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaDataTypeInstance.BuiltIn),
-                            ["typeConversions"] = Meta.Integration.TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaDataTypeConversionInstance.BuiltIn),
+                            ["raw"] = dataVaultWorkspace,
+                            ["implementation"] = implementationWorkspace,
+                            ["dataTypes"] = dataTypes,
+                            ["typeConversions"] = typeConversions,
                         },
-                        Meta.Integration.TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaSqlModel.CreateEmpty()),
+                        new InMemoryWorkspace(targetContract, new GenericInstance { ModelName = targetContract.Name }),
                         new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
                         {
                             ["databaseName"] = databaseName,
@@ -98,17 +135,16 @@ public static partial class Converter
 
             case "MetaBusinessDataVault":
                 {
-                    var businessModel = await Meta.Integration.TypedWorkspaceModelMapper.LoadAsync<MetaBusinessDataVaultModel>(dataVaultWorkspacePath, searchUpward: false, cancellationToken).ConfigureAwait(false);
                     var result = new MetaWeaveScriptExecutionService().ExecuteDirection(
                         BusinessForwardDirection.Value,
                         new Dictionary<string, InMemoryWorkspace>(StringComparer.OrdinalIgnoreCase)
                         {
-                            ["business"] = Meta.Integration.TypedWorkspaceModelMapper.ToInMemoryWorkspace(businessModel),
-                            ["implementation"] = Meta.Integration.TypedWorkspaceModelMapper.ToInMemoryWorkspace(implementationModel),
-                            ["dataTypes"] = Meta.Integration.TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaDataTypeInstance.BuiltIn),
-                            ["typeConversions"] = Meta.Integration.TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaDataTypeConversionInstance.BuiltIn),
+                            ["business"] = dataVaultWorkspace,
+                            ["implementation"] = implementationWorkspace,
+                            ["dataTypes"] = dataTypes,
+                            ["typeConversions"] = typeConversions,
                         },
-                        Meta.Integration.TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaSqlModel.CreateEmpty()),
+                        new InMemoryWorkspace(targetContract, new GenericInstance { ModelName = targetContract.Name }),
                         new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
                         {
                             ["databaseName"] = databaseName,

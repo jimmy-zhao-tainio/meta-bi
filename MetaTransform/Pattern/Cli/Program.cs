@@ -29,7 +29,7 @@ internal static class Program
     {
         var exitCode = 0;
         var runtime = new MetaCliRuntime<MTP.MetaTransformPatternModel>(
-                CommandWorkspacePath,
+                CommandWorkspacePath, new MTP.MetaTransformPatternWorkspaceBinding(), MetaTransformPatternModels.LoadContract,
                 ApplicationId,
                 setExitCode: code => exitCode = code)
             .UseDefaultHelp(options: new MetaCliHelpOptions("meta-transform-pattern show"))
@@ -51,7 +51,7 @@ internal static class Program
         var exitCode = 0;
         var patternWorkspace = new[] { MetaCliWorkspace.Open("pattern-workspace") };
         var runtime = new MetaCliRuntime<MTPI.MetaTransformPatternInstanceModel>(
-                CommandWorkspacePath,
+                CommandWorkspacePath, new MTPI.MetaTransformPatternInstanceWorkspaceBinding(), MetaTransformPatternInstanceModels.LoadContract,
                 ApplicationId,
                 setExitCode: code => exitCode = code)
             .UseDefaultHelp(options: new MetaCliHelpOptions("meta-transform-pattern show-instances"))
@@ -81,7 +81,7 @@ internal static class Program
         MetaCliInvocation invocation,
         MetaCliWorkspaces workspaces)
     {
-        await workspaces.CreateAsync("output", PatternService.CreateWorkspace()).ConfigureAwait(false);
+        await workspaces.CreateAsync("output", PatternService.CreateWorkspace(), MetaTransformPatternModels.LoadContract(), new MTP.MetaTransformPatternWorkspaceBinding()).ConfigureAwait(false);
         Presenter.WriteKeyValueBlock(
             "MetaTransformPattern workspace created",
             [
@@ -95,7 +95,7 @@ internal static class Program
         MetaCliInvocation invocation,
         MetaCliWorkspaces workspaces)
     {
-        await workspaces.CreateAsync("output", InstanceService.CreateWorkspace()).ConfigureAwait(false);
+        await workspaces.CreateAsync("output", InstanceService.CreateWorkspace(), MetaTransformPatternInstanceModels.LoadContract(), new MTPI.MetaTransformPatternInstanceWorkspaceBinding()).ConfigureAwait(false);
         Presenter.WriteKeyValueBlock(
             "MetaTransformPatternInstance workspace created",
             [
@@ -204,5 +204,5 @@ internal static class Program
     }
 
     private static Task<MTP.MetaTransformPatternModel> RequirePatterns(MetaCliWorkspaces workspaces) =>
-        workspaces.RequiredAsync<MTP.MetaTransformPatternModel>("pattern-workspace");
+        workspaces.RequiredAsync("pattern-workspace", new MTP.MetaTransformPatternWorkspaceBinding());
 }

@@ -1,6 +1,9 @@
 using Meta.Integration;
+using Meta.Operations.Domain;
 using MetaAnalytics;
+using MetaAnalytics.Core;
 using MetaMultiDimensional;
+using MetaMultiDimensional.Core;
 using MetaWeave.Core;
 using MetaWeaveScript.Execution;
 
@@ -19,13 +22,19 @@ public static class AnalyticsToMultiDimensionalConverter
     public static MetaMultiDimensionalModel Convert(
         MetaAnalyticsModel source,
         Action<MetaWeaveScriptExecutionProgress>? progress)
+        => new MetaMultiDimensionalWorkspaceBinding().Read(Convert(
+            new MetaAnalyticsWorkspaceBinding().Write(source, AnalyticsModels.LoadContract()), progress));
+
+    public static InMemoryWorkspace Convert(
+        InMemoryWorkspace source,
+        Action<MetaWeaveScriptExecutionProgress>? progress = null)
     {
         ArgumentNullException.ThrowIfNull(source);
 
         var result = new MetaWeaveScriptExecutionService().ExecuteDirection(
             ForwardDirection.Value,
-            TypedWorkspaceModelMapper.ToInMemoryWorkspace(source),
-            TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaMultiDimensionalModel.CreateEmpty()),
+            source,
+            new InMemoryWorkspace(MultiDimensionalModels.LoadContract(), new GenericInstance { ModelName = "MetaMultiDimensional" }),
             progress);
 
         if (!result.IsSuccess)
@@ -39,9 +48,7 @@ public static class AnalyticsToMultiDimensionalConverter
                         $"{issue.Code}: {issue.Message}")));
         }
 
-        return TypedWorkspaceModelMapper.FromInMemoryWorkspace(
-            result.OutputWorkspace!,
-            MetaMultiDimensionalModel.CreateEmpty);
+        return result.OutputWorkspace!;
     }
 
     private static string ResolveWeaveWorkspacePath()

@@ -24,7 +24,8 @@ internal static class Program
             new MetaPipeline.MetaPipelineOperationalDbAdminService());
 
         Environment.ExitCode = 0;
-        var runtime = new MetaCliRuntime<MetaPipeline.MetaPipelineModel>(CommandWorkspacePath, ApplicationId)
+        var runtime = new MetaCliRuntime<MetaPipeline.MetaPipelineModel>(CommandWorkspacePath,
+                new global::MetaPipeline.MetaPipelineWorkspaceBinding(), global::MetaPipeline.MetaPipelineModels.LoadContract, ApplicationId)
             .UseDefaultHelp()
             .Bind(
                 "exec-create",

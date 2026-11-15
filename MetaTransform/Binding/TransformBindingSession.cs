@@ -1,6 +1,7 @@
 using MetaTransformScript;
 using MetaSchema;
 using MetaDataType;
+using MetaDataType.Core;
 
 namespace MetaTransform.Binding;
 
@@ -70,7 +71,7 @@ internal sealed partial class TransformBindingSession
         string? executeSystemDefaultSchemaName,
         MetaDataTypeModel? dataTypes = null)
     {
-        typeValidator = new SqlServerSchemaTypeValidator(dataTypes ?? MetaDataTypeInstance.BuiltIn);
+        typeValidator = new SqlServerSchemaTypeValidator(dataTypes ?? MetaDataTypeWorkspaceProvider.GetDefaultWorkspace());
         this.navigator = navigator ?? throw new ArgumentNullException(nameof(navigator));
         this.sourceSchemaResolver = sourceSchemaResolver;
         this.targetSchemaResolver = targetSchemaResolver;

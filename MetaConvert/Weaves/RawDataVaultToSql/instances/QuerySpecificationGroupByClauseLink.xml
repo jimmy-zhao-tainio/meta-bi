@@ -2,9 +2,9 @@
 <MetaWeave>
   <QuerySpecificationGroupByClauseLinkList>
     <QuerySpecificationGroupByClauseLink Id="QuerySpecificationGroupByClauseLink:1" GroupByClauseId="GroupByClause:1" QuerySpecificationId="QuerySpecification:143" />
-    <QuerySpecificationGroupByClauseLink Id="QuerySpecificationGroupByClauseLink:2" GroupByClauseId="GroupByClause:2" QuerySpecificationId="QuerySpecification:146" />
-    <QuerySpecificationGroupByClauseLink Id="QuerySpecificationGroupByClauseLink:3" GroupByClauseId="GroupByClause:3" QuerySpecificationId="QuerySpecification:148" />
     <QuerySpecificationGroupByClauseLink Id="QuerySpecificationGroupByClauseLink:4" GroupByClauseId="GroupByClause:4" QuerySpecificationId="QuerySpecification:150" />
     <QuerySpecificationGroupByClauseLink Id="QuerySpecificationGroupByClauseLink:5" GroupByClauseId="GroupByClause:5" QuerySpecificationId="QuerySpecification:161" />
+    <QuerySpecificationGroupByClauseLink Id="QuerySpecificationGroupByClauseLink:6" GroupByClauseId="GroupByClause:6" QuerySpecificationId="QuerySpecification:199" />
+    <QuerySpecificationGroupByClauseLink Id="QuerySpecificationGroupByClauseLink:7" GroupByClauseId="GroupByClause:7" QuerySpecificationId="QuerySpecification:202" />
   </QuerySpecificationGroupByClauseLinkList>
 </MetaWeave>

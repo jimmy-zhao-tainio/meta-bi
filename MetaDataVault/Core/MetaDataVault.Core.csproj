@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Meta.TypedModels" Version="$(MetaFoundationPackageVersion)" />
     <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
   </ItemGroup>
 
@@ -15,6 +16,32 @@
     <Compile Include="..\Workspaces\MetaDataVaultImplementation\MetaDataVaultImplementation.meta.cs" Link="MetaDataVaultImplementation.meta.cs" />
     <Compile Include="..\Workspaces\MetaRawDataVault\MetaRawDataVault.meta.cs" Link="MetaRawDataVault.meta.cs" />
     <ProjectReference Include="..\..\MetaSchema\Core\MetaSchema.Core.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Include="..\Workspaces\MetaRawDataVault\**\*">
+      <Link>Workspaces\MetaRawDataVault\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+      <PackagePath>contentFiles\any\any\Workspaces\MetaRawDataVault\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
+    <Content Include="..\Workspaces\MetaBusinessDataVault\**\*">
+      <Link>Workspaces\MetaBusinessDataVault\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+      <PackagePath>contentFiles\any\any\Workspaces\MetaBusinessDataVault\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
+    <Content Include="..\Workspaces\MetaDataVaultImplementation\**\*">
+      <Link>Workspaces\MetaDataVaultImplementation\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+      <PackagePath>contentFiles\any\any\Workspaces\MetaDataVaultImplementation\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
+    <None Update="Package\MetaDataVault.Core.targets" Pack="true" PackagePath="buildTransitive\MetaDataVault.Core.targets" />
   </ItemGroup>
 
 </Project>

@@ -25,7 +25,8 @@ internal static class Program
             new RawDataVaultAuthoringService());
 
         Environment.ExitCode = 0;
-        var runtime = new MetaCliRuntime<MetaRawDataVaultModel>(CommandWorkspacePath, ApplicationId)
+        var runtime = new MetaCliRuntime<MetaRawDataVaultModel>(CommandWorkspacePath,
+                new MetaRawDataVaultWorkspaceBinding(), RawDataVaultModels.LoadContract, ApplicationId)
             .UseDefaultHelp()
             .Bind(
                 "exec-create",

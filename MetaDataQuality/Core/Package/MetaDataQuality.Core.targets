@@ -1,0 +1,11 @@
+<Project>
+  <ItemGroup>
+    <_MetaDataQualityPackagedWorkspace Include="$(MSBuildThisFileDirectory)../contentFiles/any/any/Workspaces/MetaDataQuality/**/*" />
+  </ItemGroup>
+  <Target Name="CopyMetaDataQualityPackagedWorkspaceToOutput" AfterTargets="CopyFilesToOutputDirectory" Condition="'$(DesignTimeBuild)' != 'true'">
+    <Copy SourceFiles="@(_MetaDataQualityPackagedWorkspace)" DestinationFiles="@(_MetaDataQualityPackagedWorkspace -> '$(OutDir)Workspaces/MetaDataQuality/%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+  <Target Name="CopyMetaDataQualityPackagedWorkspaceToPublish" AfterTargets="Publish" Condition="'$(DesignTimeBuild)' != 'true' and '$(PublishDir)' != ''">
+    <Copy SourceFiles="@(_MetaDataQualityPackagedWorkspace)" DestinationFiles="@(_MetaDataQualityPackagedWorkspace -> '$(PublishDir)Workspaces/MetaDataQuality/%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+</Project>

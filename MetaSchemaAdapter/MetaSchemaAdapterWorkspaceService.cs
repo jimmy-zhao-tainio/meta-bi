@@ -36,6 +36,8 @@ public sealed class MetaSchemaAdapterWorkspaceService
 
         await Meta.Integration.TypedWorkspaceModelMapper.CreateAsync(
                 model,
+                MetaSchema.Core.MetaSchemaModels.CreateMetaSchemaModel(),
+                new MetaSchemaWorkspaceBinding(),
                 workspacePath,
                 representation,
                 request.ConnectionEnvironmentVariable,

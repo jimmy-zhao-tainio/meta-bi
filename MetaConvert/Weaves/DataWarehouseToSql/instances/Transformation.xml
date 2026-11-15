@@ -28,10 +28,10 @@
     <Transformation Id="forward/Table" DirectionId="forward" SelectStatementId="SelectStatement:3">
       <TargetEntityName>Table</TargetEntityName>
     </Transformation>
-    <Transformation Id="forward/TableColumn" DirectionId="forward" SelectStatementId="SelectStatement:4">
+    <Transformation Id="forward/TableColumn" DirectionId="forward" SelectStatementId="SelectStatement:16">
       <TargetEntityName>TableColumn</TargetEntityName>
     </Transformation>
-    <Transformation Id="forward/TableColumnDataTypeDetail" DirectionId="forward" SelectStatementId="SelectStatement:11">
+    <Transformation Id="forward/TableColumnDataTypeDetail" DirectionId="forward" SelectStatementId="SelectStatement:17">
       <TargetEntityName>TableColumnDataTypeDetail</TargetEntityName>
     </Transformation>
   </TransformationList>

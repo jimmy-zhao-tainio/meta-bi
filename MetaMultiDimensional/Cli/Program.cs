@@ -29,7 +29,8 @@ internal static class Program
             new MetaMultiDimensionalDropService());
 
         Environment.ExitCode = 0;
-        var runtime = new MetaCliRuntime<MetaMultiDimensionalModel>(CommandWorkspacePath, ApplicationId)
+        var runtime = new MetaCliRuntime<MetaMultiDimensionalModel>(CommandWorkspacePath,
+                new global::MetaMultiDimensional.MetaMultiDimensionalWorkspaceBinding(), MultiDimensionalModels.LoadContract, ApplicationId)
             .UseDefaultHelp()
             .Bind(
                 "exec-create",

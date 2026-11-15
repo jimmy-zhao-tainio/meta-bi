@@ -20,10 +20,10 @@ public sealed class AnalyticsToMultiDimensionalConverterTests
     {
         var source = CreateConvertibleAnalyticsModel();
         var expected = TypedWorkspaceModelMapper.ToInMemoryWorkspace(
-            AnalyticsToMultiDimensionalCSharpReference.Convert(source));
+            AnalyticsToMultiDimensionalCSharpReference.Convert(source), global::MetaMultiDimensional.Core.MultiDimensionalModels.LoadContract(), new global::MetaMultiDimensional.MetaMultiDimensionalWorkspaceBinding());
         var progress = new List<MetaWeaveScriptExecutionProgress>();
         var converted = TypedWorkspaceModelMapper.ToInMemoryWorkspace(
-            AnalyticsToMultiDimensionalConverter.Convert(source, progress.Add));
+            AnalyticsToMultiDimensionalConverter.Convert(source, progress.Add), global::MetaMultiDimensional.Core.MultiDimensionalModels.LoadContract(), new global::MetaMultiDimensional.MetaMultiDimensionalWorkspaceBinding());
 
         var actual = await ExecuteSanctionedWeaveAsync(source);
 
@@ -377,8 +377,8 @@ public sealed class AnalyticsToMultiDimensionalConverterTests
     {
         var result = new MetaWeaveScriptExecutionService().ExecuteDirection(
             LoadSanctionedDirection(),
-            TypedWorkspaceModelMapper.ToInMemoryWorkspace(source),
-            TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaMultiDimensionalModel.CreateEmpty()));
+            TypedWorkspaceModelMapper.ToInMemoryWorkspace(source, global::MetaAnalytics.Core.AnalyticsModels.LoadContract(), new global::MetaAnalytics.MetaAnalyticsWorkspaceBinding()),
+            TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaMultiDimensionalModel.CreateEmpty(), global::MetaMultiDimensional.Core.MultiDimensionalModels.LoadContract(), new global::MetaMultiDimensional.MetaMultiDimensionalWorkspaceBinding()));
         return Task.FromResult(result);
     }
 

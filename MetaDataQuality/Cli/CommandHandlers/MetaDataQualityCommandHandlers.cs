@@ -40,7 +40,7 @@ internal sealed class MetaDataQualityCommandHandlers
             var result = workspaceService.CreateFromTransformWorkspace(
                 transformWorkspacePathValue,
                 bindingWorkspacePathValue);
-            await workspaces.CreateAsync("output", result.Model).ConfigureAwait(false);
+            await workspaces.CreateAsync("output", result.Model, global::MetaDataQuality.Core.MetaDataQualityModels.LoadContract(), new global::MetaDataQuality.MetaDataQualityWorkspaceBinding()).ConfigureAwait(false);
 
             presenter.WriteInfo($"Workspace: {output}");
             presenter.WriteInfo($"Views ready to create: {result.DataQualityCandidateCount}");

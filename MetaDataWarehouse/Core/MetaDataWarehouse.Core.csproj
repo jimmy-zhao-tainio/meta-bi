@@ -7,9 +7,29 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Meta.TypedModels" Version="$(MetaFoundationPackageVersion)" />
     <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
     <Compile Include="..\Workspaces\MetaDataWarehouse\MetaDataWarehouse.meta.cs" Link="MetaDataWarehouse.meta.cs" />
     <Compile Include="..\Workspaces\MetaDataWarehouseImplementation\MetaDataWarehouseImplementation.meta.cs" Link="MetaDataWarehouseImplementation.meta.cs" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Include="..\Workspaces\MetaDataWarehouse\**\*">
+      <Link>Workspaces\MetaDataWarehouse\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+      <PackagePath>contentFiles\any\any\Workspaces\MetaDataWarehouse\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
+    <Content Include="..\Workspaces\MetaDataWarehouseImplementation\**\*">
+      <Link>Workspaces\MetaDataWarehouseImplementation\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+      <PackagePath>contentFiles\any\any\Workspaces\MetaDataWarehouseImplementation\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
+    <None Update="Package\MetaDataWarehouse.Core.targets" Pack="true" PackagePath="buildTransitive\MetaDataWarehouse.Core.targets" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,8 @@
 using Meta.Core.Presentation;
 using Meta.Core.Presentation.Cli;
 using Meta.Integration;
+using Meta.Operations.Domain;
+using Meta.Operations;
 using MetaCli.Core;
 using MetaConvert.AnalyticsToMultiDimensional;
 using MetaConvert.AnalyticsToTabular;
@@ -43,8 +45,7 @@ internal sealed class MetaConvertCommandHandlers
             result = await RunWithMeterAsync(
                 async meter =>
                 {
-                    var sourceModel = await workspaces
-                        .RequiredAsync<MetaSchemaModel>("source-workspace")
+                    var sourceModel = await WorkspaceComposition.MaterializeAsync(workspaces.Required("source-workspace"))
                         .ConfigureAwait(false);
 
                     var converted = new RawDataVaultFromMetaSchemaService().MaterializeWithReport(
@@ -63,7 +64,9 @@ internal sealed class MetaConvertCommandHandlers
 
                     await workspaces.CreateAsync(
                             "output",
-                            converted.Model)
+                            converted.Model,
+                            MetaDataVault.Core.RawDataVaultModels.LoadContract(),
+                            new MetaRawDataVault.MetaRawDataVaultWorkspaceBinding())
                         .ConfigureAwait(false);
                     return converted;
                 }).ConfigureAwait(false);
@@ -104,6 +107,8 @@ internal sealed class MetaConvertCommandHandlers
                         request.ImplementationWorkspacePath,
                         request.DatabaseName,
                         cancellationToken: default,
+                        dataTypeWorkspacePath: request.DataTypeWorkspacePath,
+                        dataTypeConversionWorkspacePath: request.DataTypeConversionWorkspacePath,
                         progress: meter is null
                             ? null
                             : value => meter.Report(
@@ -137,7 +142,9 @@ internal sealed class MetaConvertCommandHandlers
                     var result = await Converter.ConvertAsync(
                         request.WorkspacePath,
                         request.ImplementationWorkspacePath,
-                        request.DatabaseName).ConfigureAwait(false);
+                        request.DatabaseName,
+                        dataTypeWorkspacePath: request.DataTypeWorkspacePath,
+                        dataTypeConversionWorkspacePath: request.DataTypeConversionWorkspacePath).ConfigureAwait(false);
                     await workspaces.CreateAsync("output", result).ConfigureAwait(false);
                     return result;
                 }).ConfigureAwait(false);
@@ -204,6 +211,8 @@ internal sealed class MetaConvertCommandHandlers
                         request.ImplementationWorkspacePath,
                         request.DatabaseName,
                         cancellationToken: default,
+                        dataTypeWorkspacePath: request.DataTypeWorkspacePath,
+                        dataTypeConversionWorkspacePath: request.DataTypeConversionWorkspacePath,
                         progress: meter is null
                             ? null
                             : value => meter.Report(
@@ -281,12 +290,8 @@ internal sealed class MetaConvertCommandHandlers
             var result = await RunWithMeterAsync(
                 async meter =>
                 {
-                    var patterns = TypedWorkspaceModelMapper.Load<MetaTransformPatternModel>(
-                        patternWorkspacePath,
-                        searchUpward: false);
-                    var instances = TypedWorkspaceModelMapper.Load<MetaTransformPatternInstanceModel>(
-                        instanceWorkspacePath,
-                        searchUpward: false);
+                    var patterns = await TypedWorkspaceModelMapper.LoadStateAsync(patternWorkspacePath).ConfigureAwait(false);
+                    var instances = await TypedWorkspaceModelMapper.LoadStateAsync(instanceWorkspacePath).ConfigureAwait(false);
                     var converted = TransformPatternToSqlScriptConverter.Convert(
                         patterns,
                         instances,
@@ -302,10 +307,11 @@ internal sealed class MetaConvertCommandHandlers
                     return converted;
                 }).ConfigureAwait(false);
 
-            presenter.WriteOk($"Generated {result.SqlScriptList.Count} SQL script{(result.SqlScriptList.Count == 1 ? string.Empty : "s")}");
+            var scriptCount = CountRows(result, "SqlScript");
+            presenter.WriteOk($"Generated {scriptCount} SQL script{(scriptCount == 1 ? string.Empty : "s")}");
             presenter.WriteKeyValueBlock("Workspace", new[]
             {
-                ("Scripts", result.SqlScriptList.Count.ToString()),
+                ("Scripts", scriptCount.ToString()),
                 ("Path", MetaCliWorkspace.OutputLocation(invocation, "output-xml", "output-csharp", "output-sql")),
             });
             return 0;
@@ -380,7 +386,7 @@ internal sealed class MetaConvertCommandHandlers
             var result = await RunWithMeterAsync(
                 async meter =>
                 {
-                    var source = TypedWorkspaceModelMapper.Load<MetaAnalytics.MetaAnalyticsModel>(workspacePath, searchUpward: false);
+                    var source = await TypedWorkspaceModelMapper.LoadStateAsync(workspacePath).ConfigureAwait(false);
                     var converted = AnalyticsToTabularConverter.Convert(
                         source,
                         meter is null
@@ -397,9 +403,9 @@ internal sealed class MetaConvertCommandHandlers
             presenter.WriteOk($"Generated {Path.GetFileName(MetaCliWorkspace.OutputLocation(invocation, "output-xml", "output-csharp", "output-sql"))}");
             presenter.WriteKeyValueBlock("Summary", new[]
             {
-                ("Tables", result.TabularTableList.Count.ToString()),
-                ("Columns", result.TabularColumnList.Count.ToString()),
-                ("Measures", result.TabularMeasureList.Count.ToString()),
+                ("Tables", CountRows(result, "TabularTable").ToString()),
+                ("Columns", CountRows(result, "TabularColumn").ToString()),
+                ("Measures", CountRows(result, "TabularMeasure").ToString()),
             });
             return 0;
         }
@@ -427,7 +433,7 @@ internal sealed class MetaConvertCommandHandlers
             var result = await RunWithMeterAsync(
                 async meter =>
                 {
-                    var source = TypedWorkspaceModelMapper.Load<MetaAnalytics.MetaAnalyticsModel>(workspacePath, searchUpward: false);
+                    var source = await TypedWorkspaceModelMapper.LoadStateAsync(workspacePath).ConfigureAwait(false);
                     var converted = AnalyticsToMultiDimensionalConverter.Convert(
                         source,
                         meter is null
@@ -444,10 +450,10 @@ internal sealed class MetaConvertCommandHandlers
             presenter.WriteOk($"Generated {Path.GetFileName(MetaCliWorkspace.OutputLocation(invocation, "output-xml", "output-csharp", "output-sql"))}");
             presenter.WriteKeyValueBlock("Summary", new[]
             {
-                ("Cubes", result.CubeList.Count.ToString()),
-                ("Dimensions", result.DimensionList.Count.ToString()),
-                ("MeasureGroups", result.MeasureGroupList.Count.ToString()),
-                ("Measures", result.MeasureList.Count.ToString()),
+                ("Cubes", CountRows(result, "Cube").ToString()),
+                ("Dimensions", CountRows(result, "Dimension").ToString()),
+                ("MeasureGroups", CountRows(result, "MeasureGroup").ToString()),
+                ("Measures", CountRows(result, "Measure").ToString()),
             });
             return 0;
         }
@@ -471,7 +477,9 @@ internal sealed class MetaConvertCommandHandlers
         return new DataVaultToSqlRequest(
             WorkspacePath: ReadWorkspacePath(invocation),
             ImplementationWorkspacePath: Path.GetFullPath(invocation.Required("implementation-workspace")),
-            DatabaseName: invocation.Required("database-name"));
+            DatabaseName: invocation.Required("database-name"),
+            DataTypeWorkspacePath: invocation.Optional("data-type-workspace"),
+            DataTypeConversionWorkspacePath: invocation.Optional("data-type-conversion-workspace"));
     }
 
     private int FailDataVaultToSql(
@@ -496,6 +504,9 @@ internal sealed class MetaConvertCommandHandlers
 
     private static string ReadWorkspacePath(MetaCliInvocation invocation) =>
         Path.GetFullPath(invocation.Optional("workspace") ?? ".");
+
+    private static int CountRows(InMemoryWorkspace workspace, string entityName) =>
+        workspace.Instance.RecordsByEntity.TryGetValue(entityName, out var rows) ? rows.Count : 0;
 
     private static SqlToTransformScriptModuleKinds ReadSqlModuleKinds(MetaCliInvocation invocation)
     {
@@ -612,5 +623,7 @@ internal sealed class MetaConvertCommandHandlers
     private sealed record DataVaultToSqlRequest(
         string WorkspacePath,
         string ImplementationWorkspacePath,
-        string DatabaseName);
+        string DatabaseName,
+        string? DataTypeWorkspacePath,
+        string? DataTypeConversionWorkspacePath);
 }

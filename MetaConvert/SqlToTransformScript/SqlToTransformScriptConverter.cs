@@ -33,8 +33,9 @@ public static class SqlToTransformScriptConverter
             ? SqlToTransformScriptModuleKinds.All
             : options.ModuleKinds;
 
-        var metaSql = await Meta.Integration.TypedWorkspaceModelMapper.LoadAsync<MetaSqlModel>(
+        var metaSql = await Meta.Integration.TypedWorkspaceModelMapper.LoadAsync(
                 Path.GetFullPath(metaSqlWorkspacePath),
+                new MetaSqlWorkspaceBinding(),
                 searchUpward: false,
                 cancellationToken)
             .ConfigureAwait(false);
@@ -46,7 +47,7 @@ public static class SqlToTransformScriptConverter
             {
                 var emptyModel = MTS.MetaTransformScriptModel.CreateEmpty();
                 return new SqlToTransformScriptConversionResult(
-                    Meta.Integration.TypedWorkspaceModelMapper.ToInMemoryWorkspace(emptyModel),
+                    new MTS.MetaTransformScriptWorkspaceBinding().Write(emptyModel, MetaTransformScriptModels.LoadContract()),
                     string.Empty,
                     0,
                     0,
@@ -67,7 +68,7 @@ public static class SqlToTransformScriptConverter
                 ScriptName: $"{module.SchemaName}.{module.ObjectName}")));
 
         return new SqlToTransformScriptConversionResult(
-            Meta.Integration.TypedWorkspaceModelMapper.ToInMemoryWorkspace(transformModel),
+            new MTS.MetaTransformScriptWorkspaceBinding().Write(transformModel, MetaTransformScriptModels.LoadContract()),
             string.Empty,
             modules.Count(static module => module.ModuleKind == SqlToTransformScriptModuleKind.View),
             modules.Count(static module => module.ModuleKind == SqlToTransformScriptModuleKind.Function),

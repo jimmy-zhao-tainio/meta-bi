@@ -1,4 +1,3 @@
-using System.Collections;
 using MetaTransformScript.Sql.Parsing;
 using static MetaTransformScript.Sql.Parsing.MetaTransformScriptSqlModelBuilder;
 
@@ -28,11 +27,7 @@ public sealed partial class MetaTransformScriptSqlService
         model.PrimaryExpressionList.RemoveAll(row => row.Id == reference.PrimaryExpression.Id);
         model.ScalarExpressionList.RemoveAll(row => row.Id == original.Id);
         // Rewrite scalar edges, not SQL text. Detached identifier nodes carry no expression edges.
-        foreach (var list in GetModelListProperties())
-            foreach (var row in (IEnumerable)list.GetValue(model)!)
-                foreach (var property in row.GetType().GetProperties().Where(property => property.CanWrite && property.PropertyType == typeof(ScalarExpression)))
-                    if (property.GetValue(row) is ScalarExpression expression && expression.Id == original.Id)
-                        property.SetValue(row, root);
+        MetaTransformScriptModelAccess.VisitRelationships(new ReplaceScalarReferences(model, original.Id, root));
         AppendModelRows(model, fragment);
         foreach (var alias in aliases)
             model.SelectScalarExpressionColumnNameLinkList.Add(new SelectScalarExpressionColumnNameLink
@@ -89,5 +84,24 @@ public sealed partial class MetaTransformScriptSqlService
     {
         try { return new MetaTransformScriptSqlParser().ParseScalarFragment(sql, builder); }
         catch (MetaTransformScriptSqlParserException exception) { throw CreateImportException(exception, sourcePath: null); }
+    }
+
+    private sealed class ReplaceScalarReferences(MetaTransformScriptModel model, string originalId, ScalarExpression replacement)
+        : IMetaTransformScriptRelationshipVisitor
+    {
+        public void Visit<TRow, TTarget>(string entityName, string navigationName, string targetEntityName, bool isNullable,
+            Func<MetaTransformScriptModel, IList<TRow>> collection, Func<TRow, TTarget?> read,
+            Action<TRow, TTarget?> write, Func<TTarget, string> readTargetId)
+            where TRow : class where TTarget : class
+        {
+            if (targetEntityName != nameof(ScalarExpression)) return;
+            // The generated target entity name and direct setter guarantee this relationship's target type.
+            var target = (TTarget)(object)replacement;
+            foreach (var row in collection(model))
+            {
+                var current = read(row);
+                if (current is not null && readTargetId(current) == originalId) write(row, target);
+            }
+        }
     }
 }

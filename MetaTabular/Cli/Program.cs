@@ -30,7 +30,8 @@ internal static class Program
             new MetaTabularDropService());
 
         Environment.ExitCode = 0;
-        var runtime = new MetaCliRuntime<MetaTabularModel>(CommandWorkspacePath, ApplicationId)
+        var runtime = new MetaCliRuntime<MetaTabularModel>(CommandWorkspacePath,
+                new global::MetaTabular.MetaTabularWorkspaceBinding(), TabularModels.LoadContract, ApplicationId)
             .UseDefaultHelp()
             .Bind(
                 "exec-create",

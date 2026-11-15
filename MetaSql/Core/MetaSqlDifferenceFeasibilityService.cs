@@ -1,3 +1,6 @@
+using MetaDataType;
+using MetaDataType.Core;
+using MetaSql.Extractors.SqlServer;
 using Meta.Operations.Domain;
 using Microsoft.Data.SqlClient;
 
@@ -18,6 +21,11 @@ public sealed record MetaSqlDifferenceBlocker
 
 public sealed class MetaSqlDifferenceFeasibilityService
 {
+    private readonly SqlServerDataTypeCatalog types;
+
+    public MetaSqlDifferenceFeasibilityService(MetaDataTypeModel? catalog = null) =>
+        types = new SqlServerDataTypeCatalog(catalog ?? MetaDataTypeWorkspaceProvider.GetDefaultWorkspace());
+
     private static readonly HashSet<string> SupportedAlterAspects = new(StringComparer.Ordinal)
     {
         "MetaDataTypeId",
@@ -39,6 +47,9 @@ public sealed class MetaSqlDifferenceFeasibilityService
 
         MetaSqlDiffService.EnsureMetaSqlWorkspace(sourceWorkspace, nameof(sourceWorkspace));
         MetaSqlDiffService.EnsureMetaSqlWorkspace(liveWorkspace, nameof(liveWorkspace));
+
+        types.ValidateColumns(sourceWorkspace, "Source workspace");
+        types.ValidateColumns(liveWorkspace, "Live workspace");
 
         var blockers = new List<MetaSqlDifferenceBlocker>();
         var changedColumns = differences
@@ -362,7 +373,7 @@ public sealed class MetaSqlDifferenceFeasibilityService
         return kinds;
     }
 
-    private static bool ShouldCheckLengthNarrowing(
+    private bool ShouldCheckLengthNarrowing(
         string sourceTypeId,
         string liveTypeId,
         int? sourceLength,
@@ -391,9 +402,9 @@ public sealed class MetaSqlDifferenceFeasibilityService
         return sourceLength.Value < liveLength.Value;
     }
 
-    private static bool IsSqlServerLengthType(string typeId)
+    private bool IsSqlServerLengthType(string typeId)
     {
-        var typeName = SqlServerRenderingSupport.GetSqlServerTypeName(typeId);
+        var typeName = types.ResolveId(typeId, "SQL Server feasibility assessment").Name;
         return string.Equals(typeName, "varchar", StringComparison.OrdinalIgnoreCase) ||
                string.Equals(typeName, "char", StringComparison.OrdinalIgnoreCase) ||
                string.Equals(typeName, "nvarchar", StringComparison.OrdinalIgnoreCase) ||
@@ -402,9 +413,9 @@ public sealed class MetaSqlDifferenceFeasibilityService
                string.Equals(typeName, "binary", StringComparison.OrdinalIgnoreCase);
     }
 
-    private static int GetMaxBytes(string sourceTypeId, int sourceLength)
+    private int GetMaxBytes(string sourceTypeId, int sourceLength)
     {
-        var typeName = SqlServerRenderingSupport.GetSqlServerTypeName(sourceTypeId);
+        var typeName = types.ResolveId(sourceTypeId, "SQL Server feasibility assessment source").Name;
         if (string.Equals(typeName, "nvarchar", StringComparison.OrdinalIgnoreCase) ||
             string.Equals(typeName, "nchar", StringComparison.OrdinalIgnoreCase))
         {

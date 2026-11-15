@@ -26,7 +26,8 @@ internal static class Program
             new MetaDataQualityPromotionService());
 
         Environment.ExitCode = 0;
-        var runtime = new MetaCliRuntime<MetaDataQualityModel>(CommandWorkspacePath, ApplicationId)
+        var runtime = new MetaCliRuntime<MetaDataQualityModel>(CommandWorkspacePath,
+                new global::MetaDataQuality.MetaDataQualityWorkspaceBinding(), global::MetaDataQuality.Core.MetaDataQualityModels.LoadContract, ApplicationId)
             .UseDefaultHelp()
             .Bind(
                 "exec-from-transform-workspace",

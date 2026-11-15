@@ -40,7 +40,8 @@ public sealed record MetaPipelineWorkerExecutionCommandRequest(
     string DataTypeWorkspacePath,
     string PipelineDbConnectionEnvironmentVariableName,
     string WorkerControlPipeName,
-    int? ControlPipeConnectTimeoutSeconds);
+    int? ControlPipeConnectTimeoutSeconds,
+    string ExecutableVersion);
 
 public sealed record MetaPipelineDirectSqlServerExecutionCommandRequest(
     string TransformWorkspacePath,
@@ -441,6 +442,7 @@ public sealed class MetaPipelineExecutionCommandService
     public async Task<MetaPipelineExecutionCommandOutcome> ExecuteWorkerAsync(
         MetaPipelineWorkerExecutionCommandRequest request)
     {
+        ArgumentException.ThrowIfNullOrWhiteSpace(request.ExecutableVersion);
         MetaPipelineModeledExecutionPlan? plan = null;
         MetaPipelineOperationalDbStore? operationalDb = null;
         Guid? operationalRunId = null;
@@ -451,7 +453,7 @@ public sealed class MetaPipelineExecutionCommandService
                 request.ControlPipeConnectTimeoutSeconds is null
                     ? null
                     : TimeSpan.FromSeconds(request.ControlPipeConnectTimeoutSeconds.Value)).ConfigureAwait(false);
-            var executableVersion = OrchestrationWorkerProtocol.ResolveExecutableVersion();
+            var executableVersion = request.ExecutableVersion;
             await WriteWorkerLifecycleEventAsync(
                 workerChannel,
                 WorkerEventKinds.WorkerOnline,

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaCli>
   <OptionList>
+    <Option Id="opt-deploy-data-type-workspace" ParameterId="param-deploy-data-type-workspace" />
     <Option Id="option-add-tabular-calculation-group-description" ParameterId="param-add-tabular-calculation-group-description" />
     <Option Id="option-add-tabular-calculation-group-id" ParameterId="param-add-tabular-calculation-group-id" />
     <Option Id="option-add-tabular-calculation-group-name" ParameterId="param-add-tabular-calculation-group-name" />

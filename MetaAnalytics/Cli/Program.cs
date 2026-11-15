@@ -25,7 +25,8 @@ internal static class Program
             new AnalyticsAuthoringService());
 
         Environment.ExitCode = 0;
-        var runtime = new MetaCliRuntime<MetaAnalyticsModel>(CommandWorkspacePath, ApplicationId)
+        var runtime = new MetaCliRuntime<MetaAnalyticsModel>(CommandWorkspacePath,
+                new global::MetaAnalytics.MetaAnalyticsWorkspaceBinding(), AnalyticsModels.LoadContract, ApplicationId)
             .UseDefaultHelp()
             .Bind(
                 "exec-create",

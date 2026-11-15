@@ -1,3 +1,5 @@
+using MetaDataType;
+using MetaDataType.Core;
 using System.Globalization;
 using System.Data;
 using Amo = Microsoft.AnalysisServices;
@@ -28,8 +30,10 @@ public sealed class MetaMultiDimensionalDeployService
         ArgumentException.ThrowIfNullOrWhiteSpace(request.Server);
 
         var workspacePath = Path.GetFullPath(request.WorkspacePath);
-        var model = Meta.Integration.TypedWorkspaceModelMapper.Load<MetaMultiDimensionalModel>(workspacePath, searchUpward: false);
+        var model = Meta.Integration.TypedWorkspaceModelMapper.Load(workspacePath, new MetaMultiDimensionalWorkspaceBinding(), searchUpward: false);
         var root = RequireSingleDatabase(model);
+        var catalog = MetaDataTypeWorkspaceProvider.LoadOrDefault(request.DataTypeWorkspacePath);
+        ValidateDataTypes(model, catalog);
         var databaseName = string.IsNullOrWhiteSpace(request.DatabaseName)
             ? root.Name
             : request.DatabaseName.Trim();
@@ -56,7 +60,7 @@ public sealed class MetaMultiDimensionalDeployService
             server.Refresh();
         }
 
-        var database = BuildDatabase(model, root, databaseName);
+        var database = BuildDatabaseWithCatalog(model, root, databaseName, catalog);
         server.Databases.Add(database);
         database.Update(Amo.UpdateOptions.ExpandFull);
         if (request.Process)
@@ -78,8 +82,12 @@ public sealed class MetaMultiDimensionalDeployService
         });
     }
 
-    private static Amo.Database BuildDatabase(MetaMultiDimensionalModel source, MultiDimensionalDatabase root, string databaseName)
+    private static Amo.Database BuildDatabase(MetaMultiDimensionalModel source, MultiDimensionalDatabase root, string databaseName) =>
+        BuildDatabaseWithCatalog(source, root, databaseName, MetaDataTypeWorkspaceProvider.GetDefaultWorkspace());
+
+    private static Amo.Database BuildDatabaseWithCatalog(MetaMultiDimensionalModel source, MultiDimensionalDatabase root, string databaseName, MetaDataTypeModel catalog)
     {
+        ValidateDataTypes(source, catalog);
         var database = new Amo.Database
         {
             ID = databaseName,
@@ -94,11 +102,11 @@ public sealed class MetaMultiDimensionalDeployService
         }
 
         var dataSources = AddDataSources(database, source, root);
-        var dataSourceViews = AddDataSourceViews(database, source, root, dataSources);
+        var dataSourceViews = AddDataSourceViews(database, source, root, dataSources, catalog);
         var defaultDataSourceView = ResolveDefaultDataSourceView(source, root, dataSourceViews);
-        var dimensionTargets = AddDimensions(database, source, root, defaultDataSourceView);
+        var dimensionTargets = AddDimensions(database, source, root, defaultDataSourceView, catalog);
         var cubes = AddCubes(database, source, root, dimensionTargets.Dimensions, defaultDataSourceView);
-        var measureGroupTargets = AddMeasureGroups(source, cubes, dataSources);
+        var measureGroupTargets = AddMeasureGroups(source, cubes, dataSources, catalog);
         var kpis = AddKpis(source, cubes);
         var scriptTargets = AddMdxScripts(source, cubes);
         var actions = AddActions(source, cubes);
@@ -148,7 +156,8 @@ public sealed class MetaMultiDimensionalDeployService
         Amo.Database target,
         MetaMultiDimensionalModel source,
         MultiDimensionalDatabase root,
-        IReadOnlyDictionary<MultiDimensionalDataSource, Amo.DataSource> dataSources)
+        IReadOnlyDictionary<MultiDimensionalDataSource, Amo.DataSource> dataSources,
+        MetaDataTypeModel catalog)
     {
         var result = new Dictionary<MultiDimensionalDataSource, Amo.DataSourceView>();
         foreach (var row in source.MultiDimensionalDataSourceList.Where(row => ReferenceEquals(row.MultiDimensionalDatabase, root)))
@@ -161,7 +170,7 @@ public sealed class MetaMultiDimensionalDeployService
             var dataSourceView = new Amo.DataSourceView(row.Name, $"{StableId(row.Id)}_dsv")
             {
                 DataSourceID = dataSource.ID,
-                Schema = BuildDataSourceViewSchema(source, root),
+                Schema = BuildDataSourceViewSchema(source, root, catalog),
             };
             target.DataSourceViews.Add(dataSourceView);
             result[row] = dataSourceView;
@@ -170,7 +179,7 @@ public sealed class MetaMultiDimensionalDeployService
         return result;
     }
 
-    private static DataSet BuildDataSourceViewSchema(MetaMultiDimensionalModel source, MultiDimensionalDatabase root)
+    private static DataSet BuildDataSourceViewSchema(MetaMultiDimensionalModel source, MultiDimensionalDatabase root, MetaDataTypeModel catalog)
     {
         var dataSet = new DataSet("MetaMultiDimensional")
         {
@@ -195,8 +204,8 @@ public sealed class MetaMultiDimensionalDeployService
                 EnsureColumn(
                     table,
                     sourceColumnName,
-                    MapClrDataType(attribute.DataTypeId));
-                EnsureColumn(table, AttributeNameColumnName(sourceColumnName, attribute.DataTypeId), typeof(string));
+                    MapClrDataType(catalog, attribute.DataTypeId));
+                EnsureColumn(table, AttributeNameColumnName(catalog, sourceColumnName, attribute.DataTypeId), typeof(string));
             }
         }
 
@@ -208,7 +217,7 @@ public sealed class MetaMultiDimensionalDeployService
                 EnsureColumn(
                     table,
                     SourceName(measure.SourceName, measure.Name, measure.Id),
-                    MapMeasureClrDataType(measure.DataTypeId));
+                    MapMeasureClrDataType(catalog, measure.DataTypeId));
             }
 
             foreach (var usage in source.DimensionUsageList.Where(usage => ReferenceEquals(usage.MeasureGroup, measureGroup)))
@@ -218,7 +227,7 @@ public sealed class MetaMultiDimensionalDeployService
                     EnsureColumn(
                         table,
                         SourceName(usage.GranularityAttribute.SourceName, usage.GranularityAttribute.Name, usage.GranularityAttribute.Id),
-                        MapClrDataType(usage.GranularityAttribute.DataTypeId));
+                        MapClrDataType(catalog, usage.GranularityAttribute.DataTypeId));
                 }
             }
         }
@@ -309,7 +318,8 @@ public sealed class MetaMultiDimensionalDeployService
         Amo.Database target,
         MetaMultiDimensionalModel source,
         MultiDimensionalDatabase root,
-        Amo.DataSourceView? dataSourceView)
+        Amo.DataSourceView? dataSourceView,
+        MetaDataTypeModel catalog)
     {
         var dimensions = new Dictionary<Dimension, Amo.Dimension>();
         var dimensionAttributes = new Dictionary<DimensionAttribute, Amo.DimensionAttribute>();
@@ -344,9 +354,9 @@ public sealed class MetaMultiDimensionalDeployService
                     Name = "Key",
                     Usage = Amo.AttributeUsage.Key,
                 };
-                    keyAttribute.KeyColumns.Add(CreateDataItem(SourceName(row.SourceName, row.Name, row.Id), "Key", "meta:type:String"));
-                    keyAttribute.NameColumn = CreateDataItem(SourceName(row.SourceName, row.Name, row.Id), "Key", "meta:type:String");
-                    dimension.Attributes.Add(keyAttribute);
+                keyAttribute.KeyColumns.Add(CreateDataItem(catalog, SourceName(row.SourceName, row.Name, row.Id), "Key", Amo.DataType.String));
+                keyAttribute.NameColumn = CreateDataItem(catalog, SourceName(row.SourceName, row.Name, row.Id), "Key", Amo.DataType.String);
+                dimension.Attributes.Add(keyAttribute);
             }
             else
             {
@@ -363,8 +373,8 @@ public sealed class MetaMultiDimensionalDeployService
                         AttributeHierarchyEnabled = ParseNullableBool(attribute.AttributeHierarchyEnabled) ?? true,
                         AttributeHierarchyVisible = ParseNullableBool(attribute.AttributeHierarchyVisible) ?? true,
                     };
-                    targetAttribute.KeyColumns.Add(CreateDataItem(sourceTableName, sourceColumnName, attribute.DataTypeId));
-                    targetAttribute.NameColumn = new Amo.DataItem(sourceTableName, AttributeNameColumnName(sourceColumnName, attribute.DataTypeId), Amo.DataType.String);
+                    targetAttribute.KeyColumns.Add(CreateDataItem(catalog, sourceTableName, sourceColumnName, attribute.DataTypeId));
+                    targetAttribute.NameColumn = new Amo.DataItem(sourceTableName, AttributeNameColumnName(catalog, sourceColumnName, attribute.DataTypeId), Amo.DataType.String);
                     dimension.Attributes.Add(targetAttribute);
                     targetAttributes[attribute] = targetAttribute;
                     dimensionAttributes[attribute] = targetAttribute;
@@ -527,7 +537,8 @@ public sealed class MetaMultiDimensionalDeployService
     private static MeasureGroupTargets AddMeasureGroups(
         MetaMultiDimensionalModel source,
         IReadOnlyDictionary<Cube, Amo.Cube> cubes,
-        IReadOnlyDictionary<MultiDimensionalDataSource, Amo.DataSource> dataSources)
+        IReadOnlyDictionary<MultiDimensionalDataSource, Amo.DataSource> dataSources,
+        MetaDataTypeModel catalog)
     {
         var measureGroups = new Dictionary<MeasureGroup, Amo.MeasureGroup>();
         var measures = new Dictionary<Measure, Amo.Measure>();
@@ -556,11 +567,11 @@ public sealed class MetaMultiDimensionalDeployService
                     Name = measure.Name,
                     Description = measure.Description,
                     AggregateFunction = MapAggregationFunction(measure.AggregateFunction),
-                    DataType = MapMeasureDataType(measure.DataTypeId),
-                    Source = CreateDataItem(
+                    DataType = MapMeasureDataType(catalog, measure.DataTypeId),
+                    Source = CreateDataItem(catalog,
                         SourceName(row.SourceName, row.Name, row.Id),
                         SourceName(measure.SourceName, measure.Name, measure.Id),
-                        MapMeasureSourceDataType(measure.DataTypeId)),
+                        MapMeasureSourceDataType(catalog, measure.DataTypeId)),
                     FormatString = measure.FormatString,
                     DisplayFolder = measure.DisplayFolder,
                     Visible = true,
@@ -576,7 +587,7 @@ public sealed class MetaMultiDimensionalDeployService
                 {
                     var attribute = measureGroupDimension.Attributes.Add(StableId(usage.GranularityAttribute.Id));
                     attribute.Type = Amo.MeasureGroupAttributeType.Granularity;
-                    attribute.KeyColumns.Add(CreateDataItem(
+                    attribute.KeyColumns.Add(CreateDataItem(catalog,
                         SourceName(row.SourceName, row.Name, row.Id),
                         SourceName(usage.GranularityAttribute.SourceName, usage.GranularityAttribute.Name, usage.GranularityAttribute.Id),
                         usage.GranularityAttribute.DataTypeId));
@@ -1351,12 +1362,12 @@ public sealed class MetaMultiDimensionalDeployService
         table.Columns.Add(new DataColumn(columnName, dataType));
     }
 
-    private static Amo.DataItem CreateDataItem(string tableName, string columnName, string? dataTypeId)
+    private static Amo.DataItem CreateDataItem(MetaDataTypeModel catalog, string tableName, string columnName, string? dataTypeId)
     {
-        return new Amo.DataItem(tableName, columnName, MapAmoDataType(dataTypeId));
+        return new Amo.DataItem(tableName, columnName, MapAmoDataType(catalog, dataTypeId));
     }
 
-    private static Amo.DataItem CreateDataItem(string tableName, string columnName, Amo.DataType dataType)
+    private static Amo.DataItem CreateDataItem(MetaDataTypeModel catalog, string tableName, string columnName, Amo.DataType dataType)
     {
         return new Amo.DataItem(tableName, columnName, dataType);
     }
@@ -1373,16 +1384,16 @@ public sealed class MetaMultiDimensionalDeployService
             : StableId(id);
     }
 
-    private static string AttributeNameColumnName(string sourceColumnName, string? dataTypeId)
+    private static string AttributeNameColumnName(MetaDataTypeModel catalog, string sourceColumnName, string? dataTypeId)
     {
-        return MapAmoDataType(dataTypeId) == Amo.DataType.String
+        return MapAmoDataType(catalog, dataTypeId) == Amo.DataType.String
             ? sourceColumnName
             : $"{sourceColumnName}_Name";
     }
 
-    private static Type MapClrDataType(string? dataTypeId)
+    private static Type MapClrDataType(MetaDataTypeModel catalog, string? dataTypeId)
     {
-        var value = StripMetaTypePrefix(dataTypeId).ToUpperInvariant();
+        var value = ResolveMetaTypeName(catalog, dataTypeId, "Multidimensional type").ToUpperInvariant();
         return value switch
         {
             "BOOLEAN" or "BOOL" => typeof(bool),
@@ -1397,19 +1408,19 @@ public sealed class MetaMultiDimensionalDeployService
         };
     }
 
-    private static Type MapMeasureClrDataType(string? dataTypeId)
+    private static Type MapMeasureClrDataType(MetaDataTypeModel catalog, string? dataTypeId)
     {
-        var value = StripMetaTypePrefix(dataTypeId).ToUpperInvariant();
+        var value = ResolveMetaTypeName(catalog, dataTypeId, "Multidimensional type").ToUpperInvariant();
         return value switch
         {
             "DECIMAL" or "NUMERIC" => typeof(double),
-            _ => MapClrDataType(dataTypeId),
+            _ => MapClrDataType(catalog, dataTypeId),
         };
     }
 
-    private static Amo.DataType MapAmoDataType(string? dataTypeId)
+    private static Amo.DataType MapAmoDataType(MetaDataTypeModel catalog, string? dataTypeId)
     {
-        var value = StripMetaTypePrefix(dataTypeId).ToUpperInvariant();
+        var value = ResolveMetaTypeName(catalog, dataTypeId, "Multidimensional type").ToUpperInvariant();
         return value switch
         {
             "BOOLEAN" or "BOOL" => Amo.DataType.Boolean,
@@ -1506,9 +1517,9 @@ public sealed class MetaMultiDimensionalDeployService
                 : ParseEnum<Amo.AggregationFunction>(value, "Measure.AggregateFunction");
     }
 
-    private static Amo.MeasureDataType MapMeasureDataType(string? dataTypeId)
+    private static Amo.MeasureDataType MapMeasureDataType(MetaDataTypeModel catalog, string? dataTypeId)
     {
-        var value = StripMetaTypePrefix(dataTypeId).ToUpperInvariant();
+        var value = ResolveMetaTypeName(catalog, dataTypeId, "Multidimensional type").ToUpperInvariant();
         return value switch
         {
             "BOOLEAN" or "BOOL" => Amo.MeasureDataType.Boolean,
@@ -1523,13 +1534,13 @@ public sealed class MetaMultiDimensionalDeployService
         };
     }
 
-    private static Amo.DataType MapMeasureSourceDataType(string? dataTypeId)
+    private static Amo.DataType MapMeasureSourceDataType(MetaDataTypeModel catalog, string? dataTypeId)
     {
-        var value = StripMetaTypePrefix(dataTypeId).ToUpperInvariant();
+        var value = ResolveMetaTypeName(catalog, dataTypeId, "Multidimensional type").ToUpperInvariant();
         return value switch
         {
             "DECIMAL" or "NUMERIC" => Amo.DataType.Double,
-            _ => MapAmoDataType(dataTypeId),
+            _ => MapAmoDataType(catalog, dataTypeId),
         };
     }
 
@@ -1690,11 +1701,27 @@ public sealed class MetaMultiDimensionalDeployService
         return value.Replace("]", "]]", StringComparison.Ordinal);
     }
 
-    private static string StripMetaTypePrefix(string? value)
+    private static void ValidateDataTypes(MetaMultiDimensionalModel source, MetaDataTypeModel catalog)
     {
-        const string prefix = "meta:type:";
-        return !string.IsNullOrWhiteSpace(value) && value.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)
-            ? value[prefix.Length..]
-            : value?.Trim() ?? string.Empty;
+        foreach (var attribute in source.DimensionAttributeList)
+            ResolveMetaTypeName(catalog, attribute.DataTypeId, $"DimensionAttribute '{attribute.Id}'");
+        foreach (var measure in source.MeasureList)
+            ResolveMetaTypeName(catalog, measure.DataTypeId, $"Measure '{measure.Id}'");
+    }
+
+    // Preserve the existing native fallback for catalog-resolved types without a
+    // Meta mapping. Selecting a stricter unsupported-type policy is separate work.
+    private static string ResolveMetaTypeName(MetaDataTypeModel catalog, string? id, string description)
+    {
+        if (string.IsNullOrWhiteSpace(id)) return string.Empty;
+        var matches = catalog.DataTypeList.Where(type => type.Id == id).ToArray();
+        if (matches.Length != 1)
+            throw new InvalidOperationException($"{description} has DataTypeId '{id}', which resolves to {matches.Length} types in the selected MetaDataType catalog; expected one.");
+        var systems = catalog.DataTypeSystemList.Where(system => system.Id == matches[0].DataTypeSystem?.Id).ToArray();
+        if (systems.Length != 1)
+            throw new InvalidOperationException($"{description} type '{id}' does not have one DataTypeSystem relationship in the selected MetaDataType catalog.");
+        return string.Equals(systems[0].Name, "Meta", StringComparison.OrdinalIgnoreCase)
+            ? matches[0].Name?.Trim() ?? string.Empty
+            : string.Empty;
     }
 }

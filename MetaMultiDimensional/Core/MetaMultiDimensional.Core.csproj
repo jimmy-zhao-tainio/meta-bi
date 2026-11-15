@@ -8,11 +8,28 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AnalysisServices.NetCore.retail.amd64" Version="19.84.1" />
+    <PackageReference Include="Meta.TypedModels" Version="$(MetaFoundationPackageVersion)" />
     <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\MetaDataType\Core\MetaDataType.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="..\Workspaces\MetaMultiDimensional\MetaMultiDimensional.meta.cs" Link="MetaMultiDimensional.meta.cs" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Include="..\Workspaces\MetaMultiDimensional\**\*">
+      <Link>Workspaces\MetaMultiDimensional\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+      <PackagePath>contentFiles\any\any\Workspaces\MetaMultiDimensional\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
+    <None Update="Package\MetaMultiDimensional.Core.targets" Pack="true" PackagePath="buildTransitive\MetaMultiDimensional.Core.targets" />
   </ItemGroup>
 
 </Project>

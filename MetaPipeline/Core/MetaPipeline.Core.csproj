@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Meta.Core" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="Meta.TypedModels" Version="$(MetaFoundationPackageVersion)" />
     <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
   </ItemGroup>
@@ -18,6 +19,18 @@
     <ProjectReference Include="..\..\MetaOrchestration\WorkerProtocol\MetaOrchestration.WorkerProtocol.csproj" />
     <ProjectReference Include="..\..\MetaTransform\Binding\MetaTransform.Binding.csproj" />
     <ProjectReference Include="..\..\MetaTransform\Script\Sql\MetaTransformScript.Sql.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Include="..\Workspaces\MetaPipeline\**\*">
+      <Link>Workspaces\MetaPipeline\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+      <PackagePath>contentFiles\any\any\Workspaces\MetaPipeline\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
+    <None Update="Package\MetaPipeline.Core.targets" Pack="true" PackagePath="buildTransitive\MetaPipeline.Core.targets" />
   </ItemGroup>
 
 </Project>

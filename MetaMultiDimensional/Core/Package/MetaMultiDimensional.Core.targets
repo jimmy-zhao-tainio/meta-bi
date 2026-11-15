@@ -1,0 +1,11 @@
+<Project>
+  <ItemGroup>
+    <_MetaMultiDimensionalPackagedWorkspace Include="$(MSBuildThisFileDirectory)../contentFiles/any/any/Workspaces/**/*" />
+  </ItemGroup>
+  <Target Name="CopyMetaMultiDimensionalPackagedWorkspaceToOutput" AfterTargets="CopyFilesToOutputDirectory" Condition="'$(DesignTimeBuild)' != 'true'">
+    <Copy SourceFiles="@(_MetaMultiDimensionalPackagedWorkspace)" DestinationFiles="@(_MetaMultiDimensionalPackagedWorkspace -> '$(OutDir)Workspaces/%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+  <Target Name="CopyMetaMultiDimensionalPackagedWorkspaceToPublish" AfterTargets="Publish" Condition="'$(DesignTimeBuild)' != 'true' and '$(PublishDir)' != ''">
+    <Copy SourceFiles="@(_MetaMultiDimensionalPackagedWorkspace)" DestinationFiles="@(_MetaMultiDimensionalPackagedWorkspace -> '$(PublishDir)Workspaces/%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+</Project>

@@ -3,14 +3,20 @@
   <OptionList>
     <Option Id="opt-analytics-to-multi-dimensional-workspace" ParameterId="param-analytics-to-multi-dimensional-workspace" />
     <Option Id="opt-analytics-to-tabular-workspace" ParameterId="param-analytics-to-tabular-workspace" />
+    <Option Id="opt-business-datavault-to-sql-data-type-conversion-workspace" ParameterId="param-business-datavault-to-sql-data-type-conversion-workspace" />
+    <Option Id="opt-business-datavault-to-sql-data-type-workspace" ParameterId="param-business-datavault-to-sql-data-type-workspace" />
     <Option Id="opt-business-datavault-to-sql-database-name" ParameterId="param-business-datavault-to-sql-database-name" />
     <Option Id="opt-business-datavault-to-sql-implementation-workspace" ParameterId="param-business-datavault-to-sql-implementation-workspace" />
     <Option Id="opt-business-datavault-to-sql-workspace" ParameterId="param-business-datavault-to-sql-workspace" />
     <Option Id="opt-data-quality-to-sql-out" ParameterId="param-data-quality-to-sql-out" />
     <Option Id="opt-data-quality-to-sql-workspace" ParameterId="param-data-quality-to-sql-workspace" />
+    <Option Id="opt-data-warehouse-to-sql-data-type-conversion-workspace" ParameterId="param-data-warehouse-to-sql-data-type-conversion-workspace" />
+    <Option Id="opt-data-warehouse-to-sql-data-type-workspace" ParameterId="param-data-warehouse-to-sql-data-type-workspace" />
     <Option Id="opt-data-warehouse-to-sql-database-name" ParameterId="param-data-warehouse-to-sql-database-name" />
     <Option Id="opt-data-warehouse-to-sql-implementation-workspace" ParameterId="param-data-warehouse-to-sql-implementation-workspace" />
     <Option Id="opt-data-warehouse-to-sql-workspace" ParameterId="param-data-warehouse-to-sql-workspace" />
+    <Option Id="opt-raw-datavault-to-sql-data-type-conversion-workspace" ParameterId="param-raw-datavault-to-sql-data-type-conversion-workspace" />
+    <Option Id="opt-raw-datavault-to-sql-data-type-workspace" ParameterId="param-raw-datavault-to-sql-data-type-workspace" />
     <Option Id="opt-raw-datavault-to-sql-database-name" ParameterId="param-raw-datavault-to-sql-database-name" />
     <Option Id="opt-raw-datavault-to-sql-implementation-workspace" ParameterId="param-raw-datavault-to-sql-implementation-workspace" />
     <Option Id="opt-raw-datavault-to-sql-workspace" ParameterId="param-raw-datavault-to-sql-workspace" />

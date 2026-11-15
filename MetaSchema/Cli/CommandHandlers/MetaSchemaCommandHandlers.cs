@@ -47,6 +47,7 @@ internal sealed class MetaSchemaCommandHandlers
         var request = new SqlServerExtractRequest
         {
             NewWorkspacePath = output,
+            DataTypeWorkspacePath = invocation.Optional("data-type-workspace"),
             ConnectionString = connectionString,
             SystemName = invocation.Required("system"),
             SchemaName = invocation.Optional("schema") ?? string.Empty,

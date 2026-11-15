@@ -7,12 +7,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Meta.TypedModels" Version="$(MetaFoundationPackageVersion)" />
     <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
     <Compile Include="..\Workspaces\MetaOrchestration\MetaOrchestration.meta.cs" Link="MetaOrchestration.meta.cs" />
     <ProjectReference Include="..\WorkerProtocol\MetaOrchestration.WorkerProtocol.csproj" />
     <ProjectReference Include="..\..\MetaPipeline\Core\MetaPipeline.Core.csproj" />
     <ProjectReference Include="..\..\MetaTransform\Binding\MetaTransform.Binding.csproj" />
     <ProjectReference Include="..\..\MetaTransform\Script\Sql\MetaTransformScript.Sql.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Include="..\Workspaces\MetaOrchestration\**\*">
+      <Link>Workspaces\MetaOrchestration\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+      <PackagePath>contentFiles\any\any\Workspaces\MetaOrchestration\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
+    <None Update="Package\MetaOrchestration.Core.targets" Pack="true" PackagePath="buildTransitive\MetaOrchestration.Core.targets" />
   </ItemGroup>
 
 </Project>

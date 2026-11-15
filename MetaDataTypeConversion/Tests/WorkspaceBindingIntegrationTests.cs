@@ -3,6 +3,7 @@ using Meta.Operations;
 using Meta.Operations.Domain;
 using MetaBi.Tests.Common;
 using MetaDataTypeConversion.Core;
+using MetaDataType.Core;
 
 namespace MetaDataTypeConversion.Tests;
 
@@ -32,11 +33,23 @@ public sealed class WorkspaceBindingIntegrationTests
                     new Dictionary<string, string> { ["SqlConversionSnippetId"] = "chosen/snippet", ["SqlConversionParameterId"] = "chosen/type" }),
                 new Operation.InsertRecord("ConversionImplementation", "chosen/implementation", new Dictionary<string, string> { ["Name"] = "Reverse", ["Description"] = " Åsa äter räksmörgås.\r\n\t " },
                     new Dictionary<string, string> { ["SqlConversionSnippetId"] = "chosen/snippet" }),
-                new Operation.InsertRecord("DataTypeMapping", "chosen/mapping", new Dictionary<string, string> { ["SourceDataTypeId"] = "custom:type:Text", ["TargetDataTypeId"] = "sqlserver:type:int", ["Notes"] = "" },
+                new Operation.InsertRecord("DataTypeMapping", "chosen/mapping", new Dictionary<string, string> { ["SourceDataTypeId"] = "opaque/source", ["TargetDataTypeId"] = "opaque/target", ["Notes"] = "" },
                     new Dictionary<string, string> { ["ConversionImplementationId"] = "chosen/implementation" }),
             ]);
             var authored = Path.Combine(root, "authored");
             await WorkspaceSurface.CreateAsync(state, authored, representation);
+            var catalogState = await MetaDataTypeWorkspaceProvider.LoadDefaultStateAsync();
+            catalogState = InMemoryOperations.ApplyBatch(catalogState,
+            [
+                new Operation.InsertRecord("DataTypeSystem", "opaque/system", new Dictionary<string, string> { ["Name"] = "Destination" }),
+                new Operation.InsertRecord("DataType", "opaque/source", new Dictionary<string, string> { ["Name"] = "Text" },
+                    new Dictionary<string, string> { ["DataTypeSystemId"] = "Meta" }),
+                new Operation.InsertRecord("DataType", "opaque/target", new Dictionary<string, string> { ["Name"] = "int" },
+                    new Dictionary<string, string> { ["DataTypeSystemId"] = "opaque/system" }),
+            ]);
+            var catalogPath = Path.Combine(root, "catalog");
+            await WorkspaceSurface.CreateAsync(catalogState, catalogPath, representation);
+            var catalog = MetaDataTypeWorkspaceProvider.LoadOrDefault(catalogPath);
             var first = MetaDataTypeConversionWorkspaceProvider.LoadOrDefault(authored);
             var mapping = first.DataTypeMappingList.Single(row => row.Id == "chosen/mapping");
             Assert.Same(first.ConversionImplementationList.Single(row => row.Id == "chosen/implementation"), mapping.ConversionImplementation);
@@ -44,15 +57,20 @@ public sealed class WorkspaceBindingIntegrationTests
             Assert.Equal("", mapping.Notes);
             Assert.Null(first.ConversionImplementationList.Single(row => row.Name == "Direct").SqlConversionSnippet);
             Assert.Equal("CONVERT(int, REVERSE(s.Code))", SqlConversionSnippetService.Instantiate(first, mapping, "s.Code", "int"));
-            var check = CliTestRunner.RunStandardCli("meta-data-type-conversion", $"check --workspace \"{authored}\"");
+            var check = CliTestRunner.RunStandardCli("meta-data-type-conversion", $"check --workspace \"{authored}\" --data-type-workspace \"{catalogPath}\"");
             Assert.Equal(0, check.ExitCode);
-            var resolve = CliTestRunner.RunStandardCli("meta-data-type-conversion", $"resolve --workspace \"{authored}\" --source-data-type custom:type:Text --target-data-type-system SqlServer");
+            var resolve = CliTestRunner.RunStandardCli("meta-data-type-conversion", $"resolve --workspace \"{authored}\" --data-type-workspace \"{catalogPath}\" --source-data-type opaque/source --target-data-type-system Destination");
             Assert.Equal(0, resolve.ExitCode);
             // Successful resolution of a source absent from the seed proves the CLI used this workspace.
             Assert.DoesNotContain(MetaDataTypeConversionWorkspaceProvider.GetDefaultWorkspace().DataTypeMappingList,
-                row => row.SourceDataTypeId == "custom:type:Text");
-            Assert.Equal("Reverse", new MetaDataTypeConversionService().Resolve(first,
-                "custom:type:Text", "SqlServer").ConversionImplementationName);
+                row => row.SourceDataTypeId == "opaque/source");
+            var resolution = new MetaDataTypeConversionService(catalog).Resolve(first,
+                "opaque/source", "Destination");
+            Assert.Equal("Reverse", resolution.ConversionImplementationName);
+            Assert.Equal("opaque/target", resolution.TargetDataTypeId);
+            Assert.Equal("Destination", resolution.TargetDataTypeSystemName);
+            Assert.Contains(new MetaDataTypeConversionService().Check(first).Errors,
+                error => error.Contains("opaque/source", StringComparison.Ordinal));
 
             await using (var workspace = await WorkspaceSurface.OpenAsync(authored))
                 await workspace.ExecuteAsync([new Operation.SetProperty("SqlConversionSnippet", "chosen/snippet", "TransformScript", "TRY_CONVERT($(type), REVERSE($(source)))")]);

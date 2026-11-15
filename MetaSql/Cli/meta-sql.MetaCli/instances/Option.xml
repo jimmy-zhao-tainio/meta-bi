@@ -2,12 +2,14 @@
 <MetaCli>
   <OptionList>
     <Option Id="opt-deploy-connection-env" ParameterId="param-deploy-connection-env" />
+    <Option Id="opt-deploy-data-type-workspace" ParameterId="param-deploy-data-type-workspace" />
     <Option Id="opt-deploy-manifest-workspace" ParameterId="param-deploy-manifest-workspace" />
     <Option Id="opt-deploy-plan-approval-file" ParameterId="param-deploy-plan-approval-file" />
     <Option Id="opt-deploy-plan-approve-drop-column" ParameterId="param-deploy-plan-approve-drop-column" />
     <Option Id="opt-deploy-plan-approve-drop-table" ParameterId="param-deploy-plan-approve-drop-table" />
     <Option Id="opt-deploy-plan-approve-truncate-column" ParameterId="param-deploy-plan-approve-truncate-column" />
     <Option Id="opt-deploy-plan-connection-env" ParameterId="param-deploy-plan-connection-env" />
+    <Option Id="opt-deploy-plan-data-type-workspace" ParameterId="param-deploy-plan-data-type-workspace" />
     <Option Id="opt-deploy-plan-source-workspace" ParameterId="param-deploy-plan-source-workspace" />
     <Option Id="opt-deploy-source-workspace" ParameterId="param-deploy-source-workspace" />
     <Option Id="opt-execute-connection-env" ParameterId="param-execute-connection-env" />
@@ -18,6 +20,7 @@
     <Option Id="opt-execute-var" ParameterId="param-execute-var" />
     <Option Id="opt-extract-sqlserver-allow-empty" ParameterId="param-extract-sqlserver-allow-empty" />
     <Option Id="opt-extract-sqlserver-connection-env" ParameterId="param-extract-sqlserver-connection-env" />
+    <Option Id="opt-extract-sqlserver-data-type-workspace" ParameterId="param-extract-sqlserver-data-type-workspace" />
     <Option Id="opt-extract-sqlserver-include-functions" ParameterId="param-extract-sqlserver-include-functions" />
     <Option Id="opt-extract-sqlserver-include-stored-procedures" ParameterId="param-extract-sqlserver-include-stored-procedures" />
     <Option Id="opt-extract-sqlserver-include-tables" ParameterId="param-extract-sqlserver-include-tables" />

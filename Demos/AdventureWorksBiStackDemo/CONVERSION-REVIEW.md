@@ -36,17 +36,19 @@ typing limits remain documented in MetaConvert/TransformScriptConversion/README.
 ## Catalog and ownership
 
 The mesh selects its data-type workspace explicitly for Binding, Pipeline and
-Orchestration using --data-type-workspace. Their documented default remains
-BuiltIn. The seven retired --data-type-conversion-workspace arguments are gone.
+Orchestration using --data-type-workspace. Their default loads the packaged
+authored workspace. The seven retired execution --data-type-conversion-workspace
+arguments are gone.
 Binding validates the resulting SQL Server types and facets; it neither selects
 nor applies conversions. Execution performs the validated work.
 
-Physical schema generation is still a separate catalog consumer:
-MetaConvert/DataVaultToSql/ToMetaSql.cs supplies BuiltIn catalogs, and its
-LoweredTypes relation selects the SqlServer system and direct implementation by
-fixed IDs. This alignment corrects the inappropriate default data without
-redesigning that independent path. Selecting another catalog for Binding or
-apply-conversions does not alter those generation choices.
+Physical schema generation has separate catalog inputs. The DV/DW `meta-convert`
+commands accept --data-type-workspace and --data-type-conversion-workspace;
+omission loads their packaged authored workspaces. LoweredTypes follows modeled
+catalog relationships and identifies the existing Meta, SqlServer and Direct
+policy by row names rather than shipped IDs. This demo currently omits those
+generation options. Selecting another catalog for Binding or apply-conversions
+does not implicitly select the generator's catalogs.
 
 ## Source and verification
 

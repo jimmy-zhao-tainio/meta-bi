@@ -1,9 +1,11 @@
+using MetaSql.Extractors.SqlServer;
+
 namespace MetaSql;
 
 /// <summary>
 /// Renders SQL Server table and column create/add/drop statements.
 /// </summary>
-internal sealed class SqlServerTableSqlRenderer
+internal sealed class SqlServerTableSqlRenderer(SqlServerDataTypeCatalog catalog)
 {
     public string BuildDropColumnSql(TableColumn column)
     {
@@ -31,7 +33,7 @@ internal sealed class SqlServerTableSqlRenderer
         return $"ALTER TABLE {SqlServerRenderingSupport.FormatTableName(column.Table)} ADD {BuildColumnDefinition(column, detailsByColumnId)};";
     }
 
-    private static string BuildColumnDefinition(
+    private string BuildColumnDefinition(
         TableColumn column,
         IReadOnlyDictionary<string, List<TableColumnDataTypeDetail>> detailsByColumnId)
     {
@@ -42,7 +44,7 @@ internal sealed class SqlServerTableSqlRenderer
 
         var detailValues = GetGroup(detailsByColumnId, column.Id)
             .ToDictionary(row => row.Name, row => row.Value, StringComparer.OrdinalIgnoreCase);
-        var typeSql = SqlServerRenderingSupport.BuildSqlServerTypeSql(column.MetaDataTypeId, detailValues);
+        var typeSql = SqlServerRenderingSupport.BuildSqlServerTypeSql(catalog, column.MetaDataTypeId, detailValues);
         var identitySql = SqlServerRenderingSupport.IsTrue(column.IsIdentity)
             ? $" IDENTITY({NormalizeIdentityValue(column.IdentitySeed, "1")},{NormalizeIdentityValue(column.IdentityIncrement, "1")})"
             : string.Empty;

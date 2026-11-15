@@ -20,6 +20,13 @@ requirements check that it is present, that each required implementation
 contract has one row, and that every type used by the conversion has exactly
 one SQL Server realization.
 
+The `meta-convert data-warehouse-to-sql` command accepts
+`--data-type-workspace` and `--data-type-conversion-workspace` for these catalog
+inputs. Omission loads their packaged authored workspaces. Each selected input
+is read once and passed to Weave as generic metadata. Type-system and direct
+implementation policy follows related catalog rows named `Meta`, `SqlServer`
+and `Direct`; their IDs may differ from the shipped instances.
+
 `TableColumn` collects the column candidates for each projected table and uses
 `ROW_NUMBER() OVER (PARTITION BY ... ORDER BY ...)` to reproduce the converter's
 column insertion order. `TRY_CONVERT(int, sourceOrdinal)` gives numeric

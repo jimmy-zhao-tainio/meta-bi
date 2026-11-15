@@ -8,6 +8,8 @@ public sealed record MetaTabularDeployRequest
 
     public string? DatabaseName { get; init; }
 
+    public string? DataTypeWorkspacePath { get; init; }
+
     public bool DropExisting { get; init; }
 
     public bool Process { get; init; } = true;

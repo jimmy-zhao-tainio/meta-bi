@@ -338,9 +338,9 @@ internal static class CliDiffTestSupport
         string sourcePath,
         Action<MetaSqlModel> mutate)
     {
-        var model = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlModel>(sourcePath, searchUpward: false);
+        var model = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlModel>(sourcePath, new global::MetaSql.MetaSqlWorkspaceBinding(), searchUpward: false);
         mutate(model);
-        await TypedWorkspaceModelMapper.SaveAsync(model, sourcePath);
+        await TypedWorkspaceModelMapper.SaveAsync(model, sourcePath, new global::MetaSql.MetaSqlWorkspaceBinding());
     }
 
     internal static TableColumn RequireColumn(

@@ -28,7 +28,7 @@ internal sealed partial class MetaPipelineCommandHandlers
         MetaCliInvocation invocation,
         MetaCliWorkspaces workspaces)
     {
-        await workspaces.CreateAsync("output", workspaceService.CreateWorkspace()).ConfigureAwait(false);
+        await workspaces.CreateAsync("output", workspaceService.CreateWorkspace(), global::MetaPipeline.MetaPipelineModels.LoadContract(), new global::MetaPipeline.MetaPipelineWorkspaceBinding()).ConfigureAwait(false);
         presenter.WriteOk(
             "MetaPipeline workspace created",
             ("Path", MetaCliWorkspace.OutputLocation(invocation)));
