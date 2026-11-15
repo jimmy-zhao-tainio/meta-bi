@@ -1,0 +1,21 @@
+<Project>
+  <ItemGroup>
+    <_MetaTransformScriptPackagedWorkspace Include="$(MSBuildThisFileDirectory)../contentFiles/any/any/Workspaces/MetaTransformScript/**/*" />
+  </ItemGroup>
+
+  <Target Name="CopyMetaTransformScriptPackagedWorkspaceToOutput"
+          AfterTargets="CopyFilesToOutputDirectory"
+          Condition="'$(DesignTimeBuild)' != 'true'">
+    <Copy SourceFiles="@(_MetaTransformScriptPackagedWorkspace)"
+          DestinationFiles="@(_MetaTransformScriptPackagedWorkspace -> '$(OutDir)Workspaces/MetaTransformScript/%(RecursiveDir)%(Filename)%(Extension)')"
+          SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="CopyMetaTransformScriptPackagedWorkspaceToPublish"
+          AfterTargets="Publish"
+          Condition="'$(DesignTimeBuild)' != 'true' and '$(PublishDir)' != ''">
+    <Copy SourceFiles="@(_MetaTransformScriptPackagedWorkspace)"
+          DestinationFiles="@(_MetaTransformScriptPackagedWorkspace -> '$(PublishDir)Workspaces/MetaTransformScript/%(RecursiveDir)%(Filename)%(Extension)')"
+          SkipUnchangedFiles="true" />
+  </Target>
+</Project>

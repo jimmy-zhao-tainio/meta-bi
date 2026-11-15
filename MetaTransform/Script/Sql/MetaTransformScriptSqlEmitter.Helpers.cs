@@ -1,4 +1,3 @@
-using System.Collections.Concurrent;
 using System.Globalization;
 using MetaTransformScript;
 
@@ -6,59 +5,44 @@ namespace MetaTransformScript.Sql;
 
 internal sealed partial class MetaTransformScriptSqlEmitter
 {
-    private static readonly ConcurrentDictionary<Type, string?> OwnerPropertyByType = new();
-    private static readonly ConcurrentDictionary<Type, string?> BasePropertyByType = new();
-
-    private T GetById<T>(IEnumerable<T> rows, string id, string label) where T : class
+    private T GetById<T>(IEnumerable<T> rows, Func<T, string?> selectId, string id, string label) where T : class
     {
-        var match = index.FindById(rows, id);
+        var match = index.FindById(rows, selectId, id);
         return match ?? throw new InvalidOperationException($"Required MetaTransformScript lookup '{label}' with id '{id}' was not found.");
     }
 
-    private T GetByBaseId<T>(IEnumerable<T> rows, string baseId, string label) where T : class
-    {
-        var match = FindByBaseId(rows, baseId);
-        return match ?? throw new InvalidOperationException($"Required MetaTransformScript base lookup '{label}' with base id '{baseId}' was not found.");
-    }
+    private T? FindByBaseId<T>(
+        IEnumerable<T> rows,
+        Func<T, string?> selectBaseId,
+        string relationshipName,
+        string baseId) where T : class =>
+        index.FindByRelatedId(rows, selectBaseId, relationshipName, baseId);
 
-    private T? FindByBaseId<T>(IEnumerable<T> rows, string baseId) where T : class
+    private TLink GetOwnerLink<TLink>(
+        IEnumerable<TLink> links,
+        Func<TLink, string?> selectOwnerId,
+        string relationshipName,
+        string ownerId,
+        string label) where TLink : class
     {
-        var propertyName = ResolveBaseProperty(typeof(T));
-        if (string.IsNullOrWhiteSpace(propertyName))
-        {
-            return null;
-        }
-
-        return index.FindByRelatedId(rows, propertyName, baseId);
-    }
-
-    private TLink GetOwnerLink<TLink>(IEnumerable<TLink> links, string ownerId, string label) where TLink : class
-    {
-        var match = FindOwnerLink(links, ownerId);
+        var match = FindOwnerLink(links, selectOwnerId, relationshipName, ownerId);
         return match ?? throw new InvalidOperationException($"Required MetaTransformScript link '{label}' with owner id '{ownerId}' was not found.");
     }
 
-    private TLink? FindOwnerLink<TLink>(IEnumerable<TLink> links, string ownerId) where TLink : class
-    {
-        var propertyName = ResolveOwnerProperty(typeof(TLink));
-        if (string.IsNullOrWhiteSpace(propertyName))
-        {
-            return null;
-        }
+    private TLink? FindOwnerLink<TLink>(
+        IEnumerable<TLink> links,
+        Func<TLink, string?> selectOwnerId,
+        string relationshipName,
+        string ownerId) where TLink : class =>
+        index.FindByRelatedId(links, selectOwnerId, relationshipName, ownerId);
 
-        return index.FindByRelatedId(links, propertyName, ownerId);
-    }
-
-    private IEnumerable<TItem> GetOrderedItems<TItem>(IEnumerable<TItem> items, string ownerId) where TItem : class
-    {
-        var propertyName = ResolveOwnerProperty(typeof(TItem));
-        if (string.IsNullOrWhiteSpace(propertyName))
-        {
-            return [];
-        }
-
-        return index.GetOrderedByRelatedId(items, propertyName, ownerId);
-    }
+    private IEnumerable<TItem> GetOrderedItems<TItem>(
+        IEnumerable<TItem> items,
+        Func<TItem, string?> selectOwnerId,
+        string relationshipName,
+        Func<TItem, string?> selectOrdinal,
+        string ownerId) where TItem : class =>
+        index.GetOrderedByRelatedId(items, selectOwnerId, relationshipName, selectOrdinal, ownerId);
 
     private sealed class MetaTransformScriptSqlModelIndex
     {
@@ -66,151 +50,90 @@ internal sealed partial class MetaTransformScriptSqlEmitter
         private readonly Dictionary<object, Dictionary<string, object>> rowsByRelatedId = new(ReferenceEqualityComparer.Instance);
         private readonly Dictionary<object, Dictionary<string, object>> orderedRowsByRelatedId = new(ReferenceEqualityComparer.Instance);
 
-        public T? FindById<T>(IEnumerable<T> rows, string id) where T : class
+        public T? FindById<T>(IEnumerable<T> rows, Func<T, string?> selectId, string id) where T : class
         {
             if (!rowsById.TryGetValue(rows, out var boxedIndex))
             {
                 var built = new Dictionary<string, T>(StringComparer.Ordinal);
                 foreach (var row in rows)
                 {
-                    built.TryAdd(GetString(row, "Id"), row);
+                    built.TryAdd(selectId(row) ?? string.Empty, row);
                 }
 
                 boxedIndex = built;
                 rowsById.Add(rows, boxedIndex);
             }
 
-            var typedIndex = (IReadOnlyDictionary<string, T>)boxedIndex;
-            return typedIndex.GetValueOrDefault(id);
+            return ((IReadOnlyDictionary<string, T>)boxedIndex).GetValueOrDefault(id);
         }
 
         public T? FindByRelatedId<T>(
             IEnumerable<T> rows,
-            string propertyName,
-            string relatedId)
-            where T : class
-        {
-            var typedIndex = GetOrCreateRelatedIndex(rows, propertyName);
-            return typedIndex.GetValueOrDefault(relatedId);
-        }
+            Func<T, string?> selectRelatedId,
+            string relationshipName,
+            string relatedId) where T : class =>
+            GetOrCreateRelatedIndex(rows, selectRelatedId, relationshipName).GetValueOrDefault(relatedId);
 
         public IReadOnlyList<T> GetOrderedByRelatedId<T>(
             IEnumerable<T> rows,
-            string propertyName,
-            string relatedId)
-            where T : class
+            Func<T, string?> selectRelatedId,
+            string relationshipName,
+            Func<T, string?> selectOrdinal,
+            string relatedId) where T : class
         {
-            if (!orderedRowsByRelatedId.TryGetValue(rows, out var indexesByProperty))
+            if (!orderedRowsByRelatedId.TryGetValue(rows, out var indexesByRelationship))
             {
-                indexesByProperty = new Dictionary<string, object>(StringComparer.Ordinal);
-                orderedRowsByRelatedId.Add(rows, indexesByProperty);
+                indexesByRelationship = new Dictionary<string, object>(StringComparer.Ordinal);
+                orderedRowsByRelatedId.Add(rows, indexesByRelationship);
             }
 
-            if (!indexesByProperty.TryGetValue(propertyName, out var boxedIndex))
+            if (!indexesByRelationship.TryGetValue(relationshipName, out var boxedIndex))
             {
                 var built = rows
-                    .GroupBy(row => GetRelatedId(row, propertyName), StringComparer.Ordinal)
+                    .GroupBy(row => selectRelatedId(row) ?? string.Empty, StringComparer.Ordinal)
                     .ToDictionary(
                         static group => group.Key,
-                        static group => (IReadOnlyList<T>)group
-                            .OrderBy(row => ParseOrdinal(GetString(row, "Ordinal")))
+                        group => (IReadOnlyList<T>)group
+                            .OrderBy(row => ParseOrdinal(selectOrdinal(row)))
                             .ToArray(),
                         StringComparer.Ordinal);
                 boxedIndex = built;
-                indexesByProperty.Add(propertyName, boxedIndex);
+                indexesByRelationship.Add(relationshipName, boxedIndex);
             }
 
-            var typedIndex = (IReadOnlyDictionary<string, IReadOnlyList<T>>)boxedIndex;
-            return typedIndex.GetValueOrDefault(relatedId) ?? [];
+            return ((IReadOnlyDictionary<string, IReadOnlyList<T>>)boxedIndex).GetValueOrDefault(relatedId) ?? [];
         }
 
         private IReadOnlyDictionary<string, T> GetOrCreateRelatedIndex<T>(
             IEnumerable<T> rows,
-            string propertyName)
-            where T : class
+            Func<T, string?> selectRelatedId,
+            string relationshipName) where T : class
         {
-            if (!rowsByRelatedId.TryGetValue(rows, out var indexesByProperty))
+            if (!rowsByRelatedId.TryGetValue(rows, out var indexesByRelationship))
             {
-                indexesByProperty = new Dictionary<string, object>(StringComparer.Ordinal);
-                rowsByRelatedId.Add(rows, indexesByProperty);
+                indexesByRelationship = new Dictionary<string, object>(StringComparer.Ordinal);
+                rowsByRelatedId.Add(rows, indexesByRelationship);
             }
 
-            if (!indexesByProperty.TryGetValue(propertyName, out var boxedIndex))
+            // The compiler-checked relationship name partitions caches; access uses the typed selector.
+            if (!indexesByRelationship.TryGetValue(relationshipName, out var boxedIndex))
             {
                 var built = new Dictionary<string, T>(StringComparer.Ordinal);
                 foreach (var row in rows)
                 {
-                    built.TryAdd(GetRelatedId(row, propertyName), row);
+                    built.TryAdd(selectRelatedId(row) ?? string.Empty, row);
                 }
 
                 boxedIndex = built;
-                indexesByProperty.Add(propertyName, boxedIndex);
+                indexesByRelationship.Add(relationshipName, boxedIndex);
             }
 
             return (IReadOnlyDictionary<string, T>)boxedIndex;
         }
     }
 
-    private static string GetString(object target, string propertyName) =>
-        (string?)target.GetType().GetProperty(propertyName)?.GetValue(target) ?? string.Empty;
-
-    private static string GetRelatedId(object target, string propertyName)
-    {
-        var related = target.GetType().GetProperty(propertyName)?.GetValue(target);
-        return related is null ? string.Empty : GetString(related, "Id");
-    }
-
     private static int ParseOrdinal(string? ordinal) =>
         int.TryParse(ordinal, NumberStyles.Integer, CultureInfo.InvariantCulture, out var value) ? value : 0;
-
-    private static string? ResolveOwnerProperty(Type type)
-    {
-        return OwnerPropertyByType.GetOrAdd(type, static key =>
-        {
-            var referenceProperties = key.GetProperties()
-                .Select(property => property.Name)
-                .Where(name => IsReferenceProperty(key, name))
-                .ToArray();
-
-            if (referenceProperties.Length == 0)
-            {
-                return null;
-            }
-
-            if (referenceProperties.Length == 1)
-            {
-                return referenceProperties[0];
-            }
-
-            foreach (var candidate in referenceProperties.OrderByDescending(static value => value.Length))
-            {
-                if (key.Name.StartsWith(candidate, StringComparison.Ordinal))
-                {
-                    return candidate;
-                }
-            }
-
-            return referenceProperties[0];
-        });
-    }
-
-    private static string? ResolveBaseProperty(Type type)
-    {
-        return BasePropertyByType.GetOrAdd(type, static key =>
-        {
-            return key.GetProperties()
-                .Select(property => property.Name)
-                .FirstOrDefault(name => IsReferenceProperty(key, name));
-        });
-    }
-
-    private static bool IsReferenceProperty(Type ownerType, string propertyName)
-    {
-        var property = ownerType.GetProperty(propertyName);
-        return property is not null &&
-               property.PropertyType != typeof(string) &&
-               property.PropertyType.GetProperty("Id") is not null;
-    }
 
     private static bool IsTrue(string? value) =>
         string.Equals(value, "true", StringComparison.OrdinalIgnoreCase);

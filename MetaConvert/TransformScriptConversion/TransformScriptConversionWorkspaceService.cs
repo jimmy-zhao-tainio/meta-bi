@@ -1,5 +1,6 @@
 using Meta.Integration;
 using MetaDataType;
+using MetaDataType.Core;
 using MetaDataTypeConversion;
 using MetaDataTypeConversion.Core;
 using MetaSchema;
@@ -23,11 +24,11 @@ public sealed class TransformScriptConversionWorkspaceService
         ArgumentNullException.ThrowIfNull(request);
         EnsureSeparateOutput(request.OutputWorkspace, [request.InputWorkspace, request.DataTypeWorkspace, request.ConversionWorkspace, .. request.SourceSchemaWorkspaces]);
         var result = Convert(
-            TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(request.InputWorkspace, searchUpward: false),
-            TypedWorkspaceModelMapper.Load<MetaDataTypeModel>(request.DataTypeWorkspace, searchUpward: false),
-            TypedWorkspaceModelMapper.Load<MetaDataTypeConversionModel>(request.ConversionWorkspace, searchUpward: false),
-            request.SourceSchemaWorkspaces.Select(path => TypedWorkspaceModelMapper.Load<MetaSchemaModel>(path, searchUpward: false)).ToArray());
-        TypedWorkspaceModelMapper.Create(result.Model, Path.GetFullPath(request.OutputWorkspace), "xml");
+            MetaTransformScriptInstance.LoadFromWorkspace(request.InputWorkspace),
+            MetaDataTypeWorkspaceProvider.LoadOrDefault(request.DataTypeWorkspace),
+            MetaDataTypeConversionWorkspaceProvider.LoadOrDefault(request.ConversionWorkspace),
+            request.SourceSchemaWorkspaces.Select(path => TypedWorkspaceModelMapper.Load(path, new MetaSchemaWorkspaceBinding())).ToArray());
+        TypedWorkspaceModelMapper.Create(result.Model, MetaTransformScriptModels.LoadContract(), new MetaTransformScriptWorkspaceBinding(), Path.GetFullPath(request.OutputWorkspace), "xml");
         return new(Path.GetFullPath(request.OutputWorkspace), result.ScriptCount, result.ConvertedReferenceCount);
     }
 
@@ -46,8 +47,9 @@ public sealed class TransformScriptConversionWorkspaceService
         foreach (var schema in source) types.Validate(schema);
         if (input.TransformScriptList.Count == 0) throw new InvalidOperationException("The input workspace contains no TransformScripts.");
         var syntax = new MetaTransformScriptSqlService();
-        var model = TypedWorkspaceModelMapper.FromInMemoryWorkspace(
-            TypedWorkspaceModelMapper.ToInMemoryWorkspace(input), MetaTransformScriptModel.CreateEmpty);
+        var binding = new MetaTransformScriptWorkspaceBinding();
+        var contract = MetaTransformScriptModels.LoadContract();
+        var model = binding.Read(binding.Write(input, contract));
         // Expand implicit physical reads using Binding's resolved star evidence, not alias guesses.
         foreach (var script in model.TransformScriptList)
         {
@@ -101,7 +103,7 @@ public sealed class TransformScriptConversionWorkspaceService
         // Only original source references are selected. Inserted snippet references are never rewritten again.
         foreach (var edit in edits)
             syntax.ReplaceColumnReference(model, model.ColumnReferenceExpressionList.Single(row => row.Id == edit.Key), edit.Value.Sql, edit.Value.Column);
-        _ = TypedWorkspaceModelMapper.ToInMemoryWorkspace(model); // Prove graph integrity before materializing output.
+        _ = binding.Write(model, contract); // Prove graph integrity before materializing output.
         return new(model, model.TransformScriptList.Count, edits.Count);
     }
 

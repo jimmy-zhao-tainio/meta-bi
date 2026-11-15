@@ -40,6 +40,8 @@ public sealed partial class MetaTransformScriptSqlService
             Directory.CreateDirectory(workspaceFullPath);
             await Meta.Integration.TypedWorkspaceModelMapper.CreateAsync(
                     result.Model,
+                    MetaTransformScriptModels.LoadContract(),
+                    new MTS.MetaTransformScriptWorkspaceBinding(),
                     workspaceFullPath,
                     "xml",
                     cancellationToken: cancellationToken)

@@ -7,7 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="Meta.TypedModels" Version="$(MetaFoundationPackageVersion)" />
     <Compile Include="..\Workspace\MetaDataType.meta.cs" Link="MetaDataType.meta.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\Workspace\**\*">
+      <Link>Workspaces\MetaDataType\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+      <PackagePath>contentFiles\any\any\Workspaces\MetaDataType\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Package\MetaDataType.Core.targets" Pack="true" PackagePath="buildTransitive\MetaDataType.Core.targets" />
   </ItemGroup>
 
 </Project>

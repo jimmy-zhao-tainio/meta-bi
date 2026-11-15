@@ -6,22 +6,19 @@ using MetaDataType.Core;
 internal sealed class MetaDataTypeCommandHandlers
 {
     private readonly ConsolePresenter presenter;
-    private readonly MetaDataTypeWorkspaceService service;
 
     public MetaDataTypeCommandHandlers(
-        ConsolePresenter presenter,
-        MetaDataTypeWorkspaceService service)
+        ConsolePresenter presenter)
     {
         this.presenter = presenter;
-        this.service = service;
     }
 
     public async Task RunCreate(
         MetaCliInvocation invocation,
         MetaCliWorkspaces workspaces)
     {
-        var model = service.CreateWorkspace();
-        await workspaces.CreateAsync("output", model).ConfigureAwait(false);
+        var state = await MetaDataTypeWorkspaceProvider.LoadDefaultStateAsync().ConfigureAwait(false);
+        await workspaces.CreateAsync("output", state).ConfigureAwait(false);
 
         presenter.WriteKeyValueBlock(
             "MetaDataType workspace created",
@@ -29,8 +26,8 @@ internal sealed class MetaDataTypeCommandHandlers
             {
                 ("Path", MetaCliWorkspace.OutputLocation(invocation)),
                 ("Model", "MetaDataType"),
-                ("DataTypeSystems", model.DataTypeSystemList.Count.ToString()),
-                ("DataTypes", model.DataTypeList.Count.ToString())
+                ("DataTypeSystems", state.Instance.RecordsByEntity["DataTypeSystem"].Count.ToString()),
+                ("DataTypes", state.Instance.RecordsByEntity["DataType"].Count.ToString())
             });
     }
 

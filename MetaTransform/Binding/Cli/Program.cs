@@ -26,7 +26,7 @@ internal static class Program
             AppName);
 
         Environment.ExitCode = 0;
-        var runtime = new MetaCliRuntime<MetaTransformBindingModel>(CommandWorkspacePath, ApplicationId)
+        var runtime = new MetaCliRuntime<MetaTransformBindingModel>(CommandWorkspacePath, new MetaTransformBindingWorkspaceBinding(), ApplicationId)
             .UseDefaultHelp()
             .Bind(
                 "exec-bind",

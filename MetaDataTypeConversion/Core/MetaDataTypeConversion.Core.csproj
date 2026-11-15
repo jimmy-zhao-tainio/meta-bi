@@ -21,6 +21,10 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Package\MetaDataTypeConversion.Core.targets" Pack="true" PackagePath="buildTransitive\MetaDataTypeConversion.Core.targets" />
+  </ItemGroup>
+
 </Project>
 
 

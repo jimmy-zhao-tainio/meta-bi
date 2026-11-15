@@ -1,0 +1,21 @@
+<Project>
+  <ItemGroup>
+    <_MetaSchemaPackagedWorkspace Include="$(MSBuildThisFileDirectory)../contentFiles/any/any/Workspaces/MetaSchema/**/*" />
+  </ItemGroup>
+
+  <Target Name="CopyMetaSchemaPackagedWorkspaceToOutput"
+          AfterTargets="CopyFilesToOutputDirectory"
+          Condition="'$(DesignTimeBuild)' != 'true'">
+    <Copy SourceFiles="@(_MetaSchemaPackagedWorkspace)"
+          DestinationFiles="@(_MetaSchemaPackagedWorkspace -> '$(OutDir)Workspaces/MetaSchema/%(RecursiveDir)%(Filename)%(Extension)')"
+          SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="CopyMetaSchemaPackagedWorkspaceToPublish"
+          AfterTargets="Publish"
+          Condition="'$(DesignTimeBuild)' != 'true' and '$(PublishDir)' != ''">
+    <Copy SourceFiles="@(_MetaSchemaPackagedWorkspace)"
+          DestinationFiles="@(_MetaSchemaPackagedWorkspace -> '$(PublishDir)Workspaces/MetaSchema/%(RecursiveDir)%(Filename)%(Extension)')"
+          SkipUnchangedFiles="true" />
+  </Target>
+</Project>

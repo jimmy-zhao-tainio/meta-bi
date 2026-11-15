@@ -25,7 +25,7 @@ internal static class Program
             AppName);
 
         Environment.ExitCode = 0;
-        var runtime = new MetaCliRuntime<MetaSchemaModel>(CommandWorkspacePath, ApplicationId)
+        var runtime = new MetaCliRuntime<MetaSchemaModel>(CommandWorkspacePath, new MetaSchemaWorkspaceBinding(), ApplicationId)
             .UseDefaultHelp()
             .Bind(
                 "exec-extract-sqlserver",
