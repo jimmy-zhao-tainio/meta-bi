@@ -2,7 +2,7 @@
 <MetaWeave>
   <DirectionRelationList>
     <DirectionRelation Id="forward/ImplementationSchemas" DirectionId="forward" SelectStatementId="SelectStatement:2" />
-    <DirectionRelation Id="forward/LoweredTypes" DirectionId="forward" SelectStatementId="SelectStatement:30" />
+    <DirectionRelation Id="forward/LoweredTypes" DirectionId="forward" SelectStatementId="SelectStatement:36" />
     <DirectionRelation Id="forward/RawColumnCandidates" DirectionId="forward" SelectStatementId="SelectStatement:8" />
     <DirectionRelation Id="forward/RawColumnDetails" DirectionId="forward" SelectStatementId="SelectStatement:13" />
     <DirectionRelation Id="forward/RawColumns" DirectionId="forward" SelectStatementId="SelectStatement:32" />

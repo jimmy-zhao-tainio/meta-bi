@@ -5,7 +5,7 @@ public static partial class MetaTransformScriptInstance
     public static MetaTransformScriptModel LoadFromWorkspace(string workspacePath, bool searchUpward = false)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
-        return Meta.Integration.TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(workspacePath, searchUpward);
+        return Meta.Integration.TypedWorkspaceModelMapper.Load(workspacePath, new MetaTransformScriptWorkspaceBinding(), searchUpward);
     }
 
     public static Task<MetaTransformScriptModel> LoadFromWorkspaceAsync(
@@ -14,8 +14,9 @@ public static partial class MetaTransformScriptInstance
         CancellationToken cancellationToken = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
-        return Meta.Integration.TypedWorkspaceModelMapper.LoadAsync<MetaTransformScriptModel>(
+        return Meta.Integration.TypedWorkspaceModelMapper.LoadAsync(
             workspacePath,
+            new MetaTransformScriptWorkspaceBinding(),
             searchUpward,
             cancellationToken);
     }
@@ -24,7 +25,7 @@ public static partial class MetaTransformScriptInstance
     {
         ArgumentNullException.ThrowIfNull(model);
         ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
-        Meta.Integration.TypedWorkspaceModelMapper.Save(model, workspacePath);
+        Meta.Integration.TypedWorkspaceModelMapper.Save(model, workspacePath, new MetaTransformScriptWorkspaceBinding());
     }
 
     public static Task SaveToWorkspaceAsync(
@@ -34,6 +35,6 @@ public static partial class MetaTransformScriptInstance
     {
         ArgumentNullException.ThrowIfNull(model);
         ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
-        return Meta.Integration.TypedWorkspaceModelMapper.SaveAsync(model, workspacePath, cancellationToken);
+        return Meta.Integration.TypedWorkspaceModelMapper.SaveAsync(model, workspacePath, new MetaTransformScriptWorkspaceBinding(), cancellationToken);
     }
 }

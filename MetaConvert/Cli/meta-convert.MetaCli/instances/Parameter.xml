@@ -57,6 +57,18 @@
       <Description>Source workspace path. Defaults to the current directory.</Description>
       <Name>workspace</Name>
     </Parameter>
+    <Parameter Id="param-business-datavault-to-sql-data-type-conversion-workspace" ValueShapeId="shape-path">
+      <Description>Selected MetaDataTypeConversion workspace. Defaults to the packaged workspace.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>data-type-conversion-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-business-datavault-to-sql-data-type-workspace" ValueShapeId="shape-path">
+      <Description>Selected MetaDataType workspace. Defaults to the packaged workspace.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>data-type-workspace</Name>
+    </Parameter>
     <Parameter Id="param-business-datavault-to-sql-database-name" ValueShapeId="shape-text">
       <Description>Target MetaSql database name.</Description>
       <IsRequired>true</IsRequired>
@@ -104,6 +116,18 @@
       <Description>Source workspace path. Defaults to the current directory.</Description>
       <Name>workspace</Name>
     </Parameter>
+    <Parameter Id="param-data-warehouse-to-sql-data-type-conversion-workspace" ValueShapeId="shape-path">
+      <Description>Selected MetaDataTypeConversion workspace. Defaults to the packaged workspace.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>data-type-conversion-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-data-warehouse-to-sql-data-type-workspace" ValueShapeId="shape-path">
+      <Description>Selected MetaDataType workspace. Defaults to the packaged workspace.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>data-type-workspace</Name>
+    </Parameter>
     <Parameter Id="param-data-warehouse-to-sql-database-name" ValueShapeId="shape-text">
       <Description>Target MetaSql database name.</Description>
       <IsRequired>true</IsRequired>
@@ -141,6 +165,18 @@
     <Parameter Id="param-data-warehouse-to-sql-workspace" ValueShapeId="shape-path">
       <Description>Source workspace path. Defaults to the current directory.</Description>
       <Name>workspace</Name>
+    </Parameter>
+    <Parameter Id="param-raw-datavault-to-sql-data-type-conversion-workspace" ValueShapeId="shape-path">
+      <Description>Selected MetaDataTypeConversion workspace. Defaults to the packaged workspace.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>data-type-conversion-workspace</Name>
+    </Parameter>
+    <Parameter Id="param-raw-datavault-to-sql-data-type-workspace" ValueShapeId="shape-path">
+      <Description>Selected MetaDataType workspace. Defaults to the packaged workspace.</Description>
+      <IsRepeatable>false</IsRepeatable>
+      <IsRequired>false</IsRequired>
+      <Name>data-type-workspace</Name>
     </Parameter>
     <Parameter Id="param-raw-datavault-to-sql-database-name" ValueShapeId="shape-text">
       <Description>Target MetaSql database name.</Description>

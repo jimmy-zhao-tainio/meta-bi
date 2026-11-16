@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Package\MetaConvert.DataQualityToSql.targets" Pack="true" PackagePath="buildTransitive\MetaConvert.DataQualityToSql.targets" />
     <Content Include="..\Weaves\DataQualityToSql\**\*">
       <Link>Weaves\DataQualityToSql\%(RecursiveDir)%(Filename)%(Extension)</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -22,9 +23,8 @@
       <PackagePath>contentFiles\any\any\Weaves\DataQualityToSql\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
       <PackageCopyToOutput>true</PackageCopyToOutput>
     </Content>
-    <EmbeddedResource Include="MetaDQ.Operational.sql">
-      <LogicalName>MetaConvert.DataQualityToSql.MetaDQ.Operational.sql</LogicalName>
-    </EmbeddedResource>
+    <Content Include="MetaDQ.Operational.sql" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest"
+             Pack="true" PackagePath="contentFiles\any\any\MetaDQ.Operational.sql" PackageCopyToOutput="true" />
   </ItemGroup>
 
 </Project>

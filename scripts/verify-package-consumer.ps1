@@ -159,7 +159,7 @@ Assert-PackageDependencies 'Meta.Integration' @(
     'Meta.Surfaces.CSharp', 'Meta.Surfaces.Sql', 'Meta.TypedModels', 'Microsoft.Data.SqlClient')
 Assert-PackageDependencies 'MetaCli.Model' @()
 Assert-PackageDependencies 'MetaCli.Core' @(
-    'Meta.Integration', 'Meta.Operations', 'Meta.Surfaces', 'MetaCli.Model')
+    'Meta.Integration', 'Meta.Operations', 'Meta.Surfaces', 'Meta.TypedModels', 'MetaCli.Model')
 Assert-PackageDependencies 'MetaWeave.Model' @()
 Assert-PackageDependencies 'MetaWeaveScript.Execution' @(
     'Meta.Operations', 'MetaWeave.Model')

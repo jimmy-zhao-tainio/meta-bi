@@ -1,6 +1,5 @@
 using Microsoft.Data.SqlClient;
-using MetaDataType;
-using Meta.Integration;
+using MetaDataType.Core;
 using MetaSchema;
 using System.Data;
 using System.Globalization;
@@ -36,8 +35,7 @@ public sealed class SqlServerBulkCopyRowStreamWriter : IPipelineRowStreamWriter,
             throw new MetaPipelineConfigurationException("SQL Server bulk copy requires the SqlServer type system.");
         this.timeoutSeconds = timeoutSeconds;
         Shape = shape;
-        var catalog = string.IsNullOrWhiteSpace(dataTypeWorkspacePath) ? MetaDataTypeInstance.BuiltIn
-            : TypedWorkspaceModelMapper.Load<MetaDataTypeModel>(Path.GetFullPath(dataTypeWorkspacePath), searchUpward: false);
+        var catalog = MetaDataTypeWorkspaceProvider.LoadOrDefault(dataTypeWorkspacePath);
         var validator = new SqlServerSchemaTypeValidator(catalog);
         columnTypes = Shape.Columns.Select(column => ResolveColumnClrType(column, validator)).ToArray();
         destinationTableName = SqlServerMultipartIdentifier.Parse(targetSqlIdentifier).RenderBracketQuoted();

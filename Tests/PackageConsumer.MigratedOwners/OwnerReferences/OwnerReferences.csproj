@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <PackageId>MetaBi.PackageConsumer.MigratedOwnerReferences</PackageId>
+    <Description>Test-only bridge for verifying transitive delivery of migrated BI owner packages.</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MetaDataType.Core" Version="$(MetaBiConsumerVersion)" />
+    <PackageReference Include="MetaDataTypeConversion.Core" Version="$(MetaBiConsumerVersion)" />
+    <PackageReference Include="MetaSchema.Core" Version="$(MetaBiConsumerVersion)" />
+    <PackageReference Include="MetaDataVault.Core" Version="$(MetaBiConsumerVersion)" />
+    <PackageReference Include="MetaDataWarehouse.Core" Version="$(MetaBiConsumerVersion)" />
+    <PackageReference Include="MetaAnalytics.Core" Version="$(MetaBiConsumerVersion)" />
+    <PackageReference Include="MetaTabular.Core" Version="$(MetaBiConsumerVersion)" />
+    <PackageReference Include="MetaMultiDimensional.Core" Version="$(MetaBiConsumerVersion)" />
+    <PackageReference Include="MetaPipeline.Core" Version="$(MetaBiConsumerVersion)" />
+    <PackageReference Include="MetaOrchestration.Core" Version="$(MetaBiConsumerVersion)" />
+    <PackageReference Include="MetaDataQuality.Core" Version="$(MetaBiConsumerVersion)" />
+    <PackageReference Include="MetaTransformPattern.Core" Version="$(MetaBiConsumerVersion)" />
+    <PackageReference Include="MetaTransformPatternInstance.Core" Version="$(MetaBiConsumerVersion)" />
+    <PackageReference Include="MetaSqlScript.Core" Version="$(MetaBiConsumerVersion)" />
+    <PackageReference Include="MetaSql.Core" Version="$(MetaBiConsumerVersion)" />
+    <PackageReference Include="MetaTransformScript.Sql" Version="$(MetaBiConsumerVersion)" />
+    <PackageReference Include="MetaTransform.Binding" Version="$(MetaBiConsumerVersion)" />
+  </ItemGroup>
+</Project>

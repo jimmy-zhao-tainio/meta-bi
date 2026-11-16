@@ -1,12 +1,9 @@
-using System.Collections.Concurrent;
 using System.Globalization;
 
 namespace MetaTransformScript;
 
 public sealed partial class TransformScriptNavigator
 {
-    private static readonly ConcurrentDictionary<Type, string?> OwnerPropertyByType = new();
-
     private readonly MetaTransformScriptModel model;
     private readonly IReadOnlyDictionary<string, TransformScriptStatementLink> scriptStatementLinkByOwnerId;
     private readonly IReadOnlyDictionary<string, List<TransformScriptFunctionParametersItem>> scriptFunctionParametersByOwnerId;
@@ -201,15 +198,15 @@ public sealed partial class TransformScriptNavigator
     {
         this.model = model;
         scriptStatementLinkByOwnerId = model.TransformScriptStatementLinkList.ToDictionary(item => item.TransformScript.Id, StringComparer.Ordinal);
-        scriptFunctionParametersByOwnerId = GroupByOwner(model.TransformScriptFunctionParametersItemList);
+        scriptFunctionParametersByOwnerId = GroupByOwner(model.TransformScriptFunctionParametersItemList, static item => item.TransformScript?.Id ?? string.Empty);
         scriptObjectViewByOwnerId = model.ScriptObjectViewList.ToDictionary(item => item.TransformScript.Id, StringComparer.Ordinal);
         scriptObjectTvfByOwnerId = model.ScriptObjectTVFList.ToDictionary(item => item.TransformScript.Id, StringComparer.Ordinal);
         scriptObjectScalarFunctionByOwnerId = model.ScriptObjectScalarFunctionList.ToDictionary(item => item.TransformScript.Id, StringComparer.Ordinal);
         scriptObjectStoredProcedureByOwnerId = model.ScriptObjectStoredProcedureList.ToDictionary(item => item.TransformScript.Id, StringComparer.Ordinal);
-        storedProcedureContractsByOwnerId = GroupByOwner(model.StoredProcedureContractList);
-        storedProcedureOperationsByContractId = GroupByOwner(model.StoredProcedureContractOperationList);
-        storedProcedureResultRowsetsByOwnerId = GroupByOwner(model.StoredProcedureResultRowsetItemList);
-        storedProcedureResultColumnsByOwnerId = GroupByOwner(model.StoredProcedureResultColumnItemList);
+        storedProcedureContractsByOwnerId = GroupByOwner(model.StoredProcedureContractList, static item => item.ScriptObjectStoredProcedure?.Id ?? string.Empty);
+        storedProcedureOperationsByContractId = GroupByOwner(model.StoredProcedureContractOperationList, static item => item.StoredProcedureContract?.Id ?? string.Empty);
+        storedProcedureResultRowsetsByOwnerId = GroupByOwner(model.StoredProcedureResultRowsetItemList, static item => item.StoredProcedureContract?.Id ?? string.Empty);
+        storedProcedureResultColumnsByOwnerId = GroupByOwner(model.StoredProcedureResultColumnItemList, static item => item.StoredProcedureResultRowsetItem?.Id ?? string.Empty);
         selectStatementById = model.SelectStatementList.ToDictionary(item => item.Id, StringComparer.Ordinal);
         selectStatementByStatementWithCtesId = model.SelectStatementList.ToDictionary(item => item.StatementWithCtesAndXmlNamespaces.Id, StringComparer.Ordinal);
         selectStatementQueryExpressionLinkByOwnerId = model.SelectStatementQueryExpressionLinkList.ToDictionary(item => item.SelectStatement.Id, StringComparer.Ordinal);
@@ -235,11 +232,11 @@ public sealed partial class TransformScriptNavigator
         truncateStatementTargetLinkByOwnerId = model.TruncateStatementTargetLinkList.ToDictionary(item => item.TruncateStatement.Id, StringComparer.Ordinal);
         statementWithCtesLinkByOwnerId = model.StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkList.ToDictionary(item => item.StatementWithCtesAndXmlNamespaces.Id, StringComparer.Ordinal);
         withCtesAndXmlNamespacesById = model.WithCtesAndXmlNamespacesList.ToDictionary(item => item.Id, StringComparer.Ordinal);
-        commonTableExpressionsByWithClauseOwnerId = GroupByOwner(model.WithCtesAndXmlNamespacesCommonTableExpressionsItemList);
+        commonTableExpressionsByWithClauseOwnerId = GroupByOwner(model.WithCtesAndXmlNamespacesCommonTableExpressionsItemList, static item => item.WithCtesAndXmlNamespaces?.Id ?? string.Empty);
         commonTableExpressionById = model.CommonTableExpressionList.ToDictionary(item => item.Id, StringComparer.Ordinal);
         commonTableExpressionNameLinkByOwnerId = model.CommonTableExpressionExpressionNameLinkList.ToDictionary(item => item.CommonTableExpression.Id, StringComparer.Ordinal);
         commonTableExpressionQueryExpressionLinkByOwnerId = model.CommonTableExpressionQueryExpressionLinkList.ToDictionary(item => item.CommonTableExpression.Id, StringComparer.Ordinal);
-        commonTableExpressionColumnsByOwnerId = GroupByOwner(model.CommonTableExpressionColumnsItemList);
+        commonTableExpressionColumnsByOwnerId = GroupByOwner(model.CommonTableExpressionColumnsItemList, static item => item.CommonTableExpression?.Id ?? string.Empty);
         querySpecificationByQueryExpressionId = model.QuerySpecificationList.ToDictionary(item => item.QueryExpression.Id, StringComparer.Ordinal);
         binaryQueryExpressionByQueryExpressionId = model.BinaryQueryExpressionList.ToDictionary(item => item.QueryExpression.Id, StringComparer.Ordinal);
         queryParenthesisExpressionByQueryExpressionId = model.QueryParenthesisExpressionList.ToDictionary(item => item.QueryExpression.Id, StringComparer.Ordinal);
@@ -248,10 +245,10 @@ public sealed partial class TransformScriptNavigator
         binaryQueryExpressionSecondQueryExpressionLinkByOwnerId = model.BinaryQueryExpressionSecondQueryExpressionLinkList.ToDictionary(item => item.BinaryQueryExpression.Id, StringComparer.Ordinal);
         fromClauseLinkByOwnerId = model.QuerySpecificationFromClauseLinkList.ToDictionary(item => item.QuerySpecification.Id, StringComparer.Ordinal);
         fromClauseById = model.FromClauseList.ToDictionary(item => item.Id, StringComparer.Ordinal);
-        fromClauseTableReferencesByOwnerId = GroupByOwner(model.FromClauseTableReferencesItemList);
+        fromClauseTableReferencesByOwnerId = GroupByOwner(model.FromClauseTableReferencesItemList, static item => item.FromClause?.Id ?? string.Empty);
         groupByClauseLinkByOwnerId = model.QuerySpecificationGroupByClauseLinkList.ToDictionary(item => item.QuerySpecification.Id, StringComparer.Ordinal);
         groupByClauseById = model.GroupByClauseList.ToDictionary(item => item.Id, StringComparer.Ordinal);
-        groupingSpecificationsByGroupByClauseOwnerId = GroupByOwner(model.GroupByClauseGroupingSpecificationsItemList);
+        groupingSpecificationsByGroupByClauseOwnerId = GroupByOwner(model.GroupByClauseGroupingSpecificationsItemList, static item => item.GroupByClause?.Id ?? string.Empty);
         groupingSpecificationById = model.GroupingSpecificationList.ToDictionary(item => item.Id, StringComparer.Ordinal);
         expressionGroupingSpecificationByBaseId = model.ExpressionGroupingSpecificationList.ToDictionary(item => item.GroupingSpecification.Id, StringComparer.Ordinal);
         expressionGroupingSpecificationExpressionLinkByOwnerId = model.ExpressionGroupingSpecificationExpressionLinkList.ToDictionary(item => item.ExpressionGroupingSpecification.Id, StringComparer.Ordinal);
@@ -265,20 +262,20 @@ public sealed partial class TransformScriptNavigator
         tableReferenceWithAliasByTableReferenceId = model.TableReferenceWithAliasList.ToDictionary(item => item.TableReference.Id, StringComparer.Ordinal);
         tableReferenceAliasLinkByOwnerId = model.TableReferenceWithAliasAliasLinkList.ToDictionary(item => item.TableReferenceWithAlias.Id, StringComparer.Ordinal);
         tableReferenceWithAliasAndColumnsByBaseId = model.TableReferenceWithAliasAndColumnsList.ToDictionary(item => item.TableReferenceWithAlias.Id, StringComparer.Ordinal);
-        tableReferenceWithAliasAndColumnsColumnsByOwnerId = GroupByOwner(model.TableReferenceWithAliasAndColumnsColumnsItemList);
+        tableReferenceWithAliasAndColumnsColumnsByOwnerId = GroupByOwner(model.TableReferenceWithAliasAndColumnsColumnsItemList, static item => item.TableReferenceWithAliasAndColumns?.Id ?? string.Empty);
         namedTableReferenceByAliasBaseId = model.NamedTableReferenceList.ToDictionary(item => item.TableReferenceWithAlias.Id, StringComparer.Ordinal);
         queryDerivedTableByBaseId = model.QueryDerivedTableList.ToDictionary(item => item.TableReferenceWithAliasAndColumns.Id, StringComparer.Ordinal);
         queryDerivedTableQueryExpressionLinkByOwnerId = model.QueryDerivedTableQueryExpressionLinkList.ToDictionary(item => item.QueryDerivedTable.Id, StringComparer.Ordinal);
         inlineDerivedTableByBaseId = model.InlineDerivedTableList.ToDictionary(item => item.TableReferenceWithAliasAndColumns.Id, StringComparer.Ordinal);
-        inlineDerivedTableRowValuesByOwnerId = GroupByOwner(model.InlineDerivedTableRowValuesItemList);
+        inlineDerivedTableRowValuesByOwnerId = GroupByOwner(model.InlineDerivedTableRowValuesItemList, static item => item.InlineDerivedTable?.Id ?? string.Empty);
         rowValueById = model.RowValueList.ToDictionary(item => item.Id, StringComparer.Ordinal);
-        rowValueColumnValuesByOwnerId = GroupByOwner(model.RowValueColumnValuesItemList);
+        rowValueColumnValuesByOwnerId = GroupByOwner(model.RowValueColumnValuesItemList, static item => item.RowValue?.Id ?? string.Empty);
         globalFunctionTableReferenceByBaseId = model.GlobalFunctionTableReferenceList.ToDictionary(item => item.TableReferenceWithAlias.Id, StringComparer.Ordinal);
         globalFunctionTableReferenceNameLinkByOwnerId = model.GlobalFunctionTableReferenceNameLinkList.ToDictionary(item => item.GlobalFunctionTableReference.Id, StringComparer.Ordinal);
-        globalFunctionTableReferenceParametersByOwnerId = GroupByOwner(model.GlobalFunctionTableReferenceParametersItemList);
+        globalFunctionTableReferenceParametersByOwnerId = GroupByOwner(model.GlobalFunctionTableReferenceParametersItemList, static item => item.GlobalFunctionTableReference?.Id ?? string.Empty);
         schemaObjectFunctionTableReferenceByBaseId = model.SchemaObjectFunctionTableReferenceList.ToDictionary(item => item.TableReferenceWithAliasAndColumns.Id, StringComparer.Ordinal);
         schemaObjectFunctionTableReferenceSchemaObjectLinkByOwnerId = model.SchemaObjectFunctionTableReferenceSchemaObjectLinkList.ToDictionary(item => item.SchemaObjectFunctionTableReference.Id, StringComparer.Ordinal);
-        schemaObjectFunctionTableReferenceParametersByOwnerId = GroupByOwner(model.SchemaObjectFunctionTableReferenceParametersItemList);
+        schemaObjectFunctionTableReferenceParametersByOwnerId = GroupByOwner(model.SchemaObjectFunctionTableReferenceParametersItemList, static item => item.SchemaObjectFunctionTableReference?.Id ?? string.Empty);
         namedTableReferenceSchemaObjectLinkByOwnerId = model.NamedTableReferenceSchemaObjectLinkList.ToDictionary(item => item.NamedTableReference.Id, StringComparer.Ordinal);
         namedTableReferenceTableSampleClauseLinkByOwnerId = model.NamedTableReferenceTableSampleClauseLinkList.ToDictionary(item => item.NamedTableReference.Id, StringComparer.Ordinal);
         tableSampleClauseById = model.TableSampleClauseList.ToDictionary(item => item.Id, StringComparer.Ordinal);
@@ -286,7 +283,7 @@ public sealed partial class TransformScriptNavigator
         tableSampleClauseRepeatSeedLinkByOwnerId = model.TableSampleClauseRepeatSeedLinkList.ToDictionary(item => item.TableSampleClause.Id, StringComparer.Ordinal);
         schemaObjectNameById = model.SchemaObjectNameList.ToDictionary(item => item.Id, StringComparer.Ordinal);
         multiPartIdentifierById = model.MultiPartIdentifierList.ToDictionary(item => item.Id, StringComparer.Ordinal);
-        multiPartIdentifierItemsByOwnerId = GroupByOwner(model.MultiPartIdentifierIdentifiersItemList);
+        multiPartIdentifierItemsByOwnerId = GroupByOwner(model.MultiPartIdentifierIdentifiersItemList, static item => item.MultiPartIdentifier?.Id ?? string.Empty);
         identifierById = model.IdentifierList.ToDictionary(item => item.Id, StringComparer.Ordinal);
         joinTableReferenceByTableReferenceId = model.JoinTableReferenceList.ToDictionary(item => item.TableReference.Id, StringComparer.Ordinal);
         joinParenthesisTableReferenceByTableReferenceId = model.JoinParenthesisTableReferenceList.ToDictionary(item => item.TableReference.Id, StringComparer.Ordinal);
@@ -295,7 +292,7 @@ public sealed partial class TransformScriptNavigator
         unqualifiedJoinByBaseId = model.UnqualifiedJoinList.ToDictionary(item => item.JoinTableReference.Id, StringComparer.Ordinal);
         joinFirstTableReferenceLinkByOwnerId = model.JoinTableReferenceFirstTableReferenceLinkList.ToDictionary(item => item.JoinTableReference.Id, StringComparer.Ordinal);
         joinSecondTableReferenceLinkByOwnerId = model.JoinTableReferenceSecondTableReferenceLinkList.ToDictionary(item => item.JoinTableReference.Id, StringComparer.Ordinal);
-        selectElementsByOwnerId = GroupByOwner(model.QuerySpecificationSelectElementsItemList);
+        selectElementsByOwnerId = GroupByOwner(model.QuerySpecificationSelectElementsItemList, static item => item.QuerySpecification?.Id ?? string.Empty);
         selectElementById = model.SelectElementList.ToDictionary(item => item.Id, StringComparer.Ordinal);
         selectScalarExpressionBySelectElementId = model.SelectScalarExpressionList.ToDictionary(item => item.SelectElement.Id, StringComparer.Ordinal);
         selectScalarExpressionLinkByOwnerId = model.SelectScalarExpressionExpressionLinkList.ToDictionary(item => item.SelectScalarExpression.Id, StringComparer.Ordinal);
@@ -320,14 +317,14 @@ public sealed partial class TransformScriptNavigator
         functionCallByPrimaryExpressionId = model.FunctionCallList.ToDictionary(item => item.PrimaryExpression.Id, StringComparer.Ordinal);
         functionCallFunctionNameLinkByOwnerId = model.FunctionCallFunctionNameLinkList.ToDictionary(item => item.FunctionCall.Id, StringComparer.Ordinal);
         functionCallOverClauseLinkByOwnerId = model.FunctionCallOverClauseLinkList.ToDictionary(item => item.FunctionCall.Id, StringComparer.Ordinal);
-        functionCallParametersByOwnerId = GroupByOwner(model.FunctionCallParametersItemList);
+        functionCallParametersByOwnerId = GroupByOwner(model.FunctionCallParametersItemList, static item => item.FunctionCall?.Id ?? string.Empty);
         leftFunctionCallByPrimaryExpressionId = model.LeftFunctionCallList.ToDictionary(item => item.PrimaryExpression.Id, StringComparer.Ordinal);
-        leftFunctionCallParametersByOwnerId = GroupByOwner(model.LeftFunctionCallParametersItemList);
+        leftFunctionCallParametersByOwnerId = GroupByOwner(model.LeftFunctionCallParametersItemList, static item => item.LeftFunctionCall?.Id ?? string.Empty);
         rightFunctionCallByPrimaryExpressionId = model.RightFunctionCallList.ToDictionary(item => item.PrimaryExpression.Id, StringComparer.Ordinal);
-        rightFunctionCallParametersByOwnerId = GroupByOwner(model.RightFunctionCallParametersItemList);
+        rightFunctionCallParametersByOwnerId = GroupByOwner(model.RightFunctionCallParametersItemList, static item => item.RightFunctionCall?.Id ?? string.Empty);
         parameterlessCallByPrimaryExpressionId = model.ParameterlessCallList.ToDictionary(item => item.PrimaryExpression.Id, StringComparer.Ordinal);
         coalesceExpressionByPrimaryExpressionId = model.CoalesceExpressionList.ToDictionary(item => item.PrimaryExpression.Id, StringComparer.Ordinal);
-        coalesceExpressionExpressionsByOwnerId = GroupByOwner(model.CoalesceExpressionExpressionsItemList);
+        coalesceExpressionExpressionsByOwnerId = GroupByOwner(model.CoalesceExpressionExpressionsItemList, static item => item.CoalesceExpression?.Id ?? string.Empty);
         nullIfExpressionByPrimaryExpressionId = model.NullIfExpressionList.ToDictionary(item => item.PrimaryExpression.Id, StringComparer.Ordinal);
         nullIfExpressionFirstExpressionLinkByOwnerId = model.NullIfExpressionFirstExpressionLinkList.ToDictionary(item => item.NullIfExpression.Id, StringComparer.Ordinal);
         nullIfExpressionSecondExpressionLinkByOwnerId = model.NullIfExpressionSecondExpressionLinkList.ToDictionary(item => item.NullIfExpression.Id, StringComparer.Ordinal);
@@ -337,14 +334,14 @@ public sealed partial class TransformScriptNavigator
         iIfCallElseExpressionLinkByOwnerId = model.IIfCallElseExpressionLinkList.ToDictionary(item => item.IIfCall.Id, StringComparer.Ordinal);
         caseExpressionByPrimaryExpressionId = model.CaseExpressionList.ToDictionary(item => item.PrimaryExpression.Id, StringComparer.Ordinal);
         searchedCaseExpressionByCaseExpressionId = model.SearchedCaseExpressionList.ToDictionary(item => item.CaseExpression.Id, StringComparer.Ordinal);
-        searchedCaseExpressionWhenClausesByOwnerId = GroupByOwner(model.SearchedCaseExpressionWhenClausesItemList);
+        searchedCaseExpressionWhenClausesByOwnerId = GroupByOwner(model.SearchedCaseExpressionWhenClausesItemList, static item => item.SearchedCaseExpression?.Id ?? string.Empty);
         searchedWhenClauseById = model.SearchedWhenClauseList.ToDictionary(item => item.Id, StringComparer.Ordinal);
         searchedWhenClauseWhenExpressionLinkByOwnerId = model.SearchedWhenClauseWhenExpressionLinkList.ToDictionary(item => item.SearchedWhenClause.Id, StringComparer.Ordinal);
         caseExpressionElseExpressionLinkByOwnerId = model.CaseExpressionElseExpressionLinkList.ToDictionary(item => item.CaseExpression.Id, StringComparer.Ordinal);
         whenClauseThenExpressionLinkByOwnerId = model.WhenClauseThenExpressionLinkList.ToDictionary(item => item.WhenClause.Id, StringComparer.Ordinal);
         simpleCaseExpressionByCaseExpressionId = model.SimpleCaseExpressionList.ToDictionary(item => item.CaseExpression.Id, StringComparer.Ordinal);
         simpleCaseExpressionInputExpressionLinkByOwnerId = model.SimpleCaseExpressionInputExpressionLinkList.ToDictionary(item => item.SimpleCaseExpression.Id, StringComparer.Ordinal);
-        simpleCaseExpressionWhenClausesByOwnerId = GroupByOwner(model.SimpleCaseExpressionWhenClausesItemList);
+        simpleCaseExpressionWhenClausesByOwnerId = GroupByOwner(model.SimpleCaseExpressionWhenClausesItemList, static item => item.SimpleCaseExpression?.Id ?? string.Empty);
         simpleWhenClauseById = model.SimpleWhenClauseList.ToDictionary(item => item.Id, StringComparer.Ordinal);
         simpleWhenClauseWhenExpressionLinkByOwnerId = model.SimpleWhenClauseWhenExpressionLinkList.ToDictionary(item => item.SimpleWhenClause.Id, StringComparer.Ordinal);
         castCallByPrimaryExpressionId = model.CastCallList.ToDictionary(item => item.PrimaryExpression.Id, StringComparer.Ordinal);
@@ -360,7 +357,7 @@ public sealed partial class TransformScriptNavigator
         tryConvertCallParameterLinkByOwnerId = model.TryConvertCallParameterLinkList.ToDictionary(item => item.TryConvertCall.Id, StringComparer.Ordinal);
         tryConvertCallStyleLinkByOwnerId = model.TryConvertCallStyleLinkList.ToDictionary(item => item.TryConvertCall.Id, StringComparer.Ordinal);
         sqlDataTypeReferenceByDataTypeReferenceId = model.SqlDataTypeReferenceList.ToDictionary(item => item.ParameterizedDataTypeReference.DataTypeReference.Id, StringComparer.Ordinal);
-        dataTypeParametersByOwnerId = GroupByOwner(model.ParameterizedDataTypeReferenceParametersItemList);
+        dataTypeParametersByOwnerId = GroupByOwner(model.ParameterizedDataTypeReferenceParametersItemList, static item => item.ParameterizedDataTypeReference?.Id ?? string.Empty);
         parseCallByPrimaryExpressionId = model.ParseCallList.ToDictionary(item => item.PrimaryExpression.Id, StringComparer.Ordinal);
         parseCallStringValueLinkByOwnerId = model.ParseCallStringValueLinkList.ToDictionary(item => item.ParseCall.Id, StringComparer.Ordinal);
         parseCallCultureLinkByOwnerId = model.ParseCallCultureLinkList.ToDictionary(item => item.ParseCall.Id, StringComparer.Ordinal);
@@ -1356,23 +1353,11 @@ public sealed partial class TransformScriptNavigator
             .ToArray();
     }
 
-    private static IReadOnlyDictionary<string, List<T>> GroupByOwner<T>(IEnumerable<T> rows)
+    private static IReadOnlyDictionary<string, List<T>> GroupByOwner<T>(IEnumerable<T> rows, Func<T, string> ownerId)
     {
-        var ownerPropertyName = ResolveOwnerProperty(typeof(T));
-        if (string.IsNullOrWhiteSpace(ownerPropertyName))
-        {
-            return new Dictionary<string, List<T>>(StringComparer.Ordinal);
-        }
-
         return rows
-            .GroupBy(item => GetRelatedId(item!, ownerPropertyName), StringComparer.Ordinal)
+            .GroupBy(ownerId, StringComparer.Ordinal)
             .ToDictionary(group => group.Key, group => group.ToList(), StringComparer.Ordinal);
-    }
-
-    private static string GetRelatedId(object target, string propertyName)
-    {
-        var related = target.GetType().GetProperty(propertyName)?.GetValue(target);
-        return related?.GetType().GetProperty("Id")?.GetValue(related) as string ?? string.Empty;
     }
 
     private static int ParseOrdinal(string? ordinal)
@@ -1382,42 +1367,4 @@ public sealed partial class TransformScriptNavigator
             : int.MaxValue;
     }
 
-    private static string? ResolveOwnerProperty(Type type)
-    {
-        return OwnerPropertyByType.GetOrAdd(type, static key =>
-        {
-            var referenceProperties = key.GetProperties()
-                .Select(property => property.Name)
-                .Where(name => IsReferenceProperty(key, name))
-                .ToArray();
-
-            if (referenceProperties.Length == 0)
-            {
-                return null;
-            }
-
-            if (referenceProperties.Length == 1)
-            {
-                return referenceProperties[0];
-            }
-
-            foreach (var candidate in referenceProperties.OrderByDescending(static value => value.Length))
-            {
-                if (key.Name.StartsWith(candidate, StringComparison.Ordinal))
-                {
-                    return candidate;
-                }
-            }
-
-            return referenceProperties[0];
-        });
-    }
-
-    private static bool IsReferenceProperty(Type ownerType, string propertyName)
-    {
-        var property = ownerType.GetProperty(propertyName);
-        return property is not null &&
-               property.PropertyType != typeof(string) &&
-               property.PropertyType.GetProperty("Id") is not null;
-    }
 }

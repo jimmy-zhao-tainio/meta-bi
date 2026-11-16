@@ -44,7 +44,7 @@ internal sealed class MetaOrchestrationCommandHandlers
                 .FirstOrDefault(static path => !string.IsNullOrWhiteSpace(path))
                 ?? throw new InvalidOperationException("An output workspace path is required.");
             var model = service.CreatePortableModel(result, pipelineWorkspacePath, outputWorkspacePath);
-            await workspaces.CreateAsync("output", model).ConfigureAwait(false);
+            await workspaces.CreateAsync("output", model, global::MetaOrchestration.Core.MetaOrchestrationModels.LoadContract(), new global::MetaOrchestration.MetaOrchestrationWorkspaceBinding()).ConfigureAwait(false);
 
             if (!result.IsCompleteDag)
             {

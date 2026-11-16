@@ -4,6 +4,7 @@
     <Option Id="opt-extract-sqlserver-all-schemas" ParameterId="param-extract-sqlserver-all-schemas" />
     <Option Id="opt-extract-sqlserver-all-tables" ParameterId="param-extract-sqlserver-all-tables" />
     <Option Id="opt-extract-sqlserver-connection-env" ParameterId="param-extract-sqlserver-connection-env" />
+    <Option Id="opt-extract-sqlserver-data-type-workspace" ParameterId="param-extract-sqlserver-data-type-workspace" />
     <Option Id="opt-extract-sqlserver-schema" ParameterId="param-extract-sqlserver-schema" />
     <Option Id="opt-extract-sqlserver-system" ParameterId="param-extract-sqlserver-system" />
     <Option Id="opt-extract-sqlserver-table" ParameterId="param-extract-sqlserver-table" />

@@ -106,8 +106,9 @@ meta-mesh run --operation create-tabular
 The three transform boundaries are strictly bound to modeled source and target schemas before their pipelines are authored. Orchestration is inferred from those pipeline tasks and binding effects.
 
 Binding and execution explicitly select the mesh's `data-type` workspace through
-`--data-type-workspace`; their CLI default remains BuiltIn. The schema generator
-currently uses BuiltIn catalogs independently. This demo authors its required
+`--data-type-workspace`; omission loads the packaged authored workspace. Schema
+generation accepts separate catalog and conversion workspace options; this demo
+currently omits those options and uses the packaged workspaces. It authors its required
 casts directly in load SQL, so it does not need an `apply-conversions` step.
 
 MetaMesh currently requires referenced output workspaces to exist during preflight.

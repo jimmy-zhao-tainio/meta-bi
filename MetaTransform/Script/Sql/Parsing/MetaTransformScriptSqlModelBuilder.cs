@@ -1,23 +1,17 @@
+using MTS = global::MetaTransformScript;
+
 namespace MetaTransformScript.Sql.Parsing;
 
 internal sealed partial class MetaTransformScriptSqlModelBuilder
 {
-    private static readonly System.Reflection.PropertyInfo[] ModelListProperties =
-        typeof(MetaTransformScript.MetaTransformScriptModel)
-            .GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance)
-            .Where(static property =>
-                property.Name.EndsWith("List", StringComparison.Ordinal) &&
-                typeof(System.Collections.IList).IsAssignableFrom(property.PropertyType) &&
-                property.GetIndexParameters().Length == 0)
-            .ToArray();
-
     private readonly MetaTransformScript.MetaTransformScriptModel model;
     private readonly Dictionary<string, int> nextIdByEntityName = new(StringComparer.Ordinal);
-    private readonly Dictionary<string, ModelRowIndex> rowIndexesByEntityName = new(StringComparer.Ordinal);
+    private readonly Dictionary<string, IModelRowIndex> rowIndexesByEntityName = new(StringComparer.Ordinal);
 
     public MetaTransformScriptSqlModelBuilder()
     {
         model = MetaTransformScript.MetaTransformScriptModel.CreateEmpty();
+        MTS.MetaTransformScriptModelAccess.VisitCollections(new InitializeCollections(this, initializeIds: false));
         BuiltNode.SetResolver(ResolveBuiltNodeReference);
     }
 
@@ -25,7 +19,7 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
     {
         ArgumentNullException.ThrowIfNull(seedModel);
         model = seedModel;
-        InitializeNextIdState(seedModel);
+        MTS.MetaTransformScriptModelAccess.VisitCollections(new InitializeCollections(this, initializeIds: true));
         BuiltNode.SetResolver(ResolveBuiltNodeReference);
     }
 
@@ -33,14 +27,7 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
 
     internal Checkpoint CreateCheckpoint()
     {
-        var rowCounts = new Dictionary<System.Collections.IList, int>(ReferenceEqualityComparer.Instance);
-        foreach (var property in ModelListProperties)
-        {
-            if (property.GetValue(model) is System.Collections.IList rows)
-            {
-                rowCounts.Add(rows, rows.Count);
-            }
-        }
+        var rowCounts = rowIndexesByEntityName.Values.ToDictionary(index => index, index => index.Count);
 
         return new Checkpoint(
             rowCounts,
@@ -53,10 +40,7 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
 
         foreach (var (rows, count) in checkpoint.RowCounts)
         {
-            while (rows.Count > count)
-            {
-                rows.RemoveAt(rows.Count - 1);
-            }
+            rows.Rollback(count);
         }
 
         nextIdByEntityName.Clear();
@@ -64,8 +48,6 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
         {
             nextIdByEntityName.Add(entityName, nextId);
         }
-
-        rowIndexesByEntityName.Clear();
     }
 
     private string NextId(string entityName)
@@ -83,24 +65,25 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
 
         if (!rowIndexesByEntityName.TryGetValue(entityName, out var rowIndex))
         {
-            var listProperty = model.GetType().GetProperty(entityName + "List")
-                ?? throw new InvalidOperationException($"Model does not expose list for '{entityName}'.");
-            if (listProperty.GetValue(model) is not System.Collections.IList rows)
-            {
-                throw new InvalidOperationException($"Model list for '{entityName}' is not readable.");
-            }
-
-            rowIndex = new ModelRowIndex(rows);
-            rowIndexesByEntityName.Add(entityName, rowIndex);
+            throw new InvalidOperationException($"Model does not expose list for '{entityName}'.");
         }
 
         return rowIndex.Resolve(entityName, id);
     }
 
-    private sealed class ModelRowIndex(System.Collections.IList rows)
+    internal interface IModelRowIndex
+    {
+        int Count { get; }
+        object Resolve(string entityName, string id);
+        void Rollback(int count);
+    }
+
+    private sealed class ModelRowIndex<TEntity>(IList<TEntity> rows, Func<TEntity, string> readId) : IModelRowIndex
+        where TEntity : class
     {
         private readonly Dictionary<string, object> rowsById = new(StringComparer.Ordinal);
         private int indexedCount;
+        public int Count => rows.Count;
 
         public object Resolve(string entityName, string id)
         {
@@ -119,40 +102,50 @@ internal sealed partial class MetaTransformScriptSqlModelBuilder
                     continue;
                 }
 
-                var rowId = row.GetType().GetProperty("Id")?.GetValue(row) as string;
+                var rowId = readId(row);
                 if (rowId is not null)
                 {
                     rowsById.TryAdd(rowId, row);
                 }
             }
         }
+
+        public void Rollback(int count)
+        {
+            while (rows.Count > count) rows.RemoveAt(rows.Count - 1);
+            rowsById.Clear();
+            indexedCount = 0;
+        }
     }
 
     internal sealed record Checkpoint(
-        IReadOnlyDictionary<System.Collections.IList, int> RowCounts,
+        IReadOnlyDictionary<IModelRowIndex, int> RowCounts,
         IReadOnlyDictionary<string, int> NextIdByEntityName);
 
-    private void InitializeNextIdState(MetaTransformScript.MetaTransformScriptModel seedModel)
+    private sealed class InitializeCollections(MetaTransformScriptSqlModelBuilder owner, bool initializeIds)
+        : MTS.IMetaTransformScriptCollectionVisitor
     {
-        foreach (var property in ModelListProperties)
+        public void Visit<TEntity>(
+            string entityName,
+            Func<MTS.MetaTransformScriptModel, IList<TEntity>> collection,
+            Func<TEntity, string> readId,
+            Action<TEntity, string> writeId)
+            where TEntity : class
         {
-            var rows = property.GetValue(seedModel) as System.Collections.IEnumerable;
-            if (rows is null)
-            {
-                continue;
-            }
-
+            var rows = collection(owner.model);
+            owner.rowIndexesByEntityName.Add(entityName, new ModelRowIndex<TEntity>(rows, readId));
+            if (!initializeIds) return;
             foreach (var row in rows)
             {
-                var idValue = row?.GetType().GetProperty("Id")?.GetValue(row) as string;
-                if (!TryReadEntityId(idValue, out var entityName, out var numericId))
+                var idValue = row is null ? null : readId(row);
+                if (!TryReadEntityId(idValue, out var idEntityName, out var numericId))
                 {
                     continue;
                 }
 
-                if (!nextIdByEntityName.TryGetValue(entityName, out var current) || numericId > current)
+                if (!owner.nextIdByEntityName.TryGetValue(idEntityName, out var current) || numericId > current)
                 {
-                    nextIdByEntityName[entityName] = numericId;
+                    owner.nextIdByEntityName[idEntityName] = numericId;
                 }
             }
         }

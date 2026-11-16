@@ -21,21 +21,21 @@ public sealed class TransformScriptConversionIntegrationTests
         using var f = new Fixture(true, onlyFirst: true,
             firstSql: "SELECT a.Id, a.TextValue AS Converted FROM TestSystem.dbo.SourceRows a JOIN OtherSystem.dbo.SourceRows b ON a.TextValue = b.TextValue;");
         var other = TypedWorkspaceModelMapper.FromInMemoryWorkspace(
-            TypedWorkspaceModelMapper.ToInMemoryWorkspace(f.Source), MetaSchemaModel.CreateEmpty);
+            TypedWorkspaceModelMapper.ToInMemoryWorkspace(f.Source, global::MetaSchema.Core.MetaSchemaModels.CreateMetaSchemaModel(), new global::MetaSchema.MetaSchemaWorkspaceBinding()), new MetaSchemaWorkspaceBinding());
         other.SystemList.Single().Name = "OtherSystem";
         var otherPath = f.PathOf("OtherSource");
-        TypedWorkspaceModelMapper.Create(other, otherPath, "csharp");
+        TypedWorkspaceModelMapper.Create(other, global::MetaSchema.Core.MetaSchemaModels.CreateMetaSchemaModel(), new global::MetaSchema.MetaSchemaWorkspaceBinding(), otherPath, "csharp");
         var before = f.Snapshot();
         var result = CliTestRunner.RunStandardCli("meta-transform-script",
             $"apply-conversions --workspace \"{f.Input}\" --source-schema \"{f.SourcePath}\" --source-schema \"{otherPath}\" --data-type-workspace \"{f.PathOf("Catalog")}\" --data-type-conversion-workspace \"{f.PathOf("Conversions")}\" --output-xml \"{f.PathOf("MultiSystem")}\"");
         Assert.True(result.ExitCode == 0, result.Output);
-        var model = TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(f.PathOf("MultiSystem"), searchUpward: false);
+        var model = TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(f.PathOf("MultiSystem"), new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding(), searchUpward: false);
         Assert.Equal(3, model.CastCallList.Count);
         var sql = f.Syntax.ExportToSqlCode(model);
         Assert.Contains("TestSystem.dbo.SourceRows", sql);
         Assert.Contains("OtherSystem.dbo.SourceRows", sql);
         Assert.Equal(before, f.Snapshot());
-        Assert.Equal("OtherSystem", TypedWorkspaceModelMapper.Load<MetaSchemaModel>(otherPath, searchUpward: false).SystemList.Single().Name);
+        Assert.Equal("OtherSystem", TypedWorkspaceModelMapper.Load<MetaSchemaModel>(otherPath, new global::MetaSchema.MetaSchemaWorkspaceBinding(), searchUpward: false).SystemList.Single().Name);
     }
 
     [Theory]
@@ -46,7 +46,7 @@ public sealed class TransformScriptConversionIntegrationTests
         using var f = new Fixture(arbitraryIds, complex: true);
         var before = f.Snapshot();
         var output = f.RunCli("Converted", surface);
-        var model = TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(output, searchUpward: false);
+        var model = TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(output, new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding(), searchUpward: false);
         Assert.Equal(new[] { "First", "Second" }, model.TransformScriptList.Select(script => script.Name));
         Assert.Equal(new[] { "dbo.TargetOne", "dbo.TargetTwo" }, model.TransformScriptList.Select(script => model.ScriptObjectViewList.Single(view => view.TransformScript.Id == script.Id).TargetSqlIdentifier));
         Assert.True(model.CastCallList.Count == 8, string.Join("\n", model.TransformScriptList.Select(script => f.Syntax.ExportToSqlCode(model, script.Name))));
@@ -117,7 +117,7 @@ public sealed class TransformScriptConversionIntegrationTests
     {
         using var f = new Fixture(true, firstSql: "SELECT s.Id, CAST(s.TextValue AS nvarchar(50)) AS Converted FROM dbo.SourceRows s;", onlyFirst: true);
         var output = f.RunCli("InnerConversion");
-        var model = TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(output, searchUpward: false);
+        var model = TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(output, new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding(), searchUpward: false);
         Assert.Equal(2, model.CastCallList.Count);
         Assert.Contains("CAST((CAST((s.TextValue) AS int)) AS nvarchar(50))", f.Syntax.ExportToSqlCode(model));
         var error = Assert.Throws<TransformBindingValidationException>(() => f.AssertBound(output));
@@ -162,7 +162,7 @@ public sealed class TransformScriptConversionIntegrationTests
             case "unknown-target": f.Conversions.DataTypeMappingList.Single().TargetDataTypeId = "sqlserver:type:not-cataloged"; break;
             case "unknown-source":
                 f.Source.FieldList.First(field => field.Name == "TextValue").MetaDataTypeId = "sqlserver:type:not-cataloged";
-                TypedWorkspaceModelMapper.Create(f.Source, f.SourcePath, "xml"); break;
+                TypedWorkspaceModelMapper.Create(f.Source, global::MetaSchema.Core.MetaSchemaModels.CreateMetaSchemaModel(), new global::MetaSchema.MetaSchemaWorkspaceBinding(), f.SourcePath, "xml"); break;
         }
         f.SaveConversions();
         var before = f.Snapshot();
@@ -233,8 +233,8 @@ public sealed class TransformScriptConversionIntegrationTests
         }
         var output = f.RunCli("Executable");
         f.AssertBound(output);
-        var scripts = TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(output, searchUpward: false);
-        var bindings = TypedWorkspaceModelMapper.Load<MetaTransformBindingModel>(output + "-Binding", searchUpward: false);
+        var scripts = TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(output, new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding(), searchUpward: false);
+        var bindings = TypedWorkspaceModelMapper.Load<MetaTransformBindingModel>(output + "-Binding", new global::MetaTransformBinding.MetaTransformBindingWorkspaceBinding(), searchUpward: false);
         var database = "MetaBiSourceConversion_" + Guid.NewGuid().ToString("N");
         await using var master = new SqlConnection("Server=.;Database=master;Integrated Security=true;TrustServerCertificate=true;Encrypt=false;Pooling=false");
         await master.OpenAsync();
@@ -311,7 +311,7 @@ public sealed class TransformScriptConversionIntegrationTests
         using var f = new Fixture(true, firstSql: sql, onlyFirst: true);
         var before = f.Snapshot();
         var output = f.RunCli("QueryScopes", "csharp");
-        var model = TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(output, searchUpward: false);
+        var model = TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(output, new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding(), searchUpward: false);
         Assert.NotEmpty(model.CastCallList);
         Assert.Empty(model.SelectStarExpressionList);
         Assert.Equal(before, f.Snapshot());
@@ -322,9 +322,9 @@ public sealed class TransformScriptConversionIntegrationTests
     public void Cli_PreservesFunctionEnvelopeAndAuthoredMetadata()
     {
         using var f = new Fixture(true, firstSql: "CREATE FUNCTION dbo.ReadRows() RETURNS TABLE AS RETURN (SELECT s.Id, s.TextValue FROM dbo.SourceRows s);", onlyFirst: true, statement: true);
-        var original = TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(f.Input, searchUpward: false);
+        var original = TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(f.Input, new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding(), searchUpward: false);
         var output = f.RunCli("Function");
-        var model = TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(output, searchUpward: false);
+        var model = TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(output, new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding(), searchUpward: false);
         Assert.Equal(original.TransformScriptList.Single().Id, model.TransformScriptList.Single().Id);
         Assert.Equal(original.ScriptObjectTVFList.Single().Id, model.ScriptObjectTVFList.Single().Id);
         Assert.Single(model.CastCallList);
@@ -356,7 +356,7 @@ public sealed class TransformScriptConversionIntegrationTests
         var before = f.Snapshot();
         var output = f.RunCli("Mutation");
         Assert.Equal(before, f.Snapshot());
-        var model = TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(output, searchUpward: false);
+        var model = TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(output, new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding(), searchUpward: false);
         var bound = f.Bind(output);
         Assert.Equal(0, bound.ErrorCount);
         if (operation is "values" or "truncate") Assert.Empty(model.CastCallList);
@@ -410,15 +410,15 @@ public sealed class TransformScriptConversionIntegrationTests
     public void Cli_PreservesStoredProcedureContractOnOpaqueInvocation()
     {
         using var f = new Fixture(true, firstSql: "CREATE PROCEDURE dbo.ReadStored AS BEGIN SELECT 1 AS Value; END;", onlyFirst: true, statement: true);
-        var original = TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(f.Input, searchUpward: false);
+        var original = TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(f.Input, new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding(), searchUpward: false);
         var script = original.TransformScriptList.Single();
         script.SourcePath = "authored-procedure.sql";
         f.Syntax.AddStoredProcedureContract(original, script.Name, new StoredProcedureContractDeclaration(
             [new StoredProcedureContractOperationDeclaration(10, "Call", "dbo.ReadStored")], [], "Keep authored contract"));
-        TypedWorkspaceModelMapper.Save(original, f.Input);
+        TypedWorkspaceModelMapper.Save(original, f.Input, new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding());
         var before = f.Snapshot();
         var output = f.RunCli("Procedure", "csharp");
-        var model = TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(output, searchUpward: false);
+        var model = TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(output, new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding(), searchUpward: false);
         Assert.Equal(before, f.Snapshot());
         Assert.Equal(script.Id, model.TransformScriptList.Single().Id);
         Assert.Equal(script.SourcePath, model.TransformScriptList.Single().SourcePath);
@@ -447,9 +447,9 @@ public sealed class TransformScriptConversionIntegrationTests
                 Catalog.DataTypeSystemList.Single(system => system.Name == "SqlServer").Id = "arbitrary-system";
             }
             Source = Schema(("SourceRows", "TextValue", "nvarchar", 50), ("LookupRows", "TextValue", "nvarchar", 50), ("TargetOne", "Converted", destination, destination == "nvarchar" ? 25 : null));
-            TypedWorkspaceModelMapper.Create(Source, SourcePath, "xml");
-            TypedWorkspaceModelMapper.Create(Schema(("TargetOne", "Converted", destination, destination == "nvarchar" ? 25 : null), ("TargetTwo", "Converted", destination, destination == "nvarchar" ? 25 : null)), PathOf("Target"), "xml");
-            TypedWorkspaceModelMapper.Create(Catalog, PathOf("Catalog"), "xml");
+            TypedWorkspaceModelMapper.Create(Source, global::MetaSchema.Core.MetaSchemaModels.CreateMetaSchemaModel(), new global::MetaSchema.MetaSchemaWorkspaceBinding(), SourcePath, "xml");
+            TypedWorkspaceModelMapper.Create(Schema(("TargetOne", "Converted", destination, destination == "nvarchar" ? 25 : null), ("TargetTwo", "Converted", destination, destination == "nvarchar" ? 25 : null)), global::MetaSchema.Core.MetaSchemaModels.CreateMetaSchemaModel(), new global::MetaSchema.MetaSchemaWorkspaceBinding(), PathOf("Target"), "xml");
+            TypedWorkspaceModelMapper.Create(Catalog, global::MetaDataType.Core.MetaDataTypeWorkspaceProvider.LoadContract(), new global::MetaDataType.MetaDataTypeWorkspaceBinding(), PathOf("Catalog"), "xml");
             firstSql ??= complex ? "SELECT s.TextValue AS Converted, s.Id, LEN(s.TextValue) AS Size, N's.TextValue' AS Literal FROM dbo.SourceRows s JOIN dbo.LookupRows l ON s.TextValue = l.TextValue WHERE s.TextValue IS NULL OR s.TextValue > N'0' ORDER BY s.TextValue;" : "SELECT s.Id, s.TextValue AS Converted FROM dbo.SourceRows s WHERE s.Id > 0;";
             Syntax.ImportFromSqlCodeToXmlWorkspaceAsync(firstSql, statement ? null : "dbo.TargetOne", Input, "First").GetAwaiter().GetResult();
             if (!onlyFirst)
@@ -469,7 +469,7 @@ public sealed class TransformScriptConversionIntegrationTests
             }
             SaveConversions();
         }
-        public void SaveConversions() => TypedWorkspaceModelMapper.Create(Conversions, PathOf("Conversions"), "xml");
+        public void SaveConversions() => TypedWorkspaceModelMapper.Create(Conversions, global::MetaDataTypeConversion.Core.MetaDataTypeConversionWorkspaceProvider.LoadContract(), new global::MetaDataTypeConversion.MetaDataTypeConversionWorkspaceBinding(), PathOf("Conversions"), "xml");
         public TransformScriptConversionRequest Request(string output) => new(Input, PathOf("Catalog"), PathOf("Conversions"), [SourcePath], PathOf(output));
         public (int ExitCode, string Output) Cli(string output, string surface = "xml") => CliTestRunner.RunStandardCli("meta-transform-script",
             $"apply-conversions --workspace \"{Input}\" --source-schema \"{SourcePath}\" --data-type-workspace \"{PathOf("Catalog")}\" --data-type-conversion-workspace \"{PathOf("Conversions")}\" --output-{surface} \"{PathOf(output)}\"");

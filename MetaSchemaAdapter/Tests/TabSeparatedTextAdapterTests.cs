@@ -70,7 +70,7 @@ public sealed class TabSeparatedTextAdapterTests
             var schemaPath = Path.Combine(root, "Schema");
             await new MetaSchemaAdapterWorkspaceService().DiscoverToWorkspaceAsync(adapter,
                 new MetaSchemaAdapterDiscoveryWorkspaceRequest("FILES", "TextFiles", schemaPath));
-            var schema = TypedWorkspaceModelMapper.Load<MetaSchemaModel>(schemaPath, searchUpward: false);
+            var schema = TypedWorkspaceModelMapper.Load<MetaSchemaModel>(schemaPath, new global::MetaSchema.MetaSchemaWorkspaceBinding(), searchUpward: false);
             var shape = new PipelineRowStreamShape([new PipelineColumn("Value", 0)]);
             object? invalid = invalidKind switch
             {
@@ -121,7 +121,7 @@ public sealed class TabSeparatedTextAdapterTests
                     representation));
             var reloaded = await Meta.Integration.TypedWorkspaceModelMapper.LoadAsync<MetaSchemaModel>(
                 workspacePath,
-                searchUpward: false);
+                new global::MetaSchema.MetaSchemaWorkspaceBinding(),                searchUpward: false);
 
             Assert.Equal(representation, result.Representation);
             Assert.Single(reloaded.SystemList);
@@ -178,7 +178,7 @@ public sealed class TabSeparatedTextAdapterTests
             Assert.Equal(2, discovery.TableCount);
             Assert.Equal(5, discovery.FieldCount);
 
-            var discovered = TypedWorkspaceModelMapper.Load<MetaSchemaModel>(schemaWorkspacePath, searchUpward: false);
+            var discovered = TypedWorkspaceModelMapper.Load<MetaSchemaModel>(schemaWorkspacePath, new global::MetaSchema.MetaSchemaWorkspaceBinding(), searchUpward: false);
             Assert.All(discovered.FieldList, field =>
             {
                 Assert.Equal(selectedCatalog ? "adapter-user-text" : "sqlserver:type:nvarchar", field.MetaDataTypeId);
@@ -275,9 +275,9 @@ public sealed class TabSeparatedTextAdapterTests
             var bound = new TransformBindingWorkspaceService().BindValidatedToXmlWorkspace(transformPath,
                 [schemaPath], schemaPath, "SalesFiles", "files", bindingPath);
             Assert.Equal(0, bound.ErrorCount);
-            var schema = TypedWorkspaceModelMapper.Load<MetaSchemaModel>(schemaPath, searchUpward: false);
-            var transforms = TypedWorkspaceModelMapper.Load<MetaTransformScript.MetaTransformScriptModel>(transformPath, searchUpward: false);
-            var binding = TypedWorkspaceModelMapper.Load<MetaTransformBinding.MetaTransformBindingModel>(bindingPath, searchUpward: false);
+            var schema = TypedWorkspaceModelMapper.Load<MetaSchemaModel>(schemaPath, new global::MetaSchema.MetaSchemaWorkspaceBinding(), searchUpward: false);
+            var transforms = TypedWorkspaceModelMapper.Load<MetaTransformScript.MetaTransformScriptModel>(transformPath, new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding(), searchUpward: false);
+            var binding = TypedWorkspaceModelMapper.Load<MetaTransformBinding.MetaTransformBindingModel>(bindingPath, new global::MetaTransformBinding.MetaTransformBindingWorkspaceBinding(), searchUpward: false);
             var transform = Assert.Single(transforms.TransformScriptList);
             var transformBinding = Assert.Single(binding.TransformBindingList);
 
@@ -308,7 +308,7 @@ public sealed class TabSeparatedTextAdapterTests
             catalog.DataTypeList.Single(type => type.Name == "nvarchar" && type.DataTypeSystem.Name == "SqlServer").Id = "adapter-user-text";
             catalog.DataTypeSystemList.Single(system => system.Name == "SqlServer").Id = "adapter-user-sqlsystem";
         }
-        TypedWorkspaceModelMapper.Create(catalog, path, "xml");
-        return TypedWorkspaceModelMapper.Load<MetaDataTypeModel>(path, searchUpward: false);
+        TypedWorkspaceModelMapper.Create(catalog, global::MetaDataType.Core.MetaDataTypeWorkspaceProvider.LoadContract(), new global::MetaDataType.MetaDataTypeWorkspaceBinding(), path, "xml");
+        return TypedWorkspaceModelMapper.Load<MetaDataTypeModel>(path, new global::MetaDataType.MetaDataTypeWorkspaceBinding(), searchUpward: false);
     }
 }

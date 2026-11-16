@@ -255,9 +255,9 @@ public sealed class MetaOrchestrationAnalysisServiceTests
         try
         {
             var workspace = Path.Combine(tempRoot, "Orchestration");
-            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(model, workspace);
+            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(model, workspace, global::MetaOrchestration.Core.MetaOrchestrationModels.LoadContract(), new global::MetaOrchestration.MetaOrchestrationWorkspaceBinding());
 
-            var reloaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaOrchestrationModel>(workspace, searchUpward: false);
+            var reloaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaOrchestrationModel>(workspace, new global::MetaOrchestration.MetaOrchestrationWorkspaceBinding(), searchUpward: false);
             var reloadedRunPlan = Assert.Single(reloaded.RunPlanList);
             var reloadedResolved = ResolvedOrchestrationRetryPolicy.FromRunPlan(reloaded, reloadedRunPlan);
             Assert.Equal("DefaultRetryPolicy", reloadedResolved.Name);
@@ -2359,7 +2359,7 @@ public sealed class MetaOrchestrationAnalysisServiceTests
                 transformModel,
                 "dbo.RefreshStage",
                 [Operation(10, "Append", "\"dbo\".\"StageCustomer\"")]);
-            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspace);
+            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspace, global::MetaTransformScript.Sql.MetaTransformScriptModels.LoadContract(), new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding());
 
             var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
                 transformWorkspace,
@@ -2429,20 +2429,20 @@ public sealed class MetaOrchestrationAnalysisServiceTests
                 transformModel,
                 "dbo.RefreshStage",
                 [Operation(10, "Append", "dbo.StageCustomer")]);
-            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspace);
+            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspace, global::MetaTransformScript.Sql.MetaTransformScriptModels.LoadContract(), new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding());
 
             var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
                 transformWorkspace,
                 bindingWorkspace);
             Assert.Equal(0, bindingResult.ErrorCount);
-            var bindingModel = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspace, searchUpward: false);
+            var bindingModel = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspace, new global::MetaTransformBinding.MetaTransformBindingWorkspaceBinding(), searchUpward: false);
             var binding = Assert.Single(bindingModel.TransformBindingList);
             bindingModel.ValidationList.Add(new Validation
             {
                 Id = $"{binding.Id}:validation",
                 TransformBinding = binding,
             });
-            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(bindingModel, bindingWorkspace);
+            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(bindingModel, bindingWorkspace, global::MetaTransform.Binding.TransformBindingModels.LoadContract(), new global::MetaTransformBinding.MetaTransformBindingWorkspaceBinding());
 
             BuildPipelineWorkspace(
                 pipelineWorkspace,
@@ -2614,7 +2614,7 @@ END
                 transformModel,
                 "dq.RefreshStage",
                 operationOrder.Split(',').Select(ParseOperationSeed).ToArray());
-            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspace);
+            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspace, global::MetaTransformScript.Sql.MetaTransformScriptModels.LoadContract(), new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding());
 
             var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
                 transformWorkspace,
@@ -2674,7 +2674,7 @@ END
                 transformModel,
                 "dq.ExportCustomers",
                 ["CustomerId"]);
-            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspace);
+            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspace, global::MetaTransformScript.Sql.MetaTransformScriptModels.LoadContract(), new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding());
 
             var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
                 transformWorkspace,
@@ -2772,7 +2772,7 @@ INNER JOIN dw.DimCustomer AS d
                     Operation(40, "Append", "core.Customer"),
                     Operation(50, "Mutation", "audit.CustomerLoadLog")
                 ]);
-            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspace);
+            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(transformModel, transformWorkspace, global::MetaTransformScript.Sql.MetaTransformScriptModels.LoadContract(), new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding());
 
             var bindingResult = new TransformBindingWorkspaceService().BindStructureToXmlWorkspace(
                 transformWorkspace,
@@ -2859,8 +2859,8 @@ INNER JOIN dw.DimCustomer AS d
                     .ToArray());
 
             var orchestrationModel = service.CreateModel(result, pipelineWorkspace);
-            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(orchestrationModel, orchestrationWorkspace);
-            var reloaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaOrchestrationModel>(orchestrationWorkspace, searchUpward: false);
+            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(orchestrationModel, orchestrationWorkspace, global::MetaOrchestration.Core.MetaOrchestrationModels.LoadContract(), new global::MetaOrchestration.MetaOrchestrationWorkspaceBinding());
+            var reloaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaOrchestrationModel>(orchestrationWorkspace, new global::MetaOrchestration.MetaOrchestrationWorkspaceBinding(), searchUpward: false);
             var persistedCurateTask = Assert.Single(reloaded.TaskAccessProfileList, item =>
                 string.Equals(item.TransformScriptName, "dbo.CurateCustomer", StringComparison.OrdinalIgnoreCase));
             Assert.Equal(
@@ -2946,8 +2946,8 @@ INNER JOIN dw.DimCustomer AS d
             var service = new MetaOrchestrationAnalysisService();
             var result = Analyze(pipelineWorkspace, transformWorkspace, bindingWorkspace);
             var model = service.CreateModel(result, pipelineWorkspace);
-            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(model, orchestrationWorkspace);
-            var reloaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaOrchestrationModel>(orchestrationWorkspace, searchUpward: false);
+            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(model, orchestrationWorkspace, global::MetaOrchestration.Core.MetaOrchestrationModels.LoadContract(), new global::MetaOrchestration.MetaOrchestrationWorkspaceBinding());
+            var reloaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaOrchestrationModel>(orchestrationWorkspace, new global::MetaOrchestration.MetaOrchestrationWorkspaceBinding(), searchUpward: false);
 
             Assert.False(result.IsCompleteDag);
             var issue = Assert.Single(result.Issues);
@@ -3205,14 +3205,14 @@ INNER JOIN dw.DimCustomer AS d
                     Profile(
                         "LoadB",
                         Task("LoadB", 1, "load-b", "Select", Access("dbo.RawB", OrchestrationObjectAccessKind.Read, "Source"), Access("dbo.B", OrchestrationObjectAccessKind.Write, "InsertRowsTarget")))));
-            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(model, orchestrationWorkspace);
+            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(model, orchestrationWorkspace, global::MetaOrchestration.Core.MetaOrchestrationModels.LoadContract(), new global::MetaOrchestration.MetaOrchestrationWorkspaceBinding());
             MetaCliWorkspace.DescribeXml(orchestrationWorkspace);
 
             var result = RunCli($"refresh-run-plan --workspace \"{orchestrationWorkspace}\"");
 
             Assert.Equal(0, result.ExitCode);
             Assert.Contains("Ok", result.Output, StringComparison.Ordinal);
-            var reloaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaOrchestrationModel>(orchestrationWorkspace, searchUpward: false);
+            var reloaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaOrchestrationModel>(orchestrationWorkspace, new global::MetaOrchestration.MetaOrchestrationWorkspaceBinding(), searchUpward: false);
             var runPlan = Assert.Single(reloaded.RunPlanList);
             Assert.Equal("DefaultRunPlan", runPlan.Name);
             Assert.Equal(2, reloaded.PlannedTaskList.Count);
@@ -3454,7 +3454,7 @@ INNER JOIN dw.DimCustomer AS d
                         "Mart",
                         Task("Mart", 1, "mart", "Select", Access("dbo.Dim", OrchestrationObjectAccessKind.Read, "Source"), Access("dbo.Fact", OrchestrationObjectAccessKind.Read, "Source"), Access("dbo.Mart", OrchestrationObjectAccessKind.Write, "InsertRowsTarget")))));
             new MetaOrchestrationRunPlanningService().BuildRunPlan(model);
-            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(model, orchestrationWorkspace);
+            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(model, orchestrationWorkspace, global::MetaOrchestration.Core.MetaOrchestrationModels.LoadContract(), new global::MetaOrchestration.MetaOrchestrationWorkspaceBinding());
             MetaCliWorkspace.DescribeXml(orchestrationWorkspace);
 
             var result = RunCli($"inspect-run-plan --workspace \"{orchestrationWorkspace}\"");
@@ -3663,7 +3663,7 @@ INNER JOIN dw.DimCustomer AS d
 
             Assert.Equal(4, result.ExitCode);
             Assert.Contains("Cannot continue", result.Output, StringComparison.Ordinal);
-            var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaOrchestrationModel>(orchestrationWorkspace, searchUpward: false);
+            var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaOrchestrationModel>(orchestrationWorkspace, new global::MetaOrchestration.MetaOrchestrationWorkspaceBinding(), searchUpward: false);
             Assert.Equal("Invalid", Assert.Single(model.OrchestrationPlanList).DagStatus);
             Assert.Single(model.DependencyIssueList);
         }
@@ -4243,7 +4243,7 @@ INNER JOIN dw.DimCustomer AS d
         Directory.CreateDirectory(pipelineWorkspace);
         Directory.CreateDirectory(transformWorkspace);
         Directory.CreateDirectory(bindingWorkspace);
-        Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(model, orchestrationWorkspace);
+        Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(model, orchestrationWorkspace, global::MetaOrchestration.Core.MetaOrchestrationModels.LoadContract(), new global::MetaOrchestration.MetaOrchestrationWorkspaceBinding());
 
         var workerPath = Path.Combine(tempRoot, "fake-meta-pipeline.cmd");
         var workerPowerShellPath = Path.Combine(tempRoot, "fake-meta-pipeline.ps1");
@@ -4689,7 +4689,7 @@ INNER JOIN dw.DimCustomer AS d
             }
         }
 
-        return Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspace, searchUpward: false);
+        return Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspace, new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding(), searchUpward: false);
     }
 
     private static void AssertTaskObjectEffect(
@@ -4843,7 +4843,7 @@ INNER JOIN dw.DimCustomer AS d
             }
         }
 
-        Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(model, bindingWorkspace);
+        Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(model, bindingWorkspace, global::MetaTransform.Binding.TransformBindingModels.LoadContract(), new global::MetaTransformBinding.MetaTransformBindingWorkspaceBinding());
     }
 
     private static void AddValidatedTarget(
@@ -4853,7 +4853,7 @@ INNER JOIN dw.DimCustomer AS d
         string metaSchemaTableId,
         string resolvedSqlIdentifier)
     {
-        var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspace, searchUpward: false);
+        var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspace, new global::MetaTransformBinding.MetaTransformBindingWorkspaceBinding(), searchUpward: false);
         var binding = Assert.Single(model.TransformBindingList, item =>
             string.Equals(item.MetaTransformScriptTransformScriptId, script.Id, StringComparison.Ordinal));
         var target = Assert.Single(model.TransformBindingTargetList, item =>
@@ -4878,7 +4878,7 @@ INNER JOIN dw.DimCustomer AS d
             MetaSchemaTableId = metaSchemaTableId,
             ResolvedSqlIdentifier = resolvedSqlIdentifier,
         });
-        Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(model, bindingWorkspace);
+        Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(model, bindingWorkspace, global::MetaTransform.Binding.TransformBindingModels.LoadContract(), new global::MetaTransformBinding.MetaTransformBindingWorkspaceBinding());
     }
 
     private static void AddValidatedSource(
@@ -4888,7 +4888,7 @@ INNER JOIN dw.DimCustomer AS d
         string metaSchemaTableId,
         string resolvedSqlIdentifier)
     {
-        var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspace, searchUpward: false);
+        var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspace, new global::MetaTransformBinding.MetaTransformBindingWorkspaceBinding(), searchUpward: false);
         var binding = Assert.Single(model.TransformBindingList, item =>
             string.Equals(item.MetaTransformScriptTransformScriptId, script.Id, StringComparison.Ordinal));
         var sourceRowset = Assert.Single(model.RowsetList, item =>
@@ -4915,7 +4915,7 @@ INNER JOIN dw.DimCustomer AS d
             MetaSchemaTableId = metaSchemaTableId,
             ResolvedSqlIdentifier = resolvedSqlIdentifier,
         });
-        Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(model, bindingWorkspace);
+        Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(model, bindingWorkspace, global::MetaTransform.Binding.TransformBindingModels.LoadContract(), new global::MetaTransformBinding.MetaTransformBindingWorkspaceBinding());
     }
 
     private static void AddValidatedStoredProcedureOperation(
@@ -4925,7 +4925,7 @@ INNER JOIN dw.DimCustomer AS d
         string metaSchemaTableId,
         string resolvedSqlIdentifier)
     {
-        var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspace, searchUpward: false);
+        var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformBindingModel>(bindingWorkspace, new global::MetaTransformBinding.MetaTransformBindingWorkspaceBinding(), searchUpward: false);
         var binding = Assert.Single(model.TransformBindingList, item =>
             string.Equals(item.MetaTransformScriptTransformScriptId, script.Id, StringComparison.Ordinal));
         var operationBinding = Assert.Single(model.StoredProcedureOperationBindingList, item =>
@@ -4951,7 +4951,7 @@ INNER JOIN dw.DimCustomer AS d
             MetaSchemaTableId = metaSchemaTableId,
             ResolvedSqlIdentifier = resolvedSqlIdentifier,
         });
-        Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(model, bindingWorkspace);
+        Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(model, bindingWorkspace, global::MetaTransform.Binding.TransformBindingModels.LoadContract(), new global::MetaTransformBinding.MetaTransformBindingWorkspaceBinding());
     }
 
     private static void BuildPipelineWorkspace(
@@ -5051,7 +5051,7 @@ INNER JOIN dw.DimCustomer AS d
             });
         }
 
-        Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(model, pipelineWorkspace);
+        Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(model, pipelineWorkspace, global::MetaPipeline.MetaPipelineModels.LoadContract(), new global::MetaPipeline.MetaPipelineWorkspaceBinding());
     }
 
     private static void BuildExecutablePipelineWorkspace(
@@ -5101,7 +5101,7 @@ INNER JOIN dw.DimCustomer AS d
             }
         }
 
-        Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(model, pipelineWorkspace);
+        Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(model, pipelineWorkspace, global::MetaPipeline.MetaPipelineModels.LoadContract(), new global::MetaPipeline.MetaPipelineWorkspaceBinding());
     }
 
     private static TransformScript ResolveScript(MetaTransformScriptModel model, string name) =>

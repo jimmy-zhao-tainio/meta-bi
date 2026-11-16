@@ -1,0 +1,21 @@
+<Project>
+  <ItemGroup>
+    <_MetaTransformBindingPackagedWorkspace Include="$(MSBuildThisFileDirectory)../contentFiles/any/any/Workspaces/MetaTransformBinding/**/*" />
+  </ItemGroup>
+
+  <Target Name="CopyMetaTransformBindingPackagedWorkspaceToOutput"
+          AfterTargets="CopyFilesToOutputDirectory"
+          Condition="'$(DesignTimeBuild)' != 'true'">
+    <Copy SourceFiles="@(_MetaTransformBindingPackagedWorkspace)"
+          DestinationFiles="@(_MetaTransformBindingPackagedWorkspace -> '$(OutDir)Workspaces/MetaTransformBinding/%(RecursiveDir)%(Filename)%(Extension)')"
+          SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="CopyMetaTransformBindingPackagedWorkspaceToPublish"
+          AfterTargets="Publish"
+          Condition="'$(DesignTimeBuild)' != 'true' and '$(PublishDir)' != ''">
+    <Copy SourceFiles="@(_MetaTransformBindingPackagedWorkspace)"
+          DestinationFiles="@(_MetaTransformBindingPackagedWorkspace -> '$(PublishDir)Workspaces/MetaTransformBinding/%(RecursiveDir)%(Filename)%(Extension)')"
+          SkipUnchangedFiles="true" />
+  </Target>
+</Project>

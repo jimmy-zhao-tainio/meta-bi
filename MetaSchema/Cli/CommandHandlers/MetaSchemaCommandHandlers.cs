@@ -47,6 +47,7 @@ internal sealed class MetaSchemaCommandHandlers
         var request = new SqlServerExtractRequest
         {
             NewWorkspacePath = output,
+            DataTypeWorkspacePath = invocation.Optional("data-type-workspace"),
             ConnectionString = connectionString,
             SystemName = invocation.Required("system"),
             SchemaName = invocation.Optional("schema") ?? string.Empty,
@@ -59,7 +60,7 @@ internal sealed class MetaSchemaCommandHandlers
         {
             using var activity = CliActivityLine.Start("Extracting");
             var result = sqlServerExtractService.Extract(request);
-            await workspaces.CreateAsync("output", result.Model).ConfigureAwait(false);
+            await workspaces.CreateAsync("output", result.Model, MetaSchema.Core.MetaSchemaModels.CreateMetaSchemaModel(), new MetaSchema.MetaSchemaWorkspaceBinding()).ConfigureAwait(false);
             activity.Succeed();
 
             presenter.WriteKeyValueBlock("MetaSchema", [

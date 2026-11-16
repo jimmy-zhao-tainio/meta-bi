@@ -223,7 +223,8 @@ public sealed partial class TransformScriptNavigator
 
     public IReadOnlyList<ScalarExpression> GetFunctionCallParameters(FunctionCall functionCall)
     {
-        return GetOrderedScalarExpressions(functionCallParametersByOwnerId, functionCall.Id);
+        return GetOrderedScalarExpressions(functionCallParametersByOwnerId, functionCall.Id,
+            static item => item.Ordinal, static item => item.ScalarExpression);
     }
 
     public string? TryGetFunctionCallName(FunctionCall functionCall)
@@ -277,7 +278,8 @@ public sealed partial class TransformScriptNavigator
 
     public IReadOnlyList<ScalarExpression> GetLeftFunctionCallParameters(LeftFunctionCall leftFunctionCall)
     {
-        return GetOrderedScalarExpressions(leftFunctionCallParametersByOwnerId, leftFunctionCall.Id);
+        return GetOrderedScalarExpressions(leftFunctionCallParametersByOwnerId, leftFunctionCall.Id,
+            static item => item.Ordinal, static item => item.ScalarExpression);
     }
 
     public RightFunctionCall? TryGetRightFunctionCall(ScalarExpression scalarExpression)
@@ -292,7 +294,8 @@ public sealed partial class TransformScriptNavigator
 
     public IReadOnlyList<ScalarExpression> GetRightFunctionCallParameters(RightFunctionCall rightFunctionCall)
     {
-        return GetOrderedScalarExpressions(rightFunctionCallParametersByOwnerId, rightFunctionCall.Id);
+        return GetOrderedScalarExpressions(rightFunctionCallParametersByOwnerId, rightFunctionCall.Id,
+            static item => item.Ordinal, static item => item.ScalarExpression);
     }
 
     public ParameterlessCall? TryGetParameterlessCall(ScalarExpression scalarExpression)
@@ -339,7 +342,8 @@ public sealed partial class TransformScriptNavigator
 
     public IReadOnlyList<ScalarExpression> GetCoalesceExpressions(CoalesceExpression coalesceExpression)
     {
-        return GetOrderedScalarExpressions(coalesceExpressionExpressionsByOwnerId, coalesceExpression.Id);
+        return GetOrderedScalarExpressions(coalesceExpressionExpressionsByOwnerId, coalesceExpression.Id,
+            static item => item.Ordinal, static item => item.ScalarExpression);
     }
 
     public NullIfExpression? TryGetNullIfExpression(ScalarExpression scalarExpression)
@@ -892,7 +896,9 @@ public sealed partial class TransformScriptNavigator
 
     private IReadOnlyList<ScalarExpression> GetOrderedScalarExpressions<T>(
         IReadOnlyDictionary<string, List<T>> itemsByOwnerId,
-        string ownerId)
+        string ownerId,
+        Func<T, string?> ordinal,
+        Func<T, ScalarExpression?> expression)
     {
         if (!itemsByOwnerId.TryGetValue(ownerId, out var items))
         {
@@ -900,11 +906,10 @@ public sealed partial class TransformScriptNavigator
         }
 
         return items
-            .OrderBy(item => ParseOrdinal((string?)item!.GetType().GetProperty("Ordinal")?.GetValue(item) ?? string.Empty))
+            .OrderBy(item => ParseOrdinal(ordinal(item)))
             .Select(item =>
             {
-                var scalarExpression = item!.GetType().GetProperty(nameof(ScalarExpression))?.GetValue(item);
-                var scalarExpressionId = scalarExpression?.GetType().GetProperty("Id")?.GetValue(scalarExpression) as string;
+                var scalarExpressionId = expression(item)?.Id;
                 return string.IsNullOrWhiteSpace(scalarExpressionId)
                     ? null
                     : scalarExpressionById.GetValueOrDefault(scalarExpressionId);

@@ -10,7 +10,22 @@
     <ProjectReference Include="..\..\MetaDataType\Core\MetaDataType.Core.csproj" />
     <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
     <PackageReference Include="Meta.Operations" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="Meta.TypedModels" Version="$(MetaFoundationPackageVersion)" />
     <Compile Include="..\Workspaces\MetaSchema\MetaSchema.meta.cs" Link="MetaSchema.meta.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\Workspaces\MetaSchema\**\*">
+      <Link>Workspaces\MetaSchema\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+      <PackagePath>contentFiles\any\any\Workspaces\MetaSchema\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Package\MetaSchema.Core.targets" Pack="true" PackagePath="buildTransitive\MetaSchema.Core.targets" />
   </ItemGroup>
 
 </Project>

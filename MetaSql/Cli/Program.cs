@@ -21,7 +21,7 @@ internal static class Program
         var handlers = new MetaSqlCommandHandlers(Presenter, AppName);
 
         Environment.ExitCode = 0;
-        var runtime = new MetaCliRuntime<MetaSqlModel>(CommandWorkspacePath, ApplicationId)
+        var runtime = new MetaCliRuntime<MetaSqlModel>(CommandWorkspacePath, new MetaSqlWorkspaceBinding(), MetaSqlModels.LoadContract, ApplicationId)
             .UseDefaultHelp()
             .Bind(
                 "exec-extract-sqlserver",

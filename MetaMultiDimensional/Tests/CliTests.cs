@@ -38,6 +38,7 @@ public sealed class CliTests
         Assert.Contains("Create modeled multidimensional database objects", result.Output);
         Assert.Contains("data source views", result.Output);
         Assert.Contains("--drop-existing", result.Output);
+        Assert.Contains("--data-type-workspace <path>", result.Output);
         Assert.Contains("--no-process", result.Output);
         Assert.Contains("processing failures fail the command", result.Output);
         Assert.DoesNotContain("--replace", result.Output);
@@ -102,7 +103,7 @@ public sealed class CliTests
             Assert.Equal(0, RunCli($"add-dimension-usage --workspace \"{path}\" --id SalesDateUsage --measure-group SalesMeasureGroup --cube-dimension DateCubeDimension --usage-kind Regular --role-name OrderDate").ExitCode);
             Assert.Equal(0, RunCli($"add-named-set --workspace \"{path}\" --id TopDates --cube CommerceCube --name TopDates --expression \"TOPCOUNT([Date].[DateKey].MEMBERS, 10)\"").ExitCode);
 
-            var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaMultiDimensionalModel>(path, searchUpward: false);
+            var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaMultiDimensionalModel>(path, new global::MetaMultiDimensional.MetaMultiDimensionalWorkspaceBinding(), searchUpward: false);
             Assert.Single(model.CubeList);
             Assert.Single(model.DimensionList);
             Assert.Single(model.MeasureGroupList);
@@ -136,7 +137,7 @@ public sealed class CliTests
                 workingDirectory: path);
 
             Assert.Equal(0, add.ExitCode);
-            var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaMultiDimensionalModel>(path, searchUpward: false);
+            var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaMultiDimensionalModel>(path, new global::MetaMultiDimensional.MetaMultiDimensionalWorkspaceBinding(), searchUpward: false);
             var database = Assert.Single(model.MultiDimensionalDatabaseList);
             Assert.Equal("Commerce", database.Name);
         }

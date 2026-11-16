@@ -1,3 +1,4 @@
+using MetaDataWarehouse;
 using System.Diagnostics.CodeAnalysis;
 using Meta.Core.Presentation;
 using Meta.Core.Presentation.Cli;
@@ -34,7 +35,7 @@ internal sealed class MetaDataWarehouseCommandHandlers
         MetaCliInvocation invocation,
         MetaCliWorkspaces workspaces)
     {
-        await workspaces.CreateAsync("output", service.CreateWorkspace()).ConfigureAwait(false);
+        await workspaces.CreateAsync("output", service.CreateWorkspace(), DataWarehouseModels.LoadContract(), new MetaDataWarehouseWorkspaceBinding()).ConfigureAwait(false);
         presenter.WriteKeyValueBlock(
             "MetaDataWarehouse workspace created",
             [("Path", MetaCliWorkspace.OutputLocation(invocation)), ("Model", "MetaDataWarehouse"), ("Rows", "0")]);

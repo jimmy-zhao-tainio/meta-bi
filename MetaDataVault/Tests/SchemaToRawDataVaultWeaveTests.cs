@@ -36,14 +36,14 @@ public sealed class SchemaToRawDataVaultWeaveTests
             "RawDataVault");
         var source = await TypedWorkspaceModelMapper.LoadAsync<MS.MetaSchemaModel>(
             sourcePath,
-            searchUpward: false);
+                new global::MetaSchema.MetaSchemaWorkspaceBinding(),            searchUpward: false);
         var expectedModel = await TypedWorkspaceModelMapper.LoadAsync<MetaRawDataVaultModel>(
             expectedPath,
-            searchUpward: false);
-        var expected = TypedWorkspaceModelMapper.ToInMemoryWorkspace(expectedModel);
+                new global::MetaRawDataVault.MetaRawDataVaultWorkspaceBinding(),            searchUpward: false);
+        var expected = TypedWorkspaceModelMapper.ToInMemoryWorkspace(expectedModel, global::MetaDataVault.Core.RawDataVaultModels.LoadContract(), new global::MetaRawDataVault.MetaRawDataVaultWorkspaceBinding());
 
         var converted = new RawDataVaultFromMetaSchemaService().Materialize(source);
-        var actual = TypedWorkspaceModelMapper.ToInMemoryWorkspace(converted);
+        var actual = TypedWorkspaceModelMapper.ToInMemoryWorkspace(converted, global::MetaDataVault.Core.RawDataVaultModels.LoadContract(), new global::MetaRawDataVault.MetaRawDataVaultWorkspaceBinding());
 
         Assert.Null(InMemoryWorkspaceComparer.FindDifference(expected, actual));
     }
@@ -67,8 +67,8 @@ public sealed class SchemaToRawDataVaultWeaveTests
             includeViews: true);
 
         Assert.Null(InMemoryWorkspaceComparer.FindDifference(
-            TypedWorkspaceModelMapper.ToInMemoryWorkspace(expected.Model),
-            TypedWorkspaceModelMapper.ToInMemoryWorkspace(actual.Model)));
+            TypedWorkspaceModelMapper.ToInMemoryWorkspace(expected.Model, global::MetaDataVault.Core.RawDataVaultModels.LoadContract(), new global::MetaRawDataVault.MetaRawDataVaultWorkspaceBinding()),
+            TypedWorkspaceModelMapper.ToInMemoryWorkspace(actual.Model, global::MetaDataVault.Core.RawDataVaultModels.LoadContract(), new global::MetaRawDataVault.MetaRawDataVaultWorkspaceBinding())));
         var expectedReport = expected.Report with
         {
             Tables = expected.Report.Tables
@@ -94,8 +94,8 @@ public sealed class SchemaToRawDataVaultWeaveTests
             CreateNamingWitness(reverseRelationships: true));
 
         Assert.Null(InMemoryWorkspaceComparer.FindDifference(
-            TypedWorkspaceModelMapper.ToInMemoryWorkspace(forward),
-            TypedWorkspaceModelMapper.ToInMemoryWorkspace(reversed)));
+            TypedWorkspaceModelMapper.ToInMemoryWorkspace(forward, global::MetaDataVault.Core.RawDataVaultModels.LoadContract(), new global::MetaRawDataVault.MetaRawDataVaultWorkspaceBinding()),
+            TypedWorkspaceModelMapper.ToInMemoryWorkspace(reversed, global::MetaDataVault.Core.RawDataVaultModels.LoadContract(), new global::MetaRawDataVault.MetaRawDataVaultWorkspaceBinding())));
         Assert.Equal(
             [
                 "Søurce SetTärgét-Set_Code--Å_relationship:a",

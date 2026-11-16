@@ -1,5 +1,6 @@
 using Meta.Integration;
 using Meta.Operations.Domain;
+using MetaDataVault.Core;
 using MetaWeave.Core;
 using MetaWeaveScript.Execution;
 using MS = global::MetaSchema;
@@ -33,18 +34,30 @@ public sealed partial class RawDataVaultFromMetaSchemaService
         IEnumerable<string>? ignoredFieldSuffixes,
         bool includeViews,
         Action<MetaWeaveScriptExecutionProgress>? progress)
+        => MaterializeWithReport(
+            new MS.MetaSchemaWorkspaceBinding().Write(metaSchemaModel, MetaSchema.Core.MetaSchemaModels.CreateMetaSchemaModel()),
+            ignoredFieldNames, ignoredFieldSuffixes, includeViews, progress);
+
+    public RawDataVaultFromMetaSchemaResult MaterializeWithReport(
+        InMemoryWorkspace metaSchemaWorkspace,
+        IEnumerable<string>? ignoredFieldNames = null,
+        IEnumerable<string>? ignoredFieldSuffixes = null,
+        bool includeViews = false,
+        Action<MetaWeaveScriptExecutionProgress>? progress = null)
     {
-        ArgumentNullException.ThrowIfNull(metaSchemaModel);
+        ArgumentNullException.ThrowIfNull(metaSchemaWorkspace);
 
         var options = CreateOptions(ignoredFieldNames, ignoredFieldSuffixes, includeViews);
+        var optionsContract = TypedWorkspaceModelMapper.LoadStateAsync(
+            Path.Combine(AppContext.BaseDirectory, "Workspaces", "MetaSchemaToRawDataVaultOptions")).GetAwaiter().GetResult().Model;
         var result = new MetaWeaveScriptExecutionService().ExecuteDirection(
             ForwardDirection.Value,
             new Dictionary<string, InMemoryWorkspace>(StringComparer.OrdinalIgnoreCase)
             {
-                ["schema"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(metaSchemaModel),
-                ["options"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(options.Model),
+                ["schema"] = metaSchemaWorkspace,
+                ["options"] = new Options.MetaSchemaToRawDataVaultOptionsWorkspaceBinding().Write(options.Model, optionsContract),
             },
-            TypedWorkspaceModelMapper.ToInMemoryWorkspace(MRDV.MetaRawDataVaultModel.CreateEmpty()),
+            new InMemoryWorkspace(RawDataVaultModels.LoadContract(), new GenericInstance { ModelName = "MetaRawDataVault" }),
             stringParameters: null,
             progress,
             includeRelationOutputs: true);
@@ -59,9 +72,7 @@ public sealed partial class RawDataVaultFromMetaSchemaService
                     result.Issues.Select(static issue => $"{issue.Code}: {issue.Message}")));
         }
 
-        var model = TypedWorkspaceModelMapper.FromInMemoryWorkspace(
-            result.OutputWorkspace!,
-            MRDV.MetaRawDataVaultModel.CreateEmpty);
+        var model = new MRDV.MetaRawDataVaultWorkspaceBinding().Read(result.OutputWorkspace!);
         return new RawDataVaultFromMetaSchemaResult(
             model,
             BuildReport(model, options, ReadEvidence(result.RelationOutputs)));

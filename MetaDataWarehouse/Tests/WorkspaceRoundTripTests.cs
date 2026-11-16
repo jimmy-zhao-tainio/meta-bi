@@ -8,9 +8,9 @@ public sealed class WorkspaceRoundTripTests
         var path = CreateTempPath();
         try
         {
-            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(TestModels.LoadSampleSales(), path);
+            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(TestModels.LoadSampleSales(), path, global::MetaDataWarehouse.Core.DataWarehouseModels.LoadContract(), new global::MetaDataWarehouse.MetaDataWarehouseWorkspaceBinding());
 
-            var loaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaDataWarehouseModel>(path, searchUpward: false);
+            var loaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaDataWarehouseModel>(path, new global::MetaDataWarehouse.MetaDataWarehouseWorkspaceBinding(), searchUpward: false);
             var date = Assert.Single(loaded.DimensionList, row => row.Id == "dimension:date");
             var salesOrder = Assert.Single(loaded.FactList, row => row.Id == "fact:sales-order");
             var orderDate = Assert.Single(loaded.FactDimensionList, row => row.Fact.Id == salesOrder.Id && row.RoleName == "OrderDate");
@@ -34,9 +34,9 @@ public sealed class WorkspaceRoundTripTests
         var path = CreateTempPath();
         try
         {
-            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(TestModels.LoadSampleSales(), path);
+            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(TestModels.LoadSampleSales(), path, global::MetaDataWarehouse.Core.DataWarehouseModels.LoadContract(), new global::MetaDataWarehouse.MetaDataWarehouseWorkspaceBinding());
 
-            var loaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaDataWarehouseModel>(path, searchUpward: false);
+            var loaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaDataWarehouseModel>(path, new global::MetaDataWarehouse.MetaDataWarehouseWorkspaceBinding(), searchUpward: false);
             var scd = Assert.Single(loaded.SlowlyChangingDimensionList, row => row.Id == "scd:customer");
             var key = Assert.Single(loaded.DimensionBusinessKeyList, row => row.Dimension.Id == "dimension:customer");
             var keyPart = Assert.Single(loaded.DimensionBusinessKeyPartList, row => row.DimensionBusinessKey == key);
@@ -59,9 +59,9 @@ public sealed class WorkspaceRoundTripTests
         {
             Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(
                 MetaDataWarehouseImplementation.MetaDataWarehouseImplementationInstance.BuiltIn,
-                path);
+                path, global::MetaDataWarehouse.Core.DataWarehouseImplementationModels.LoadContract(), new global::MetaDataWarehouseImplementation.MetaDataWarehouseImplementationWorkspaceBinding());
 
-            var loaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaDataWarehouseImplementation.MetaDataWarehouseImplementationModel>(path, searchUpward: false);
+            var loaded = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaDataWarehouseImplementation.MetaDataWarehouseImplementationModel>(path, new global::MetaDataWarehouseImplementation.MetaDataWarehouseImplementationWorkspaceBinding(), searchUpward: false);
             Assert.Contains(loaded.PlatformColumnImplementationList, row =>
                 row.ColumnName == "AuditId" &&
                 row.DataTypeId == "meta:type:Int64" &&

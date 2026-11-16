@@ -25,7 +25,8 @@ internal static class Program
             AppName);
 
         Environment.ExitCode = 0;
-        var runtime = new MetaCliRuntime<MetaTransformScriptModel>(CommandWorkspacePath, ApplicationId)
+        var runtime = new MetaCliRuntime<MetaTransformScriptModel>(CommandWorkspacePath,
+                new MetaTransformScriptWorkspaceBinding(), () => MetaTransformScriptModels.LoadContract(), ApplicationId)
             .UseDefaultHelp()
             .Bind("exec-apply-conversions", ConversionWorkspaces(), handlers.RunApplyConversionsAsync)
             .BindTarget("exec-from-sql-file", OutputWorkspace(), handlers.RunFromSqlFileAsync)

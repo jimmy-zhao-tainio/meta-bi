@@ -58,7 +58,7 @@ internal sealed partial class MetaTransformScriptCommandHandlers
                 service.ImportSqlFile(model, fullPath, targetSqlIdentifier);
                 if (output is not null)
                 {
-                    await workspaces.CreateAsync("output", model).ConfigureAwait(false);
+                    await workspaces.CreateAsync("output", model, global::MetaTransformScript.Sql.MetaTransformScriptModels.LoadContract(), new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding()).ConfigureAwait(false);
                 }
 
                 activity.Succeed();
@@ -215,7 +215,7 @@ internal sealed partial class MetaTransformScriptCommandHandlers
 
             if (output is not null)
             {
-                await workspaces.CreateAsync("output", model).ConfigureAwait(false);
+                await workspaces.CreateAsync("output", model, global::MetaTransformScript.Sql.MetaTransformScriptModels.LoadContract(), new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding()).ConfigureAwait(false);
             }
 
             presenter.WriteOk($"Imported {result.Successes.Count} SQL file{(result.Successes.Count == 1 ? string.Empty : "s")}");
@@ -259,7 +259,7 @@ internal sealed partial class MetaTransformScriptCommandHandlers
                 service.ImportSqlCode(model, code, targetSqlIdentifier, name);
                 if (output is not null)
                 {
-                    await workspaces.CreateAsync("output", model).ConfigureAwait(false);
+                    await workspaces.CreateAsync("output", model, global::MetaTransformScript.Sql.MetaTransformScriptModels.LoadContract(), new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding()).ConfigureAwait(false);
                 }
 
                 activity.Succeed();
@@ -307,13 +307,13 @@ internal sealed partial class MetaTransformScriptCommandHandlers
             {
                 var source = await TypedWorkspaceModelMapper.LoadAsync<MSS.MetaSqlScriptModel>(
                         sourceWorkspacePath,
-                        searchUpward: false,
+                new global::MetaSqlScript.MetaSqlScriptWorkspaceBinding(),                        searchUpward: false,
                         CancellationToken.None)
                     .ConfigureAwait(false);
                 result = service.ImportSqlScriptWorkspace(model, source);
                 if (output is not null)
                 {
-                    await workspaces.CreateAsync("output", model).ConfigureAwait(false);
+                    await workspaces.CreateAsync("output", model, global::MetaTransformScript.Sql.MetaTransformScriptModels.LoadContract(), new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding()).ConfigureAwait(false);
                 }
 
                 activity.Succeed();

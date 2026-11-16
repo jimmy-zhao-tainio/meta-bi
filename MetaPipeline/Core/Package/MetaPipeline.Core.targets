@@ -1,0 +1,11 @@
+<Project>
+  <ItemGroup>
+    <_MetaPipelinePackagedWorkspace Include="$(MSBuildThisFileDirectory)../contentFiles/any/any/Workspaces/MetaPipeline/**/*" />
+  </ItemGroup>
+  <Target Name="CopyMetaPipelinePackagedWorkspaceToOutput" AfterTargets="CopyFilesToOutputDirectory" Condition="'$(DesignTimeBuild)' != 'true'">
+    <Copy SourceFiles="@(_MetaPipelinePackagedWorkspace)" DestinationFiles="@(_MetaPipelinePackagedWorkspace -> '$(OutDir)Workspaces/MetaPipeline/%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+  <Target Name="CopyMetaPipelinePackagedWorkspaceToPublish" AfterTargets="Publish" Condition="'$(DesignTimeBuild)' != 'true' and '$(PublishDir)' != ''">
+    <Copy SourceFiles="@(_MetaPipelinePackagedWorkspace)" DestinationFiles="@(_MetaPipelinePackagedWorkspace -> '$(PublishDir)Workspaces/MetaPipeline/%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+</Project>

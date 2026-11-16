@@ -1,5 +1,5 @@
+using Meta.Operations.Domain;
 using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
 using System.Text;
 using Meta.Core.Presentation;
 using Meta.Core.Presentation.Cli;
@@ -37,7 +37,7 @@ internal sealed class MetaRawDataVaultCommandHandlers
         MetaCliInvocation invocation,
         MetaCliWorkspaces workspaces)
     {
-        await workspaces.CreateAsync("output", authoringService.CreateWorkspace()).ConfigureAwait(false);
+        await workspaces.CreateAsync("output", authoringService.CreateWorkspace(), RawDataVaultModels.LoadContract(), new MetaRawDataVaultWorkspaceBinding()).ConfigureAwait(false);
         presenter.WriteKeyValueBlock(
             "MetaRawDataVault workspace created",
             [("Path", MetaCliWorkspace.OutputLocation(invocation)), ("Model", "MetaRawDataVault"), ("Rows", "0")]);
@@ -98,57 +98,22 @@ internal sealed class MetaRawDataVaultCommandHandlers
 
     private static IReadOnlyList<AuthoringCommandSpec> BuildAuthoringCommands()
     {
-        var modelType = typeof(MetaRawDataVaultModel);
-        return modelType.Assembly.GetTypes()
-            .Where(type => type.Namespace == "MetaRawDataVault" &&
-                           type.IsClass &&
-                           type.GetProperty("Id", BindingFlags.Instance | BindingFlags.Public)?.PropertyType == typeof(string) &&
-                           modelType.GetProperty($"{type.Name}List", BindingFlags.Instance | BindingFlags.Public) is not null)
-            .OrderBy(static type => type.Name, StringComparer.Ordinal)
-            .Select(BuildAuthoringCommand)
-            .ToArray();
+        var entities = RawDataVaultModels.LoadContract().Entities;
+        return entities.OrderBy(entity => entity.Name, StringComparer.Ordinal)
+            .Select(BuildAuthoringCommand).ToArray();
     }
 
-    private static AuthoringCommandSpec BuildAuthoringCommand(Type entityType)
+    private static AuthoringCommandSpec BuildAuthoringCommand(GenericEntity entity)
     {
-        var properties = entityType.GetProperties(BindingFlags.Instance | BindingFlags.Public)
-            .Where(static property => property.CanWrite &&
-                                      property.PropertyType == typeof(string) &&
-                                      !string.Equals(property.Name, "Id", StringComparison.Ordinal))
-            .OrderBy(static property => property.Name, StringComparer.Ordinal)
-            .Select(static property => new PropertySpec(ToKebabCase(property.Name), property.Name))
-            .ToArray();
-
-        var relationships = entityType.GetProperties(BindingFlags.Instance | BindingFlags.Public)
-            .Where(IsRelationshipProperty)
-            .OrderBy(static property => $"{property.Name}Id", StringComparer.Ordinal)
-            .Select(property => new RelationshipSpec(
-                ToRelationshipOptionName(entityType.Name, property.Name),
-                $"{property.Name}Id",
-                RelationshipTargetType(property.PropertyType).Name))
-            .ToArray();
-
+        var properties = entity.Properties.OrderBy(property => property.Name, StringComparer.Ordinal)
+            .Select(property => new PropertySpec(ToKebabCase(property.Name), property.Name)).ToArray();
+        var relationships = entity.Relationships.OrderBy(relationship => relationship.GetColumnName(), StringComparer.Ordinal)
+            .Select(relationship => new RelationshipSpec(
+                ToRelationshipOptionName(entity.Name, relationship.GetRoleOrDefault()), relationship.GetColumnName(), relationship.Entity)).ToArray();
         return new AuthoringCommandSpec(
-            "add-" + ToKebabCase(CommandStem(entityType.Name)),
-            entityType.Name,
-            "exec-add-" + ToKebabCase(entityType.Name),
-            properties,
-            relationships);
+            "add-" + ToKebabCase(CommandStem(entity.Name)), entity.Name,
+            "exec-add-" + ToKebabCase(entity.Name), properties, relationships );
     }
-
-    private static bool IsRelationshipProperty(PropertyInfo property)
-    {
-        if (!property.CanWrite || property.PropertyType == typeof(string))
-        {
-            return false;
-        }
-
-        var targetType = RelationshipTargetType(property.PropertyType);
-        return targetType.IsClass && targetType.Namespace == "MetaRawDataVault";
-    }
-
-    private static Type RelationshipTargetType(Type propertyType) =>
-        Nullable.GetUnderlyingType(propertyType) ?? propertyType;
 
     private static string CommandStem(string entityName) =>
         entityName.StartsWith("Raw", StringComparison.Ordinal)

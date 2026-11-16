@@ -29,7 +29,7 @@ public sealed class DataQualityToSqlWeaveWitnessTests(ITestOutputHelper output)
         try
         {
             var source = CreateWitnessModel();
-            TypedWorkspaceXmlSerializer.Save(source, sourcePath);
+            TypedWorkspaceXmlSerializer.Save(source, sourcePath, global::MetaDataQuality.Core.MetaDataQualityModels.LoadContract(), new global::MetaDataQuality.MetaDataQualityWorkspaceBinding());
 
             var repositoryRoot = CliTestRunner.FindRepositoryRoot();
             var probe = await ExecuteDirectWeaveAsync(source);
@@ -38,8 +38,8 @@ public sealed class DataQualityToSqlWeaveWitnessTests(ITestOutputHelper output)
             Assert.True(result.IsSuccess, FormatIssues(result));
             var actual = TypedWorkspaceModelMapper.FromInMemoryWorkspace(
                 result.OutputWorkspace!,
-                static () => MetaSqlModel.CreateEmpty());
-            TypedWorkspaceXmlSerializer.Save(actual, outputPath);
+                new global::MetaSql.MetaSqlWorkspaceBinding());
+            await WorkspaceSurface.CreateAsync(result.OutputWorkspace!, outputPath, "xml");
 
             Assert.Single(actual.DatabaseList);
             Assert.Single(actual.SchemaList);
@@ -199,7 +199,7 @@ public sealed class DataQualityToSqlWeaveWitnessTests(ITestOutputHelper output)
         try
         {
             var source = CreateWitnessModel();
-            TypedWorkspaceXmlSerializer.Save(source, sourcePath);
+            TypedWorkspaceXmlSerializer.Save(source, sourcePath, global::MetaDataQuality.Core.MetaDataQualityModels.LoadContract(), new global::MetaDataQuality.MetaDataQualityWorkspaceBinding());
             var direct = await ExecuteDirectWeaveAsync(source);
             Assert.True(direct.Result.IsSuccess, FormatIssues(direct.Result));
             var expected = ToMetaSql(direct.Result);
@@ -259,7 +259,7 @@ public sealed class DataQualityToSqlWeaveWitnessTests(ITestOutputHelper output)
             var production = new DataQualityToSqlConverter().Convert(workspacePath, productionPath);
             var source = TypedWorkspaceModelMapper.Load<MetaDataQualityModel>(
                 workspacePath,
-                searchUpward: false);
+                new global::MetaDataQuality.MetaDataQualityWorkspaceBinding(),                searchUpward: false);
             var productionSql = File.ReadAllText(productionPath);
 
             Assert.Equal(source.DataQualityCandidateList.Count, production.CandidateViewCount);
@@ -480,7 +480,7 @@ public sealed class DataQualityToSqlWeaveWitnessTests(ITestOutputHelper output)
             direction,
             new Dictionary<string, InMemoryWorkspace>(StringComparer.OrdinalIgnoreCase)
             {
-                ["quality"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(source),
+                ["quality"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(source, global::MetaDataQuality.Core.MetaDataQualityModels.LoadContract(), new global::MetaDataQuality.MetaDataQualityWorkspaceBinding()),
             },
             emptyTarget,
             new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
@@ -494,7 +494,7 @@ public sealed class DataQualityToSqlWeaveWitnessTests(ITestOutputHelper output)
     private static MetaSqlModel ToMetaSql(MetaWeaveScriptApplicationResult result) =>
         TypedWorkspaceModelMapper.FromInMemoryWorkspace(
             result.OutputWorkspace!,
-            static () => MetaSqlModel.CreateEmpty());
+            new global::MetaSql.MetaSqlWorkspaceBinding());
 
     private static MetaDataQualityModel CreateWitnessModel()
     {

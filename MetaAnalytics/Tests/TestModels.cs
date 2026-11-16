@@ -12,6 +12,6 @@ internal static class TestModels
             "MetaAnalytics",
             "Workspaces",
             "SampleAnalyticsCommerce");
-        return TypedWorkspaceXmlSerializer.Load<MetaAnalyticsModel>(workspacePath, searchUpward: false);
+        return TypedWorkspaceXmlSerializer.Load<MetaAnalyticsModel>(workspacePath, new global::MetaAnalytics.MetaAnalyticsWorkspaceBinding(), searchUpward: false);
     }
 }

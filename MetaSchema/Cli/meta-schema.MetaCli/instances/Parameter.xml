@@ -19,6 +19,11 @@
       <IsRequired>true</IsRequired>
       <Name>connection-env</Name>
     </Parameter>
+    <Parameter Id="param-extract-sqlserver-data-type-workspace" ValueShapeId="shape-path">
+      <Description>MetaDataType catalog workspace. Defaults to the packaged MetaDataType workspace.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>data-type-workspace</Name>
+    </Parameter>
     <Parameter Id="param-extract-sqlserver-output-connection-env" ValueShapeId="shape-text">
       <Description>Environment variable containing the output SQL workspace connection string.</Description>
       <Name>output-connection-env</Name>

@@ -67,7 +67,7 @@ public sealed class MetaOrchestrationRuntimeService
             observer?.PhaseChanged("Loading");
             supervisorState.SetPhase("Loading");
             journal.WriteEvent("Phase", "Loading", workspacePath);
-            var model = Meta.Integration.TypedWorkspaceModelMapper.Load<MO.MetaOrchestrationModel>(workspacePath, searchUpward: false);
+            var model = Meta.Integration.TypedWorkspaceModelMapper.Load(workspacePath, new global::MetaOrchestration.MetaOrchestrationWorkspaceBinding(), searchUpward: false);
             observer?.PhaseChanged("Building");
             supervisorState.SetPhase("Building");
             journal.WriteEvent("Phase", "Building", workspacePath);
@@ -75,7 +75,7 @@ public sealed class MetaOrchestrationRuntimeService
             observer?.PhaseChanged("Saving");
             supervisorState.SetPhase("Saving");
             journal.WriteEvent("Phase", "Saving", workspacePath);
-            Meta.Integration.TypedWorkspaceModelMapper.Save(model, workspacePath);
+            Meta.Integration.TypedWorkspaceModelMapper.Save(model, workspacePath, new global::MetaOrchestration.MetaOrchestrationWorkspaceBinding());
 
             var runPlan = ResolveRunPlan(model);
             supervisorState.SetRunPlan(runPlan.Name, 0);
@@ -184,7 +184,7 @@ public sealed class MetaOrchestrationRuntimeService
         var workerActivationTimeout = ResolveWorkerActivationTimeout(request.WorkerActivationTimeout, workerEventTimeout);
         var workerControlPipeConnectTimeout = NormalizeOptionalTimeout(request.WorkerControlPipeConnectTimeout);
         var expectedVersion = string.IsNullOrWhiteSpace(request.ExpectedWorkerExecutableVersion)
-            ? OrchestrationWorkerProtocol.ResolveExecutableVersion(typeof(MetaOrchestrationRuntimeService).Assembly)
+            ? MetaBuildVersion.Value
             : request.ExpectedWorkerExecutableVersion;
         runtimeDefinition = runtimeDefinition with { ExpectedWorkerExecutableVersion = expectedVersion };
         var kernel = new MetaOrchestrationRuntimeKernel(new RuntimeState(runtimeDefinition));
@@ -1133,7 +1133,7 @@ public sealed class MetaOrchestrationRuntimeService
             }
 
             var expectedVersion = string.IsNullOrWhiteSpace(request.ExpectedWorkerExecutableVersion)
-                ? OrchestrationWorkerProtocol.ResolveExecutableVersion(typeof(MetaOrchestrationRuntimeService).Assembly)
+                ? MetaBuildVersion.Value
                 : request.ExpectedWorkerExecutableVersion;
             var logFileSegment = $"{SanitizeFileSegment(pipelineName)}-{process.Id.ToString(CultureInfo.InvariantCulture)}";
             var logCapturePolicy = request.LogCapturePolicy ?? OrchestrationLogCapturePolicy.Default;

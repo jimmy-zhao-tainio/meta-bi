@@ -54,7 +54,7 @@ public sealed class MetaTransformPatternCliTests
             SetPlaceholder(patternWorkspace, instanceWorkspace, "target", string.Empty);
             var emptyInstances = TypedWorkspaceModelMapper.Load<MTPI.MetaTransformPatternInstanceModel>(
                 instanceWorkspace,
-                searchUpward: false);
+                new global::MetaTransformPatternInstance.MetaTransformPatternInstanceWorkspaceBinding(),                searchUpward: false);
             Assert.Equal(
                 string.Empty,
                 Assert.Single(emptyInstances.TransformPatternInstancePlaceholderList).SqlText);
@@ -78,10 +78,10 @@ public sealed class MetaTransformPatternCliTests
 
             var patterns = TypedWorkspaceModelMapper.Load<MTP.MetaTransformPatternModel>(
                 patternWorkspace,
-                searchUpward: false);
+                new global::MetaTransformPattern.MetaTransformPatternWorkspaceBinding(),                searchUpward: false);
             var instances = TypedWorkspaceModelMapper.Load<MTPI.MetaTransformPatternInstanceModel>(
                 instanceWorkspace,
-                searchUpward: false);
+                new global::MetaTransformPatternInstance.MetaTransformPatternInstanceWorkspaceBinding(),                searchUpward: false);
             var script = Assert.Single(
                 TransformPatternToSqlScriptConverter.Convert(patterns, instances).SqlScriptList);
             Assert.Equal(

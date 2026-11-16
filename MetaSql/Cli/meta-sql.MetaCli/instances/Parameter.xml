@@ -6,6 +6,11 @@
       <IsRequired>true</IsRequired>
       <Name>connection-env</Name>
     </Parameter>
+    <Parameter Id="param-deploy-data-type-workspace" ValueShapeId="shape-path">
+      <Description>MetaDataType catalog workspace. Defaults to the packaged MetaDataType workspace.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>data-type-workspace</Name>
+    </Parameter>
     <Parameter Id="param-deploy-manifest-workspace" ValueShapeId="shape-path">
       <Description>Deploy manifest workspace created by deploy-plan.</Description>
       <IsRequired>true</IsRequired>
@@ -34,6 +39,11 @@
       <Description>Environment variable containing the SQL Server connection string.</Description>
       <IsRequired>true</IsRequired>
       <Name>connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-deploy-plan-data-type-workspace" ValueShapeId="shape-path">
+      <Description>MetaDataType catalog workspace. Defaults to the packaged MetaDataType workspace.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>data-type-workspace</Name>
     </Parameter>
     <Parameter Id="param-deploy-plan-output-connection-env" ValueShapeId="shape-text">
       <Description>Environment variable containing the output SQL workspace connection string.</Description>
@@ -103,6 +113,11 @@
       <Description>Environment variable containing the SQL Server connection string.</Description>
       <IsRequired>true</IsRequired>
       <Name>connection-env</Name>
+    </Parameter>
+    <Parameter Id="param-extract-sqlserver-data-type-workspace" ValueShapeId="shape-path">
+      <Description>MetaDataType catalog workspace. Defaults to the packaged MetaDataType workspace.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>data-type-workspace</Name>
     </Parameter>
     <Parameter Id="param-extract-sqlserver-include-functions" ValueShapeId="shape-flag">
       <Description>Extract function modules. If any include switch is provided, only selected object kinds are extracted.</Description>

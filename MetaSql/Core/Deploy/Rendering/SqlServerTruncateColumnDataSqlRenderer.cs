@@ -1,9 +1,11 @@
+using MetaSql.Extractors.SqlServer;
+
 namespace MetaSql;
 
 /// <summary>
 /// Renders SQL Server truncation statements used before approved narrowing alters.
 /// </summary>
-internal sealed class SqlServerTruncateColumnDataSqlRenderer
+internal sealed class SqlServerTruncateColumnDataSqlRenderer(SqlServerDataTypeCatalog catalog)
 {
     public string BuildTruncateColumnDataSql(
         TableColumn sourceColumn,
@@ -22,15 +24,15 @@ internal sealed class SqlServerTruncateColumnDataSqlRenderer
                 $"Cannot truncate column data because source column name '{sourceColumn.Name}' and live column name '{liveColumn.Name}' differ.");
         }
 
-        if (!SqlServerRenderingSupport.IsSqlServerTypeId(sourceColumn.MetaDataTypeId) ||
-            !SqlServerRenderingSupport.IsSqlServerTypeId(liveColumn.MetaDataTypeId))
+        if (!catalog.ContainsSqlServerId(sourceColumn.MetaDataTypeId) ||
+            !catalog.ContainsSqlServerId(liveColumn.MetaDataTypeId))
         {
             throw new InvalidOperationException(
                 $"Cannot truncate column '{sourceColumn.Id}' because only MetaDataTypeId values under DataTypeSystem 'SqlServer' are supported.");
         }
 
-        var sourceTypeName = SqlServerRenderingSupport.GetSqlServerTypeName(sourceColumn.MetaDataTypeId);
-        var liveTypeName = SqlServerRenderingSupport.GetSqlServerTypeName(liveColumn.MetaDataTypeId);
+        var sourceTypeName = catalog.ResolveId(sourceColumn.MetaDataTypeId, $"Source column '{sourceColumn.Id}'").Name;
+        var liveTypeName = catalog.ResolveId(liveColumn.MetaDataTypeId, $"Live column '{liveColumn.Id}'").Name;
         if (!string.Equals(sourceTypeName, liveTypeName, StringComparison.OrdinalIgnoreCase))
         {
             throw new InvalidOperationException(

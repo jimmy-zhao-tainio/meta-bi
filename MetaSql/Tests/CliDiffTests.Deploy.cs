@@ -42,7 +42,7 @@ public sealed class CliForeignKeyDeploymentTests
 
             Assert.Equal(0, result.ExitCode);
             AssertPlanChanges(result.Output, "1 to replace");
-            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(outputPath, searchUpward: false);
+            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(outputPath, new global::MetaSqlDeployManifest.MetaSqlDeployManifestWorkspaceBinding(), searchUpward: false);
             Assert.Single(manifest.ReplaceForeignKeyList);
             Assert.Empty(manifest.BlockForeignKeyDifferenceList);
         }
@@ -86,7 +86,7 @@ public sealed class CliForeignKeyDeploymentTests
             Assert.Equal(4, result.ExitCode);
             Assert.Contains("deploy-plan produced a non-deployable manifest.", result.Output, StringComparison.Ordinal);
 
-            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(outputPath, searchUpward: false);
+            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(outputPath, new global::MetaSqlDeployManifest.MetaSqlDeployManifestWorkspaceBinding(), searchUpward: false);
             Assert.Empty(manifest.ReplaceForeignKeyList);
             var block = Assert.Single(manifest.BlockForeignKeyDifferenceList);
             Assert.Contains("no member rows", block.DifferenceSummary, StringComparison.OrdinalIgnoreCase);
@@ -304,7 +304,7 @@ public sealed class CliPrimaryKeyDeploymentTests
 
             Assert.Equal(0, result.ExitCode);
             AssertPlanChanges(result.Output, "1 to replace");
-            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(outputPath, searchUpward: false);
+            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(outputPath, new global::MetaSqlDeployManifest.MetaSqlDeployManifestWorkspaceBinding(), searchUpward: false);
             Assert.Single(manifest.ReplacePrimaryKeyList);
             Assert.Empty(manifest.BlockPrimaryKeyDifferenceList);
         }
@@ -358,7 +358,7 @@ public sealed class CliPrimaryKeyDeploymentTests
             Assert.Equal(0, planResult.ExitCode);
             AssertPlanChanges(planResult.Output, "2 to replace");
 
-            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(planPath, searchUpward: false);
+            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(planPath, new global::MetaSqlDeployManifest.MetaSqlDeployManifestWorkspaceBinding(), searchUpward: false);
             Assert.Single(manifest.ReplacePrimaryKeyList);
             Assert.Single(manifest.ReplaceForeignKeyList);
 
@@ -429,7 +429,7 @@ public sealed class CliPrimaryKeyDeploymentTests
 
             Assert.Equal(4, result.ExitCode);
             Assert.Contains("deploy-plan produced a non-deployable manifest.", result.Output, StringComparison.Ordinal);
-            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(outputPath, searchUpward: false);
+            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(outputPath, new global::MetaSqlDeployManifest.MetaSqlDeployManifestWorkspaceBinding(), searchUpward: false);
             Assert.Empty(manifest.ReplacePrimaryKeyList);
             var block = Assert.Single(manifest.BlockPrimaryKeyDifferenceList);
             Assert.Contains("clustered primary key replacement is blocked", block.DifferenceSummary, StringComparison.OrdinalIgnoreCase);
@@ -482,7 +482,7 @@ public sealed class CliPrimaryKeyDeploymentTests
 
             Assert.Equal(4, result.ExitCode);
             Assert.Contains("deploy-plan produced a non-deployable manifest.", result.Output, StringComparison.Ordinal);
-            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(outputPath, searchUpward: false);
+            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(outputPath, new global::MetaSqlDeployManifest.MetaSqlDeployManifestWorkspaceBinding(), searchUpward: false);
             Assert.Empty(manifest.ReplacePrimaryKeyList);
             var block = Assert.Single(manifest.BlockPrimaryKeyDifferenceList);
             Assert.Contains("no member rows", block.DifferenceSummary, StringComparison.OrdinalIgnoreCase);
@@ -537,7 +537,7 @@ public sealed class CliPrimaryKeyDeploymentTests
 
             Assert.Equal(4, result.ExitCode);
             Assert.Contains("deploy-plan produced a non-deployable manifest.", result.Output, StringComparison.Ordinal);
-            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(outputPath, searchUpward: false);
+            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(outputPath, new global::MetaSqlDeployManifest.MetaSqlDeployManifestWorkspaceBinding(), searchUpward: false);
             Assert.Empty(manifest.ReplacePrimaryKeyList);
             var block = Assert.Single(manifest.BlockPrimaryKeyDifferenceList);
             Assert.Contains("unsupported target-column shape", block.DifferenceSummary, StringComparison.OrdinalIgnoreCase);
@@ -791,7 +791,7 @@ public sealed class CliIndexDeploymentTests
 
             Assert.Equal(0, result.ExitCode);
             AssertPlanChanges(result.Output, "1 to replace");
-            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(outputPath, searchUpward: false);
+            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(outputPath, new global::MetaSqlDeployManifest.MetaSqlDeployManifestWorkspaceBinding(), searchUpward: false);
             Assert.Single(manifest.ReplaceIndexList);
             Assert.Empty(manifest.BlockIndexDifferenceList);
         }
@@ -843,7 +843,7 @@ public sealed class CliIndexDeploymentTests
 
             Assert.Equal(4, result.ExitCode);
             Assert.Contains("deploy-plan produced a non-deployable manifest.", result.Output, StringComparison.Ordinal);
-            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(outputPath, searchUpward: false);
+            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(outputPath, new global::MetaSqlDeployManifest.MetaSqlDeployManifestWorkspaceBinding(), searchUpward: false);
             Assert.Empty(manifest.ReplaceIndexList);
             var block = Assert.Single(manifest.BlockIndexDifferenceList);
             Assert.Contains("clustered index replacement is blocked", block.DifferenceSummary, StringComparison.OrdinalIgnoreCase);
@@ -896,7 +896,7 @@ public sealed class CliIndexDeploymentTests
 
             Assert.Equal(4, result.ExitCode);
             Assert.Contains("deploy-plan produced a non-deployable manifest.", result.Output, StringComparison.Ordinal);
-            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(outputPath, searchUpward: false);
+            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(outputPath, new global::MetaSqlDeployManifest.MetaSqlDeployManifestWorkspaceBinding(), searchUpward: false);
             Assert.Empty(manifest.ReplaceIndexList);
             var block = Assert.Single(manifest.BlockIndexDifferenceList);
             Assert.Contains("no member rows", block.DifferenceSummary, StringComparison.OrdinalIgnoreCase);
@@ -1132,7 +1132,7 @@ public sealed class CliManifestDeploymentTests
             Assert.Contains("Ok", result.Output, StringComparison.Ordinal);
             AssertPlanChanges(result.Output, "1 to alter");
 
-            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(outputPath, searchUpward: false);
+            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(outputPath, new global::MetaSqlDeployManifest.MetaSqlDeployManifestWorkspaceBinding(), searchUpward: false);
             Assert.Single(manifest.AlterTableColumnList);
             Assert.Empty(manifest.BlockTableColumnDifferenceList);
         }
@@ -1176,7 +1176,7 @@ public sealed class CliManifestDeploymentTests
             Assert.Equal(4, result.ExitCode);
             Assert.Contains("deploy-plan produced a non-deployable manifest.", result.Output, StringComparison.Ordinal);
 
-            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(outputPath, searchUpward: false);
+            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(outputPath, new global::MetaSqlDeployManifest.MetaSqlDeployManifestWorkspaceBinding(), searchUpward: false);
             Assert.Empty(manifest.AlterTableColumnList);
             var block = Assert.Single(manifest.BlockTableColumnDifferenceList);
             Assert.Contains("smaller than live data currently stored", block.DifferenceSummary, StringComparison.Ordinal);
@@ -1543,7 +1543,7 @@ public sealed class CliColumnShapeDeploymentTests
             Assert.Contains("deploy-plan produced a non-deployable manifest.", planResult.Output, StringComparison.Ordinal);
             Assert.Contains("Missing approval DataTruncationColumn(raw.VarcharCase.ValueCol)", planResult.Output, StringComparison.Ordinal);
 
-            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(planPath, searchUpward: false);
+            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(planPath, new global::MetaSqlDeployManifest.MetaSqlDeployManifestWorkspaceBinding(), searchUpward: false);
             Assert.Empty(manifest.AlterTableColumnList);
             var block = Assert.Single(manifest.BlockTableColumnDifferenceList);
             Assert.Contains("smaller than live data currently stored", block.DifferenceSummary, StringComparison.Ordinal);
@@ -1595,7 +1595,7 @@ public sealed class CliColumnShapeDeploymentTests
             Assert.Equal(0, planResult.ExitCode);
             AssertPlanChanges(planResult.Output, "1 to alter", "1 to truncate");
 
-            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(planPath, searchUpward: false);
+            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(planPath, new global::MetaSqlDeployManifest.MetaSqlDeployManifestWorkspaceBinding(), searchUpward: false);
             Assert.Single(manifest.AlterTableColumnList);
             Assert.Single(manifest.TruncateTableColumnDataList);
             Assert.Empty(manifest.BlockTableColumnDifferenceList);
@@ -1663,7 +1663,7 @@ public sealed class CliColumnShapeDeploymentTests
             var planResult = RunProcess(planCommand, "Could not start MetaSql CLI deploy-plan process.");
             Assert.Equal(4, planResult.ExitCode);
 
-            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(planPath, searchUpward: false);
+            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(planPath, new global::MetaSqlDeployManifest.MetaSqlDeployManifestWorkspaceBinding(), searchUpward: false);
             Assert.Empty(manifest.AlterTableColumnList);
             var block = Assert.Single(manifest.BlockTableColumnDifferenceList);
             Assert.Contains("contains NULL values", block.DifferenceSummary, StringComparison.Ordinal);
@@ -1784,7 +1784,7 @@ public sealed class CliColumnDependencyDeploymentTests
             Assert.Contains("Live: decimal(18,2) not null", planResult.Output, StringComparison.Ordinal);
             Assert.Contains("Why blocked: type-shape changes are only auto-executable for length-based SqlServer types", planResult.Output, StringComparison.Ordinal);
 
-            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(planPath, searchUpward: false);
+            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(planPath, new global::MetaSqlDeployManifest.MetaSqlDeployManifestWorkspaceBinding(), searchUpward: false);
             Assert.Empty(manifest.AlterTableColumnList);
             var block = Assert.Single(manifest.BlockTableColumnDifferenceList);
             Assert.Contains("type-shape changes are only auto-executable for length-based SqlServer types", block.DifferenceSummary, StringComparison.OrdinalIgnoreCase);
@@ -1797,7 +1797,7 @@ public sealed class CliColumnDependencyDeploymentTests
     }
 
     [Fact]
-    public async Task DeployPlanCommand_BlocksNonSqlServerMetaDataTypeForAlter()
+    public async Task DeployPlanCommand_RejectsNonSqlServerMetaDataTypeBeforeWritingManifest()
     {
         var repoRoot = FindRepositoryRoot();
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaSql.Tests", Guid.NewGuid().ToString("N"));
@@ -1835,10 +1835,11 @@ public sealed class CliColumnDependencyDeploymentTests
             var planResult = RunProcess(planCommand, "Could not start MetaSql CLI deploy-plan process.");
             Assert.Equal(4, planResult.ExitCode);
 
-            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(planPath, searchUpward: false);
-            Assert.Empty(manifest.AlterTableColumnList);
-            var block = Assert.Single(manifest.BlockTableColumnDifferenceList);
-            Assert.Contains("supports only MetaDataTypeId values under DataTypeSystem 'SqlServer'", block.DifferenceSummary, StringComparison.Ordinal);
+            Assert.Contains("Source workspace column", planResult.Output, StringComparison.Ordinal);
+            Assert.Contains("meta:type:String", planResult.Output, StringComparison.Ordinal);
+            Assert.Contains("does not resolve to a named SQL Server type", planResult.Output, StringComparison.Ordinal);
+            Assert.False(Directory.Exists(planPath));
+            Assert.Equal(50, GetColumnMaxLengthBytes(databaseConnectionString, "raw", "VarcharCase", "ValueCol"));
         }
         finally
         {
@@ -1891,7 +1892,7 @@ public sealed class CliColumnDependencyDeploymentTests
             var planResult = RunProcess(planCommand, "Could not start MetaSql CLI deploy-plan process.");
             Assert.Equal(4, planResult.ExitCode);
 
-            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(planPath, searchUpward: false);
+            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(planPath, new global::MetaSqlDeployManifest.MetaSqlDeployManifestWorkspaceBinding(), searchUpward: false);
             Assert.Empty(manifest.AlterTableColumnList);
             var block = Assert.Single(manifest.BlockTableColumnDifferenceList);
             Assert.Contains("unsupported column aspect change(s): ExpressionSql", block.DifferenceSummary, StringComparison.Ordinal);
@@ -1948,7 +1949,7 @@ public sealed class CliColumnDependencyDeploymentTests
             var planResult = RunProcess(planCommand, "Could not start MetaSql CLI deploy-plan process.");
             Assert.Equal(4, planResult.ExitCode);
 
-            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(planPath, searchUpward: false);
+            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(planPath, new global::MetaSqlDeployManifest.MetaSqlDeployManifestWorkspaceBinding(), searchUpward: false);
             Assert.Single(manifest.AlterTableColumnList);
             var block = Assert.Single(manifest.BlockTableColumnDifferenceList);
             Assert.Contains("dependent primary key", block.DifferenceSummary, StringComparison.OrdinalIgnoreCase);
@@ -2006,7 +2007,7 @@ public sealed class CliColumnDependencyDeploymentTests
             Assert.Equal(0, planResult.ExitCode);
             AssertPlanChanges(planResult.Output, "1 to alter", "1 to replace");
 
-            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(planPath, searchUpward: false);
+            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(planPath, new global::MetaSqlDeployManifest.MetaSqlDeployManifestWorkspaceBinding(), searchUpward: false);
             Assert.Single(manifest.AlterTableColumnList);
             Assert.Single(manifest.ReplacePrimaryKeyList);
             Assert.Empty(manifest.BlockTableColumnDifferenceList);
@@ -2090,7 +2091,7 @@ public sealed class CliColumnDependencyDeploymentTests
             Assert.Equal(0, planResult.ExitCode);
             AssertPlanChanges(planResult.Output, "1 to alter", "1 to replace");
 
-            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(planPath, searchUpward: false);
+            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(planPath, new global::MetaSqlDeployManifest.MetaSqlDeployManifestWorkspaceBinding(), searchUpward: false);
             Assert.Single(manifest.AlterTableColumnList);
             Assert.Single(manifest.ReplaceForeignKeyList);
             Assert.Empty(manifest.BlockTableColumnDifferenceList);
@@ -2169,7 +2170,7 @@ public sealed class CliColumnDependencyDeploymentTests
             Assert.Equal(0, planResult.ExitCode);
             AssertPlanChanges(planResult.Output, "1 to alter", "1 to replace");
 
-            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(planPath, searchUpward: false);
+            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(planPath, new global::MetaSqlDeployManifest.MetaSqlDeployManifestWorkspaceBinding(), searchUpward: false);
             Assert.Single(manifest.AlterTableColumnList);
             Assert.Single(manifest.ReplaceIndexList);
             Assert.Empty(manifest.BlockTableColumnDifferenceList);
@@ -2245,7 +2246,7 @@ public sealed class CliColumnDependencyDeploymentTests
             var planResult = RunProcess(planCommand, "Could not start MetaSql CLI deploy-plan process.");
             Assert.Equal(4, planResult.ExitCode);
 
-            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(planPath, searchUpward: false);
+            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(planPath, new global::MetaSqlDeployManifest.MetaSqlDeployManifestWorkspaceBinding(), searchUpward: false);
             Assert.Single(manifest.AlterTableColumnList);
             Assert.Empty(manifest.ReplaceIndexList);
             var block = Assert.Single(manifest.BlockTableColumnDifferenceList);
@@ -2522,7 +2523,7 @@ public sealed class CliDeploymentSafetyTests
             };
             var planResult = RunProcess(planCommand, "Could not start MetaSql CLI deploy-plan process.");
             Assert.Equal(0, planResult.ExitCode);
-            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(planPath, searchUpward: false);
+            var manifest = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaSqlDeployManifestModel>(planPath, new global::MetaSqlDeployManifest.MetaSqlDeployManifestWorkspaceBinding(), searchUpward: false);
             Assert.Single(manifest.DropTableList);
             Assert.Single(manifest.DropForeignKeyList);
 

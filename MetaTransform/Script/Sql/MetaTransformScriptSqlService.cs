@@ -1,5 +1,4 @@
 using System.Text;
-using System.Reflection;
 using MetaTransformScript.Sql.Parsing;
 using MTS = global::MetaTransformScript;
 
@@ -130,6 +129,8 @@ public sealed partial class MetaTransformScriptSqlService
         ApplySingleScriptImportTarget(model, targetSqlIdentifier, sourceLabel: Path.GetFileName(sqlFilePath));
         await Meta.Integration.TypedWorkspaceModelMapper.CreateAsync(
                 model,
+                MetaTransformScriptModels.LoadContract(),
+                new MTS.MetaTransformScriptWorkspaceBinding(),
                 workspaceFullPath,
                 "xml",
                 cancellationToken: cancellationToken)
@@ -157,6 +158,8 @@ public sealed partial class MetaTransformScriptSqlService
         ApplySingleScriptImportTarget(model, targetSqlIdentifier, sourceLabel: "<sql-code>");
         await Meta.Integration.TypedWorkspaceModelMapper.CreateAsync(
                 model,
+                MetaTransformScriptModels.LoadContract(),
+                new MTS.MetaTransformScriptWorkspaceBinding(),
                 workspaceFullPath,
                 "xml",
                 cancellationToken: cancellationToken)
@@ -219,7 +222,6 @@ public sealed partial class MetaTransformScriptSqlService
     public string ExportToSqlCode(MTS.MetaTransformScriptModel model, string? scriptName = null)
     {
         ArgumentNullException.ThrowIfNull(model);
-        EnsureModelIsBound(model);
 
         var script = ResolveSingleScript(model, scriptName);
         var emitter = new MetaTransformScriptSqlEmitter(model);
@@ -249,7 +251,6 @@ public sealed partial class MetaTransformScriptSqlService
         MTS.MetaTransformScriptModel model)
     {
         ArgumentNullException.ThrowIfNull(model);
-        EnsureModelIsBound(model);
 
         var emitter = new MetaTransformScriptSqlEmitter(model);
         var moduleScripts = GetOrderedModuleScripts(model);
@@ -304,7 +305,6 @@ public sealed partial class MetaTransformScriptSqlService
         ArgumentNullException.ThrowIfNull(model);
         ArgumentException.ThrowIfNullOrWhiteSpace(outputPath);
         cancellationToken.ThrowIfCancellationRequested();
-        EnsureModelIsBound(model);
 
         var scripts = model.TransformScriptList.ToArray();
         if (scripts.Length == 0)
@@ -669,13 +669,6 @@ public sealed partial class MetaTransformScriptSqlService
                 MetaTransformScriptSqlImportFailureKind.InvalidSqlInput,
                 "SQL input contains multiple bare SELECT statements. Wrap them in CREATE VIEW or split them into separate files.");
         }
-    }
-
-    private static void EnsureModelIsBound(MTS.MetaTransformScriptModel model)
-    {
-        var modelFactoryType = typeof(MTS.MetaTransformScriptModel).Assembly.GetType("MetaTransformScript.MetaTransformScriptModelFactory");
-        var bindMethod = modelFactoryType?.GetMethod("Bind", BindingFlags.Static | BindingFlags.NonPublic);
-        bindMethod?.Invoke(null, [model]);
     }
 
     private static MetaTransformScriptSqlImportException CreateImportException(
@@ -1318,9 +1311,8 @@ public sealed partial class MetaTransformScriptSqlService
             return scriptObjectView!.TargetSqlIdentifier;
         }
 
-        var objectIdentifier = ResolveOptionalIdentifier(
-            model,
-            model.TransformScriptObjectIdentifierLinkList.SingleOrDefault(item => string.Equals(item.TransformScript.Id, script.Id, StringComparison.Ordinal)));
+        var objectIdentifier = model.TransformScriptObjectIdentifierLinkList
+            .SingleOrDefault(item => string.Equals(item.TransformScript.Id, script.Id, StringComparison.Ordinal))?.Identifier;
         if (objectIdentifier is null)
         {
             if (string.IsNullOrWhiteSpace(script.Name))
@@ -1331,9 +1323,8 @@ public sealed partial class MetaTransformScriptSqlService
             return script.Name;
         }
 
-        var schemaIdentifier = ResolveOptionalIdentifier(
-            model,
-            model.TransformScriptSchemaIdentifierLinkList.SingleOrDefault(item => string.Equals(item.TransformScript.Id, script.Id, StringComparison.Ordinal)));
+        var schemaIdentifier = model.TransformScriptSchemaIdentifierLinkList
+            .SingleOrDefault(item => string.Equals(item.TransformScript.Id, script.Id, StringComparison.Ordinal))?.Identifier;
 
         return schemaIdentifier is null
             ? RenderIdentifierFromModel(objectIdentifier)
@@ -1344,14 +1335,12 @@ public sealed partial class MetaTransformScriptSqlService
         MTS.MetaTransformScriptModel model,
         MTS.TransformScript script)
     {
-        var objectIdentifier = ResolveOptionalIdentifier(
-            model,
-            model.TransformScriptObjectIdentifierLinkList.SingleOrDefault(item => string.Equals(item.TransformScript.Id, script.Id, StringComparison.Ordinal)));
+        var objectIdentifier = model.TransformScriptObjectIdentifierLinkList
+            .SingleOrDefault(item => string.Equals(item.TransformScript.Id, script.Id, StringComparison.Ordinal))?.Identifier;
         if (objectIdentifier is not null)
         {
-            var schemaIdentifier = ResolveOptionalIdentifier(
-                model,
-                model.TransformScriptSchemaIdentifierLinkList.SingleOrDefault(item => string.Equals(item.TransformScript.Id, script.Id, StringComparison.Ordinal)));
+            var schemaIdentifier = model.TransformScriptSchemaIdentifierLinkList
+                .SingleOrDefault(item => string.Equals(item.TransformScript.Id, script.Id, StringComparison.Ordinal))?.Identifier;
             if (schemaIdentifier is null)
             {
                 throw new InvalidOperationException(
@@ -1732,22 +1721,6 @@ public sealed partial class MetaTransformScriptSqlService
         }
 
         return builder.ToString();
-    }
-
-    private static MTS.Identifier? ResolveOptionalIdentifier(MTS.MetaTransformScriptModel model, object? link)
-    {
-        if (link is null)
-        {
-            return null;
-        }
-
-        if (link.GetType().GetProperty("Identifier")?.GetValue(link) is MTS.Identifier identifier)
-        {
-            return identifier;
-        }
-
-        var identifierId = (string?)link.GetType().GetProperty("IdentifierId")?.GetValue(link);
-        return string.IsNullOrWhiteSpace(identifierId) ? null : ResolveIdentifier(model, identifierId);
     }
 
     private static MTS.Identifier ResolveIdentifier(MTS.MetaTransformScriptModel model, string valueId)

@@ -2,6 +2,7 @@ using Meta.Core.Presentation;
 using Meta.Core.Presentation.Cli;
 using MetaCli.Core;
 using MetaTransform.Binding;
+using MetaTransformBinding;
 
 internal sealed class MetaTransformBindingCommandHandlers
 {
@@ -51,7 +52,7 @@ internal sealed class MetaTransformBindingCommandHandlers
                 validationOptions: options,
                 allowPartial: parse.AllowPartial,
                 dataTypeWorkspacePath: dataTypeWorkspacePath);
-            await workspaces.CreateAsync("output", result.Model).ConfigureAwait(false);
+            await workspaces.CreateAsync("output", result.Model, TransformBindingModels.LoadContract(), new MetaTransformBindingWorkspaceBinding()).ConfigureAwait(false);
 
             var partialReportFullPath = partialReportService.Write(parse.PartialReportPath, result.ObjectIssues ?? []);
 
@@ -77,7 +78,7 @@ internal sealed class MetaTransformBindingCommandHandlers
                     $"  TransformWorkspace: {Path.GetFullPath(parse.TransformWorkspacePath)}",
                     $"  SourceSchemas: {string.Join(", ", parse.SourceSchemaWorkspacePaths.Select(Path.GetFullPath))}",
                     $"  TargetSchema: {Path.GetFullPath(parse.TargetSchemaWorkspacePath)}",
-                    $"  DataTypeWorkspace: {(string.IsNullOrWhiteSpace(dataTypeWorkspacePath) ? "<BuiltIn>" : Path.GetFullPath(dataTypeWorkspacePath))}",
+                    $"  DataTypeWorkspace: {(string.IsNullOrWhiteSpace(dataTypeWorkspacePath) ? "<packaged workspace>" : Path.GetFullPath(dataTypeWorkspacePath))}",
                     $"  ExecuteSystem: {parse.ExecuteSystemName}",
                     $"  ExecuteSystemDefaultSchemaName: {(string.IsNullOrWhiteSpace(parse.ExecuteSystemDefaultSchemaName) ? "<none>" : parse.ExecuteSystemDefaultSchemaName)}",
                     $"  Code: {ex.Code}",
@@ -95,7 +96,7 @@ internal sealed class MetaTransformBindingCommandHandlers
                     $"  TransformWorkspace: {Path.GetFullPath(parse.TransformWorkspacePath)}",
                     $"  SourceSchemas: {string.Join(", ", parse.SourceSchemaWorkspacePaths.Select(Path.GetFullPath))}",
                     $"  TargetSchema: {Path.GetFullPath(parse.TargetSchemaWorkspacePath)}",
-                    $"  DataTypeWorkspace: {(string.IsNullOrWhiteSpace(dataTypeWorkspacePath) ? "<BuiltIn>" : Path.GetFullPath(dataTypeWorkspacePath))}",
+                    $"  DataTypeWorkspace: {(string.IsNullOrWhiteSpace(dataTypeWorkspacePath) ? "<packaged workspace>" : Path.GetFullPath(dataTypeWorkspacePath))}",
                     $"  ExecuteSystem: {parse.ExecuteSystemName}",
                     $"  ExecuteSystemDefaultSchemaName: {(string.IsNullOrWhiteSpace(parse.ExecuteSystemDefaultSchemaName) ? "<none>" : parse.ExecuteSystemDefaultSchemaName)}",
                     $"  {ex.Message}",

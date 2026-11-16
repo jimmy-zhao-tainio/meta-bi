@@ -20,8 +20,8 @@ public sealed class LeadingDotNumericLiteralTests
         Assert.Single(first.NumericLiteralList);
         Assert.Contains(".5 AS Value", emitted, StringComparison.Ordinal);
         Assert.Null(InMemoryWorkspaceComparer.FindDifference(
-            TypedWorkspaceModelMapper.ToInMemoryWorkspace(first),
-            TypedWorkspaceModelMapper.ToInMemoryWorkspace(second)));
+            TypedWorkspaceModelMapper.ToInMemoryWorkspace(first, global::MetaTransformScript.Sql.MetaTransformScriptModels.LoadContract(), new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding()),
+            TypedWorkspaceModelMapper.ToInMemoryWorkspace(second, global::MetaTransformScript.Sql.MetaTransformScriptModels.LoadContract(), new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding())));
         MetaTransformScriptTestHelper.AssertMetaSqlProjectionEqual(first, second);
     }
 
@@ -47,8 +47,8 @@ public sealed class LeadingDotNumericLiteralTests
         Assert.Equal(expectedLiteralType, literal.LiteralType);
         Assert.Contains(literalExpression + " AS Value", emitted, StringComparison.Ordinal);
         Assert.Null(InMemoryWorkspaceComparer.FindDifference(
-            TypedWorkspaceModelMapper.ToInMemoryWorkspace(first),
-            TypedWorkspaceModelMapper.ToInMemoryWorkspace(second)));
+            TypedWorkspaceModelMapper.ToInMemoryWorkspace(first, global::MetaTransformScript.Sql.MetaTransformScriptModels.LoadContract(), new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding()),
+            TypedWorkspaceModelMapper.ToInMemoryWorkspace(second, global::MetaTransformScript.Sql.MetaTransformScriptModels.LoadContract(), new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding())));
     }
 
     [Fact]
@@ -66,8 +66,8 @@ public sealed class LeadingDotNumericLiteralTests
         Assert.Contains("database.schema.table AS source", emitted, StringComparison.Ordinal);
         Assert.Empty(first.LiteralList);
         Assert.Null(InMemoryWorkspaceComparer.FindDifference(
-            TypedWorkspaceModelMapper.ToInMemoryWorkspace(first),
-            TypedWorkspaceModelMapper.ToInMemoryWorkspace(second)));
+            TypedWorkspaceModelMapper.ToInMemoryWorkspace(first, global::MetaTransformScript.Sql.MetaTransformScriptModels.LoadContract(), new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding()),
+            TypedWorkspaceModelMapper.ToInMemoryWorkspace(second, global::MetaTransformScript.Sql.MetaTransformScriptModels.LoadContract(), new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding())));
     }
 
     [Theory]

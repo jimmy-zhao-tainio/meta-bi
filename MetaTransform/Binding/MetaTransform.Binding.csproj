@@ -17,11 +17,26 @@
 
   <ItemGroup>
     <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="Meta.TypedModels" Version="$(MetaFoundationPackageVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Workspaces\MetaTransformBinding\**\*">
+      <Link>Workspaces\MetaTransformBinding\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+      <PackagePath>contentFiles\any\any\Workspaces\MetaTransformBinding\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Script\Sql\MetaTransformScript.Sql.csproj" />
     <ProjectReference Include="..\..\MetaSchema\Core\MetaSchema.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Package\MetaTransform.Binding.targets" Pack="true" PackagePath="buildTransitive\MetaTransform.Binding.targets" />
   </ItemGroup>
 
 </Project>

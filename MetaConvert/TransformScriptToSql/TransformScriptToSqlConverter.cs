@@ -27,8 +27,10 @@ public static class TransformScriptToSqlConverter
                 cancellationToken)
             .ConfigureAwait(false);
         var direction = ForwardDirection.Value;
-        var targetWorkspace = TypedWorkspaceModelMapper.ToInMemoryWorkspace(
-            MetaSqlModel.CreateEmpty());
+        var targetContract = (await TypedWorkspaceModelMapper.LoadStateAsync(
+            Path.Combine(AppContext.BaseDirectory, "Workspaces", "MetaSql"), cancellationToken).ConfigureAwait(false)).Model;
+        var targetWorkspace = new InMemoryWorkspace(targetContract,
+            new GenericInstance { ModelName = targetContract.Name });
         var result = new MetaWeaveScriptExecutionService().ExecuteDirection(
             direction,
             new Dictionary<string, InMemoryWorkspace>(StringComparer.OrdinalIgnoreCase)
@@ -76,11 +78,8 @@ public static class TransformScriptToSqlConverter
                 cancellationToken,
                 progress)
             .ConfigureAwait(false);
-        var metaSql = TypedWorkspaceModelMapper.FromInMemoryWorkspace(
-            result,
-            static () => new MetaSqlModel());
-        await TypedWorkspaceModelMapper.CreateAsync(
-                metaSql,
+        await WorkspaceSurface.CreateAsync(
+                result,
                 pathToNewMetaSqlWorkspace,
                 outputRepresentation,
                 connectionEnvironmentVariable,

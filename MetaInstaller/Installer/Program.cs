@@ -1,6 +1,5 @@
 using System.Runtime.InteropServices;
 using Meta.Core.Presentation;
-using Meta.Core.Presentation.Cli;
 using Microsoft.Win32;
 
 var presenter = new ConsolePresenter();
@@ -100,18 +99,11 @@ catch (Exception ex)
 
 static void PrintHelp(ConsolePresenter presenter)
 {
-    var cli = new CliAppDefinition(
-        "install-meta-bi.exe",
-        new[] { "install-meta-bi.exe" },
-        Array.Empty<CliCommandDefinition>(),
-        new[]
-        {
-            "Installs BI CLIs into %LOCALAPPDATA%\\meta\\bin.",
-            "Adds that directory to the user PATH if it is missing.",
-            "Copies all files from payload\\meta-bi\\bin beside install-meta-bi.exe."
-        },
-        "keep install-meta-bi.exe and payload\\meta-bi\\bin together");
-    CliHelpRenderer.WriteAppHelp(presenter, cli);
+    presenter.WriteUsage("install-meta-bi.exe");
+    presenter.WriteInfo("Installs BI CLIs into %LOCALAPPDATA%\\meta\\bin.");
+    presenter.WriteInfo("Adds that directory to the user PATH if it is missing.");
+    presenter.WriteInfo("Copies all files from payload\\meta-bi\\bin beside install-meta-bi.exe.");
+    presenter.WriteNext("keep install-meta-bi.exe and payload\\meta-bi\\bin together");
 }
 
 static bool IsHelpToken(string value)

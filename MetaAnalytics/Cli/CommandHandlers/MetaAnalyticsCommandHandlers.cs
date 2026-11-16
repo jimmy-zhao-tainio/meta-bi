@@ -1,3 +1,4 @@
+using MetaAnalytics;
 using System.Diagnostics.CodeAnalysis;
 using Meta.Core.Presentation;
 using Meta.Core.Presentation.Cli;
@@ -34,7 +35,7 @@ internal sealed class MetaAnalyticsCommandHandlers
         MetaCliInvocation invocation,
         MetaCliWorkspaces workspaces)
     {
-        await workspaces.CreateAsync("output", service.CreateWorkspace()).ConfigureAwait(false);
+        await workspaces.CreateAsync("output", service.CreateWorkspace(), AnalyticsModels.LoadContract(), new MetaAnalyticsWorkspaceBinding()).ConfigureAwait(false);
         presenter.WriteKeyValueBlock(
             "MetaAnalytics workspace created",
             [("Path", MetaCliWorkspace.OutputLocation(invocation)), ("Model", "MetaAnalytics"), ("Rows", "0")]);

@@ -86,14 +86,27 @@ internal static class MetaTransformScriptTestHelper
         return MetaTransformScriptInstance.LoadFromWorkspace(workspacePath, searchUpward: false);
     }
 
-    public static void SaveXml<TModel>(TModel model, string workspacePath)
-        where TModel : class
-    {
-        var state = TypedWorkspaceModelMapper.ToInMemoryWorkspace(model);
-        WorkspaceSurface.CreateAsync(state, workspacePath, "xml")
-            .GetAwaiter()
-            .GetResult();
-    }
+    public static void SaveXml(MetaTransformScriptModel model, string workspacePath) =>
+        SaveXml(model, workspacePath, global::MetaTransformScript.Sql.MetaTransformScriptModels.LoadContract(),
+            new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding());
+
+    public static void SaveXml(global::MetaSchema.MetaSchemaModel model, string workspacePath) =>
+        SaveXml(model, workspacePath, global::MetaSchema.Core.MetaSchemaModels.CreateMetaSchemaModel(),
+            new global::MetaSchema.MetaSchemaWorkspaceBinding());
+
+    public static void SaveXml(global::MetaSql.MetaSqlModel model, string workspacePath) =>
+        SaveXml(model, workspacePath, global::MetaSql.MetaSqlModels.LoadContract(),
+            new global::MetaSql.MetaSqlWorkspaceBinding());
+
+    public static void SaveXml(global::MetaTransformBinding.MetaTransformBindingModel model, string workspacePath) =>
+        SaveXml(model, workspacePath, global::MetaTransform.Binding.TransformBindingModels.LoadContract(),
+            new global::MetaTransformBinding.MetaTransformBindingWorkspaceBinding());
+
+    private static void SaveXml<TModel>(TModel model, string workspacePath,
+        global::Meta.Operations.Domain.GenericModel contract, global::Meta.TypedModels.ITypedWorkspaceBinding<TModel> binding)
+        where TModel : class =>
+        WorkspaceSurface.CreateAsync(binding.Write(model, contract), workspacePath, "xml")
+            .GetAwaiter().GetResult();
 
     public static string WriteTempSqlFile(string fileName, string sql)
     {

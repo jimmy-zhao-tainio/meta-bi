@@ -15,10 +15,10 @@ internal sealed partial class MetaTransformScriptSqlEmitter
 
     public string Render(TSqlStatement root)
     {
-        var statementWithCtes = FindByBaseId(model.StatementWithCtesAndXmlNamespacesList, root.Id);
+        var statementWithCtes = FindByBaseId(model.StatementWithCtesAndXmlNamespacesList, static row => row.TSqlStatement?.Id, nameof(StatementWithCtesAndXmlNamespaces.TSqlStatement), root.Id);
         if (statementWithCtes is not null)
         {
-            var selectStatement = FindByBaseId(model.SelectStatementList, statementWithCtes.Id);
+            var selectStatement = FindByBaseId(model.SelectStatementList, static row => row.StatementWithCtesAndXmlNamespaces?.Id, nameof(SelectStatement.StatementWithCtesAndXmlNamespaces), statementWithCtes.Id);
             if (selectStatement is not null)
             {
                 return RenderStatementWithCtesAndXmlNamespaces(
@@ -26,7 +26,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
                     RenderSelectStatementBody(selectStatement));
             }
 
-            var insertStatement = FindByBaseId(model.InsertStatementList, statementWithCtes.Id);
+            var insertStatement = FindByBaseId(model.InsertStatementList, static row => row.StatementWithCtesAndXmlNamespaces?.Id, nameof(InsertStatement.StatementWithCtesAndXmlNamespaces), statementWithCtes.Id);
             if (insertStatement is not null)
             {
                 return RenderStatementWithCtesAndXmlNamespaces(
@@ -34,7 +34,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
                     RenderInsertStatementBody(insertStatement));
             }
 
-            var updateStatement = FindByBaseId(model.UpdateStatementList, statementWithCtes.Id);
+            var updateStatement = FindByBaseId(model.UpdateStatementList, static row => row.StatementWithCtesAndXmlNamespaces?.Id, nameof(UpdateStatement.StatementWithCtesAndXmlNamespaces), statementWithCtes.Id);
             if (updateStatement is not null)
             {
                 return RenderStatementWithCtesAndXmlNamespaces(
@@ -42,7 +42,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
                     RenderUpdateStatementBody(updateStatement));
             }
 
-            var deleteStatement = FindByBaseId(model.DeleteStatementList, statementWithCtes.Id);
+            var deleteStatement = FindByBaseId(model.DeleteStatementList, static row => row.StatementWithCtesAndXmlNamespaces?.Id, nameof(DeleteStatement.StatementWithCtesAndXmlNamespaces), statementWithCtes.Id);
             if (deleteStatement is not null)
             {
                 return RenderStatementWithCtesAndXmlNamespaces(
@@ -50,7 +50,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
                     RenderDeleteStatementBody(deleteStatement));
             }
 
-            var mergeStatement = FindByBaseId(model.MergeStatementList, statementWithCtes.Id);
+            var mergeStatement = FindByBaseId(model.MergeStatementList, static row => row.StatementWithCtesAndXmlNamespaces?.Id, nameof(MergeStatement.StatementWithCtesAndXmlNamespaces), statementWithCtes.Id);
             if (mergeStatement is not null)
             {
                 return RenderStatementWithCtesAndXmlNamespaces(
@@ -61,7 +61,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
             throw new InvalidOperationException($"Unsupported MetaTransformScript statement-with-CTEs id '{statementWithCtes.Id}'.");
         }
 
-        var truncateStatement = FindByBaseId(model.TruncateStatementList, root.Id);
+        var truncateStatement = FindByBaseId(model.TruncateStatementList, static row => row.TSqlStatement?.Id, nameof(TruncateStatement.TSqlStatement), root.Id);
         if (truncateStatement is not null)
         {
             return RenderTruncateStatementBody(truncateStatement);
@@ -72,7 +72,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
 
     public string Render(SelectStatement root)
     {
-        var statementBase = GetById(model.StatementWithCtesAndXmlNamespacesList, root.StatementWithCtesAndXmlNamespaces.Id, "SelectStatement.Base");
+        var statementBase = GetById(model.StatementWithCtesAndXmlNamespacesList, static row => row.Id, root.StatementWithCtesAndXmlNamespaces.Id, "SelectStatement.Base");
         return RenderStatementWithCtesAndXmlNamespaces(statementBase, RenderSelectStatementBody(root));
     }
 
@@ -82,7 +82,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
     {
         var builder = new StringBuilder();
 
-        var withCtesLink = FindOwnerLink(model.StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkList, statementBase.Id);
+        var withCtesLink = FindOwnerLink(model.StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLinkList, static row => row.StatementWithCtesAndXmlNamespaces?.Id, nameof(StatementWithCtesAndXmlNamespacesWithCtesAndXmlNamespacesLink.StatementWithCtesAndXmlNamespaces), statementBase.Id);
         if (withCtesLink is not null)
         {
             builder.Append(RenderWithClause(withCtesLink.WithCtesAndXmlNamespaces));
@@ -95,7 +95,7 @@ internal sealed partial class MetaTransformScriptSqlEmitter
 
     private string RenderSelectStatementBody(SelectStatement root)
     {
-        var queryExpressionLink = GetOwnerLink(model.SelectStatementQueryExpressionLinkList, root.Id, "SelectStatement.QueryExpression");
+        var queryExpressionLink = GetOwnerLink(model.SelectStatementQueryExpressionLinkList, static row => row.SelectStatement?.Id, nameof(SelectStatementQueryExpressionLink.SelectStatement), root.Id, "SelectStatement.QueryExpression");
         return RenderQueryExpression(queryExpressionLink.QueryExpression);
     }
 }

@@ -26,7 +26,8 @@ The supervisor should log its own managed exceptions with a compact runtime stat
 ## Ownership Boundary
 
 `meta-orchestration execute --data-type-workspace <catalog>` forwards the selected
-MetaDataType catalog to Pipeline workers; omission uses BuiltIn. Orchestration
+MetaDataType catalog to Pipeline workers; omission loads the packaged authored
+workspace. Orchestration
 neither selects conversions nor accepts a conversion workspace. Value conversion
 belongs in the prepared TransformScript, before schema-aware Binding.
 

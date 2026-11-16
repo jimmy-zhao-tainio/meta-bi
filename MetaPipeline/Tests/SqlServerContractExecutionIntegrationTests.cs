@@ -24,7 +24,7 @@ public sealed class SqlServerContractExecutionIntegrationTests
         {
             var catalog = Catalog(arbitraryIds);
             var path = Path.Combine(root, "Catalog");
-            TypedWorkspaceModelMapper.Create(catalog, path, "xml");
+            TypedWorkspaceModelMapper.Create(catalog, global::MetaDataType.Core.MetaDataTypeWorkspaceProvider.LoadContract(), new global::MetaDataType.MetaDataTypeWorkspaceBinding(), path, "xml");
             var id = catalog.DataTypeList.Single(row => row.Name == type && row.DataTypeSystem.Name == "SqlServer").Id;
             var shape = new PipelineRowStreamShape([new PipelineColumn("Value", 0, id, id)]);
             var cs = new SqlConnectionStringBuilder(master.ConnectionString) { InitialCatalog = database }.ConnectionString;
@@ -79,7 +79,7 @@ public sealed class SqlServerContractExecutionIntegrationTests
             var foreign = catalog.DataTypeList.Single(row => row.Id == "meta:type:String");
             if (kind == "lookalike") foreign.Id = "sqlserver:type:pretender";
             var id = kind switch { "missing" => null, "unknown" => "sqlserver:type:int", _ => foreign.Id };
-            TypedWorkspaceModelMapper.Create(catalog, root, "xml");
+            TypedWorkspaceModelMapper.Create(catalog, global::MetaDataType.Core.MetaDataTypeWorkspaceProvider.LoadContract(), new global::MetaDataType.MetaDataTypeWorkspaceBinding(), root, "xml");
             var error = Assert.Throws<MetaPipelineConfigurationException>(() => new SqlServerBulkCopyRowStreamWriter(
                 "Server=DoesNotExist;Database=unused", "dbo.TargetRows", new([new PipelineColumn("Value", 0, id, id)]),
                 dataTypeWorkspacePath: root));

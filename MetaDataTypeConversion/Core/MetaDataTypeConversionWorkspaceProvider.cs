@@ -1,21 +1,24 @@
-using MetaDataTypeConversion;
+using Meta.Integration;
+using Meta.Operations.Domain;
+
 namespace MetaDataTypeConversion.Core;
 
 public static class MetaDataTypeConversionWorkspaceProvider
 {
-    private static readonly Lazy<MetaDataTypeConversionModel> DefaultWorkspace = new(
-        () => MetaDataTypeConversionInstance.BuiltIn,
-        LazyThreadSafetyMode.ExecutionAndPublication);
-
     public static MetaDataTypeConversionModel LoadOrDefault(string? workspacePath)
     {
-        if (string.IsNullOrWhiteSpace(workspacePath))
-        {
-            return DefaultWorkspace.Value;
-        }
-
-        return Meta.Integration.TypedWorkspaceModelMapper.Load<MetaDataTypeConversionModel>(Path.GetFullPath(workspacePath), searchUpward: false);
+        var path = string.IsNullOrWhiteSpace(workspacePath) ? DefaultWorkspacePath : Path.GetFullPath(workspacePath);
+        return TypedWorkspaceModelMapper.Load(path, new MetaDataTypeConversionWorkspaceBinding());
     }
 
-    public static MetaDataTypeConversionModel GetDefaultWorkspace() => DefaultWorkspace.Value;
+    public static MetaDataTypeConversionModel GetDefaultWorkspace() => LoadOrDefault(null);
+
+    public static GenericModel LoadContract() =>
+        LoadDefaultStateAsync().GetAwaiter().GetResult().Model;
+
+    public static Task<InMemoryWorkspace> LoadDefaultStateAsync(CancellationToken cancellationToken = default) =>
+        TypedWorkspaceModelMapper.LoadStateAsync(DefaultWorkspacePath, cancellationToken);
+
+    private static string DefaultWorkspacePath =>
+        Path.Combine(AppContext.BaseDirectory, "Workspaces", "MetaDataTypeConversion");
 }

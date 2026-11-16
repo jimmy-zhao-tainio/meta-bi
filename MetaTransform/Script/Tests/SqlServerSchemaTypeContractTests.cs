@@ -95,8 +95,8 @@ public sealed class SqlServerSchemaTypeContractTests
         // Verify the owning MetaSchema validator also rejects a missing value after loading.
         using var fixture = new Fixture("sqlserver:type:int", "sqlserver:type:int");
         fixture.Bind();
-        var source = TypedWorkspaceModelMapper.Load<MetaSchemaModel>(fixture.Source, searchUpward: false);
-        var destination = TypedWorkspaceModelMapper.Load<MetaSchemaModel>(fixture.Target, searchUpward: false);
+        var source = TypedWorkspaceModelMapper.Load<MetaSchemaModel>(fixture.Source, new global::MetaSchema.MetaSchemaWorkspaceBinding(), searchUpward: false);
+        var destination = TypedWorkspaceModelMapper.Load<MetaSchemaModel>(fixture.Target, new global::MetaSchema.MetaSchemaWorkspaceBinding(), searchUpward: false);
         (target ? destination : source).FieldList.Single().MetaDataTypeId = "";
         var ex = Assert.Throws<SchemaTypeValidationException>(() =>
             new SqlServerSchemaTypeValidator(MetaDataTypeInstance.BuiltIn).Validate(target ? destination : source));
@@ -176,11 +176,11 @@ public sealed class SqlServerSchemaTypeContractTests
         var args = $"bind --transform-workspace \"{fixture.Transform}\" --source-schema \"{fixture.Source}\" --target-schema \"{fixture.Target}\" --execute-system TestSystem --execute-system-default-schema-name dbo --data-type-workspace \"{fixture.Catalog}\" --output-xml \"{fixture.Output}\"";
         var result = CliTestRunner.RunStandardCli("meta-transform-binding", args);
         Assert.True(result.ExitCode == 0, result.Output);
-        var binding = TypedWorkspaceModelMapper.Load<MetaTransformBindingModel>(fixture.Output, searchUpward: false);
+        var binding = TypedWorkspaceModelMapper.Load<MetaTransformBindingModel>(fixture.Output, new global::MetaTransformBinding.MetaTransformBindingWorkspaceBinding(), searchUpward: false);
         Assert.Equal("user-int", Assert.Single(binding.ValidationTargetColumnTypeExactList).SourceMetaDataTypeId);
         // An explicitly supplied empty catalog must fail; the default must not fill its gaps.
         var empty = Path.Combine(fixture.Root, "EmptyCatalog");
-        TypedWorkspaceModelMapper.Create(MetaDataTypeModel.CreateEmpty(), empty, "xml");
+        TypedWorkspaceModelMapper.Create(MetaDataTypeModel.CreateEmpty(), global::MetaDataType.Core.MetaDataTypeWorkspaceProvider.LoadContract(), new global::MetaDataType.MetaDataTypeWorkspaceBinding(), empty, "xml");
         var invalid = CliTestRunner.RunStandardCli("meta-transform-binding", args.Replace(fixture.Catalog, empty).Replace(fixture.Output, fixture.Output + "-invalid"));
         Assert.Equal(5, invalid.ExitCode);
         Assert.Contains("user-nvarchar", invalid.Output);
@@ -272,7 +272,7 @@ public sealed class SqlServerSchemaTypeContractTests
 
         public void SaveCatalog(MetaDataTypeModel catalog)
         {
-            TypedWorkspaceModelMapper.Create(catalog, Catalog, "xml");
+            TypedWorkspaceModelMapper.Create(catalog, global::MetaDataType.Core.MetaDataTypeWorkspaceProvider.LoadContract(), new global::MetaDataType.MetaDataTypeWorkspaceBinding(), Catalog, "xml");
             selectedCatalog = true;
         }
 

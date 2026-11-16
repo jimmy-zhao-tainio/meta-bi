@@ -1,9 +1,11 @@
+using MetaSql.Extractors.SqlServer;
+
 namespace MetaSql;
 
 /// <summary>
 /// Renders SQL Server ALTER COLUMN statements.
 /// </summary>
-internal sealed class SqlServerAlterColumnSqlRenderer
+internal sealed class SqlServerAlterColumnSqlRenderer(SqlServerDataTypeCatalog catalog)
 {
     private static readonly HashSet<string> ExecutableColumnAspects = new(StringComparer.Ordinal)
     {
@@ -64,15 +66,15 @@ internal sealed class SqlServerAlterColumnSqlRenderer
                                changedAspects.Contains("MetaDataTypeDetail", StringComparer.Ordinal);
         if (typeShapeChanged)
         {
-            if (!SqlServerRenderingSupport.IsSqlServerTypeId(sourceColumn.MetaDataTypeId) ||
-                !SqlServerRenderingSupport.IsSqlServerTypeId(liveColumn.MetaDataTypeId))
+            if (!catalog.ContainsSqlServerId(sourceColumn.MetaDataTypeId) ||
+                !catalog.ContainsSqlServerId(liveColumn.MetaDataTypeId))
             {
                 throw new InvalidOperationException(
                     $"Cannot alter column '{sourceColumn.Id}' because only MetaDataTypeId values under DataTypeSystem 'SqlServer' are supported.");
             }
 
-            var sourceTypeName = SqlServerRenderingSupport.GetSqlServerTypeName(sourceColumn.MetaDataTypeId);
-            var liveTypeName = SqlServerRenderingSupport.GetSqlServerTypeName(liveColumn.MetaDataTypeId);
+            var sourceTypeName = catalog.ResolveId(sourceColumn.MetaDataTypeId, $"Source column '{sourceColumn.Id}'").Name;
+            var liveTypeName = catalog.ResolveId(liveColumn.MetaDataTypeId, $"Live column '{liveColumn.Id}'").Name;
             if (!string.Equals(sourceTypeName, liveTypeName, StringComparison.OrdinalIgnoreCase))
             {
                 throw new InvalidOperationException(
@@ -96,7 +98,7 @@ internal sealed class SqlServerAlterColumnSqlRenderer
 
         var detailValues = GetGroup(sourceDetailsByColumnId, sourceColumn.Id)
             .ToDictionary(row => row.Name, row => row.Value, StringComparer.OrdinalIgnoreCase);
-        var typeSql = SqlServerRenderingSupport.BuildSqlServerTypeSql(sourceColumn.MetaDataTypeId, detailValues);
+        var typeSql = SqlServerRenderingSupport.BuildSqlServerTypeSql(catalog, sourceColumn.MetaDataTypeId, detailValues);
         var nullableSql = SqlServerRenderingSupport.IsTrue(sourceColumn.IsNullable) ? "NULL" : "NOT NULL";
         return $"ALTER TABLE {SqlServerRenderingSupport.FormatTableName(liveColumn.Table)} ALTER COLUMN {SqlServerRenderingSupport.EscapeSqlIdentifier(liveColumn.Name)} {typeSql} {nullableSql};";
     }

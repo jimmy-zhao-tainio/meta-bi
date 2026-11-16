@@ -1,6 +1,9 @@
 using Meta.Integration;
+using Meta.Operations.Domain;
 using MetaAnalytics;
+using MetaAnalytics.Core;
 using MetaTabular;
+using MetaTabular.Core;
 using MetaWeave.Core;
 using MetaWeaveScript.Execution;
 
@@ -19,13 +22,19 @@ public static class AnalyticsToTabularConverter
     public static MetaTabularModel Convert(
         MetaAnalyticsModel source,
         Action<MetaWeaveScriptExecutionProgress>? progress)
+        => new MetaTabularWorkspaceBinding().Read(Convert(
+            new MetaAnalyticsWorkspaceBinding().Write(source, AnalyticsModels.LoadContract()), progress));
+
+    public static InMemoryWorkspace Convert(
+        InMemoryWorkspace source,
+        Action<MetaWeaveScriptExecutionProgress>? progress = null)
     {
         ArgumentNullException.ThrowIfNull(source);
 
         var result = new MetaWeaveScriptExecutionService().ExecuteDirection(
             ForwardDirection.Value,
-            TypedWorkspaceModelMapper.ToInMemoryWorkspace(source),
-            TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaTabularModel.CreateEmpty()),
+            source,
+            new InMemoryWorkspace(TabularModels.LoadContract(), new GenericInstance { ModelName = "MetaTabular" }),
             progress);
 
         if (!result.IsSuccess)
@@ -39,9 +48,7 @@ public static class AnalyticsToTabularConverter
                         $"{issue.Code}: {issue.Message}")));
         }
 
-        return TypedWorkspaceModelMapper.FromInMemoryWorkspace(
-            result.OutputWorkspace!,
-            MetaTabularModel.CreateEmpty);
+        return result.OutputWorkspace!;
     }
 
     private static string ResolveWeaveWorkspacePath()

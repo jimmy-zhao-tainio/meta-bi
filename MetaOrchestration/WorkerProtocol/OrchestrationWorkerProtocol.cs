@@ -1,5 +1,4 @@
 using System.Globalization;
-using System.Reflection;
 
 namespace MetaOrchestration.WorkerProtocol;
 
@@ -7,16 +6,6 @@ public static class OrchestrationWorkerProtocol
 {
     public const string WorkerMessagePrefix = "META_PIPELINE_WORKER";
     public const string CommandMessagePrefix = "META_ORCHESTRATION";
-
-    public static string ResolveExecutableVersion(Assembly? assembly = null)
-    {
-        assembly ??= Assembly.GetEntryAssembly() ?? Assembly.GetExecutingAssembly();
-        return assembly
-                   .GetCustomAttribute<AssemblyInformationalVersionAttribute>()
-                   ?.InformationalVersion
-               ?? assembly.GetName().Version?.ToString()
-               ?? "unknown";
-    }
 
     public static string EncodeEvent(WorkerProtocolEvent workerEvent)
     {

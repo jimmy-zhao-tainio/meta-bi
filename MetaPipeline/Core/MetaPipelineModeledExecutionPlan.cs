@@ -1,4 +1,4 @@
-﻿namespace MetaPipeline;
+namespace MetaPipeline;
 
 public sealed record MetaPipelineModeledExecutionRequest(
     string PipelineWorkspacePath,

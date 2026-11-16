@@ -20,6 +20,13 @@ key-part and bridge chains, role names, optional implementation columns,
 datatype lowering, projected identity, name allocation, and SQL Server's
 128-character identifier limit.
 
+The `meta-convert raw-datavault-to-sql` and `business-datavault-to-sql` commands
+accept `--data-type-workspace` and `--data-type-conversion-workspace` for their
+catalog inputs. Omission loads the packaged authored workspaces. Selected
+inputs stay generic throughout Weave execution. Existing physical mapping
+policy uses related catalog rows named `Meta`, `SqlServer` and `Direct`, rather
+than requiring the shipped IDs.
+
 Column population follows the converter's authored order. Predecessor chains
 remain structural, while ordinary member collections use their declared name
 and identity order. Column-name collisions retain the established behavior of

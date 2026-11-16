@@ -6,6 +6,7 @@ using MetaDataType;
 using MetaDataTypeConversion;
 using MetaSchema;
 using MetaTransformScript;
+using MetaTransformScript.Sql;
 using Meta.Integration;
 
 internal sealed partial class MetaTransformScriptCommandHandlers
@@ -22,11 +23,11 @@ internal sealed partial class MetaTransformScriptCommandHandlers
             using (var activity = CliActivityLine.Start("Converting"))
             {
                 var result = new TransformScriptConversionWorkspaceService().Convert(
-                    await workspaces.RequiredAsync<MetaTransformScriptModel>("workspace"),
-                    await workspaces.RequiredAsync<MetaDataTypeModel>("data-type-workspace"),
-                    await workspaces.RequiredAsync<MetaDataTypeConversionModel>("data-type-conversion-workspace"),
-                    sources.Select(path => TypedWorkspaceModelMapper.Load<MetaSchemaModel>(path, searchUpward: false)).ToArray());
-                await workspaces.CreateAsync("output", result.Model);
+                    await workspaces.RequiredAsync("workspace", new MetaTransformScriptWorkspaceBinding()),
+                    await workspaces.RequiredAsync("data-type-workspace", new MetaDataTypeWorkspaceBinding()),
+                    await workspaces.RequiredAsync("data-type-conversion-workspace", new MetaDataTypeConversionWorkspaceBinding()),
+                    sources.Select(path => TypedWorkspaceModelMapper.Load(path, new MetaSchemaWorkspaceBinding())).ToArray());
+                await workspaces.CreateAsync("output", result.Model, MetaTransformScriptModels.LoadContract(), new MetaTransformScriptWorkspaceBinding());
             }
             presenter.WriteOk();
         }

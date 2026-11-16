@@ -25,7 +25,8 @@ internal static class Program
             new BusinessDataVaultAuthoringService());
 
         Environment.ExitCode = 0;
-        var runtime = new MetaCliRuntime<MetaBusinessDataVaultModel>(CommandWorkspacePath, ApplicationId)
+        var runtime = new MetaCliRuntime<MetaBusinessDataVaultModel>(CommandWorkspacePath,
+                new MetaBusinessDataVaultWorkspaceBinding(), BusinessDataVaultModels.LoadContract, ApplicationId)
             .UseDefaultHelp()
             .Bind(
                 "exec-create",

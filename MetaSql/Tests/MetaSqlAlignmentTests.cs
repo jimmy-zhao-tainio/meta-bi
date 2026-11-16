@@ -58,7 +58,7 @@ public sealed class MetaSqlAlignmentTests
                 foreignKeyColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.ForeignKeyColumnRow>>(StringComparer.OrdinalIgnoreCase),
                 indexesByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexRow>>(StringComparer.OrdinalIgnoreCase),
                 indexColumnsByTableKey: new Dictionary<string, List<SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase));
-            var liveBeforeXml = TypedWorkspaceModelMapper.ToInMemoryWorkspace(liveModel);
+            var liveBeforeXml = TypedWorkspaceModelMapper.ToInMemoryWorkspace(liveModel, global::MetaSql.MetaSqlModels.LoadContract(), new global::MetaSql.MetaSqlWorkspaceBinding());
 
             var sourceAfterXml = (await XmlWorkspaceReader.OpenAsync(sourceMetaSqlPath)).State;
             MetaSqlTestSupport.SaveXml(liveModel, liveMetaSqlPath);

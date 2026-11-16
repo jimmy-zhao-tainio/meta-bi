@@ -1,3 +1,5 @@
+using MetaDataType;
+using MetaDataType.Core;
 using Tom = Microsoft.AnalysisServices.Tabular;
 using AnalysisServices = Microsoft.AnalysisServices;
 using System.Globalization;
@@ -13,8 +15,10 @@ public sealed class MetaTabularDeployService
         ArgumentException.ThrowIfNullOrWhiteSpace(request.Server);
 
         var workspacePath = Path.GetFullPath(request.WorkspacePath);
-        var model = Meta.Integration.TypedWorkspaceModelMapper.Load<MetaTabularModel>(workspacePath, searchUpward: false);
+        var model = Meta.Integration.TypedWorkspaceModelMapper.Load(workspacePath, new MetaTabularWorkspaceBinding(), searchUpward: false);
         var root = RequireSingleModel(model);
+        var catalog = MetaDataTypeWorkspaceProvider.LoadOrDefault(request.DataTypeWorkspacePath);
+        ValidateDataTypes(model, catalog);
         var databaseName = string.IsNullOrWhiteSpace(request.DatabaseName)
             ? root.Name
             : request.DatabaseName.Trim();
@@ -41,7 +45,7 @@ public sealed class MetaTabularDeployService
             server.Refresh();
         }
 
-        var database = BuildDatabase(model, root, databaseName);
+        var database = BuildDatabaseWithCatalog(model, root, databaseName, catalog);
         server.Databases.Add(database);
         database.Update(AnalysisServices.UpdateOptions.ExpandFull);
         if (request.Process)
@@ -63,8 +67,12 @@ public sealed class MetaTabularDeployService
         });
     }
 
-    private static Tom.Database BuildDatabase(MetaTabularModel source, TabularModel root, string databaseName)
+    private static Tom.Database BuildDatabase(MetaTabularModel source, TabularModel root, string databaseName) =>
+        BuildDatabaseWithCatalog(source, root, databaseName, MetaDataTypeWorkspaceProvider.GetDefaultWorkspace());
+
+    private static Tom.Database BuildDatabaseWithCatalog(MetaTabularModel source, TabularModel root, string databaseName, MetaDataTypeModel catalog)
     {
+        ValidateDataTypes(source, catalog);
         var cultureName = string.IsNullOrWhiteSpace(root.DefaultCulture) ? "en-US" : root.DefaultCulture;
         var culture = CultureInfo.GetCultureInfo(cultureName);
         var database = new Tom.Database
@@ -97,7 +105,7 @@ public sealed class MetaTabularDeployService
 
         var dataSources = AddDataSources(database.Model, source, root);
         var tables = AddTables(database.Model, source, root);
-        var columns = AddColumns(source, tables);
+        var columns = AddColumns(source, tables, catalog);
         AddSortByColumns(source, columns);
         var hierarchies = AddHierarchies(source, tables, columns);
         AddPartitions(source, tables, dataSources);
@@ -173,7 +181,8 @@ public sealed class MetaTabularDeployService
 
     private static Dictionary<TabularColumn, Tom.Column> AddColumns(
         MetaTabularModel source,
-        IReadOnlyDictionary<TabularTable, Tom.Table> tables)
+        IReadOnlyDictionary<TabularTable, Tom.Table> tables,
+        MetaDataTypeModel catalog)
     {
         var result = new Dictionary<TabularColumn, Tom.Column>();
         foreach (var row in source.TabularColumnList
@@ -184,12 +193,12 @@ public sealed class MetaTabularDeployService
                 ? new Tom.DataColumn
                 {
                     SourceColumn = string.IsNullOrWhiteSpace(row.SourceName) ? row.Name : row.SourceName,
-                    DataType = MapTabularDataType(row.DataTypeId),
+                    DataType = MapTabularDataType(catalog, row.DataTypeId, DescribeColumn(row)),
                 }
                 : new Tom.CalculatedColumn
                 {
                     Expression = row.Expression,
-                    DataType = MapTabularDataType(row.DataTypeId),
+                    DataType = MapTabularDataType(catalog, row.DataTypeId, DescribeColumn(row)),
                 };
 
             column.Name = row.Name;
@@ -1071,9 +1080,10 @@ public sealed class MetaTabularDeployService
         };
     }
 
-    private static Tom.DataType MapTabularDataType(string? dataTypeId)
+    private static Tom.DataType MapTabularDataType(MetaDataTypeModel catalog, string? dataTypeId, string description)
     {
-        var value = StripMetaTypePrefix(dataTypeId).ToUpperInvariant();
+        var (type, system) = ResolveMetaType(catalog, dataTypeId, description);
+        var value = type.Name?.Trim().ToUpperInvariant();
         return value switch
         {
             "BOOLEAN" or "BOOL" => Tom.DataType.Boolean,
@@ -1082,7 +1092,8 @@ public sealed class MetaTabularDeployService
             "DOUBLE" or "FLOAT" or "REAL" => Tom.DataType.Double,
             "INT16" or "INT32" or "INT64" or "INTEGER" or "LONG" => Tom.DataType.Int64,
             "BINARY" => Tom.DataType.Binary,
-            _ => Tom.DataType.String,
+            "STRING" => Tom.DataType.String,
+            _ => throw UnsupportedType(description, type, system),
         };
     }
 
@@ -1195,13 +1206,32 @@ public sealed class MetaTabularDeployService
         throw new InvalidOperationException($"{context} value '{value}' is not a valid integer.");
     }
 
-    private static string StripMetaTypePrefix(string? value)
+    private static void ValidateDataTypes(MetaTabularModel source, MetaDataTypeModel catalog)
     {
-        const string prefix = "meta:type:";
-        return !string.IsNullOrWhiteSpace(value) && value.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)
-            ? value[prefix.Length..]
-            : value?.Trim() ?? string.Empty;
+        foreach (var column in source.TabularColumnList)
+            MapTabularDataType(catalog, column.DataTypeId, DescribeColumn(column));
     }
+
+    private static string DescribeColumn(TabularColumn column) =>
+        $"TabularColumn '{column.Id}' ('{column.TabularTable?.Name}.{column.Name}')";
+
+    private static (DataType Type, DataTypeSystem System) ResolveMetaType(MetaDataTypeModel catalog, string? id, string description)
+    {
+        if (string.IsNullOrWhiteSpace(id))
+            throw new InvalidOperationException($"{description} is missing DataTypeId. SSAS Tabular deployment requires a supported Meta type from the selected catalog.");
+        var matches = catalog.DataTypeList.Where(type => type.Id == id).ToArray();
+        if (matches.Length != 1)
+            throw new InvalidOperationException($"{description} has DataTypeId '{id}', which resolves to {matches.Length} types in the selected MetaDataType catalog; expected one.");
+        var systems = catalog.DataTypeSystemList.Where(system => system.Id == matches[0].DataTypeSystem?.Id).ToArray();
+        if (systems.Length != 1)
+            throw new InvalidOperationException($"{description} has DataTypeId '{id}' (type '{matches[0].Name}'), which does not have one DataTypeSystem relationship in the selected MetaDataType catalog.");
+        if (!string.Equals(systems[0].Name, "Meta", StringComparison.OrdinalIgnoreCase))
+            throw UnsupportedType(description, matches[0], systems[0]);
+        return (matches[0], systems[0]);
+    }
+
+    private static InvalidOperationException UnsupportedType(string description, DataType type, DataTypeSystem system) =>
+        new($"{description} has DataTypeId '{type.Id}' (type '{type.Name}' in DataTypeSystem '{system.Name}', ID '{system.Id}'), which has no supported SSAS Tabular mapping.");
 
     private static string ToDaxMeasureReference(string measureName)
     {

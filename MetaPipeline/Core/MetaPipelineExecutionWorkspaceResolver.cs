@@ -21,17 +21,15 @@ public sealed class MetaPipelineExecutionWorkspaceResolver
         ArgumentException.ThrowIfNullOrWhiteSpace(transformScriptId);
         ArgumentException.ThrowIfNullOrWhiteSpace(transformBindingId);
 
-        var transformModel = Meta.Integration.TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(
-            Path.GetFullPath(transformWorkspacePath),
-            searchUpward: false);
+        var transformModel = MetaTransformScriptInstance.LoadFromWorkspace(Path.GetFullPath(transformWorkspacePath));
 
         var transformScript = ResolveTransformScriptById(transformModel, transformScriptId);
         var statementKind = new TransformScriptNavigator(transformModel).GetTransformScriptStatementKind(transformScript);
         EnsureTransformScriptIsSupported(transformModel, transformScript, statementKind);
         var rowStreamMode = ResolveRowStreamMode(transformModel, transformScript, statementKind);
-        var bindingModel = Meta.Integration.TypedWorkspaceModelMapper.Load<MetaTransformBindingModel>(
+        var bindingModel = Meta.Integration.TypedWorkspaceModelMapper.Load(
             Path.GetFullPath(bindingWorkspacePath),
-            searchUpward: false);
+            new MetaTransformBindingWorkspaceBinding());
 
         var binding = ResolveBindingById(bindingModel, transformBindingId);
         if (!string.Equals(binding.MetaTransformScriptTransformScriptId, transformScript.Id, StringComparison.Ordinal))

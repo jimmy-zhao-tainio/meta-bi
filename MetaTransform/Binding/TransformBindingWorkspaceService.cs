@@ -1,7 +1,9 @@
 using MetaSchema;
 using MetaDataType;
+using MetaDataType.Core;
 using MetaTransformBinding;
 using MetaTransformScript;
+using MetaTransformScript.Sql;
 
 namespace MetaTransform.Binding;
 
@@ -29,7 +31,7 @@ public sealed class TransformBindingWorkspaceService
             validationOptions,
             allowPartial,
             dataTypeWorkspacePath);
-        Meta.Integration.TypedWorkspaceModelMapper.Create(result.Model, workspacePath, "xml");
+        Meta.Integration.TypedWorkspaceModelMapper.Create(result.Model, TransformBindingModels.LoadContract(), new MetaTransformBindingWorkspaceBinding(), workspacePath, "xml");
         return result with { WorkspacePath = workspacePath };
     }
 
@@ -56,9 +58,7 @@ public sealed class TransformBindingWorkspaceService
         var sourceSchemas = LoadSourceSchemaWorkspaces(sourceSchemaWorkspacePaths);
         var targetSchema = LoadSchemaWorkspace(targetSchemaWorkspaceFullPath, "target");
 
-        var dataTypes = string.IsNullOrWhiteSpace(dataTypeWorkspacePath)
-            ? MetaDataTypeInstance.BuiltIn
-            : Meta.Integration.TypedWorkspaceModelMapper.Load<MetaDataTypeModel>(Path.GetFullPath(dataTypeWorkspacePath), searchUpward: false);
+        var dataTypes = MetaDataTypeWorkspaceProvider.LoadOrDefault(dataTypeWorkspacePath);
         var typeValidator = new SqlServerSchemaTypeValidator(dataTypes);
         foreach (var source in sourceSchemas) ValidateSchemaTypes(source.Model, "Source");
         ValidateSchemaTypes(targetSchema.Model, "Target");
@@ -77,7 +77,7 @@ public sealed class TransformBindingWorkspaceService
             .Select(item => item.SystemName)
             .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
-        var transformModel = Meta.Integration.TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(transformWorkspaceFullPath, searchUpward: false);
+        var transformModel = MetaTransformScriptInstance.LoadFromWorkspace(transformWorkspaceFullPath);
         var transformScripts = ResolveScripts(transformModel);
         var sourceIdentifiers = CollectSourceIdentifierUsages(transformModel, transformScripts);
 
@@ -198,12 +198,12 @@ public sealed class TransformBindingWorkspaceService
         var transformWorkspaceFullPath = Path.GetFullPath(transformWorkspacePath);
         var bindingWorkspaceFullPath = Path.GetFullPath(newWorkspacePath);
 
-        var transformModel = Meta.Integration.TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(transformWorkspaceFullPath, searchUpward: false);
+        var transformModel = MetaTransformScriptInstance.LoadFromWorkspace(transformWorkspaceFullPath);
         var transformScripts = ResolveScripts(transformModel);
         var packages = BindTransformScripts(transformModel, transformScripts);
         var bindingModel = BuildCombinedBindingModel(packages);
 
-        Meta.Integration.TypedWorkspaceModelMapper.Create(bindingModel, bindingWorkspaceFullPath, "xml");
+        Meta.Integration.TypedWorkspaceModelMapper.Create(bindingModel, TransformBindingModels.LoadContract(), new MetaTransformBindingWorkspaceBinding(), bindingWorkspaceFullPath, "xml");
 
         var objectIssues = packages
             .SelectMany(package => package.Bound.Issues.Select(issue =>
@@ -570,7 +570,7 @@ public sealed class TransformBindingWorkspaceService
 
     private static SchemaWorkspaceInput LoadSchemaWorkspace(string workspaceFullPath, string role)
     {
-        var model = Meta.Integration.TypedWorkspaceModelMapper.Load<MetaSchemaModel>(workspaceFullPath, searchUpward: false);
+        var model = Meta.Integration.TypedWorkspaceModelMapper.Load(workspaceFullPath, new MetaSchemaWorkspaceBinding());
         if (model.SystemList.Count != 1)
         {
             throw new TransformBindingValidationException(

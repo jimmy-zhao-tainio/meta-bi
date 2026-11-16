@@ -1322,6 +1322,11 @@
       <Description>Create an XML workspace at this directory.</Description>
       <Name>xml</Name>
     </Parameter>
+    <Parameter Id="param-deploy-data-type-workspace" ValueShapeId="shape-path">
+      <Description>MetaDataType catalog workspace. Defaults to the packaged MetaDataType workspace.</Description>
+      <IsRequired>false</IsRequired>
+      <Name>data-type-workspace</Name>
+    </Parameter>
     <Parameter Id="param-deploy-database-name" ValueShapeId="shape-text">
       <Description>Target database name. Defaults to the modeled database name.</Description>
       <IsRequired>false</IsRequired>

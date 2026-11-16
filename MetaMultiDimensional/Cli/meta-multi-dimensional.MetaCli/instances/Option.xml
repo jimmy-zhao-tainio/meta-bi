@@ -262,6 +262,7 @@
     <Option Id="opt-add-security-role-name" ParameterId="param-add-security-role-name" />
     <Option Id="opt-add-security-role-permission" ParameterId="param-add-security-role-permission" />
     <Option Id="opt-add-security-role-workspace" ParameterId="param-add-security-role-workspace" />
+    <Option Id="opt-deploy-data-type-workspace" ParameterId="param-deploy-data-type-workspace" />
     <Option Id="opt-deploy-database-name" ParameterId="param-deploy-database-name" />
     <Option Id="opt-deploy-drop-existing" ParameterId="param-deploy-drop-existing" />
     <Option Id="opt-deploy-no-process" ParameterId="param-deploy-no-process" />

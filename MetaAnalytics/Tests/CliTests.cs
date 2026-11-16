@@ -65,7 +65,7 @@ public sealed class CliTests
             Assert.Equal(0, RunCli($"add-perspective-measure --workspace \"{path}\" --id SalesPerspectiveSalesAmount --perspective SalesPerspective --measure SalesAmount").ExitCode);
             Assert.Equal(0, RunCli($"add-security-role --workspace \"{path}\" --id Reader --model Commerce --name Reader --permission Read").ExitCode);
 
-            var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaAnalyticsModel>(path, searchUpward: false);
+            var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaAnalyticsModel>(path, new global::MetaAnalytics.MetaAnalyticsWorkspaceBinding(), searchUpward: false);
             Assert.Single(model.AnalyticsModelList);
             Assert.Single(model.DataSourceList);
             Assert.Single(model.MeasureList);

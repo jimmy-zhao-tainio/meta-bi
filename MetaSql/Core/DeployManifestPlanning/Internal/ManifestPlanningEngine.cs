@@ -2,6 +2,7 @@ using Meta.Surfaces;
 using Meta.Integration;
 using Meta.Operations.Domain;
 using MetaSqlDeployManifest;
+using MetaSql.Extractors.SqlServer;
 
 namespace MetaSql;
 
@@ -42,6 +43,7 @@ internal sealed class ManifestPlanningEngine
     public MetaSqlDeployManifestBuildResult BuildManifest(
         InMemoryWorkspace sourceWorkspace,
         InMemoryWorkspace liveWorkspace,
+        SqlServerDataTypeCatalog catalog,
         MetaSqlLiveDatabasePresence liveDatabasePresence,
         IReadOnlyList<MetaSqlDifference> differences,
         string manifestName,
@@ -74,8 +76,8 @@ internal sealed class ManifestPlanningEngine
         {
             Id = "DeployManifest:1",
             Name = manifestName,
-            SourceInstanceFingerprint = MetaSqlInstanceFingerprint.Compute(sourceWorkspace),
-            LiveInstanceFingerprint = MetaSqlInstanceFingerprint.Compute(liveWorkspace),
+            SourceInstanceFingerprint = MetaSqlInstanceFingerprint.Compute(sourceWorkspace, catalog),
+            LiveInstanceFingerprint = MetaSqlInstanceFingerprint.Compute(liveWorkspace, catalog),
             ExpectedLiveDatabasePresence = context.LiveDatabasePresence.ToString(),
             CreatedUtc = DateTime.UtcNow.ToString("O"),
             TargetDescription = targetDescription ?? string.Empty,

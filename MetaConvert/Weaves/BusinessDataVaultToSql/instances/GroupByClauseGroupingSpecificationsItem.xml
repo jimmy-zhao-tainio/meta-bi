@@ -1,17 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaWeave>
   <GroupByClauseGroupingSpecificationsItemList>
-    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:1" GroupByClauseId="GroupByClause:1" GroupingSpecificationId="GroupingSpecification:1">
-      <Ordinal>0</Ordinal>
-    </GroupByClauseGroupingSpecificationsItem>
     <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:10" GroupByClauseId="GroupByClause:9" GroupingSpecificationId="GroupingSpecification:10">
       <Ordinal>0</Ordinal>
-    </GroupByClauseGroupingSpecificationsItem>
-    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:11" GroupByClauseId="GroupByClause:10" GroupingSpecificationId="GroupingSpecification:11">
-      <Ordinal>0</Ordinal>
-    </GroupByClauseGroupingSpecificationsItem>
-    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:12" GroupByClauseId="GroupByClause:10" GroupingSpecificationId="GroupingSpecification:12">
-      <Ordinal>1</Ordinal>
     </GroupByClauseGroupingSpecificationsItem>
     <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:13" GroupByClauseId="GroupByClause:11" GroupingSpecificationId="GroupingSpecification:13">
       <Ordinal>0</Ordinal>
@@ -35,6 +26,15 @@
       <Ordinal>1</Ordinal>
     </GroupByClauseGroupingSpecificationsItem>
     <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:2" GroupByClauseId="GroupByClause:2" GroupingSpecificationId="GroupingSpecification:2">
+      <Ordinal>0</Ordinal>
+    </GroupByClauseGroupingSpecificationsItem>
+    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:20" GroupByClauseId="GroupByClause:15" GroupingSpecificationId="GroupingSpecification:20">
+      <Ordinal>0</Ordinal>
+    </GroupByClauseGroupingSpecificationsItem>
+    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:21" GroupByClauseId="GroupByClause:15" GroupingSpecificationId="GroupingSpecification:21">
+      <Ordinal>1</Ordinal>
+    </GroupByClauseGroupingSpecificationsItem>
+    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:22" GroupByClauseId="GroupByClause:16" GroupingSpecificationId="GroupingSpecification:22">
       <Ordinal>0</Ordinal>
     </GroupByClauseGroupingSpecificationsItem>
     <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:3" GroupByClauseId="GroupByClause:3" GroupingSpecificationId="GroupingSpecification:3">

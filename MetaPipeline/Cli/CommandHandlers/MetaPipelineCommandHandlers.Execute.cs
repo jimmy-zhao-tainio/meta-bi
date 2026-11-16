@@ -56,7 +56,8 @@ internal sealed partial class MetaPipelineCommandHandlers
                 parse.DataTypeWorkspacePath,
                 parse.PipelineDbConnectionEnvironmentVariableName,
                 parse.WorkerControlPipeName,
-                parse.ControlPipeConnectTimeoutSeconds))
+                parse.ControlPipeConnectTimeoutSeconds,
+                MetaBuildVersion.Value))
             .ConfigureAwait(false);
 
         return WriteExecuteWorkerOutcome(outcome, parse.PipelineDbConnectionEnvironmentVariableName);

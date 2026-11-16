@@ -1,39 +1,61 @@
 using System.Security.Cryptography;
 using System.Text;
 using Meta.Operations.Domain;
+using MetaSql.Extractors.SqlServer;
 
 namespace MetaSql;
 
 internal static class MetaSqlInstanceFingerprint
 {
-    internal static string Compute(InMemoryWorkspace workspace)
+    internal static string Compute(InMemoryWorkspace workspace, SqlServerDataTypeCatalog catalog)
     {
         ArgumentNullException.ThrowIfNull(workspace);
-
-        workspace = MetaSqlCanonicalizer.Canonicalize(workspace);
-
-        var builder = new StringBuilder();
-        foreach (var entityName in workspace.Instance.RecordsByEntity.Keys.OrderBy(row => row, StringComparer.Ordinal))
+        ArgumentNullException.ThrowIfNull(catalog);
+        var canonical = MetaSqlCanonicalizer.Canonicalize(workspace);
+        using var bytes = new MemoryStream();
+        using (var writer = new BinaryWriter(bytes, Encoding.UTF8, leaveOpen: true))
         {
-            var records = workspace.Instance.GetOrCreateEntityRecords(entityName)
-                .OrderBy(row => row.Id, StringComparer.Ordinal);
-            foreach (var record in records)
+            writer.Write("MetaSql.SqlServerInstanceContract.v1");
+            writer.Write(canonical.Model.Name);
+            var entities = canonical.Instance.RecordsByEntity
+                .Where(row => row.Value.Count > 0)
+                .OrderBy(row => row.Key, StringComparer.Ordinal).ToArray();
+            writer.Write(entities.Length);
+            foreach (var entity in entities)
             {
-                builder.Append("E|").Append(entityName).Append('|').Append(record.Id).Append('\n');
-                foreach (var key in record.Values.Keys.OrderBy(row => row, StringComparer.Ordinal))
+                writer.Write(entity.Key);
+                var records = entity.Value.OrderBy(row => row.Id, StringComparer.Ordinal).ToArray();
+                writer.Write(records.Length);
+                foreach (var record in records)
                 {
-                    builder.Append("V|").Append(key).Append('|').Append(record.Values[key]).Append('\n');
-                }
-
-                foreach (var key in record.RelationshipIds.Keys.OrderBy(row => row, StringComparer.Ordinal))
-                {
-                    builder.Append("R|").Append(key).Append('|').Append(record.RelationshipIds[key]).Append('\n');
+                    writer.Write(record.Id);
+                    WriteDictionary(writer, record.Values);
+                    WriteDictionary(writer, record.RelationshipIds);
                 }
             }
-        }
 
-        var bytes = Encoding.UTF8.GetBytes(builder.ToString());
-        var hash = SHA256.HashData(bytes);
-        return Convert.ToHexString(hash).ToLowerInvariant();
+            var usedIds = canonical.Instance.RecordsByEntity.TryGetValue("TableColumn", out var columns)
+                ? columns.Select(row => row.Values.GetValueOrDefault("MetaDataTypeId") ?? string.Empty)
+                    .Distinct(StringComparer.Ordinal).OrderBy(id => id, StringComparer.Ordinal).ToArray()
+                : Array.Empty<string>();
+            writer.Write(usedIds.Length);
+            foreach (var id in usedIds)
+            {
+                writer.Write(id);
+                writer.Write(catalog.ResolveId(id, "SQL instance contract").Name);
+            }
+        }
+        return "sqlserver-v1:" + Convert.ToHexString(SHA256.HashData(bytes.ToArray())).ToLowerInvariant();
+    }
+
+    private static void WriteDictionary(BinaryWriter writer, IReadOnlyDictionary<string, string> values)
+    {
+        writer.Write(values.Count);
+        foreach (var pair in values.OrderBy(row => row.Key, StringComparer.Ordinal))
+        {
+            writer.Write(pair.Key);
+            writer.Write(pair.Value is not null);
+            if (pair.Value is not null) writer.Write(pair.Value);
+        }
     }
 }

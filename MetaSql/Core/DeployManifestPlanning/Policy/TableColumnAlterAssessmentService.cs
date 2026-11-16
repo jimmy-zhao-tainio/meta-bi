@@ -1,3 +1,4 @@
+using MetaSql.Extractors.SqlServer;
 using Meta.Operations.Domain;
 
 namespace MetaSql;
@@ -5,7 +6,7 @@ namespace MetaSql;
 /// <summary>
 /// Encapsulates table-column alter executability and truncation-approval assessment.
 /// </summary>
-internal sealed class TableColumnAlterAssessmentService
+internal sealed class TableColumnAlterAssessmentService(SqlServerDataTypeCatalog catalog)
 {
     private static readonly HashSet<string> ExecutableColumnAspects = new(StringComparer.Ordinal)
     {
@@ -342,14 +343,14 @@ internal sealed class TableColumnAlterAssessmentService
         return !string.IsNullOrWhiteSpace(columnName);
     }
 
-    private static bool IsSupportedSqlServerType(string metaDataTypeId)
+    private bool IsSupportedSqlServerType(string metaDataTypeId)
     {
-        return SqlServerRenderingSupport.IsSqlServerTypeId(metaDataTypeId);
+        return catalog.ContainsSqlServerId(metaDataTypeId);
     }
 
-    private static string GetSqlServerTypeName(string metaDataTypeId)
+    private string GetSqlServerTypeName(string metaDataTypeId)
     {
-        return SqlServerRenderingSupport.GetSqlServerTypeName(metaDataTypeId);
+        return catalog.ResolveId(metaDataTypeId, "Deployment column").Name;
     }
 
     private static string BuildColumnBlockerKey(string sourceId, string liveId)

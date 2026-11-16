@@ -31,6 +31,12 @@
     <OptionToken Id="token-analytics-to-tabular-workspace" OptionId="opt-analytics-to-tabular-workspace">
       <Token>--workspace</Token>
     </OptionToken>
+    <OptionToken Id="token-business-datavault-to-sql-data-type-conversion-workspace" OptionId="opt-business-datavault-to-sql-data-type-conversion-workspace">
+      <Token>--data-type-conversion-workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-business-datavault-to-sql-data-type-workspace" OptionId="opt-business-datavault-to-sql-data-type-workspace">
+      <Token>--data-type-workspace</Token>
+    </OptionToken>
     <OptionToken Id="token-business-datavault-to-sql-database-name" OptionId="opt-business-datavault-to-sql-database-name">
       <Token>--database-name</Token>
     </OptionToken>
@@ -58,6 +64,12 @@
     <OptionToken Id="token-data-quality-to-sql-workspace" OptionId="opt-data-quality-to-sql-workspace">
       <Token>--workspace</Token>
     </OptionToken>
+    <OptionToken Id="token-data-warehouse-to-sql-data-type-conversion-workspace" OptionId="opt-data-warehouse-to-sql-data-type-conversion-workspace">
+      <Token>--data-type-conversion-workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-data-warehouse-to-sql-data-type-workspace" OptionId="opt-data-warehouse-to-sql-data-type-workspace">
+      <Token>--data-type-workspace</Token>
+    </OptionToken>
     <OptionToken Id="token-data-warehouse-to-sql-database-name" OptionId="opt-data-warehouse-to-sql-database-name">
       <Token>--database-name</Token>
     </OptionToken>
@@ -78,6 +90,12 @@
     </OptionToken>
     <OptionToken Id="token-data-warehouse-to-sql-workspace" OptionId="opt-data-warehouse-to-sql-workspace">
       <Token>--workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-raw-datavault-to-sql-data-type-conversion-workspace" OptionId="opt-raw-datavault-to-sql-data-type-conversion-workspace">
+      <Token>--data-type-conversion-workspace</Token>
+    </OptionToken>
+    <OptionToken Id="token-raw-datavault-to-sql-data-type-workspace" OptionId="opt-raw-datavault-to-sql-data-type-workspace">
+      <Token>--data-type-workspace</Token>
     </OptionToken>
     <OptionToken Id="token-raw-datavault-to-sql-database-name" OptionId="opt-raw-datavault-to-sql-database-name">
       <Token>--database-name</Token>

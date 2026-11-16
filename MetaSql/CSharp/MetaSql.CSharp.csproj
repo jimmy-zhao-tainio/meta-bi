@@ -7,8 +7,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Meta.TypedModels" Version="$(MetaFoundationPackageVersion)" />
     <Compile Include="..\Workspace\MetaSql.meta.cs" Link="MetaSql.meta.cs" />
     <Compile Include="..\DeployManifest\Workspace\MetaSqlDeployManifest.meta.cs" Link="MetaSqlDeployManifest.meta.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\Workspace\**\*">
+      <Link>Workspaces\MetaSql\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+      <PackagePath>contentFiles\any\any\Workspaces\MetaSql\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
+    <Content Include="..\DeployManifest\Workspace\**\*">
+      <Link>Workspaces\MetaSqlDeployManifest\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+      <PackagePath>contentFiles\any\any\Workspaces\MetaSqlDeployManifest\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
+    <None Update="Package\MetaSql.CSharp.targets" Pack="true" PackagePath="buildTransitive\MetaSql.CSharp.targets" />
   </ItemGroup>
 
 </Project>

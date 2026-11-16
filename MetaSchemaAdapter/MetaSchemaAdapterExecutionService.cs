@@ -41,15 +41,15 @@ public sealed class MetaSchemaAdapterExecutionService
             request.TransformScriptId,
             request.TransformBindingId,
             request.TargetIdentifier);
-        var schema = await LoadWorkspaceAsync<MetaSchemaModel>(
+        var schema = await LoadWorkspaceAsync(new MetaSchemaWorkspaceBinding(),
                 request.ExecutionSchemaWorkspacePath,
                 cancellationToken)
             .ConfigureAwait(false);
-        var transforms = await LoadWorkspaceAsync<MetaTransformScriptModel>(
+        var transforms = await LoadWorkspaceAsync(new MetaTransformScriptWorkspaceBinding(),
                 request.TransformWorkspacePath,
                 cancellationToken)
             .ConfigureAwait(false);
-        var binding = await LoadWorkspaceAsync<MetaTransformBindingModel>(
+        var binding = await LoadWorkspaceAsync(new MetaTransformBindingWorkspaceBinding(),
                 request.BindingWorkspacePath,
                 cancellationToken)
             .ConfigureAwait(false);
@@ -110,7 +110,7 @@ public sealed class MetaSchemaAdapterExecutionService
         var outputShape = definition.RowStreamShape
             ?? throw new InvalidOperationException(
                 $"Bound transform '{definition.TransformScriptName}' does not resolve an output row shape.");
-        var targetSchema = await LoadWorkspaceAsync<MetaSchemaModel>(
+        var targetSchema = await LoadWorkspaceAsync(new MetaSchemaWorkspaceBinding(),
                 request.TargetSchemaWorkspacePath,
                 cancellationToken)
             .ConfigureAwait(false);
@@ -161,13 +161,14 @@ public sealed class MetaSchemaAdapterExecutionService
     }
 
     private static Task<TModel> LoadWorkspaceAsync<TModel>(
+        Meta.TypedModels.ITypedWorkspaceBinding<TModel> binding,
         string workspacePath,
         CancellationToken cancellationToken)
-        where TModel : class, new()
+        where TModel : class
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(workspacePath);
-        return Meta.Integration.TypedWorkspaceModelMapper.LoadAsync<TModel>(
-            Path.GetFullPath(workspacePath),
+        return Meta.Integration.TypedWorkspaceModelMapper.LoadAsync(
+            Path.GetFullPath(workspacePath), binding,
             searchUpward: false,
             cancellationToken);
     }

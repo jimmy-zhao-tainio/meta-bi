@@ -141,7 +141,7 @@ public sealed class MetaSqlDifferenceFeasibilityServiceTests
             foreignKeysByTableKey: new Dictionary<string, List<MetaSql.Extractors.SqlServer.SqlServerMetaSqlProjector.ForeignKeyRow>>(StringComparer.OrdinalIgnoreCase),
             foreignKeyColumnsByTableKey: new Dictionary<string, List<MetaSql.Extractors.SqlServer.SqlServerMetaSqlProjector.ForeignKeyColumnRow>>(StringComparer.OrdinalIgnoreCase),
             indexesByTableKey: new Dictionary<string, List<MetaSql.Extractors.SqlServer.SqlServerMetaSqlProjector.IndexRow>>(StringComparer.OrdinalIgnoreCase),
-            indexColumnsByTableKey: new Dictionary<string, List<MetaSql.Extractors.SqlServer.SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase)));
+            indexColumnsByTableKey: new Dictionary<string, List<MetaSql.Extractors.SqlServer.SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase)), global::MetaSql.MetaSqlModels.LoadContract(), new global::MetaSql.MetaSqlWorkspaceBinding());
     }
 
     private static InMemoryWorkspace CreateDropColumnWorkspace(string workspacePath, bool includeLegacyCode)
@@ -171,7 +171,7 @@ public sealed class MetaSqlDifferenceFeasibilityServiceTests
             foreignKeysByTableKey: new Dictionary<string, List<MetaSql.Extractors.SqlServer.SqlServerMetaSqlProjector.ForeignKeyRow>>(StringComparer.OrdinalIgnoreCase),
             foreignKeyColumnsByTableKey: new Dictionary<string, List<MetaSql.Extractors.SqlServer.SqlServerMetaSqlProjector.ForeignKeyColumnRow>>(StringComparer.OrdinalIgnoreCase),
             indexesByTableKey: new Dictionary<string, List<MetaSql.Extractors.SqlServer.SqlServerMetaSqlProjector.IndexRow>>(StringComparer.OrdinalIgnoreCase),
-            indexColumnsByTableKey: new Dictionary<string, List<MetaSql.Extractors.SqlServer.SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase)));
+            indexColumnsByTableKey: new Dictionary<string, List<MetaSql.Extractors.SqlServer.SqlServerMetaSqlProjector.IndexColumnRow>>(StringComparer.OrdinalIgnoreCase)), global::MetaSql.MetaSqlModels.LoadContract(), new global::MetaSql.MetaSqlWorkspaceBinding());
     }
 
     private static async Task AssertDropColumnDependencyBlockerAsync(

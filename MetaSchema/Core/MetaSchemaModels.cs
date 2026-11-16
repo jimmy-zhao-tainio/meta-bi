@@ -9,9 +9,9 @@ public static class MetaSchemaModels
 
     public static GenericModel CreateMetaSchemaModel()
     {
-        return TypedWorkspaceModelMapper
-            .ToInMemoryWorkspace(MetaSchemaModel.CreateEmpty())
-            .Model;
+        return TypedWorkspaceModelMapper.LoadStateAsync(
+                Path.Combine(AppContext.BaseDirectory, "Workspaces", MetaSchemaModelName))
+            .GetAwaiter().GetResult().Model;
     }
 }
 

@@ -22,7 +22,7 @@ public sealed class TransformScriptToSqlWeaveTests
             "CREATE FUNCTION dbo.TableWhitespace() RETURNS TABLE AS RETURN (SELECT N'" + value + "' AS [Value]);", null);
         var result = await ExecuteWeaveAsync(source, "ProbeDb");
         Assert.True(result.IsSuccess, FormatIssues(result));
-        var actual = TypedWorkspaceModelMapper.FromInMemoryWorkspace(result.OutputWorkspace!, static () => new MetaSqlModel());
+        var actual = TypedWorkspaceModelMapper.FromInMemoryWorkspace(result.OutputWorkspace!, new global::MetaSql.MetaSqlWorkspaceBinding());
         Assert.Equal(2, actual.FunctionList.Count);
         foreach (var function in actual.FunctionList)
         {
@@ -44,7 +44,7 @@ public sealed class TransformScriptToSqlWeaveTests
         Assert.True(result.IsSuccess, FormatIssues(result));
         var actual = TypedWorkspaceModelMapper.FromInMemoryWorkspace(
             result.OutputWorkspace!,
-            static () => new MetaSqlModel());
+            new global::MetaSql.MetaSqlWorkspaceBinding());
         Assert.Equal(
             expected.DatabaseList
                 .OrderBy(item => item.Id, StringComparer.Ordinal)
@@ -116,7 +116,7 @@ public sealed class TransformScriptToSqlWeaveTests
         Assert.True(result.IsSuccess, FormatIssues(result));
         var actual = TypedWorkspaceModelMapper.FromInMemoryWorkspace(
             result.OutputWorkspace!,
-            static () => new MetaSqlModel());
+            new global::MetaSql.MetaSqlWorkspaceBinding());
         var expectedView = Assert.Single(expected.ViewList);
         var actualView = Assert.Single(actual.ViewList);
         Assert.Equal(expectedView.Id, actualView.Id);
@@ -171,7 +171,7 @@ public sealed class TransformScriptToSqlWeaveTests
         Assert.True(result.IsSuccess, FormatIssues(result));
         var actual = TypedWorkspaceModelMapper.FromInMemoryWorkspace(
             result.OutputWorkspace!,
-            static () => new MetaSqlModel());
+            new global::MetaSql.MetaSqlWorkspaceBinding());
         var expectedView = CanonicalSql(Assert.Single(expected.ViewList).DefinitionSql);
         var actualView = CanonicalSql(Assert.Single(actual.ViewList).DefinitionSql);
         Assert.True(
@@ -219,7 +219,7 @@ public sealed class TransformScriptToSqlWeaveTests
         Assert.True(result.IsSuccess, FormatIssues(result));
         var actual = TypedWorkspaceModelMapper.FromInMemoryWorkspace(
             result.OutputWorkspace!,
-            static () => new MetaSqlModel());
+            new global::MetaSql.MetaSqlWorkspaceBinding());
         Assert.Equal(
             CanonicalSql(Assert.Single(expected.ViewList).DefinitionSql),
             CanonicalSql(Assert.Single(actual.ViewList).DefinitionSql));
@@ -269,7 +269,7 @@ public sealed class TransformScriptToSqlWeaveTests
         Assert.True(result.IsSuccess, FormatIssues(result));
         var actual = TypedWorkspaceModelMapper.FromInMemoryWorkspace(
             result.OutputWorkspace!,
-            static () => new MetaSqlModel());
+            new global::MetaSql.MetaSqlWorkspaceBinding());
         Assert.Equal(
             CanonicalSql(Assert.Single(expected.ViewList).DefinitionSql),
             CanonicalSql(Assert.Single(actual.ViewList).DefinitionSql));
@@ -305,7 +305,7 @@ public sealed class TransformScriptToSqlWeaveTests
         Assert.True(result.IsSuccess, FormatIssues(result));
         var actual = TypedWorkspaceModelMapper.FromInMemoryWorkspace(
             result.OutputWorkspace!,
-            static () => new MetaSqlModel());
+            new global::MetaSql.MetaSqlWorkspaceBinding());
         Assert.Equal(
             CanonicalSql(Assert.Single(expected.ViewList).DefinitionSql),
             CanonicalSql(Assert.Single(actual.ViewList).DefinitionSql));
@@ -357,7 +357,7 @@ public sealed class TransformScriptToSqlWeaveTests
         Assert.True(result.IsSuccess, FormatIssues(result));
         var actual = TypedWorkspaceModelMapper.FromInMemoryWorkspace(
             result.OutputWorkspace!,
-            static () => new MetaSqlModel());
+            new global::MetaSql.MetaSqlWorkspaceBinding());
         Assert.Equal(
             CanonicalSql(Assert.Single(expected.ViewList).DefinitionSql),
             CanonicalSql(Assert.Single(actual.ViewList).DefinitionSql));
@@ -392,7 +392,7 @@ public sealed class TransformScriptToSqlWeaveTests
         Assert.True(result.IsSuccess, FormatIssues(result));
         var actual = TypedWorkspaceModelMapper.FromInMemoryWorkspace(
             result.OutputWorkspace!,
-            static () => new MetaSqlModel());
+            new global::MetaSql.MetaSqlWorkspaceBinding());
         Assert.Equal(
             CanonicalSql(Assert.Single(expected.ViewList).DefinitionSql),
             CanonicalSql(Assert.Single(actual.ViewList).DefinitionSql));
@@ -427,7 +427,7 @@ public sealed class TransformScriptToSqlWeaveTests
         Assert.True(result.IsSuccess, FormatIssues(result));
         var actual = TypedWorkspaceModelMapper.FromInMemoryWorkspace(
             result.OutputWorkspace!,
-            static () => new MetaSqlModel());
+            new global::MetaSql.MetaSqlWorkspaceBinding());
         Assert.Equal(
             CanonicalSql(Assert.Single(expected.ViewList).DefinitionSql),
             CanonicalSql(Assert.Single(actual.ViewList).DefinitionSql));
@@ -471,7 +471,7 @@ public sealed class TransformScriptToSqlWeaveTests
         Assert.True(result.IsSuccess, FormatIssues(result));
         var actual = TypedWorkspaceModelMapper.FromInMemoryWorkspace(
             result.OutputWorkspace!,
-            static () => new MetaSqlModel());
+            new global::MetaSql.MetaSqlWorkspaceBinding());
         Assert.Equal(
             expected.ViewList
                 .OrderBy(item => item.Id, StringComparer.Ordinal)
@@ -505,7 +505,7 @@ public sealed class TransformScriptToSqlWeaveTests
         Assert.True(result.IsSuccess, FormatIssues(result));
         var actual = TypedWorkspaceModelMapper.FromInMemoryWorkspace(
             result.OutputWorkspace!,
-            static () => new MetaSqlModel());
+            new global::MetaSql.MetaSqlWorkspaceBinding());
         Assert.Equal(
             CanonicalSql(Assert.Single(expected.ViewList).DefinitionSql),
             CanonicalSql(Assert.Single(actual.ViewList).DefinitionSql));
@@ -548,7 +548,7 @@ public sealed class TransformScriptToSqlWeaveTests
         Assert.True(result.IsSuccess, FormatIssues(result));
         var actual = TypedWorkspaceModelMapper.FromInMemoryWorkspace(
             result.OutputWorkspace!,
-            static () => new MetaSqlModel());
+            new global::MetaSql.MetaSqlWorkspaceBinding());
         Assert.Equal(
             CanonicalSql(Assert.Single(expected.ViewList).DefinitionSql),
             CanonicalSql(Assert.Single(actual.ViewList).DefinitionSql));
@@ -579,7 +579,7 @@ public sealed class TransformScriptToSqlWeaveTests
         Assert.True(result.IsSuccess, FormatIssues(result));
         var actual = TypedWorkspaceModelMapper.FromInMemoryWorkspace(
             result.OutputWorkspace!,
-            static () => new MetaSqlModel());
+            new global::MetaSql.MetaSqlWorkspaceBinding());
         Assert.Equal(
             CanonicalSql(Assert.Single(expected.ViewList).DefinitionSql),
             CanonicalSql(Assert.Single(actual.ViewList).DefinitionSql));
@@ -810,10 +810,10 @@ public sealed class TransformScriptToSqlWeaveTests
         Assert.True(second.IsSuccess, FormatIssues(second));
         var firstSql = Assert.Single(TypedWorkspaceModelMapper.FromInMemoryWorkspace(
             first.OutputWorkspace!,
-            static () => new MetaSqlModel()).ViewList).DefinitionSql;
+            new global::MetaSql.MetaSqlWorkspaceBinding()).ViewList).DefinitionSql;
         var secondSql = Assert.Single(TypedWorkspaceModelMapper.FromInMemoryWorkspace(
             second.OutputWorkspace!,
-            static () => new MetaSqlModel()).ViewList).DefinitionSql;
+            new global::MetaSql.MetaSqlWorkspaceBinding()).ViewList).DefinitionSql;
         Assert.Equal(firstSql, secondSql);
     }
 
@@ -844,7 +844,7 @@ public sealed class TransformScriptToSqlWeaveTests
         Assert.True(result.IsSuccess, FormatIssues(result));
         var actual = TypedWorkspaceModelMapper.FromInMemoryWorkspace(
             result.OutputWorkspace!,
-            static () => new MetaSqlModel());
+            new global::MetaSql.MetaSqlWorkspaceBinding());
         Assert.Equal(
             CanonicalSql(Assert.Single(expected.ViewList).DefinitionSql),
             CanonicalSql(Assert.Single(actual.ViewList).DefinitionSql));
@@ -990,7 +990,7 @@ public sealed class TransformScriptToSqlWeaveTests
             direction,
             new Dictionary<string, InMemoryWorkspace>(StringComparer.OrdinalIgnoreCase)
             {
-                ["transform"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(source),
+                ["transform"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(source, global::MetaTransformScript.Sql.MetaTransformScriptModels.LoadContract(), new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding()),
             },
             emptyTarget,
             new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
@@ -1030,7 +1030,7 @@ public sealed class TransformScriptToSqlWeaveTests
         Assert.True(result.IsSuccess, FormatIssues(result));
         var actual = TypedWorkspaceModelMapper.FromInMemoryWorkspace(
             result.OutputWorkspace!,
-            static () => new MetaSqlModel());
+            new global::MetaSql.MetaSqlWorkspaceBinding());
         Assert.Equal(
             expected.DatabaseList.OrderBy(item => item.Id, StringComparer.Ordinal).Select(item => (item.Id, item.Name, item.Collation)),
             actual.DatabaseList.OrderBy(item => item.Id, StringComparer.Ordinal).Select(item => (item.Id, item.Name, item.Collation)));

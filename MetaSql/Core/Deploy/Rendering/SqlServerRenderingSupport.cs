@@ -1,16 +1,9 @@
-using MetaDataType;
+using MetaSql.Extractors.SqlServer;
 
 namespace MetaSql;
 
 internal static class SqlServerRenderingSupport
 {
-    private const string SqlServerDataTypeSystemId = "SqlServer";
-    private static readonly IReadOnlyDictionary<string, (string DataTypeSystemId, string Name)> DataTypesById =
-        MetaDataTypeInstance.BuiltIn.DataTypeList.ToDictionary(
-            row => row.Id,
-            row => (row.DataTypeSystem.Id, row.Name),
-            StringComparer.Ordinal);
-
     internal static readonly HashSet<string> LengthBasedSqlServerTypeNames = new(StringComparer.OrdinalIgnoreCase)
     {
         "varchar",
@@ -47,9 +40,9 @@ internal static class SqlServerRenderingSupport
         return string.Equals(value?.Trim(), "false", StringComparison.OrdinalIgnoreCase);
     }
 
-    public static string BuildSqlServerTypeSql(string metaDataTypeId, IReadOnlyDictionary<string, string> detailValues)
+    public static string BuildSqlServerTypeSql(SqlServerDataTypeCatalog catalog, string metaDataTypeId, IReadOnlyDictionary<string, string> detailValues)
     {
-        var typeName = GetRequiredSqlServerTypeName(metaDataTypeId);
+        var typeName = catalog.ResolveId(metaDataTypeId, "SQL Server deployment").Name;
 
         return typeName.ToLowerInvariant() switch
         {
@@ -77,43 +70,6 @@ internal static class SqlServerRenderingSupport
         }
 
         return value;
-    }
-
-    public static bool IsSqlServerTypeId(string metaDataTypeId)
-    {
-        if (string.IsNullOrWhiteSpace(metaDataTypeId) ||
-            !DataTypesById.TryGetValue(metaDataTypeId, out var dataType))
-        {
-            return false;
-        }
-
-        return string.Equals(dataType.DataTypeSystemId, SqlServerDataTypeSystemId, StringComparison.Ordinal);
-    }
-
-    public static string GetSqlServerTypeName(string metaDataTypeId)
-    {
-        if (string.IsNullOrWhiteSpace(metaDataTypeId) ||
-            !DataTypesById.TryGetValue(metaDataTypeId, out var dataType) ||
-            !string.Equals(dataType.DataTypeSystemId, SqlServerDataTypeSystemId, StringComparison.Ordinal))
-        {
-            return string.Empty;
-        }
-
-        return dataType.Name;
-    }
-
-    private static string GetRequiredSqlServerTypeName(string metaDataTypeId)
-    {
-        if (string.IsNullOrWhiteSpace(metaDataTypeId) ||
-            !DataTypesById.TryGetValue(metaDataTypeId, out var dataType) ||
-            !string.Equals(dataType.DataTypeSystemId, SqlServerDataTypeSystemId, StringComparison.Ordinal) ||
-            string.IsNullOrWhiteSpace(dataType.Name))
-        {
-            throw new InvalidOperationException(
-                $"Unsupported MetaDataTypeId '{metaDataTypeId}'. Deploy only supports MetaDataType values under DataTypeSystem 'SqlServer'.");
-        }
-
-        return dataType.Name;
     }
 
     private static string BuildNumericTypeSql(

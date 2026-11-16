@@ -35,9 +35,10 @@ internal sealed partial class MetaSqlCommandHandlers
                         ManifestWorkspacePath = manifestWorkspacePath,
                         SourceWorkspacePath = sourceWorkspacePath,
                         ConnectionString = connectionString,
+                        DataTypeWorkspacePath = invocation.Optional("data-type-workspace"),
                     })
                 .ConfigureAwait(false);
-            var manifestModel = await Meta.Integration.TypedWorkspaceModelMapper.LoadAsync<MetaSqlDeployManifestModel>(manifestWorkspacePath, searchUpward: false)
+            var manifestModel = await Meta.Integration.TypedWorkspaceModelMapper.LoadAsync<MetaSqlDeployManifestModel>(manifestWorkspacePath, new global::MetaSqlDeployManifest.MetaSqlDeployManifestWorkspaceBinding(), searchUpward: false)
                 .ConfigureAwait(false);
 
             var details = new List<(string Label, string Value)>

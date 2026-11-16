@@ -1,11 +1,43 @@
-using MetaDataType;
-
 namespace MetaTransformScript.Sql;
 
 public static class MetaTransformScriptSqlServerDataTypes
 {
-    private const string SqlServerDataTypeSystemId = "SqlServer";
+    // Native SQL syntax maps to the bounded options understood by the parser and emitter.
+    // Workspace catalogs resolve semantic type identities during binding, not syntax parsing.
+    private static readonly IReadOnlyDictionary<string, string> CanonicalSqlNameToOption =
+        new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+        {
+            ["bigint"] = "BigInt",
+            ["binary"] = "Binary",
+            ["bit"] = "Bit",
+            ["char"] = "Char",
+            ["date"] = "Date",
+            ["datetime"] = "DateTime",
+            ["datetime2"] = "DateTime2",
+            ["datetimeoffset"] = "DateTimeOffset",
+            ["decimal"] = "Decimal",
+            ["float"] = "Float",
+            ["geography"] = "Geography",
+            ["geometry"] = "Geometry",
+            ["hierarchyid"] = "HierarchyId",
+            ["int"] = "Int",
+            ["money"] = "Money",
+            ["nchar"] = "NChar",
+            ["numeric"] = "Numeric",
+            ["nvarchar"] = "NVarChar",
+            ["real"] = "Real",
+            ["smallint"] = "SmallInt",
+            ["smallmoney"] = "SmallMoney",
+            ["sql_variant"] = "SqlVariant",
+            ["time"] = "Time",
+            ["tinyint"] = "TinyInt",
+            ["uniqueidentifier"] = "UniqueIdentifier",
+            ["varbinary"] = "VarBinary",
+            ["varchar"] = "VarChar",
+            ["xml"] = "Xml"
+        };
 
+    // SQL Server's native spelling aliases and built-in alias defaults.
     private static readonly IReadOnlyDictionary<string, string> SqlNameAliasToCanonicalSqlName =
         new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
@@ -20,13 +52,20 @@ public static class MetaTransformScriptSqlServerDataTypes
             ["national character varying"] = "nvarchar",
             ["rowversion"] = "binary",
             ["timestamp"] = "binary",
+            ["sysname"] = "nvarchar"
+        };
+
+    // Preserve the parser's existing application-alias behavior. These are not native SQL types
+    // or catalog discovery; supporting arbitrary application aliases is a separate syntax contract.
+    private static readonly IReadOnlyDictionary<string, string> LegacyApplicationAliases =
+        new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+        {
             ["AccountNumber"] = "nvarchar",
             ["Flag"] = "bit",
             ["Name"] = "nvarchar",
             ["NameStyle"] = "bit",
             ["OrderNumber"] = "nvarchar",
-            ["Phone"] = "nvarchar",
-            ["sysname"] = "nvarchar"
+            ["Phone"] = "nvarchar"
         };
 
     private static readonly IReadOnlyDictionary<string, IReadOnlyList<string>> SqlNameAliasDefaultParameters =
@@ -37,7 +76,6 @@ public static class MetaTransformScriptSqlServerDataTypes
             ["timestamp"] = ["8"]
         };
 
-    private static readonly IReadOnlyDictionary<string, string> CanonicalSqlNameToOption = BuildCanonicalSqlNameToOption();
     private static readonly IReadOnlyDictionary<string, string> SqlNameToOption = BuildSqlNameToOption();
     private static readonly IReadOnlyDictionary<string, string> OptionToSqlName = BuildOptionToSqlName();
 
@@ -64,26 +102,6 @@ public static class MetaTransformScriptSqlServerDataTypes
             : throw new InvalidOperationException($"Unsupported SqlDataTypeOption '{option}'.");
     }
 
-    public static bool TryGetMetaDataTypeId(string? option, out string metaDataTypeId)
-    {
-        metaDataTypeId = string.Empty;
-        if (string.IsNullOrWhiteSpace(option) || !OptionToSqlName.TryGetValue(option, out var sqlName))
-        {
-            return false;
-        }
-
-        var dataType = MetaDataTypeInstance.BuiltIn.DataTypeList.SingleOrDefault(dataType =>
-            string.Equals(dataType.DataTypeSystem.Id, SqlServerDataTypeSystemId, StringComparison.Ordinal) &&
-            string.Equals(dataType.Name, sqlName, StringComparison.OrdinalIgnoreCase));
-        if (dataType is null || string.IsNullOrWhiteSpace(dataType.Id))
-        {
-            return false;
-        }
-
-        metaDataTypeId = dataType.Id;
-        return true;
-    }
-
     public static IReadOnlyList<string> GetDefaultParametersForSqlName(string sqlName)
     {
         if (string.IsNullOrWhiteSpace(sqlName))
@@ -103,41 +121,15 @@ public static class MetaTransformScriptSqlServerDataTypes
         return [];
     }
 
-    private static IReadOnlyDictionary<string, string> BuildCanonicalSqlNameToOption()
-    {
-        var map = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-        var sanctionedSqlServerTypeNames = MetaDataTypeInstance.BuiltIn.DataTypeList
-            .Where(dataType =>
-                string.Equals(dataType.DataTypeSystem.Id, SqlServerDataTypeSystemId, StringComparison.Ordinal) &&
-                !string.IsNullOrWhiteSpace(dataType.Name))
-            .Select(dataType => dataType.Name.Trim())
-            .Distinct(StringComparer.OrdinalIgnoreCase)
-            .OrderBy(name => name, StringComparer.OrdinalIgnoreCase)
-            .ToArray();
-
-        foreach (var sqlName in sanctionedSqlServerTypeNames)
-        {
-            if (!TryMapCanonicalSqlNameToOption(sqlName, out var option))
-            {
-                throw new InvalidOperationException(
-                    $"SqlServer data type '{sqlName}' is sanctioned in MetaDataType but is not mapped to a MetaTransformScript SqlDataTypeOption.");
-            }
-
-            map[NormalizeSqlTypeName(sqlName)] = option;
-        }
-
-        return map;
-    }
-
     private static IReadOnlyDictionary<string, string> BuildSqlNameToOption()
     {
         var map = new Dictionary<string, string>(CanonicalSqlNameToOption, StringComparer.OrdinalIgnoreCase);
-        foreach (var alias in SqlNameAliasToCanonicalSqlName)
+        foreach (var alias in SqlNameAliasToCanonicalSqlName.Concat(LegacyApplicationAliases))
         {
             if (!CanonicalSqlNameToOption.TryGetValue(alias.Value, out var mappedOption))
             {
                 throw new InvalidOperationException(
-                    $"SqlServer type alias '{alias.Key}' points to canonical SQL type '{alias.Value}', but that canonical type is not sanctioned in MetaDataType.");
+                    $"SQL type alias '{alias.Key}' points to unsupported native SQL type '{alias.Value}'.");
             }
 
             map[NormalizeSqlTypeName(alias.Key)] = mappedOption;
@@ -151,55 +143,10 @@ public static class MetaTransformScriptSqlServerDataTypes
         var map = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         foreach (var pair in CanonicalSqlNameToOption)
         {
-            if (SqlNameAliasToCanonicalSqlName.ContainsKey(pair.Key))
-            {
-                continue;
-            }
-
             map[pair.Value] = pair.Key;
         }
 
         return map;
-    }
-
-    private static bool TryMapCanonicalSqlNameToOption(string sqlName, out string option)
-    {
-        option = sqlName.Trim().ToLowerInvariant() switch
-        {
-            "bigint" => "BigInt",
-            "binary" => "Binary",
-            "bit" => "Bit",
-            "char" => "Char",
-            "date" => "Date",
-            "datetime" => "DateTime",
-            "datetime2" => "DateTime2",
-            "datetimeoffset" => "DateTimeOffset",
-            "decimal" => "Decimal",
-            "float" => "Float",
-            "geography" => "Geography",
-            "geometry" => "Geometry",
-            "hierarchyid" => "HierarchyId",
-            "int" => "Int",
-            "money" => "Money",
-            "nchar" => "NChar",
-            "numeric" => "Numeric",
-            "nvarchar" => "NVarChar",
-            "real" => "Real",
-            "smallint" => "SmallInt",
-            "smallmoney" => "SmallMoney",
-            "sql_variant" => "SqlVariant",
-            "time" => "Time",
-            "tinyint" => "TinyInt",
-            "uniqueidentifier" => "UniqueIdentifier",
-            "varbinary" => "VarBinary",
-            "varchar" => "VarChar",
-            "xml" => "Xml",
-            _ when SqlNameAliasToCanonicalSqlName.TryGetValue(sqlName.Trim(), out var canonicalSqlName) =>
-                TryMapCanonicalSqlNameToOption(canonicalSqlName, out var aliasOption) ? aliasOption : string.Empty,
-            _ => string.Empty
-        };
-
-        return !string.IsNullOrWhiteSpace(option);
     }
 
     private static string NormalizeSqlTypeName(string sqlName)

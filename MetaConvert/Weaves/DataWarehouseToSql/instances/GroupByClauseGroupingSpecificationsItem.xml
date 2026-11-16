@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaWeave>
   <GroupByClauseGroupingSpecificationsItemList>
-    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:1" GroupByClauseId="GroupByClause:1" GroupingSpecificationId="GroupingSpecification:1">
+    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:3" GroupByClauseId="GroupByClause:2" GroupingSpecificationId="GroupingSpecification:3">
       <Ordinal>0</Ordinal>
     </GroupByClauseGroupingSpecificationsItem>
-    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:2" GroupByClauseId="GroupByClause:1" GroupingSpecificationId="GroupingSpecification:2">
+    <GroupByClauseGroupingSpecificationsItem Id="GroupByClauseGroupingSpecificationsItem:4" GroupByClauseId="GroupByClause:2" GroupingSpecificationId="GroupingSpecification:4">
       <Ordinal>1</Ordinal>
     </GroupByClauseGroupingSpecificationsItem>
   </GroupByClauseGroupingSpecificationsItemList>

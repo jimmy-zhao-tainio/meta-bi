@@ -193,7 +193,7 @@ public sealed class MetaPipelineModelCliTests
                 "dbo.TargetCustomer",
                 transformWorkspacePath,
                 "dbo.v_customer_load");
-            var transformModel = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
+            var transformModel = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding(), searchUpward: false);
             var transformScript = Assert.Single(transformModel.TransformScriptList);
             BuildBindingWorkspace(
                 bindingWorkspacePath,
@@ -236,7 +236,7 @@ public sealed class MetaPipelineModelCliTests
             Assert.Contains("load-more-customers [TransformExecution]", inspect.Output, StringComparison.Ordinal);
             Assert.Contains("load-more-customers.target-write [TargetWrite:InsertRows]", inspect.Output, StringComparison.Ordinal);
 
-            var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<global::MetaPipeline.MetaPipelineModel>(workspacePath, searchUpward: false);
+            var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<global::MetaPipeline.MetaPipelineModel>(workspacePath, new global::MetaPipeline.MetaPipelineWorkspaceBinding(), searchUpward: false);
 
             var pipeline = Assert.Single(model.PipelineList);
             Assert.Equal("CustomerLoad", pipeline.Id);
@@ -341,7 +341,7 @@ public sealed class MetaPipelineModelCliTests
             Assert.Contains("exited with code 7", failure.Output, StringComparison.OrdinalIgnoreCase);
             Assert.Contains("failure-output", failure.Output, StringComparison.OrdinalIgnoreCase);
 
-            var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<global::MetaPipeline.MetaPipelineModel>(workspacePath, searchUpward: false);
+            var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<global::MetaPipeline.MetaPipelineModel>(workspacePath, new global::MetaPipeline.MetaPipelineWorkspaceBinding(), searchUpward: false);
             Assert.Equal(2, model.ExecutableTaskList.Count);
             Assert.Contains(model.ExecutableTaskList, task =>
                 string.Equals(task.PipelineTask.Name, "run-success", StringComparison.Ordinal)
@@ -369,7 +369,7 @@ public sealed class MetaPipelineModelCliTests
                 null,
                 transformWorkspacePath,
                 "update-customer");
-            var transformModel = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
+            var transformModel = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding(), searchUpward: false);
             var transformScript = Assert.Single(transformModel.TransformScriptList);
             BuildBindingWorkspace(
                 bindingWorkspacePath,
@@ -388,7 +388,7 @@ public sealed class MetaPipelineModelCliTests
             Assert.Contains("Ok", add.Output, StringComparison.Ordinal);
             Assert.DoesNotContain("TargetWriteTask", add.Output, StringComparison.Ordinal);
 
-            var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<global::MetaPipeline.MetaPipelineModel>(workspacePath, searchUpward: false);
+            var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<global::MetaPipeline.MetaPipelineModel>(workspacePath, new global::MetaPipeline.MetaPipelineWorkspaceBinding(), searchUpward: false);
 
             Assert.Single(model.PipelineTaskList);
             Assert.Single(model.ConnectionReferenceList);
@@ -426,7 +426,7 @@ public sealed class MetaPipelineModelCliTests
                 "dbo.TargetCustomer",
                 transformWorkspacePath,
                 "dbo.v_customer_load");
-            var transformModel = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
+            var transformModel = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding(), searchUpward: false);
             var transformScript = Assert.Single(transformModel.TransformScriptList);
             BuildBindingWorkspace(
                 bindingWorkspacePath,
@@ -482,7 +482,7 @@ public sealed class MetaPipelineModelCliTests
                 "dbo.TargetCustomer",
                 transformWorkspacePath,
                 "dbo.v_customer_load");
-            var transformModel = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, searchUpward: false);
+            var transformModel = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaTransformScriptModel>(transformWorkspacePath, new global::MetaTransformScript.MetaTransformScriptWorkspaceBinding(), searchUpward: false);
             var transformScript = Assert.Single(transformModel.TransformScriptList);
             BuildBindingWorkspace(
                 bindingWorkspacePath,
@@ -565,7 +565,7 @@ public sealed class MetaPipelineModelCliTests
             });
         }
 
-        Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(model, bindingWorkspacePath);
+        Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(model, bindingWorkspacePath, global::MetaTransform.Binding.TransformBindingModels.LoadContract(), new global::MetaTransformBinding.MetaTransformBindingWorkspaceBinding());
     }
 
     private static (int ExitCode, string Output) RunCli(string arguments, string? workingDirectory = null) =>

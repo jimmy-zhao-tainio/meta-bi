@@ -1,0 +1,11 @@
+<Project>
+  <ItemGroup>
+    <_MetaTransformPatternPackagedWorkspace Include="$(MSBuildThisFileDirectory)../contentFiles/any/any/Workspaces/MetaTransformPattern/**/*" />
+  </ItemGroup>
+  <Target Name="CopyMetaTransformPatternPackagedWorkspaceToOutput" AfterTargets="CopyFilesToOutputDirectory" Condition="'$(DesignTimeBuild)' != 'true'">
+    <Copy SourceFiles="@(_MetaTransformPatternPackagedWorkspace)" DestinationFiles="@(_MetaTransformPatternPackagedWorkspace -> '$(OutDir)Workspaces/MetaTransformPattern/%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+  <Target Name="CopyMetaTransformPatternPackagedWorkspaceToPublish" AfterTargets="Publish" Condition="'$(DesignTimeBuild)' != 'true' and '$(PublishDir)' != ''">
+    <Copy SourceFiles="@(_MetaTransformPatternPackagedWorkspace)" DestinationFiles="@(_MetaTransformPatternPackagedWorkspace -> '$(PublishDir)Workspaces/MetaTransformPattern/%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+</Project>

@@ -1,6 +1,7 @@
 using Meta.Operations.Domain;
 using Meta.Integration;
 using MetaSql.Extractors.SqlServer;
+using MetaDataType.Core;
 
 namespace MetaSql;
 
@@ -9,7 +10,6 @@ internal sealed class MetaSqlDeployExecutionEngine
     private readonly DeployManifestContractValidator manifestContractValidator = new();
     private readonly DeployManifestFingerprintValidator manifestFingerprintValidator = new();
     private readonly DeployStatementPlanBuilder statementPlanBuilder = new();
-    private readonly SqlServerDeploySqlRenderer sqlRenderer = new();
     private readonly SqlBatchExecutor sqlBatchExecutor = new();
 
     public async Task<MetaSqlDeployResult> ExecuteCoreAsync(
@@ -17,6 +17,9 @@ internal sealed class MetaSqlDeployExecutionEngine
         CancellationToken cancellationToken = default)
     {
         manifestFingerprintValidator.ValidatePreconditions(request);
+        var catalog = MetaDataTypeWorkspaceProvider.LoadOrDefault(request.DataTypeWorkspacePath);
+        var types = new SqlServerDataTypeCatalog(catalog);
+        var sqlRenderer = new SqlServerDeploySqlRenderer(types);
         var databaseCreated = false;
 
         var manifestWorkspacePath = Path.GetFullPath(request.ManifestWorkspacePath);
@@ -34,7 +37,7 @@ internal sealed class MetaSqlDeployExecutionEngine
 
             var manifestModel = TypedWorkspaceModelMapper.FromInMemoryWorkspace(
                 manifestWorkspace,
-                static () => new MetaSqlDeployManifest.MetaSqlDeployManifestModel());
+                new global::MetaSqlDeployManifest.MetaSqlDeployManifestWorkspaceBinding());
             var root = manifestContractValidator.RequireSingleManifestRoot(manifestModel);
 
             var blockCount = statementPlanBuilder.CountBlocks(manifestModel);
@@ -49,7 +52,11 @@ internal sealed class MetaSqlDeployExecutionEngine
                     cancellationToken)
                 .ConfigureAwait(false);
             MetaSqlDiffService.EnsureMetaSqlWorkspace(sourceWorkspace, nameof(sourceWorkspace));
-            manifestFingerprintValidator.ValidateSourceFingerprint(root, sourceWorkspace);
+            var sourceModel = TypedWorkspaceModelMapper.FromInMemoryWorkspace(
+                sourceWorkspace,
+                new global::MetaSql.MetaSqlWorkspaceBinding());
+            types.ValidateColumns(sourceWorkspace, "Source workspace");
+            manifestFingerprintValidator.ValidateSourceFingerprint(root, sourceWorkspace, types);
 
             var expectedLiveDatabasePresence = ParseExpectedLiveDatabasePresence(root.ExpectedLiveDatabasePresence);
             var actualLiveDatabasePresence = await SqlServerDatabaseRuntime
@@ -86,17 +93,15 @@ internal sealed class MetaSqlDeployExecutionEngine
                 {
                     ConnectionString = request.ConnectionString,
                     AllowEmpty = true,
-                });
+                }, catalog);
             }
             MetaSqlDiffService.EnsureMetaSqlWorkspace(liveWorkspace, nameof(liveWorkspace));
-            manifestFingerprintValidator.ValidateLiveFingerprint(root, liveWorkspace);
+            types.ValidateColumns(liveWorkspace, "Live workspace");
+            manifestFingerprintValidator.ValidateLiveFingerprint(root, liveWorkspace, types);
 
-            var sourceModel = TypedWorkspaceModelMapper.FromInMemoryWorkspace(
-                sourceWorkspace,
-                static () => new MetaSqlModel());
             var liveModel = TypedWorkspaceModelMapper.FromInMemoryWorkspace(
                 liveWorkspace,
-                static () => new MetaSqlModel());
+                new global::MetaSql.MetaSqlWorkspaceBinding());
 
             var statementPlan = statementPlanBuilder.Build(manifestModel, sourceModel, liveModel);
             var statements = sqlRenderer.Render(statementPlan);

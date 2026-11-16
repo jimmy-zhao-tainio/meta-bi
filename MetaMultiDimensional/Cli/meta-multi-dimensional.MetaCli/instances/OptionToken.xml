@@ -838,5 +838,8 @@
     <OptionToken Id="token-create-xml" OptionId="option-create-xml">
       <Token>--xml</Token>
     </OptionToken>
+    <OptionToken Id="token-deploy-data-type-workspace" OptionId="opt-deploy-data-type-workspace">
+      <Token>--data-type-workspace</Token>
+    </OptionToken>
   </OptionTokenList>
 </MetaCli>

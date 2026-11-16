@@ -31,6 +31,19 @@ expertise are not maintained in this repository.
 - Do not use heuristic lineage or inferred semantics as product truth.
 - Prefer explicitly modeled understanding over clever post-hoc interpretation.
 
+## Metadata Access
+
+- Meta-BI production code must not use runtime reflection. This includes
+  reflective model discovery, object creation, member access and graph traversal,
+  whether implemented here or reached through a foundation helper.
+- Meta owns workspace interpretation. Consumers use its generic metadata and
+  operations, or explicit compiler-checked access to typed domain objects.
+- Any generated typed projection must derive from the existing modeled contract,
+  stay separate from authored workspace sources, and use direct member access.
+  Do not introduce reflection discovery, registration or fallback.
+- Selected workspaces supply instance data. A shipped instance is starting data,
+  not fixed policy or a substitute for the selected workspace.
+
 ## MetaTransform Product Contract
 
 - `MetaTransform` is a settled, sanctioned, bounded product area.
@@ -53,7 +66,7 @@ expertise are not maintained in this repository.
 - Preserve declared structure once; model inheritance separately.
 - Model polymorphic properties against their declared base type, not exploded concrete alternatives.
 - Ordered collections must remain explicit.
-- If reflection or repo structure does not justify a modeling choice, surface the uncertainty instead of inventing.
+- If authored declarations or repo structure do not justify a modeling choice, surface the uncertainty instead of inventing.
 
 ## Ownership Boundaries
 

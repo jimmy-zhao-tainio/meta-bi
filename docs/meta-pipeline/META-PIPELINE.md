@@ -61,7 +61,8 @@ If omitted, SQL Server execution defaults it to `SqlServer`.
 SQL Server execution requires `SqlServer`; it does not map another system's types.
 Pipeline execution commands accept `--data-type-workspace` to resolve validated
 type IDs through the selected MetaDataType catalog and its DataTypeSystem
-relationships. BuiltIn is the default. Arbitrary catalog IDs are supported.
+relationships. Omission loads the packaged authored workspace. Arbitrary catalog
+IDs are supported; the selected catalog is not supplemented from compiled seeds.
 `meta-orchestration execute` forwards that catalog selection to Pipeline workers.
 
 Binding validates the resulting SQL expression against the target contract.

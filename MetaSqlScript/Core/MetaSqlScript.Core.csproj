@@ -7,8 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Meta.TypedModels" Version="$(MetaFoundationPackageVersion)" />
     <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
     <Compile Include="..\Workspace\MetaSqlScript.meta.cs" Link="MetaSqlScript.meta.cs" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Include="..\Workspace\**\*">
+      <Link>Workspaces\MetaSqlScript\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+      <PackagePath>contentFiles\any\any\Workspaces\MetaSqlScript\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
+    <None Update="Package\MetaSqlScript.Core.targets" Pack="true" PackagePath="buildTransitive\MetaSqlScript.Core.targets" />
   </ItemGroup>
 
 </Project>

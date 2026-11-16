@@ -7,8 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\MetaDataType\Core\MetaDataType.Core.csproj" />
     <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
     <Compile Include="..\Workspace\MetaDataTypeConversion.meta.cs" Link="MetaDataTypeConversion.meta.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\Workspace\**\*">
+      <Link>Workspaces\MetaDataTypeConversion\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+      <PackagePath>contentFiles\any\any\Workspaces\MetaDataTypeConversion\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Package\MetaDataTypeConversion.Core.targets" Pack="true" PackagePath="buildTransitive\MetaDataTypeConversion.Core.targets" />
   </ItemGroup>
 
 </Project>

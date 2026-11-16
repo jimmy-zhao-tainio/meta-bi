@@ -40,11 +40,11 @@ public sealed class ConvertToMetaSqlTests
             foreach (var field in new[] { days, amount })
                 model.RawHubSatelliteAttributeList.Add(new RawHubSatelliteAttribute { Id = field.Id, Name = field.Name, Field = field, RawHubSatellite = satellite });
             var input = Path.Combine(root, "Raw");
-            TypedWorkspaceModelMapper.Create(model, input, "xml");
+            TypedWorkspaceModelMapper.Create(model, global::MetaDataVault.Core.RawDataVaultModels.LoadContract(), new global::MetaRawDataVault.MetaRawDataVaultWorkspaceBinding(), input, "xml");
             var generated = await Converter.ConvertAsync(input, GetImplementationWorkspacePath(repoRoot), "RawVault");
             var output = Path.Combine(root, "Sql");
-            TypedWorkspaceModelMapper.Create(TypedWorkspaceModelMapper.FromInMemoryWorkspace(generated, MetaSqlModel.CreateEmpty), output, "xml");
-            var reloaded = TypedWorkspaceModelMapper.Load<MetaSqlModel>(output, searchUpward: false);
+            TypedWorkspaceModelMapper.Create(TypedWorkspaceModelMapper.FromInMemoryWorkspace(generated, new MetaSqlWorkspaceBinding()), global::MetaSql.MetaSqlModels.LoadContract(), new global::MetaSql.MetaSqlWorkspaceBinding(), output, "xml");
+            var reloaded = TypedWorkspaceModelMapper.Load<MetaSqlModel>(output, new global::MetaSql.MetaSqlWorkspaceBinding(), searchUpward: false);
             foreach (var field in new[] { key, days, amount })
             {
                 var column = reloaded.TableColumnList.Single(item => item.Name == field.Name);
@@ -67,10 +67,10 @@ public sealed class ConvertToMetaSqlTests
             databaseName: "RawVault");
         var raw = await TypedWorkspaceModelMapper.LoadAsync<MetaRawDataVaultModel>(
             workspacePath,
-            searchUpward: false);
+                new global::MetaRawDataVault.MetaRawDataVaultWorkspaceBinding(),            searchUpward: false);
         var implementation = await TypedWorkspaceModelMapper.LoadAsync<MetaDataVaultImplementationModel>(
             implementationPath,
-            searchUpward: false);
+                new global::MetaDataVaultImplementation.MetaDataVaultImplementationWorkspaceBinding(),            searchUpward: false);
         var direction = new MetaWeaveScriptDirectionLoader().Load(
             Path.Combine(repoRoot, "MetaConvert", "Weaves", "RawDataVaultToSql"),
             "forward");
@@ -79,12 +79,12 @@ public sealed class ConvertToMetaSqlTests
             direction,
             new Dictionary<string, InMemoryWorkspace>(StringComparer.OrdinalIgnoreCase)
             {
-                ["raw"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(raw),
-                ["implementation"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(implementation),
-                ["dataTypes"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaDataTypeInstance.BuiltIn),
-                ["typeConversions"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaDataTypeConversionInstance.BuiltIn),
+                ["raw"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(raw, global::MetaDataVault.Core.RawDataVaultModels.LoadContract(), new global::MetaRawDataVault.MetaRawDataVaultWorkspaceBinding()),
+                ["implementation"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(implementation, global::MetaDataVault.Core.DataVaultImplementationModels.LoadContract(), new global::MetaDataVaultImplementation.MetaDataVaultImplementationWorkspaceBinding()),
+                ["dataTypes"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaDataTypeInstance.BuiltIn, global::MetaDataType.Core.MetaDataTypeWorkspaceProvider.LoadContract(), new global::MetaDataType.MetaDataTypeWorkspaceBinding()),
+                ["typeConversions"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaDataTypeConversionInstance.BuiltIn, global::MetaDataTypeConversion.Core.MetaDataTypeConversionWorkspaceProvider.LoadContract(), new global::MetaDataTypeConversion.MetaDataTypeConversionWorkspaceBinding()),
             },
-            TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaSqlModel.CreateEmpty()),
+            TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaSqlModel.CreateEmpty(), global::MetaSql.MetaSqlModels.LoadContract(), new global::MetaSql.MetaSqlWorkspaceBinding()),
             new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
             {
                 ["databaseName"] = "RawVault",
@@ -116,15 +116,15 @@ public sealed class ConvertToMetaSqlTests
         var implementationPath = GetImplementationWorkspacePath(repoRoot);
         var business = await TypedWorkspaceModelMapper.LoadAsync<MetaBusinessDataVaultModel>(
             workspacePath,
-            searchUpward: false);
+                new global::MetaBusinessDataVault.MetaBusinessDataVaultWorkspaceBinding(),            searchUpward: false);
         var implementation = await TypedWorkspaceModelMapper.LoadAsync<MetaDataVaultImplementationModel>(
             implementationPath,
-            searchUpward: false);
+                new global::MetaDataVaultImplementation.MetaDataVaultImplementationWorkspaceBinding(),            searchUpward: false);
         var expected = TypedWorkspaceModelMapper.ToInMemoryWorkspace(
             BusinessDataVaultToSqlCSharpReference.ConvertToMetaSql(
                 business,
                 implementation,
-                "BusinessVault"));
+                "BusinessVault"), global::MetaSql.MetaSqlModels.LoadContract(), new global::MetaSql.MetaSqlWorkspaceBinding());
         var direction = new MetaWeaveScriptDirectionLoader().Load(
             Path.Combine(repoRoot, "MetaConvert", "Weaves", "BusinessDataVaultToSql"),
             "forward");
@@ -133,12 +133,12 @@ public sealed class ConvertToMetaSqlTests
             direction,
             new Dictionary<string, InMemoryWorkspace>(StringComparer.OrdinalIgnoreCase)
             {
-                ["business"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(business),
-                ["implementation"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(implementation),
-                ["dataTypes"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaDataTypeInstance.BuiltIn),
-                ["typeConversions"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaDataTypeConversionInstance.BuiltIn),
+                ["business"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(business, global::MetaDataVault.Core.BusinessDataVaultModels.LoadContract(), new global::MetaBusinessDataVault.MetaBusinessDataVaultWorkspaceBinding()),
+                ["implementation"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(implementation, global::MetaDataVault.Core.DataVaultImplementationModels.LoadContract(), new global::MetaDataVaultImplementation.MetaDataVaultImplementationWorkspaceBinding()),
+                ["dataTypes"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaDataTypeInstance.BuiltIn, global::MetaDataType.Core.MetaDataTypeWorkspaceProvider.LoadContract(), new global::MetaDataType.MetaDataTypeWorkspaceBinding()),
+                ["typeConversions"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaDataTypeConversionInstance.BuiltIn, global::MetaDataTypeConversion.Core.MetaDataTypeConversionWorkspaceProvider.LoadContract(), new global::MetaDataTypeConversion.MetaDataTypeConversionWorkspaceBinding()),
             },
-            TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaSqlModel.CreateEmpty()),
+            TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaSqlModel.CreateEmpty(), global::MetaSql.MetaSqlModels.LoadContract(), new global::MetaSql.MetaSqlWorkspaceBinding()),
             new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
             {
                 ["databaseName"] = "BusinessVault",
@@ -163,7 +163,7 @@ public sealed class ConvertToMetaSqlTests
         var implementationPath = GetImplementationWorkspacePath(repoRoot);
         var business = await TypedWorkspaceModelMapper.LoadAsync<MetaBusinessDataVaultModel>(
             sourceWorkspacePath,
-            searchUpward: false);
+                new global::MetaBusinessDataVault.MetaBusinessDataVaultWorkspaceBinding(),            searchUpward: false);
         var firstKeyPart = business.BusinessHubKeyPartList.Single(row => row.Id == "CustomerIdentifier");
         firstKeyPart.Name = "HashKey";
         business.BusinessHubKeyPartList.Add(new BusinessHubKeyPart
@@ -176,12 +176,12 @@ public sealed class ConvertToMetaSqlTests
         });
         var implementation = await TypedWorkspaceModelMapper.LoadAsync<MetaDataVaultImplementationModel>(
             implementationPath,
-            searchUpward: false);
+                new global::MetaDataVaultImplementation.MetaDataVaultImplementationWorkspaceBinding(),            searchUpward: false);
         var expected = TypedWorkspaceModelMapper.ToInMemoryWorkspace(
             BusinessDataVaultToSqlCSharpReference.ConvertToMetaSql(
                 business,
                 implementation,
-                "BusinessVault"));
+                "BusinessVault"), global::MetaSql.MetaSqlModels.LoadContract(), new global::MetaSql.MetaSqlWorkspaceBinding());
         var direction = new MetaWeaveScriptDirectionLoader().Load(
             Path.Combine(repoRoot, "MetaConvert", "Weaves", "BusinessDataVaultToSql"),
             "forward");
@@ -189,12 +189,12 @@ public sealed class ConvertToMetaSqlTests
             direction,
             new Dictionary<string, InMemoryWorkspace>(StringComparer.OrdinalIgnoreCase)
             {
-                ["business"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(business),
-                ["implementation"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(implementation),
-                ["dataTypes"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaDataTypeInstance.BuiltIn),
-                ["typeConversions"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaDataTypeConversionInstance.BuiltIn),
+                ["business"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(business, global::MetaDataVault.Core.BusinessDataVaultModels.LoadContract(), new global::MetaBusinessDataVault.MetaBusinessDataVaultWorkspaceBinding()),
+                ["implementation"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(implementation, global::MetaDataVault.Core.DataVaultImplementationModels.LoadContract(), new global::MetaDataVaultImplementation.MetaDataVaultImplementationWorkspaceBinding()),
+                ["dataTypes"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaDataTypeInstance.BuiltIn, global::MetaDataType.Core.MetaDataTypeWorkspaceProvider.LoadContract(), new global::MetaDataType.MetaDataTypeWorkspaceBinding()),
+                ["typeConversions"] = TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaDataTypeConversionInstance.BuiltIn, global::MetaDataTypeConversion.Core.MetaDataTypeConversionWorkspaceProvider.LoadContract(), new global::MetaDataTypeConversion.MetaDataTypeConversionWorkspaceBinding()),
             },
-            TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaSqlModel.CreateEmpty()),
+            TypedWorkspaceModelMapper.ToInMemoryWorkspace(MetaSqlModel.CreateEmpty(), global::MetaSql.MetaSqlModels.LoadContract(), new global::MetaSql.MetaSqlWorkspaceBinding()),
             new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
             {
                 ["databaseName"] = "BusinessVault",
@@ -367,11 +367,11 @@ public sealed class ConvertToMetaSqlTests
         {
             var implementation = await TypedWorkspaceModelMapper.LoadAsync<MetaDataVaultImplementationModel>(
                 GetImplementationWorkspacePath(repoRoot),
-                searchUpward: false);
+                new global::MetaDataVaultImplementation.MetaDataVaultImplementationWorkspaceBinding(),                searchUpward: false);
             var hubImplementation = Assert.Single(implementation.BusinessHubImplementationList);
             hubImplementation.LoadTimestampColumnName = null;
             hubImplementation.LoadTimestampDataTypeId = null;
-            await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.SaveAsync(implementation, implementationPath);
+            await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.SaveAsync(implementation, implementationPath, global::MetaDataVault.Core.DataVaultImplementationModels.LoadContract(), new global::MetaDataVaultImplementation.MetaDataVaultImplementationWorkspaceBinding());
 
             var sqlWorkspace = await Converter.ConvertAsync(
                 workspacePath,
@@ -405,10 +405,10 @@ public sealed class ConvertToMetaSqlTests
         {
             var implementation = await TypedWorkspaceModelMapper.LoadAsync<MetaDataVaultImplementationModel>(
                 GetImplementationWorkspacePath(repoRoot),
-                searchUpward: false);
+                new global::MetaDataVaultImplementation.MetaDataVaultImplementationWorkspaceBinding(),                searchUpward: false);
             var hubImplementation = Assert.Single(implementation.BusinessHubImplementationList);
             hubImplementation.LoadTimestampDataTypeId = null;
-            await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.SaveAsync(implementation, implementationPath);
+            await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.SaveAsync(implementation, implementationPath, global::MetaDataVault.Core.DataVaultImplementationModels.LoadContract(), new global::MetaDataVaultImplementation.MetaDataVaultImplementationWorkspaceBinding());
 
             var error = await Assert.ThrowsAsync<InvalidOperationException>(() => Converter.ConvertAsync(
                 workspacePath,
@@ -466,7 +466,7 @@ public sealed class ConvertToMetaSqlTests
                 RawLink = assignment,
             });
 
-            await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.SaveAsync(model, workspacePath);
+            await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.SaveAsync(model, workspacePath, global::MetaDataVault.Core.RawDataVaultModels.LoadContract(), new global::MetaRawDataVault.MetaRawDataVaultWorkspaceBinding());
 
             var sqlWorkspace = await Converter.ConvertAsync(
                 workspacePath,
@@ -535,7 +535,7 @@ public sealed class ConvertToMetaSqlTests
                 RawLink = assignment,
             });
 
-            await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.SaveAsync(model, workspacePath);
+            await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.SaveAsync(model, workspacePath, global::MetaDataVault.Core.RawDataVaultModels.LoadContract(), new global::MetaRawDataVault.MetaRawDataVaultWorkspaceBinding());
 
             var error = await Assert.ThrowsAsync<InvalidOperationException>(() => Converter.ConvertAsync(
                 workspacePath,
@@ -595,7 +595,7 @@ public sealed class ConvertToMetaSqlTests
             model.RawHubList.Add(rawHub);
             model.RawHubKeyPartList.Add(rawHubKeyPart);
 
-            await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.SaveAsync(model, workspacePath);
+            await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.SaveAsync(model, workspacePath, global::MetaDataVault.Core.RawDataVaultModels.LoadContract(), new global::MetaRawDataVault.MetaRawDataVaultWorkspaceBinding());
 
             var sqlWorkspace = await Converter.ConvertAsync(
                 workspacePath,
@@ -691,7 +691,7 @@ public sealed class ConvertToMetaSqlTests
             model.RawHubKeyPartList.Add(rawHubKeyPart);
             model.RawHubKeyPartList.Add(sysnameRawHubKeyPart);
 
-            await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.SaveAsync(model, workspacePath);
+            await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.SaveAsync(model, workspacePath, global::MetaDataVault.Core.RawDataVaultModels.LoadContract(), new global::MetaRawDataVault.MetaRawDataVaultWorkspaceBinding());
 
             var sqlWorkspace = await Converter.ConvertAsync(
                 workspacePath,
@@ -822,7 +822,7 @@ public sealed class ConvertToMetaSqlTests
             model.RawLinkRoleList.Add(childLinkRole);
             model.RawLinkRoleList.Add(parentLinkRole);
 
-            await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.SaveAsync(model, workspacePath);
+            await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.SaveAsync(model, workspacePath, global::MetaDataVault.Core.RawDataVaultModels.LoadContract(), new global::MetaRawDataVault.MetaRawDataVaultWorkspaceBinding());
 
             var error = await Assert.ThrowsAsync<InvalidOperationException>(() => Converter.ConvertAsync(
                 workspacePath,
@@ -953,7 +953,7 @@ public sealed class ConvertToMetaSqlTests
 
         try
         {
-            var model = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaBusinessDataVaultModel>(sourceWorkspacePath, searchUpward: false);
+            var model = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaBusinessDataVaultModel>(sourceWorkspacePath, new global::MetaBusinessDataVault.MetaBusinessDataVaultWorkspaceBinding(), searchUpward: false);
             var customerProfile = model.BusinessHubSatelliteList.Single(row => row.Id == "CustomerProfile");
             var customerOrderStatus = model.BusinessLinkSatelliteList.Single(row => row.Id == "CustomerOrderStatus");
 
@@ -973,7 +973,7 @@ public sealed class ConvertToMetaSqlTests
                 DataTypeId = "meta:type:String",
                 Name = "ZuluPayload",
             });
-            await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.SaveAsync(model, workspacePath);
+            await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.SaveAsync(model, workspacePath, global::MetaDataVault.Core.BusinessDataVaultModels.LoadContract(), new global::MetaBusinessDataVault.MetaBusinessDataVaultWorkspaceBinding());
 
             var sqlWorkspace = await Converter.ConvertAsync(
                 workspacePath,
@@ -1136,7 +1136,7 @@ public sealed class ConvertToMetaSqlTests
             Assert.Equal(0, RunBusinessCli($"add-link-role --workspace \"{workspacePath}\" --id CustomerOrderOrder --link CustomerOrder --hub Order --name Order").ExitCode);
             Assert.Equal(0, RunBusinessCli($"add-bridge --workspace \"{workspacePath}\" --id CustomerShipmentTraversal --hub Customer --name CustomerShipmentTraversal").ExitCode);
 
-            var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaBusinessDataVaultModel>(workspacePath);
+            var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaBusinessDataVaultModel>(workspacePath, new global::MetaBusinessDataVault.MetaBusinessDataVaultWorkspaceBinding());
             var bridge = Assert.Single(model.BusinessBridgeList);
             var customerRole = model.BusinessLinkRoleList.Single(row => row.Id == "CustomerOrderCustomer");
             var orderRole = model.BusinessLinkRoleList.Single(row => row.Id == "CustomerOrderOrder");
@@ -1147,7 +1147,7 @@ public sealed class ConvertToMetaSqlTests
                 SourceRole = orderRole,
                 TargetRole = customerRole,
             });
-            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(model, workspacePath);
+            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(model, workspacePath, global::MetaDataVault.Core.BusinessDataVaultModels.LoadContract(), new global::MetaBusinessDataVault.MetaBusinessDataVaultWorkspaceBinding());
 
             var exception = await Assert.ThrowsAsync<InvalidOperationException>(() => Converter.ConvertAsync(
                 workspacePath,
@@ -1175,7 +1175,7 @@ public sealed class ConvertToMetaSqlTests
             Assert.Equal(0, RunBusinessCli($"create --xml \"{workspacePath}\"").ExitCode);
             Assert.Equal(0, RunBusinessCli($"add-hub --workspace \"{workspacePath}\" --id Customer --name Customer").ExitCode);
 
-            var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaBusinessDataVaultModel>(workspacePath);
+            var model = Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Load<MetaBusinessDataVaultModel>(workspacePath, new global::MetaBusinessDataVault.MetaBusinessDataVaultWorkspaceBinding());
             var customer = Assert.Single(model.BusinessHubList);
             var countryCode = new BusinessHubKeyPart
             {
@@ -1201,7 +1201,7 @@ public sealed class ConvertToMetaSqlTests
                 Name = "SourceSystem",
                 PreviousKeyPart = countryCode,
             });
-            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(model, workspacePath);
+            Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.Save(model, workspacePath, global::MetaDataVault.Core.BusinessDataVaultModels.LoadContract(), new global::MetaBusinessDataVault.MetaBusinessDataVaultWorkspaceBinding());
 
             var exception = await Assert.ThrowsAsync<InvalidOperationException>(() => Converter.ConvertAsync(
                 workspacePath,
@@ -1311,7 +1311,7 @@ public sealed class ConvertToMetaSqlTests
 
         try
         {
-            var model = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaBusinessDataVaultModel>(sourceWorkspacePath, searchUpward: false);
+            var model = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaBusinessDataVaultModel>(sourceWorkspacePath, new global::MetaBusinessDataVault.MetaBusinessDataVaultWorkspaceBinding(), searchUpward: false);
 
             foreach (var row in model.BusinessHubKeyPartList)
             {
@@ -1333,7 +1333,7 @@ public sealed class ConvertToMetaSqlTests
                 row.DataTypeId = "sqlserver:type:nvarchar";
             }
 
-            await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.SaveAsync(model, workspacePath);
+            await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.SaveAsync(model, workspacePath, global::MetaDataVault.Core.BusinessDataVaultModels.LoadContract(), new global::MetaBusinessDataVault.MetaBusinessDataVaultWorkspaceBinding());
 
             var error = await Assert.ThrowsAsync<InvalidOperationException>(() => Converter.ConvertAsync(
                 workspacePath,
@@ -1361,9 +1361,9 @@ public sealed class ConvertToMetaSqlTests
 
         try
         {
-            var model = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaBusinessDataVaultModel>(sourceWorkspacePath, searchUpward: false);
+            var model = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaBusinessDataVaultModel>(sourceWorkspacePath, new global::MetaBusinessDataVault.MetaBusinessDataVaultWorkspaceBinding(), searchUpward: false);
             model.BusinessHubKeyPartList[0].DataTypeId = "meta:type:Xml";
-            await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.SaveAsync(model, workspacePath);
+            await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.SaveAsync(model, workspacePath, global::MetaDataVault.Core.BusinessDataVaultModels.LoadContract(), new global::MetaBusinessDataVault.MetaBusinessDataVaultWorkspaceBinding());
 
             var error = await Assert.ThrowsAsync<InvalidOperationException>(() => Converter.ConvertAsync(
                 workspacePath,
@@ -1392,9 +1392,9 @@ public sealed class ConvertToMetaSqlTests
 
         try
         {
-            var model = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaBusinessDataVaultModel>(sourceWorkspacePath, searchUpward: false);
+            var model = await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.LoadAsync<MetaBusinessDataVaultModel>(sourceWorkspacePath, new global::MetaBusinessDataVault.MetaBusinessDataVaultWorkspaceBinding(), searchUpward: false);
             model.BusinessHubKeyPartList[0].DataTypeId = "sqlserver:type:not-real";
-            await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.SaveAsync(model, workspacePath);
+            await Meta.Surfaces.Xml.TypedWorkspaceXmlSerializer.SaveAsync(model, workspacePath, global::MetaDataVault.Core.BusinessDataVaultModels.LoadContract(), new global::MetaBusinessDataVault.MetaBusinessDataVaultWorkspaceBinding());
 
             var error = await Assert.ThrowsAsync<InvalidOperationException>(() => Converter.ConvertAsync(
                 workspacePath,

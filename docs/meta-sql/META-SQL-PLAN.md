@@ -28,8 +28,20 @@ meta-sql deploy --manifest-workspace <path> --source-workspace <path> --connecti
 
 `--connection-env` names the shell-visible environment variable that contains the target SQL Server connection string.
 
+`extract sqlserver`, `deploy-plan`, and `deploy` accept `--data-type-workspace`.
+The default is the packaged MetaDataType workspace. Each operation loads one catalog
+snapshot and resolves type identities through its modeled type-system relationships
+and native SQL Server names, including live extraction, feasibility checks and SQL rendering.
+Supply the intended catalog to both planning and deployment.
+
+Deployment fingerprints include the canonical source/live instance and the resolved
+native names of its used type IDs. A changed used type meaning rejects the plan before
+schema mutation, including creation of a missing database. Catalog changes unrelated
+to used types do not invalidate the plan. Fingerprints use a versioned contract;
+regenerate manifests produced before this contract. Older fingerprint values are not accepted.
+
 If the target database is missing during `deploy-plan`, live is modeled as an empty `MetaSql` workspace and the manifest records that missing-database expectation explicitly.
-Missing live means truly empty: database only, no inferred schemas.
+The missing-database baseline contains the database and its native `dbo` schema, with no tables or other user-authored objects.
 Filtered subset planning/deploy is not supported; MetaSql always plans and applies against the full source/live contract.
 
 Default policy: live-only data-bearing drift (`Table`, `TableColumn`) is blocked unless exact approvals are supplied.

@@ -8,9 +8,23 @@
 
   <ItemGroup>
     <PackageReference Include="Meta.Integration" Version="$(MetaFoundationPackageVersion)" />
+    <PackageReference Include="Meta.TypedModels" Version="$(MetaFoundationPackageVersion)" />
     <Compile Include="..\Workspaces\MetaTransformScript\MetaTransformScript.meta.cs" Link="MetaTransformScript.meta.cs" />
-    <ProjectReference Include="..\..\..\MetaDataType\Core\MetaDataType.Core.csproj" />
     <ProjectReference Include="..\..\..\MetaSqlScript\Core\MetaSqlScript.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\Workspaces\MetaTransformScript\**\*">
+      <Link>Workspaces\MetaTransformScript\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+      <PackagePath>contentFiles\any\any\Workspaces\MetaTransformScript\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Package\MetaTransformScript.Sql.targets" Pack="true" PackagePath="buildTransitive\MetaTransformScript.Sql.targets" />
   </ItemGroup>
 
 </Project>

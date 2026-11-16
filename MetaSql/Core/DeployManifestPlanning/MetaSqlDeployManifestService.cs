@@ -1,4 +1,7 @@
 using Meta.Operations.Domain;
+using MetaDataType;
+using MetaDataType.Core;
+using MetaSql.Extractors.SqlServer;
 
 namespace MetaSql;
 
@@ -8,14 +11,16 @@ namespace MetaSql;
 public sealed class MetaSqlDeployManifestService
 {
     private readonly ManifestPlanningEngine engine;
+    private readonly SqlServerDataTypeCatalog types;
 
-    public MetaSqlDeployManifestService()
+    public MetaSqlDeployManifestService(MetaDataTypeModel? catalog = null)
     {
+        types = new SqlServerDataTypeCatalog(catalog ?? MetaDataTypeWorkspaceProvider.GetDefaultWorkspace());
         var entryFactory = new ManifestEntryFactory();
         var blockFactory = new ManifestBlockFactory();
 
         var destructiveApprovalAssessmentService = new DestructiveApprovalAssessmentService();
-        var tableColumnAlterAssessmentService = new TableColumnAlterAssessmentService();
+        var tableColumnAlterAssessmentService = new TableColumnAlterAssessmentService(types);
         var primaryKeyReplacementAssessmentService = new PrimaryKeyReplacementAssessmentService();
         var foreignKeyReplacementAssessmentService = new ForeignKeyReplacementAssessmentService();
         var indexReplacementAssessmentService = new IndexReplacementAssessmentService();
@@ -56,9 +61,12 @@ public sealed class MetaSqlDeployManifestService
         IReadOnlyList<MetaSqlDifferenceBlocker>? feasibilityBlockers = null,
         IReadOnlyList<MetaSqlDestructiveApproval>? destructiveApprovals = null)
     {
+        types.ValidateColumns(sourceWorkspace, "Source workspace");
+        types.ValidateColumns(liveWorkspace, "Live workspace");
         return engine.BuildManifest(
             sourceWorkspace,
             liveWorkspace,
+            types,
             liveDatabasePresence,
             differences,
             manifestName,

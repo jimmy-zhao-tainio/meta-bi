@@ -20,11 +20,11 @@ internal static class Program
 
         var handlers = new MetaDataTypeConversionCommandHandlers(
             Presenter,
-            new MetaDataTypeConversionService(),
             AppName);
 
         Environment.ExitCode = 0;
-        var runtime = new MetaCliRuntime<MetaDataTypeConversionModel>(CommandWorkspacePath, ApplicationId)
+        var runtime = new MetaCliRuntime<MetaDataTypeConversionModel>(CommandWorkspacePath,
+                new MetaDataTypeConversionWorkspaceBinding(), ApplicationId)
             .UseDefaultHelp()
             .Bind(
                 "exec-create",

@@ -17,8 +17,10 @@ internal static class SqlServerMetaSqlProjector
         IReadOnlyDictionary<string, List<IndexColumnRow>> indexColumnsByTableKey,
         IReadOnlyList<ViewRow>? viewRows = null,
         IReadOnlyList<FunctionRow>? functionRows = null,
-        IReadOnlyList<StoredProcedureRow>? storedProcedureRows = null)
+        IReadOnlyList<StoredProcedureRow>? storedProcedureRows = null,
+        MetaDataType.MetaDataTypeModel? dataTypes = null)
     {
+        var types = new SqlServerDataTypeCatalog(dataTypes ?? MetaDataTypeWorkspaceProvider.GetDefaultWorkspace());
         var model = MetaSqlModel.CreateEmpty();
         var database = new Database
         {
@@ -56,7 +58,7 @@ internal static class SqlServerMetaSqlProjector
                          .ThenBy(row => row.ColumnName, StringComparer.OrdinalIgnoreCase)
                          .ThenBy(row => row.ColumnName, StringComparer.Ordinal))
             {
-                var column = AddColumn(model, table, columnRow);
+                var column = AddColumn(model, table, columnRow, types);
                 columnsByScopedTableAndName[BuildScopedObjectKey(scopedTableKey, columnRow.ColumnName)] = column;
             }
         }
@@ -254,14 +256,14 @@ internal static class SqlServerMetaSqlProjector
         return table;
     }
 
-    private static TableColumn AddColumn(MetaSqlModel model, Table table, ColumnRow row)
+    private static TableColumn AddColumn(MetaSqlModel model, Table table, ColumnRow row, SqlServerDataTypeCatalog types)
     {
         var column = new TableColumn
         {
             Id = $"{table.Id}.{row.ColumnName}",
             Name = row.ColumnName,
             Ordinal = row.OrdinalPosition.ToString(CultureInfo.InvariantCulture),
-            MetaDataTypeId = MetaDataTypeIdentity.BuildDataTypeId("SqlServer", row.DataTypeName),
+            MetaDataTypeId = types.ResolveName(row.DataTypeName, $"SQL Server column '{row.SchemaName}.{row.TableName}.{row.ColumnName}'").Id,
             IsNullable = row.IsNullable ? "true" : "false",
             IsIdentity = row.IsIdentity ? "true" : null,
             IdentitySeed = NormalizeOptionalText(row.IdentitySeed),
