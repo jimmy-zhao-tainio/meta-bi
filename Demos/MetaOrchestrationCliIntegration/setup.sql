@@ -85,3 +85,13 @@ CREATE TABLE dbo.OrchestrationFailureLog
     LoggedAtUtc datetime2(7) NOT NULL CONSTRAINT DF_OrchestrationFailureLog_LoggedAtUtc DEFAULT (SYSUTCDATETIME())
 );
 GO
+
+INSERT dbo.RawCustomer(CustomerId, CustomerName)
+VALUES (1, N'Åsa äter räksmörgås.'), (2, N'');
+INSERT dbo.RawOrder(OrderId, CustomerId, Amount)
+VALUES (101, 1, 12.50), (102, 2, 0.00);
+INSERT dbo.RawExchangeRate(CurrencyCode, Rate)
+VALUES (N'SEK', 1.000000), (N'EUR', 11.250000);
+INSERT dbo.WorkExchangeRate(CurrencyCode, Rate) VALUES (N'OLD', 99.000000);
+INSERT dbo.PrivateScratch(Id) VALUES (1);
+GO

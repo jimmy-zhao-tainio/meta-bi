@@ -2,7 +2,7 @@
 <MetaMesh>
   <OperationStepList>
     <OperationStep Id="operation-step:build-real-db-data-quality:convert-data-quality-to-sql" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:promote-sql-capable-candidates">
-      <Arguments>data-quality-to-sql --workspace "{workspace:data-quality.location}" --out DataQualityViews.sql</Arguments>
+      <Arguments>data-quality-to-sql --workspace "{mesh.root}\MetaDataQuality.Workspace" --out DataQualityViews.sql</Arguments>
       <Executable>meta-convert.exe</Executable>
       <Name>convert-data-quality-to-sql</Name>
       <WorkingDirectory></WorkingDirectory>
@@ -148,25 +148,25 @@
       <Name>deploy-data-quality-sql</Name>
     </OperationStep>
     <OperationStep Id="operation-step:build-real-db-data-quality:import-source-views" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:deploy-027-customer-campaign-extra-outlier-01">
-      <Arguments>from sql-files --manifest SourceViews.manifest.tsv --output-xml "{workspace:transform.location}" --report SourceViews.import-report.tsv</Arguments>
+      <Arguments>from sql-files --manifest SourceViews.manifest.tsv --output-xml "{mesh.root}\MetaTransformScript.Workspace" --report SourceViews.import-report.tsv</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-source-views</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-real-db-data-quality:infer-data-quality" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:import-source-views">
-      <Arguments>from-transform-workspace --transform-workspace "{workspace:transform.location}" --output-xml "{workspace:data-quality.location}"</Arguments>
+      <Arguments>from-transform-workspace --transform-workspace "{mesh.root}\MetaTransformScript.Workspace" --output-xml "{mesh.root}\MetaDataQuality.Workspace"</Arguments>
       <Executable>meta-data-quality.exe</Executable>
       <Name>infer-data-quality</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-real-db-data-quality:inspect-data-quality" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:infer-data-quality">
-      <Arguments>inspect --workspace "{workspace:data-quality.location}" --show-cases --show-candidate-ids</Arguments>
+      <Arguments>inspect --workspace "{mesh.root}\MetaDataQuality.Workspace" --show-cases --show-candidate-ids</Arguments>
       <Executable>meta-data-quality.exe</Executable>
       <Name>inspect-data-quality</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-real-db-data-quality:promote-sql-capable-candidates" OperationId="operation:build-real-db-data-quality" PreviousStepId="operation-step:build-real-db-data-quality:inspect-data-quality">
-      <Arguments>promote --workspace "{workspace:data-quality.location}" --candidate-kind ImpliedForeignKeyMissingReference --candidate-kind ImpliedUniqueKeyViolation --candidate-kind MinorityJoinPattern --candidate-kind IncompleteCompositeJoin --candidate-kind SuspiciousExtraJoinPredicate --candidate-kind InnerJoinAgainstUsuallyOptionalRelationship --candidate-kind LeftJoinAgainstUsuallyMandatoryRelationship</Arguments>
+      <Arguments>promote --workspace "{mesh.root}\MetaDataQuality.Workspace" --candidate-kind ImpliedForeignKeyMissingReference --candidate-kind ImpliedUniqueKeyViolation --candidate-kind MinorityJoinPattern --candidate-kind IncompleteCompositeJoin --candidate-kind SuspiciousExtraJoinPredicate --candidate-kind InnerJoinAgainstUsuallyOptionalRelationship --candidate-kind LeftJoinAgainstUsuallyMandatoryRelationship</Arguments>
       <Executable>meta-data-quality.exe</Executable>
       <Name>promote-sql-capable-candidates</Name>
       <WorkingDirectory></WorkingDirectory>

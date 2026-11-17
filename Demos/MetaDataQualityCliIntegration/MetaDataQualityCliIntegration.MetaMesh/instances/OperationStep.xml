@@ -2,7 +2,7 @@
 <MetaMesh>
   <OperationStepList>
     <OperationStep Id="operation-step:build-data-quality:convert-data-quality-to-sql" OperationId="operation:build-data-quality" PreviousStepId="operation-step:build-data-quality:promote-data-quality">
-      <Arguments>data-quality-to-sql --workspace "{workspace:data-quality.location}" --out DataQualityViews.sql</Arguments>
+      <Arguments>data-quality-to-sql --workspace "{mesh.root}\DataQualityWS" --out DataQualityViews.sql</Arguments>
       <Executable>meta-convert.exe</Executable>
       <Name>convert-data-quality-to-sql</Name>
       <WorkingDirectory></WorkingDirectory>
@@ -23,31 +23,31 @@
       <Name>deploy-data-quality-sql</Name>
     </OperationStep>
     <OperationStep Id="operation-step:build-data-quality:discover-data-quality" OperationId="operation:build-data-quality" PreviousStepId="operation-step:build-data-quality:import-customer-invoice-transform">
-      <Arguments>from-transform-workspace --transform-workspace "{workspace:transform.location}" --output-xml "{workspace:data-quality.location}"</Arguments>
+      <Arguments>from-transform-workspace --transform-workspace "{mesh.root}\TransformWS" --output-xml "{mesh.root}\DataQualityWS"</Arguments>
       <Executable>meta-data-quality.exe</Executable>
       <Name>discover-data-quality</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-data-quality:import-customer-invoice-transform" OperationId="operation:build-data-quality" PreviousStepId="operation-step:build-data-quality:import-customer-order-transform">
-      <Arguments>from sql-file --path SourceViews\002_customer_invoice_composite\view.sql --target dq.CustomerInvoiceComposite --workspace "{workspace:transform.location}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\002_customer_invoice_composite\view.sql --target dq.CustomerInvoiceComposite --workspace "{mesh.root}\TransformWS"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-customer-invoice-transform</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-data-quality:import-customer-order-transform" OperationId="operation:build-data-quality" PreviousStepId="operation-step:build-data-quality:deploy-customer-invoice-view">
-      <Arguments>from sql-file --path SourceViews\001_customer_order_coverage\view.sql --target dq.CustomerOrderCoverage --output-xml "{workspace:transform.location}"</Arguments>
+      <Arguments>from sql-file --path SourceViews\001_customer_order_coverage\view.sql --target dq.CustomerOrderCoverage --output-xml "{mesh.root}\TransformWS"</Arguments>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-customer-order-transform</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-data-quality:inspect-data-quality" OperationId="operation:build-data-quality" PreviousStepId="operation-step:build-data-quality:discover-data-quality">
-      <Arguments>inspect --workspace "{workspace:data-quality.location}"</Arguments>
+      <Arguments>inspect --workspace "{mesh.root}\DataQualityWS"</Arguments>
       <Executable>meta-data-quality.exe</Executable>
       <Name>inspect-data-quality</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-data-quality:promote-data-quality" OperationId="operation:build-data-quality" PreviousStepId="operation-step:build-data-quality:inspect-data-quality">
-      <Arguments>promote --workspace "{workspace:data-quality.location}" --all</Arguments>
+      <Arguments>promote --workspace "{mesh.root}\DataQualityWS" --all</Arguments>
       <Executable>meta-data-quality.exe</Executable>
       <Name>promote-data-quality</Name>
       <WorkingDirectory></WorkingDirectory>

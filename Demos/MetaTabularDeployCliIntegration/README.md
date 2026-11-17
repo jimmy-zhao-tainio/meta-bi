@@ -14,24 +14,21 @@ Run commands from the mesh folder. `--workspace` is omitted because `meta-mesh`
 defaults to the current directory:
 
 ```powershell
-$env:META_TABULAR_DEMO_SERVER = "localhost\TABULAR"
-$env:META_TABULAR_DEMO_DATABASE = "MetaBiTabularDeployDemo"
-
 cd MetaTabularDeployCliIntegration.MetaMesh
 meta-mesh show
 meta-mesh run --operation cleanup
 meta-mesh run --operation deploy-tabular-model
 ```
 
-Default environment values:
+Authored deployment target:
 
 - server: `localhost\TABULAR`
 - database: `MetaBiTabularDeployDemo`
 
-Override with:
-
-- `META_TABULAR_DEMO_SERVER`
-- `META_TABULAR_DEMO_DATABASE`
+To change the target, use `meta-mesh update-step` on operation `deploy-tabular-model`,
+step `deploy-tabular`, supplying literal `--server` and `--database-name` arguments.
+Mesh `{env:NAME}` tokens supply a variable name for CLI options such as
+`--connection-env`; they do not interpolate its value into a server name.
 
 Requires these CLIs on `PATH`:
 

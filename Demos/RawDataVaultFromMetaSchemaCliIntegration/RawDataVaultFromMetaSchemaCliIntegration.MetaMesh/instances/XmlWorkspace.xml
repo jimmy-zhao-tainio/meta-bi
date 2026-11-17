@@ -13,9 +13,6 @@
     <XmlWorkspace Id="workspace:schema" WorkspaceId="workspace:schema">
       <Path>MetaSchemaWorkspace</Path>
     </XmlWorkspace>
-    <XmlWorkspace Id="workspace:source-business-data-vault-mesh" WorkspaceId="workspace:source-business-data-vault-mesh">
-      <Path>..\BusinessDataVaultCliIntegration\BusinessDataVaultCliIntegration.MetaMesh</Path>
-    </XmlWorkspace>
     <XmlWorkspace Id="workspace:sql" WorkspaceId="workspace:sql">
       <Path>CurrentMetaSqlWorkspace</Path>
     </XmlWorkspace>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <MeshList>
+    <Mesh Id="mesh:default">
+      <Description>Apply authored integer-width conversion snippets, independently bind, and execute through SQL Server Pipeline.</Description>
+      <Name>MetaTransformScriptConversionCliIntegration</Name>
+      <RootPath>..</RootPath>
+    </Mesh>
+  </MeshList>
+</MetaMesh>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <XmlWorkspaceList>
+    <XmlWorkspace Id="xml-workspace:binding" WorkspaceId="workspace:binding">
+      <Path>CastBinding</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="xml-workspace:catalog" WorkspaceId="workspace:catalog">
+      <Path>Catalog</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="xml-workspace:conversions" WorkspaceId="workspace:conversions">
+      <Path>Conversions</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="xml-workspace:converted" WorkspaceId="workspace:converted">
+      <Path>CastTransforms</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="xml-workspace:input" WorkspaceId="workspace:input">
+      <Path>InputTransforms</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="xml-workspace:pipeline" WorkspaceId="workspace:pipeline">
+      <Path>CastPipeline</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="xml-workspace:source-schema" WorkspaceId="workspace:source-schema">
+      <Path>SourceSchema</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="xml-workspace:target-schema" WorkspaceId="workspace:target-schema">
+      <Path>TargetSchema</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="xml-workspace:variant" WorkspaceId="workspace:variant">
+      <Path>VariantTransforms</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="xml-workspace:variant-binding" WorkspaceId="workspace:variant-binding">
+      <Path>VariantBinding</Path>
+    </XmlWorkspace>
+    <XmlWorkspace Id="xml-workspace:variant-pipeline" WorkspaceId="workspace:variant-pipeline">
+      <Path>VariantPipeline</Path>
+    </XmlWorkspace>
+  </XmlWorkspaceList>
+</MetaMesh>

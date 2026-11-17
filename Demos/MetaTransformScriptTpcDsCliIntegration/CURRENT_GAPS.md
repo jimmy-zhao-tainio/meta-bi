@@ -1,40 +1,34 @@
-# Current Gaps
+# Current gaps
 
-## TransformScript Import / Export
+The corpus is useful for syntax coverage. Parsing, exporting and comparing
+modeled SQL do not establish executable SQL Server semantics or target contracts.
 
-- Coverage: `q01`-`q99`
-- Result: `99/99` scripts imported.
-- Result: SQL export, re-import, and MetaSql projection diff succeeded for
-  all imported scripts.
-- Remaining import/export gaps in this slice: none.
+## Syntax round-trip
 
-## Binding + Validate Against Checked-In `SchemaWS`
+`build-tpc-ds-snapshot` imports all 99 modules through `SourceViews.manifest.tsv`,
+exports them, re-imports through the emitted-file manifest and requires canonical
+SQL re-export to match byte for byte. The transform diff records representation
+and file provenance differences.
 
-Run basis:
-- Coverage: `q01`-`q99`
-- Active schema contract: checked-in `SchemaWS` in this demo folder.
-- Execution mode: one workspace bind+validate against the checked-in `SchemaWS`
-  as both source and target schema.
+`compare-sql-projections` separately retains the full-graph MetaSql conversion
+and comparison. Its first conversion was interrupted after more than fifteen
+CPU minutes without a result. This additional comparison is unverified; its
+runtime requires investigation before treating it as a practical routine check.
 
-Result summary:
-- Current operation: `meta-mesh run --operation build-tpc-ds-snapshot`
-- Current result: imports, binds, exports, re-imports emitted SQL, converts
-  both transform workspaces to MetaSql, and diffs the MetaSql workspaces
-  offline.
-- Remaining gaps: none known for this integration proof.
+## Schema-aware Binding
 
-Gap classes:
-- none known for offline import/export/bind.
+`bind-snapshot` currently fails against the checked-in `SchemaWS`. The first
+rejection is a direct `char` projection whose target declares `nvarchar`.
+The fixture also leaves many source facets unknown. Matching target IDs to
+Binding's inferred answers would not independently establish the right contract.
+No conversion mappings or relaxed type checks are used to approve this probe.
 
-Notes:
-- Transform binding validates writable target contracts, so `tpcds.v_qNN`
-  target contracts are modeled as `ObjectType=Table`.
-- The transform workspace diff records expected representation and emitted-file
-  provenance differences after re-importing semantic module paths through
-  `RoundTrippedViews.manifest.tsv`.
-- The MetaSql workspace diff is the semantic round-trip proof and currently
-  reports no differences.
-- The checked-in target rows come from extracted TPC-DS view metadata, with
-  view rows changed to table rows so binding validates writable targets. The
-  current fixture preserves the projected `varchar` and `decimal` fields needed
-  by strict binding.
+## SQL Server execution
+
+A disposable SQL Server investigation of the 99 view definitions compiled 60
+and rejected 39. Examples include `SUBSTR`, an `ORDER BY` that is invalid in a
+view, and expressions without required view-column names. These are corpus
+limitations, not evidence that MetaTransformScript executes those constructs.
+
+The complete corpus has not been repaired or executed. Use the dedicated
+conversion, Pipeline and AdventureWorks demos for actual execution coverage.

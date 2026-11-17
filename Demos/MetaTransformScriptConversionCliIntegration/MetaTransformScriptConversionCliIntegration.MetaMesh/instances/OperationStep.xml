@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <OperationStepList>
+    <OperationStep Id="operation-step:cleanup:drop-demo-databases" OperationId="operation:cleanup">
+      <Arguments>execute --connection-env {env:META_CONVERSION_DEMO_ADMIN_SQL} --file cleanup.sql --quiet</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>drop-demo-databases</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-castbinding" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-casttransforms">
+      <Arguments>/d /c if exist "{mesh.root}\CastBinding" rmdir /s /q "{mesh.root}\CastBinding"</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-CastBinding</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-castpipeline" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-castbinding">
+      <Arguments>/d /c if exist "{mesh.root}\CastPipeline" rmdir /s /q "{mesh.root}\CastPipeline"</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-CastPipeline</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-casttransforms" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-inputtransforms">
+      <Arguments>/d /c if exist "{mesh.root}\CastTransforms" rmdir /s /q "{mesh.root}\CastTransforms"</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-CastTransforms</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-catalog" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:drop-demo-databases">
+      <Arguments>/d /c if exist "{mesh.root}\Catalog" rmdir /s /q "{mesh.root}\Catalog"</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-Catalog</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-conversions" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-catalog">
+      <Arguments>/d /c if exist "{mesh.root}\Conversions" rmdir /s /q "{mesh.root}\Conversions"</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-Conversions</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-generated-sql" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-rejectedbinding">
+      <Arguments>/d /c if exist "{mesh.root}\*.generated.sql" del /q "{mesh.root}\*.generated.sql"</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-generated-sql</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-inputtransforms" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-targetschema">
+      <Arguments>/d /c if exist "{mesh.root}\InputTransforms" rmdir /s /q "{mesh.root}\InputTransforms"</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-InputTransforms</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-rejectedbinding" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-variantpipeline">
+      <Arguments>/d /c if exist "{mesh.root}\RejectedBinding" rmdir /s /q "{mesh.root}\RejectedBinding"</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-RejectedBinding</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-sourceschema" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-conversions">
+      <Arguments>/d /c if exist "{mesh.root}\SourceSchema" rmdir /s /q "{mesh.root}\SourceSchema"</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-SourceSchema</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-targetschema" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-sourceschema">
+      <Arguments>/d /c if exist "{mesh.root}\TargetSchema" rmdir /s /q "{mesh.root}\TargetSchema"</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-TargetSchema</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-variantbinding" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-varianttransforms">
+      <Arguments>/d /c if exist "{mesh.root}\VariantBinding" rmdir /s /q "{mesh.root}\VariantBinding"</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-VariantBinding</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-variantpipeline" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-variantbinding">
+      <Arguments>/d /c if exist "{mesh.root}\VariantPipeline" rmdir /s /q "{mesh.root}\VariantPipeline"</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-VariantPipeline</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:cleanup:remove-varianttransforms" OperationId="operation:cleanup" PreviousStepId="operation-step:cleanup:remove-castpipeline">
+      <Arguments>/d /c if exist "{mesh.root}\VariantTransforms" rmdir /s /q "{mesh.root}\VariantTransforms"</Arguments>
+      <Executable>cmd.exe</Executable>
+      <Name>remove-VariantTransforms</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:convert-and-execute:add-cast-copy-task" OperationId="operation:convert-and-execute" PreviousStepId="operation-step:convert-and-execute:add-cast-pipeline">
+      <Arguments>add-step --workspace "{mesh.root}\CastPipeline" --pipeline CopyValues --script dbo.CopyValues --transform-workspace "{mesh.root}\CastTransforms" --binding-workspace "{mesh.root}\CastBinding" --execution-connection-env {env:META_CONVERSION_DEMO_SQL} --target-connection-env {env:META_CONVERSION_DEMO_SQL} --target-write insert-rows --target dbo.TargetRows</Arguments>
+      <Executable>meta-pipeline.exe</Executable>
+      <Name>add-Cast-copy-task</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:convert-and-execute:add-cast-pipeline" OperationId="operation:convert-and-execute" PreviousStepId="operation-step:convert-and-execute:create-cast-pipeline">
+      <Arguments>add-pipeline --workspace "{mesh.root}\CastPipeline" --name CopyValues</Arguments>
+      <Executable>meta-pipeline.exe</Executable>
+      <Name>add-Cast-pipeline</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:convert-and-execute:add-variant-copy-task" OperationId="operation:convert-and-execute" PreviousStepId="operation-step:convert-and-execute:add-variant-pipeline">
+      <Arguments>add-step --workspace "{mesh.root}\VariantPipeline" --pipeline CopyValues --script dbo.CopyValues --transform-workspace "{mesh.root}\VariantTransforms" --binding-workspace "{mesh.root}\VariantBinding" --execution-connection-env {env:META_CONVERSION_DEMO_SQL} --target-connection-env {env:META_CONVERSION_DEMO_SQL} --target-write insert-rows --target dbo.TargetRows</Arguments>
+      <Executable>meta-pipeline.exe</Executable>
+      <Name>add-Variant-copy-task</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:convert-and-execute:add-variant-pipeline" OperationId="operation:convert-and-execute" PreviousStepId="operation-step:convert-and-execute:create-variant-pipeline">
+      <Arguments>add-pipeline --workspace "{mesh.root}\VariantPipeline" --name CopyValues</Arguments>
+      <Executable>meta-pipeline.exe</Executable>
+      <Name>add-Variant-pipeline</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:convert-and-execute:apply-cast-snippet" OperationId="operation:convert-and-execute" PreviousStepId="operation-step:convert-and-execute:reject-unconverted-input">
+      <Arguments>apply-conversions --workspace "{mesh.root}\InputTransforms" --source-schema "{workspace:source-schema.location}" --data-type-workspace "{workspace:catalog.location}" --data-type-conversion-workspace "{workspace:conversions.location}" --output-xml "{mesh.root}\CastTransforms"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>apply-Cast-snippet</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:convert-and-execute:apply-variant-snippet" OperationId="operation:convert-and-execute" PreviousStepId="operation-step:convert-and-execute:clear-target-for-second-execution">
+      <Arguments>apply-conversions --workspace "{mesh.root}\InputTransforms" --source-schema "{workspace:source-schema.location}" --data-type-workspace "{workspace:catalog.location}" --data-type-conversion-workspace "{workspace:conversions.location}" --output-xml "{mesh.root}\VariantTransforms"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>apply-Variant-snippet</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:convert-and-execute:bind-cast-result" OperationId="operation:convert-and-execute" PreviousStepId="operation-step:convert-and-execute:export-cast-result">
+      <Arguments>bind --transform-workspace "{mesh.root}\CastTransforms" --source-schema "{workspace:source-schema.location}" --target-schema "{workspace:target-schema.location}" --data-type-workspace "{workspace:catalog.location}" --execute-system MetaTransformScriptConversionDemo --output-xml "{mesh.root}\CastBinding"</Arguments>
+      <Executable>meta-transform-binding.exe</Executable>
+      <Name>bind-Cast-result</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:convert-and-execute:bind-variant-result" OperationId="operation:convert-and-execute" PreviousStepId="operation-step:convert-and-execute:export-variant-result">
+      <Arguments>bind --transform-workspace "{mesh.root}\VariantTransforms" --source-schema "{workspace:source-schema.location}" --target-schema "{workspace:target-schema.location}" --data-type-workspace "{workspace:catalog.location}" --execute-system MetaTransformScriptConversionDemo --output-xml "{mesh.root}\VariantBinding"</Arguments>
+      <Executable>meta-transform-binding.exe</Executable>
+      <Name>bind-Variant-result</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:convert-and-execute:change-authored-snippet" OperationId="operation:convert-and-execute" PreviousStepId="operation-step:convert-and-execute:verify-cast-rows">
+      <Arguments>instance update SqlConversionSnippet integer-width --workspace "{workspace:conversions.location}" --set "TransformScript=CONVERT($(destination), $(source))"</Arguments>
+      <Executable>meta.exe</Executable>
+      <Name>change-authored-snippet</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:convert-and-execute:clear-target-for-second-execution" OperationId="operation:convert-and-execute" PreviousStepId="operation-step:convert-and-execute:change-authored-snippet">
+      <Arguments>execute --connection-env {env:META_CONVERSION_DEMO_SQL} --query "TRUNCATE TABLE dbo.TargetRows;" --quiet</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>clear-target-for-second-execution</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:convert-and-execute:create-cast-pipeline" OperationId="operation:convert-and-execute" PreviousStepId="operation-step:convert-and-execute:bind-cast-result">
+      <Arguments>create --xml "{mesh.root}\CastPipeline"</Arguments>
+      <Executable>meta-pipeline.exe</Executable>
+      <Name>create-Cast-pipeline</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:convert-and-execute:create-variant-pipeline" OperationId="operation:convert-and-execute" PreviousStepId="operation-step:convert-and-execute:bind-variant-result">
+      <Arguments>create --xml "{mesh.root}\VariantPipeline"</Arguments>
+      <Executable>meta-pipeline.exe</Executable>
+      <Name>create-Variant-pipeline</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:convert-and-execute:execute-cast-pipeline" OperationId="operation:convert-and-execute" PreviousStepId="operation-step:convert-and-execute:add-cast-copy-task">
+      <Arguments>execute --workspace "{mesh.root}\CastPipeline" --pipeline CopyValues --data-type-workspace "{workspace:catalog.location}" --pipeline-db-connection-env {env:META_CONVERSION_DEMO_OPERATIONAL_SQL}</Arguments>
+      <Executable>meta-pipeline.exe</Executable>
+      <Name>execute-Cast-pipeline</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:convert-and-execute:execute-variant-pipeline" OperationId="operation:convert-and-execute" PreviousStepId="operation-step:convert-and-execute:add-variant-copy-task">
+      <Arguments>execute --workspace "{mesh.root}\VariantPipeline" --pipeline CopyValues --data-type-workspace "{workspace:catalog.location}" --pipeline-db-connection-env {env:META_CONVERSION_DEMO_OPERATIONAL_SQL}</Arguments>
+      <Executable>meta-pipeline.exe</Executable>
+      <Name>execute-Variant-pipeline</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:convert-and-execute:export-cast-result" OperationId="operation:convert-and-execute" PreviousStepId="operation-step:convert-and-execute:apply-cast-snippet">
+      <Arguments>to sql-path --workspace "{mesh.root}\CastTransforms" --out "{mesh.root}\Cast.generated.sql"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>export-Cast-result</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:convert-and-execute:export-input-after-conversions" OperationId="operation:convert-and-execute" PreviousStepId="operation-step:convert-and-execute:verify-snippet-changes-produced-sql">
+      <Arguments>to sql-path --workspace "{mesh.root}\InputTransforms" --out "{mesh.root}\after.generated.sql"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>export-input-after-conversions</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:convert-and-execute:export-original" OperationId="operation:convert-and-execute" PreviousStepId="operation-step:convert-and-execute:import-input">
+      <Arguments>to sql-path --workspace "{mesh.root}\InputTransforms" --out "{mesh.root}\before.generated.sql"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>export-original</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:convert-and-execute:export-variant-result" OperationId="operation:convert-and-execute" PreviousStepId="operation-step:convert-and-execute:apply-variant-snippet">
+      <Arguments>to sql-path --workspace "{mesh.root}\VariantTransforms" --out "{mesh.root}\Variant.generated.sql"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>export-Variant-result</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:convert-and-execute:import-input" OperationId="operation:convert-and-execute">
+      <Arguments>from sql-file --path copy_values.sql --target dbo.TargetRows --output-xml "{mesh.root}\InputTransforms"</Arguments>
+      <Executable>meta-transform-script.exe</Executable>
+      <Name>import-input</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:convert-and-execute:reject-unconverted-input" OperationId="operation:convert-and-execute" PreviousStepId="operation-step:convert-and-execute:export-original">
+      <Arguments>bind --transform-workspace "{mesh.root}\InputTransforms" --source-schema "{workspace:source-schema.location}" --target-schema "{workspace:target-schema.location}" --data-type-workspace "{workspace:catalog.location}" --execute-system MetaTransformScriptConversionDemo --output-xml "{mesh.root}\RejectedBinding"</Arguments>
+      <Executable>meta-transform-binding.exe</Executable>
+      <ExpectedExitCode>5</ExpectedExitCode>
+      <Name>reject-unconverted-input</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:convert-and-execute:verify-cast-rows" OperationId="operation:convert-and-execute" PreviousStepId="operation-step:convert-and-execute:execute-cast-pipeline">
+      <Arguments>execute --connection-env {env:META_CONVERSION_DEMO_SQL} --file verify.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>verify-Cast-rows</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:convert-and-execute:verify-original-sql-unchanged" OperationId="operation:convert-and-execute" PreviousStepId="operation-step:convert-and-execute:export-input-after-conversions">
+      <Arguments>/b "{mesh.root}\before.generated.sql" "{mesh.root}\after.generated.sql"</Arguments>
+      <Executable>fc.exe</Executable>
+      <Name>verify-original-sql-unchanged</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:convert-and-execute:verify-snippet-changes-produced-sql" OperationId="operation:convert-and-execute" PreviousStepId="operation-step:convert-and-execute:verify-variant-rows">
+      <Arguments>/b "{mesh.root}\Cast.generated.sql" "{mesh.root}\Variant.generated.sql"</Arguments>
+      <Executable>fc.exe</Executable>
+      <ExpectedExitCode>1</ExpectedExitCode>
+      <Name>verify-snippet-changes-produced-sql</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:convert-and-execute:verify-variant-rows" OperationId="operation:convert-and-execute" PreviousStepId="operation-step:convert-and-execute:execute-variant-pipeline">
+      <Arguments>execute --connection-env {env:META_CONVERSION_DEMO_SQL} --file verify.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>verify-Variant-rows</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:prepare-workspaces:author-destination-parameter" OperationId="operation:prepare-workspaces" PreviousStepId="operation-step:prepare-workspaces:author-source-parameter">
+      <Arguments>insert SqlConversionParameter destination --workspace "{mesh.root}\Conversions" --set Name=DestinationType</Arguments>
+      <Executable>meta.exe</Executable>
+      <Name>author-destination-parameter</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:prepare-workspaces:author-implementation" OperationId="operation:prepare-workspaces" PreviousStepId="operation-step:prepare-workspaces:bind-destination-parameter">
+      <Arguments>insert ConversionImplementation widen-integer --workspace "{mesh.root}\Conversions" --set Name=IntegerWidening --set SqlConversionSnippetId=integer-width</Arguments>
+      <Executable>meta.exe</Executable>
+      <Name>author-implementation</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:prepare-workspaces:author-mapping" OperationId="operation:prepare-workspaces" PreviousStepId="operation-step:prepare-workspaces:author-implementation">
+      <Arguments>insert DataTypeMapping int-to-bigint --workspace "{mesh.root}\Conversions" --set SourceDataTypeId=sqlserver:type:int --set TargetDataTypeId=sqlserver:type:bigint --set ConversionImplementationId=widen-integer</Arguments>
+      <Executable>meta.exe</Executable>
+      <Name>author-mapping</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:prepare-workspaces:author-snippet" OperationId="operation:prepare-workspaces" PreviousStepId="operation-step:prepare-workspaces:create-conversion-policy">
+      <Arguments>insert SqlConversionSnippet integer-width --workspace "{mesh.root}\Conversions" --set "TransformScript=CAST($(source) AS $(destination))"</Arguments>
+      <Executable>meta.exe</Executable>
+      <Name>author-snippet</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:prepare-workspaces:author-source-parameter" OperationId="operation:prepare-workspaces" PreviousStepId="operation-step:prepare-workspaces:author-snippet">
+      <Arguments>insert SqlConversionParameter source --workspace "{mesh.root}\Conversions" --set Name=SourceExpression</Arguments>
+      <Executable>meta.exe</Executable>
+      <Name>author-source-parameter</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:prepare-workspaces:bind-destination-parameter" OperationId="operation:prepare-workspaces" PreviousStepId="operation-step:prepare-workspaces:bind-source-parameter">
+      <Arguments>insert SqlConversionParameterBinding destination --workspace "{mesh.root}\Conversions" --set Name=destination --set SqlConversionSnippetId=integer-width --set SqlConversionParameterId=destination</Arguments>
+      <Executable>meta.exe</Executable>
+      <Name>bind-destination-parameter</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:prepare-workspaces:bind-source-parameter" OperationId="operation:prepare-workspaces" PreviousStepId="operation-step:prepare-workspaces:author-destination-parameter">
+      <Arguments>insert SqlConversionParameterBinding source --workspace "{mesh.root}\Conversions" --set Name=source --set SqlConversionSnippetId=integer-width --set SqlConversionParameterId=source</Arguments>
+      <Executable>meta.exe</Executable>
+      <Name>bind-source-parameter</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:prepare-workspaces:create-catalog" OperationId="operation:prepare-workspaces">
+      <Arguments>create --xml "{mesh.root}\Catalog"</Arguments>
+      <Executable>meta-data-type.exe</Executable>
+      <Name>create-catalog</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:prepare-workspaces:create-conversion-policy" OperationId="operation:prepare-workspaces" PreviousStepId="operation-step:prepare-workspaces:create-catalog">
+      <Arguments>create --source-workspace "{workspace:conversion-contract.location}" --xml "{mesh.root}\Conversions"</Arguments>
+      <Executable>meta.exe</Executable>
+      <Name>create-conversion-policy</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:prepare-workspaces:create-operational-database" OperationId="operation:prepare-workspaces" PreviousStepId="operation-step:prepare-workspaces:extract-target-schema">
+      <Arguments>create-pipeline-db --pipeline-db-connection-env {env:META_CONVERSION_DEMO_ADMIN_SQL} --pipeline-db-name MetaTransformScriptConversionPipeline</Arguments>
+      <Executable>meta-pipeline.exe</Executable>
+      <Name>create-operational-database</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:prepare-workspaces:extract-source-schema" OperationId="operation:prepare-workspaces" PreviousStepId="operation-step:prepare-workspaces:setup-source-and-target">
+      <Arguments>extract sqlserver --connection-env {env:META_CONVERSION_DEMO_SQL} --system MetaTransformScriptConversionDemo --schema dbo --table SourceRows --data-type-workspace "{mesh.root}\Catalog" --output-xml "{mesh.root}\SourceSchema"</Arguments>
+      <Executable>meta-schema.exe</Executable>
+      <Name>extract-source-schema</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:prepare-workspaces:extract-target-schema" OperationId="operation:prepare-workspaces" PreviousStepId="operation-step:prepare-workspaces:extract-source-schema">
+      <Arguments>extract sqlserver --connection-env {env:META_CONVERSION_DEMO_SQL} --system MetaTransformScriptConversionDemo --schema dbo --table TargetRows --data-type-workspace "{mesh.root}\Catalog" --output-xml "{mesh.root}\TargetSchema"</Arguments>
+      <Executable>meta-schema.exe</Executable>
+      <Name>extract-target-schema</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:prepare-workspaces:setup-source-and-target" OperationId="operation:prepare-workspaces" PreviousStepId="operation-step:prepare-workspaces:author-mapping">
+      <Arguments>execute --connection-env {env:META_CONVERSION_DEMO_ADMIN_SQL} --file setup.sql --quiet</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>setup-source-and-target</Name>
+    </OperationStep>
+  </OperationStepList>
+</MetaMesh>

@@ -79,7 +79,7 @@
       <Name>add-date-table</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
-    <OperationStep Id="operation-step:author-analytics-model:add-model" OperationId="operation:author-analytics-model" PreviousStepId="operation-step:author-analytics-model:new-workspace">
+    <OperationStep Id="operation-step:author-analytics-model:add-model" OperationId="operation:author-analytics-model">
       <Arguments>add-model --workspace "{workspace:analytics.location}" --id Commerce --name Commerce --default-culture en-US</Arguments>
       <Executable>meta-analytics.exe</Executable>
       <Name>add-model</Name>
@@ -211,16 +211,15 @@
       <Name>add-swedish-sales-table-translation</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
-    <OperationStep Id="operation-step:author-analytics-model:new-workspace" OperationId="operation:author-analytics-model">
-      <Arguments>create --xml "{workspace:analytics.location}"</Arguments>
-      <Executable>meta-analytics.exe</Executable>
-      <Name>new-workspace</Name>
-      <WorkingDirectory></WorkingDirectory>
-    </OperationStep>
     <OperationStep Id="operation-step:cleanup:remove-analytics-workspace" OperationId="operation:cleanup">
       <Arguments>/c if exist MetaAnalyticsCliIntegrationWorkspace rmdir /s /q MetaAnalyticsCliIntegrationWorkspace</Arguments>
       <Executable>cmd.exe</Executable>
       <Name>remove-analytics-workspace</Name>
+    </OperationStep>
+    <OperationStep Id="operation-step:prepare-workspaces:create-analytics-workspace" OperationId="operation:prepare-workspaces">
+      <Arguments>create --xml "{mesh.root}\MetaAnalyticsCliIntegrationWorkspace"</Arguments>
+      <Executable>meta-analytics.exe</Executable>
+      <Name>create-analytics-workspace</Name>
     </OperationStep>
   </OperationStepList>
 </MetaMesh>

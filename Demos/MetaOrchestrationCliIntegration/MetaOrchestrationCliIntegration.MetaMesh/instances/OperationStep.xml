@@ -62,175 +62,175 @@
       <Name>remove-transform-workspace</Name>
     </OperationStep>
     <OperationStep Id="operation-step:create-complete-run-plan:add-pipeline-dim-customer" OperationId="operation:create-complete-run-plan" PreviousStepId="operation-step:create-complete-run-plan:add-step-stage-order">
-      <Arguments>add-pipeline --workspace "{workspace:complete-pipeline.location}" --name LoadDimCustomer</Arguments>
+      <Arguments>add-pipeline --workspace "{mesh.root}\CompletePipelineWS" --name LoadDimCustomer</Arguments>
       <Description>Add the dimension customer pipeline.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>add-pipeline-dim-customer</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-complete-run-plan:add-pipeline-exchange-rates" OperationId="operation:create-complete-run-plan" PreviousStepId="operation-step:create-complete-run-plan:add-step-fact-sales">
-      <Arguments>add-pipeline --workspace "{workspace:complete-pipeline.location}" --name RefreshExchangeRates</Arguments>
+      <Arguments>add-pipeline --workspace "{mesh.root}\CompletePipelineWS" --name RefreshExchangeRates</Arguments>
       <Description>Add the exchange-rate refresh pipeline.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>add-pipeline-exchange-rates</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-complete-run-plan:add-pipeline-fact-sales" OperationId="operation:create-complete-run-plan" PreviousStepId="operation-step:create-complete-run-plan:add-step-dim-customer">
-      <Arguments>add-pipeline --workspace "{workspace:complete-pipeline.location}" --name LoadFactSales</Arguments>
+      <Arguments>add-pipeline --workspace "{mesh.root}\CompletePipelineWS" --name LoadFactSales</Arguments>
       <Description>Add the fact sales pipeline.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>add-pipeline-fact-sales</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-complete-run-plan:add-pipeline-private-scratch" OperationId="operation:create-complete-run-plan" PreviousStepId="operation-step:create-complete-run-plan:add-step-load-work-rates">
-      <Arguments>add-pipeline --workspace "{workspace:complete-pipeline.location}" --name CleanupPrivateScratch</Arguments>
+      <Arguments>add-pipeline --workspace "{mesh.root}\CompletePipelineWS" --name CleanupPrivateScratch</Arguments>
       <Description>Add the private scratch cleanup pipeline.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>add-pipeline-private-scratch</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-complete-run-plan:add-pipeline-stage-customer" OperationId="operation:create-complete-run-plan" PreviousStepId="operation-step:create-complete-run-plan:new-pipeline-workspace">
-      <Arguments>add-pipeline --workspace "{workspace:complete-pipeline.location}" --name LoadStageCustomer</Arguments>
+      <Arguments>add-pipeline --workspace "{mesh.root}\CompletePipelineWS" --name LoadStageCustomer</Arguments>
       <Description>Add the stage customer pipeline.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>add-pipeline-stage-customer</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-complete-run-plan:add-pipeline-stage-order" OperationId="operation:create-complete-run-plan" PreviousStepId="operation-step:create-complete-run-plan:add-step-stage-customer">
-      <Arguments>add-pipeline --workspace "{workspace:complete-pipeline.location}" --name LoadStageOrder</Arguments>
+      <Arguments>add-pipeline --workspace "{mesh.root}\CompletePipelineWS" --name LoadStageOrder</Arguments>
       <Description>Add the stage order pipeline.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>add-pipeline-stage-order</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-complete-run-plan:add-step-dim-customer" OperationId="operation:create-complete-run-plan" PreviousStepId="operation-step:create-complete-run-plan:add-pipeline-dim-customer">
-      <Arguments>add-step --workspace "{workspace:complete-pipeline.location}" --pipeline LoadDimCustomer --step-name load-dim-customer --script dbo.v_dim_customer --transform-workspace "{workspace:transform.location}" --binding-workspace "{workspace:binding.location}" --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target dbo.DimCustomer</Arguments>
+      <Arguments>add-step --workspace "{mesh.root}\CompletePipelineWS" --pipeline LoadDimCustomer --step-name load-dim-customer --script dbo.v_dim_customer --transform-workspace "{workspace:transform.location}" --binding-workspace "{workspace:binding.location}" --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target dbo.DimCustomer</Arguments>
       <Description>Append the dimension customer transform task.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>add-step-dim-customer</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-complete-run-plan:add-step-fact-sales" OperationId="operation:create-complete-run-plan" PreviousStepId="operation-step:create-complete-run-plan:add-pipeline-fact-sales">
-      <Arguments>add-step --workspace "{workspace:complete-pipeline.location}" --pipeline LoadFactSales --step-name load-fact-sales --script dbo.v_fact_sales --transform-workspace "{workspace:transform.location}" --binding-workspace "{workspace:binding.location}" --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target dbo.FactSales</Arguments>
+      <Arguments>add-step --workspace "{mesh.root}\CompletePipelineWS" --pipeline LoadFactSales --step-name load-fact-sales --script dbo.v_fact_sales --transform-workspace "{workspace:transform.location}" --binding-workspace "{workspace:binding.location}" --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target dbo.FactSales</Arguments>
       <Description>Append the fact sales transform task.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>add-step-fact-sales</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-complete-run-plan:add-step-load-work-rates" OperationId="operation:create-complete-run-plan" PreviousStepId="operation-step:create-complete-run-plan:add-step-reset-work-rates">
-      <Arguments>add-step --workspace "{workspace:complete-pipeline.location}" --pipeline RefreshExchangeRates --step-name load-work-rates --script dbo.v_work_exchange_rate --transform-workspace "{workspace:transform.location}" --binding-workspace "{workspace:binding.location}" --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target dbo.WorkExchangeRate</Arguments>
+      <Arguments>add-step --workspace "{mesh.root}\CompletePipelineWS" --pipeline RefreshExchangeRates --step-name load-work-rates --script dbo.v_work_exchange_rate --transform-workspace "{workspace:transform.location}" --binding-workspace "{workspace:binding.location}" --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target dbo.WorkExchangeRate</Arguments>
       <Description>Append the exchange-rate load task.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>add-step-load-work-rates</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-complete-run-plan:add-step-private-scratch" OperationId="operation:create-complete-run-plan" PreviousStepId="operation-step:create-complete-run-plan:add-pipeline-private-scratch">
-      <Arguments>add-step --workspace "{workspace:complete-pipeline.location}" --pipeline CleanupPrivateScratch --step-name cleanup-private-scratch --script private_scratch_cleanup --transform-workspace "{workspace:transform.location}" --binding-workspace "{workspace:binding.location}" --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL}</Arguments>
+      <Arguments>add-step --workspace "{mesh.root}\CompletePipelineWS" --pipeline CleanupPrivateScratch --step-name cleanup-private-scratch --script private_scratch_cleanup --transform-workspace "{workspace:transform.location}" --binding-workspace "{workspace:binding.location}" --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL}</Arguments>
       <Description>Append the private scratch cleanup task.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>add-step-private-scratch</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-complete-run-plan:add-step-reset-work-rates" OperationId="operation:create-complete-run-plan" PreviousStepId="operation-step:create-complete-run-plan:add-pipeline-exchange-rates">
-      <Arguments>add-step --workspace "{workspace:complete-pipeline.location}" --pipeline RefreshExchangeRates --step-name reset-work-rates --script refresh_rates_truncate --transform-workspace "{workspace:transform.location}" --binding-workspace "{workspace:binding.location}" --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL}</Arguments>
+      <Arguments>add-step --workspace "{mesh.root}\CompletePipelineWS" --pipeline RefreshExchangeRates --step-name reset-work-rates --script refresh_rates_truncate --transform-workspace "{workspace:transform.location}" --binding-workspace "{workspace:binding.location}" --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL}</Arguments>
       <Description>Append the exchange-rate truncate task.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>add-step-reset-work-rates</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-complete-run-plan:add-step-stage-customer" OperationId="operation:create-complete-run-plan" PreviousStepId="operation-step:create-complete-run-plan:add-pipeline-stage-customer">
-      <Arguments>add-step --workspace "{workspace:complete-pipeline.location}" --pipeline LoadStageCustomer --step-name load-stage-customer --script dbo.v_stage_customer --transform-workspace "{workspace:transform.location}" --binding-workspace "{workspace:binding.location}" --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target dbo.StageCustomer</Arguments>
+      <Arguments>add-step --workspace "{mesh.root}\CompletePipelineWS" --pipeline LoadStageCustomer --step-name load-stage-customer --script dbo.v_stage_customer --transform-workspace "{workspace:transform.location}" --binding-workspace "{workspace:binding.location}" --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target dbo.StageCustomer</Arguments>
       <Description>Append the stage customer transform task.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>add-step-stage-customer</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-complete-run-plan:add-step-stage-order" OperationId="operation:create-complete-run-plan" PreviousStepId="operation-step:create-complete-run-plan:add-pipeline-stage-order">
-      <Arguments>add-step --workspace "{workspace:complete-pipeline.location}" --pipeline LoadStageOrder --step-name load-stage-order --script dbo.v_stage_order --transform-workspace "{workspace:transform.location}" --binding-workspace "{workspace:binding.location}" --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target dbo.StageOrder</Arguments>
+      <Arguments>add-step --workspace "{mesh.root}\CompletePipelineWS" --pipeline LoadStageOrder --step-name load-stage-order --script dbo.v_stage_order --transform-workspace "{workspace:transform.location}" --binding-workspace "{workspace:binding.location}" --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target dbo.StageOrder</Arguments>
       <Description>Append the stage order transform task.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>add-step-stage-order</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-complete-run-plan:create-orchestration" OperationId="operation:create-complete-run-plan" PreviousStepId="operation-step:create-complete-run-plan:add-step-private-scratch">
-      <Arguments>create --pipeline-workspace {workspace:complete-pipeline.location} --output-xml {workspace:complete-orchestration.location}</Arguments>
+      <Arguments>create --pipeline-workspace {mesh.root}\CompletePipelineWS --output-xml {mesh.root}\CompleteOrchestrationWS</Arguments>
       <Description>Create the complete MetaOrchestration workspace from the complete pipeline workspace.</Description>
       <Executable>meta-orchestration.exe</Executable>
       <Name>create-orchestration</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-complete-run-plan:new-pipeline-workspace" OperationId="operation:create-complete-run-plan">
-      <Arguments>create --xml "{workspace:complete-pipeline.location}"</Arguments>
+      <Arguments>create --xml "{mesh.root}\CompletePipelineWS"</Arguments>
       <Description>Create the complete MetaPipeline workspace.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>new-pipeline-workspace</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-complete-run-plan:refresh-run-plan" OperationId="operation:create-complete-run-plan" PreviousStepId="operation-step:create-complete-run-plan:create-orchestration">
-      <Arguments>refresh-run-plan --workspace "{workspace:complete-orchestration.location}"</Arguments>
+      <Arguments>refresh-run-plan --workspace "{mesh.root}\CompleteOrchestrationWS"</Arguments>
       <Description>Refresh the complete orchestration run plan.</Description>
       <Executable>meta-orchestration.exe</Executable>
       <Name>refresh-run-plan</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-invalid-evidence:add-pipeline-read-shared-stage" OperationId="operation:create-invalid-evidence" PreviousStepId="operation-step:create-invalid-evidence:add-step-truncate-shared-stage">
-      <Arguments>add-pipeline --workspace {workspace:invalid-pipeline.location} --name ReadSharedStage</Arguments>
+      <Arguments>add-pipeline --workspace {mesh.root}\InvalidPipelineWS --name ReadSharedStage</Arguments>
       <Description>Add the shared stage reader pipeline.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>add-pipeline-read-shared-stage</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-invalid-evidence:add-pipeline-shared-writer-a" OperationId="operation:create-invalid-evidence" PreviousStepId="operation-step:create-invalid-evidence:add-step-read-shared-stage">
-      <Arguments>add-pipeline --workspace {workspace:invalid-pipeline.location} --name SharedWriterA</Arguments>
+      <Arguments>add-pipeline --workspace {mesh.root}\InvalidPipelineWS --name SharedWriterA</Arguments>
       <Description>Add the first shared writer pipeline.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>add-pipeline-shared-writer-a</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-invalid-evidence:add-pipeline-shared-writer-b" OperationId="operation:create-invalid-evidence" PreviousStepId="operation-step:create-invalid-evidence:add-step-write-shared-a">
-      <Arguments>add-pipeline --workspace {workspace:invalid-pipeline.location} --name SharedWriterB</Arguments>
+      <Arguments>add-pipeline --workspace {mesh.root}\InvalidPipelineWS --name SharedWriterB</Arguments>
       <Description>Add the second shared writer pipeline.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>add-pipeline-shared-writer-b</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-invalid-evidence:add-pipeline-truncate-shared-stage" OperationId="operation:create-invalid-evidence" PreviousStepId="operation-step:create-invalid-evidence:new-invalid-pipeline-workspace">
-      <Arguments>add-pipeline --workspace {workspace:invalid-pipeline.location} --name TruncateSharedStage</Arguments>
+      <Arguments>add-pipeline --workspace {mesh.root}\InvalidPipelineWS --name TruncateSharedStage</Arguments>
       <Description>Add the shared stage truncate pipeline.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>add-pipeline-truncate-shared-stage</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-invalid-evidence:add-step-read-shared-stage" OperationId="operation:create-invalid-evidence" PreviousStepId="operation-step:create-invalid-evidence:add-pipeline-read-shared-stage">
-      <Arguments>add-step --workspace {workspace:invalid-pipeline.location} --pipeline ReadSharedStage --step-name read-shared-stage --script dbo.v_read_shared_stage --transform-workspace {workspace:transform.location} --binding-workspace {workspace:binding.location} --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target dbo.DimCustomer</Arguments>
+      <Arguments>add-step --workspace {mesh.root}\InvalidPipelineWS --pipeline ReadSharedStage --step-name read-shared-stage --script dbo.v_read_shared_stage --transform-workspace {workspace:transform.location} --binding-workspace {workspace:binding.location} --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target dbo.DimCustomer</Arguments>
       <Description>Append the shared stage reader task.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>add-step-read-shared-stage</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-invalid-evidence:add-step-truncate-shared-stage" OperationId="operation:create-invalid-evidence" PreviousStepId="operation-step:create-invalid-evidence:add-pipeline-truncate-shared-stage">
-      <Arguments>add-step --workspace {workspace:invalid-pipeline.location} --pipeline TruncateSharedStage --step-name truncate-shared-stage --script truncate_shared_stage --transform-workspace {workspace:transform.location} --binding-workspace {workspace:binding.location} --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL}</Arguments>
+      <Arguments>add-step --workspace {mesh.root}\InvalidPipelineWS --pipeline TruncateSharedStage --step-name truncate-shared-stage --script truncate_shared_stage --transform-workspace {workspace:transform.location} --binding-workspace {workspace:binding.location} --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL}</Arguments>
       <Description>Append the shared stage truncate task.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>add-step-truncate-shared-stage</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-invalid-evidence:add-step-write-shared-a" OperationId="operation:create-invalid-evidence" PreviousStepId="operation-step:create-invalid-evidence:add-pipeline-shared-writer-a">
-      <Arguments>add-step --workspace {workspace:invalid-pipeline.location} --pipeline SharedWriterA --step-name write-shared-a --script dbo.v_shared_writer_a --transform-workspace {workspace:transform.location} --binding-workspace {workspace:binding.location} --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target dbo.SharedLanding</Arguments>
+      <Arguments>add-step --workspace {mesh.root}\InvalidPipelineWS --pipeline SharedWriterA --step-name write-shared-a --script dbo.v_shared_writer_a --transform-workspace {workspace:transform.location} --binding-workspace {workspace:binding.location} --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target dbo.SharedLanding</Arguments>
       <Description>Append the first shared writer task.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>add-step-write-shared-a</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-invalid-evidence:add-step-write-shared-b" OperationId="operation:create-invalid-evidence" PreviousStepId="operation-step:create-invalid-evidence:add-pipeline-shared-writer-b">
-      <Arguments>add-step --workspace {workspace:invalid-pipeline.location} --pipeline SharedWriterB --step-name write-shared-b --script dbo.v_shared_writer_b --transform-workspace {workspace:transform.location} --binding-workspace {workspace:binding.location} --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target dbo.SharedLanding</Arguments>
+      <Arguments>add-step --workspace {mesh.root}\InvalidPipelineWS --pipeline SharedWriterB --step-name write-shared-b --script dbo.v_shared_writer_b --transform-workspace {workspace:transform.location} --binding-workspace {workspace:binding.location} --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target dbo.SharedLanding</Arguments>
       <Description>Append the second shared writer task.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>add-step-write-shared-b</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-invalid-evidence:create-invalid-orchestration" OperationId="operation:create-invalid-evidence" PreviousStepId="operation-step:create-invalid-evidence:add-step-write-shared-b">
-      <Arguments>create --pipeline-workspace {workspace:invalid-pipeline.location} --output-xml {workspace:invalid-orchestration.location}</Arguments>
+      <Arguments>create --pipeline-workspace {mesh.root}\InvalidPipelineWS --output-xml {mesh.root}\InvalidOrchestrationWS</Arguments>
       <Description>Create the orchestration workspace from the invalid pipeline graph and expect diagnostic exit code 4.</Description>
       <Executable>meta-orchestration.exe</Executable>
       <ExpectedExitCode>4</ExpectedExitCode>
@@ -238,98 +238,98 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-invalid-evidence:inspect-invalid-orchestration" OperationId="operation:create-invalid-evidence" PreviousStepId="operation-step:create-invalid-evidence:create-invalid-orchestration">
-      <Arguments>inspect --workspace {workspace:invalid-orchestration.location}</Arguments>
+      <Arguments>inspect --workspace {mesh.root}\InvalidOrchestrationWS</Arguments>
       <Description>Inspect the invalid orchestration evidence workspace.</Description>
       <Executable>meta-orchestration.exe</Executable>
       <Name>inspect-invalid-orchestration</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-invalid-evidence:new-invalid-pipeline-workspace" OperationId="operation:create-invalid-evidence">
-      <Arguments>create --xml {workspace:invalid-pipeline.location}</Arguments>
+      <Arguments>create --xml {mesh.root}\InvalidPipelineWS</Arguments>
       <Description>Create the invalid MetaPipeline workspace.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>new-invalid-pipeline-workspace</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-policy-run-plan:add-pipeline-merge-shared-landing" OperationId="operation:create-policy-run-plan" PreviousStepId="operation-step:create-policy-run-plan:add-step-update-shared-landing">
-      <Arguments>add-pipeline --workspace {workspace:policy-pipeline.location} --name MergeSharedLanding</Arguments>
+      <Arguments>add-pipeline --workspace {mesh.root}\PolicyPipelineWS --name MergeSharedLanding</Arguments>
       <Description>Add the shared landing merge pipeline.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>add-pipeline-merge-shared-landing</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-policy-run-plan:add-pipeline-update-shared-landing" OperationId="operation:create-policy-run-plan" PreviousStepId="operation-step:create-policy-run-plan:new-policy-pipeline-workspace">
-      <Arguments>add-pipeline --workspace {workspace:policy-pipeline.location} --name UpdateSharedLanding</Arguments>
+      <Arguments>add-pipeline --workspace {mesh.root}\PolicyPipelineWS --name UpdateSharedLanding</Arguments>
       <Description>Add the shared landing update pipeline.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>add-pipeline-update-shared-landing</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-policy-run-plan:add-shared-landing-order" OperationId="operation:create-policy-run-plan" PreviousStepId="operation-step:create-policy-run-plan:list-policy-issues">
-      <Arguments>add-order --workspace {workspace:policy-orchestration.location} --from-task UpdateSharedLanding.update-shared-landing --to-task MergeSharedLanding.merge-shared-landing --object MetaOrchestrationCliIntegration.dbo.SharedLanding --reason "Update shared landing before merge."</Arguments>
+      <Arguments>add-order --workspace {mesh.root}\PolicyOrchestrationWS --from-task UpdateSharedLanding.update-shared-landing --to-task MergeSharedLanding.merge-shared-landing --object MetaOrchestrationCliIntegration.dbo.SharedLanding --reason "Update shared landing before merge."</Arguments>
       <Description>Add an explicit order between shared landing mutations.</Description>
       <Executable>meta-orchestration.exe</Executable>
       <Name>add-shared-landing-order</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-policy-run-plan:add-step-merge-shared-landing" OperationId="operation:create-policy-run-plan" PreviousStepId="operation-step:create-policy-run-plan:add-pipeline-merge-shared-landing">
-      <Arguments>add-step --workspace {workspace:policy-pipeline.location} --pipeline MergeSharedLanding --step-name merge-shared-landing --script merge_shared_landing --transform-workspace {workspace:transform.location} --binding-workspace {workspace:binding.location} --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL}</Arguments>
+      <Arguments>add-step --workspace {mesh.root}\PolicyPipelineWS --pipeline MergeSharedLanding --step-name merge-shared-landing --script merge_shared_landing --transform-workspace {workspace:transform.location} --binding-workspace {workspace:binding.location} --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL}</Arguments>
       <Description>Append the merge shared landing task.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>add-step-merge-shared-landing</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-policy-run-plan:add-step-update-shared-landing" OperationId="operation:create-policy-run-plan" PreviousStepId="operation-step:create-policy-run-plan:add-pipeline-update-shared-landing">
-      <Arguments>add-step --workspace {workspace:policy-pipeline.location} --pipeline UpdateSharedLanding --step-name update-shared-landing --script update_shared_landing --transform-workspace {workspace:transform.location} --binding-workspace {workspace:binding.location} --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL}</Arguments>
+      <Arguments>add-step --workspace {mesh.root}\PolicyPipelineWS --pipeline UpdateSharedLanding --step-name update-shared-landing --script update_shared_landing --transform-workspace {workspace:transform.location} --binding-workspace {workspace:binding.location} --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL}</Arguments>
       <Description>Append the update shared landing task.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>add-step-update-shared-landing</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-policy-run-plan:create-policy-orchestration" OperationId="operation:create-policy-run-plan" PreviousStepId="operation-step:create-policy-run-plan:add-step-merge-shared-landing">
-      <Arguments>create --pipeline-workspace {workspace:policy-pipeline.location} --output-xml {workspace:policy-orchestration.location}</Arguments>
+      <Arguments>create --pipeline-workspace {mesh.root}\PolicyPipelineWS --output-xml {mesh.root}\PolicyOrchestrationWS</Arguments>
       <Description>Create the policy orchestration workspace from the policy pipeline workspace.</Description>
       <Executable>meta-orchestration.exe</Executable>
       <Name>create-policy-orchestration</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-policy-run-plan:inspect-policy-orchestration" OperationId="operation:create-policy-run-plan" PreviousStepId="operation-step:create-policy-run-plan:create-policy-orchestration">
-      <Arguments>inspect --workspace {workspace:policy-orchestration.location}</Arguments>
+      <Arguments>inspect --workspace {mesh.root}\PolicyOrchestrationWS</Arguments>
       <Description>Inspect the created policy orchestration workspace.</Description>
       <Executable>meta-orchestration.exe</Executable>
       <Name>inspect-policy-orchestration</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-policy-run-plan:inspect-policy-run-plan" OperationId="operation:create-policy-run-plan" PreviousStepId="operation-step:create-policy-run-plan:refresh-policy-run-plan">
-      <Arguments>inspect-run-plan --workspace {workspace:policy-orchestration.location}</Arguments>
+      <Arguments>inspect-run-plan --workspace {mesh.root}\PolicyOrchestrationWS</Arguments>
       <Description>Inspect the policy run plan.</Description>
       <Executable>meta-orchestration.exe</Executable>
       <Name>inspect-policy-run-plan</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-policy-run-plan:list-policy-issues" OperationId="operation:create-policy-run-plan" PreviousStepId="operation-step:create-policy-run-plan:inspect-policy-orchestration">
-      <Arguments>list-issues --workspace {workspace:policy-orchestration.location}</Arguments>
+      <Arguments>list-issues --workspace {mesh.root}\PolicyOrchestrationWS</Arguments>
       <Description>List policy-related orchestration issues before adding explicit policy.</Description>
       <Executable>meta-orchestration.exe</Executable>
       <Name>list-policy-issues</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-policy-run-plan:new-policy-pipeline-workspace" OperationId="operation:create-policy-run-plan">
-      <Arguments>create --xml {workspace:policy-pipeline.location}</Arguments>
+      <Arguments>create --xml {mesh.root}\PolicyPipelineWS</Arguments>
       <Description>Create the policy MetaPipeline workspace.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>new-policy-pipeline-workspace</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-policy-run-plan:refresh-policy-run-plan" OperationId="operation:create-policy-run-plan" PreviousStepId="operation-step:create-policy-run-plan:set-shared-landing-lock-policy">
-      <Arguments>refresh-run-plan --workspace {workspace:policy-orchestration.location}</Arguments>
+      <Arguments>refresh-run-plan --workspace {mesh.root}\PolicyOrchestrationWS</Arguments>
       <Description>Refresh the policy orchestration run plan after explicit policy.</Description>
       <Executable>meta-orchestration.exe</Executable>
       <Name>refresh-policy-run-plan</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:create-policy-run-plan:set-shared-landing-lock-policy" OperationId="operation:create-policy-run-plan" PreviousStepId="operation-step:create-policy-run-plan:add-shared-landing-order">
-      <Arguments>set-lock-policy --workspace {workspace:policy-orchestration.location} --object MetaOrchestrationCliIntegration.dbo.SharedLanding --left-effect Mutation --right-effect Mutation --behavior serialize --reason "Shared landing mutations should not overlap."</Arguments>
+      <Arguments>set-lock-policy --workspace {mesh.root}\PolicyOrchestrationWS --object MetaOrchestrationCliIntegration.dbo.SharedLanding --left-effect Mutation --right-effect Mutation --behavior serialize --reason "Shared landing mutations should not overlap."</Arguments>
       <Description>Declare serialization policy for shared landing mutations.</Description>
       <Executable>meta-orchestration.exe</Executable>
       <Name>set-shared-landing-lock-policy</Name>
@@ -342,71 +342,76 @@
       <Name>execute-orchestration</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
+    <OperationStep Id="operation-step:execute-complete:verify-exact-results" OperationId="operation:execute-complete" PreviousStepId="operation-step:execute-complete:execute-orchestration">
+      <Arguments>execute --connection-env {env:META_ORCHESTRATION_DEMO_SQL} --file verify-complete.sql</Arguments>
+      <Executable>meta-sql.exe</Executable>
+      <Name>verify-exact-results</Name>
+    </OperationStep>
     <OperationStep Id="operation-step:execute-failure-branch:add-failure-dependency" OperationId="operation:execute-failure-branch" PreviousStepId="operation-step:execute-failure-branch:create-failure-orchestration">
-      <Arguments>add-dependency --workspace {workspace:failure-orchestration.location} --from-task BrokenStageCustomer.load-stage-customer --to-task FailureHandler.record-failure --condition failure --reason "Run the modeled failure dependency branch."</Arguments>
+      <Arguments>add-dependency --workspace {mesh.root}\FailureOrchestrationWS --from-task BrokenStageCustomer.load-stage-customer --to-task FailureHandler.record-failure --condition failure --reason "Run the modeled failure dependency branch."</Arguments>
       <Description>Add the failure dependency branch.</Description>
       <Executable>meta-orchestration.exe</Executable>
       <Name>add-failure-dependency</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:execute-failure-branch:add-pipeline-broken-stage-customer" OperationId="operation:execute-failure-branch" PreviousStepId="operation-step:execute-failure-branch:new-failure-pipeline-workspace">
-      <Arguments>add-pipeline --workspace {workspace:failure-pipeline.location} --name BrokenStageCustomer</Arguments>
+      <Arguments>add-pipeline --workspace {mesh.root}\FailurePipelineWS --name BrokenStageCustomer</Arguments>
       <Description>Add the broken stage customer pipeline.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>add-pipeline-broken-stage-customer</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:execute-failure-branch:add-pipeline-failure-handler" OperationId="operation:execute-failure-branch" PreviousStepId="operation-step:execute-failure-branch:add-step-independent-followup">
-      <Arguments>add-pipeline --workspace {workspace:failure-pipeline.location} --name FailureHandler</Arguments>
+      <Arguments>add-pipeline --workspace {mesh.root}\FailurePipelineWS --name FailureHandler</Arguments>
       <Description>Add the failure handler pipeline.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>add-pipeline-failure-handler</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:execute-failure-branch:add-pipeline-independent-failure-path" OperationId="operation:execute-failure-branch" PreviousStepId="operation-step:execute-failure-branch:add-step-broken-stage-customer">
-      <Arguments>add-pipeline --workspace {workspace:failure-pipeline.location} --name IndependentFailurePath</Arguments>
+      <Arguments>add-pipeline --workspace {mesh.root}\FailurePipelineWS --name IndependentFailurePath</Arguments>
       <Description>Add the independent failure path pipeline.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>add-pipeline-independent-failure-path</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:execute-failure-branch:add-step-broken-stage-customer" OperationId="operation:execute-failure-branch" PreviousStepId="operation-step:execute-failure-branch:add-pipeline-broken-stage-customer">
-      <Arguments>add-step --workspace {workspace:failure-pipeline.location} --pipeline BrokenStageCustomer --step-name load-stage-customer --script dbo.v_stage_customer --transform-workspace {workspace:transform.location} --binding-workspace {workspace:binding.location} --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target dbo.StageCustomer</Arguments>
+      <Arguments>add-step --workspace {mesh.root}\FailurePipelineWS --pipeline BrokenStageCustomer --step-name load-stage-customer --script dbo.v_stage_customer --transform-workspace {workspace:transform.location} --binding-workspace {workspace:binding.location} --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target-connection-env {env:META_ORCHESTRATION_DEMO_SQL} --target dbo.StageCustomer</Arguments>
       <Description>Append the broken stage customer task.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>add-step-broken-stage-customer</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:execute-failure-branch:add-step-independent-followup" OperationId="operation:execute-failure-branch" PreviousStepId="operation-step:execute-failure-branch:add-step-independent-seed">
-      <Arguments>add-step --workspace {workspace:failure-pipeline.location} --pipeline IndependentFailurePath --step-name independent-followup --script independent_failure_followup --transform-workspace {workspace:transform.location} --binding-workspace {workspace:binding.location} --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL}</Arguments>
+      <Arguments>add-step --workspace {mesh.root}\FailurePipelineWS --pipeline IndependentFailurePath --step-name independent-followup --script independent_failure_followup --transform-workspace {workspace:transform.location} --binding-workspace {workspace:binding.location} --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL}</Arguments>
       <Description>Append the independent follow-up task.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>add-step-independent-followup</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:execute-failure-branch:add-step-independent-seed" OperationId="operation:execute-failure-branch" PreviousStepId="operation-step:execute-failure-branch:add-pipeline-independent-failure-path">
-      <Arguments>add-step --workspace {workspace:failure-pipeline.location} --pipeline IndependentFailurePath --step-name independent-seed --script independent_failure_seed --transform-workspace {workspace:transform.location} --binding-workspace {workspace:binding.location} --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL}</Arguments>
+      <Arguments>add-step --workspace {mesh.root}\FailurePipelineWS --pipeline IndependentFailurePath --step-name independent-seed --script independent_failure_seed --transform-workspace {workspace:transform.location} --binding-workspace {workspace:binding.location} --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL}</Arguments>
       <Description>Append the independent seed task.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>add-step-independent-seed</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:execute-failure-branch:add-step-record-failure" OperationId="operation:execute-failure-branch" PreviousStepId="operation-step:execute-failure-branch:add-pipeline-failure-handler">
-      <Arguments>add-step --workspace {workspace:failure-pipeline.location} --pipeline FailureHandler --step-name record-failure --script failure_handler --transform-workspace {workspace:transform.location} --binding-workspace {workspace:binding.location} --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL}</Arguments>
+      <Arguments>add-step --workspace {mesh.root}\FailurePipelineWS --pipeline FailureHandler --step-name record-failure --script failure_handler --transform-workspace {workspace:transform.location} --binding-workspace {workspace:binding.location} --execution-connection-env {env:META_ORCHESTRATION_DEMO_SQL}</Arguments>
       <Description>Append the failure handler task.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>add-step-record-failure</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:execute-failure-branch:allow-failure-log-append" OperationId="operation:execute-failure-branch" PreviousStepId="operation-step:execute-failure-branch:add-failure-dependency">
-      <Arguments>allow-concurrent-append --workspace {workspace:failure-orchestration.location} --object MetaOrchestrationCliIntegration.dbo.OrchestrationFailureLog --reason "Failure demo log rows are append-only."</Arguments>
+      <Arguments>allow-concurrent-append --workspace {mesh.root}\FailureOrchestrationWS --object MetaOrchestrationCliIntegration.dbo.OrchestrationFailureLog --reason "Failure demo log rows are append-only."</Arguments>
       <Description>Allow concurrent append writes to the failure log.</Description>
       <Executable>meta-orchestration.exe</Executable>
       <Name>allow-failure-log-append</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:execute-failure-branch:create-failure-orchestration" OperationId="operation:execute-failure-branch" PreviousStepId="operation-step:execute-failure-branch:add-step-record-failure">
-      <Arguments>create --pipeline-workspace {workspace:failure-pipeline.location} --output-xml {workspace:failure-orchestration.location}</Arguments>
+      <Arguments>create --pipeline-workspace {mesh.root}\FailurePipelineWS --output-xml {mesh.root}\FailureOrchestrationWS</Arguments>
       <Description>Create the failure-scenario orchestration workspace.</Description>
       <Executable>meta-orchestration.exe</Executable>
       <Name>create-failure-orchestration</Name>
@@ -419,7 +424,7 @@
       <Name>drop-raw-customer</Name>
     </OperationStep>
     <OperationStep Id="operation-step:execute-failure-branch:execute-failure-orchestration" OperationId="operation:execute-failure-branch" PreviousStepId="operation-step:execute-failure-branch:drop-raw-customer">
-      <Arguments>execute --workspace {workspace:failure-orchestration.location} --pipeline-workspace {workspace:failure-pipeline.location} --pipeline-db-connection-env {env:META_ORCHESTRATION_DEMO_SQL}</Arguments>
+      <Arguments>execute --workspace {mesh.root}\FailureOrchestrationWS --pipeline-workspace {mesh.root}\FailurePipelineWS --pipeline-db-connection-env {env:META_ORCHESTRATION_DEMO_SQL}</Arguments>
       <Description>Execute the failure scenario and expect command failure diagnostics.</Description>
       <Executable>meta-orchestration.exe</Executable>
       <ExpectedExitCode>4</ExpectedExitCode>
@@ -427,21 +432,21 @@
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:execute-failure-branch:inspect-failure-run-plan" OperationId="operation:execute-failure-branch" PreviousStepId="operation-step:execute-failure-branch:refresh-failure-run-plan">
-      <Arguments>inspect-run-plan --workspace {workspace:failure-orchestration.location}</Arguments>
+      <Arguments>inspect-run-plan --workspace {mesh.root}\FailureOrchestrationWS</Arguments>
       <Description>Inspect the failure scenario run plan.</Description>
       <Executable>meta-orchestration.exe</Executable>
       <Name>inspect-failure-run-plan</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:execute-failure-branch:new-failure-pipeline-workspace" OperationId="operation:execute-failure-branch">
-      <Arguments>create --xml {workspace:failure-pipeline.location}</Arguments>
+      <Arguments>create --xml {mesh.root}\FailurePipelineWS</Arguments>
       <Description>Create the failure MetaPipeline workspace.</Description>
       <Executable>meta-pipeline.exe</Executable>
       <Name>new-failure-pipeline-workspace</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:execute-failure-branch:refresh-failure-run-plan" OperationId="operation:execute-failure-branch" PreviousStepId="operation-step:execute-failure-branch:allow-failure-log-append">
-      <Arguments>refresh-run-plan --workspace {workspace:failure-orchestration.location}</Arguments>
+      <Arguments>refresh-run-plan --workspace {mesh.root}\FailureOrchestrationWS</Arguments>
       <Description>Refresh the failure scenario run plan.</Description>
       <Executable>meta-orchestration.exe</Executable>
       <Name>refresh-failure-run-plan</Name>
@@ -481,7 +486,7 @@
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:prepare-shared-workspaces:bind-transforms" OperationId="operation:prepare-shared-workspaces" PreviousStepId="operation-step:prepare-shared-workspaces:import-independent-failure-followup">
-      <Arguments>bind --transform-workspace "{workspace:transform.location}" --source-schema "{workspace:schema.location}" --target-schema "{workspace:schema.location}" --execute-system MetaOrchestrationCliIntegration --output-xml "{workspace:binding.location}"</Arguments>
+      <Arguments>bind --transform-workspace "{mesh.root}\TransformWS" --source-schema "{mesh.root}\SchemaWS" --target-schema "{mesh.root}\SchemaWS" --execute-system MetaOrchestrationCliIntegration --output-xml "{mesh.root}\BindingWS" --ignore-target-columns-if-present LoggedAtUtc</Arguments>
       <Description>Bind imported transforms against the demo schema.</Description>
       <Executable>meta-transform-binding.exe</Executable>
       <Name>bind-transforms</Name>
@@ -502,119 +507,119 @@
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:prepare-shared-workspaces:extract-schema" OperationId="operation:prepare-shared-workspaces" PreviousStepId="operation-step:prepare-shared-workspaces:create-pipeline-db">
-      <Arguments>extract sqlserver --output-xml "{workspace:schema.location}" --connection-env {env:META_ORCHESTRATION_DEMO_SQL} --system MetaOrchestrationCliIntegration --all-schemas --all-tables</Arguments>
+      <Arguments>extract sqlserver --output-xml "{mesh.root}\SchemaWS" --connection-env {env:META_ORCHESTRATION_DEMO_SQL} --system MetaOrchestrationCliIntegration --all-schemas --all-tables</Arguments>
       <Description>Extract the demo SQL Server database into a MetaSchema workspace.</Description>
       <Executable>meta-schema.exe</Executable>
       <Name>extract-schema</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:prepare-shared-workspaces:import-dim-customer" OperationId="operation:prepare-shared-workspaces" PreviousStepId="operation-step:prepare-shared-workspaces:import-stage-order">
-      <Arguments>from sql-file --path TransformScripts\dim_customer.sql --target dbo.DimCustomer --workspace "{workspace:transform.location}"</Arguments>
+      <Arguments>from sql-file --path TransformScripts\dim_customer.sql --target dbo.DimCustomer --workspace "{mesh.root}\TransformWS"</Arguments>
       <Description>Import the dimension customer transform.</Description>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-dim-customer</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:prepare-shared-workspaces:import-fact-sales" OperationId="operation:prepare-shared-workspaces" PreviousStepId="operation-step:prepare-shared-workspaces:import-dim-customer">
-      <Arguments>from sql-file --path TransformScripts\fact_sales.sql --target dbo.FactSales --workspace "{workspace:transform.location}"</Arguments>
+      <Arguments>from sql-file --path TransformScripts\fact_sales.sql --target dbo.FactSales --workspace "{mesh.root}\TransformWS"</Arguments>
       <Description>Import the fact sales transform.</Description>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-fact-sales</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:prepare-shared-workspaces:import-failure-handler" OperationId="operation:prepare-shared-workspaces" PreviousStepId="operation-step:prepare-shared-workspaces:import-merge-shared-landing">
-      <Arguments>from sql-file --path TransformScripts\failure_handler.sql --workspace "{workspace:transform.location}"</Arguments>
+      <Arguments>from sql-file --path TransformScripts\failure_handler.sql --workspace "{mesh.root}\TransformWS"</Arguments>
       <Description>Import the failure handler transform.</Description>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-failure-handler</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:prepare-shared-workspaces:import-independent-failure-followup" OperationId="operation:prepare-shared-workspaces" PreviousStepId="operation-step:prepare-shared-workspaces:import-independent-failure-seed">
-      <Arguments>from sql-file --path TransformScripts\independent_failure_followup.sql --workspace "{workspace:transform.location}"</Arguments>
+      <Arguments>from sql-file --path TransformScripts\independent_failure_followup.sql --workspace "{mesh.root}\TransformWS"</Arguments>
       <Description>Import the independent failure follow-up transform.</Description>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-independent-failure-followup</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:prepare-shared-workspaces:import-independent-failure-seed" OperationId="operation:prepare-shared-workspaces" PreviousStepId="operation-step:prepare-shared-workspaces:import-failure-handler">
-      <Arguments>from sql-file --path TransformScripts\independent_failure_seed.sql --workspace "{workspace:transform.location}"</Arguments>
+      <Arguments>from sql-file --path TransformScripts\independent_failure_seed.sql --workspace "{mesh.root}\TransformWS"</Arguments>
       <Description>Import the independent failure seed transform.</Description>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-independent-failure-seed</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:prepare-shared-workspaces:import-merge-shared-landing" OperationId="operation:prepare-shared-workspaces" PreviousStepId="operation-step:prepare-shared-workspaces:import-update-shared-landing">
-      <Arguments>from sql-file --path TransformScripts\merge_shared_landing.sql --workspace "{workspace:transform.location}"</Arguments>
+      <Arguments>from sql-file --path TransformScripts\merge_shared_landing.sql --workspace "{mesh.root}\TransformWS"</Arguments>
       <Description>Import the shared landing merge transform.</Description>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-merge-shared-landing</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:prepare-shared-workspaces:import-private-scratch-cleanup" OperationId="operation:prepare-shared-workspaces" PreviousStepId="operation-step:prepare-shared-workspaces:import-refresh-rates-load">
-      <Arguments>from sql-file --path TransformScripts\private_scratch_cleanup.sql --workspace "{workspace:transform.location}"</Arguments>
+      <Arguments>from sql-file --path TransformScripts\private_scratch_cleanup.sql --workspace "{mesh.root}\TransformWS"</Arguments>
       <Description>Import the private scratch cleanup transform.</Description>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-private-scratch-cleanup</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:prepare-shared-workspaces:import-read-shared-stage" OperationId="operation:prepare-shared-workspaces" PreviousStepId="operation-step:prepare-shared-workspaces:import-truncate-shared-stage">
-      <Arguments>from sql-file --path TransformScripts\read_shared_stage.sql --target dbo.DimCustomer --workspace "{workspace:transform.location}"</Arguments>
+      <Arguments>from sql-file --path TransformScripts\read_shared_stage.sql --target dbo.DimCustomer --workspace "{mesh.root}\TransformWS"</Arguments>
       <Description>Import the shared stage read transform used by policy scenarios.</Description>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-read-shared-stage</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:prepare-shared-workspaces:import-refresh-rates-load" OperationId="operation:prepare-shared-workspaces" PreviousStepId="operation-step:prepare-shared-workspaces:import-refresh-rates-truncate">
-      <Arguments>from sql-file --path TransformScripts\refresh_rates_load.sql --target dbo.WorkExchangeRate --workspace "{workspace:transform.location}"</Arguments>
+      <Arguments>from sql-file --path TransformScripts\refresh_rates_load.sql --target dbo.WorkExchangeRate --workspace "{mesh.root}\TransformWS"</Arguments>
       <Description>Import the exchange-rate load transform.</Description>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-refresh-rates-load</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:prepare-shared-workspaces:import-refresh-rates-truncate" OperationId="operation:prepare-shared-workspaces" PreviousStepId="operation-step:prepare-shared-workspaces:import-fact-sales">
-      <Arguments>from sql-file --path TransformScripts\refresh_rates_truncate.sql --workspace "{workspace:transform.location}"</Arguments>
+      <Arguments>from sql-file --path TransformScripts\refresh_rates_truncate.sql --workspace "{mesh.root}\TransformWS"</Arguments>
       <Description>Import the exchange-rate truncate transform.</Description>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-refresh-rates-truncate</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:prepare-shared-workspaces:import-shared-writer-a" OperationId="operation:prepare-shared-workspaces" PreviousStepId="operation-step:prepare-shared-workspaces:import-read-shared-stage">
-      <Arguments>from sql-file --path TransformScripts\shared_writer_a.sql --target dbo.SharedLanding --workspace "{workspace:transform.location}"</Arguments>
+      <Arguments>from sql-file --path TransformScripts\shared_writer_a.sql --target dbo.SharedLanding --workspace "{mesh.root}\TransformWS"</Arguments>
       <Description>Import the first shared landing writer.</Description>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-shared-writer-a</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:prepare-shared-workspaces:import-shared-writer-b" OperationId="operation:prepare-shared-workspaces" PreviousStepId="operation-step:prepare-shared-workspaces:import-shared-writer-a">
-      <Arguments>from sql-file --path TransformScripts\shared_writer_b.sql --target dbo.SharedLanding --workspace "{workspace:transform.location}"</Arguments>
+      <Arguments>from sql-file --path TransformScripts\shared_writer_b.sql --target dbo.SharedLanding --workspace "{mesh.root}\TransformWS"</Arguments>
       <Description>Import the second shared landing writer.</Description>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-shared-writer-b</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:prepare-shared-workspaces:import-stage-customer" OperationId="operation:prepare-shared-workspaces" PreviousStepId="operation-step:prepare-shared-workspaces:extract-schema">
-      <Arguments>from sql-file --path TransformScripts\stage_customer.sql --target dbo.StageCustomer --output-xml "{workspace:transform.location}"</Arguments>
+      <Arguments>from sql-file --path TransformScripts\stage_customer.sql --target dbo.StageCustomer --output-xml "{mesh.root}\TransformWS"</Arguments>
       <Description>Create the MetaTransformScript workspace with the first transform.</Description>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-stage-customer</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:prepare-shared-workspaces:import-stage-order" OperationId="operation:prepare-shared-workspaces" PreviousStepId="operation-step:prepare-shared-workspaces:import-stage-customer">
-      <Arguments>from sql-file --path TransformScripts\stage_order.sql --target dbo.StageOrder --workspace "{workspace:transform.location}"</Arguments>
+      <Arguments>from sql-file --path TransformScripts\stage_order.sql --target dbo.StageOrder --workspace "{mesh.root}\TransformWS"</Arguments>
       <Description>Import the stage order transform.</Description>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-stage-order</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:prepare-shared-workspaces:import-truncate-shared-stage" OperationId="operation:prepare-shared-workspaces" PreviousStepId="operation-step:prepare-shared-workspaces:import-private-scratch-cleanup">
-      <Arguments>from sql-file --path TransformScripts\truncate_shared_stage.sql --workspace "{workspace:transform.location}"</Arguments>
+      <Arguments>from sql-file --path TransformScripts\truncate_shared_stage.sql --workspace "{mesh.root}\TransformWS"</Arguments>
       <Description>Import the shared stage truncate transform used by policy scenarios.</Description>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-truncate-shared-stage</Name>
       <WorkingDirectory>{mesh.root}</WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:prepare-shared-workspaces:import-update-shared-landing" OperationId="operation:prepare-shared-workspaces" PreviousStepId="operation-step:prepare-shared-workspaces:import-shared-writer-b">
-      <Arguments>from sql-file --path TransformScripts\update_shared_landing.sql --workspace "{workspace:transform.location}"</Arguments>
+      <Arguments>from sql-file --path TransformScripts\update_shared_landing.sql --workspace "{mesh.root}\TransformWS"</Arguments>
       <Description>Import the shared landing update transform.</Description>
       <Executable>meta-transform-script.exe</Executable>
       <Name>import-update-shared-landing</Name>

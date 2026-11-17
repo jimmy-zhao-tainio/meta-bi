@@ -4,5 +4,5 @@ INSERT INTO dbo.OrchestrationFailureLog
     )
 VALUES
     (
-        'Independent failure path seed'
+        N'Independent failure path seed'
     );

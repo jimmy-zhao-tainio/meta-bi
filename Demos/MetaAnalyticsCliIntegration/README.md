@@ -17,9 +17,14 @@ defaults to the current directory:
 cd MetaAnalyticsCliIntegration.MetaMesh
 meta-mesh show
 meta-mesh run --operation cleanup
+meta-mesh run --operation prepare-workspaces
 meta-mesh run --operation author-analytics-model
 ```
 
 ## Output
+
+`prepare-workspaces` creates the empty analytics workspace. The authoring operation
+then populates that existing workspace. Workspace references describe inputs
+available when an operation starts; creation uses an output path under the mesh root.
 
 - `MetaAnalyticsCliIntegrationWorkspace`

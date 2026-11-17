@@ -21,11 +21,6 @@
       <ModelName>MetaSchema</ModelName>
       <Name>schema</Name>
     </Workspace>
-    <Workspace Id="workspace:source-business-data-vault-mesh" MeshId="mesh:default">
-      <Description>Source Business Data Vault demo mesh used to prepare the source SQL database.</Description>
-      <ModelName>MetaMesh</ModelName>
-      <Name>source-business-data-vault-mesh</Name>
-    </Workspace>
     <Workspace Id="workspace:sql" MeshId="mesh:default">
       <Description>Generated MetaSql workspace produced from the raw data vault model.</Description>
       <ModelName>MetaSql</ModelName>

@@ -4,5 +4,5 @@ INSERT INTO dbo.OrchestrationFailureLog
     )
 VALUES
     (
-        'Independent failure path followup'
+        N'Independent failure path followup'
     );

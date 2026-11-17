@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <OperationList>
+    <Operation Id="operation:cleanup" MeshId="mesh:default">
+      <Name>cleanup</Name>
+    </Operation>
+    <Operation Id="operation:convert-and-execute" MeshId="mesh:default">
+      <Name>convert-and-execute</Name>
+    </Operation>
+    <Operation Id="operation:prepare-workspaces" MeshId="mesh:default">
+      <Name>prepare-workspaces</Name>
+    </Operation>
+  </OperationList>
+</MetaMesh>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <WorkspaceList>
+    <Workspace Id="workspace:binding" MeshId="mesh:default">
+      <ModelName>MetaTransformBinding</ModelName>
+      <Name>binding</Name>
+    </Workspace>
+    <Workspace Id="workspace:catalog" MeshId="mesh:default">
+      <ModelName>MetaDataType</ModelName>
+      <Name>catalog</Name>
+    </Workspace>
+    <Workspace Id="workspace:conversion-contract" MeshId="mesh:default">
+      <ModelName>MetaDataTypeConversion</ModelName>
+      <Name>conversion-contract</Name>
+    </Workspace>
+    <Workspace Id="workspace:conversions" MeshId="mesh:default">
+      <ModelName>MetaDataTypeConversion</ModelName>
+      <Name>conversions</Name>
+    </Workspace>
+    <Workspace Id="workspace:converted" MeshId="mesh:default">
+      <ModelName>MetaTransformScript</ModelName>
+      <Name>converted</Name>
+    </Workspace>
+    <Workspace Id="workspace:input" MeshId="mesh:default">
+      <ModelName>MetaTransformScript</ModelName>
+      <Name>input</Name>
+    </Workspace>
+    <Workspace Id="workspace:pipeline" MeshId="mesh:default">
+      <ModelName>MetaPipeline</ModelName>
+      <Name>pipeline</Name>
+    </Workspace>
+    <Workspace Id="workspace:source-schema" MeshId="mesh:default">
+      <ModelName>MetaSchema</ModelName>
+      <Name>source-schema</Name>
+    </Workspace>
+    <Workspace Id="workspace:target-schema" MeshId="mesh:default">
+      <ModelName>MetaSchema</ModelName>
+      <Name>target-schema</Name>
+    </Workspace>
+    <Workspace Id="workspace:variant" MeshId="mesh:default">
+      <ModelName>MetaTransformScript</ModelName>
+      <Name>variant</Name>
+    </Workspace>
+    <Workspace Id="workspace:variant-binding" MeshId="mesh:default">
+      <ModelName>MetaTransformBinding</ModelName>
+      <Name>variant-binding</Name>
+    </Workspace>
+    <Workspace Id="workspace:variant-pipeline" MeshId="mesh:default">
+      <ModelName>MetaPipeline</ModelName>
+      <Name>variant-pipeline</Name>
+    </Workspace>
+  </WorkspaceList>
+</MetaMesh>

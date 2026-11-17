@@ -1,0 +1,13 @@
+/Catalog/
+/Conversions/
+/SourceSchema/
+/TargetSchema/
+/InputTransforms/
+/CastTransforms/
+/CastBinding/
+/CastPipeline/
+/VariantTransforms/
+/VariantBinding/
+/VariantPipeline/
+/RejectedBinding/
+/*.generated.sql

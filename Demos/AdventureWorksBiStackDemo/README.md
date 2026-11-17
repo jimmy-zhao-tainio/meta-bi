@@ -6,7 +6,7 @@ scripts have regenerated schema-aware Binding against the extracted SQL Server
 contracts; conversion-graph reachability cannot approve an unconverted expression.
 
 The [conversion alignment](CONVERSION-REVIEW.md) explains the corrected defaults,
-load casts, catalog ownership and the remaining MetaMesh output-recovery limitation.
+load casts, catalog ownership and the mesh's input/output path conventions.
 
 ## A complete BI stack built by an agent
 
@@ -111,10 +111,14 @@ generation accepts separate catalog and conversion workspace options; this demo
 currently omits those options and uses the packaged workspaces. It authors its required
 casts directly in load SQL, so it does not need an `apply-conversions` step.
 
-MetaMesh currently requires referenced output workspaces to exist during preflight.
-The checked-in generated workspaces satisfy that requirement. A missing output
-after failed generation can prevent a retry; see the recovery limitation in the
-alignment note. Bootstrap from absent outputs is not verified by this demo.
+Workspace references identify inputs that must exist when an operation starts.
+Operations address their generated destinations through paths under the mesh root,
+so checked-in generated outputs are not prerequisites for regeneration. Run the
+operations in the documented order so each consuming operation has its inputs.
+
+Warehouse deployment selects `deploy-plan --schema dw`. The manifest records this
+scope and deployment checks the same scoped live fingerprint. Separately deployed
+`dq` views are preserved. Omitting `--schema` retains database-wide reconciliation.
 
 ## Run and verify
 
@@ -179,8 +183,8 @@ operation. Independent source comparisons found zero missing, extra or changed
 selected business rows across the eight reviewed warehouse outputs, including
 binary comparison of text. All 120 scripts were rebound against the selected
 catalog, and the latest task evidence contains 53, 47 and 20 successful tasks
-for the three pipelines. These are verification of the loaded SQL stack;
-Analysis Services was not rerun.
+for the three pipelines. The demo mesh tour repeated the complete SQL load,
+stack verification, Tabular deployment and full processing on local services.
 
 ## Tabular runtime
 
@@ -195,8 +199,8 @@ meta-mesh run --operation process-tabular
 
 The deployment operation also grants the local `NT Service\MSOLAP$TABULAR` service account read access to `AdventureWorksAnalytics`. The verified deployment contains 11 tables, 72 columns, 11 measures, and 19 relationships and completes a full refresh on `.\TABULAR`. A direct model query returns Sales Amount `109846381.425`, Total Due `123216786.1159`, and Quota Amount `95714000`, matching the relational verification.
 
-These Tabular results are the recorded earlier deployment. Analysis Services
-deployment and processing were not repeated during the current SQL alignment.
+The demo mesh tour repeated deployment and full processing. Independent queries
+compare these three measures with their source SQL totals.
 
 ## Cleanup
 

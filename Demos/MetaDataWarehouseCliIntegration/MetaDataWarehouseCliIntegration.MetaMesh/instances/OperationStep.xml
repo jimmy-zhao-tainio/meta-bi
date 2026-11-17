@@ -2,217 +2,217 @@
 <MetaMesh>
   <OperationStepList>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:add-calendar-date" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:add-calendar-date-key">
-      <Arguments>add-dimension-attribute --workspace "{workspace:warehouse.location}" --id CalendarDate --dimension Date --name CalendarDate --data-type-id meta:type:Date</Arguments>
+      <Arguments>add-dimension-attribute --workspace "{mesh.root}\MetaDataWarehouseCliIntegrationWorkspace" --id CalendarDate --dimension Date --name CalendarDate --data-type-id meta:type:Date</Arguments>
       <Executable>meta-data-warehouse.exe</Executable>
       <Name>add-calendar-date</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:add-calendar-date-key" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:add-date-dimension">
-      <Arguments>add-dimension-attribute --workspace "{workspace:warehouse.location}" --id CalendarDateKey --dimension Date --name CalendarDateKey --data-type-id meta:type:Int32</Arguments>
+      <Arguments>add-dimension-attribute --workspace "{mesh.root}\MetaDataWarehouseCliIntegrationWorkspace" --id CalendarDateKey --dimension Date --name CalendarDateKey --data-type-id meta:type:Int32</Arguments>
       <Executable>meta-data-warehouse.exe</Executable>
       <Name>add-calendar-date-key</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:add-customer-business-key" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:add-customer-tier">
-      <Arguments>add-dimension-business-key --workspace "{workspace:warehouse.location}" --id CustomerBusinessKey --dimension Customer --name CustomerBusinessKey</Arguments>
+      <Arguments>add-dimension-business-key --workspace "{mesh.root}\MetaDataWarehouseCliIntegrationWorkspace" --id CustomerBusinessKey --dimension Customer --name CustomerBusinessKey</Arguments>
       <Executable>meta-data-warehouse.exe</Executable>
       <Name>add-customer-business-key</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:add-customer-business-key-part" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:add-customer-business-key">
-      <Arguments>add-dimension-business-key-part --workspace "{workspace:warehouse.location}" --id CustomerBusinessKeyPart --business-key CustomerBusinessKey --attribute CustomerNumber</Arguments>
+      <Arguments>add-dimension-business-key-part --workspace "{mesh.root}\MetaDataWarehouseCliIntegrationWorkspace" --id CustomerBusinessKeyPart --business-key CustomerBusinessKey --attribute CustomerNumber</Arguments>
       <Executable>meta-data-warehouse.exe</Executable>
       <Name>add-customer-business-key-part</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:add-customer-dimension" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:add-enterprise-date">
-      <Arguments>add-dimension --workspace "{workspace:warehouse.location}" --id Customer --warehouse Commerce --name Customer</Arguments>
+      <Arguments>add-dimension --workspace "{mesh.root}\MetaDataWarehouseCliIntegrationWorkspace" --id Customer --warehouse Commerce --name Customer</Arguments>
       <Executable>meta-data-warehouse.exe</Executable>
       <Name>add-customer-dimension</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:add-customer-history" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:add-customer-business-key-part">
-      <Arguments>add-slowly-changing-dimension --workspace "{workspace:warehouse.location}" --id CustomerHistory --dimension Customer --name CustomerHistory</Arguments>
+      <Arguments>add-slowly-changing-dimension --workspace "{mesh.root}\MetaDataWarehouseCliIntegrationWorkspace" --id CustomerHistory --dimension Customer --name CustomerHistory</Arguments>
       <Executable>meta-data-warehouse.exe</Executable>
       <Name>add-customer-history</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:add-customer-history-name" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:add-customer-history">
-      <Arguments>add-type2-dimension-attribute --workspace "{workspace:warehouse.location}" --id CustomerHistoryName --slowly-changing-dimension CustomerHistory --attribute CustomerName</Arguments>
+      <Arguments>add-type2-dimension-attribute --workspace "{mesh.root}\MetaDataWarehouseCliIntegrationWorkspace" --id CustomerHistoryName --slowly-changing-dimension CustomerHistory --attribute CustomerName</Arguments>
       <Executable>meta-data-warehouse.exe</Executable>
       <Name>add-customer-history-name</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:add-customer-history-tier" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:add-customer-history-name">
-      <Arguments>add-type1-dimension-attribute --workspace "{workspace:warehouse.location}" --id CustomerHistoryTier --slowly-changing-dimension CustomerHistory --attribute CustomerTier</Arguments>
+      <Arguments>add-type1-dimension-attribute --workspace "{mesh.root}\MetaDataWarehouseCliIntegrationWorkspace" --id CustomerHistoryTier --slowly-changing-dimension CustomerHistory --attribute CustomerTier</Arguments>
       <Executable>meta-data-warehouse.exe</Executable>
       <Name>add-customer-history-tier</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:add-customer-name" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:add-customer-number">
-      <Arguments>add-dimension-attribute --workspace "{workspace:warehouse.location}" --id CustomerName --dimension Customer --name CustomerName --data-type-id meta:type:String</Arguments>
+      <Arguments>add-dimension-attribute --workspace "{mesh.root}\MetaDataWarehouseCliIntegrationWorkspace" --id CustomerName --dimension Customer --name CustomerName --data-type-id meta:type:String</Arguments>
       <Executable>meta-data-warehouse.exe</Executable>
       <Name>add-customer-name</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:add-customer-number" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:add-customer-dimension">
-      <Arguments>add-dimension-attribute --workspace "{workspace:warehouse.location}" --id CustomerNumber --dimension Customer --name CustomerNumber --data-type-id meta:type:String</Arguments>
+      <Arguments>add-dimension-attribute --workspace "{mesh.root}\MetaDataWarehouseCliIntegrationWorkspace" --id CustomerNumber --dimension Customer --name CustomerNumber --data-type-id meta:type:String</Arguments>
       <Executable>meta-data-warehouse.exe</Executable>
       <Name>add-customer-number</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:add-customer-tier" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:add-customer-name">
-      <Arguments>add-dimension-attribute --workspace "{workspace:warehouse.location}" --id CustomerTier --dimension Customer --name CustomerTier --data-type-id meta:type:String</Arguments>
+      <Arguments>add-dimension-attribute --workspace "{mesh.root}\MetaDataWarehouseCliIntegrationWorkspace" --id CustomerTier --dimension Customer --name CustomerTier --data-type-id meta:type:String</Arguments>
       <Executable>meta-data-warehouse.exe</Executable>
       <Name>add-customer-tier</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:add-date-business-key" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:add-calendar-date">
-      <Arguments>add-dimension-business-key --workspace "{workspace:warehouse.location}" --id DateBusinessKey --dimension Date --name DateBusinessKey</Arguments>
+      <Arguments>add-dimension-business-key --workspace "{mesh.root}\MetaDataWarehouseCliIntegrationWorkspace" --id DateBusinessKey --dimension Date --name DateBusinessKey</Arguments>
       <Executable>meta-data-warehouse.exe</Executable>
       <Name>add-date-business-key</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:add-date-business-key-part" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:add-date-business-key">
-      <Arguments>add-dimension-business-key-part --workspace "{workspace:warehouse.location}" --id DateBusinessKeyPart --business-key DateBusinessKey --attribute CalendarDateKey</Arguments>
+      <Arguments>add-dimension-business-key-part --workspace "{mesh.root}\MetaDataWarehouseCliIntegrationWorkspace" --id DateBusinessKeyPart --business-key DateBusinessKey --attribute CalendarDateKey</Arguments>
       <Executable>meta-data-warehouse.exe</Executable>
       <Name>add-date-business-key-part</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:add-date-dimension" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:add-warehouse">
-      <Arguments>add-dimension --workspace "{workspace:warehouse.location}" --id Date --warehouse Commerce --name Date</Arguments>
+      <Arguments>add-dimension --workspace "{mesh.root}\MetaDataWarehouseCliIntegrationWorkspace" --id Date --warehouse Commerce --name Date</Arguments>
       <Executable>meta-data-warehouse.exe</Executable>
       <Name>add-date-dimension</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:add-enterprise-date" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:add-date-business-key-part">
-      <Arguments>add-conformed-dimension --workspace "{workspace:warehouse.location}" --id EnterpriseDate --dimension Date --conformance-name EnterpriseDate</Arguments>
+      <Arguments>add-conformed-dimension --workspace "{mesh.root}\MetaDataWarehouseCliIntegrationWorkspace" --id EnterpriseDate --dimension Date --conformance-name EnterpriseDate</Arguments>
       <Executable>meta-data-warehouse.exe</Executable>
       <Name>add-enterprise-date</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:add-product-business-key" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:add-product-name">
-      <Arguments>add-dimension-business-key --workspace "{workspace:warehouse.location}" --id ProductBusinessKey --dimension Product --name ProductBusinessKey</Arguments>
+      <Arguments>add-dimension-business-key --workspace "{mesh.root}\MetaDataWarehouseCliIntegrationWorkspace" --id ProductBusinessKey --dimension Product --name ProductBusinessKey</Arguments>
       <Executable>meta-data-warehouse.exe</Executable>
       <Name>add-product-business-key</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:add-product-business-key-part" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:add-product-business-key">
-      <Arguments>add-dimension-business-key-part --workspace "{workspace:warehouse.location}" --id ProductBusinessKeyPart --business-key ProductBusinessKey --attribute ProductNumber</Arguments>
+      <Arguments>add-dimension-business-key-part --workspace "{mesh.root}\MetaDataWarehouseCliIntegrationWorkspace" --id ProductBusinessKeyPart --business-key ProductBusinessKey --attribute ProductNumber</Arguments>
       <Executable>meta-data-warehouse.exe</Executable>
       <Name>add-product-business-key-part</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:add-product-dimension" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:add-customer-history-tier">
-      <Arguments>add-dimension --workspace "{workspace:warehouse.location}" --id Product --warehouse Commerce --name Product</Arguments>
+      <Arguments>add-dimension --workspace "{mesh.root}\MetaDataWarehouseCliIntegrationWorkspace" --id Product --warehouse Commerce --name Product</Arguments>
       <Executable>meta-data-warehouse.exe</Executable>
       <Name>add-product-dimension</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:add-product-name" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:add-product-number">
-      <Arguments>add-dimension-attribute --workspace "{workspace:warehouse.location}" --id ProductName --dimension Product --name ProductName --data-type-id meta:type:String</Arguments>
+      <Arguments>add-dimension-attribute --workspace "{mesh.root}\MetaDataWarehouseCliIntegrationWorkspace" --id ProductName --dimension Product --name ProductName --data-type-id meta:type:String</Arguments>
       <Executable>meta-data-warehouse.exe</Executable>
       <Name>add-product-name</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:add-product-number" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:add-product-dimension">
-      <Arguments>add-dimension-attribute --workspace "{workspace:warehouse.location}" --id ProductNumber --dimension Product --name ProductNumber --data-type-id meta:type:String</Arguments>
+      <Arguments>add-dimension-attribute --workspace "{mesh.root}\MetaDataWarehouseCliIntegrationWorkspace" --id ProductNumber --dimension Product --name ProductNumber --data-type-id meta:type:String</Arguments>
       <Executable>meta-data-warehouse.exe</Executable>
       <Name>add-product-number</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:add-sales-amount" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:add-sales-quantity">
-      <Arguments>add-fact-measure --workspace "{workspace:warehouse.location}" --id SalesAmount --fact SalesOrder --name SalesAmount --data-type-id meta:type:Decimal</Arguments>
+      <Arguments>add-fact-measure --workspace "{mesh.root}\MetaDataWarehouseCliIntegrationWorkspace" --id SalesAmount --fact SalesOrder --name SalesAmount --data-type-id meta:type:Decimal</Arguments>
       <Executable>meta-data-warehouse.exe</Executable>
       <Name>add-sales-amount</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:add-sales-customer" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:add-sales-ship-date">
-      <Arguments>add-fact-dimension --workspace "{workspace:warehouse.location}" --id SalesOrderCustomer --fact SalesOrder --dimension Customer --role-name Customer</Arguments>
+      <Arguments>add-fact-dimension --workspace "{mesh.root}\MetaDataWarehouseCliIntegrationWorkspace" --id SalesOrderCustomer --fact SalesOrder --dimension Customer --role-name Customer</Arguments>
       <Executable>meta-data-warehouse.exe</Executable>
       <Name>add-sales-customer</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:add-sales-order-date" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:add-sales-order-line-grain">
-      <Arguments>add-fact-dimension --workspace "{workspace:warehouse.location}" --id SalesOrderOrderDate --fact SalesOrder --dimension Date --role-name OrderDate</Arguments>
+      <Arguments>add-fact-dimension --workspace "{mesh.root}\MetaDataWarehouseCliIntegrationWorkspace" --id SalesOrderOrderDate --fact SalesOrder --dimension Date --role-name OrderDate</Arguments>
       <Executable>meta-data-warehouse.exe</Executable>
       <Name>add-sales-order-date</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:add-sales-order-fact" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:add-product-business-key-part">
-      <Arguments>add-fact --workspace "{workspace:warehouse.location}" --id SalesOrder --warehouse Commerce --name SalesOrder</Arguments>
+      <Arguments>add-fact --workspace "{mesh.root}\MetaDataWarehouseCliIntegrationWorkspace" --id SalesOrder --warehouse Commerce --name SalesOrder</Arguments>
       <Executable>meta-data-warehouse.exe</Executable>
       <Name>add-sales-order-fact</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:add-sales-order-line-grain" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:add-sales-order-transaction">
-      <Arguments>add-fact-grain --workspace "{workspace:warehouse.location}" --id SalesOrderLineGrain --fact SalesOrder --name SalesOrderLine --description One-row-per-sales-order-line</Arguments>
+      <Arguments>add-fact-grain --workspace "{mesh.root}\MetaDataWarehouseCliIntegrationWorkspace" --id SalesOrderLineGrain --fact SalesOrder --name SalesOrderLine --description One-row-per-sales-order-line</Arguments>
       <Executable>meta-data-warehouse.exe</Executable>
       <Name>add-sales-order-line-grain</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:add-sales-order-number" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:add-sales-product">
-      <Arguments>add-degenerate-dimension --workspace "{workspace:warehouse.location}" --id SalesOrderNumber --fact SalesOrder --name OrderNumber --data-type-id meta:type:String</Arguments>
+      <Arguments>add-degenerate-dimension --workspace "{mesh.root}\MetaDataWarehouseCliIntegrationWorkspace" --id SalesOrderNumber --fact SalesOrder --name OrderNumber --data-type-id meta:type:String</Arguments>
       <Executable>meta-data-warehouse.exe</Executable>
       <Name>add-sales-order-number</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:add-sales-order-transaction" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:add-sales-order-fact">
-      <Arguments>add-transaction-fact --workspace "{workspace:warehouse.location}" --id SalesOrderTransaction --fact SalesOrder</Arguments>
+      <Arguments>add-transaction-fact --workspace "{mesh.root}\MetaDataWarehouseCliIntegrationWorkspace" --id SalesOrderTransaction --fact SalesOrder</Arguments>
       <Executable>meta-data-warehouse.exe</Executable>
       <Name>add-sales-order-transaction</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:add-sales-product" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:add-sales-customer">
-      <Arguments>add-fact-dimension --workspace "{workspace:warehouse.location}" --id SalesOrderProduct --fact SalesOrder --dimension Product --role-name Product</Arguments>
+      <Arguments>add-fact-dimension --workspace "{mesh.root}\MetaDataWarehouseCliIntegrationWorkspace" --id SalesOrderProduct --fact SalesOrder --dimension Product --role-name Product</Arguments>
       <Executable>meta-data-warehouse.exe</Executable>
       <Name>add-sales-product</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:add-sales-quantity" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:add-sales-order-number">
-      <Arguments>add-fact-measure --workspace "{workspace:warehouse.location}" --id SalesQuantity --fact SalesOrder --name Quantity --data-type-id meta:type:Int32</Arguments>
+      <Arguments>add-fact-measure --workspace "{mesh.root}\MetaDataWarehouseCliIntegrationWorkspace" --id SalesQuantity --fact SalesOrder --name Quantity --data-type-id meta:type:Int32</Arguments>
       <Executable>meta-data-warehouse.exe</Executable>
       <Name>add-sales-quantity</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:add-sales-ship-date" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:add-sales-order-date">
-      <Arguments>add-fact-dimension --workspace "{workspace:warehouse.location}" --id SalesOrderShipDate --fact SalesOrder --dimension Date --role-name ShipDate --is-required false</Arguments>
+      <Arguments>add-fact-dimension --workspace "{mesh.root}\MetaDataWarehouseCliIntegrationWorkspace" --id SalesOrderShipDate --fact SalesOrder --dimension Date --role-name ShipDate --is-required false</Arguments>
       <Executable>meta-data-warehouse.exe</Executable>
       <Name>add-sales-ship-date</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:add-warehouse" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:new-workspace">
-      <Arguments>add-warehouse --workspace "{workspace:warehouse.location}" --id Commerce --name Commerce</Arguments>
+      <Arguments>add-warehouse --workspace "{mesh.root}\MetaDataWarehouseCliIntegrationWorkspace" --id Commerce --name Commerce</Arguments>
       <Executable>meta-data-warehouse.exe</Executable>
       <Name>add-warehouse</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:convert-to-sql" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:add-sales-amount">
-      <Arguments>data-warehouse-to-sql --workspace "{workspace:warehouse.location}" --implementation-workspace "{workspace:warehouse-implementation.location}" --database-name DataWarehouseCliIntegration --output-xml "{workspace:sql.location}"</Arguments>
+      <Arguments>data-warehouse-to-sql --workspace "{mesh.root}\MetaDataWarehouseCliIntegrationWorkspace" --implementation-workspace "{workspace:warehouse-implementation.location}" --database-name DataWarehouseCliIntegration --output-xml "{mesh.root}\CurrentMetaSqlWorkspace"</Arguments>
       <Executable>meta-convert.exe</Executable>
       <Name>convert-to-sql</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:create-deploy-plan" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:convert-to-sql">
-      <Arguments>deploy-plan --source-workspace "{workspace:sql.location}" --connection-env {env:META_BI_DW_SQL} --output-xml "{workspace:deploy-manifest.location}"</Arguments>
+      <Arguments>deploy-plan --source-workspace "{mesh.root}\CurrentMetaSqlWorkspace" --connection-env {env:META_BI_DW_SQL} --output-xml "{mesh.root}\MetaSqlDeployManifest"</Arguments>
       <Executable>meta-sql.exe</Executable>
       <Name>create-deploy-plan</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:create-verify-plan" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:deploy-sql">
-      <Arguments>deploy-plan --source-workspace "{workspace:sql.location}" --connection-env {env:META_BI_DW_SQL} --output-xml "{workspace:verify-manifest.location}"</Arguments>
+      <Arguments>deploy-plan --source-workspace "{mesh.root}\CurrentMetaSqlWorkspace" --connection-env {env:META_BI_DW_SQL} --output-xml "{mesh.root}\MetaSqlVerifyManifest"</Arguments>
       <Executable>meta-sql.exe</Executable>
       <Name>create-verify-plan</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:deploy-sql" OperationId="operation:build-and-deploy-warehouse" PreviousStepId="operation-step:build-and-deploy-warehouse:create-deploy-plan">
-      <Arguments>deploy --manifest-workspace "{workspace:deploy-manifest.location}" --source-workspace "{workspace:sql.location}" --connection-env {env:META_BI_DW_SQL}</Arguments>
+      <Arguments>deploy --manifest-workspace "{mesh.root}\MetaSqlDeployManifest" --source-workspace "{mesh.root}\CurrentMetaSqlWorkspace" --connection-env {env:META_BI_DW_SQL}</Arguments>
       <Executable>meta-sql.exe</Executable>
       <Name>deploy-sql</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
     <OperationStep Id="operation-step:build-and-deploy-warehouse:new-workspace" OperationId="operation:build-and-deploy-warehouse">
-      <Arguments>create --xml "{workspace:warehouse.location}"</Arguments>
+      <Arguments>create --xml "{mesh.root}\MetaDataWarehouseCliIntegrationWorkspace"</Arguments>
       <Executable>meta-data-warehouse.exe</Executable>
       <Name>new-workspace</Name>
       <WorkingDirectory></WorkingDirectory>

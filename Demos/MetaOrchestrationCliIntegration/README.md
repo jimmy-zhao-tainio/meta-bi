@@ -39,6 +39,10 @@ meta-mesh run --operation inspect-complete
 meta-mesh run --operation execute-complete
 ```
 
+The source contains two customers (Unicode text and an empty name), two orders
+and two exchange rates. The final `verify-complete.sql` step compares exact
+staged and final values and checks the refresh and scratch-table truncation.
+
 The broader regression tour is split into named mesh operations:
 
 - `create-complete-run-plan` builds `CompletePipelineWS`, which contains six pipelines that can be placed automatically:
@@ -77,6 +81,10 @@ on their operation steps. The mesh treats exit code `4` as successful for those 
 operation remains honest without wrapper script branching.
 
 The scenario creation operations assume `prepare-shared-workspaces` has created the shared `SchemaWS`, `TransformWS`, and `BindingWS` workspaces.
+
+The failure-log scripts use Unicode literals for the target `nvarchar` column.
+Binding ignores only the absent `LoggedAtUtc` write column; SQL Server supplies
+that column through its declared `SYSUTCDATETIME()` default.
 
 Requirements:
 

@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaMesh>
   <OperationList>
+    <Operation Id="operation:bind-snapshot" MeshId="mesh:default">
+      <Description>Probe schema-aware Binding against the historical target snapshot. Currently fails; see CURRENT_GAPS.md.</Description>
+      <Name>bind-snapshot</Name>
+    </Operation>
     <Operation Id="operation:build-tpc-ds-snapshot" MeshId="mesh:default">
-      <Description>Import q01-q99 SQL views, bind them against the checked-in MetaSchema contract, emit SQL, re-import emitted SQL, convert both transform workspaces to MetaSql, and diff the MetaSql workspaces.</Description>
+      <Description>Import q01-q99 SQL modules, export and re-import them, then compare canonical emitted SQL byte for byte. Does not establish SQL Server execution or Binding validity.</Description>
       <Name>build-tpc-ds-snapshot</Name>
     </Operation>
     <Operation Id="operation:cleanup" MeshId="mesh:default">
       <Description>Remove generated TPC-DS transform, binding, SQL, and emitted SQL outputs.</Description>
       <Name>cleanup</Name>
+    </Operation>
+    <Operation Id="operation:compare-sql-projections" MeshId="mesh:default">
+      <Description>Additional full-graph MetaSql conversion and comparison; slow on this corpus and not part of the ordinary syntax round-trip.</Description>
+      <Name>compare-sql-projections</Name>
     </Operation>
   </OperationList>
 </MetaMesh>

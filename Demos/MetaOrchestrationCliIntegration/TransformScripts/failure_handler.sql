@@ -4,5 +4,5 @@ INSERT INTO dbo.OrchestrationFailureLog
     )
 VALUES
     (
-        'MetaOrchestration failure dependency branch fired'
+        N'MetaOrchestration failure dependency branch fired'
     );

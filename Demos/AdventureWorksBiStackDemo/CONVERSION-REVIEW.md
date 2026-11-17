@@ -95,23 +95,26 @@ were rebound and executed through Pipeline. All eight independently reviewed
 outputs now match the source-derived business values; the 45 DQ alerts remain
 visible. The fix and exact live evidence are recorded in DQ-REVIEW.md.
 
-Focused verification passed 30 DV converter tests, 10 conversion-catalog tests
-and 18 existing catalog service cases. Release builds and the rebuilt Debug CLIs
-on the normal PATH passed with no warnings. Optional Analysis Services deployment
-and processing were not repeated in this alignment.
+The earlier conversion alignment passed 30 DV converter tests, 10 conversion-
+catalog tests and 18 catalog service cases. The subsequent demo mesh tour used
+current Release CLIs and repeated the full SQL load, stack verification, Tabular
+deployment and full processing. Independent comparisons found no missing, extra
+or changed rows in the eight reviewed warehouse outputs. Three live Tabular
+measures matched their source SQL totals. The 167 DQ checks and 45 findings remain.
 
-## Mesh recovery limitation
+## Mesh operation authoring
 
-MetaMesh currently validates every referenced workspace as an existing input.
-It has no modeled input/output distinction. If a failed generation step leaves
-an output such as Runs/rdv/Binding absent, rerunning its operation is rejected
-before the producing command executes. The alignment encountered and recorded
-this failure. Real import and Binding commands recovered the validated output;
-no dummy workspace or product bypass was introduced.
+MetaMesh validates workspace references as available inputs before an operation
+starts. The former mesh referenced its own not-yet-created outputs as inputs,
+so a missing output could prevent its producer from running. That was a mesh
+authoring error. Creation destinations and their same-operation consumers now
+use paths under the mesh root; references to existing inputs remain workspace
+references. The owning CLI creates and validates each output. No placeholder
+workspaces or MetaMesh engine changes are needed.
 
-The checked-in generated workspaces support the ordinary demo sequence. Bootstrap
-from absent outputs and recovery after failed generation remain a separate
-MetaMesh ownership/model issue. The sibling meta repository was not changed.
+Warehouse deployment explicitly owns schema `dw`. Its persisted manifest scope
+keeps separately deployed `dq` views outside desired-state reconciliation.
+Omitting `--schema` retains the database-wide deployment contract.
 
 Pipeline also reloads the complete TransformScript and Binding workspaces per
 task in MetaPipelineModeledExecutionResolver through

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaMesh>
+  <CSharpWorkspaceList>
+    <CSharpWorkspace Id="csharp-workspace:conversion-contract" WorkspaceId="workspace:conversion-contract">
+      <Path>..\..\MetaDataTypeConversion\Workspace</Path>
+    </CSharpWorkspace>
+  </CSharpWorkspaceList>
+</MetaMesh>

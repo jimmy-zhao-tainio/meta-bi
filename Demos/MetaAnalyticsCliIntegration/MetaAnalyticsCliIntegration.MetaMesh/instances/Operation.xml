@@ -9,5 +9,9 @@
       <Description>Remove generated MetaAnalytics demo workspace.</Description>
       <Name>cleanup</Name>
     </Operation>
+    <Operation Id="operation:prepare-workspaces" MeshId="mesh:default">
+      <Description>Create the empty analytics workspace before authoring its model.</Description>
+      <Name>prepare-workspaces</Name>
+    </Operation>
   </OperationList>
 </MetaMesh>
