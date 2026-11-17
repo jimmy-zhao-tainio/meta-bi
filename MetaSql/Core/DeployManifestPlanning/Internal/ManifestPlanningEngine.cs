@@ -49,7 +49,8 @@ internal sealed class ManifestPlanningEngine
         string manifestName,
         string? targetDescription,
         IReadOnlyList<MetaSqlDifferenceBlocker>? feasibilityBlockers = null,
-        IReadOnlyList<MetaSqlDestructiveApproval>? destructiveApprovals = null)
+        IReadOnlyList<MetaSqlDestructiveApproval>? destructiveApprovals = null,
+        string? managedSchemaName = null)
     {
         ArgumentNullException.ThrowIfNull(sourceWorkspace);
         ArgumentNullException.ThrowIfNull(liveWorkspace);
@@ -81,6 +82,7 @@ internal sealed class ManifestPlanningEngine
             ExpectedLiveDatabasePresence = context.LiveDatabasePresence.ToString(),
             CreatedUtc = DateTime.UtcNow.ToString("O"),
             TargetDescription = targetDescription ?? string.Empty,
+            ManagedSchemaName = managedSchemaName,
         };
         model.DeployManifestList.Add(root);
 

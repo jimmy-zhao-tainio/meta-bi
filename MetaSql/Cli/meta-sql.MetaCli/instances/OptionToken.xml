@@ -40,6 +40,9 @@
     <OptionToken Id="token-deploy-plan-output-xml" OptionId="option-deploy-plan-output-xml">
       <Token>--output-xml</Token>
     </OptionToken>
+    <OptionToken Id="token-deploy-plan-schema" OptionId="opt-deploy-plan-schema">
+      <Token>--schema</Token>
+    </OptionToken>
     <OptionToken Id="token-deploy-plan-source-workspace" OptionId="opt-deploy-plan-source-workspace">
       <Token>--source-workspace</Token>
     </OptionToken>

@@ -46,6 +46,7 @@ internal sealed partial class MetaSqlCommandHandlers
                 .LoadStateAsync(sourceWorkspacePath)
                 .ConfigureAwait(false);
 
+            var schemaName = MetaSqlDeploymentScope.ValidateWorkspace(sourceWorkspace, invocation.Optional("schema"), "Source");
             types.ValidateColumns(sourceWorkspace, "Source workspace");
 
             var liveDatabasePresence = await SqlServerDatabaseRuntime
@@ -64,6 +65,8 @@ internal sealed partial class MetaSqlCommandHandlers
                 {
                     ConnectionString = connectionString,
                     AllowEmpty = true,
+                    SchemaName = schemaName,
+                    RejectCrossSchemaForeignKeys = schemaName is not null,
                 }, catalog);
             }
 
@@ -84,9 +87,10 @@ internal sealed partial class MetaSqlCommandHandlers
                 liveDatabasePresence,
                 differences,
                 manifestName: "DeployManifest",
-                targetDescription: BuildTargetDescription(),
+                targetDescription: BuildTargetDescription(schemaName),
                 feasibilityBlockers: feasibilityBlockers,
-                destructiveApprovals: destructiveApprovals);
+                destructiveApprovals: destructiveApprovals,
+                managedSchemaName: schemaName);
             var outputMetaPath = Path.Combine(outputPath, Meta.Surfaces.WorkspaceMetaFile.FileName);
             if (File.Exists(outputMetaPath))
             {
@@ -145,7 +149,8 @@ internal sealed partial class MetaSqlCommandHandlers
         }
     }
 
-    private static string BuildTargetDescription() => "Scope=(all)";
+    private static string BuildTargetDescription(string? schemaName) =>
+        schemaName is null ? "Scope=(all)" : $"Schema={schemaName}";
 
     private static List<string> RenderManifestIssues(
         MetaSqlDeployManifest.MetaSqlDeployManifestModel manifestModel,

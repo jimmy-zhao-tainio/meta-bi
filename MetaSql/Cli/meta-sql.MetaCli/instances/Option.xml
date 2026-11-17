@@ -10,6 +10,7 @@
     <Option Id="opt-deploy-plan-approve-truncate-column" ParameterId="param-deploy-plan-approve-truncate-column" />
     <Option Id="opt-deploy-plan-connection-env" ParameterId="param-deploy-plan-connection-env" />
     <Option Id="opt-deploy-plan-data-type-workspace" ParameterId="param-deploy-plan-data-type-workspace" />
+    <Option Id="opt-deploy-plan-schema" ParameterId="param-deploy-plan-schema" />
     <Option Id="opt-deploy-plan-source-workspace" ParameterId="param-deploy-plan-source-workspace" />
     <Option Id="opt-deploy-source-workspace" ParameterId="param-deploy-source-workspace" />
     <Option Id="opt-execute-connection-env" ParameterId="param-execute-connection-env" />

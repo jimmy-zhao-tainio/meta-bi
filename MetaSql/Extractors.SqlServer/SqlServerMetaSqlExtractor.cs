@@ -57,6 +57,11 @@ public sealed class SqlServerMetaSqlExtractor
         using var connection = new SqlConnection(request.ConnectionString);
         connection.Open();
 
+        if (request.RejectCrossSchemaForeignKeys)
+        {
+            RequireSelfContainedSchema(connection, schemaFilter);
+        }
+
         var databaseName = string.IsNullOrWhiteSpace(connection.Database)
             ? "(default)"
             : connection.Database;
@@ -190,6 +195,36 @@ public sealed class SqlServerMetaSqlExtractor
         }
 
         return rows;
+    }
+
+    private static void RequireSelfContainedSchema(SqlConnection connection, string? schemaName)
+    {
+        if (string.IsNullOrWhiteSpace(schemaName))
+        {
+            throw new InvalidOperationException("Cross-schema deployment validation requires a schema name.");
+        }
+
+        using var command = connection.CreateCommand();
+        command.CommandText = """
+            SELECT TOP (1) fk.name, sourceSchema.name, sourceTable.name, targetSchema.name, targetTable.name
+            FROM sys.foreign_keys AS fk
+            JOIN sys.tables AS sourceTable ON sourceTable.object_id = fk.parent_object_id
+            JOIN sys.schemas AS sourceSchema ON sourceSchema.schema_id = sourceTable.schema_id
+            JOIN sys.tables AS targetTable ON targetTable.object_id = fk.referenced_object_id
+            JOIN sys.schemas AS targetSchema ON targetSchema.schema_id = targetTable.schema_id
+            WHERE sourceSchema.schema_id <> targetSchema.schema_id
+              AND (sourceSchema.name = @schema OR targetSchema.name = @schema)
+            ORDER BY sourceSchema.name, sourceTable.name, fk.name;
+            """;
+        command.Parameters.Add(new SqlParameter("@schema", SqlDbType.NVarChar, 128) { Value = schemaName });
+        using var reader = command.ExecuteReader();
+        if (reader.Read())
+        {
+            throw new InvalidOperationException(
+                $"Schema-scoped deployment of '{schemaName}' does not support cross-schema foreign key '{reader.GetString(0)}' " +
+                $"from '{reader.GetString(1)}.{reader.GetString(2)}' to '{reader.GetString(3)}.{reader.GetString(4)}'. " +
+                "Use a database-wide deployment contract for this dependency.");
+        }
     }
 
     private static List<SqlServerMetaSqlProjector.TableRow> LoadTables(SqlConnection connection, string? schemaName, string? tableName)
@@ -715,6 +750,7 @@ public sealed class SqlServerExtractRequest
     public string? TableName { get; set; }
     public SqlServerExtractObjectKinds ObjectKinds { get; set; } = SqlServerExtractObjectKinds.All;
     public bool AllowEmpty { get; set; }
+    public bool RejectCrossSchemaForeignKeys { get; set; }
     public string? DataTypeWorkspacePath { get; set; }
 }
 

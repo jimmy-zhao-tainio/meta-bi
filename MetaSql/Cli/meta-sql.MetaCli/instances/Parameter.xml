@@ -69,6 +69,10 @@
       <IsRequired>false</IsRequired>
       <Name>output-xml</Name>
     </Parameter>
+    <Parameter Id="param-deploy-plan-schema" ValueShapeId="shape-text">
+      <Description>Manage only this SQL Server schema; persisted in the manifest. Omission manages the whole database.</Description>
+      <Name>schema</Name>
+    </Parameter>
     <Parameter Id="param-deploy-plan-source-workspace" ValueShapeId="shape-path">
       <Description>Source MetaSql workspace to compare with the live database.</Description>
       <IsRequired>true</IsRequired>

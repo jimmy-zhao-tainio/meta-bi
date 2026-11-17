@@ -5,268 +5,269 @@ using System.Collections.Generic;
 namespace MetaSqlDeployManifest;
 public sealed partial class AddForeignKey
 {
-    public string Id { get; set; } = null !;
-    public string SourceForeignKeyId { get; set; } = null !;
-    public DeployManifest DeployManifest { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string SourceForeignKeyId { get; set; } = null!;
+    public DeployManifest DeployManifest { get; set; } = null!;
 }
 
 public sealed partial class AddFunction
 {
-    public string Id { get; set; } = null !;
-    public string SourceFunctionId { get; set; } = null !;
-    public DeployManifest DeployManifest { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string SourceFunctionId { get; set; } = null!;
+    public DeployManifest DeployManifest { get; set; } = null!;
 }
 
 public sealed partial class AddIndex
 {
-    public string Id { get; set; } = null !;
-    public string SourceIndexId { get; set; } = null !;
-    public DeployManifest DeployManifest { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string SourceIndexId { get; set; } = null!;
+    public DeployManifest DeployManifest { get; set; } = null!;
 }
 
 public sealed partial class AddPrimaryKey
 {
-    public string Id { get; set; } = null !;
-    public string SourcePrimaryKeyId { get; set; } = null !;
-    public DeployManifest DeployManifest { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string SourcePrimaryKeyId { get; set; } = null!;
+    public DeployManifest DeployManifest { get; set; } = null!;
 }
 
 public sealed partial class AddSchema
 {
-    public string Id { get; set; } = null !;
-    public string SourceSchemaId { get; set; } = null !;
-    public DeployManifest DeployManifest { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string SourceSchemaId { get; set; } = null!;
+    public DeployManifest DeployManifest { get; set; } = null!;
 }
 
 public sealed partial class AddStoredProcedure
 {
-    public string Id { get; set; } = null !;
-    public string SourceStoredProcedureId { get; set; } = null !;
-    public DeployManifest DeployManifest { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string SourceStoredProcedureId { get; set; } = null!;
+    public DeployManifest DeployManifest { get; set; } = null!;
 }
 
 public sealed partial class AddTable
 {
-    public string Id { get; set; } = null !;
-    public string SourceTableId { get; set; } = null !;
-    public DeployManifest DeployManifest { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string SourceTableId { get; set; } = null!;
+    public DeployManifest DeployManifest { get; set; } = null!;
 }
 
 public sealed partial class AddTableColumn
 {
-    public string Id { get; set; } = null !;
-    public string SourceTableColumnId { get; set; } = null !;
-    public DeployManifest DeployManifest { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string SourceTableColumnId { get; set; } = null!;
+    public DeployManifest DeployManifest { get; set; } = null!;
 }
 
 public sealed partial class AddView
 {
-    public string Id { get; set; } = null !;
-    public string SourceViewId { get; set; } = null !;
-    public DeployManifest DeployManifest { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string SourceViewId { get; set; } = null!;
+    public DeployManifest DeployManifest { get; set; } = null!;
 }
 
 public sealed partial class AlterTableColumn
 {
-    public string Id { get; set; } = null !;
-    public string LiveTableColumnId { get; set; } = null !;
-    public string SourceTableColumnId { get; set; } = null !;
-    public DeployManifest DeployManifest { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string LiveTableColumnId { get; set; } = null!;
+    public string SourceTableColumnId { get; set; } = null!;
+    public DeployManifest DeployManifest { get; set; } = null!;
 }
 
 public sealed partial class BlockForeignKeyDifference
 {
-    public string Id { get; set; } = null !;
-    public string DifferenceSummary { get; set; } = null !;
-    public string LiveForeignKeyId { get; set; } = null !;
-    public string SourceForeignKeyId { get; set; } = null !;
-    public DeployManifest DeployManifest { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string DifferenceSummary { get; set; } = null!;
+    public string LiveForeignKeyId { get; set; } = null!;
+    public string SourceForeignKeyId { get; set; } = null!;
+    public DeployManifest DeployManifest { get; set; } = null!;
 }
 
 public sealed partial class BlockFunctionDifference
 {
-    public string Id { get; set; } = null !;
-    public string DifferenceSummary { get; set; } = null !;
-    public string LiveFunctionId { get; set; } = null !;
-    public string SourceFunctionId { get; set; } = null !;
-    public DeployManifest DeployManifest { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string DifferenceSummary { get; set; } = null!;
+    public string LiveFunctionId { get; set; } = null!;
+    public string SourceFunctionId { get; set; } = null!;
+    public DeployManifest DeployManifest { get; set; } = null!;
 }
 
 public sealed partial class BlockIndexDifference
 {
-    public string Id { get; set; } = null !;
-    public string DifferenceSummary { get; set; } = null !;
-    public string LiveIndexId { get; set; } = null !;
-    public string SourceIndexId { get; set; } = null !;
-    public DeployManifest DeployManifest { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string DifferenceSummary { get; set; } = null!;
+    public string LiveIndexId { get; set; } = null!;
+    public string SourceIndexId { get; set; } = null!;
+    public DeployManifest DeployManifest { get; set; } = null!;
 }
 
 public sealed partial class BlockPrimaryKeyDifference
 {
-    public string Id { get; set; } = null !;
-    public string DifferenceSummary { get; set; } = null !;
-    public string LivePrimaryKeyId { get; set; } = null !;
-    public string SourcePrimaryKeyId { get; set; } = null !;
-    public DeployManifest DeployManifest { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string DifferenceSummary { get; set; } = null!;
+    public string LivePrimaryKeyId { get; set; } = null!;
+    public string SourcePrimaryKeyId { get; set; } = null!;
+    public DeployManifest DeployManifest { get; set; } = null!;
 }
 
 public sealed partial class BlockStoredProcedureDifference
 {
-    public string Id { get; set; } = null !;
-    public string DifferenceSummary { get; set; } = null !;
-    public string LiveStoredProcedureId { get; set; } = null !;
-    public string SourceStoredProcedureId { get; set; } = null !;
-    public DeployManifest DeployManifest { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string DifferenceSummary { get; set; } = null!;
+    public string LiveStoredProcedureId { get; set; } = null!;
+    public string SourceStoredProcedureId { get; set; } = null!;
+    public DeployManifest DeployManifest { get; set; } = null!;
 }
 
 public sealed partial class BlockTableColumnDifference
 {
-    public string Id { get; set; } = null !;
-    public string DifferenceSummary { get; set; } = null !;
-    public string LiveTableColumnId { get; set; } = null !;
-    public string SourceTableColumnId { get; set; } = null !;
-    public DeployManifest DeployManifest { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string DifferenceSummary { get; set; } = null!;
+    public string LiveTableColumnId { get; set; } = null!;
+    public string SourceTableColumnId { get; set; } = null!;
+    public DeployManifest DeployManifest { get; set; } = null!;
 }
 
 public sealed partial class BlockTableDifference
 {
-    public string Id { get; set; } = null !;
-    public string DifferenceSummary { get; set; } = null !;
-    public string LiveTableId { get; set; } = null !;
-    public string SourceTableId { get; set; } = null !;
-    public DeployManifest DeployManifest { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string DifferenceSummary { get; set; } = null!;
+    public string LiveTableId { get; set; } = null!;
+    public string SourceTableId { get; set; } = null!;
+    public DeployManifest DeployManifest { get; set; } = null!;
 }
 
 public sealed partial class BlockViewDifference
 {
-    public string Id { get; set; } = null !;
-    public string DifferenceSummary { get; set; } = null !;
-    public string LiveViewId { get; set; } = null !;
-    public string SourceViewId { get; set; } = null !;
-    public DeployManifest DeployManifest { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string DifferenceSummary { get; set; } = null!;
+    public string LiveViewId { get; set; } = null!;
+    public string SourceViewId { get; set; } = null!;
+    public DeployManifest DeployManifest { get; set; } = null!;
 }
 
 public sealed partial class DeployManifest
 {
-    public string Id { get; set; } = null !;
-    public string CreatedUtc { get; set; } = null !;
-    public string ExpectedLiveDatabasePresence { get; set; } = null !;
-    public string LiveInstanceFingerprint { get; set; } = null !;
-    public string Name { get; set; } = null !;
-    public string SourceInstanceFingerprint { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string CreatedUtc { get; set; } = null!;
+    public string ExpectedLiveDatabasePresence { get; set; } = null!;
+    public string LiveInstanceFingerprint { get; set; } = null!;
+    public string? ManagedSchemaName { get; set; }
+    public string Name { get; set; } = null!;
+    public string SourceInstanceFingerprint { get; set; } = null!;
     public string? TargetDescription { get; set; }
 }
 
 public sealed partial class DropForeignKey
 {
-    public string Id { get; set; } = null !;
-    public string LiveForeignKeyId { get; set; } = null !;
-    public DeployManifest DeployManifest { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string LiveForeignKeyId { get; set; } = null!;
+    public DeployManifest DeployManifest { get; set; } = null!;
 }
 
 public sealed partial class DropFunction
 {
-    public string Id { get; set; } = null !;
-    public string LiveFunctionId { get; set; } = null !;
-    public DeployManifest DeployManifest { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string LiveFunctionId { get; set; } = null!;
+    public DeployManifest DeployManifest { get; set; } = null!;
 }
 
 public sealed partial class DropIndex
 {
-    public string Id { get; set; } = null !;
-    public string LiveIndexId { get; set; } = null !;
-    public DeployManifest DeployManifest { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string LiveIndexId { get; set; } = null!;
+    public DeployManifest DeployManifest { get; set; } = null!;
 }
 
 public sealed partial class DropPrimaryKey
 {
-    public string Id { get; set; } = null !;
-    public string LivePrimaryKeyId { get; set; } = null !;
-    public DeployManifest DeployManifest { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string LivePrimaryKeyId { get; set; } = null!;
+    public DeployManifest DeployManifest { get; set; } = null!;
 }
 
 public sealed partial class DropStoredProcedure
 {
-    public string Id { get; set; } = null !;
-    public string LiveStoredProcedureId { get; set; } = null !;
-    public DeployManifest DeployManifest { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string LiveStoredProcedureId { get; set; } = null!;
+    public DeployManifest DeployManifest { get; set; } = null!;
 }
 
 public sealed partial class DropTable
 {
-    public string Id { get; set; } = null !;
-    public string LiveTableId { get; set; } = null !;
-    public DeployManifest DeployManifest { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string LiveTableId { get; set; } = null!;
+    public DeployManifest DeployManifest { get; set; } = null!;
 }
 
 public sealed partial class DropTableColumn
 {
-    public string Id { get; set; } = null !;
-    public string LiveTableColumnId { get; set; } = null !;
-    public DeployManifest DeployManifest { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string LiveTableColumnId { get; set; } = null!;
+    public DeployManifest DeployManifest { get; set; } = null!;
 }
 
 public sealed partial class DropView
 {
-    public string Id { get; set; } = null !;
-    public string LiveViewId { get; set; } = null !;
-    public DeployManifest DeployManifest { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string LiveViewId { get; set; } = null!;
+    public DeployManifest DeployManifest { get; set; } = null!;
 }
 
 public sealed partial class ReplaceForeignKey
 {
-    public string Id { get; set; } = null !;
-    public string LiveForeignKeyId { get; set; } = null !;
-    public string SourceForeignKeyId { get; set; } = null !;
-    public DeployManifest DeployManifest { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string LiveForeignKeyId { get; set; } = null!;
+    public string SourceForeignKeyId { get; set; } = null!;
+    public DeployManifest DeployManifest { get; set; } = null!;
 }
 
 public sealed partial class ReplaceFunction
 {
-    public string Id { get; set; } = null !;
-    public string LiveFunctionId { get; set; } = null !;
-    public string SourceFunctionId { get; set; } = null !;
-    public DeployManifest DeployManifest { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string LiveFunctionId { get; set; } = null!;
+    public string SourceFunctionId { get; set; } = null!;
+    public DeployManifest DeployManifest { get; set; } = null!;
 }
 
 public sealed partial class ReplaceIndex
 {
-    public string Id { get; set; } = null !;
-    public string LiveIndexId { get; set; } = null !;
-    public string SourceIndexId { get; set; } = null !;
-    public DeployManifest DeployManifest { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string LiveIndexId { get; set; } = null!;
+    public string SourceIndexId { get; set; } = null!;
+    public DeployManifest DeployManifest { get; set; } = null!;
 }
 
 public sealed partial class ReplacePrimaryKey
 {
-    public string Id { get; set; } = null !;
-    public string LivePrimaryKeyId { get; set; } = null !;
-    public string SourcePrimaryKeyId { get; set; } = null !;
-    public DeployManifest DeployManifest { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string LivePrimaryKeyId { get; set; } = null!;
+    public string SourcePrimaryKeyId { get; set; } = null!;
+    public DeployManifest DeployManifest { get; set; } = null!;
 }
 
 public sealed partial class ReplaceStoredProcedure
 {
-    public string Id { get; set; } = null !;
-    public string LiveStoredProcedureId { get; set; } = null !;
-    public string SourceStoredProcedureId { get; set; } = null !;
-    public DeployManifest DeployManifest { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string LiveStoredProcedureId { get; set; } = null!;
+    public string SourceStoredProcedureId { get; set; } = null!;
+    public DeployManifest DeployManifest { get; set; } = null!;
 }
 
 public sealed partial class ReplaceView
 {
-    public string Id { get; set; } = null !;
-    public string LiveViewId { get; set; } = null !;
-    public string SourceViewId { get; set; } = null !;
-    public DeployManifest DeployManifest { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string LiveViewId { get; set; } = null!;
+    public string SourceViewId { get; set; } = null!;
+    public DeployManifest DeployManifest { get; set; } = null!;
 }
 
 public sealed partial class TruncateTableColumnData
 {
-    public string Id { get; set; } = null !;
-    public string LiveTableColumnId { get; set; } = null !;
-    public string SourceTableColumnId { get; set; } = null !;
-    public DeployManifest DeployManifest { get; set; } = null !;
+    public string Id { get; set; } = null!;
+    public string LiveTableColumnId { get; set; } = null!;
+    public string SourceTableColumnId { get; set; } = null!;
+    public DeployManifest DeployManifest { get; set; } = null!;
 }
 
 public sealed partial class MetaSqlDeployManifestModel

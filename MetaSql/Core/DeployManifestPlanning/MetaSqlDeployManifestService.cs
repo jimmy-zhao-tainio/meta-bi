@@ -59,8 +59,11 @@ public sealed class MetaSqlDeployManifestService
         string manifestName,
         string? targetDescription,
         IReadOnlyList<MetaSqlDifferenceBlocker>? feasibilityBlockers = null,
-        IReadOnlyList<MetaSqlDestructiveApproval>? destructiveApprovals = null)
+        IReadOnlyList<MetaSqlDestructiveApproval>? destructiveApprovals = null,
+        string? managedSchemaName = null)
     {
+        managedSchemaName = MetaSqlDeploymentScope.ValidateWorkspace(sourceWorkspace, managedSchemaName, "Source");
+        MetaSqlDeploymentScope.ValidateWorkspace(liveWorkspace, managedSchemaName, "Live");
         types.ValidateColumns(sourceWorkspace, "Source workspace");
         types.ValidateColumns(liveWorkspace, "Live workspace");
         return engine.BuildManifest(
@@ -72,6 +75,7 @@ public sealed class MetaSqlDeployManifestService
             manifestName,
             targetDescription,
             feasibilityBlockers,
-            destructiveApprovals);
+            destructiveApprovals,
+            managedSchemaName);
     }
 }

@@ -52,6 +52,7 @@ internal sealed class MetaSqlDeployExecutionEngine
                     cancellationToken)
                 .ConfigureAwait(false);
             MetaSqlDiffService.EnsureMetaSqlWorkspace(sourceWorkspace, nameof(sourceWorkspace));
+            var schemaName = MetaSqlDeploymentScope.ValidateWorkspace(sourceWorkspace, root.ManagedSchemaName, "Source");
             var sourceModel = TypedWorkspaceModelMapper.FromInMemoryWorkspace(
                 sourceWorkspace,
                 new global::MetaSql.MetaSqlWorkspaceBinding());
@@ -93,6 +94,8 @@ internal sealed class MetaSqlDeployExecutionEngine
                 {
                     ConnectionString = request.ConnectionString,
                     AllowEmpty = true,
+                    SchemaName = schemaName,
+                    RejectCrossSchemaForeignKeys = schemaName is not null,
                 }, catalog);
             }
             MetaSqlDiffService.EnsureMetaSqlWorkspace(liveWorkspace, nameof(liveWorkspace));
