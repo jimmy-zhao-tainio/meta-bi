@@ -3,5 +3,6 @@
   <WhenClauseThenExpressionLinkList>
     <WhenClauseThenExpressionLink Id="WhenClauseThenExpressionLink:1" ScalarExpressionId="ScalarExpression:72" WhenClauseId="WhenClause:1" />
     <WhenClauseThenExpressionLink Id="WhenClauseThenExpressionLink:2" ScalarExpressionId="ScalarExpression:78" WhenClauseId="WhenClause:2" />
+    <WhenClauseThenExpressionLink Id="WhenClauseThenExpressionLink:3" ScalarExpressionId="ScalarExpression:345" WhenClauseId="WhenClause:3" />
   </WhenClauseThenExpressionLinkList>
 </MetaWeave>

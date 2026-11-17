@@ -3,5 +3,6 @@
   <SearchedCaseExpressionList>
     <SearchedCaseExpression Id="SearchedCaseExpression:1" CaseExpressionId="CaseExpression:1" />
     <SearchedCaseExpression Id="SearchedCaseExpression:2" CaseExpressionId="CaseExpression:2" />
+    <SearchedCaseExpression Id="SearchedCaseExpression:3" CaseExpressionId="CaseExpression:3" />
   </SearchedCaseExpressionList>
 </MetaWeave>

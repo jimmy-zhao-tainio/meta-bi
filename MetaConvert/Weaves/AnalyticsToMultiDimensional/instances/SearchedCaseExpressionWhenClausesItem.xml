@@ -7,5 +7,8 @@
     <SearchedCaseExpressionWhenClausesItem Id="SearchedCaseExpressionWhenClausesItem:2" SearchedCaseExpressionId="SearchedCaseExpression:2" SearchedWhenClauseId="SearchedWhenClause:2">
       <Ordinal>0</Ordinal>
     </SearchedCaseExpressionWhenClausesItem>
+    <SearchedCaseExpressionWhenClausesItem Id="SearchedCaseExpressionWhenClausesItem:3" SearchedCaseExpressionId="SearchedCaseExpression:3" SearchedWhenClauseId="SearchedWhenClause:3">
+      <Ordinal>0</Ordinal>
+    </SearchedCaseExpressionWhenClausesItem>
   </SearchedCaseExpressionWhenClausesItemList>
 </MetaWeave>

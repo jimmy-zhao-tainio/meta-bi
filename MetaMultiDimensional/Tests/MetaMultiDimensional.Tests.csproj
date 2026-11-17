@@ -28,6 +28,7 @@
     <ProjectReference Include="..\Core\MetaMultiDimensional.Core.csproj" />
     <ProjectReference Include="..\..\MetaAnalytics\Core\MetaAnalytics.Core.csproj" />
     <ProjectReference Include="..\..\MetaConvert\AnalyticsToMultiDimensional\MetaConvert.AnalyticsToMultiDimensional.csproj" />
+    <ProjectReference Include="..\..\MetaConvert\Cli\MetaConvert.Cli.csproj" />
   </ItemGroup>
 
 </Project>

@@ -67,7 +67,7 @@
     <Transformation Id="forward/RoleMember" DirectionId="forward" SelectStatementId="SelectStatement:20">
       <TargetEntityName>RoleMember</TargetEntityName>
     </Transformation>
-    <Transformation Id="forward/SecurityRole" DirectionId="forward" SelectStatementId="SelectStatement:19">
+    <Transformation Id="forward/SecurityRole" DirectionId="forward" SelectStatementId="SelectStatement:26">
       <TargetEntityName>SecurityRole</TargetEntityName>
     </Transformation>
   </TransformationList>

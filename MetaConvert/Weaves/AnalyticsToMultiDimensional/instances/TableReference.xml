@@ -74,7 +74,6 @@
     <TableReference Id="TableReference:73" />
     <TableReference Id="TableReference:74" />
     <TableReference Id="TableReference:75" />
-    <TableReference Id="TableReference:76" />
     <TableReference Id="TableReference:77" />
     <TableReference Id="TableReference:78" />
     <TableReference Id="TableReference:79" />
@@ -86,6 +85,7 @@
     <TableReference Id="TableReference:84" />
     <TableReference Id="TableReference:85" />
     <TableReference Id="TableReference:86" />
+    <TableReference Id="TableReference:87" />
     <TableReference Id="TableReference:9" />
   </TableReferenceList>
 </MetaWeave>

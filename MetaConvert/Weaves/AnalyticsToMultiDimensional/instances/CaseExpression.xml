@@ -3,5 +3,6 @@
   <CaseExpressionList>
     <CaseExpression Id="CaseExpression:1" PrimaryExpressionId="PrimaryExpression:74" />
     <CaseExpression Id="CaseExpression:2" PrimaryExpressionId="PrimaryExpression:80" />
+    <CaseExpression Id="CaseExpression:3" PrimaryExpressionId="PrimaryExpression:347" />
   </CaseExpressionList>
 </MetaWeave>

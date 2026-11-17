@@ -3,5 +3,6 @@
   <SearchedWhenClauseList>
     <SearchedWhenClause Id="SearchedWhenClause:1" WhenClauseId="WhenClause:1" />
     <SearchedWhenClause Id="SearchedWhenClause:2" WhenClauseId="WhenClause:2" />
+    <SearchedWhenClause Id="SearchedWhenClause:3" WhenClauseId="WhenClause:3" />
   </SearchedWhenClauseList>
 </MetaWeave>

@@ -3,5 +3,6 @@
   <CaseExpressionElseExpressionLinkList>
     <CaseExpressionElseExpressionLink Id="CaseExpressionElseExpressionLink:1" CaseExpressionId="CaseExpression:1" ScalarExpressionId="ScalarExpression:73" />
     <CaseExpressionElseExpressionLink Id="CaseExpressionElseExpressionLink:2" CaseExpressionId="CaseExpression:2" ScalarExpressionId="ScalarExpression:79" />
+    <CaseExpressionElseExpressionLink Id="CaseExpressionElseExpressionLink:3" CaseExpressionId="CaseExpression:3" ScalarExpressionId="ScalarExpression:346" />
   </CaseExpressionElseExpressionLinkList>
 </MetaWeave>

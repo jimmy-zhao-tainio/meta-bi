@@ -11,6 +11,9 @@ dimensions. Relationships from a measure-group table to a dimension table
 become dimension usages. The six concrete neutral aggregate-function entities
 map to `Sum`, `Average`, `Count`, `DistinctCount`, `Min` and `Max`.
 
+Analytics role permission `Read` maps to the native multidimensional read access
+`Allowed`. Other permission values remain explicit and are checked by deployment.
+
 The source and target contracts are:
 
 - [`MetaAnalytics`](../../../MetaAnalytics/Workspaces/MetaAnalytics)
@@ -50,5 +53,5 @@ meta-weave emit-requirement \
 ```
 
 The product converter executes this packaged weave. A complete population
-witness remains structurally identical to the frozen C# reference converter
-retained by the test suite.
+witness is compared with the C# reference retained by the test suite, including
+the native role-permission mapping.

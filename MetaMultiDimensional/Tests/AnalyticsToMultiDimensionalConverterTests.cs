@@ -16,6 +16,29 @@ namespace MetaMultiDimensional.Tests;
 public sealed class AnalyticsToMultiDimensionalConverterTests
 {
     [Fact]
+    [Trait("Category", "Integration")]
+    public void PersistedAnalyticsReadRole_ConvertsToNativeAllowedReadAccess()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "MetaMultiDimensional.Tests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            var input = Path.Combine(root, "analytics");
+            var output = Path.Combine(root, "multidimensional");
+            TypedWorkspaceModelMapper.Create(CreateConvertibleAnalyticsModel(),
+                MetaAnalytics.Core.AnalyticsModels.LoadContract(), new MetaAnalyticsWorkspaceBinding(), input, "xml");
+            var result = CliTestRunner.RunStandardCli("meta-convert",
+                $"analytics-to-multi-dimensional --workspace \"{input}\" --output-xml \"{output}\"");
+            Assert.True(result.ExitCode == 0, result.Output);
+            var converted = TypedWorkspaceModelMapper.Load(output, new MetaMultiDimensionalWorkspaceBinding());
+            Assert.Equal("Allowed", Assert.Single(converted.SecurityRoleList).Permission);
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, recursive: true);
+        }
+    }
+
+    [Fact]
     public async Task SanctionedWeave_MatchesEstablishedConverter_AndExercisesEveryPopulation()
     {
         var source = CreateConvertibleAnalyticsModel();

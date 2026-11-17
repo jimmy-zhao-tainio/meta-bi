@@ -251,7 +251,7 @@ internal static class AnalyticsToMultiDimensionalCSharpReference
                 Id = row.Id,
                 MultiDimensionalDatabase = databases[row.AnalyticsModel],
                 Name = row.Name,
-                Permission = row.Permission,
+                Permission = row.Permission == "Read" ? "Allowed" : row.Permission,
                 Description = row.Description,
             });
             roles[row] = converted;

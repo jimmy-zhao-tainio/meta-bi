@@ -3,5 +3,6 @@
   <SearchedWhenClauseWhenExpressionLinkList>
     <SearchedWhenClauseWhenExpressionLink Id="SearchedWhenClauseWhenExpressionLink:1" BooleanExpressionId="BooleanExpression:11" SearchedWhenClauseId="SearchedWhenClause:1" />
     <SearchedWhenClauseWhenExpressionLink Id="SearchedWhenClauseWhenExpressionLink:2" BooleanExpressionId="BooleanExpression:12" SearchedWhenClauseId="SearchedWhenClause:2" />
+    <SearchedWhenClauseWhenExpressionLink Id="SearchedWhenClauseWhenExpressionLink:3" BooleanExpressionId="BooleanExpression:64" SearchedWhenClauseId="SearchedWhenClause:3" />
   </SearchedWhenClauseWhenExpressionLinkList>
 </MetaWeave>

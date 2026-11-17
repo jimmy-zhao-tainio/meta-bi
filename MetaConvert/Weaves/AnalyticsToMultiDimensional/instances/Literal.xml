@@ -76,6 +76,12 @@
     <Literal Id="Literal:31" ValueExpressionId="ValueExpression:31">
       <Value>:measure-group</Value>
     </Literal>
+    <Literal Id="Literal:32" ValueExpressionId="ValueExpression:32">
+      <Value>Read</Value>
+    </Literal>
+    <Literal Id="Literal:33" ValueExpressionId="ValueExpression:33">
+      <Value>Allowed</Value>
+    </Literal>
     <Literal Id="Literal:4" ValueExpressionId="ValueExpression:4">
       <Value>:cube</Value>
     </Literal>
