@@ -1,6 +1,7 @@
 using MetaTransformScript.Sql;
 using MetaTransformScript.Sql.Parsing;
 
+[Trait("Category", "Integration")]
 public sealed class SqlTpcDsRegressionRoundTripTests
 {
     [Theory]
