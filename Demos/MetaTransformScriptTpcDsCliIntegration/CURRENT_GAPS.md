@@ -1,7 +1,8 @@
 # Current gaps
 
-The corpus is useful for syntax coverage. Parsing, exporting and comparing
-modeled SQL do not establish executable SQL Server semantics or target contracts.
+All 99 query modules pass canonical SQL round-trip and schema-aware Binding.
+Binding matches the output types, lengths, precision and scale that SQL Server
+reports. These checks cover syntax fidelity and output contracts.
 
 ## Syntax round-trip
 
@@ -61,10 +62,9 @@ with live SQL Server metadata and verify catalog IDs that have arbitrary values.
 Outer joins and subtotal grouping preserve their possible NULL results instead
 of retaining a source field's NOT NULL assertion. See the
 [Binding support tracker](../../MetaTransform/Binding/Reference/BINDING_SUPPORT_TRACKER.md)
-for supported result typing and remaining boundaries. The separate offline
-round-trip covers syntax fidelity and is not an execution claim.
+for supported result typing and remaining boundaries.
 
-## SQL Server compilation and execution
+## SQL Server metadata
 
 All 99 adapted view definitions compile in the fixture database. `SOURCE.md`
 records the dialect and view-wrapper changes. The previous compilation probe
@@ -72,5 +72,5 @@ reported 60 successful views and 39 rejections, and also omitted source facets
 stored in `FieldDataTypeDetail`. That probe has been superseded by the complete
 regeneration from `SourceSchema.sql` with modeled facets preserved.
 
-Generation compiles views and verifies their metadata in an empty database.
-Results over a populated TPC-DS dataset have not been verified.
+Generation compiles the views and verifies their metadata against the modeled
+fixture in an empty database.

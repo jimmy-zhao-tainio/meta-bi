@@ -14,10 +14,12 @@ and the repository [third-party notices](../../THIRD-PARTY-NOTICES.md).
 
 Import, SQL module export, manifest-based re-import and byte-for-byte canonical
 SQL comparison exercise syntax fidelity. Fixture regeneration compiles all 99
-views on SQL Server and extracts their actual output metadata. The strict Binding
-tests expose remaining expression-typing and validation gaps.
+views on SQL Server and extracts their actual output metadata. All 99 strict
+Binding cases pass and match the saved SQL Server output types, lengths,
+precision and scale.
 
-See [CURRENT_GAPS.md](./CURRENT_GAPS.md) for the latest known failures from this demo run.
+See [CURRENT_GAPS.md](./CURRENT_GAPS.md) for verification details and the status
+of the separate MetaSql comparison.
 
 ## Schema Snapshot
 
@@ -80,9 +82,7 @@ meta-mesh run --operation bind-snapshot
 ```
 
 The operation requires successful Binding and reports any rejection as failure.
-See `CURRENT_GAPS.md` for the strict per-query integration command and remaining
-results. Fixture compilation verifies output metadata without running the corpus
-over a populated benchmark dataset.
+See `CURRENT_GAPS.md` for the strict per-query integration command and results.
 
 `compare-sql-projections` retains the additional full-graph MetaSql conversion
 and comparison. It requires both transform workspaces from the syntax run. This
