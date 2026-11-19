@@ -1,10 +1,18 @@
 using MetaTransform.Binding;
+using Meta.Integration;
+using MetaDataType;
+using MetaSchema;
 using MetaTransformScript;
 using MetaTransformScript.Sql;
 
 [Trait("Category", "Integration")]
 public sealed class TransformBindingTpcDsValidatedCorpusTests
 {
+    private static readonly Lazy<MetaSchemaModel> ReferenceSchema = new(() =>
+        TypedWorkspaceModelMapper.Load<MetaSchemaModel>(Path.Combine(RepositoryRoot(), "Demos", "MetaTransformScriptTpcDsCliIntegration", "SchemaWS"), new MetaSchemaWorkspaceBinding(), searchUpward: false));
+    private static readonly Lazy<MetaDataTypeModel> ReferenceCatalog = new(() =>
+        TypedWorkspaceModelMapper.Load<MetaDataTypeModel>(Path.Combine(RepositoryRoot(), "MetaDataType", "Workspace"), new MetaDataTypeWorkspaceBinding(), searchUpward: false));
+
     public static IEnumerable<object[]> Queries()
     {
         var demo = Path.Combine(RepositoryRoot(), "Demos", "MetaTransformScriptTpcDsCliIntegration");
@@ -61,6 +69,28 @@ public sealed class TransformBindingTpcDsValidatedCorpusTests
             Assert.True(validatedColumns > 0 && exactAssessments == validatedColumns,
                 $"{queryFolder}: MissingOutputTypeAssessment: expected exact type evidence for every output column; " +
                 $"found {validatedColumns} validated column links and {exactAssessments} exact assessments.");
+
+            // Conformance to a wider target alone would hide an incorrectly narrowed
+            // inference. Compare actual result facets with the native SQL Server oracle.
+            var reloaded = TypedWorkspaceModelMapper.Load<MetaTransformScriptModel>(transformPath, new MetaTransformScriptWorkspaceBinding(), searchUpward: false);
+            var analysis = new TransformBindingService().BindTransform(reloaded, reloaded.TransformScriptList.Single(), ReferenceSchema.Value, ReferenceCatalog.Value);
+            Assert.Empty(analysis.Issues);
+            var expectedObject = ReferenceSchema.Value.SchemaObjectList.Single(row => $"{row.Schema.Name}.{row.Name}" == targetSqlIdentifier);
+            var expectedFields = ReferenceSchema.Value.FieldList.Where(row => row.SchemaObject.Id == expectedObject.Id)
+                .OrderBy(row => int.Parse(row.Ordinal ?? throw new InvalidDataException($"Native fixture field '{row.Name}' has no ordinal."), System.Globalization.CultureInfo.InvariantCulture)).ToArray();
+            var actualColumns = analysis.TopLevelRowset!.Columns;
+            Assert.Equal(expectedFields.Select(row => row.Name), actualColumns.Select(row => row.Name));
+            foreach (var (expected, actual) in expectedFields.Zip(actualColumns))
+            {
+                Assert.NotNull(actual.DataType);
+                Assert.Equal(expected.MetaDataTypeId, actual.DataType.MetaDataTypeId);
+                foreach (var (facet, inferred) in new[] { ("Length", actual.DataType.Length), ("Precision", actual.DataType.Precision), ("Scale", actual.DataType.Scale) })
+                {
+                    var detail = ReferenceSchema.Value.FieldDataTypeDetailList.SingleOrDefault(row => row.Field.Id == expected.Id && row.Name == facet);
+                    int? native = detail is null ? null : int.Parse(detail.Value, System.Globalization.CultureInfo.InvariantCulture);
+                    Assert.True(native == inferred, $"{queryFolder}.{expected.Name}: inferred {facet}={inferred?.ToString() ?? "unknown"}; SQL Server declares {native?.ToString() ?? "not applicable"}.");
+                }
+            }
         }
         catch (TransformBindingValidationException exception)
         {

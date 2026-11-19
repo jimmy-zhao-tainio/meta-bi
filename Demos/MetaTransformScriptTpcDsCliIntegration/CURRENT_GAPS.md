@@ -40,18 +40,29 @@ dotnet test MetaTransform/Script/Tests/MetaTransformScript.Tests.csproj -c Relea
 Before regeneration, the strict run on 2026-11-18
 reported one passing query and 98 failures: 75 type-conformance mismatches and
 23 cases where Binding returned without complete output type assessments.
-The latter cases fail the test's evidence assertion. The production SELECT
-validation path currently adds a column link when expression type evidence is
-absent, without adding an exact type assessment or rejecting the expression.
-The strict suite continues to expose implementation gaps against the independently
-generated output contracts instead of accepting a global list of diagnostics.
+After regeneration, seven passed and 92 failed because Binding supplied missing
+or incomplete output type assessments. That exposed a SELECT validation defect:
+an unresolved expression could receive a target column link without type
+validation or rejection.
 
-After regeneration on 2026-11-19, the 99 strict Binding cases report **7 passed
-and 92 failed**, with zero skips. All 92 failures are missing or incomplete output
-type assessments. The former type-conformance mismatch failures are gone. The
-passing queries are q01, q04, q11, q37, q41, q74 and q82. The three targeted
-offline regression round-trip cases also pass, and the full 99-module CLI
-round-trip produces byte-identical canonical SQL.
+Binding now rejects unresolved output types and derives SQL Server result
+contracts for the corpus's aggregates, numeric arithmetic, supported functions,
+CASE/COALESCE, scalar subqueries and set operations. Types resolve through the
+selected catalog, including the distinction between `numeric` literals and
+`decimal` expressions and their precision/scale rules. The unchanged regenerated
+fixture now passes **all 99 strict Binding cases**, with an exact type assessment
+for every output column and zero skips. The suite also compares every inferred
+output length, precision and scale directly with the saved native contract;
+conformance to a wider destination cannot conceal an incorrect inference. No
+accepted-error list is used.
+
+Focused integration cases additionally compare expected expression contracts
+with live SQL Server metadata and verify catalog IDs that have arbitrary values.
+Outer joins and subtotal grouping preserve their possible NULL results instead
+of retaining a source field's NOT NULL assertion. See the
+[Binding support tracker](../../MetaTransform/Binding/Reference/BINDING_SUPPORT_TRACKER.md)
+for supported result typing and remaining boundaries. The separate offline
+round-trip covers syntax fidelity and is not an execution claim.
 
 ## SQL Server compilation and execution
 

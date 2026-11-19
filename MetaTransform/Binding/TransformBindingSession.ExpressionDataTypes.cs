@@ -35,6 +35,10 @@ internal sealed partial class TransformBindingSession
         }
 
         return TryCreateExplicitConversionDataType(expression) ??
+               TryCreateOperatorDataType(expression) ??
+               TryCreateFunctionDataType(expression) ??
+               TryCreateSubqueryDataType(expression) ??
+               TryCreateNullIfDataType(expression) ??
                TryCreateCoalesceDataType(expression) ??
                TryCreateCaseDataType(expression);
     }
@@ -55,8 +59,8 @@ internal sealed partial class TransformBindingSession
             return null;
         }
 
-        var firstDataType = resultDataTypes[0]!;
-        if (resultDataTypes.Skip(1).Any(item => !HasSameDataTypeContract(firstDataType, item!)))
+        var firstDataType = CommonResultDataType(resultDataTypes);
+        if (firstDataType is null)
         {
             return null;
         }
@@ -70,7 +74,9 @@ internal sealed partial class TransformBindingSession
         return firstDataType with
         {
             IsNullable = isNullable,
-            DisplayName = "COALESCE expression"
+            DisplayName = "COALESCE expression",
+            IntegerLiteralPrecision = null,
+            IsUntypedNull = false
         };
     }
 
@@ -117,8 +123,8 @@ internal sealed partial class TransformBindingSession
             return null;
         }
 
-        var firstDataType = resultDataTypes[0]!;
-        if (resultDataTypes.Skip(1).Any(item => !HasSameDataTypeContract(firstDataType, item!)))
+        var firstDataType = CommonResultDataType(resultDataTypes);
+        if (firstDataType is null)
         {
             return null;
         }
@@ -134,7 +140,9 @@ internal sealed partial class TransformBindingSession
         return firstDataType with
         {
             IsNullable = isNullable,
-            DisplayName = "CASE expression"
+            DisplayName = "CASE expression",
+            IntegerLiteralPrecision = null,
+            IsUntypedNull = false
         };
     }
 
@@ -162,14 +170,15 @@ internal sealed partial class TransformBindingSession
         var parameters = navigator.GetSqlDataTypeParameters(sqlDataTypeReference);
         var typeOption = sqlDataTypeReference.SqlDataTypeOption;
         var typeName = MetaTransformScriptSqlServerDataTypes.RenderSqlName(typeOption);
-        var length = IsLengthParameterizedType(typeOption)
-            ? TryGetDataTypeParameter(parameters, 0)
+        int? length = IsLengthParameterizedType(typeOption)
+            ? TryGetDataTypeParameter(parameters, 0) ?? (parameters.Count == 0 ? 30 :
+                string.Equals(parameters[0].Value, "max", StringComparison.OrdinalIgnoreCase) ? -1 : null)
             : null;
-        var precision = IsPrecisionParameterizedType(typeOption)
-            ? TryGetDataTypeParameter(parameters, 0)
+        int? precision = IsPrecisionParameterizedType(typeOption)
+            ? TryGetDataTypeParameter(parameters, 0) ?? (typeOption is "Decimal" or "Numeric" ? 18 : 7)
             : null;
-        var scale = IsScaleParameterizedType(typeOption)
-            ? TryGetDataTypeParameter(parameters, 1)
+        int? scale = IsScaleParameterizedType(typeOption)
+            ? TryGetDataTypeParameter(parameters, 1) ?? 0
             : null;
 
         return new RuntimeColumnDataType(
@@ -240,7 +249,7 @@ internal sealed partial class TransformBindingSession
         var functionCall = navigator.TryGetFunctionCall(expression);
         if (functionCall is not null)
         {
-            return TryResolveKnownFunctionNullability(functionCall);
+            return TryCreateFunctionDataType(expression)?.IsNullable ?? TryResolveKnownFunctionNullability(functionCall);
         }
 
         var coalesceExpression = navigator.TryGetCoalesceExpression(expression);
@@ -259,7 +268,9 @@ internal sealed partial class TransformBindingSession
                 : null;
         }
 
-        return TryCreateCaseDataType(expression)?.IsNullable;
+        return TryCreateSubqueryDataType(expression)?.IsNullable ??
+               TryCreateNullIfDataType(expression)?.IsNullable ??
+               TryCreateCaseDataType(expression)?.IsNullable;
     }
 
     private bool? TryResolveKnownFunctionNullability(FunctionCall functionCall)
@@ -316,9 +327,14 @@ internal sealed partial class TransformBindingSession
             return dataType;
         }
 
-        return nonNullableColumnScopeStack.Any(scope => scope.Contains(boundColumnReference.ResolvedColumn.Id))
-            ? dataType with { IsNullable = false }
-            : dataType;
+        var isSubtotalKey = projectionGroupingContext is { MayNullExtendKeys: true } grouping &&
+            grouping.GroupingKeyColumnIdentities.Contains(GetColumnReferenceIdentity(boundColumnReference.ResolvedColumn, boundColumnReference.ResolvedTableSource));
+        return dataType with
+        {
+            IsNullable = isSubtotalKey ? true : nonNullableColumnScopeStack.Any(scope => scope.Contains(boundColumnReference.ResolvedColumn.Id)) ? false : dataType.IsNullable,
+            IntegerLiteralPrecision = null,
+            IsUntypedNull = false
+        };
     }
 
     private static bool IsLengthParameterizedType(string? sqlDataTypeOption) =>
@@ -371,24 +387,19 @@ internal sealed partial class TransformBindingSession
                 Precision: null,
                 Scale: null,
                 DisplayName: "binary literal"),
+            "NULL" => SqlResult("int", true, "NULL literal") with { IsUntypedNull = true },
             _ => null
         };
     }
 
     private RuntimeColumnDataType? CreateIntegerLiteralDataType(string value)
     {
-        if (!long.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var number))
-        {
-            return null;
-        }
-
-        return new RuntimeColumnDataType(
-            typeValidator.ResolveSqlTypeName(number is >= int.MinValue and <= int.MaxValue ? "int" : "bigint"),
-            IsNullable: false,
-            Length: null,
-            Precision: null,
-            Scale: null,
-            DisplayName: "integer literal");
+        if (int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out _))
+            return SqlResult("int", false, "integer literal") with { IntegerLiteralPrecision = Math.Max(1, value.TrimStart('+', '-').TrimStart('0').Length) };
+        var digits = value.TrimStart('+', '-').TrimStart('0');
+        return digits.Length is > 0 and <= 38 && digits.All(char.IsDigit)
+            ? SqlResult("numeric", false, "integer literal", precision: digits.Length, scale: 0)
+            : null;
     }
 
     private RuntimeColumnDataType? CreateNumericLiteralDataType(string value)
@@ -400,14 +411,14 @@ internal sealed partial class TransformBindingSession
         }
 
         var parts = normalized.Split('.', StringSplitOptions.None);
-        if (parts.Length != 2 || parts.Any(static item => item.Length == 0 || item.Any(static character => !char.IsDigit(character))))
+        if (parts.Length != 2 || normalized == "." || parts.Any(static item => item.Any(static character => !char.IsDigit(character))))
         {
             return null;
         }
 
-        var precision = parts[0].Length + parts[1].Length;
+        var precision = Math.Max(1, parts[0].TrimStart('0').Length + parts[1].Length);
         return new RuntimeColumnDataType(
-            typeValidator.ResolveSqlTypeName("decimal"),
+            typeValidator.ResolveSqlTypeName("numeric"),
             IsNullable: false,
             Length: null,
             Precision: precision,

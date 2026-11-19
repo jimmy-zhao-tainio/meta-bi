@@ -370,9 +370,11 @@ internal sealed partial class TransformBindingSession
         }
 
         nonNullableColumnScopeStack.Push(FindConjunctiveNonNullableColumns(whereSearchCondition));
+        var previousGroupingContext = projectionGroupingContext;
         try
         {
             var groupingContext = BindGrouping(querySpecification, scope, inputRowset);
+            projectionGroupingContext = groupingContext;
             var projectionInputRowset = groupingContext?.GroupedRowset ?? inputRowset;
 
             var havingSearchCondition = navigator.TryGetHavingSearchCondition(querySpecification);
@@ -389,6 +391,7 @@ internal sealed partial class TransformBindingSession
         }
         finally
         {
+            projectionGroupingContext = previousGroupingContext;
             nonNullableColumnScopeStack.Pop();
         }
     }
@@ -409,9 +412,11 @@ internal sealed partial class TransformBindingSession
         var groupingKeySignatures = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         var groupingKeyColumnIdentities = new HashSet<string>(StringComparer.Ordinal);
         var emittedGroupingKeySignatures = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var mayNullExtendKeys = false;
 
         foreach (var groupingSpecification in navigator.GetGroupingSpecifications(groupByClause))
         {
+            mayNullExtendKeys |= navigator.TryGetExpressionGroupingSpecification(groupingSpecification) is null;
             BindGroupingSpecification(
                 groupingSpecification,
                 scope,
@@ -421,6 +426,13 @@ internal sealed partial class TransformBindingSession
                 groupingKeyColumnIdentities,
                 emittedGroupingKeySignatures);
         }
+
+        // Subtotal specifications can omit grouping keys. Until each grouping set is
+        // enumerated, conservatively preserve possible NULLs for every such key.
+        if (mayNullExtendKeys)
+            for (var i = 0; i < groupingKeyColumns.Count; i++)
+                if (groupingKeyColumns[i].DataType is { } type)
+                    groupingKeyColumns[i] = groupingKeyColumns[i] with { DataType = type with { IsNullable = true } };
 
         var groupedRowset = new RuntimeRowset(
             $"{querySpecification.Id}:grouped-rowset",
@@ -435,7 +447,7 @@ internal sealed partial class TransformBindingSession
                 : [new RuntimeRowsetInput(0, "Input", inputRowset)]);
 
         TrackRowset(groupedRowset);
-        return new RuntimeGroupingContext(groupedRowset, groupingKeySignatures, groupingKeyColumnIdentities);
+        return new RuntimeGroupingContext(groupedRowset, groupingKeySignatures, groupingKeyColumnIdentities, mayNullExtendKeys);
     }
 
     private void BindGroupingSpecification(
@@ -559,7 +571,8 @@ internal sealed partial class TransformBindingSession
             groupingKeyColumns.Add(new RuntimeColumn(
                 $"{groupingSpecification.Id}:group-column:{groupingKeyColumns.Count + 1}",
                 boundColumnReference.ResolvedColumn.Name,
-                groupingKeyColumns.Count));
+                groupingKeyColumns.Count,
+                ApplyCurrentNullabilityRefinement(boundColumnReference)));
             return;
         }
 
@@ -581,7 +594,8 @@ internal sealed partial class TransformBindingSession
             groupingKeyColumns.Add(new RuntimeColumn(
                 $"{groupingSpecification.Id}:group-column:{groupingKeyColumns.Count + 1}",
                 $"GroupExpr{groupingKeyColumns.Count + 1}",
-                groupingKeyColumns.Count));
+                groupingKeyColumns.Count,
+                TryResolveExpressionDataType(expression)));
             return;
         }
 
@@ -602,7 +616,8 @@ internal sealed partial class TransformBindingSession
         groupingKeyColumns.Add(new RuntimeColumn(
             $"{groupingSpecification.Id}:group-column:{groupingKeyColumns.Count + 1}",
             outputColumnName,
-            groupingKeyColumns.Count));
+            groupingKeyColumns.Count,
+            TryResolveExpressionDataType(expression)));
     }
 
     private RuntimeRowset? ComposeQueryInputRowset(
@@ -670,23 +685,16 @@ internal sealed partial class TransformBindingSession
             .ToArray();
     }
 
-    private static RuntimeColumnDataType? ReconcileDataType(
+    private RuntimeColumnDataType? ReconcileDataType(
         RuntimeColumnDataType? first,
         RuntimeColumnDataType? second)
     {
-        if (first is null || second is null ||
-            !string.Equals(first.MetaDataTypeId, second.MetaDataTypeId, StringComparison.OrdinalIgnoreCase) ||
-            first.Length != second.Length ||
-            first.Precision != second.Precision ||
-            first.Scale != second.Scale)
+        if (first is null || second is null)
         {
             return null;
         }
 
-        return first with
-        {
-            IsNullable = first.IsNullable == true || second.IsNullable == true
-        };
+        return CommonDataType(first, second);
     }
 
     private IReadOnlyList<string>? TryDeriveOutputColumnNamesFromQueryExpression(string queryExpressionId)

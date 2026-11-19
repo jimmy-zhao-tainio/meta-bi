@@ -671,13 +671,9 @@ internal sealed class TransformBindingValidationService
             }
             else
             {
-                targetColumnLinks.Add(new ValidationTargetColumnLink
-                {
-                    Id = $"{targetRowsetLinkId}:column:{targetColumnLinks.Count + 1}",
-                    ValidationTargetRowsetLink = targetRowsetLink,
-                    Column = actualWriteColumns[ordinal],
-                    MetaSchemaFieldId = matchedTargetField.FieldId
-                });
+                throw new TransformBindingValidationException(
+                    "TargetWriteValueTypeNotResolved",
+                    $"Output expression '{outputColumnName}' (column ID '{actualWriteColumns[ordinal].Id}') for target field '{resolution.Table.CanonicalSqlIdentifier}.{matchedTargetField.FieldName}' has no proven SQL Server data type. This expression's result typing is not supported; the target contract cannot establish its type.");
             }
         }
 

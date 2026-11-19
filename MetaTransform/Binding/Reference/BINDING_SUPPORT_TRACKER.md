@@ -8,6 +8,50 @@ Status meanings:
 - `Deferred` = modeled syntax exists, but binding coverage is not claimed yet
 - `Not applicable` = not a standalone binding concern in this tracker
 
+Name resolution and expression traversal are distinct from result-type validation.
+Schema-aware Binding requires proven result types for every written output. An
+expression can be traversable while its result typing is unsupported; validation
+then rejects it with `TargetWriteValueTypeNotResolved` (or the mutation binding
+diagnostic `MutationWriteValueTypeNotResolved`). The destination never supplies
+the missing expression type.
+
+## SQL Server result contracts
+
+The selected MetaDataType catalog resolves both source types and expression
+result types through modeled SQL Server membership. SQL type names select
+catalog instances; IDs may be arbitrary. These are SQL Server language rules,
+independent of authored source-to-destination conversion policy.
+
+- Numeric arithmetic applies SQL Server precedence and decimal precision/scale
+  rules, including the precision-38 scale reduction. Integer constants use their
+  minimum decimal precision in decimal expressions. Constants beyond `int` and
+  decimal-point constants are `numeric`, rather than `bigint` or `decimal`.
+- SUM, AVG, MIN, MAX, COUNT, COUNT_BIG, APPROX_COUNT_DISTINCT, STDEV, STDEVP, VAR
+  and VARP have result typing for their supported inputs. Aggregates retain
+  possible NULL results. GROUPING, GROUPING_ID and the ranking functions
+  ROW_NUMBER, RANK, DENSE_RANK and NTILE have their SQL Server result types.
+- CASE and COALESCE reconcile supported numeric or character branches, including
+  differing facets. ISNULL keeps the first argument's type, and NULLIF keeps its
+  first argument's type with a nullable result.
+- ROUND, ABS, SUBSTRING, single-argument trimming/case functions, character `+`
+  and text-only CONCAT have bounded result typing. CONCAT with nontext arguments
+  remains unsupported because its implicit formatting lengths are not modeled.
+- CAST/CONVERT retain their declared result types and SQL Server facet defaults,
+  including MAX. A cast preserves an aggregate/subquery's possible NULL result.
+- Derived tables, CTEs, scalar subqueries and supported set-operation inputs
+  propagate result contracts. Set operations reconcile supported numeric or
+  character types and facets. Outer joins and OUTER APPLY introduce nullability
+  on their null-extended side.
+
+This is bounded type analysis, not SQL Server compilation or value execution.
+Mixed numeric/character implicit conversions, date arithmetic, other function
+families, and general PIVOT/UNPIVOT or TVF result typing remain unsupported.
+Subtotal grouping conservatively treats its grouping keys as nullable; individual
+grouping-set participation is not yet enumerated. Other advanced grouping and
+recursive-query semantics remain partial. Unknown schema
+facets retain their existing validation behavior. Final expression/target type
+IDs must match; the different-type destination policy is unchanged.
+
 ## Supported
 
 ### Source admission and scope
@@ -56,8 +100,8 @@ Status meanings:
 
 ### Structural schema conformance
 
-- Not applicable in Binding itself
-  Current boundary: Binding persists source and target SQL identifiers plus derived rowsets, but schema comparison belongs to Validate
+- Schema-aware Binding validates resolved source and target contracts.
+  Schema-free name/scope binding does not establish schema or type conformance.
 
 ### Name resolution and expression traversal
 
@@ -159,10 +203,10 @@ Status meanings:
 - VAR
 - VARP
 - APPROX_COUNT_DISTINCT
-  Current support: aggregate arguments are traversed and grouped-query rowset binding exists, but full aggregate output/type semantics are not yet the point of this layer
+  Current support: aggregate arguments are traversed and supported aggregates have SQL Server result typing as listed above. CHECKSUM_AGG and STRING_AGG result typing remains unsupported.
 - GROUPING
 - GROUPING_ID
-  Current support: advanced grouping specifications are traversed for grouped-rowset visibility, and grouping-function arguments bind through the aggregate call path; full aggregate/output/type semantics are still deferred
+  Current support: advanced grouping specifications are traversed for grouped-rowset visibility, and grouping functions have SQL Server result types. Full grouping semantics remain partial.
 
 ### Window and ordered-set traversal
 
@@ -194,7 +238,7 @@ Status meanings:
 - Final output rowset structural target conformance
 - Catalog-backed SQL Server expression/target type conformance
   Schema type validity is checked independently by MetaSchema's `SqlServerSchemaTypeValidator`. Every source and target field must resolve through the selected MetaDataType catalog and its modeled DataTypeSystem relationship to a system named `SqlServer`. `bind --data-type-workspace <workspace>` selects that catalog for schema validation and literal/CAST/CONVERT result typing; omission loads the packaged authored workspace. A supplied catalog is authoritative and is never supplemented from compiled seeds. Matching validated type IDs produce an exact assessment. The resulting expression type ID must match the destination type ID. Binding validates the supplied script against schema contracts; it does not prescribe how the script is produced. Missing required type IDs are also rejected by typed workspace authoring/loading.
-  Current support: validation appends explicit validation link rows inside `MetaTransformBinding` and fails hard on any mismatch by default; `--allow-partial` is an explicit corpus/discovery mode that skips failed transform scripts and saves only successfully bound/validated objects, with optional TSV diagnostics through `--partial-report`; target validation supports explicit strict target-column exclusion via `--ignore-target-columns` (ignored names must exist as non-identity target fields), supports optional sparse target-column exclusion via `--ignore-target-columns-if-present`, and persists each applied ignore as `ValidationTargetIgnoredColumn`. For mutation statements, the schema-backed public bind flow derives and validates explicit `Write` facts for INSERT, UPDATE, and every supported MERGE action (UPDATE, INSERT, and DELETE), maps every `WriteValue` to its writable target field, retains scalar-expression and concrete syntax origins, fails when required INSERT fields are omitted, and proves each write value has an exact resulting type including nullability and available length, precision, and scale. `Delete`, `MergeDelete`, and `Truncate` persist their exact non-value effects. Mutation predicates, MERGE `ON`, and every optional `WHEN` search condition persist source reads as `ColumnReference` facts and target reads as `TargetColumnReference` facts. The internal schema-free structural projection used by test fixtures does not claim those strict facts. Non-mutation output validation retains structural target mapping and records type evidence only when it is proven. The persisted type outcome is `ValidationTargetColumnTypeExact`. Existing expression-typing and unknown-facet behavior remains unchanged.
+  Current support: validation appends explicit validation link rows inside `MetaTransformBinding` and fails hard on any mismatch by default; `--allow-partial` is an explicit corpus/discovery mode that skips failed transform scripts and saves only successfully bound/validated objects, with optional TSV diagnostics through `--partial-report`; target validation supports explicit strict target-column exclusion via `--ignore-target-columns` (ignored names must exist as non-identity target fields), supports optional sparse target-column exclusion via `--ignore-target-columns-if-present`, and persists each applied ignore as `ValidationTargetIgnoredColumn`. For mutation statements, the schema-backed public bind flow derives and validates explicit `Write` facts for INSERT, UPDATE, and every supported MERGE action (UPDATE, INSERT, and DELETE), maps every `WriteValue` to its writable target field, retains scalar-expression and concrete syntax origins, fails when required INSERT fields are omitted, and proves each write value has an exact resulting type including nullability and available length, precision, and scale. `Delete`, `MergeDelete`, and `Truncate` persist their exact non-value effects. Mutation predicates, MERGE `ON`, and every optional `WHEN` search condition persist source reads as `ColumnReference` facts and target reads as `TargetColumnReference` facts. The internal schema-free structural projection used by test fixtures does not claim those strict facts. SELECT output validation likewise requires type evidence for every mapped column and rejects an unresolved result. The persisted type outcome is `ValidationTargetColumnTypeExact`. Unknown schema facets retain their existing behavior.
 
 ## Deferred
 

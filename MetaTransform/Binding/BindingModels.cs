@@ -17,7 +17,12 @@ public sealed record RuntimeColumnDataType(
     int? Length,
     int? Precision,
     int? Scale,
-    string DisplayName);
+    string DisplayName)
+{
+    // Literal context participates in SQL type unification, but is lost on a column read.
+    internal int? IntegerLiteralPrecision { get; init; }
+    internal bool IsUntypedNull { get; init; }
+}
 
 public sealed record RuntimeRowsetInput(
     int Ordinal,

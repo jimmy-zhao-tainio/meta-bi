@@ -148,12 +148,19 @@ internal sealed partial class TransformBindingSession
                 return null;
             }
 
+            // The join predicate sees the inputs before outer-join null extension.
+            var predicateSources = first.VisibleTableSources.Concat(second.VisibleTableSources).ToArray();
+
+            if (joinOperator is "RightOuter" or "FullOuter") first = NullExtendJoinSide(first);
+            if (joinOperator is "LeftOuter" or "FullOuter" or "OuterApply") second = NullExtendJoinSide(second);
+
             var joinedColumns = first.Rowset.Columns
                 .Concat(second.Rowset.Columns)
                 .Select((column, ordinal) => new RuntimeColumn(
                     $"{tableReference.Id}:column:{ordinal + 1}",
                     column.Name,
-                    ordinal))
+                    ordinal,
+                    column.DataType))
                 .ToArray();
 
             var inputRolePrefix = isApply ? "Apply" : "Join";
@@ -175,9 +182,8 @@ internal sealed partial class TransformBindingSession
             var visibleSources = first.VisibleTableSources.Concat(second.VisibleTableSources).ToArray();
             if (navigator.TryGetJoinSearchCondition(tableReference) is { } condition)
                 BindBooleanExpression(condition,
-                    new BindingScope(visibleSources.Concat(inheritedVisibleTableSources).ToArray(), visibleSources.Length),
+                    new BindingScope(predicateSources.Concat(inheritedVisibleTableSources).ToArray(), predicateSources.Length),
                     joinRowset, groupingContext: null);
-
             return new RuntimeTableReferenceBinding(
                 joinRowset,
                 visibleSources);
@@ -188,6 +194,19 @@ internal sealed partial class TransformBindingSession
             $"TableReference '{tableReference.Id}' is not yet supported by binding.",
             tableReference.Id));
         return null;
+    }
+
+    private static RuntimeTableReferenceBinding NullExtendJoinSide(RuntimeTableReferenceBinding binding)
+    {
+        static RuntimeRowset Extend(RuntimeRowset rowset) => rowset.Columns.All(column => column.DataType is null) ? rowset : rowset with
+        {
+            Columns = rowset.Columns.Select(column => column with
+            {
+                DataType = column.DataType is { } type ? type with { IsNullable = true } : null
+            }).ToArray()
+        };
+        return new RuntimeTableReferenceBinding(Extend(binding.Rowset),
+            binding.VisibleTableSources.Select(source => source with { Rowset = Extend(source.Rowset) }).ToArray());
     }
 
     private RuntimeRowset? ComposeJoinSideInputRowset(
@@ -210,7 +229,8 @@ internal sealed partial class TransformBindingSession
             .Select((column, ordinal) => new RuntimeColumn(
                 $"{joinTableReference.Id}:apply-input-column:{ordinal + 1}",
                 column.Name,
-                ordinal))
+                ordinal,
+                column.DataType))
             .ToArray();
 
         var rowset = new RuntimeRowset(

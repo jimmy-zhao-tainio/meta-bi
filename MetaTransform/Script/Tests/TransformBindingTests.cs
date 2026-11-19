@@ -805,10 +805,11 @@ WHEN NOT MATCHED THEN
     }
 
     [Fact]
+    [Trait("Category", "Integration")]
     public void BindValidatedUpdate_WithUnresolvedWriteExpression_FailsHard()
     {
         var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(
-            "UPDATE dbo.Customer SET Name = CONCAT(s.Name, '!') FROM dbo.CustomerStage AS s;",
+            "UPDATE dbo.Customer SET Name = dbo.UnknownFunction(s.Name) FROM dbo.CustomerStage AS s;",
             bareSelectName: "update-customer");
         var sourceSchemaModel = CreateSchema(
             "TestSystem",
@@ -1155,7 +1156,8 @@ WHEN NOT MATCHED THEN
     }
 
     [Fact]
-    public void BindValidatedUpdate_WithMixedCaseWriteExpression_FailsUntilSqlServerPrecedenceIsModeled()
+    [Trait("Category", "Integration")]
+    public void BindValidatedUpdate_WithMixedCaseWriteExpression_UsesSqlServerPrecedence()
     {
         var transformModel = new MetaTransformScriptSqlParser().ParseSqlCode(
             "UPDATE dbo.Customer SET StatusCode = CASE WHEN s.IsActive = 1 THEN s.ActiveCode ELSE s.InactiveCode END FROM dbo.CustomerStage AS s;",
@@ -1176,15 +1178,10 @@ WHEN NOT MATCHED THEN
         var tempRoot = Path.Combine(Path.GetTempPath(), "MetaTransform.Binding.Tests", Guid.NewGuid().ToString("N"));
         try
         {
-            var ex = Assert.Throws<TransformBindingValidationException>(() =>
-                BindValidated(
-                    tempRoot,
-                    transformModel,
-                    sourceSchemaModel,
-                    targetSchemaModel));
-
-            Assert.Equal("BindingFailed", ex.Code);
-            Assert.Contains("MutationWriteValueTypeNotResolved", ex.Message);
+            var result = BindValidated(tempRoot, transformModel, sourceSchemaModel, targetSchemaModel);
+            var exact = Assert.Single(result.Model.ValidationTargetColumnTypeExactList);
+            Assert.Equal("sqlserver:type:nvarchar", exact.SourceMetaDataTypeId);
+            Assert.Equal(exact.SourceMetaDataTypeId, exact.TargetMetaDataTypeId);
         }
         finally
         {

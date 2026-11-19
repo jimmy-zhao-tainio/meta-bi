@@ -124,8 +124,8 @@ public sealed class SqlServerSchemaTypeContractTests
     [InlineData("CAST(s.Value AS int)", "int")]
     [InlineData("CONVERT(int, s.Value)", "int")]
     [InlineData("1", "int")]
-    [InlineData("2147483648", "bigint")]
-    [InlineData("1.25", "decimal")]
+    [InlineData("2147483648", "numeric")]
+    [InlineData("1.25", "numeric")]
     [InlineData("1e0", "float")]
     [InlineData("0x01", "varbinary")]
     [InlineData("N'hi'", "nvarchar")]
@@ -237,7 +237,7 @@ public sealed class SqlServerSchemaTypeContractTests
         var catalog = MetaDataTypeModel.CreateEmpty();
         var system = new DataTypeSystem { Id = "arbitrary-system-identity", Name = "SqlServer" };
         catalog.DataTypeSystemList.Add(system);
-        foreach (var name in new[] { "int", "bigint", "nvarchar", "varchar", "decimal", "float", "varbinary" })
+        foreach (var name in new[] { "int", "bigint", "nvarchar", "varchar", "decimal", "numeric", "float", "varbinary" })
             catalog.DataTypeList.Add(new DataType { Id = "user-" + name, Name = name, DataTypeSystem = system });
         return catalog;
     }

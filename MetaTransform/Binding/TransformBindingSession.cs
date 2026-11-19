@@ -18,6 +18,7 @@ internal sealed partial class TransformBindingSession
     private readonly List<RuntimeStoredProcedureOperationBinding> storedProcedureOperationBindings = [];
     private readonly Stack<IReadOnlySet<string>> orderByOutputAliasScopeStack = [];
     private readonly Stack<IReadOnlySet<string>> nonNullableColumnScopeStack = [];
+    private RuntimeGroupingContext? projectionGroupingContext;
     private readonly HashSet<string> activeTransformFunctionParameterNames = new(StringComparer.OrdinalIgnoreCase);
     private readonly HashSet<string> boundScalarFunctionBodyScriptIds = new(StringComparer.Ordinal);
     private bool isInlineTableValuedFunction;
@@ -805,7 +806,8 @@ internal sealed partial class TransformBindingSession
     private sealed record RuntimeGroupingContext(
         RuntimeRowset GroupedRowset,
         IReadOnlySet<string> GroupingKeySignatures,
-        IReadOnlySet<string> GroupingKeyColumnIdentities);
+        IReadOnlySet<string> GroupingKeyColumnIdentities,
+        bool MayNullExtendKeys);
 
     private enum RuntimeCommonTableExpressionBindingState
     {
