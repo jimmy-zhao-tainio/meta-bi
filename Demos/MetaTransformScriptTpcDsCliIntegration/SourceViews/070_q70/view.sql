@@ -25,7 +25,7 @@ select
  group by rollup(s_state,s_county)
  order by
    lochierarchy desc
-  ,case when lochierarchy = 0 then s_state end
+  ,case when (grouping(s_state)+grouping(s_county)) = 0 then s_state end
   ,rank_within_parent
  OFFSET 0 ROWS FETCH NEXT 100 ROWS ONLY
 ;

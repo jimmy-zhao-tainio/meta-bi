@@ -5,19 +5,19 @@ select
   cd_marital_status,
   cd_dep_count,
   count(*) cnt1,
-  min(cd_dep_count),
-  max(cd_dep_count),
-  avg(cd_dep_count),
+  min(cd_dep_count) AS minimum_dep_count,
+  max(cd_dep_count) AS maximum_dep_count,
+  avg(cd_dep_count) AS average_dep_count,
   cd_dep_employed_count,
   count(*) cnt2,
-  min(cd_dep_employed_count),
-  max(cd_dep_employed_count),
-  avg(cd_dep_employed_count),
+  min(cd_dep_employed_count) AS minimum_employed_dep_count,
+  max(cd_dep_employed_count) AS maximum_employed_dep_count,
+  avg(cd_dep_employed_count) AS average_employed_dep_count,
   cd_dep_college_count,
   count(*) cnt3,
-  min(cd_dep_college_count),
-  max(cd_dep_college_count),
-  avg(cd_dep_college_count)
+  min(cd_dep_college_count) AS minimum_college_dep_count,
+  max(cd_dep_college_count) AS maximum_college_dep_count,
+  avg(cd_dep_college_count) AS average_college_dep_count
  from
   customer c,customer_address ca,customer_demographics
  where

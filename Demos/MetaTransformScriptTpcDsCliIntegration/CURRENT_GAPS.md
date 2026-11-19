@@ -17,11 +17,12 @@ runtime requires investigation before treating it as a practical routine check.
 
 ## Schema-aware Binding
 
-`bind-snapshot` currently fails against the checked-in `SchemaWS`. The first
-rejection is a direct `char` projection whose target declares `nvarchar`.
-The fixture also leaves many source facets unknown. Matching target IDs to
-Binding's inferred answers would not independently establish the right contract.
-No conversion mappings or relaxed type checks are used to approve this probe.
+`SchemaWS` was regenerated on 2026-11-19 from 24 SQL Server source tables and all
+99 compiled query views. Its 1,040 column contracts were checked against native
+SQL Server metadata, including applicable type facets and nullability. Two
+complete generations produced byte-identical workspaces. The output views were
+adapted into table contracts through modeled CLI operations. For example, q01's
+`c_customer_id` is now `char(16)` instead of the former `nvarchar` declaration.
 
 The integration suite reports each of the 99 queries independently through
 `TransformBindingTpcDsValidatedCorpusTests.Query_BindsAndValidatesAgainstSavedSchema`.
@@ -36,20 +37,29 @@ Run these cases from the repository root:
 dotnet test MetaTransform/Script/Tests/MetaTransformScript.Tests.csproj -c Release --no-build --no-restore --filter FullyQualifiedName~TransformBindingTpcDsValidatedCorpusTests
 ```
 
-The saved fixture still requires regeneration. The strict run on 2026-11-18
+Before regeneration, the strict run on 2026-11-18
 reported one passing query and 98 failures: 75 type-conformance mismatches and
 23 cases where Binding returned without complete output type assessments.
 The latter cases fail the test's evidence assertion. The production SELECT
 validation path currently adds a column link when expression type evidence is
 absent, without adding an exact type assessment or rejecting the expression.
-These tests expose both problems instead of accepting a global list of diagnostics.
+The strict suite continues to expose implementation gaps against the independently
+generated output contracts instead of accepting a global list of diagnostics.
 
-## SQL Server execution
+After regeneration on 2026-11-19, the 99 strict Binding cases report **7 passed
+and 92 failed**, with zero skips. All 92 failures are missing or incomplete output
+type assessments. The former type-conformance mismatch failures are gone. The
+passing queries are q01, q04, q11, q37, q41, q74 and q82. The three targeted
+offline regression round-trip cases also pass, and the full 99-module CLI
+round-trip produces byte-identical canonical SQL.
 
-A disposable SQL Server investigation of the 99 view definitions compiled 60
-and rejected 39. Examples include `SUBSTR`, an `ORDER BY` that is invalid in a
-view, and expressions without required view-column names. These are corpus
-limitations, not evidence that MetaTransformScript executes those constructs.
+## SQL Server compilation and execution
 
-The complete corpus has not been repaired or executed. Use the dedicated
-conversion, Pipeline and AdventureWorks demos for actual execution coverage.
+All 99 adapted view definitions compile in the fixture database. `SOURCE.md`
+records the dialect and view-wrapper changes. The previous compilation probe
+reported 60 successful views and 39 rejections, and also omitted source facets
+stored in `FieldDataTypeDetail`. That probe has been superseded by the complete
+regeneration from `SourceSchema.sql` with modeled facets preserved.
+
+Generation compiles views and verifies their metadata in an empty database.
+Results over a populated TPC-DS dataset have not been verified.

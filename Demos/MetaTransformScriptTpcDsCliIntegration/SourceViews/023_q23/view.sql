@@ -1,11 +1,11 @@
 ﻿CREATE VIEW tpcds.v_q23 AS
 with frequent_ss_items as
- (select substr(i_item_desc,1,30) itemdesc,i_item_sk item_sk,d_date solddate,count(*) cnt
+ (select SUBSTRING(i_item_desc,1,30) itemdesc,i_item_sk item_sk,d_date solddate,count(*) cnt
   from store_sales, date_dim, item
   where ss_sold_date_sk = d_date_sk
     and ss_item_sk = i_item_sk
     and d_year in (2000, 2000+1, 2000+2,2000+3)
-  group by substr(i_item_desc,1,30),i_item_sk,d_date
+  group by SUBSTRING(i_item_desc,1,30),i_item_sk,d_date
   having count(*) >4),
  max_store_sales as
  (select max(csales) tpcds_cmax
@@ -22,7 +22,7 @@ with frequent_ss_items as
   group by c_customer_sk
   having sum(ss_quantity*ss_sales_price) > (95/100.0) *
     (select * from max_store_sales))
- select sum(sales)
+ select sum(sales) AS total_sales
  from (select cs_quantity*cs_list_price sales
        from catalog_sales, date_dim
        where d_year = 2000

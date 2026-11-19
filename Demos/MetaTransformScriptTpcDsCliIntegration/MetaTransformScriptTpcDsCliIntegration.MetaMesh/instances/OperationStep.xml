@@ -125,5 +125,10 @@
       <Executable>meta.exe</Executable>
       <Name>diff-sql-workspaces</Name>
     </OperationStep>
+    <OperationStep Id="operation-step:regenerate-schema:rebuild-schema-from-sql-server" OperationId="operation:regenerate-schema">
+      <Arguments>-NoProfile -ExecutionPolicy Bypass -File "{mesh.root}\Rebuild-Schema.ps1" -ConnectionEnv {env:META_TPCDS_FIXTURE_ADMIN_SQL} -ReplaceExisting</Arguments>
+      <Executable>powershell.exe</Executable>
+      <Name>rebuild-schema-from-sql-server</Name>
+    </OperationStep>
   </OperationStepList>
 </MetaMesh>

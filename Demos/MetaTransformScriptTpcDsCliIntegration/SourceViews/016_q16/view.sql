@@ -1,8 +1,8 @@
 ﻿CREATE VIEW tpcds.v_q16 AS
 select
-   count(distinct cs_order_number) as `order count`,
-   sum(cs_ext_ship_cost) as `total shipping cost`,
-   sum(cs_net_profit) as `total net profit`
+   count(distinct cs_order_number) as [order count],
+   sum(cs_ext_ship_cost) as [total shipping cost],
+   sum(cs_net_profit) as [total net profit]
  from
    catalog_sales cs1, date_dim, customer_address, call_center
  where

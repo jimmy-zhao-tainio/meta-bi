@@ -1,6 +1,6 @@
 ﻿CREATE VIEW tpcds.v_q79 AS
 select
-  c_last_name,c_first_name,substr(s_city,1,30),ss_ticket_number,amt,profit
+  c_last_name,c_first_name,SUBSTRING(s_city,1,30) AS store_city,ss_ticket_number,amt,profit
   from
    (select ss_ticket_number
           ,ss_customer_sk
@@ -18,7 +18,7 @@ select
     and store.s_number_employees between 200 and 295
     group by ss_ticket_number,ss_customer_sk,ss_addr_sk,store.s_city) ms,customer
     where ss_customer_sk = c_customer_sk
- order by c_last_name,c_first_name,substr(s_city,1,30), profit
+ order by c_last_name,c_first_name,SUBSTRING(s_city,1,30), profit
  OFFSET 0 ROWS FETCH NEXT 100 ROWS ONLY
 ;
 

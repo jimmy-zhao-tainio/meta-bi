@@ -1,5 +1,5 @@
 ﻿CREATE VIEW tpcds.v_q41 AS
-select distinct(i_product_name)
+select distinct(i_product_name) AS i_product_name
  from item i1
  where i_manufact_id between 738 and 738+40
    and (select count(*) as item_cnt

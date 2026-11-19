@@ -43,7 +43,7 @@ with year_total as (
     and t_w_firstyear.year_total > 0
     and case when t_w_firstyear.year_total > 0 then t_w_secyear.year_total / t_w_firstyear.year_total else null end
       > case when t_s_firstyear.year_total > 0 then t_s_secyear.year_total / t_s_firstyear.year_total else null end
- order by 1, 1, 1
+ order by 1
  OFFSET 0 ROWS FETCH NEXT 100 ROWS ONLY
 ;
 

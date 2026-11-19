@@ -1,6 +1,6 @@
 ﻿CREATE VIEW tpcds.v_q85 AS
 select
-    substr(r_reason_desc,1,20), avg(ws_quantity), avg(wr_refunded_cash), avg(wr_fee)
+    SUBSTRING(r_reason_desc,1,20) AS reason_description, avg(ws_quantity) AS average_quantity, avg(wr_refunded_cash) AS average_refunded_cash, avg(wr_fee) AS average_fee
  from web_sales, web_returns, web_page, customer_demographics cd1,
       customer_demographics cd2, customer_address, date_dim, reason
  where ws_web_page_sk = wp_web_page_sk
@@ -73,7 +73,7 @@ select
     )
    )
  group by r_reason_desc
- order by substr(r_reason_desc,1,20)
+ order by SUBSTRING(r_reason_desc,1,20)
         ,avg(ws_quantity)
         ,avg(wr_refunded_cash)
         ,avg(wr_fee)

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MetaSchema>
   <SchemaList>
-    <Schema Id="schema:TpcDsSnapshot:dbo" SystemId="system:TpcDsSnapshot">
+    <Schema Id="sqlserver:MetaBiTpcDsFixture:schema:dbo" SystemId="sqlserver:system:TpcDsSnapshot">
       <Name>dbo</Name>
     </Schema>
-    <Schema Id="schema:TpcDsSnapshot:tpcds" SystemId="system:TpcDsSnapshot">
+    <Schema Id="sqlserver:MetaBiTpcDsFixture:schema:tpcds" SystemId="sqlserver:system:TpcDsSnapshot">
       <Name>tpcds</Name>
     </Schema>
   </SchemaList>

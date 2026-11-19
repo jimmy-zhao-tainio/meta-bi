@@ -1,5 +1,5 @@
 ﻿CREATE VIEW tpcds.v_q92 AS
-select sum(ws_ext_discount_amt) as `Excess Discount Amount`
+select sum(ws_ext_discount_amt) as [Excess Discount Amount]
  from web_sales, item, date_dim
  where i_manufact_id = 350
  and i_item_sk = ws_item_sk

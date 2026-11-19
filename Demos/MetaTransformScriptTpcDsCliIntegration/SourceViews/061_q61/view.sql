@@ -1,5 +1,5 @@
 ﻿CREATE VIEW tpcds.v_q61 AS
-select promotions,total,cast(promotions as decimal(15,4))/cast(total as decimal(15,4))*100
+select promotions,total,cast(promotions as decimal(15,4))/cast(total as decimal(15,4))*100 AS promotion_percentage
  from
    (select sum(ss_ext_sales_price) promotions
      from  store_sales, store, promotion, date_dim, customer, customer_address, item

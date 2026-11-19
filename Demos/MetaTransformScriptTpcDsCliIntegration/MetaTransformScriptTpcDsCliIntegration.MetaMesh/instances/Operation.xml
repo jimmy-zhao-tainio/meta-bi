@@ -17,5 +17,9 @@
       <Description>Additional full-graph MetaSql conversion and comparison; slow on this corpus and not part of the ordinary syntax round-trip.</Description>
       <Name>compare-sql-projections</Name>
     </Operation>
+    <Operation Id="operation:regenerate-schema" MeshId="mesh:default">
+      <Description>Compile the 99 SQL Server views, extract source and output schemas, and publish verified table contracts. Preserve the previous workspace in generation evidence.</Description>
+      <Name>regenerate-schema</Name>
+    </Operation>
   </OperationList>
 </MetaMesh>

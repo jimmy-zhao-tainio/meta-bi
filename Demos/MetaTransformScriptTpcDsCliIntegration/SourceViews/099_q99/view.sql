@@ -1,14 +1,14 @@
 ﻿CREATE VIEW tpcds.v_q99 AS
 select
-    substr(w_warehouse_name,1,20), sm_type, cc_name
-   ,sum(case when (cs_ship_date_sk - cs_sold_date_sk <= 30 ) then 1 else 0 end)  as `30 days`
+    SUBSTRING(w_warehouse_name,1,20) AS warehouse_name, sm_type, cc_name
+   ,sum(case when (cs_ship_date_sk - cs_sold_date_sk <= 30 ) then 1 else 0 end)  as [30 days]
    ,sum(case when (cs_ship_date_sk - cs_sold_date_sk > 30) and
-                  (cs_ship_date_sk - cs_sold_date_sk <= 60) then 1 else 0 end )  as `31-60 days`
+                  (cs_ship_date_sk - cs_sold_date_sk <= 60) then 1 else 0 end )  as [31-60 days]
    ,sum(case when (cs_ship_date_sk - cs_sold_date_sk > 60) and
-                  (cs_ship_date_sk - cs_sold_date_sk <= 90) then 1 else 0 end)  as `61-90 days`
+                  (cs_ship_date_sk - cs_sold_date_sk <= 90) then 1 else 0 end)  as [61-90 days]
    ,sum(case when (cs_ship_date_sk - cs_sold_date_sk > 90) and
-                  (cs_ship_date_sk - cs_sold_date_sk <= 120) then 1 else 0 end)  as `91-120 days`
-   ,sum(case when (cs_ship_date_sk - cs_sold_date_sk  > 120) then 1 else 0 end)  as `>120 days`
+                  (cs_ship_date_sk - cs_sold_date_sk <= 120) then 1 else 0 end)  as [91-120 days]
+   ,sum(case when (cs_ship_date_sk - cs_sold_date_sk  > 120) then 1 else 0 end)  as [>120 days]
  from
     catalog_sales, warehouse, ship_mode, call_center, date_dim
  where
@@ -18,8 +18,8 @@ select
  and cs_ship_mode_sk   = sm_ship_mode_sk
  and cs_call_center_sk = cc_call_center_sk
  group by
-    substr(w_warehouse_name,1,20), sm_type, cc_name
- order by substr(w_warehouse_name,1,20), sm_type, cc_name
+    SUBSTRING(w_warehouse_name,1,20), sm_type, cc_name
+ order by SUBSTRING(w_warehouse_name,1,20), sm_type, cc_name
  OFFSET 0 ROWS FETCH NEXT 100 ROWS ONLY
 ;
 

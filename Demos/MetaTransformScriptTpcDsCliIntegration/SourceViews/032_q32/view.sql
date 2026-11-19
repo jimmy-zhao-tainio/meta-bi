@@ -1,5 +1,5 @@
 ﻿CREATE VIEW tpcds.v_q32 AS
-select sum(cs_ext_discount_amt) as `excess discount amount`
+select sum(cs_ext_discount_amt) as [excess discount amount]
  from
     catalog_sales, item, date_dim
  where

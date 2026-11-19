@@ -22,5 +22,5 @@ select c_last_name, c_first_name, c_salutation, c_preferred_cust_flag, ss_ticket
     where ss_customer_sk = c_customer_sk
       and cnt between 15 and 20
     order by c_last_name,c_first_name,c_salutation,c_preferred_cust_flag desc, ss_ticket_number
+ OFFSET 0 ROWS
 ;
-

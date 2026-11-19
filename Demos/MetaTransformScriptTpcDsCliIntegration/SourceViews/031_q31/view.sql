@@ -43,5 +43,5 @@ with ss as
     and case when ws2.web_sales > 0 then ws3.web_sales/ws2.web_sales else null end
        > case when ss2.store_sales > 0 then ss3.store_sales/ss2.store_sales else null end
  order by ss1.ca_county
+ OFFSET 0 ROWS
 ;
-
