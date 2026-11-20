@@ -25,6 +25,8 @@
     </Content>
     <Content Include="MetaDQ.Operational.sql" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest"
              Pack="true" PackagePath="contentFiles\any\any\MetaDQ.Operational.sql" PackageCopyToOutput="true" />
+    <Content Include="MetaDQ.Explain.sql" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest"
+             Pack="true" PackagePath="contentFiles\any\any\MetaDQ.Explain.sql" PackageCopyToOutput="true" />
   </ItemGroup>
 
 </Project>

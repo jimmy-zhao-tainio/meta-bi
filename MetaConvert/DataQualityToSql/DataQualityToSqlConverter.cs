@@ -21,6 +21,8 @@ public sealed class DataQualityToSqlConverter
             "forward"));
 
     private static readonly Lazy<string> OperationalSql = new(LoadOperationalSql);
+    private static readonly Lazy<string> ExplainSql = new(() =>
+        File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "MetaDQ.Explain.sql"), Encoding.UTF8));
 
     public DataQualityToSqlResult Convert(string workspacePath, string outputPath)
         => Convert(workspacePath, outputPath, progress: null);
@@ -172,7 +174,7 @@ public sealed class DataQualityToSqlConverter
                 WHERE SourceDatabaseName = DB_NAME()
                 ORDER BY RunId DESC
             )
-            {RenderReviewRows("LEFT JOIN LatestRun AS run ON 1 = 1")};
+            {RenderReviewRows("LEFT JOIN LatestRun AS run ON 1 = 1", ", run.RunId")};
             GO
 
             CREATE OR ALTER PROCEDURE [dq].[Run]
@@ -192,34 +194,27 @@ public sealed class DataQualityToSqlConverter
                        run.Status,
                        (SELECT COUNT_BIG(*) FROM [MetaDQ].[dbo].[RunCheck] WHERE RunId = @RunId) AS Checks,
                        (SELECT COUNT_BIG(*) FROM [MetaDQ].[dbo].[RunCheck] WHERE RunId = @RunId AND ErrorMessage IS NOT NULL) AS ChecksFailed,
-                       run.StartedAtUtc,
-                       run.CompletedAtUtc
+                       CAST(DATEDIFF_BIG(millisecond, run.StartedAtUtc, run.CompletedAtUtc) / 1000.0 AS decimal(19,3)) AS Seconds
                 FROM [MetaDQ].[dbo].[RunLog] AS run
                 WHERE run.RunId = @RunId;
 
                 {RenderReviewRows("JOIN [MetaDQ].[dbo].[RunLog] AS run ON run.RunId = @RunId")}
                 WHERE @IncludeClean = 1 OR r.Outcome <> N'No rows found' OR r.Outcome IS NULL
                 ORDER BY CASE WHEN r.Outcome = N'Check failed' THEN 0 ELSE 1 END,
-                         r.SuspectRows DESC, c.CandidateId;
+                         r.FindingGroups DESC, c.CandidateId;
             END;
             GO
             """);
+        builder.AppendLine(ExplainSql.Value);
         return builder.ToString();
     }
 
-    private static string RenderReviewRows(string runJoin) => $"""
-        SELECT COALESCE(r.FindingTitle, c.CheckName) AS [Check],
-               COALESCE(r.Outcome, N'Not checked') AS [Outcome],
-               r.CheckedRelationship AS [Relationship],
-               r.Transforms,
-               r.FindingGroups,
-               r.SuspectRows,
-               r.Explanation,
-               r.CheckedAtUtc,
-               CONCAT(N'SELECT * FROM ', QUOTENAME(DB_NAME()), N'.[dq].', QUOTENAME(c.DetailView), N';') AS [InspectCurrentRows],
-               c.CandidateId AS [CheckId],
-               run.RunId,
-               run.Status AS RunStatus
+    private static string RenderReviewRows(string runJoin, string runIdColumn = "") => $"""
+        SELECT r.CheckNo,
+               COALESCE(r.FindingTitle, c.CheckName) AS [Check],
+               r.Transforms AS [Transform],
+               r.FindingGroups AS [Groups],
+               COALESCE(r.Outcome, N'Not checked') AS [Outcome]{runIdColumn}
         FROM [dq].[v_ReviewChecks] AS c
         {runJoin}
         LEFT JOIN [MetaDQ].[dbo].[CheckReview] AS r

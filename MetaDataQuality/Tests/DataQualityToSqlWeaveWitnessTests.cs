@@ -255,6 +255,9 @@ public sealed class DataQualityToSqlWeaveWitnessTests(ITestOutputHelper output)
                 workspacePath,
                 new global::MetaDataQuality.MetaDataQualityWorkspaceBinding(),                searchUpward: false);
             var productionSql = File.ReadAllText(productionPath);
+            var detailSql = string.Join(Environment.NewLine, System.Text.RegularExpressions.Regex
+                .Split(productionSql, @"(?m)^GO\s*$")
+                .Where(batch => batch.TrimStart().StartsWith("CREATE OR ALTER VIEW [dq].[v_", StringComparison.Ordinal)));
 
             Assert.Equal(source.DataQualityCandidateList.Count, production.CandidateViewCount);
             Assert.Equal(167, production.CandidateViewCount);
@@ -263,13 +266,13 @@ public sealed class DataQualityToSqlWeaveWitnessTests(ITestOutputHelper output)
                 CountOccurrences(productionSql, "CREATE OR ALTER VIEW [dq]."));
             Assert.Equal(
                 source.JoinOrphanList.Count + source.OuterJoinNullExpansionList.Count,
-                CountOccurrences(productionSql, "WHERE NOT EXISTS"));
+                CountOccurrences(detailSql, "WHERE NOT EXISTS"));
             Assert.Equal(
                 source.JoinMultiplicityExplosionList.Count + source.OutputDuplicateRiskList.Count,
-                CountOccurrences(productionSql, "HAVING COUNT_BIG(*) > 1"));
+                CountOccurrences(detailSql, "HAVING COUNT_BIG(*) > 1"));
             Assert.Equal(
                 production.CandidateViewCount,
-                CountOccurrences(productionSql, "AS [SuspectCount]"));
+                CountOccurrences(detailSql, "AS [SuspectCount]"));
             Assert.All(
                 source.DataQualityCandidateList,
                 candidate => Assert.Contains(

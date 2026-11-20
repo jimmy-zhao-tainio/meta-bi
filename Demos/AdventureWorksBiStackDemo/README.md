@@ -165,15 +165,15 @@ thresholds or permission to ignore future differences.
 Inspect the findings on the local SQL Server instance:
 
 ```sql
-SELECT [Check], Outcome, Relationship, Transforms, FindingGroups, SuspectRows,
-       Explanation, InspectCurrentRows
+SELECT CheckNo, [Check], [Transform], [Groups], Outcome
 FROM [AdventureWorksAnalytics].[dq].[v_DataQualityReview]
 WHERE Outcome = N'Review affected rows'
-ORDER BY SuspectRows DESC, CheckId;
+ORDER BY [Groups] DESC, CheckNo;
 ```
 
-`InspectCurrentRows` contains SQL for drilling into a check using current data.
-The counts come from the most recent saved run. See
+Use `EXEC dq.Explain @CheckNo = 12;` with a number from the list to see an
+example and the SQL for inspecting the check. The list comes from the most
+recent saved run. The inspection query uses current data. See
 [DQ-REVIEW.md](DQ-REVIEW.md) for the individual findings and supporting probes.
 The former expectation of no findings is superseded by this interpretation;
 the verifier does not hardcode 45 as an allowed-failure threshold.

@@ -103,6 +103,7 @@ False-positive reduction currently uses projection evidence from the semantic Tr
 - `dq.v_ReviewChecks`, the list of checks in this deployment
 - `dq.v_DataQualityReview`, the dashboard of saved results
 - `dq.Run`, the local procedure for running and reviewing checks
+- `dq.Explain`, examples and SQL for investigating one check
 - one MetaDQ operational pack:
 - tables `dbo.RunLog`, `dbo.RunCheck`, `dbo.FindingLog`
 - procedures `dbo.Run`, `dbo.Findings`
@@ -131,8 +132,9 @@ after the data is ready:
 EXEC dq.Run;
 ```
 
-The procedure shows the run status and check totals first, then the checks that
-need attention. It uses the execution database automatically. Add
+The procedure shows one run summary and a short list of checks that need
+attention. `Groups` counts the groups reported by a data check. It can be blank
+for a transform-pattern review or a failed check. Add
 `@IncludeClean = 1` to include checks with zero findings or pass
 `@RunId = @RunId OUTPUT` with a declared `bigint` variable to keep the run ID.
 
@@ -140,15 +142,14 @@ The procedure delegates execution to `MetaDQ.dbo.Run`, which snapshots the
 deployed check list, runs one check at a time and saves each outcome. A run with
 a check error reports `CompletedWithErrors`.
 
-The dashboard reads the latest saved run. You can filter to a relationship,
-transform or outcome without executing the checks again.
+The dashboard reads the latest saved run. You can filter by transform or
+outcome without executing the checks again.
 
 ```sql
-SELECT [Check], Outcome, Relationship, Transforms, FindingGroups, SuspectRows,
-       Explanation, CheckedAtUtc, InspectCurrentRows
+SELECT CheckNo, [Check], [Transform], [Groups], Outcome
 FROM dq.v_DataQualityReview
 WHERE Outcome IN (N'Review affected rows', N'Review transform pattern', N'Check failed')
-ORDER BY Outcome, SuspectRows DESC, CheckId;
+ORDER BY Outcome, [Groups] DESC, CheckNo;
 ```
 
 - **Review affected rows** means the check returned suspect groups. The groups
@@ -157,12 +158,27 @@ ORDER BY Outcome, SuspectRows DESC, CheckId;
 - **Review transform pattern** means the finding comes from comparing modeled
   transforms. The runtime counts are NULL.
 - **No rows found** means the runtime check completed with zero finding groups.
-- **Check failed** shows the SQL error. **Not checked** means the latest run has
-  no saved outcome for that check. An active run can also show waiting and running checks.
+- **Check failed** means the check raised a SQL error. Use `dq.Explain` to
+  read it. **Not checked** means the latest run has no saved outcome for that
+  check. An active run can also show waiting and running checks.
 
-`InspectCurrentRows` queries the individual check against the current data.
-`MetaDQ.dbo.Findings @RunId = …` returns the detailed evidence captured during
-the specified run, including the explanation and links to related transforms.
+Use the check number from the list when you want to know what a finding means:
+
+```sql
+EXEC dq.Explain @CheckNo = 12;
+-- Supply the RunId from the summary when referring to an earlier run.
+EXEC dq.Explain @CheckNo = 12, @RunId = 4;
+```
+
+The explanation gives a plain example and a decision to make about your data.
+The first query samples up to 20 rows from that check against current data.
+Where there is a confirmation query, replace its example table and columns
+with the actual output and keys. For example, three lines for one order are
+normal in a line report. In an order summary, grouping by the order number
+should return only one row per order.
+
+`MetaDQ.dbo.Findings @RunId = …` reads the detailed evidence captured during
+the specified run, including the original rationale and the affected-row counts.
 Deploy and run under an identity with access to the DQ objects and their
 underlying data. Dashboard readers need access to the saved results in `MetaDQ`.
 

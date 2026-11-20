@@ -329,7 +329,14 @@ GO
 EXEC [MetaDQ].sys.sp_executesql N'
 CREATE OR ALTER VIEW [dbo].[CheckReview] AS
 SELECT r.[RunId], r.[SourceDatabaseName], r.[Status] AS [RunStatus], c.[CandidateId],
-       f.[FindingTitle],
+       ROW_NUMBER() OVER (PARTITION BY c.[RunId] ORDER BY c.[CandidateId]) AS [CheckNo],
+       f.[CandidateKind], f.[OutputMode],
+       CASE f.[CandidateKind]
+            WHEN N''JoinMultiplicityExplosion'' THEN N''Join may repeat rows''
+            WHEN N''OutputDuplicateRisk'' THEN N''Possible duplicate rows''
+            WHEN N''OuterJoinNullExpansion'' THEN N''Missing matches in outer joins''
+            ELSE f.[FindingTitle]
+       END AS [FindingTitle],
        CASE WHEN c.[ErrorMessage] IS NOT NULL THEN N''Check failed''
             WHEN c.[CompletedAtUtc] IS NULL AND r.[Status] <> N''Running'' THEN N''Run interrupted''
             WHEN c.[StartedAtUtc] IS NULL THEN N''Waiting to run''
@@ -346,6 +353,8 @@ JOIN [dbo].[RunCheck] AS c ON c.[RunId] = r.[RunId]
 OUTER APPLY
 (
     SELECT NULLIF(MAX(COALESCE(f.[FindingTitle], N'''')), N'''') AS [FindingTitle],
+           NULLIF(MAX(COALESCE(f.[CandidateKind], N'''')), N'''') AS [CandidateKind],
+           NULLIF(MAX(COALESCE(f.[OutputMode], N'''')), N'''') AS [OutputMode],
            CASE WHEN COUNT(DISTINCT COALESCE(f.[RelationshipLabel], N'''')) = 1
                 THEN NULLIF(MAX(COALESCE(f.[RelationshipLabel], N'''')), N'''') END AS [CheckedRelationship],
            CASE WHEN COUNT(DISTINCT f.[TransformViews]) = 1 THEN MAX(f.[TransformViews]) END AS [Transforms],
