@@ -132,43 +132,27 @@ after the data is ready:
 EXEC dq.Run;
 ```
 
-The procedure shows one run summary and a short list of checks that need
-attention. `Groups` counts the groups reported by a data check. It can be blank
-for a transform-pattern review or a failed check. Add
-`@IncludeClean = 1` to include checks with zero findings or pass
-`@RunId = @RunId OUTPUT` with a declared `bigint` variable to keep the run ID.
-
-The procedure delegates execution to `MetaDQ.dbo.Run`, which snapshots the
-deployed check list, runs one check at a time and saves each outcome. A run with
-a check error reports `CompletedWithErrors`.
+The procedure returns one list of findings and check errors, ordered by
+transform. Copy and run the SQL in a row's **Investigate** column to see an
+example, what to look for and queries to use. The command refers to that saved
+finding even after a newer run. Add `@IncludeClean = 1` to see checks with no
+findings as well.
 
 The dashboard reads the latest saved run. You can filter by transform or
 outcome without executing the checks again.
 
 ```sql
-SELECT CheckNo, [Check], [Transform], [Groups], Outcome
+SELECT [Transform], [Check], Outcome, Investigate
 FROM dq.v_DataQualityReview
 WHERE Outcome IN (N'Review affected rows', N'Review transform pattern', N'Check failed')
-ORDER BY Outcome, [Groups] DESC, CheckNo;
+ORDER BY [Transform], [Check];
 ```
 
-- **Review affected rows** means the check returned suspect groups. The groups
-  are what the check returned and the suspect-row count is the sum reported by
-  those groups.
-- **Review transform pattern** means the finding comes from comparing modeled
-  transforms. The runtime counts are NULL.
-- **No rows found** means the runtime check completed with zero finding groups.
-- **Check failed** means the check raised a SQL error. Use `dq.Explain` to
-  read it. **Not checked** means the latest run has no saved outcome for that
-  check. An active run can also show waiting and running checks.
-
-Use the check number from the list when you want to know what a finding means:
-
-```sql
-EXEC dq.Explain @CheckNo = 12;
--- Supply the RunId from the summary when referring to an earlier run.
-EXEC dq.Explain @CheckNo = 12, @RunId = 4;
-```
+- **Review affected rows** means the check found data worth investigating.
+- **Review transform pattern** means the finding comes from comparing how transforms are written.
+- **No rows found** means the data check reported no findings.
+- **Check failed** means the check raised a SQL error. Run the **Investigate** command to read it.
+- **Not checked** means there is no saved result for that check in the latest run.
 
 The explanation gives a plain example and a decision to make about your data.
 The first query samples up to 20 rows from that check against current data.
@@ -178,7 +162,8 @@ normal in a line report. In an order summary, grouping by the order number
 should return only one row per order.
 
 `MetaDQ.dbo.Findings @RunId = …` reads the detailed evidence captured during
-the specified run, including the original rationale and the affected-row counts.
+the specified run, including the original rationale and counts. Automation can
+capture the run ID from `dq.Run` using its optional `@RunId` output parameter.
 Deploy and run under an identity with access to the DQ objects and their
 underlying data. Dashboard readers need access to the saved results in `MetaDQ`.
 

@@ -64,9 +64,9 @@ Important semantics:
 - semantic review findings are informational and do not execute row-level source-data suspect-row checks.
 - runtime checks execute against rows in `MetaDataQualityRealDbDemo`.
 
-The saved dashboard `dq.v_DataQualityReview` shows the check title, transform,
-outcome and number of finding groups. Pass a `CheckNo` from the list to
-`dq.Explain` for an example and a query that inspects the current data.
+The saved dashboard `dq.v_DataQualityReview` shows the transform, check and
+outcome. Run the SQL in the **Investigate** column for an example and a query
+that inspects the current data.
 
 Detailed evidence from `MetaDQ.dbo.Findings @RunId = …`:
 

@@ -176,7 +176,7 @@ internal sealed class MetaConvertCommandHandlers
             {
                 ("DataQualityViews", result.CandidateViewCount.ToString()),
                 ("Run", "EXEC dq.Run;"),
-                ("Explain", "EXEC dq.Explain @CheckNo = 1;"),
+                ("Investigate", "Run the SQL in a finding's Investigate column."),
                 ("Dashboard", "dq.v_DataQualityReview"),
                 ("MetaDQTables", result.OperationalTableCount.ToString()),
                 ("MetaDQProcedures", result.OperationalProcedureCount.ToString()),

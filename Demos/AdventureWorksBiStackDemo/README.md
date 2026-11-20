@@ -165,15 +165,15 @@ thresholds or permission to ignore future differences.
 Inspect the findings on the local SQL Server instance:
 
 ```sql
-SELECT CheckNo, [Check], [Transform], [Groups], Outcome
+SELECT [Transform], [Check], Outcome, Investigate
 FROM [AdventureWorksAnalytics].[dq].[v_DataQualityReview]
 WHERE Outcome = N'Review affected rows'
-ORDER BY [Groups] DESC, CheckNo;
+ORDER BY [Transform], [Check];
 ```
 
-Use `EXEC dq.Explain @CheckNo = 12;` with a number from the list to see an
-example and the SQL for inspecting the check. The list comes from the most
-recent saved run. The inspection query uses current data. See
+Copy and run the SQL in the **Investigate** column to see an example and
+queries for that finding. The list comes from the most recent saved run. The
+inspection query uses current data. See
 [DQ-REVIEW.md](DQ-REVIEW.md) for the individual findings and supporting probes.
 The former expectation of no findings is superseded by this interpretation;
 the verifier does not hardcode 45 as an allowed-failure threshold.

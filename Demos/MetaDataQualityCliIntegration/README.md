@@ -41,7 +41,7 @@ Workflow:
 What this demo proves:
 - generated DQ views are real SQL, not placeholders
 - original transform views are present in the same database and referenced by DQ output
-- `dq.v_DataQualityReview` shows the saved check list. `dq.Explain` gives an example and queries for one check.
+- `dq.v_DataQualityReview` shows the saved check list. Run the SQL in the **Investigate** column for an example and queries for that check.
 - `MetaDQ.dbo.Run` persists each review run and `MetaDQ.dbo.Findings` returns actionable rows
 - `MetaDQ.dbo.RunLog`, `MetaDQ.dbo.RunCheck` and `MetaDQ.dbo.FindingLog` keep run history
 - row-multiplication and duplicate-output checks are suppressed when the transform projects detail-side identifiers such as `OrderId` or `InvoiceId`

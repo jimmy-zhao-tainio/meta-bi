@@ -55,17 +55,19 @@ public sealed class StoredReviewSqlServerIntegrationTests
             var dashboard = $"[{sourceDatabase}].[dq].[v_DataQualityReview]";
             var before = await Read(master, dashboard);
             Assert.Equal(2, before.Count);
-            Assert.All(before, row => Assert.Equal("Not checked", row.Outcome));
+            Assert.All(before, row =>
+            {
+                Assert.Equal("Not checked", row.Outcome);
+                Assert.Null(row.Investigate);
+            });
 
-            var firstRun = await RunReview(source, "EXEC dq.Run;", expectedFailures: 0);
+            var firstRun = await RunReview(source, "EXEC dq.Run;");
             var first = await Read(master, dashboard);
-            Assert.Equal(firstRun.Rows.OrderBy(x => x.CheckNo), first.OrderBy(x => x.CheckNo));
+            Assert.Equal(firstRun.OrderBy(x => x.Investigate), first.OrderBy(x => x.Investigate));
             var finding = Assert.Single(first, x => x.Outcome == "Review affected rows");
             var pattern = Assert.Single(first, x => x.Outcome == "Review transform pattern");
-            Assert.Equal(2L, finding.Groups);
-            Assert.Null(pattern.Groups);
 
-            var explanation = await Explain(source, finding.CheckNo!.Value, firstRun.RunId);
+            var explanation = await Explain(master, finding);
             Assert.Contains("customer 42", explanation.Notes["Example"], StringComparison.Ordinal);
             Assert.Contains("which side", explanation.Notes["How to decide"], StringComparison.Ordinal);
             var inspect = explanation.Queries["Inspect up to 20 rows from this check"];
@@ -78,7 +80,7 @@ public sealed class StoredReviewSqlServerIntegrationTests
                 while (await reader.ReadAsync()) counts.Add(reader.GetInt64(reader.GetOrdinal("SuspectCount")));
                 Assert.Equal(new long[] { 1, 1 }, counts);
             }
-            var patternExplanation = await Explain(source, pattern.CheckNo!.Value, firstRun.RunId);
+            var patternExplanation = await Explain(master, pattern);
             var patternQuery = patternExplanation.Queries["Inspect up to 20 rows from this check"];
             await using (var detail = new SqlCommand(patternQuery, master))
             await using (var reader = await detail.ExecuteReaderAsync())
@@ -89,13 +91,14 @@ public sealed class StoredReviewSqlServerIntegrationTests
 
             await Execute(source, "INSERT dbo.Customer VALUES (3, 3); INSERT dbo.[Order] VALUES (2); INSERT dbo.CustomerRegion VALUES (2);");
             Assert.Contains(finding, await Read(master, dashboard));
-            var secondRun = await RunReview(source, "EXEC dq.Run;", expectedFailures: 0);
-            Assert.Equal(pattern, Assert.Single(secondRun.Rows));
+            var secondRun = await RunReview(source, "EXEC dq.Run;");
+            var latestPattern = Assert.Single(secondRun);
+            Assert.Equal(pattern.Check, latestPattern.Check);
+            Assert.Equal(pattern.Outcome, latestPattern.Outcome);
+            Assert.NotEqual(pattern.Investigate, latestPattern.Investigate);
             var second = await Read(master, dashboard);
             var clean = Assert.Single(second, x => x.Outcome == "No rows found");
-            Assert.Equal(0L, clean.Groups);
-            Assert.NotEqual(firstRun.RunId, secondRun.RunId);
-            var historical = await Explain(source, finding.CheckNo.Value, firstRun.RunId);
+            var historical = await Explain(master, finding);
             Assert.Equal(explanation.Notes["Saved result"], historical.Notes["Saved result"]);
 
             var includeClean = $"""
@@ -103,18 +106,19 @@ public sealed class StoredReviewSqlServerIntegrationTests
                 EXEC [{sourceDatabase}].dq.Run @IncludeClean = 1, @RunId = @RunId OUTPUT;
                 SELECT @RunId;
                 """;
-            var allResults = await RunReview(master, includeClean, expectedFailures: 0, verifyOutputId: true);
-            Assert.Equal(2, allResults.Rows.Count);
-            Assert.Contains(clean, allResults.Rows);
+            var allResults = await RunReview(master, includeClean, verifyOutputId: true);
+            Assert.Equal(2, allResults.Count);
+            Assert.Contains(allResults, row => row.Check == clean.Check && row.Outcome == clean.Outcome);
 
+            var savedClean = (await Read(master, dashboard)).Single(x => x.Outcome == "No rows found");
             await Execute(source, $"DROP VIEW [dq].[r_{runtimeCheck}];");
-            Assert.Contains(clean, await Read(master, dashboard));
-            var failureRun = await RunReview(source, "EXEC dq.Run;", expectedFailures: 1);
+            Assert.Contains(savedClean, await Read(master, dashboard));
+            var failureRun = await RunReview(source, "EXEC dq.Run;");
             var third = await Read(master, dashboard);
-            var failure = Assert.Single(failureRun.Rows, x => x.Outcome == "Check failed");
+            var failure = Assert.Single(failureRun, x => x.Outcome == "Check failed");
             Assert.Contains(failure, third);
-            Assert.Contains(pattern, third);
-            var failureExplanation = await Explain(source, failure.CheckNo!.Value);
+            Assert.Contains(third, row => row.Check == pattern.Check && row.Outcome == pattern.Outcome);
+            var failureExplanation = await Explain(master, failure);
             Assert.Contains($"r_{runtimeCheck}", failureExplanation.Notes["SQL error"], StringComparison.Ordinal);
         }
         finally
@@ -131,30 +135,25 @@ public sealed class StoredReviewSqlServerIntegrationTests
         await command.ExecuteNonQueryAsync();
     }
 
-    private static async Task<(long RunId, List<ReviewRow> Rows)> RunReview(
-        SqlConnection connection, string sql, long expectedFailures, bool verifyOutputId = false)
+    private static async Task<List<ReviewRow>> RunReview(
+        SqlConnection connection, string sql, bool verifyOutputId = false)
     {
         await using var command = new SqlCommand(sql, connection) { CommandTimeout = 60 };
         await using var reader = await command.ExecuteReaderAsync();
-        Assert.Equal(new[] { "RunId", "Status", "Checks", "ChecksFailed", "Seconds" },
-            Enumerable.Range(0, reader.FieldCount).Select(reader.GetName));
-        Assert.True(await reader.ReadAsync());
-        var runId = reader.GetInt64(reader.GetOrdinal("RunId"));
-        Assert.Equal(expectedFailures == 0 ? "Completed" : "CompletedWithErrors", reader.GetString(reader.GetOrdinal("Status")));
-        Assert.Equal(2L, reader.GetInt64(reader.GetOrdinal("Checks")));
-        Assert.Equal(expectedFailures, reader.GetInt64(reader.GetOrdinal("ChecksFailed")));
-        Assert.False(await reader.ReadAsync());
-
-        Assert.True(await reader.NextResultAsync());
         var review = await ReadRows(reader);
+        Assert.Equal(review.Select(row => row.Transform).Order(StringComparer.OrdinalIgnoreCase),
+            review.Select(row => row.Transform));
         if (verifyOutputId)
         {
             Assert.True(await reader.NextResultAsync());
             Assert.True(await reader.ReadAsync());
-            Assert.Equal(runId, reader.GetInt64(0));
+            var runId = reader.GetInt64(0);
+            Assert.True(runId > 0);
+            Assert.All(review, row => Assert.EndsWith($"@RunId = {runId};", row.Investigate, StringComparison.Ordinal));
+            Assert.False(await reader.ReadAsync());
         }
         Assert.False(await reader.NextResultAsync());
-        return (runId, review);
+        return review;
     }
 
     private static async Task<List<ReviewRow>> Read(SqlConnection connection, string qualifiedView)
@@ -163,33 +162,33 @@ public sealed class StoredReviewSqlServerIntegrationTests
             $"SELECT * FROM {qualifiedView};",
             connection) { CommandTimeout = 30 };
         await using var reader = await command.ExecuteReaderAsync();
-        return await ReadRows(reader, includesRunId: true);
+        return await ReadRows(reader);
     }
 
-    private static async Task<List<ReviewRow>> ReadRows(SqlDataReader reader, bool includesRunId = false)
+    private static async Task<List<ReviewRow>> ReadRows(SqlDataReader reader)
     {
-        string[] columns = includesRunId
-            ? ["CheckNo", "Check", "Transform", "Groups", "Outcome", "RunId"]
-            : ["CheckNo", "Check", "Transform", "Groups", "Outcome"];
+        string[] columns = ["Transform", "Check", "Outcome", "Investigate"];
         Assert.Equal(columns, Enumerable.Range(0, reader.FieldCount).Select(reader.GetName));
         var results = new List<ReviewRow>();
         while (await reader.ReadAsync())
             results.Add(new ReviewRow(
-                reader.IsDBNull(0) ? null : reader.GetInt64(0),
-                reader.IsDBNull(3) ? null : reader.GetInt64(3),
-                reader.GetString(4)));
+                reader.IsDBNull(0) ? null : reader.GetString(0),
+                reader.GetString(1),
+                reader.GetString(2),
+                reader.IsDBNull(3) ? null : reader.GetString(3)));
         return results;
     }
 
     private static async Task<(Dictionary<string, string> Notes, Dictionary<string, string> Queries)> Explain(
-        SqlConnection connection, long checkNo, long? runId = null)
+        SqlConnection connection, ReviewRow row)
     {
-        await using var command = new SqlCommand("dq.Explain", connection) { CommandType = System.Data.CommandType.StoredProcedure };
-        command.Parameters.AddWithValue("@CheckNo", checkNo);
-        if (runId.HasValue) command.Parameters.AddWithValue("@RunId", runId.Value);
+        Assert.NotNull(row.Investigate);
+        await using var command = new SqlCommand(row.Investigate, connection);
         await using var reader = await command.ExecuteReaderAsync();
         var notes = new Dictionary<string, string>(StringComparer.Ordinal);
         while (await reader.ReadAsync()) notes.Add(reader.GetString(0), reader.GetString(1));
+        Assert.Equal(row.Check, notes["Check"]);
+        Assert.Equal(row.Outcome, notes["Saved result"]);
         Assert.True(await reader.NextResultAsync());
         var queries = new Dictionary<string, string>(StringComparer.Ordinal);
         while (await reader.ReadAsync()) queries.Add(reader.GetString(0), reader.GetString(1));
@@ -197,5 +196,5 @@ public sealed class StoredReviewSqlServerIntegrationTests
         return (notes, queries);
     }
 
-    private sealed record ReviewRow(long? CheckNo, long? Groups, string Outcome);
+    private sealed record ReviewRow(string? Transform, string Check, string Outcome, string? Investigate);
 }

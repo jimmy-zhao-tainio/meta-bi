@@ -25,7 +25,7 @@ BEGIN
     WHERE r.[RunId] = @RunId AND r.[SourceDatabaseName] = @SourceDatabase AND r.[CheckNo] = @CheckNo;
 
     IF @Outcome IS NULL
-        THROW 51000, N'Check number not found for this run and database. Use CheckNo and RunId from dq.Run or dq.v_DataQualityReview.', 1;
+        THROW 51000, N'Check not found for this run and database. Copy the Investigate command from dq.Run or dq.v_DataQualityReview.', 1;
 
     DECLARE @Example nvarchar(400), @HowToDecide nvarchar(400), @Template nvarchar(max);
     SELECT @Example = g.[Example], @HowToDecide = g.[HowToDecide]
@@ -95,7 +95,7 @@ BEGIN
     SELECT [Topic], [WhatToKnow]
     FROM (VALUES
         (1, N'Check', CONVERT(nvarchar(max), @Title)),
-        (2, N'Saved result', CONCAT(@Outcome, N' (run ', @RunId, N', check ', @CheckNo, N')')),
+        (2, N'Saved result', @Outcome),
         (3, N'Transform', @Transforms),
         (4, N'Relationship', @Relationship),
         (5, N'Example', @Example),

@@ -169,12 +169,12 @@ public sealed class DataQualityToSqlConverter
             CREATE OR ALTER VIEW [dq].[v_DataQualityReview] AS
             WITH LatestRun AS
             (
-                SELECT TOP (1) RunId, Status
+                SELECT TOP (1) RunId
                 FROM [MetaDQ].[dbo].[RunLog]
                 WHERE SourceDatabaseName = DB_NAME()
                 ORDER BY RunId DESC
             )
-            {RenderReviewRows("LEFT JOIN LatestRun AS run ON 1 = 1", ", run.RunId")};
+            {RenderReviewRows("LEFT JOIN LatestRun AS run ON 1 = 1")};
             GO
 
             CREATE OR ALTER PROCEDURE [dq].[Run]
@@ -190,18 +190,9 @@ public sealed class DataQualityToSqlConverter
                     @RunId = @RunId OUTPUT,
                     @EmitResults = 0;
 
-                SELECT run.RunId,
-                       run.Status,
-                       (SELECT COUNT_BIG(*) FROM [MetaDQ].[dbo].[RunCheck] WHERE RunId = @RunId) AS Checks,
-                       (SELECT COUNT_BIG(*) FROM [MetaDQ].[dbo].[RunCheck] WHERE RunId = @RunId AND ErrorMessage IS NOT NULL) AS ChecksFailed,
-                       CAST(DATEDIFF_BIG(millisecond, run.StartedAtUtc, run.CompletedAtUtc) / 1000.0 AS decimal(19,3)) AS Seconds
-                FROM [MetaDQ].[dbo].[RunLog] AS run
-                WHERE run.RunId = @RunId;
-
                 {RenderReviewRows("JOIN [MetaDQ].[dbo].[RunLog] AS run ON run.RunId = @RunId")}
                 WHERE @IncludeClean = 1 OR r.Outcome <> N'No rows found' OR r.Outcome IS NULL
-                ORDER BY CASE WHEN r.Outcome = N'Check failed' THEN 0 ELSE 1 END,
-                         r.FindingGroups DESC, c.CandidateId;
+                ORDER BY [Transform], [Check], c.CandidateId;
             END;
             GO
             """);
@@ -209,12 +200,14 @@ public sealed class DataQualityToSqlConverter
         return builder.ToString();
     }
 
-    private static string RenderReviewRows(string runJoin, string runIdColumn = "") => $"""
-        SELECT r.CheckNo,
+    private static string RenderReviewRows(string runJoin) => $"""
+        SELECT r.Transforms AS [Transform],
                COALESCE(r.FindingTitle, c.CheckName) AS [Check],
-               r.Transforms AS [Transform],
-               r.FindingGroups AS [Groups],
-               COALESCE(r.Outcome, N'Not checked') AS [Outcome]{runIdColumn}
+               COALESCE(r.Outcome, N'Not checked') AS [Outcome],
+               CASE WHEN r.CheckNo IS NOT NULL THEN
+                   CONCAT(N'EXEC ', QUOTENAME(DB_NAME()), N'.dq.Explain @CheckNo = ', r.CheckNo,
+                          N', @RunId = ', r.RunId, N';')
+               END AS [Investigate]
         FROM [dq].[v_ReviewChecks] AS c
         {runJoin}
         LEFT JOIN [MetaDQ].[dbo].[CheckReview] AS r
