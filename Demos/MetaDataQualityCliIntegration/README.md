@@ -2,7 +2,7 @@
 
 This demo shows the current end-to-end MetaDataQuality workflow against a real local SQL Server database.
 
-It creates source tables and data, deploys the original transform views, imports the same scripts into `TransformWS`, discovers generated DQ views into `DataQualityWS`, promotes the full first-run pack, generates SQL views, and deploys them.
+It creates source tables and data, deploys the original transform views, imports the same scripts into `TransformWS`, discovers checks into `DataQualityWS`, and promotes the full first-run pack. It deploys and runs the checks, then reads the saved review.
 
 The workflow is modeled in:
 
@@ -25,7 +25,7 @@ meta-mesh run --operation build-data-quality
 
 Operations:
 - `cleanup`: drops the source and MetaDQ operational databases and removes generated outputs.
-- `build-data-quality`: creates source SQL objects, imports transforms, discovers DQ candidates, promotes them, generates SQL, and deploys the generated review objects.
+- `build-data-quality`: creates source SQL objects, imports transforms, discovers and promotes DQ candidates, then generates, deploys and runs the review pack.
 
 Workflow:
 - `setup.sql` creates `sales.Customer`, `sales.Order`, and `sales.Invoice` with seeded data.
@@ -36,16 +36,17 @@ Workflow:
 - `meta-data-quality promote --all` promotes all generated candidates for SQL output.
 - `meta-convert data-quality-to-sql` writes `DataQualityViews.sql`.
 - `meta-sql execute` deploys generated DQ views, `dq.v_DataQualityReview`, and the `MetaDQ` operational pack.
+- `run-review.sql` records the run, displays the dashboard and fails if a check could not complete.
 
 What this demo proves:
 - generated DQ views are real SQL, not placeholders
 - original transform views are present in the same database and referenced by DQ output
-- `dq.v_DataQualityReview` summarizes which generated views returned rows
+- `dq.v_DataQualityReview` shows the saved outcome, explanation and drill-down query for each check
 - `MetaDQ.dbo.Run` persists each review run and `MetaDQ.dbo.Findings` returns actionable rows
-- `MetaDQ.dbo.RunLog` and `MetaDQ.dbo.FindingLog` keep run history
+- `MetaDQ.dbo.RunLog`, `MetaDQ.dbo.RunCheck` and `MetaDQ.dbo.FindingLog` keep run history
 - row-multiplication and duplicate-output checks are suppressed when the transform projects detail-side identifiers such as `OrderId` or `InvoiceId`
 - missing-reference and outer-join-null checks still return rows from the seeded data
-- verification data is left in SQL Server for inspection rather than printed back from the script
+- the saved run and its detailed evidence remain in SQL Server for inspection
 
 Outputs:
 - `TransformWS`

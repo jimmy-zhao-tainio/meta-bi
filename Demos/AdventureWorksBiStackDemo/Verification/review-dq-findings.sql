@@ -163,9 +163,16 @@ SELECT c.CandidateId,c.Scenario,
 FROM @Checks c ORDER BY c.CandidateId;
 
 -- Expose any newly nonempty candidate outside this recorded review.
+DECLARE @RunId bigint = (
+    SELECT MAX(RunId) FROM MetaDQ.dbo.RunLog
+    WHERE SourceDatabaseName = N'AdventureWorksAnalytics' AND Status = N'Completed'
+);
+IF @RunId IS NULL
+    THROW 51000, N'Run the AdventureWorks Data Quality verification before inspecting saved findings.', 1;
+
 SELECT r.CandidateId AS NonemptyCandidateOutsideThisReview
-FROM AdventureWorksAnalytics.dq.v_DataQualityReview r
-WHERE COALESCE(r.ResultRowCount,r.RowsReturned,0)<>0
+FROM MetaDQ.dbo.FindingLog r
+WHERE r.RunId = @RunId AND COALESCE(r.ResultRowCount,r.RowsReturned,0)<>0
     AND NOT EXISTS (SELECT 1 FROM @Checks c WHERE c.CandidateId=r.CandidateId);
 
 -- Natural-key examples make the generated hash-key findings inspectable.

@@ -42,7 +42,7 @@ What this demo proves:
   - `InnerJoinAgainstUsuallyOptionalRelationship`
   - `LeftJoinAgainstUsuallyMandatoryRelationship` may appear depending on corpus shape
 - mixed promoted runtime-check and review-only semantic families convert in one run
-- review-only semantic promotions generate informational SQL findings in `dq.v_DataQualityReview` (not runtime suspect-row checks)
+- the saved dashboard labels review-only findings as `Review transform pattern` and leaves their runtime counts blank
 - generated SQL runs against a real SQL Server database and returns real findings from seeded bad rows
 
 Database names:
@@ -64,7 +64,12 @@ Important semantics:
 - semantic review findings are informational and do not execute row-level source-data suspect-row checks.
 - runtime checks execute against rows in `MetaDataQualityRealDbDemo`.
 
-Dashboard column semantics:
+The saved dashboard `dq.v_DataQualityReview` shows the check title, outcome,
+relationship, related transforms and explanation. `FindingGroups` counts the
+check's returned groups. `SuspectRows` sums the counts reported by those groups.
+`InspectCurrentRows` opens the check against the current data.
+
+Detailed evidence from `MetaDQ.dbo.Findings @RunId = …`:
 
 - `RowsReturned` / `ResultRowCount` / `FindingGroupCount`:
   number of result rows (finding groups) returned by the generated DQ view.
@@ -74,7 +79,7 @@ Dashboard column semantics:
 - `ReferencingObject`, `ReferencedObject`, `CheckedObject`, `SuspectSide`:
   explicit direction and side context for runtime implied checks.
 
-How to read the review dashboard:
+How to read the detailed results:
 
 - `OutputMode` tells you whether a row is a runtime data check (`RuntimeCheck`) or a corpus semantic review (`SemanticReviewFinding`).
 - `FindingTitle` and `FindingCategory` summarize what kind of issue was promoted.

@@ -43,7 +43,9 @@ public sealed class DataQualityToSqlWeaveWitnessTests(ITestOutputHelper output)
 
             Assert.Single(actual.DatabaseList);
             Assert.Single(actual.SchemaList);
-            Assert.Equal(16, actual.ViewList.Count);
+            Assert.Equal(30, actual.ViewList.Count);
+            var summaries = actual.ViewList.Where(view => view.Name.StartsWith("r_", StringComparison.Ordinal)).ToArray();
+            Assert.Equal(15, summaries.Length);
 
             var runtimeView = Assert.Single(
                 actual.ViewList,
@@ -73,9 +75,12 @@ public sealed class DataQualityToSqlWeaveWitnessTests(ITestOutputHelper output)
                     actual.ViewList,
                     view => view.Name == $"v_{witness.CandidateId}"),
                 StringComparer.Ordinal);
-            var dashboardView = Assert.Single(
-                actual.ViewList,
-                view => view.Name == "v_DataQualityReview");
+            var summarySql = string.Join(Environment.NewLine, summaries.Select(view => view.DefinitionSql));
+            foreach (var summary in summaries)
+            {
+                Assert.Contains($"FROM [dq].[v_{summary.Name[2..]}]", summary.DefinitionSql, StringComparison.Ordinal);
+                Assert.DoesNotContain("UNION ALL", summary.DefinitionSql, StringComparison.Ordinal);
+            }
 
             AssertRuntimeSemantics(runtimeView.DefinitionSql);
             AssertSemanticReviewSemantics(semanticView.DefinitionSql);
@@ -90,26 +95,18 @@ public sealed class DataQualityToSqlWeaveWitnessTests(ITestOutputHelper output)
             }
             Assert.Equal(1, CountOccurrences(impliedForeignKeyView.DefinitionSql, "UNION ALL"));
             Assert.Equal(1, CountOccurrences(impliedUniqueView.DefinitionSql, "UNION ALL"));
-            AssertDashboardSemantics(dashboardView.DefinitionSql);
-            Assert.Contains("FROM [dq].[v_JoinOrphan.JoinPattern.CustomerOrder.1]", dashboardView.DefinitionSql, StringComparison.Ordinal);
-            Assert.Contains("FROM [dq].[v_JoinMultiplicityExplosion.JoinPattern.ProductOrderLine.1]", dashboardView.DefinitionSql, StringComparison.Ordinal);
-            Assert.Contains("FROM [dq].[v_MinorityJoinPattern.CustomerOrder]", dashboardView.DefinitionSql, StringComparison.Ordinal);
-            Assert.Contains("FROM [dq].[v_OuterJoinNullExpansion.JoinPattern.OrderShipment.1]", dashboardView.DefinitionSql, StringComparison.Ordinal);
-            Assert.Contains("FROM [dq].[v_OutputDuplicateRisk.JoinPattern.SalesOrderCustomer.1]", dashboardView.DefinitionSql, StringComparison.Ordinal);
-            Assert.Contains("FROM [dq].[v_ImpliedForeignKeyMissingReference.AccountInvoice]", dashboardView.DefinitionSql, StringComparison.Ordinal);
-            Assert.Contains("FROM [dq].[v_ImpliedUniqueKeyViolation.AccountInvoice]", dashboardView.DefinitionSql, StringComparison.Ordinal);
+            AssertReviewResultSemantics(summarySql);
             Assert.DoesNotContain(
                 "dbo.Invoice references dbo.Account; dbo.Invoice references dbo.Account",
-                dashboardView.DefinitionSql,
+                summarySql,
                 StringComparison.Ordinal);
-            Assert.DoesNotContain("dbo.v_invoice_accounts_reversed", dashboardView.DefinitionSql, StringComparison.Ordinal);
+            Assert.DoesNotContain("dbo.v_invoice_accounts_reversed", summarySql, StringComparison.Ordinal);
             Assert.All(
                 semanticFamilyWitnesses,
                 witness => Assert.Contains(
                     $"FROM [dq].[v_{witness.CandidateId}]",
-                    dashboardView.DefinitionSql,
+                    summarySql,
                     StringComparison.Ordinal));
-            Assert.Equal(14, CountOccurrences(dashboardView.DefinitionSql, "UNION ALL"));
             Assert.StartsWith(
                 "CREATE OR ALTER VIEW [dq].[v_JoinOrphan.JoinPattern.CustomerOrder.1]",
                 runtimeView.DefinitionSql,
@@ -137,7 +134,7 @@ public sealed class DataQualityToSqlWeaveWitnessTests(ITestOutputHelper output)
             {
                 AssertSemanticFamilySemantics(oracleSql, witness);
             }
-            AssertDashboardSemantics(oracleSql);
+            AssertReviewResultSemantics(oracleSql);
             AssertFrozenAdventureWorksContract(
                 File.ReadAllText(Path.Combine(
                     repositoryRoot,
@@ -171,18 +168,13 @@ public sealed class DataQualityToSqlWeaveWitnessTests(ITestOutputHelper output)
     }
 
     [Fact]
-    public async Task DirectWeave_ProducesTypedEmptyDashboardWhenNoCandidatesExist()
+    public async Task DirectWeave_ProducesNoCheckViewsWhenNoCandidatesExist()
     {
         var probe = await ExecuteDirectWeaveAsync(MetaDataQualityModel.CreateEmpty());
 
         Assert.True(probe.Result.IsSuccess, FormatIssues(probe.Result));
         var actual = ToMetaSql(probe.Result);
-        var dashboard = Assert.Single(actual.ViewList);
-        Assert.Equal("v_DataQualityReview", dashboard.Name);
-        Assert.Contains("CREATE OR ALTER VIEW [dq].[v_DataQualityReview]", dashboard.DefinitionSql, StringComparison.Ordinal);
-        Assert.Contains("CAST(NULL AS nvarchar(128)) AS [DQView]", dashboard.DefinitionSql, StringComparison.Ordinal);
-        Assert.Contains("CAST(NULL AS bigint) AS [TotalSuspectCount]", dashboard.DefinitionSql, StringComparison.Ordinal);
-        Assert.Contains("WHERE 1 = 0", dashboard.DefinitionSql, StringComparison.Ordinal);
+        Assert.Empty(actual.ViewList);
     }
 
     [Fact]
@@ -213,7 +205,7 @@ public sealed class DataQualityToSqlWeaveWitnessTests(ITestOutputHelper output)
                 expected.ViewList,
                 view => Assert.Contains(view.DefinitionSql, sql, StringComparison.Ordinal));
             Assert.Equal(
-                expected.ViewList.Count,
+                expected.ViewList.Count + 2,
                 CountOccurrences(sql, "CREATE OR ALTER VIEW [dq]."));
             Assert.Contains("/* MetaDataQuality operational store */", sql, StringComparison.Ordinal);
             Assert.Contains("CREATE OR ALTER PROCEDURE [dbo].[Run]", sql, StringComparison.Ordinal);
@@ -265,7 +257,7 @@ public sealed class DataQualityToSqlWeaveWitnessTests(ITestOutputHelper output)
             Assert.Equal(source.DataQualityCandidateList.Count, production.CandidateViewCount);
             Assert.Equal(167, production.CandidateViewCount);
             Assert.Equal(
-                production.CandidateViewCount + production.DashboardViewCount,
+                production.CandidateViewCount * 2 + 2,
                 CountOccurrences(productionSql, "CREATE OR ALTER VIEW [dq]."));
             Assert.Equal(
                 source.JoinOrphanList.Count + source.OuterJoinNullExpansionList.Count,
@@ -306,7 +298,7 @@ public sealed class DataQualityToSqlWeaveWitnessTests(ITestOutputHelper output)
         Assert.True(probe.Result.IsSuccess, FormatIssues(probe.Result));
         var dashboard = Assert.Single(
             ToMetaSql(probe.Result).ViewList,
-            view => view.Name == "v_DataQualityReview");
+            view => view.Name == "r_JoinOrphan.JoinPattern.CustomerOrder.1");
         Assert.Contains("Promoted JoinOrphan candidate.", dashboard.DefinitionSql, StringComparison.Ordinal);
     }
 
@@ -354,20 +346,28 @@ public sealed class DataQualityToSqlWeaveWitnessTests(ITestOutputHelper output)
             issue => issue.Code == "DataQualityViewNameDuplicate");
     }
 
-    [Fact]
-    public async Task DirectWeave_RejectsCandidateViewNameThatCollidesWithDashboard()
+    [Theory]
+    [InlineData("DataQualityReview")]
+    [InlineData("ReviewChecks")]
+    public void ProductionConverter_RejectsCandidateNamesReservedForReviewViews(string reservedName)
     {
         var source = CreateWitnessModel();
         source.DataQualityCandidateList
             .Single(candidate => candidate.Id.StartsWith("JoinOrphan.", StringComparison.Ordinal))
-            .Id = "DataQualityReview";
-
-        var probe = await ExecuteDirectWeaveAsync(source);
-
-        Assert.False(probe.Result.IsSuccess);
-        Assert.Contains(
-            probe.Result.Issues,
-            issue => issue.Code == "DataQualityViewNameDuplicate");
+            .Id = reservedName;
+        var root = Path.Combine(Path.GetTempPath(), "MetaDataQuality.Tests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            var workspace = Path.Combine(root, "source");
+            TypedWorkspaceXmlSerializer.Save(source, workspace, MetaDataQualityModels.LoadContract(), new MetaDataQualityWorkspaceBinding());
+            var error = Assert.Throws<InvalidOperationException>(() =>
+                new DataQualityToSqlConverter().Convert(workspace, Path.Combine(root, "output.sql")));
+            Assert.Contains("reserved Data Quality review view name", error.Message, StringComparison.Ordinal);
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, recursive: true);
+        }
     }
 
     [Fact]
@@ -413,15 +413,7 @@ public sealed class DataQualityToSqlWeaveWitnessTests(ITestOutputHelper output)
             view => view.Name == firstSemanticView.Name);
         Assert.Equal(firstSemanticView.DefinitionSql, reorderedSemanticView.DefinitionSql);
 
-        var firstDashboard = Assert.Single(
-            first.ViewList,
-            view => view.Name == "v_DataQualityReview");
-        var reorderedDashboard = Assert.Single(
-            reordered.ViewList,
-            view => view.Name == firstDashboard.Name);
-        Assert.Equal(firstDashboard.DefinitionSql, reorderedDashboard.DefinitionSql);
-
-        foreach (var firstCandidateView in first.ViewList.Where(view => view.Name != "v_DataQualityReview"))
+        foreach (var firstCandidateView in first.ViewList)
         {
             var reorderedCandidateView = Assert.Single(
                 reordered.ViewList,
@@ -496,7 +488,7 @@ public sealed class DataQualityToSqlWeaveWitnessTests(ITestOutputHelper output)
             result.OutputWorkspace!,
             new global::MetaSql.MetaSqlWorkspaceBinding());
 
-    private static MetaDataQualityModel CreateWitnessModel()
+    internal static MetaDataQualityModel CreateWitnessModel()
     {
         var model = MetaDataQualityModel.CreateEmpty();
 
@@ -1349,7 +1341,7 @@ public sealed class DataQualityToSqlWeaveWitnessTests(ITestOutputHelper output)
         Assert.Contains("HAVING COUNT_BIG(*) > 1", sql, StringComparison.Ordinal);
     }
 
-    private static void AssertDashboardSemantics(string sql)
+    private static void AssertReviewResultSemantics(string sql)
     {
         string[] columns =
         [
@@ -1368,7 +1360,6 @@ public sealed class DataQualityToSqlWeaveWitnessTests(ITestOutputHelper output)
             "DetailQuery", "TransformViewQuery", "SupportingTransformQuery",
         ];
 
-        Assert.Contains("CREATE OR ALTER VIEW [dq].[v_DataQualityReview]", sql, StringComparison.Ordinal);
         Assert.All(columns, column => Assert.Contains($"AS [{column}]", sql, StringComparison.Ordinal));
         Assert.Contains("CAST(COUNT_BIG(*) AS bigint) AS [RowsReturned]", sql, StringComparison.Ordinal);
         Assert.Contains("CAST(COALESCE(SUM([SuspectCount]), 0) AS bigint) AS [TotalSuspectCount]", sql, StringComparison.Ordinal);

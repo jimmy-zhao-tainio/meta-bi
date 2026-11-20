@@ -2,10 +2,17 @@
 -- evidence, not a replacement acceptance policy or a change to DQ discovery.
 SET NOCOUNT ON;
 
+DECLARE @RunId bigint = (
+    SELECT MAX(RunId) FROM MetaDQ.dbo.RunLog
+    WHERE SourceDatabaseName = N'AdventureWorksAnalytics' AND Status = N'Completed'
+);
+IF @RunId IS NULL
+    THROW 51000, N'Run the AdventureWorks Data Quality verification before inspecting saved findings.', 1;
+
 SELECT CandidateKind, COUNT_BIG(*) AS ChecksWithFindings,
     SUM(ResultRowCount) AS FindingGroups
-FROM AdventureWorksAnalytics.dq.v_DataQualityReview
-WHERE COALESCE(ResultRowCount, RowsReturned, 0) <> 0
+FROM MetaDQ.dbo.FindingLog
+WHERE RunId = @RunId AND COALESCE(ResultRowCount, RowsReturned, 0) <> 0
 GROUP BY CandidateKind;
 
 -- These nullable source relationships explain the five outer-join alerts;
@@ -134,6 +141,6 @@ SELECT N'Fact_SalesLine' AS OutputTable, COUNT_BIG(*) AS OutputRows,
 FROM AdventureWorksAnalytics.dw.Fact_SalesLine;
 
 SELECT CandidateId, TransformViews, ResultRowCount, TotalSuspectCount
-FROM AdventureWorksAnalytics.dq.v_DataQualityReview
-WHERE COALESCE(ResultRowCount, RowsReturned, 0) <> 0
+FROM MetaDQ.dbo.FindingLog
+WHERE RunId = @RunId AND COALESCE(ResultRowCount, RowsReturned, 0) <> 0
 ORDER BY CandidateKind, CandidateId;

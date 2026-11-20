@@ -12,7 +12,6 @@ namespace MetaConvert.DataQualityToSql;
 
 public sealed class DataQualityToSqlConverter
 {
-    private const string DashboardViewName = "v_DataQualityReview";
     private const string MetaSqlDatabaseName = "DataQuality";
     private const string OperationalSqlFileName = "MetaDQ.Operational.sql";
 
@@ -37,12 +36,28 @@ public sealed class DataQualityToSqlConverter
         var sourceState = TypedWorkspaceModelMapper.LoadStateAsync(workspacePath).GetAwaiter().GetResult();
         var source = new MetaDataQualityWorkspaceBinding().Read(sourceState);
         var metaSql = Materialize(sourceState, progress);
-        var dashboard = ResolveDashboard(metaSql);
         var candidateViews = metaSql.ViewList
-            .Where(view => !string.Equals(view.Name, DashboardViewName, StringComparison.Ordinal))
+            .Where(view => view.Name.StartsWith("v_", StringComparison.Ordinal))
             .OrderBy(static view => ParseDeployOrdinal(view.DeployOrdinal))
             .ThenBy(static view => view.Name, StringComparer.Ordinal)
             .ToArray();
+        var summaryViews = metaSql.ViewList
+            .Where(view => view.Name.StartsWith("r_", StringComparison.Ordinal))
+            .ToDictionary(view => view.Name[2..], StringComparer.Ordinal);
+        if (candidateViews.Any(view => view.Name.Equals("v_DataQualityReview", StringComparison.OrdinalIgnoreCase) ||
+                                       view.Name.Equals("v_ReviewChecks", StringComparison.OrdinalIgnoreCase)))
+        {
+            throw new InvalidOperationException("A generated check collides with a reserved Data Quality review view name.");
+        }
+        if (candidateViews.Length + summaryViews.Count != metaSql.ViewList.Count ||
+            candidateViews.Length != summaryViews.Count ||
+            candidateViews.Any(view => !summaryViews.ContainsKey(ResolveCandidateId(view))))
+        {
+            throw new InvalidOperationException("Each generated Data Quality check must have exactly one review summary.");
+        }
+
+        var candidateById = source.DataQualityCandidateList.ToDictionary(candidate => candidate.Id, StringComparer.Ordinal);
+        var dashboardSql = RenderReviewDashboard(candidateViews, candidateById, summaryViews);
 
         if (IsSqlFilePath(outputPath))
         {
@@ -50,7 +65,7 @@ public sealed class DataQualityToSqlConverter
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath)!);
             File.WriteAllText(
                 fullPath,
-                RenderCombinedSql(candidateViews, dashboard),
+                RenderCombinedSql(candidateViews, summaryViews, dashboardSql),
                 new UTF8Encoding(encoderShouldEmitUTF8Identifier: false));
 
             return CreateResult(fullPath, candidateViews.Length);
@@ -58,32 +73,22 @@ public sealed class DataQualityToSqlConverter
 
         var outputDirectory = Path.GetFullPath(outputPath);
         Directory.CreateDirectory(outputDirectory);
-        var candidateById = source.DataQualityCandidateList.ToDictionary(
-            candidate => candidate.Id,
-            StringComparer.Ordinal);
-
         foreach (var view in candidateViews)
         {
             var candidateId = ResolveCandidateId(view);
-            if (!candidateById.TryGetValue(candidateId, out var candidate))
-            {
-                throw new InvalidOperationException(
-                    $"The sanctioned Data-Quality-to-SQL weave produced view '{view.Id}' " +
-                    $"for unknown candidate '{candidateId}'.");
-            }
-
+            var candidate = candidateById[candidateId];
             var filePath = Path.Combine(
                 outputDirectory,
                 $"{SanitizeFileName(candidate.Name)}.sql");
             File.WriteAllText(
                 filePath,
-                RenderViewSql(view, includeSchemaGuard: true),
+                RenderCheckSql(view, summaryViews[candidateId]),
                 new UTF8Encoding(encoderShouldEmitUTF8Identifier: false));
         }
 
         File.WriteAllText(
             Path.Combine(outputDirectory, "v_DataQualityReview.sql"),
-            RenderViewSql(dashboard, includeSchemaGuard: true),
+            dashboardSql,
             new UTF8Encoding(encoderShouldEmitUTF8Identifier: false));
         File.WriteAllText(
             Path.Combine(outputDirectory, "MetaDQ.Operational.sql"),
@@ -126,51 +131,98 @@ public sealed class DataQualityToSqlConverter
         return new MetaSqlWorkspaceBinding().Read(result.OutputWorkspace!);
     }
 
-    private static View ResolveDashboard(MetaSqlModel metaSql)
+    private static string RenderReviewDashboard(
+        IReadOnlyList<View> candidateViews,
+        IReadOnlyDictionary<string, DataQualityCandidate> candidates,
+        IReadOnlyDictionary<string, View> summaries)
     {
-        var dashboards = metaSql.ViewList
-            .Where(view => string.Equals(view.Name, DashboardViewName, StringComparison.Ordinal))
-            .ToArray();
-        if (dashboards.Length != 1)
+        var builder = new StringBuilder();
+        AppendSchemaGuard(builder);
+        builder.AppendLine("CREATE OR ALTER VIEW [dq].[v_ReviewChecks] AS");
+        if (candidateViews.Count == 0)
         {
-            throw new InvalidOperationException(
-                $"The sanctioned Data-Quality-to-SQL weave produced {dashboards.Length} " +
-                $"'{DashboardViewName}' views; exactly one is required.");
+            builder.AppendLine("SELECT CAST(NULL AS nvarchar(256)) AS CandidateId, CAST(NULL AS sysname) AS SummaryView,");
+            builder.AppendLine("       CAST(NULL AS sysname) AS DetailView, CAST(NULL AS nvarchar(256)) AS CheckName WHERE 1 = 0;");
+        }
+        else
+        {
+            builder.AppendLine("SELECT CAST(v.CandidateId AS nvarchar(256)) AS CandidateId,");
+            builder.AppendLine("       CAST(v.SummaryView AS sysname) AS SummaryView, CAST(v.DetailView AS sysname) AS DetailView,");
+            builder.AppendLine("       CAST(v.CheckName AS nvarchar(256)) AS CheckName");
+            builder.AppendLine("FROM (VALUES");
+            for (var index = 0; index < candidateViews.Count; index++)
+            {
+                var view = candidateViews[index];
+                var id = ResolveCandidateId(view);
+                if (!candidates.TryGetValue(id, out var candidate))
+                    throw new InvalidOperationException($"The Data Quality weave produced a view for unknown candidate '{id}'.");
+                builder.Append($"    ({SqlString(id)}, {SqlString(summaries[id].Name)}, {SqlString(view.Name)}, {SqlString(candidate.Name)})");
+                builder.AppendLine(index + 1 == candidateViews.Count ? "" : ",");
+            }
+            builder.AppendLine(") v(CandidateId, SummaryView, DetailView, CheckName);");
         }
 
-        return dashboards[0];
+        builder.AppendLine("GO");
+        builder.AppendLine("""
+            CREATE OR ALTER VIEW [dq].[v_DataQualityReview] AS
+            WITH LatestRun AS
+            (
+                SELECT TOP (1) RunId, Status
+                FROM [MetaDQ].[dbo].[RunLog]
+                WHERE SourceDatabaseName = DB_NAME()
+                ORDER BY RunId DESC
+            )
+            SELECT COALESCE(r.FindingTitle, c.CheckName) AS [Check],
+                   COALESCE(r.Outcome, N'Not checked') AS [Outcome],
+                   r.CheckedRelationship AS [Relationship],
+                   r.Transforms,
+                   r.FindingGroups,
+                   r.SuspectRows,
+                   r.Explanation,
+                   r.CheckedAtUtc,
+                   CONCAT(N'SELECT * FROM ', QUOTENAME(DB_NAME()), N'.[dq].', QUOTENAME(c.DetailView), N';') AS [InspectCurrentRows],
+                   c.CandidateId AS [CheckId],
+                   latest.RunId,
+                   latest.Status AS RunStatus
+            FROM [dq].[v_ReviewChecks] AS c
+            LEFT JOIN LatestRun AS latest ON 1 = 1
+            LEFT JOIN [MetaDQ].[dbo].[CheckReview] AS r
+              ON r.RunId = latest.RunId AND r.CandidateId COLLATE DATABASE_DEFAULT = c.CandidateId;
+            GO
+            """);
+        return builder.ToString();
     }
 
     private static string RenderCombinedSql(
         IReadOnlyList<View> candidateViews,
-        View dashboard)
+        IReadOnlyDictionary<string, View> summaries,
+        string dashboardSql)
     {
         var builder = new StringBuilder();
         AppendSchemaGuard(builder);
+        builder.AppendLine(OperationalSql.Value);
 
         foreach (var view in candidateViews)
         {
             AppendViewBatch(builder, view);
+            AppendViewBatch(builder, summaries[ResolveCandidateId(view)]);
             builder.AppendLine();
         }
 
-        AppendViewBatch(builder, dashboard);
-        builder.AppendLine();
-        builder.Append(OperationalSql.Value);
+        builder.Append(dashboardSql);
         return builder.ToString();
     }
 
-    private static string RenderViewSql(View view, bool includeSchemaGuard)
+    private static string RenderCheckSql(View view, View summary)
     {
         var builder = new StringBuilder();
-        if (includeSchemaGuard)
-        {
-            AppendSchemaGuard(builder);
-        }
-
+        AppendSchemaGuard(builder);
         AppendViewBatch(builder, view);
+        AppendViewBatch(builder, summary);
         return builder.ToString();
     }
+
+    private static string SqlString(string value) => "N'" + value.Replace("'", "''", StringComparison.Ordinal) + "'";
 
     private static void AppendSchemaGuard(StringBuilder builder)
     {
@@ -234,7 +286,7 @@ public sealed class DataQualityToSqlConverter
             OutputPath = outputPath,
             CandidateViewCount = candidateViewCount,
             DashboardViewCount = 1,
-            OperationalTableCount = 2,
+            OperationalTableCount = 3,
             OperationalProcedureCount = 2,
         };
 

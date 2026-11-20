@@ -167,9 +167,16 @@ IF @SourceQuotaAmount <> @WarehouseQuotaAmount
 
 -- Execute the complete deployed review once. Findings are wanted review
 -- evidence; SQL errors still fail this batch and the owning CLI operation.
+DECLARE @DataQualityRunId bigint;
+EXEC MetaDQ.dbo.Run @SourceDatabaseName = N'AdventureWorksAnalytics', @RunId = @DataQualityRunId OUTPUT;
+
+IF NOT EXISTS (SELECT 1 FROM MetaDQ.dbo.RunLog WHERE RunId = @DataQualityRunId AND Status = N'Completed')
+    THROW 51000, N'One or more AdventureWorks Data Quality checks could not complete.', 1;
+
 SELECT CandidateId, CandidateKind, ResultRowCount, RowsReturned
 INTO #DataQualityReview
-FROM AdventureWorksAnalytics.dq.v_DataQualityReview;
+FROM MetaDQ.dbo.FindingLog
+WHERE RunId = @DataQualityRunId;
 
 DECLARE @DataQualityChecks bigint =
 (

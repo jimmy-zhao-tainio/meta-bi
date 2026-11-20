@@ -4,7 +4,7 @@
     <DirectionRelation Id="forward/all_views" DirectionId="forward" SelectStatementId="SelectStatement:38" />
     <DirectionRelation Id="forward/candidate_views" DirectionId="forward" SelectStatementId="SelectStatement:10" />
     <DirectionRelation Id="forward/dashboard_branches" DirectionId="forward" SelectStatementId="SelectStatement:36" />
-    <DirectionRelation Id="forward/dashboard_views" DirectionId="forward" SelectStatementId="SelectStatement:37" />
+    <DirectionRelation Id="forward/dashboard_views" DirectionId="forward" SelectStatementId="SelectStatement:68" />
     <DirectionRelation Id="forward/implied_runtime_contexts" DirectionId="forward" SelectStatementId="SelectStatement:50" />
     <DirectionRelation Id="forward/implied_runtime_orientations" DirectionId="forward" SelectStatementId="SelectStatement:51" />
     <DirectionRelation Id="forward/implied_runtime_ranked_orientations" DirectionId="forward" SelectStatementId="SelectStatement:52" />

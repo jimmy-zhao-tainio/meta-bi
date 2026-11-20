@@ -8,9 +8,8 @@ and independent comparisons below explain this sample result.
 `Verification/verify-stack.sql` now executes the deployed review once and reports
 its check and finding counts. Findings do not automatically fail verification;
 missing checks, SQL execution errors and other reconciliation failures still do.
-The complete modeled SQL verification operation passes on the loaded stack.
-MetaDataQuality implementation and production-scale execution/dashboard work
-are deferred.
+The dashboard reads the saved run. The [demo README](README.md#data-quality-findings)
+shows how to inspect it and open the detail query for a check.
 
 ## Actual path and ownership
 
@@ -31,7 +30,8 @@ The mesh then promotes **all** candidates. `MetaDataQualityPromotionService`
 only changes status; it does not resolve those assumptions.
 `DataQualityToSqlConverter` executes the sanctioned
 `MetaConvert/Weaves/DataQualityToSql` weave to create MetaSql view definitions,
-then emits deployment SQL. The demo deploys 167 check views plus the dashboard.
+then emits deployment SQL. The demo deploys 167 detail views with one result
+summary per check. The dashboard reads the saved outcomes.
 The former verification SQL treated any nonempty investigation view as a
 failure. That zero-findings guard has been replaced by reporting the observed
 results, consistent with the review contract. These are not 45 Pipeline failures

@@ -99,15 +99,19 @@ False-positive reduction currently uses projection evidence from the semantic Tr
 
 `meta-convert data-quality-to-sql` writes:
 
-- one generated DQ view per promoted candidate
-- one dashboard view: `dq.v_DataQualityReview`
+- one detail view and one result-summary view per promoted candidate
+- `dq.v_ReviewChecks`, the list of checks in this deployment
+- `dq.v_DataQualityReview`, the dashboard of saved results
 - one MetaDQ operational pack:
-- tables `dbo.RunLog`, `dbo.FindingLog`
+- tables `dbo.RunLog`, `dbo.RunCheck`, `dbo.FindingLog`
 - procedures `dbo.Run`, `dbo.Findings`
 
-The candidate and dashboard views are constructed as `MetaSql` by the sanctioned
-`MetaDataQuality` → `MetaSql` weave. `meta-convert` realizes those view definitions
-as combined or split deployment scripts and appends the fixed MetaDQ operational pack.
+The sanctioned `MetaDataQuality` → `MetaSql` weave generates the detail and result
+summary for each check. `meta-convert` packages those views with the check list,
+the dashboard and the MetaDQ operational pack. Deploy the combined file in order.
+For split output, deploy `MetaDQ.Operational.sql` first, then the check files and
+finally `v_DataQualityReview.sql`. Regenerate and redeploy the review pack before
+running an installation that still has the original dashboard.
 
 Generated DQ views return investigation rows with columns such as:
 
@@ -119,10 +123,42 @@ Generated DQ views return investigation rows with columns such as:
 - `KeyValues`
 - `SuspectCount`
 
-The dashboard summarizes which generated views returned rows and includes prepared query text. `dbo.Run` executes that dashboard against a source database and persists run evidence; `dbo.Findings` returns findings for a run:
+Run checks with `MetaDQ.dbo.Run` outside a transaction, after the data is ready.
+It captures the deployed check list and runs one check at a time. It saves the
+outcome and error, if any, for each check. A run with a check error returns
+`CompletedWithErrors`. A scheduler can use that status to flag the run for review.
 
-- `ReviewQuery`: query the generated DQ view that returned rows
-- `TransformViewQuery`: query the original transform view context
+```sql
+DECLARE @RunId bigint;
+EXEC MetaDQ.dbo.Run @SourceDatabaseName = N'Analytics', @RunId = @RunId OUTPUT;
+```
+
+Open the dashboard in the database where you deployed the checks. It reads the
+latest saved run for that database. You can filter to a relationship, transform
+or outcome without executing the checks again.
+
+```sql
+SELECT [Check], Outcome, Relationship, Transforms, FindingGroups, SuspectRows,
+       Explanation, CheckedAtUtc, InspectCurrentRows
+FROM dq.v_DataQualityReview
+WHERE Outcome IN (N'Review affected rows', N'Review transform pattern', N'Check failed')
+ORDER BY Outcome, SuspectRows DESC, CheckId;
+```
+
+- **Review affected rows** means the check returned suspect groups. The groups
+  are what the check returned and the suspect-row count is the sum reported by
+  those groups.
+- **Review transform pattern** means the finding comes from comparing modeled
+  transforms. The runtime counts are NULL.
+- **No rows found** means the runtime check completed with zero finding groups.
+- **Check failed** shows the SQL error. **Not checked** means the latest run has
+  no saved outcome for that check. An active run can also show waiting and running checks.
+
+`InspectCurrentRows` queries the individual check against the current data.
+`MetaDQ.dbo.Findings @RunId = …` returns the detailed evidence captured during
+the specified run, including the explanation and links to related transforms.
+Deploy and run under an identity with access to the DQ objects and their
+underlying data. Dashboard readers need access to the saved results in `MetaDQ`.
 
 ## Interpretation
 
@@ -153,10 +189,6 @@ Those should become explicit metadata or policy when the project needs them. The
 
 ## Demo
 
-See:
-
-```cmd
-Demos\MetaDataQualityCliIntegration\run.cmd
-```
-
-The demo creates a local SQL Server database, deploys the original transform views, discovers DQ candidates, promotes the generated first-run pack, generates SQL views plus `dq.v_DataQualityReview`, deploys them, and queries returned rows.
+The [DQ CLI integration demo](../../Demos/MetaDataQualityCliIntegration/README.md)
+creates a local SQL Server database, discovers and promotes checks, and deploys
+the review pack. Its mesh runs the checks and reads the saved dashboard.

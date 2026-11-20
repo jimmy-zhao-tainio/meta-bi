@@ -165,18 +165,18 @@ thresholds or permission to ignore future differences.
 Inspect the findings on the local SQL Server instance:
 
 ```sql
-SELECT *
+SELECT [Check], Outcome, Relationship, Transforms, FindingGroups, SuspectRows,
+       Explanation, InspectCurrentRows
 FROM [AdventureWorksAnalytics].[dq].[v_DataQualityReview]
-WHERE COALESCE([ResultRowCount], [RowsReturned], 0) <> 0
-ORDER BY [ResultRowCount] DESC, [CandidateId];
+WHERE Outcome = N'Review affected rows'
+ORDER BY SuspectRows DESC, CheckId;
 ```
 
-`ReviewQuery` contains SQL for drilling into each check. See
+`InspectCurrentRows` contains SQL for drilling into a check using current data.
+The counts come from the most recent saved run. See
 [DQ-REVIEW.md](DQ-REVIEW.md) for the individual findings and supporting probes.
 The former expectation of no findings is superseded by this interpretation;
 the verifier does not hardcode 45 as an allowed-failure threshold.
-MetaDataQuality changes and production-scale execution/dashboard work are
-deferred; no checks are removed, suppressed or changed for this demo.
 
 The final SQL alignment verification passed through the modeled `verify-stack`
 operation. Independent source comparisons found zero missing, extra or changed

@@ -304,8 +304,67 @@ IF NOT EXISTS
 BEGIN
     CREATE INDEX [IX_dbo_FindingLog_RunId] ON [dbo].[FindingLog]([RunId]);
 END;
+IF OBJECT_ID(N''dbo.RunCheck'', N''U'') IS NULL
+BEGIN
+    CREATE TABLE [dbo].[RunCheck]
+    (
+        [RunId] bigint NOT NULL REFERENCES [dbo].[RunLog]([RunId]),
+        [CandidateId] nvarchar(256) NOT NULL,
+        [SummaryView] sysname NOT NULL,
+        [StartedAtUtc] datetime2(3) NULL,
+        [CompletedAtUtc] datetime2(3) NULL,
+        [ErrorMessage] nvarchar(4000) NULL,
+        CONSTRAINT [PK_dbo_RunCheck] PRIMARY KEY ([RunId], [CandidateId])
+    );
+END;
+
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id = OBJECT_ID(N''dbo.FindingLog'') AND name = N''IX_dbo_FindingLog_RunId_CandidateId'')
+    CREATE INDEX [IX_dbo_FindingLog_RunId_CandidateId] ON [dbo].[FindingLog] ([RunId], [CandidateId]);
+
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id = OBJECT_ID(N''dbo.RunLog'') AND name = N''IX_dbo_RunLog_SourceDatabaseName_RunId'')
+    CREATE INDEX [IX_dbo_RunLog_SourceDatabaseName_RunId] ON [dbo].[RunLog] ([SourceDatabaseName], [RunId] DESC);
 ';
 GO
+
+EXEC [MetaDQ].sys.sp_executesql N'
+CREATE OR ALTER VIEW [dbo].[CheckReview] AS
+SELECT r.[RunId], r.[SourceDatabaseName], r.[Status] AS [RunStatus], c.[CandidateId],
+       f.[FindingTitle],
+       CASE WHEN c.[ErrorMessage] IS NOT NULL THEN N''Check failed''
+            WHEN c.[CompletedAtUtc] IS NULL AND r.[Status] <> N''Running'' THEN N''Run interrupted''
+            WHEN c.[StartedAtUtc] IS NULL THEN N''Waiting to run''
+            WHEN c.[CompletedAtUtc] IS NULL THEN N''Running''
+            WHEN f.[HasRuntimeCounts] = 0 THEN N''Review transform pattern''
+            WHEN f.[FindingGroups] > 0 THEN N''Review affected rows''
+            ELSE N''No rows found''
+       END AS [Outcome],
+       f.[CheckedRelationship], f.[Transforms], f.[FindingGroups], f.[SuspectRows],
+       COALESCE(c.[ErrorMessage], f.[Explanation]) AS [Explanation],
+       c.[CompletedAtUtc] AS [CheckedAtUtc]
+FROM [dbo].[RunLog] AS r
+JOIN [dbo].[RunCheck] AS c ON c.[RunId] = r.[RunId]
+OUTER APPLY
+(
+    SELECT NULLIF(MAX(COALESCE(f.[FindingTitle], N'''')), N'''') AS [FindingTitle],
+           CASE WHEN COUNT(DISTINCT COALESCE(f.[RelationshipLabel], N'''')) = 1
+                THEN NULLIF(MAX(COALESCE(f.[RelationshipLabel], N'''')), N'''') END AS [CheckedRelationship],
+           CASE WHEN COUNT(DISTINCT f.[TransformViews]) = 1 THEN MAX(f.[TransformViews]) END AS [Transforms],
+           COALESCE(MAX(CASE WHEN f.[FindingGroupCount] IS NULL THEN 0 ELSE 1 END), 0) AS [HasRuntimeCounts],
+           CASE WHEN MAX(CASE WHEN f.[FindingGroupCount] IS NULL THEN 0 ELSE 1 END) = 1
+                THEN SUM(COALESCE(f.[FindingGroupCount], 0)) END AS [FindingGroups],
+           CASE WHEN MAX(CASE WHEN f.[TotalSuspectCount] IS NULL THEN 0 ELSE 1 END) = 1
+                THEN SUM(COALESCE(f.[TotalSuspectCount], 0)) END AS [SuspectRows],
+           CASE WHEN COUNT(DISTINCT COALESCE(f.[FindingExplanation], N'''')) = 1
+                THEN NULLIF(MAX(COALESCE(f.[FindingExplanation], N'''')), N'''')
+                WHEN COUNT(DISTINCT COALESCE(f.[FindingExplanation], N'''')) > 1
+                THEN N''Run MetaDQ.dbo.Findings for this RunId to see the individual explanations.''
+           END AS [Explanation]
+    FROM [dbo].[FindingLog] AS f
+    WHERE f.[RunId] = c.[RunId] AND f.[CandidateId] = c.[CandidateId]
+) AS f;
+';
+GO
+
 EXEC [MetaDQ].sys.sp_executesql N'
 CREATE OR ALTER PROCEDURE [dbo].[Run]
     @SourceDatabaseName sysname,
@@ -313,6 +372,8 @@ CREATE OR ALTER PROCEDURE [dbo].[Run]
 AS
 BEGIN
     SET NOCOUNT ON;
+    IF @@TRANCOUNT <> 0
+        THROW 51000, N''Run must be called outside a transaction so each check outcome can be saved independently.'', 1;
     SET XACT_ABORT ON;
 
     IF NULLIF(LTRIM(RTRIM(@SourceDatabaseName)), N'''') IS NULL
@@ -325,26 +386,73 @@ BEGIN
         THROW 51000, N''Source database was not found.'', 1;
     END;
 
+    SET @SourceDatabaseName = DB_NAME(DB_ID(@SourceDatabaseName));
+
     DECLARE @runIdLocal bigint;
+    DECLARE @catalog nvarchar(600) = QUOTENAME(@SourceDatabaseName) + N''.[dq].[v_ReviewChecks]'';
+    IF OBJECT_ID(@catalog, N''V'') IS NULL
+        THROW 51000, N''The Data Quality review catalog is missing or inaccessible. Deploy the current generated SQL to the source database first.'', 1;
+
     INSERT INTO [dbo].[RunLog] ([SourceDatabaseName], [Status])
     VALUES (@SourceDatabaseName, N''Running'');
     SET @runIdLocal = SCOPE_IDENTITY();
     SET @RunId = @runIdLocal;
 
     BEGIN TRY
-        DECLARE @sql nvarchar(max) =
+        DECLARE @snapshotSql nvarchar(max) =
+            N''INSERT INTO [dbo].[RunCheck] ([RunId], [CandidateId], [SummaryView])
+              SELECT @RunId, [CandidateId], [SummaryView] FROM '' + @catalog + N'';'';
+        EXEC sys.sp_executesql @snapshotSql, N''@RunId bigint'', @RunId = @runIdLocal;
+
+        DECLARE @insertSql nvarchar(max) =
             N''INSERT INTO [dbo].[FindingLog] ([RunId], [DQView], [Issue], [FindingTitle], [FindingCategory], [OutputMode], [CandidateId], [CandidateKind], [Relationship], [RelationshipLabel], [ReferencingObject], [ReferencedObject], [CheckedObject], [SuspectSide], [SuspectObject], [LookupObject], [RelatedObject], [CorpusRelationship], [CorpusRelationshipPattern], [DominantPattern], [OutlierPattern], [TransformViews], [GeneratedView], [RowsReturned], [ResultRowCount], [FindingGroupCount], [TotalSuspectCount], [SuspectRowCount], [Explanation], [FindingExplanation], [EvidenceSummary], [EvidenceOccurrenceCount], [OutlierOccurrenceCount], [EvidenceTransformCount], [OutlierTransformCount], [EvidenceConsensusRatio], [DominantConsensusRatio], [EvidenceOutlierRatio], [OutlierRatio], [EvidenceQuality], [ConfidenceBand], [ConfidenceReason], [EvidenceDiversitySummary], [ConfidenceSummary], [DistinctTransformCount], [DistinctSourceTransformCount], [DistinctSourceObjectCount], [DistinctRelationshipPatternCount], [EffectiveTransformCount], [RecommendedAction], [RuntimeCountStatus], [ReviewQuery], [DetailQuery], [TransformViewQuery], [SupportingTransformQuery]) '' +
             N''SELECT @RunId, [DQView], [Issue], [FindingTitle], [FindingCategory], [OutputMode], [CandidateId], [CandidateKind], [Relationship], [RelationshipLabel], [ReferencingObject], [ReferencedObject], [CheckedObject], [SuspectSide], [SuspectObject], [LookupObject], [RelatedObject], [CorpusRelationship], [CorpusRelationshipPattern], [DominantPattern], [OutlierPattern], [TransformViews], [GeneratedView], [RowsReturned], [ResultRowCount], [FindingGroupCount], [TotalSuspectCount], [SuspectRowCount], [Explanation], [FindingExplanation], [EvidenceSummary], [EvidenceOccurrenceCount], [OutlierOccurrenceCount], [EvidenceTransformCount], [OutlierTransformCount], [EvidenceConsensusRatio], [DominantConsensusRatio], [EvidenceOutlierRatio], [OutlierRatio], [EvidenceQuality], [ConfidenceBand], [ConfidenceReason], [EvidenceDiversitySummary], [ConfidenceSummary], [DistinctTransformCount], [DistinctSourceTransformCount], [DistinctSourceObjectCount], [DistinctRelationshipPatternCount], [EffectiveTransformCount], [RecommendedAction], [RuntimeCountStatus], [ReviewQuery], [DetailQuery], [TransformViewQuery], [SupportingTransformQuery] '' +
-            N''FROM '' + QUOTENAME(@SourceDatabaseName) + N''.[dq].[v_DataQualityReview];'';
+            N''FROM '' + QUOTENAME(@SourceDatabaseName) + N''.[dq].'';
 
-        EXEC sys.sp_executesql
-            @sql,
-            N''@RunId bigint'',
-            @RunId = @runIdLocal;
+        DECLARE @candidateId nvarchar(256), @summaryView sysname, @checkSql nvarchar(max), @capturedRows bigint;
+        DECLARE check_cursor CURSOR LOCAL FAST_FORWARD FOR
+            SELECT [CandidateId], [SummaryView]
+            FROM [dbo].[RunCheck]
+            WHERE [RunId] = @runIdLocal
+            ORDER BY [CandidateId];
+
+        OPEN check_cursor;
+        FETCH NEXT FROM check_cursor INTO @candidateId, @summaryView;
+        WHILE @@FETCH_STATUS = 0
+        BEGIN
+            UPDATE [dbo].[RunCheck] SET [StartedAtUtc] = SYSUTCDATETIME()
+            WHERE [RunId] = @runIdLocal AND [CandidateId] = @candidateId;
+
+            BEGIN TRY
+                BEGIN TRANSACTION;
+                SET @checkSql = @insertSql + QUOTENAME(@summaryView) +
+                    N'' WHERE [CandidateId] = @CandidateId; SET @CapturedRows = ROWCOUNT_BIG();'';
+                EXEC sys.sp_executesql @checkSql,
+                    N''@RunId bigint, @CandidateId nvarchar(256), @CapturedRows bigint OUTPUT'',
+                    @RunId = @runIdLocal, @CandidateId = @candidateId, @CapturedRows = @capturedRows OUTPUT;
+                IF @capturedRows = 0
+                    THROW 51000, N''The check did not return its expected summary.'', 1;
+
+                UPDATE [dbo].[RunCheck] SET [CompletedAtUtc] = SYSUTCDATETIME()
+                WHERE [RunId] = @runIdLocal AND [CandidateId] = @candidateId;
+                COMMIT TRANSACTION;
+            END TRY
+            BEGIN CATCH
+                IF XACT_STATE() <> 0 ROLLBACK TRANSACTION;
+                UPDATE [dbo].[RunCheck]
+                SET [CompletedAtUtc] = SYSUTCDATETIME(), [ErrorMessage] = ERROR_MESSAGE()
+                WHERE [RunId] = @runIdLocal AND [CandidateId] = @candidateId;
+            END CATCH;
+
+            FETCH NEXT FROM check_cursor INTO @candidateId, @summaryView;
+        END;
+        CLOSE check_cursor;
+        DEALLOCATE check_cursor;
 
         UPDATE [dbo].[RunLog]
         SET [CompletedAtUtc] = SYSUTCDATETIME(),
-            [Status] = N''Completed''
+            [Status] = CASE WHEN EXISTS (SELECT 1 FROM [dbo].[RunCheck] WHERE [RunId] = @runIdLocal AND [ErrorMessage] IS NOT NULL)
+                            THEN N''CompletedWithErrors'' ELSE N''Completed'' END
         WHERE [RunId] = @runIdLocal;
     END TRY
     BEGIN CATCH
@@ -359,12 +467,14 @@ BEGIN
     SELECT
         r.[RunId],
         r.[SourceDatabaseName],
+        r.[Status],
         SUM(CASE WHEN f.[RowsReturned] IS NULL THEN 0 ELSE f.[RowsReturned] END) AS [RowsReturned],
         SUM(CASE WHEN f.[RowsReturned] IS NULL THEN 0 ELSE f.[RowsReturned] END) AS [ResultRowCount],
         SUM(CASE WHEN f.[RowsReturned] IS NULL THEN 0 ELSE f.[RowsReturned] END) AS [FindingGroupCount],
         SUM(CASE WHEN f.[TotalSuspectCount] IS NULL THEN 0 ELSE f.[TotalSuspectCount] END) AS [TotalSuspectCount],
         SUM(CASE WHEN f.[TotalSuspectCount] IS NULL THEN 0 ELSE f.[TotalSuspectCount] END) AS [SuspectRowCount],
-        COUNT(f.[FindingId]) AS [ChecksExecuted],
+        (SELECT COUNT_BIG(*) FROM [dbo].[RunCheck] WHERE [RunId] = @runIdLocal AND [CompletedAtUtc] IS NOT NULL) AS [ChecksExecuted],
+        (SELECT COUNT_BIG(*) FROM [dbo].[RunCheck] WHERE [RunId] = @runIdLocal AND [ErrorMessage] IS NOT NULL) AS [ChecksFailed],
         COUNT(f.[FindingId]) AS [FindingsExecuted],
         SUM(CASE WHEN f.[RowsReturned] IS NULL THEN 0 ELSE f.[RowsReturned] END) AS [RuntimeFindingGroupCount],
         SUM(CASE WHEN f.[TotalSuspectCount] IS NULL THEN 0 ELSE f.[TotalSuspectCount] END) AS [RuntimeSuspectRowCount]
@@ -372,7 +482,7 @@ BEGIN
     LEFT JOIN [dbo].[FindingLog] AS f
       ON f.[RunId] = r.[RunId]
     WHERE r.[RunId] = @runIdLocal
-    GROUP BY r.[RunId], r.[SourceDatabaseName];
+    GROUP BY r.[RunId], r.[SourceDatabaseName], r.[Status];
 
     SELECT
         [DQView],

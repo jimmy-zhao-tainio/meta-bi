@@ -1405,301 +1405,9 @@
       <QuoteType>NotQuoted</QuoteType>
       <Value>semantic</Value>
     </Identifier>
-    <Identifier Id="Identifier:2031">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>ViewIdentity</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2032">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>ViewName</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2033">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2034">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2035">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>branch</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2036">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>BranchSql</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2037">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2038">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2039">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>CONCAT</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2040">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>STRING_AGG</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2041">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>branch</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2042">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>BranchSortKey</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2043">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2044">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2045">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2046">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2047">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2048">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2049">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2050">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2051">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2052">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2053">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2054">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2055">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2056">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2057">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2058">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2059">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2060">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2061">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2062">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2063">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2064">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2065">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2066">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2067">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2068">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2069">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2070">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2071">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2072">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2073">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2074">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2075">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2076">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2077">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2078">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2079">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2080">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2081">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2082">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2083">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2084">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2085">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2086">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2087">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2088">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2089">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2090">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2091">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2092">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2093">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2094">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2095">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2096">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2097">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>SUBSTRING</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2098">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>CONCAT</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2099">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>CONCAT</Value>
-    </Identifier>
     <Identifier Id="Identifier:21">
       <QuoteType>NotQuoted</QuoteType>
       <Value>JoinPatternKeyPartId</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2100">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>DefinitionSql</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2101">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>DeployOrdinal</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2102">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>dashboard_branches</Value>
-    </Identifier>
-    <Identifier Id="Identifier:2103">
-      <QuoteType>NotQuoted</QuoteType>
-      <Value>branch</Value>
     </Identifier>
     <Identifier Id="Identifier:2104">
       <QuoteType>NotQuoted</QuoteType>
@@ -11984,6 +11692,78 @@
     <Identifier Id="Identifier:5168">
       <QuoteType>NotQuoted</QuoteType>
       <Value>Id</Value>
+    </Identifier>
+    <Identifier Id="Identifier:5169">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>branch</Value>
+    </Identifier>
+    <Identifier Id="Identifier:5170">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CandidateId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:5171">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CONCAT</Value>
+    </Identifier>
+    <Identifier Id="Identifier:5172">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ViewIdentity</Value>
+    </Identifier>
+    <Identifier Id="Identifier:5173">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>branch</Value>
+    </Identifier>
+    <Identifier Id="Identifier:5174">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CandidateId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:5175">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CONCAT</Value>
+    </Identifier>
+    <Identifier Id="Identifier:5176">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>ViewName</Value>
+    </Identifier>
+    <Identifier Id="Identifier:5177">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>branch</Value>
+    </Identifier>
+    <Identifier Id="Identifier:5178">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CandidateId</Value>
+    </Identifier>
+    <Identifier Id="Identifier:5179">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>REPLACE</Value>
+    </Identifier>
+    <Identifier Id="Identifier:5180">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>branch</Value>
+    </Identifier>
+    <Identifier Id="Identifier:5181">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>BranchSql</Value>
+    </Identifier>
+    <Identifier Id="Identifier:5182">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>CONCAT</Value>
+    </Identifier>
+    <Identifier Id="Identifier:5183">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>DefinitionSql</Value>
+    </Identifier>
+    <Identifier Id="Identifier:5184">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>DeployOrdinal</Value>
+    </Identifier>
+    <Identifier Id="Identifier:5185">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>dashboard_branches</Value>
+    </Identifier>
+    <Identifier Id="Identifier:5186">
+      <QuoteType>NotQuoted</QuoteType>
+      <Value>branch</Value>
     </Identifier>
     <Identifier Id="Identifier:564">
       <QuoteType>NotQuoted</QuoteType>

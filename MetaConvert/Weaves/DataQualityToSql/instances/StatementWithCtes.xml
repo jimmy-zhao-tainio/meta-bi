@@ -12,7 +12,6 @@
     <StatementWithCtes Id="StatementWithCtes:29" TSqlStatementId="TSqlStatement:29" />
     <StatementWithCtes Id="StatementWithCtes:35" TSqlStatementId="TSqlStatement:35" />
     <StatementWithCtes Id="StatementWithCtes:36" TSqlStatementId="TSqlStatement:36" />
-    <StatementWithCtes Id="StatementWithCtes:37" TSqlStatementId="TSqlStatement:37" />
     <StatementWithCtes Id="StatementWithCtes:38" TSqlStatementId="TSqlStatement:38" />
     <StatementWithCtes Id="StatementWithCtes:39" TSqlStatementId="TSqlStatement:39" />
     <StatementWithCtes Id="StatementWithCtes:4" TSqlStatementId="TSqlStatement:4" />
@@ -38,5 +37,6 @@
     <StatementWithCtes Id="StatementWithCtes:65" TSqlStatementId="TSqlStatement:65" />
     <StatementWithCtes Id="StatementWithCtes:66" TSqlStatementId="TSqlStatement:66" />
     <StatementWithCtes Id="StatementWithCtes:67" TSqlStatementId="TSqlStatement:67" />
+    <StatementWithCtes Id="StatementWithCtes:68" TSqlStatementId="TSqlStatement:68" />
   </StatementWithCtesList>
 </MetaWeave>

@@ -52,6 +52,12 @@
       <Name>promote-data-quality</Name>
       <WorkingDirectory></WorkingDirectory>
     </OperationStep>
+    <OperationStep Id="operation-step:build-data-quality:run-review" OperationId="operation:build-data-quality" PreviousStepId="operation-step:build-data-quality:deploy-data-quality-sql">
+      <Arguments>execute --connection-env {env:META_DQ_DEMO_SOURCE_SQL} --file run-review.sql</Arguments>
+      <Description>Save Data Quality outcomes and display the review dashboard.</Description>
+      <Executable>meta-sql.exe</Executable>
+      <Name>run-review</Name>
+    </OperationStep>
     <OperationStep Id="operation-step:build-data-quality:setup-source-database" OperationId="operation:build-data-quality">
       <Arguments>execute --connection-env {env:META_DQ_DEMO_MASTER_SQL} --file setup.sql</Arguments>
       <Executable>meta-sql.exe</Executable>

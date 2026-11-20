@@ -16,9 +16,6 @@
     <OrderByClauseOrderByElementsItem Id="OrderByClauseOrderByElementsItem:3" ExpressionWithSortOrderId="ExpressionWithSortOrder:3" OrderByClauseId="OrderByClause:2">
       <Ordinal>0</Ordinal>
     </OrderByClauseOrderByElementsItem>
-    <OrderByClauseOrderByElementsItem Id="OrderByClauseOrderByElementsItem:35" ExpressionWithSortOrderId="ExpressionWithSortOrder:35" OrderByClauseId="OrderByClause:20">
-      <Ordinal>0</Ordinal>
-    </OrderByClauseOrderByElementsItem>
     <OrderByClauseOrderByElementsItem Id="OrderByClauseOrderByElementsItem:4" ExpressionWithSortOrderId="ExpressionWithSortOrder:4" OrderByClauseId="OrderByClause:2">
       <Ordinal>1</Ordinal>
     </OrderByClauseOrderByElementsItem>

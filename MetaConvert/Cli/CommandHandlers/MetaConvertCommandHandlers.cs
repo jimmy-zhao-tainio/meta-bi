@@ -171,7 +171,7 @@ internal sealed class MetaConvertCommandHandlers
                 .ConfigureAwait(false);
             presenter.WriteInfo(
                 $"Generated {result.CandidateViewCount} data quality view script{(result.CandidateViewCount == 1 ? string.Empty : "s")}, " +
-                $"{result.DashboardViewCount} review dashboard, and MetaDQ operational SQL ({result.OperationalTableCount} tables, {result.OperationalProcedureCount} procedure).");
+                $"{result.DashboardViewCount} saved-results dashboard, and MetaDQ operational SQL ({result.OperationalTableCount} tables, {result.OperationalProcedureCount} procedures).");
             presenter.WriteKeyValueBlock("Output", new[]
             {
                 ("DataQualityViews", result.CandidateViewCount.ToString()),

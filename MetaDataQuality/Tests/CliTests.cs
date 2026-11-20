@@ -759,7 +759,7 @@ LEFT OUTER JOIN dbo.[Order] o
             Assert.True(result.ScriptCount > 0);
             Assert.True(result.CandidateViewCount > 0);
             Assert.Equal(1, result.DashboardViewCount);
-            Assert.Equal(2, result.OperationalTableCount);
+            Assert.Equal(3, result.OperationalTableCount);
             Assert.Equal(2, result.OperationalProcedureCount);
             Assert.Contains("CREATE OR ALTER VIEW [dq].[", sql, StringComparison.Ordinal);
             Assert.Contains("CREATE OR ALTER VIEW [dq].[v_DataQualityReview]", sql, StringComparison.Ordinal);
@@ -857,7 +857,7 @@ LEFT OUTER JOIN dbo.[Order] o
 
             Assert.Equal(0, result.CandidateViewCount);
             Assert.Equal(1, result.DashboardViewCount);
-            Assert.Equal(2, result.OperationalTableCount);
+            Assert.Equal(3, result.OperationalTableCount);
             Assert.Equal(2, result.OperationalProcedureCount);
             Assert.Equal(2, result.ScriptCount);
             Assert.Contains("CREATE OR ALTER VIEW [dq].[v_DataQualityReview]", sql, StringComparison.Ordinal);

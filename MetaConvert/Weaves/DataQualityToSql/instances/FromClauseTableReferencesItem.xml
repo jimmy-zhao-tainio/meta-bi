@@ -136,6 +136,9 @@
     <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:141" FromClauseId="FromClause:141" TableReferenceId="TableReference:315">
       <Ordinal>0</Ordinal>
     </FromClauseTableReferencesItem>
+    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:142" FromClauseId="FromClause:142" TableReferenceId="TableReference:316">
+      <Ordinal>0</Ordinal>
+    </FromClauseTableReferencesItem>
     <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:28" FromClauseId="FromClause:28" TableReferenceId="TableReference:80">
       <Ordinal>0</Ordinal>
     </FromClauseTableReferencesItem>
@@ -182,9 +185,6 @@
       <Ordinal>0</Ordinal>
     </FromClauseTableReferencesItem>
     <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:55" FromClauseId="FromClause:55" TableReferenceId="TableReference:123">
-      <Ordinal>0</Ordinal>
-    </FromClauseTableReferencesItem>
-    <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:56" FromClauseId="FromClause:56" TableReferenceId="TableReference:124">
       <Ordinal>0</Ordinal>
     </FromClauseTableReferencesItem>
     <FromClauseTableReferencesItem Id="FromClauseTableReferencesItem:57" FromClauseId="FromClause:57" TableReferenceId="TableReference:125">
