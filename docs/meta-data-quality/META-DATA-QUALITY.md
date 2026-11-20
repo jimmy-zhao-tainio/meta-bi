@@ -103,7 +103,7 @@ False-positive reduction currently uses projection evidence from the semantic Tr
 - `dq.v_ReviewChecks`, the list of checks in this deployment
 - `dq.v_DataQualityReview`, the dashboard of saved results
 - `dq.Run`, the local procedure for running and reviewing checks
-- `dq.Explain`, examples and SQL for investigating one check
+- `dq.Explain`, the interpreted result and evidence for one check
 - one MetaDQ operational pack:
 - tables `dbo.RunLog`, `dbo.RunCheck`, `dbo.FindingLog`
 - procedures `dbo.Run`, `dbo.Findings`
@@ -133,9 +133,9 @@ EXEC dq.Run;
 ```
 
 The procedure returns one list of findings and check errors, ordered by
-transform. Copy and run the SQL in a row's **Investigate** column to see an
-example, what to look for and queries to use. The command refers to that saved
-finding even after a newer run. Add `@IncludeClean = 1` to see checks with no
+transform. Copy and run the SQL in a row's **Investigate** column to see what
+the check measured, what it means, and any evidence rows. The command refers
+to that saved finding even after a newer run. Add `@IncludeClean = 1` to see checks with no
 findings as well.
 
 The dashboard reads the latest saved run. You can filter by transform or
@@ -154,12 +154,18 @@ ORDER BY [Transform], [Check];
 - **Check failed** means the check raised a SQL error. Run the **Investigate** command to read it.
 - **Not checked** means there is no saved result for that check in the latest run.
 
-The explanation gives a plain example and a decision to make about your data.
-The first query samples up to 20 rows from that check against current data.
-Where there is a confirmation query, replace its example table and columns
-with the actual output and keys. For example, three lines for one order are
-normal in a line report. In an order summary, grouping by the order number
-should return only one row per order.
+For row-multiplication and duplicate-risk findings with one modeled join pattern
+and resolved base-table keys, the procedure checks how many matching rows
+each input row receives. When each input matches once, a shared lookup key
+explains the repeated join key. If any inputs receive multiple matches, the
+procedure returns the actual key values, match count per input and number of
+affected inputs. This measures the modeled base-table equality. Verifying the
+transform's full predicates and output grain requires separate evidence.
+
+Other runtime findings show up to 20 evidence rows with the checked table and
+key values. The saved run and the current data are labelled separately. If the
+finding no longer occurs, the procedure reports that directly. Transform-pattern
+reviews show the saved common and differing conditions side by side.
 
 `MetaDQ.dbo.Findings @RunId = …` reads the detailed evidence captured during
 the specified run, including the original rationale and counts. Automation can

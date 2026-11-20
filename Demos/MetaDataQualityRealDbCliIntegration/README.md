@@ -65,8 +65,8 @@ Important semantics:
 - runtime checks execute against rows in `MetaDataQualityRealDbDemo`.
 
 The saved dashboard `dq.v_DataQualityReview` shows the transform, check and
-outcome. Run the SQL in the **Investigate** column for an example and a query
-that inspects the current data.
+outcome. Run the SQL in the **Investigate** column for the interpretation and
+evidence rows.
 
 Detailed evidence from `MetaDQ.dbo.Findings @RunId = …`:
 

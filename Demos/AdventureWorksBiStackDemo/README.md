@@ -171,9 +171,9 @@ WHERE Outcome = N'Review affected rows'
 ORDER BY [Transform], [Check];
 ```
 
-Copy and run the SQL in the **Investigate** column to see an example and
-queries for that finding. The list comes from the most recent saved run. The
-inspection query uses current data. See
+Copy and run the SQL in the **Investigate** column for the assessment and
+evidence. The list comes from the most recent saved run. The runtime evidence
+is labelled with its scope and uses current data. See
 [DQ-REVIEW.md](DQ-REVIEW.md) for the individual findings and supporting probes.
 The former expectation of no findings is superseded by this interpretation;
 the verifier does not hardcode 45 as an allowed-failure threshold.

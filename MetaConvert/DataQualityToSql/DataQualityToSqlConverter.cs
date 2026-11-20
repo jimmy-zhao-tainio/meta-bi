@@ -59,7 +59,7 @@ public sealed class DataQualityToSqlConverter
         }
 
         var candidateById = source.DataQualityCandidateList.ToDictionary(candidate => candidate.Id, StringComparer.Ordinal);
-        var reviewSql = RenderReviewSql(candidateViews, candidateById, summaryViews);
+        var reviewSql = RenderReviewSql(candidateViews, candidateById, summaryViews, BuildMatchProbes(source));
 
         if (IsSqlFilePath(outputPath))
         {
@@ -136,7 +136,8 @@ public sealed class DataQualityToSqlConverter
     private static string RenderReviewSql(
         IReadOnlyList<View> candidateViews,
         IReadOnlyDictionary<string, DataQualityCandidate> candidates,
-        IReadOnlyDictionary<string, View> summaries)
+        IReadOnlyDictionary<string, View> summaries,
+        IReadOnlyDictionary<string, string> matchProbes)
     {
         var builder = new StringBuilder();
         AppendSchemaGuard(builder);
@@ -144,13 +145,14 @@ public sealed class DataQualityToSqlConverter
         if (candidateViews.Count == 0)
         {
             builder.AppendLine("SELECT CAST(NULL AS nvarchar(256)) AS CandidateId, CAST(NULL AS sysname) AS SummaryView,");
-            builder.AppendLine("       CAST(NULL AS sysname) AS DetailView, CAST(NULL AS nvarchar(256)) AS CheckName WHERE 1 = 0;");
+            builder.AppendLine("       CAST(NULL AS sysname) AS DetailView, CAST(NULL AS nvarchar(256)) AS CheckName,");
+            builder.AppendLine("       CAST(NULL AS nvarchar(max)) AS MatchProbe WHERE 1 = 0;");
         }
         else
         {
             builder.AppendLine("SELECT CAST(v.CandidateId AS nvarchar(256)) AS CandidateId,");
             builder.AppendLine("       CAST(v.SummaryView AS sysname) AS SummaryView, CAST(v.DetailView AS sysname) AS DetailView,");
-            builder.AppendLine("       CAST(v.CheckName AS nvarchar(256)) AS CheckName");
+            builder.AppendLine("       CAST(v.CheckName AS nvarchar(256)) AS CheckName, CAST(v.MatchProbe AS nvarchar(max)) AS MatchProbe");
             builder.AppendLine("FROM (VALUES");
             for (var index = 0; index < candidateViews.Count; index++)
             {
@@ -158,10 +160,11 @@ public sealed class DataQualityToSqlConverter
                 var id = ResolveCandidateId(view);
                 if (!candidates.TryGetValue(id, out var candidate))
                     throw new InvalidOperationException($"The Data Quality weave produced a view for unknown candidate '{id}'.");
-                builder.Append($"    ({SqlString(id)}, {SqlString(summaries[id].Name)}, {SqlString(view.Name)}, {SqlString(candidate.Name)})");
+                var matchProbe = matchProbes.TryGetValue(id, out var probe) ? SqlString(probe) : "NULL";
+                builder.Append($"    ({SqlString(id)}, {SqlString(summaries[id].Name)}, {SqlString(view.Name)}, {SqlString(candidate.Name)}, {matchProbe})");
                 builder.AppendLine(index + 1 == candidateViews.Count ? "" : ",");
             }
-            builder.AppendLine(") v(CandidateId, SummaryView, DetailView, CheckName);");
+            builder.AppendLine(") v(CandidateId, SummaryView, DetailView, CheckName, MatchProbe);");
         }
 
         builder.AppendLine("GO");
@@ -244,6 +247,75 @@ public sealed class DataQualityToSqlConverter
     }
 
     private static string SqlString(string value) => "N'" + value.Replace("'", "''", StringComparison.Ordinal) + "'";
+
+    private static Dictionary<string, string> BuildMatchProbes(MetaDataQualityModel source)
+    {
+        var candidateIds = source.JoinMultiplicityExplosionList.Select(row => row.DataQualityCandidate.Id)
+            .Concat(source.OutputDuplicateRiskList.Select(row => row.DataQualityCandidate.Id))
+            .ToHashSet(StringComparer.Ordinal);
+        var keysByPattern = source.JoinPatternKeyPartList.ToLookup(key => key.JoinPattern.Id);
+        var identifierParts = source.JoinPatternKeyPartInputObjectIdentifierPartList
+            .ToLookup(part => (part.JoinPatternKeyPart.Id, part.InputSide));
+        var probes = new Dictionary<string, string>(StringComparer.Ordinal);
+
+        foreach (var group in source.DataQualityCandidateJoinPatternLinkList
+                     .Where(link => candidateIds.Contains(link.DataQualityCandidate.Id))
+                     .GroupBy(link => link.DataQualityCandidate.Id))
+        {
+            var patterns = group.Select(link => link.JoinPattern.Id).Distinct().ToArray();
+            if (patterns.Length != 1)
+                continue;
+
+            var keys = keysByPattern[patterns[0]].OrderBy(key => ParseDeployOrdinal(key.Ordinal)).ToArray();
+            if (keys.Length == 0 || keys.Any(key =>
+                    !IsSqlIdentifier(key.FirstJoinInputColumnName) || !IsSqlIdentifier(key.SecondJoinInputColumnName)))
+                continue;
+
+            var firstTables = keys.Select(key => RenderObjectName(identifierParts[(key.Id, "First")])).Distinct().ToArray();
+            var secondTables = keys.Select(key => RenderObjectName(identifierParts[(key.Id, "Second")])).Distinct().ToArray();
+            if (firstTables.Length != 1 || secondTables.Length != 1 || firstTables[0] is null || secondTables[0] is null)
+                continue;
+
+            var equalities = string.Join(" AND ", keys.Select(key =>
+                $"a.{QuoteIdentifier(key.FirstJoinInputColumnName!)} = b.{QuoteIdentifier(key.SecondJoinInputColumnName!)}"));
+            var firstKeys = string.Join(", ", keys.Select(key => $"a.{QuoteIdentifier(key.FirstJoinInputColumnName!)}").Distinct());
+            var matchedRows = $"""
+                FROM {firstTables[0]} AS a
+                CROSS APPLY (SELECT COUNT_BIG(*) AS Matches FROM {secondTables[0]} AS b WHERE {equalities}) AS m
+                """;
+            // Count matches for each first-side row. Grouping the joined rows by the key alone
+            // also counts legitimate reuse by several first-side rows and cannot prove fanout.
+            probes[group.Key] = $"""
+                IF @ShowKeys = 1
+                BEGIN
+                    SELECT TOP (20) {firstKeys}, m.Matches AS MatchesPerInputRow, COUNT_BIG(*) AS AffectedInputRows
+                    {matchedRows}
+                    WHERE m.Matches > 1
+                    GROUP BY {firstKeys}, m.Matches
+                    ORDER BY m.Matches DESC, {firstKeys};
+                    RETURN;
+                END;
+                SELECT @Matched = COUNT_BIG(CASE WHEN m.Matches > 0 THEN 1 END),
+                       @Repeated = COUNT_BIG(CASE WHEN m.Matches > 1 THEN 1 END),
+                       @Maximum = MAX(m.Matches)
+                {matchedRows};
+                """;
+        }
+
+        return probes;
+    }
+
+    private static string? RenderObjectName(IEnumerable<JoinPatternKeyPartInputObjectIdentifierPart> parts)
+    {
+        var identifiers = parts.OrderBy(part => ParseDeployOrdinal(part.Ordinal)).Select(part => part.Value).ToArray();
+        return identifiers.Length is 2 or 3 && identifiers.All(IsSqlIdentifier)
+            ? string.Join(".", identifiers.Select(QuoteIdentifier))
+            : null;
+    }
+
+    private static bool IsSqlIdentifier(string? value) => value is { Length: > 0 and <= 128 };
+
+    private static string QuoteIdentifier(string value) => "[" + value.Replace("]", "]]", StringComparison.Ordinal) + "]";
 
     private static void AppendSchemaGuard(StringBuilder builder)
     {

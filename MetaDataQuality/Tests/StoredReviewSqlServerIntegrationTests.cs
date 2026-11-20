@@ -14,6 +14,7 @@ public sealed class StoredReviewSqlServerIntegrationTests
     {
         const string runtimeCheck = "JoinOrphan.JoinPattern.CustomerOrder.1";
         const string analysisCheck = "MinorityJoinPattern.CustomerOrder";
+        const string matchCheck = "JoinMultiplicityExplosion.JoinPattern.ProductOrderLine.1";
         var suffix = Guid.NewGuid().ToString("N");
         var root = Path.Combine(Path.GetTempPath(), "MetaDataQuality.Tests", suffix);
         var sourceDatabase = "DqSource_" + suffix;
@@ -30,20 +31,24 @@ public sealed class StoredReviewSqlServerIntegrationTests
                 CREATE TABLE dbo.Customer (CustomerId int NOT NULL, RegionId int NOT NULL);
                 CREATE TABLE dbo.[Order] (CustomerId int NOT NULL);
                 CREATE TABLE dbo.CustomerRegion (RegionId int NOT NULL);
+                CREATE TABLE dbo.Product (ProductId int NOT NULL);
+                CREATE TABLE dbo.OrderLine (ProductId int NOT NULL);
                 INSERT dbo.Customer VALUES (1, 1), (2, 2);
                 INSERT dbo.[Order] VALUES (1), (3);
                 INSERT dbo.CustomerRegion VALUES (1), (3);
+                INSERT dbo.Product VALUES (1), (1);
+                INSERT dbo.OrderLine VALUES (1);
                 """);
 
             var model = DataQualityToSqlWeaveWitnessTests.CreateWitnessModel();
             foreach (var candidate in model.DataQualityCandidateList)
-                if (candidate.Id is not (runtimeCheck or analysisCheck))
+                if (candidate.Id is not (runtimeCheck or analysisCheck or matchCheck))
                     candidate.Status = CandidateStatuses.Discovered;
             var workspace = Path.Combine(root, "Source");
             TypedWorkspaceModelMapper.Create(model, MetaDataQualityModels.LoadContract(), new MetaDataQualityWorkspaceBinding(), workspace, "xml");
             var deploymentPath = Path.Combine(root, "Deploy.sql");
             var artifact = new DataQualityToSqlConverter().Convert(workspace, deploymentPath);
-            Assert.Equal(2, artifact.CandidateViewCount);
+            Assert.Equal(3, artifact.CandidateViewCount);
             var deployment = (await File.ReadAllTextAsync(deploymentPath))
                 .Replace("[MetaDQ]", $"[{logDatabase}]", StringComparison.Ordinal)
                 .Replace("N'MetaDQ'", $"N'{logDatabase}'", StringComparison.Ordinal);
@@ -54,7 +59,7 @@ public sealed class StoredReviewSqlServerIntegrationTests
             // dashboard queries as well as queries from the deployment database.
             var dashboard = $"[{sourceDatabase}].[dq].[v_DataQualityReview]";
             var before = await Read(master, dashboard);
-            Assert.Equal(2, before.Count);
+            Assert.Equal(3, before.Count);
             Assert.All(before, row =>
             {
                 Assert.Equal("Not checked", row.Outcome);
@@ -64,32 +69,34 @@ public sealed class StoredReviewSqlServerIntegrationTests
             var firstRun = await RunReview(source, "EXEC dq.Run;");
             var first = await Read(master, dashboard);
             Assert.Equal(firstRun.OrderBy(x => x.Investigate), first.OrderBy(x => x.Investigate));
-            var finding = Assert.Single(first, x => x.Outcome == "Review affected rows");
+            var finding = Assert.Single(first, x => x.Outcome == "Review affected rows" && x.Check != "Join may repeat rows");
             var pattern = Assert.Single(first, x => x.Outcome == "Review transform pattern");
+            var matchFinding = Assert.Single(first, x => x.Check == "Join may repeat rows");
 
             var explanation = await Explain(master, finding);
-            Assert.Contains("customer 42", explanation.Notes["Example"], StringComparison.Ordinal);
-            Assert.Contains("which side", explanation.Notes["How to decide"], StringComparison.Ordinal);
-            var inspect = explanation.Queries["Inspect up to 20 rows from this check"];
-            Assert.Contains($"[{sourceDatabase}].[dq].[v_{runtimeCheck}]", inspect, StringComparison.Ordinal);
-            Assert.Contains("NOT EXISTS", explanation.Queries["Confirm the issue (replace example tables and keys)"], StringComparison.Ordinal);
-            await using (var detail = new SqlCommand(inspect, master))
-            await using (var reader = await detail.ExecuteReaderAsync())
-            {
-                var counts = new List<long>();
-                while (await reader.ReadAsync()) counts.Add(reader.GetInt64(reader.GetOrdinal("SuspectCount")));
-                Assert.Equal(new long[] { 1, 1 }, counts);
-            }
-            var patternExplanation = await Explain(master, pattern);
-            var patternQuery = patternExplanation.Queries["Inspect up to 20 rows from this check"];
-            await using (var detail = new SqlCommand(patternQuery, master))
-            await using (var reader = await detail.ExecuteReaderAsync())
-            {
-                Assert.True(await reader.ReadAsync());
-                Assert.NotEqual(reader.GetString(1), reader.GetString(2));
-            }
+            Assert.Contains("2 rows on the checked side", explanation.Notes["What the run measured"], StringComparison.Ordinal);
+            Assert.Contains("checked table", explanation.Notes["What to do"], StringComparison.Ordinal);
+            Assert.Equal(new[] { "Relationship", "Checked table", "Join key", "Rows counted" }, explanation.Columns);
+            Assert.Equal(new long[] { 1, 1 }, explanation.Evidence.Select(row => (long)row[3]));
+            Assert.Contains(explanation.Evidence, row => (string)row[1] == "dbo.Order" && (string)row[2] == "CustomerId=3");
 
-            await Execute(source, "INSERT dbo.Customer VALUES (3, 3); INSERT dbo.[Order] VALUES (2); INSERT dbo.CustomerRegion VALUES (2);");
+            var patternExplanation = await Explain(master, pattern);
+            Assert.Equal(new[] { "Relationship", "Transforms", "Common condition", "Different condition" }, patternExplanation.Columns);
+            Assert.NotEmpty(patternExplanation.Evidence);
+            Assert.All(patternExplanation.Evidence, row => Assert.NotEqual(row[2], row[3]));
+
+            var reused = await Explain(master, matchFinding);
+            Assert.Contains("1 join-key groups", reused.Notes["What the run measured"], StringComparison.Ordinal);
+            Assert.Contains("2 input rows matched; each had exactly one match", reused.Notes["What the data shows now"], StringComparison.Ordinal);
+            Assert.Empty(reused.Evidence);
+            await Execute(source, "INSERT dbo.OrderLine VALUES (1);");
+            var multiplied = await Explain(master, matchFinding);
+            Assert.Equal(reused.Notes["What the run measured"], multiplied.Notes["What the run measured"]);
+            Assert.Contains("2 input rows matched more than one row", multiplied.Notes["What the data shows now"], StringComparison.Ordinal);
+            Assert.Equal(new[] { "ProductId", "MatchesPerInputRow", "AffectedInputRows" }, multiplied.Columns);
+            Assert.Equal(new object[] { 1, 2L, 2L }, Assert.Single(multiplied.Evidence));
+
+            await Execute(source, "INSERT dbo.Customer VALUES (3, 3); INSERT dbo.[Order] VALUES (2); INSERT dbo.CustomerRegion VALUES (2); DELETE dbo.OrderLine;");
             Assert.Contains(finding, await Read(master, dashboard));
             var secondRun = await RunReview(source, "EXEC dq.Run;");
             var latestPattern = Assert.Single(secondRun);
@@ -97,9 +104,12 @@ public sealed class StoredReviewSqlServerIntegrationTests
             Assert.Equal(pattern.Outcome, latestPattern.Outcome);
             Assert.NotEqual(pattern.Investigate, latestPattern.Investigate);
             var second = await Read(master, dashboard);
-            var clean = Assert.Single(second, x => x.Outcome == "No rows found");
+            var clean = Assert.Single(second, x => x.Check == finding.Check);
+            Assert.Equal("No rows found", clean.Outcome);
             var historical = await Explain(master, finding);
             Assert.Equal(explanation.Notes["Saved result"], historical.Notes["Saved result"]);
+            Assert.Contains("returns zero evidence rows on current data", historical.Notes["What the data shows now"], StringComparison.Ordinal);
+            Assert.Empty(historical.Evidence);
 
             var includeClean = $"""
                 DECLARE @RunId bigint;
@@ -107,10 +117,10 @@ public sealed class StoredReviewSqlServerIntegrationTests
                 SELECT @RunId;
                 """;
             var allResults = await RunReview(master, includeClean, verifyOutputId: true);
-            Assert.Equal(2, allResults.Count);
+            Assert.Equal(3, allResults.Count);
             Assert.Contains(allResults, row => row.Check == clean.Check && row.Outcome == clean.Outcome);
 
-            var savedClean = (await Read(master, dashboard)).Single(x => x.Outcome == "No rows found");
+            var savedClean = (await Read(master, dashboard)).Single(x => x.Check == finding.Check);
             await Execute(source, $"DROP VIEW [dq].[r_{runtimeCheck}];");
             Assert.Contains(savedClean, await Read(master, dashboard));
             var failureRun = await RunReview(source, "EXEC dq.Run;");
@@ -120,6 +130,7 @@ public sealed class StoredReviewSqlServerIntegrationTests
             Assert.Contains(third, row => row.Check == pattern.Check && row.Outcome == pattern.Outcome);
             var failureExplanation = await Explain(master, failure);
             Assert.Contains($"r_{runtimeCheck}", failureExplanation.Notes["SQL error"], StringComparison.Ordinal);
+            Assert.Empty(failureExplanation.Evidence);
         }
         finally
         {
@@ -179,7 +190,7 @@ public sealed class StoredReviewSqlServerIntegrationTests
         return results;
     }
 
-    private static async Task<(Dictionary<string, string> Notes, Dictionary<string, string> Queries)> Explain(
+    private static async Task<(Dictionary<string, string> Notes, string[] Columns, List<object[]> Evidence)> Explain(
         SqlConnection connection, ReviewRow row)
     {
         Assert.NotNull(row.Investigate);
@@ -189,11 +200,20 @@ public sealed class StoredReviewSqlServerIntegrationTests
         while (await reader.ReadAsync()) notes.Add(reader.GetString(0), reader.GetString(1));
         Assert.Equal(row.Check, notes["Check"]);
         Assert.Equal(row.Outcome, notes["Saved result"]);
-        Assert.True(await reader.NextResultAsync());
-        var queries = new Dictionary<string, string>(StringComparer.Ordinal);
-        while (await reader.ReadAsync()) queries.Add(reader.GetString(0), reader.GetString(1));
-        Assert.False(await reader.NextResultAsync());
-        return (notes, queries);
+        string[] columns = [];
+        var evidence = new List<object[]>();
+        if (await reader.NextResultAsync())
+        {
+            columns = Enumerable.Range(0, reader.FieldCount).Select(reader.GetName).ToArray();
+            while (await reader.ReadAsync())
+            {
+                var values = new object[reader.FieldCount];
+                reader.GetValues(values);
+                evidence.Add(values);
+            }
+            Assert.False(await reader.NextResultAsync());
+        }
+        return (notes, columns, evidence);
     }
 
     private sealed record ReviewRow(string? Transform, string Check, string Outcome, string? Investigate);
