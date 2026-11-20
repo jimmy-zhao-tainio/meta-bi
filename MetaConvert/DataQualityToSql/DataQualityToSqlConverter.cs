@@ -57,7 +57,7 @@ public sealed class DataQualityToSqlConverter
         }
 
         var candidateById = source.DataQualityCandidateList.ToDictionary(candidate => candidate.Id, StringComparer.Ordinal);
-        var dashboardSql = RenderReviewDashboard(candidateViews, candidateById, summaryViews);
+        var reviewSql = RenderReviewSql(candidateViews, candidateById, summaryViews);
 
         if (IsSqlFilePath(outputPath))
         {
@@ -65,7 +65,7 @@ public sealed class DataQualityToSqlConverter
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath)!);
             File.WriteAllText(
                 fullPath,
-                RenderCombinedSql(candidateViews, summaryViews, dashboardSql),
+                RenderCombinedSql(candidateViews, summaryViews, reviewSql),
                 new UTF8Encoding(encoderShouldEmitUTF8Identifier: false));
 
             return CreateResult(fullPath, candidateViews.Length);
@@ -88,7 +88,7 @@ public sealed class DataQualityToSqlConverter
 
         File.WriteAllText(
             Path.Combine(outputDirectory, "v_DataQualityReview.sql"),
-            dashboardSql,
+            reviewSql,
             new UTF8Encoding(encoderShouldEmitUTF8Identifier: false));
         File.WriteAllText(
             Path.Combine(outputDirectory, "MetaDQ.Operational.sql"),
@@ -131,7 +131,7 @@ public sealed class DataQualityToSqlConverter
         return new MetaSqlWorkspaceBinding().Read(result.OutputWorkspace!);
     }
 
-    private static string RenderReviewDashboard(
+    private static string RenderReviewSql(
         IReadOnlyList<View> candidateViews,
         IReadOnlyDictionary<string, DataQualityCandidate> candidates,
         IReadOnlyDictionary<string, View> summaries)
@@ -163,7 +163,7 @@ public sealed class DataQualityToSqlConverter
         }
 
         builder.AppendLine("GO");
-        builder.AppendLine("""
+        builder.AppendLine($"""
             CREATE OR ALTER VIEW [dq].[v_DataQualityReview] AS
             WITH LatestRun AS
             (
@@ -172,31 +172,64 @@ public sealed class DataQualityToSqlConverter
                 WHERE SourceDatabaseName = DB_NAME()
                 ORDER BY RunId DESC
             )
-            SELECT COALESCE(r.FindingTitle, c.CheckName) AS [Check],
-                   COALESCE(r.Outcome, N'Not checked') AS [Outcome],
-                   r.CheckedRelationship AS [Relationship],
-                   r.Transforms,
-                   r.FindingGroups,
-                   r.SuspectRows,
-                   r.Explanation,
-                   r.CheckedAtUtc,
-                   CONCAT(N'SELECT * FROM ', QUOTENAME(DB_NAME()), N'.[dq].', QUOTENAME(c.DetailView), N';') AS [InspectCurrentRows],
-                   c.CandidateId AS [CheckId],
-                   latest.RunId,
-                   latest.Status AS RunStatus
-            FROM [dq].[v_ReviewChecks] AS c
-            LEFT JOIN LatestRun AS latest ON 1 = 1
-            LEFT JOIN [MetaDQ].[dbo].[CheckReview] AS r
-              ON r.RunId = latest.RunId AND r.CandidateId COLLATE DATABASE_DEFAULT = c.CandidateId;
+            {RenderReviewRows("LEFT JOIN LatestRun AS run ON 1 = 1")};
+            GO
+
+            CREATE OR ALTER PROCEDURE [dq].[Run]
+                @IncludeClean bit = 0,
+                @RunId bigint = NULL OUTPUT
+            AS
+            BEGIN
+                SET NOCOUNT ON;
+
+                DECLARE @SourceDatabaseName sysname = DB_NAME();
+                EXEC [MetaDQ].[dbo].[Run]
+                    @SourceDatabaseName = @SourceDatabaseName,
+                    @RunId = @RunId OUTPUT,
+                    @EmitResults = 0;
+
+                SELECT run.RunId,
+                       run.Status,
+                       (SELECT COUNT_BIG(*) FROM [MetaDQ].[dbo].[RunCheck] WHERE RunId = @RunId) AS Checks,
+                       (SELECT COUNT_BIG(*) FROM [MetaDQ].[dbo].[RunCheck] WHERE RunId = @RunId AND ErrorMessage IS NOT NULL) AS ChecksFailed,
+                       run.StartedAtUtc,
+                       run.CompletedAtUtc
+                FROM [MetaDQ].[dbo].[RunLog] AS run
+                WHERE run.RunId = @RunId;
+
+                {RenderReviewRows("JOIN [MetaDQ].[dbo].[RunLog] AS run ON run.RunId = @RunId")}
+                WHERE @IncludeClean = 1 OR r.Outcome <> N'No rows found' OR r.Outcome IS NULL
+                ORDER BY CASE WHEN r.Outcome = N'Check failed' THEN 0 ELSE 1 END,
+                         r.SuspectRows DESC, c.CandidateId;
+            END;
             GO
             """);
         return builder.ToString();
     }
 
+    private static string RenderReviewRows(string runJoin) => $"""
+        SELECT COALESCE(r.FindingTitle, c.CheckName) AS [Check],
+               COALESCE(r.Outcome, N'Not checked') AS [Outcome],
+               r.CheckedRelationship AS [Relationship],
+               r.Transforms,
+               r.FindingGroups,
+               r.SuspectRows,
+               r.Explanation,
+               r.CheckedAtUtc,
+               CONCAT(N'SELECT * FROM ', QUOTENAME(DB_NAME()), N'.[dq].', QUOTENAME(c.DetailView), N';') AS [InspectCurrentRows],
+               c.CandidateId AS [CheckId],
+               run.RunId,
+               run.Status AS RunStatus
+        FROM [dq].[v_ReviewChecks] AS c
+        {runJoin}
+        LEFT JOIN [MetaDQ].[dbo].[CheckReview] AS r
+          ON r.RunId = run.RunId AND r.CandidateId COLLATE DATABASE_DEFAULT = c.CandidateId
+        """;
+
     private static string RenderCombinedSql(
         IReadOnlyList<View> candidateViews,
         IReadOnlyDictionary<string, View> summaries,
-        string dashboardSql)
+        string reviewSql)
     {
         var builder = new StringBuilder();
         AppendSchemaGuard(builder);
@@ -209,7 +242,7 @@ public sealed class DataQualityToSqlConverter
             builder.AppendLine();
         }
 
-        builder.Append(dashboardSql);
+        builder.Append(reviewSql);
         return builder.ToString();
     }
 

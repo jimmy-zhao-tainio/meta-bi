@@ -12,7 +12,7 @@ It is not a hidden business-rules engine. It turns modeled transform syntax into
 4. Promote the generated candidates that should become SQL.
 5. Convert the promoted candidates to SQL views and MetaDQ operational SQL.
 6. Deploy the SQL into a database that contains the underlying source tables and, where useful, the original transform views.
-7. Execute the MetaDQ run procedure, then drill into checks that returned rows.
+7. Execute `dq.Run` in the database where the checks are deployed, then drill into the results.
 
 Commands:
 
@@ -23,7 +23,7 @@ meta-data-quality inspect --workspace DataQualityWS
 meta-data-quality promote --workspace DataQualityWS --all
 meta-convert data-quality-to-sql --workspace DataQualityWS --out DataQualityViews.sql
 meta-sql execute --connection-env META_DQ_SOURCE_SQL --file DataQualityViews.sql
-meta-sql execute --connection-env META_DQ_OPERATIONAL_SQL --query "DECLARE @RunId bigint; EXEC [dbo].[Run] @SourceDatabaseName = N'MetaDataQualityCliIntegration', @RunId = @RunId OUTPUT;"
+meta-sql execute --connection-env META_DQ_SOURCE_SQL --query "EXEC dq.Run;"
 ```
 
 ## How Discovery Works
@@ -102,6 +102,7 @@ False-positive reduction currently uses projection evidence from the semantic Tr
 - one detail view and one result-summary view per promoted candidate
 - `dq.v_ReviewChecks`, the list of checks in this deployment
 - `dq.v_DataQualityReview`, the dashboard of saved results
+- `dq.Run`, the local procedure for running and reviewing checks
 - one MetaDQ operational pack:
 - tables `dbo.RunLog`, `dbo.RunCheck`, `dbo.FindingLog`
 - procedures `dbo.Run`, `dbo.Findings`
@@ -123,19 +124,24 @@ Generated DQ views return investigation rows with columns such as:
 - `KeyValues`
 - `SuspectCount`
 
-Run checks with `MetaDQ.dbo.Run` outside a transaction, after the data is ready.
-It captures the deployed check list and runs one check at a time. It saves the
-outcome and error, if any, for each check. A run with a check error returns
-`CompletedWithErrors`. A scheduler can use that status to flag the run for review.
+Run checks in the database where they are deployed, outside a transaction and
+after the data is ready:
 
 ```sql
-DECLARE @RunId bigint;
-EXEC MetaDQ.dbo.Run @SourceDatabaseName = N'Analytics', @RunId = @RunId OUTPUT;
+EXEC dq.Run;
 ```
 
-Open the dashboard in the database where you deployed the checks. It reads the
-latest saved run for that database. You can filter to a relationship, transform
-or outcome without executing the checks again.
+The procedure shows the run status and check totals first, then the checks that
+need attention. It uses the execution database automatically. Add
+`@IncludeClean = 1` to include checks with zero findings or pass
+`@RunId = @RunId OUTPUT` with a declared `bigint` variable to keep the run ID.
+
+The procedure delegates execution to `MetaDQ.dbo.Run`, which snapshots the
+deployed check list, runs one check at a time and saves each outcome. A run with
+a check error reports `CompletedWithErrors`.
+
+The dashboard reads the latest saved run. You can filter to a relationship,
+transform or outcome without executing the checks again.
 
 ```sql
 SELECT [Check], Outcome, Relationship, Transforms, FindingGroups, SuspectRows,

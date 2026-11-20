@@ -368,7 +368,8 @@ GO
 EXEC [MetaDQ].sys.sp_executesql N'
 CREATE OR ALTER PROCEDURE [dbo].[Run]
     @SourceDatabaseName sysname,
-    @RunId bigint OUTPUT
+    @RunId bigint OUTPUT,
+    @EmitResults bit = 1
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -463,6 +464,9 @@ BEGIN
         WHERE [RunId] = @runIdLocal;
         THROW;
     END CATCH;
+
+    IF @EmitResults = 0
+        RETURN;
 
     SELECT
         r.[RunId],

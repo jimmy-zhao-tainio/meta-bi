@@ -175,6 +175,7 @@ internal sealed class MetaConvertCommandHandlers
             presenter.WriteKeyValueBlock("Output", new[]
             {
                 ("DataQualityViews", result.CandidateViewCount.ToString()),
+                ("Run", "EXEC dq.Run;"),
                 ("Dashboard", "dq.v_DataQualityReview"),
                 ("MetaDQTables", result.OperationalTableCount.ToString()),
                 ("MetaDQProcedures", result.OperationalProcedureCount.ToString()),

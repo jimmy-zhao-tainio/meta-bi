@@ -210,6 +210,7 @@ public sealed class DataQualityToSqlWeaveWitnessTests(ITestOutputHelper output)
             Assert.Contains("/* MetaDataQuality operational store */", sql, StringComparison.Ordinal);
             Assert.Contains("CREATE OR ALTER PROCEDURE [dbo].[Run]", sql, StringComparison.Ordinal);
             Assert.Contains("CREATE OR ALTER PROCEDURE [dbo].[Findings]", sql, StringComparison.Ordinal);
+            Assert.Contains("CREATE OR ALTER PROCEDURE [dq].[Run]", sql, StringComparison.Ordinal);
 
             var split = new DataQualityToSqlConverter().Convert(sourcePath, splitOutputPath);
             Assert.Equal(packaged.CandidateViewCount, split.CandidateViewCount);
@@ -217,6 +218,7 @@ public sealed class DataQualityToSqlWeaveWitnessTests(ITestOutputHelper output)
                 split.ScriptCount,
                 Directory.EnumerateFiles(splitOutputPath, "*.sql", SearchOption.TopDirectoryOnly).Count());
             Assert.True(File.Exists(Path.Combine(splitOutputPath, "v_DataQualityReview.sql")));
+            Assert.Contains("CREATE OR ALTER PROCEDURE [dq].[Run]", File.ReadAllText(Path.Combine(splitOutputPath, "v_DataQualityReview.sql")), StringComparison.Ordinal);
             Assert.True(File.Exists(Path.Combine(splitOutputPath, "MetaDQ.Operational.sql")));
         }
         finally

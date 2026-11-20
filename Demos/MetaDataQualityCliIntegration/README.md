@@ -36,7 +36,7 @@ Workflow:
 - `meta-data-quality promote --all` promotes all generated candidates for SQL output.
 - `meta-convert data-quality-to-sql` writes `DataQualityViews.sql`.
 - `meta-sql execute` deploys generated DQ views, `dq.v_DataQualityReview`, and the `MetaDQ` operational pack.
-- `run-review.sql` records the run, displays the dashboard and fails if a check could not complete.
+- `run-review.sql` calls `dq.Run` in the check database and fails if a check could not complete. In a SQL editor, run the same review with `EXEC dq.Run;`.
 
 What this demo proves:
 - generated DQ views are real SQL, not placeholders
