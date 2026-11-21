@@ -59,7 +59,7 @@ public sealed class DataQualityToSqlConverter
         }
 
         var candidateById = source.DataQualityCandidateList.ToDictionary(candidate => candidate.Id, StringComparer.Ordinal);
-        var reviewSql = RenderReviewSql(candidateViews, candidateById, summaryViews, BuildMatchProbes(source));
+        var reviewSql = RenderReviewSql(candidateViews, candidateById, summaryViews, BuildJoinReviewQueries(source));
 
         if (IsSqlFilePath(outputPath))
         {
@@ -137,7 +137,7 @@ public sealed class DataQualityToSqlConverter
         IReadOnlyList<View> candidateViews,
         IReadOnlyDictionary<string, DataQualityCandidate> candidates,
         IReadOnlyDictionary<string, View> summaries,
-        IReadOnlyDictionary<string, string> matchProbes)
+        IReadOnlyDictionary<string, JoinReviewQueries> joinReviewQueries)
     {
         var builder = new StringBuilder();
         AppendSchemaGuard(builder);
@@ -146,13 +146,14 @@ public sealed class DataQualityToSqlConverter
         {
             builder.AppendLine("SELECT CAST(NULL AS nvarchar(256)) AS CandidateId, CAST(NULL AS sysname) AS SummaryView,");
             builder.AppendLine("       CAST(NULL AS sysname) AS DetailView, CAST(NULL AS nvarchar(256)) AS CheckName,");
-            builder.AppendLine("       CAST(NULL AS nvarchar(max)) AS MatchProbe WHERE 1 = 0;");
+            builder.AppendLine("       CAST(NULL AS nvarchar(max)) AS MatchProbe, CAST(NULL AS nvarchar(max)) AS EvidenceQuery WHERE 1 = 0;");
         }
         else
         {
             builder.AppendLine("SELECT CAST(v.CandidateId AS nvarchar(256)) AS CandidateId,");
             builder.AppendLine("       CAST(v.SummaryView AS sysname) AS SummaryView, CAST(v.DetailView AS sysname) AS DetailView,");
-            builder.AppendLine("       CAST(v.CheckName AS nvarchar(256)) AS CheckName, CAST(v.MatchProbe AS nvarchar(max)) AS MatchProbe");
+            builder.AppendLine("       CAST(v.CheckName AS nvarchar(256)) AS CheckName, CAST(v.MatchProbe AS nvarchar(max)) AS MatchProbe,");
+            builder.AppendLine("       CAST(v.EvidenceQuery AS nvarchar(max)) AS EvidenceQuery");
             builder.AppendLine("FROM (VALUES");
             for (var index = 0; index < candidateViews.Count; index++)
             {
@@ -160,11 +161,11 @@ public sealed class DataQualityToSqlConverter
                 var id = ResolveCandidateId(view);
                 if (!candidates.TryGetValue(id, out var candidate))
                     throw new InvalidOperationException($"The Data Quality weave produced a view for unknown candidate '{id}'.");
-                var matchProbe = matchProbes.TryGetValue(id, out var probe) ? SqlString(probe) : "NULL";
-                builder.Append($"    ({SqlString(id)}, {SqlString(summaries[id].Name)}, {SqlString(view.Name)}, {SqlString(candidate.Name)}, {matchProbe})");
+                joinReviewQueries.TryGetValue(id, out var queries);
+                builder.Append($"    ({SqlString(id)}, {SqlString(summaries[id].Name)}, {SqlString(view.Name)}, {SqlString(candidate.Name)}, {SqlStringOrNull(queries?.MatchProbe)}, {SqlStringOrNull(queries?.EvidenceQuery)})");
                 builder.AppendLine(index + 1 == candidateViews.Count ? "" : ",");
             }
-            builder.AppendLine(") v(CandidateId, SummaryView, DetailView, CheckName, MatchProbe);");
+            builder.AppendLine(") v(CandidateId, SummaryView, DetailView, CheckName, MatchProbe, EvidenceQuery);");
         }
 
         builder.AppendLine("GO");
@@ -247,71 +248,140 @@ public sealed class DataQualityToSqlConverter
     }
 
     private static string SqlString(string value) => "N'" + value.Replace("'", "''", StringComparison.Ordinal) + "'";
+    private static string SqlStringOrNull(string? value) => value is null ? "NULL" : SqlString(value);
 
-    private static Dictionary<string, string> BuildMatchProbes(MetaDataQualityModel source)
+    private static Dictionary<string, JoinReviewQueries> BuildJoinReviewQueries(MetaDataQualityModel source)
     {
-        var candidateIds = source.JoinMultiplicityExplosionList.Select(row => row.DataQualityCandidate.Id)
-            .Concat(source.OutputDuplicateRiskList.Select(row => row.DataQualityCandidate.Id))
-            .ToHashSet(StringComparer.Ordinal);
+        var kinds = source.JoinMultiplicityExplosionList.Select(row => (row.DataQualityCandidate.Id, CandidateKinds.JoinMultiplicityExplosion))
+            .Concat(source.OutputDuplicateRiskList.Select(row => (row.DataQualityCandidate.Id, CandidateKinds.OutputDuplicateRisk)))
+            .Concat(source.JoinOrphanList.Select(row => (row.DataQualityCandidate.Id, CandidateKinds.JoinOrphan)))
+            .Concat(source.OuterJoinNullExpansionList.Select(row => (row.DataQualityCandidate.Id, CandidateKinds.OuterJoinNullExpansion)))
+            .Concat(source.ImpliedForeignKeyMissingReferenceList.Select(row => (row.DataQualityCandidate.Id, CandidateKinds.ImpliedForeignKeyMissingReference)))
+            .Concat(source.ImpliedUniqueKeyViolationList.Select(row => (row.DataQualityCandidate.Id, CandidateKinds.ImpliedUniqueKeyViolation)))
+            .ToDictionary(pair => pair.Id, pair => pair.Item2, StringComparer.Ordinal);
+        var corpusPatterns = source.CorpusRelationshipPatternOccurrenceLinkList.ToLookup(
+            link => link.CorpusRelationshipPattern.Id, link => link.JoinPatternOccurrence.JoinPattern.Id);
+        var patternLinks = source.DataQualityCandidateJoinPatternLinkList.Select(link => (link.DataQualityCandidate.Id, Pattern: link.JoinPattern.Id))
+            .Concat(source.ImpliedForeignKeyMissingReferenceList.SelectMany(row => corpusPatterns[row.DominantPattern.Id]
+                .Select(pattern => (row.DataQualityCandidate.Id, Pattern: pattern))))
+            .Concat(source.ImpliedUniqueKeyViolationList.SelectMany(row => corpusPatterns[row.DominantPattern.Id]
+                .Select(pattern => (row.DataQualityCandidate.Id, Pattern: pattern))));
         var keysByPattern = source.JoinPatternKeyPartList.ToLookup(key => key.JoinPattern.Id);
         var identifierParts = source.JoinPatternKeyPartInputObjectIdentifierPartList
             .ToLookup(part => (part.JoinPatternKeyPart.Id, part.InputSide));
-        var probes = new Dictionary<string, string>(StringComparer.Ordinal);
+        var queries = new Dictionary<string, JoinReviewQueries>(StringComparer.Ordinal);
 
-        foreach (var group in source.DataQualityCandidateJoinPatternLinkList
-                     .Where(link => candidateIds.Contains(link.DataQualityCandidate.Id))
-                     .GroupBy(link => link.DataQualityCandidate.Id))
+        foreach (var group in patternLinks.Where(link => kinds.ContainsKey(link.Id)).GroupBy(link => link.Id))
         {
-            var patterns = group.Select(link => link.JoinPattern.Id).Distinct().ToArray();
-            if (patterns.Length != 1)
+            var kind = kinds[group.Key];
+            var patterns = group.Select(link => link.Pattern).Distinct().Order(StringComparer.Ordinal).ToArray();
+            var fanout = kind is CandidateKinds.JoinMultiplicityExplosion or CandidateKinds.OutputDuplicateRisk;
+            // The weave chooses the dominant orientation for implied checks. With multiple
+            // patterns, use its deployed detail view instead of choosing a second orientation.
+            if (patterns.Length != 1 && (fanout || kind is CandidateKinds.ImpliedForeignKeyMissingReference or CandidateKinds.ImpliedUniqueKeyViolation))
                 continue;
 
-            var keys = keysByPattern[patterns[0]].OrderBy(key => ParseDeployOrdinal(key.Ordinal)).ToArray();
-            if (keys.Length == 0 || keys.Any(key =>
-                    !IsSqlIdentifier(key.FirstJoinInputColumnName) || !IsSqlIdentifier(key.SecondJoinInputColumnName)))
+            var joins = patterns.Select(pattern => DescribeJoin(keysByPattern[pattern], identifierParts)).ToArray();
+            if (joins.Any(join => join is null))
                 continue;
 
-            var firstTables = keys.Select(key => RenderObjectName(identifierParts[(key.Id, "First")])).Distinct().ToArray();
-            var secondTables = keys.Select(key => RenderObjectName(identifierParts[(key.Id, "Second")])).Distinct().ToArray();
-            if (firstTables.Length != 1 || secondTables.Length != 1 || firstTables[0] is null || secondTables[0] is null)
-                continue;
-
-            var equalities = string.Join(" AND ", keys.Select(key =>
-                $"a.{QuoteIdentifier(key.FirstJoinInputColumnName!)} = b.{QuoteIdentifier(key.SecondJoinInputColumnName!)}"));
-            var firstKeys = string.Join(", ", keys.Select(key => $"a.{QuoteIdentifier(key.FirstJoinInputColumnName!)}").Distinct());
-            var matchedRows = $"""
-                FROM {firstTables[0]} AS a
-                CROSS APPLY (SELECT COUNT_BIG(*) AS Matches FROM {secondTables[0]} AS b WHERE {equalities}) AS m
-                """;
-            // Count matches for each first-side row. Grouping the joined rows by the key alone
-            // also counts legitimate reuse by several first-side rows and cannot prove fanout.
-            probes[group.Key] = $"""
-                IF @ShowKeys = 1
-                BEGIN
-                    SELECT TOP (20) {firstKeys}, m.Matches AS MatchesPerInputRow, COUNT_BIG(*) AS AffectedInputRows
-                    {matchedRows}
-                    WHERE m.Matches > 1
-                    GROUP BY {firstKeys}, m.Matches
-                    ORDER BY m.Matches DESC, {firstKeys};
-                    RETURN;
-                END;
-                SELECT @Matched = COUNT_BIG(CASE WHEN m.Matches > 0 THEN 1 END),
-                       @Repeated = COUNT_BIG(CASE WHEN m.Matches > 1 THEN 1 END),
-                       @Maximum = MAX(m.Matches)
-                {matchedRows};
-                """;
+            var evidence = string.Join("\n\n", joins.Select(join => RenderEvidence(join!, kind)).Distinct());
+            queries[group.Key] = new JoinReviewQueries(fanout ? RenderMatchProbe(joins[0]!) : null, evidence);
         }
 
-        return probes;
+        return queries;
     }
 
-    private static string? RenderObjectName(IEnumerable<JoinPatternKeyPartInputObjectIdentifierPart> parts)
+    private static ReviewJoin? DescribeJoin(IEnumerable<JoinPatternKeyPart> patternKeys,
+        ILookup<(string, string), JoinPatternKeyPartInputObjectIdentifierPart> identifierParts)
+    {
+        // Like the generated runtime checks, use the modeled base-column equalities.
+        // Comparison parts without two resolved columns (for example, a rank filter)
+        // do not contribute to the base-table check.
+        var keys = patternKeys.Where(key => !string.IsNullOrWhiteSpace(key.FirstJoinInputColumnName) &&
+                                            !string.IsNullOrWhiteSpace(key.SecondJoinInputColumnName))
+            .OrderBy(key => ParseDeployOrdinal(key.Ordinal)).ToArray();
+        if (keys.Length == 0 || keys.Any(key =>
+                !IsSqlIdentifier(key.FirstJoinInputColumnName) || !IsSqlIdentifier(key.SecondJoinInputColumnName)))
+            return null;
+
+        var first = keys.Select(key => ReadObjectName(identifierParts[(key.Id, "First")])).Distinct().ToArray();
+        var second = keys.Select(key => ReadObjectName(identifierParts[(key.Id, "Second")])).Distinct().ToArray();
+        if (first.Length != 1 || second.Length != 1 || first[0] is not { } left || second[0] is not { } right)
+            return null;
+
+        var firstColumns = keys.Select(key => key.FirstJoinInputColumnName!).Distinct().ToArray();
+        var secondColumns = keys.Select(key => key.SecondJoinInputColumnName!).Distinct().ToArray();
+        var condition = string.Join(" AND ", keys.Select(key =>
+            $"a.{QuoteIdentifier(key.FirstJoinInputColumnName!)} = b.{QuoteIdentifier(key.SecondJoinInputColumnName!)}"));
+        return new ReviewJoin(left, right, firstColumns, secondColumns, condition);
+    }
+
+    private static string RenderMatchProbe(ReviewJoin join) => $"""
+        SELECT @Matched = COUNT_BIG(CASE WHEN m.Matches > 0 THEN 1 END),
+               @Repeated = COUNT_BIG(CASE WHEN m.Matches > 1 THEN 1 END),
+               @Maximum = MAX(m.Matches)
+        FROM {join.Left.SqlName} AS a
+        CROSS APPLY (SELECT COUNT_BIG(*) AS Matches FROM {join.Right.SqlName} AS b WHERE {join.Condition}) AS m;
+        """;
+
+    private static string RenderEvidence(ReviewJoin join, string kind)
+    {
+        var leftKeys = string.Join(", ", join.LeftColumns.Select(column => $"a.{QuoteIdentifier(column)}"));
+        var rightKeys = string.Join(", ", join.RightColumns.Select(column => $"b.{QuoteIdentifier(column)}"));
+        var sameTableName = string.Equals(join.Left.Table, join.Right.Table, StringComparison.OrdinalIgnoreCase);
+        var leftProjection = RenderKeyProjection("a", join.Left, join.LeftColumns, sameTableName ? "left" : null);
+        if (kind == CandidateKinds.ImpliedUniqueKeyViolation)
+            return $"""
+                SELECT TOP (20) {leftProjection}, COUNT_BIG(*) AS [Rows with this key]
+                FROM {join.Left.SqlName} AS a
+                GROUP BY {leftKeys}
+                HAVING COUNT_BIG(*) > 1
+                ORDER BY COUNT_BIG(*) DESC, {leftKeys};
+                """;
+
+        var rightProjection = RenderKeyProjection("b", join.Right, join.RightColumns, sameTableName ? "right" : null);
+        if (kind is CandidateKinds.JoinMultiplicityExplosion or CandidateKinds.OutputDuplicateRisk)
+            return $"""
+                SELECT DISTINCT TOP (20) {leftProjection}, {rightProjection}, m.Matches AS MatchesPerInputRow
+                FROM {join.Left.SqlName} AS a
+                CROSS APPLY (SELECT COUNT_BIG(*) AS Matches FROM {join.Right.SqlName} AS b WHERE {join.Condition}) AS m
+                INNER JOIN {join.Right.SqlName} AS b ON {join.Condition}
+                WHERE m.Matches > 1
+                ORDER BY MatchesPerInputRow DESC, {leftKeys}, {rightKeys};
+                """;
+
+        var leftPreserved = kind == CandidateKinds.OuterJoinNullExpansion;
+        var joinOperator = leftPreserved ? "LEFT" : "RIGHT";
+        var missingKey = leftPreserved ? $"b.{QuoteIdentifier(join.RightColumns[0])}" : $"a.{QuoteIdentifier(join.LeftColumns[0])}";
+        return $"""
+            SELECT TOP (20) {leftProjection}, {rightProjection}
+            FROM {join.Left.SqlName} AS a
+            {joinOperator} JOIN {join.Right.SqlName} AS b ON {join.Condition}
+            WHERE {missingKey} IS NULL
+            ORDER BY {(leftPreserved ? leftKeys : rightKeys)};
+            """;
+    }
+
+    private static string RenderKeyProjection(string alias, ReviewObject table, IEnumerable<string> columns, string? side) =>
+        string.Join(", ", columns.Select(column =>
+        {
+            var label = side is null ? $"{table.Table}.{column}" : $"{table.Table}.{column} ({side})";
+            // SQL Server limits the length of a column alias as well as an object name.
+            return $"{alias}.{QuoteIdentifier(column)} AS {QuoteIdentifier(label.Length <= 128 ? label : alias + "." + column[..Math.Min(126, column.Length)])}";
+        }));
+
+    private static ReviewObject? ReadObjectName(IEnumerable<JoinPatternKeyPartInputObjectIdentifierPart> parts)
     {
         var identifiers = parts.OrderBy(part => ParseDeployOrdinal(part.Ordinal)).Select(part => part.Value).ToArray();
         return identifiers.Length is 2 or 3 && identifiers.All(IsSqlIdentifier)
-            ? string.Join(".", identifiers.Select(QuoteIdentifier))
+            ? new ReviewObject(string.Join(".", identifiers.Select(QuoteIdentifier)), identifiers[^1])
             : null;
     }
+
+    private sealed record ReviewObject(string SqlName, string Table);
+    private sealed record ReviewJoin(ReviewObject Left, ReviewObject Right, string[] LeftColumns, string[] RightColumns, string Condition);
+    private sealed record JoinReviewQueries(string? MatchProbe, string EvidenceQuery);
 
     private static bool IsSqlIdentifier(string? value) => value is { Length: > 0 and <= 128 };
 

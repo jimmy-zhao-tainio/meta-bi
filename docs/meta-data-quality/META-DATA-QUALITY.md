@@ -158,14 +158,23 @@ For row-multiplication and duplicate-risk findings with one modeled join pattern
 and resolved base-table keys, the procedure checks how many matching rows
 each input row receives. When each input matches once, a shared lookup key
 explains the repeated join key. If any inputs receive multiple matches, the
-procedure returns the actual key values, match count per input and number of
-affected inputs. This measures the modeled base-table equality. Verifying the
-transform's full predicates and output grain requires separate evidence.
+procedure reports the number of affected inputs and returns both sides' actual
+key values with the match count per input. This measures the modeled base-table
+equality. Verifying the transform's full predicates and output grain requires
+separate evidence.
 
-Other runtime findings show up to 20 evidence rows with the checked table and
-key values. The saved run and the current data are labelled separately. If the
-finding no longer occurs, the procedure reports that directly. Transform-pattern
-reviews show the saved common and differing conditions side by side.
+For a resolved missing-match check, the evidence grid has one column per join
+key on each side. SQL NULL marks the missing side. The query returns native
+values, so SQL Server clients display binary keys as hex. The evidence uses the
+same resolved base-table equalities as the generated check. A check with
+multiple resolved join patterns can return one grid per pattern. Checks without
+a resolved key query show the checked relationship and row counts.
+
+**Saved result** shows what the prior run measured, or `-` if it could not
+complete the check. **Evidence query** is the exact SQL used for the following
+grids and can be run on its own. A runtime grid with no rows means the evidence
+query no longer finds the issue in current data. Transform-pattern reviews show
+the saved common and differing conditions side by side.
 
 `MetaDQ.dbo.Findings @RunId = …` reads the detailed evidence captured during
 the specified run, including the original rationale and counts. Automation can
