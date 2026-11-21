@@ -30,7 +30,7 @@ BEGIN
     WHERE r.[RunId] = @RunId AND r.[SourceDatabaseName] = @SourceDatabase AND r.[CheckNo] = @CheckNo;
 
     IF @Outcome IS NULL
-        THROW 51000, N'Check not found for this run and database. Copy the Investigate command from dq.Run or dq.v_DataQualityReview.', 1;
+        THROW 51000, N'Check not found for this run and database. Copy the command from dq.Run or dq.v_DataQualityReview.', 1;
 
     DECLARE @Observed nvarchar(max), @Decision nvarchar(max), @Current nvarchar(max), @EvidenceError nvarchar(max);
     DECLARE @Matched bigint, @Repeated bigint, @Maximum bigint;

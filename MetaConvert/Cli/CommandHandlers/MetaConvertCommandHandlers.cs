@@ -175,8 +175,8 @@ internal sealed class MetaConvertCommandHandlers
             presenter.WriteKeyValueBlock("Output", new[]
             {
                 ("DataQualityViews", result.CandidateViewCount.ToString()),
-                ("Choose transform", "EXEC dq.Run;"),
-                ("Investigate", "Run the SQL in a finding's Investigate column."),
+                ("List checks", "EXEC dq.Run;"),
+                ("Next step", "Use the SQL in a check's Next step column."),
                 ("Dashboard", "dq.v_DataQualityReview"),
                 ("MetaDQTables", result.OperationalTableCount.ToString()),
                 ("MetaDQProcedures", result.OperationalProcedureCount.ToString()),

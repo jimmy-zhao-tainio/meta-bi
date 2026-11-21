@@ -77,21 +77,17 @@ public sealed class StoredReviewSqlServerIntegrationTests
             Assert.Equal(4, before.Select(row => row.Check).Distinct().Count());
             Assert.All(before, row =>
             {
-                Assert.Equal("Not checked", row.Outcome);
+                Assert.Equal("Not checked", row.Detail);
                 Assert.Null(row.Investigate);
             });
 
-            string customerCommand;
-            await using (var picker = new SqlCommand($"EXEC [{sourceDatabase}].dq.Run;", master))
-            await using (var reader = await picker.ExecuteReaderAsync())
-            {
-                Assert.Equal(new[] { "Transform", "Run checks" }, Enumerable.Range(0, reader.FieldCount).Select(reader.GetName));
-                var choices = new Dictionary<string, string>();
-                while (await reader.ReadAsync()) choices.Add(reader.GetString(0), reader.GetString(1));
-                Assert.Equal(4, choices.Count);
-                customerCommand = choices["dbo.v_customer_orders"];
-                Assert.False(await reader.NextResultAsync());
-            }
+            var scheduled = await RunReview(master, $"EXEC [{sourceDatabase}].dq.Run;");
+            Assert.Equal(before.Count, scheduled.Count);
+            Assert.All(scheduled, row => Assert.StartsWith("Not yet checked.", row.Detail, StringComparison.Ordinal));
+            var customerCommand = Assert.Single(scheduled, row => row.Transform == "dbo.v_customer_orders").Investigate;
+            Assert.NotNull(customerCommand);
+            Assert.Contains("Should each Order row have a match in Shipment?",
+                Assert.Single(scheduled, row => row.Transform == "dbo.v_order_shipments").Detail, StringComparison.Ordinal);
             await using (var runs = new SqlCommand($"SELECT COUNT(*) FROM [{logDatabase}].dbo.RunLog", master))
                 Assert.Equal(0, await runs.ExecuteScalarAsync());
             await Assert.ThrowsAsync<SqlException>(() => Execute(source, "EXEC dq.Run @Transform = N'unknown test transform';"));
@@ -100,9 +96,15 @@ public sealed class StoredReviewSqlServerIntegrationTests
             var first = await Read(master, dashboard);
             Assert.Equal(firstRun.Select(x => x.Investigate).Order(), first.Select(x => x.Investigate).Distinct().Order());
             var finding = Assert.Single(firstRun, x => x.Check == "Missing referenced rows");
-            var pattern = Assert.Single(firstRun, x => x.Outcome == "Review transform pattern");
+            var pattern = Assert.Single(firstRun, x => x.Detail.StartsWith("The transform differs", StringComparison.Ordinal));
             var matchFinding = Assert.Single(firstRun, x => x.Check == "Join may repeat rows");
             var outerFinding = Assert.Single(firstRun, x => x.Check == "Missing matches in outer joins");
+            Assert.Equal("1 row had no match. Should each Order row have a match in Shipment?", outerFinding.Detail);
+            Assert.Contains("1 shared join key produced 2 joined rows.", matchFinding.Detail, StringComparison.Ordinal);
+            var catalog = await RunReview(master, $"EXEC [{sourceDatabase}].dq.Run;");
+            var listedOuter = Assert.Single(catalog, row => row.Transform == "dbo.v_order_shipments");
+            Assert.Equal(outerFinding.Detail, listedOuter.Detail);
+            Assert.Equal(outerFinding.Investigate, listedOuter.Investigate);
 
             var explanation = await Explain(master, finding);
             Assert.Contains("2 rows on the checked side", explanation.Notes["Saved result"], StringComparison.Ordinal);
@@ -131,10 +133,13 @@ public sealed class StoredReviewSqlServerIntegrationTests
             Assert.Equal("Kopplingen saknas avsiktligt.", reviewed.Notes["Review reason"]);
             Assert.Equal(scopedExplanation.Notes["Saved result"], reviewed.Notes["Saved result"]);
             var saved = await Read(master, dashboard);
-            Assert.Equal("No issue", Assert.Single(saved, row => row.Investigate == scoped.Investigate).Outcome);
+            Assert.Equal("No issue", Assert.Single(saved, row => row.Investigate == scoped.Investigate).Detail);
             Assert.Equal("Review affected rows", Assert.Single(saved, row =>
-                row.Transform == "dbo.v_customer_regions" && row.Investigate == finding.Investigate).Outcome);
+                row.Transform == "dbo.v_customer_regions" && row.Investigate == finding.Investigate).Detail);
             Assert.Contains(saved, row => row.Investigate == matchFinding.Investigate);
+            var listedReview = Assert.Single(await RunReview(master, $"EXEC [{sourceDatabase}].dq.Run;"),
+                row => row.Investigate == scoped.Investigate);
+            Assert.Equal("No issue. Kopplingen saknas avsiktligt.", listedReview.Detail);
             await using (var count = new SqlCommand($"""
                 SELECT COUNT(*) FROM [{logDatabase}].dbo.RunCheck c
                 JOIN [{logDatabase}].dbo.RunLog r ON r.RunId=c.RunId
@@ -142,7 +147,7 @@ public sealed class StoredReviewSqlServerIntegrationTests
                 """, master))
                 Assert.Equal(1, await count.ExecuteScalarAsync());
             var rerun = Assert.Single(await RunReview(source, "EXEC dq.Run @Transform = N'dbo.v_customer_orders';"));
-            Assert.Equal("Review affected rows", rerun.Outcome);
+            Assert.Equal(finding.Detail, rerun.Detail);
             Assert.NotEqual(scoped.Investigate, rerun.Investigate);
             Assert.True((await Explain(master, rerun)).Notes.ContainsKey("Mark no issue"));
             Assert.Equal(reviewed.Notes["Review"], (await Explain(master, scoped)).Notes["Review"]);
@@ -171,11 +176,11 @@ public sealed class StoredReviewSqlServerIntegrationTests
             var secondRun = await RunReview(source, "EXEC dq.Run @All = 1;");
             var latestPattern = Assert.Single(secondRun);
             Assert.Equal(pattern.Check, latestPattern.Check);
-            Assert.Equal(pattern.Outcome, latestPattern.Outcome);
+            Assert.Equal(pattern.Detail, latestPattern.Detail);
             Assert.NotEqual(pattern.Investigate, latestPattern.Investigate);
             var second = await Read(master, dashboard);
             var clean = Assert.Single(second, x => x.Check == finding.Check && x.Transform == "dbo.v_customer_orders");
-            Assert.Equal("No rows found", clean.Outcome);
+            Assert.Equal("No rows found", clean.Detail);
             var historical = await Explain(master, finding);
             Assert.Equal(explanation.Notes["Saved result"], historical.Notes["Saved result"]);
             Assert.Contains("empty grid", historical.Notes["What the data shows now"], StringComparison.Ordinal);
@@ -188,16 +193,16 @@ public sealed class StoredReviewSqlServerIntegrationTests
                 """;
             var allResults = await RunReview(master, includeClean, verifyOutputId: true);
             Assert.Equal(4, allResults.Count);
-            Assert.Contains(allResults, row => row.Check == clean.Check && row.Outcome == clean.Outcome);
+            Assert.Contains(allResults, row => row.Check == clean.Check && row.Detail == "The last run found no rows for this check.");
 
             var savedClean = (await Read(master, dashboard)).Single(x => x.Check == finding.Check && x.Transform == "dbo.v_customer_orders");
             await Execute(source, $"DROP VIEW [dq].[r_{runtimeCheck}];");
             Assert.Contains(savedClean, await Read(master, dashboard));
             var failureRun = await RunReview(source, "EXEC dq.Run @All = 1;");
             var third = await Read(master, dashboard);
-            var failure = Assert.Single(failureRun, x => x.Outcome == "Check failed");
-            Assert.Contains(third, row => row.Investigate == failure.Investigate && row.Outcome == failure.Outcome);
-            Assert.Contains(third, row => row.Check == pattern.Check && row.Outcome == pattern.Outcome);
+            var failure = Assert.Single(failureRun, x => x.Detail.StartsWith("The SQL check failed", StringComparison.Ordinal));
+            Assert.Contains(third, row => row.Investigate == failure.Investigate && row.Detail == "Check failed");
+            Assert.Contains(third, row => row.Check == pattern.Check && row.Detail == "Review transform pattern");
             var failureExplanation = await Explain(master, failure);
             Assert.Contains($"r_{runtimeCheck}", failureExplanation.Notes["SQL error"], StringComparison.Ordinal);
             Assert.Equal("-", failureExplanation.Notes["Saved result"]);
@@ -222,7 +227,7 @@ public sealed class StoredReviewSqlServerIntegrationTests
     {
         await using var command = new SqlCommand(sql, connection) { CommandTimeout = 60 };
         await using var reader = await command.ExecuteReaderAsync();
-        var review = await ReadRows(reader);
+        var review = await ReadRows(reader, showHints: true);
         Assert.Equal(review.Select(row => row.Transform).Order(StringComparer.OrdinalIgnoreCase),
             review.Select(row => row.Transform));
         if (verifyOutputId)
@@ -247,9 +252,10 @@ public sealed class StoredReviewSqlServerIntegrationTests
         return await ReadRows(reader);
     }
 
-    private static async Task<List<ReviewRow>> ReadRows(SqlDataReader reader)
+    private static async Task<List<ReviewRow>> ReadRows(SqlDataReader reader, bool showHints = false)
     {
-        string[] columns = ["Transform", "Check", "Outcome", "Investigate"];
+        string[] columns = showHints ? ["Transform", "Check", "Why look", "Next step"]
+            : ["Transform", "Check", "Outcome", "Investigate"];
         Assert.Equal(columns, Enumerable.Range(0, reader.FieldCount).Select(reader.GetName));
         var results = new List<ReviewRow>();
         while (await reader.ReadAsync())
@@ -307,5 +313,5 @@ public sealed class StoredReviewSqlServerIntegrationTests
     }
 
     private sealed record EvidenceGrid(string[] Columns, List<object[]> Rows);
-    private sealed record ReviewRow(string? Transform, string Check, string Outcome, string? Investigate);
+    private sealed record ReviewRow(string? Transform, string Check, string Detail, string? Investigate);
 }

@@ -149,14 +149,15 @@ public sealed class DataQualityToSqlConverter
         {
             builder.AppendLine("SELECT CAST(NULL AS nvarchar(256)) AS CandidateId, CAST(NULL AS sysname) AS SummaryView,");
             builder.AppendLine("       CAST(NULL AS sysname) AS DetailView, CAST(NULL AS nvarchar(256)) AS CheckName,");
-            builder.AppendLine("       CAST(NULL AS nvarchar(max)) AS MatchProbe, CAST(NULL AS nvarchar(max)) AS EvidenceQuery WHERE 1 = 0;");
+            builder.AppendLine("       CAST(NULL AS nvarchar(max)) AS MatchProbe, CAST(NULL AS nvarchar(max)) AS EvidenceQuery,");
+            builder.AppendLine("       CAST(NULL AS nvarchar(max)) AS CheckHint WHERE 1 = 0;");
         }
         else
         {
             builder.AppendLine("SELECT CAST(v.CandidateId AS nvarchar(256)) AS CandidateId,");
             builder.AppendLine("       CAST(v.SummaryView AS sysname) AS SummaryView, CAST(v.DetailView AS sysname) AS DetailView,");
             builder.AppendLine("       CAST(v.CheckName AS nvarchar(256)) AS CheckName, CAST(v.MatchProbe AS nvarchar(max)) AS MatchProbe,");
-            builder.AppendLine("       CAST(v.EvidenceQuery AS nvarchar(max)) AS EvidenceQuery");
+            builder.AppendLine("       CAST(v.EvidenceQuery AS nvarchar(max)) AS EvidenceQuery, CAST(v.CheckHint AS nvarchar(max)) AS CheckHint");
             builder.AppendLine("FROM (VALUES");
             for (var index = 0; index < candidateViews.Count; index++)
             {
@@ -165,16 +166,15 @@ public sealed class DataQualityToSqlConverter
                 if (!candidates.TryGetValue(id, out var candidate))
                     throw new InvalidOperationException($"The Data Quality weave produced a view for unknown candidate '{id}'.");
                 joinReviewQueries.TryGetValue(id, out var queries);
-                builder.Append($"    ({SqlString(id)}, {SqlString(summaries[id].Name)}, {SqlString(view.Name)}, {SqlString(candidate.Name)}, {SqlStringOrNull(queries?.MatchProbe)}, {SqlStringOrNull(queries?.EvidenceQuery)})");
+                builder.Append($"    ({SqlString(id)}, {SqlString(summaries[id].Name)}, {SqlString(view.Name)}, {SqlString(candidate.Name)}, {SqlStringOrNull(queries?.MatchProbe)}, {SqlStringOrNull(queries?.EvidenceQuery)}, {SqlStringOrNull(queries?.CheckHint ?? candidate.Rationale)})");
                 builder.AppendLine(index + 1 == candidateViews.Count ? "" : ",");
             }
-            builder.AppendLine(") v(CandidateId, SummaryView, DetailView, CheckName, MatchProbe, EvidenceQuery);");
+            builder.AppendLine(") v(CandidateId, SummaryView, DetailView, CheckName, MatchProbe, EvidenceQuery, CheckHint);");
         }
 
         builder.AppendLine("GO");
         AppendTransformScope(builder, transforms);
-        builder.AppendLine($"""
-            CREATE OR ALTER VIEW [dq].[v_DataQualityReview] AS
+        const string latestReviewScope = """
             WITH LatestFullRun AS
             (
                 SELECT MAX(RunId) AS RunId
@@ -190,13 +190,17 @@ public sealed class DataQualityToSqlConverter
                 GROUP BY TransformScriptId COLLATE Latin1_General_100_BIN2
             ), ReviewScope AS
             (
-                SELECT c.CandidateId, c.CheckName, s.Transform,
+                SELECT c.CandidateId, c.CheckName, c.CheckHint, s.Transform, s.TransformScriptId,
                        CASE WHEN f.RunId IS NULL OR t.RunId > f.RunId THEN t.RunId ELSE f.RunId END AS RunId
                 FROM [dq].[v_ReviewChecks] AS c
                 LEFT JOIN [dq].[v_ReviewCheckTransforms] AS s ON s.CandidateId = c.CandidateId
                 LEFT JOIN LatestTransformRun AS t ON t.TransformScriptId = s.TransformScriptId
                 CROSS JOIN LatestFullRun AS f
             )
+            """;
+        builder.AppendLine($"""
+            CREATE OR ALTER VIEW [dq].[v_DataQualityReview] AS
+            {latestReviewScope}
             {RenderReviewRows("ReviewScope AS c", "c.RunId", "c.Transform")};
             GO
 
@@ -212,11 +216,9 @@ public sealed class DataQualityToSqlConverter
 
                 IF @Transform IS NULL AND ISNULL(@All, 0) = 0
                 BEGIN
-                    SELECT DISTINCT [Transform],
-                           CONCAT(N'EXEC ', QUOTENAME(DB_NAME()), N'.dq.Run @Transform = N''',
-                                  REPLACE(TransformScriptId, N'''', N'''''') , N''';') AS [Run checks]
-                    FROM [dq].[v_ReviewCheckTransforms]
-                    ORDER BY [Transform], [Run checks];
+                    {latestReviewScope}
+                    {RenderReviewRows("ReviewScope AS c", "c.RunId", "c.Transform", showHints: true, scriptId: "c.TransformScriptId")}
+                    ORDER BY [Transform], [Check], c.CandidateId, c.TransformScriptId;
                     RETURN;
                 END;
 
@@ -236,7 +238,7 @@ public sealed class DataQualityToSqlConverter
                         FROM [dq].[v_ReviewCheckTransforms]
                         WHERE [Transform] = @Transform COLLATE Latin1_General_100_BIN2;
                         IF @Matches <> 1
-                            THROW 51000, N'This transform name is unknown or ambiguous. Run dq.Run without arguments and copy a Run checks command.', 1;
+                            THROW 51000, N'This transform name is unknown or ambiguous. Use a unique name or the transform script ID.', 1;
                     END;
                 END;
 
@@ -247,7 +249,7 @@ public sealed class DataQualityToSqlConverter
                     @EmitResults = 0,
                     @TransformScriptId = @TransformScriptId;
 
-                {RenderReviewRows("[dq].[v_ReviewChecks] AS c CROSS JOIN [MetaDQ].[dbo].[RunLog] AS run", "run.RunId", "run.TransformName")}
+                {RenderReviewRows("[dq].[v_ReviewChecks] AS c CROSS JOIN [MetaDQ].[dbo].[RunLog] AS run", "run.RunId", "run.TransformName", showHints: true)}
                 WHERE run.RunId = @RunId AND r.CheckNo IS NOT NULL
                   AND (@IncludeClean = 1 OR r.Outcome <> N'No rows found')
                 ORDER BY [Transform], [Check], c.CandidateId;
@@ -258,18 +260,53 @@ public sealed class DataQualityToSqlConverter
         return builder.ToString();
     }
 
-    private static string RenderReviewRows(string from, string runId, string transform) => $"""
-        SELECT COALESCE({transform} COLLATE DATABASE_DEFAULT, r.Transforms COLLATE DATABASE_DEFAULT) AS [Transform],
-               COALESCE(r.FindingTitle, c.CheckName) AS [Check],
-               CASE WHEN r.ReviewedAtUtc IS NOT NULL THEN N'No issue'
-                    ELSE COALESCE(r.Outcome, N'Not checked') END AS [Outcome],
-               CASE WHEN r.CheckNo IS NOT NULL THEN
-                   CONCAT(N'EXEC ', QUOTENAME(DB_NAME()), N'.dq.Explain @CheckNo = ', r.CheckNo,
-                          N', @RunId = ', r.RunId, N';')
-               END AS [Investigate]
-        FROM {from}
-        LEFT JOIN [MetaDQ].[dbo].[CheckReview] AS r
-          ON r.RunId = {runId} AND r.CandidateId COLLATE DATABASE_DEFAULT = c.CandidateId
+    private static string RenderReviewRows(string from, string runId, string transform, bool showHints = false, string? scriptId = null)
+    {
+        var status = showHints ? RunHintSql : """
+            CASE WHEN r.ReviewedAtUtc IS NOT NULL THEN N'No issue'
+                 ELSE COALESCE(r.Outcome, N'Not checked') END AS [Outcome]
+            """;
+        var runCommand = scriptId is null ? "" : $"""
+            WHEN {scriptId} IS NOT NULL THEN
+                CONCAT(N'EXEC ', QUOTENAME(DB_NAME()), N'.dq.Run @Transform = N''',
+                       REPLACE({scriptId}, N'''', N''''''), N''';')
+            """;
+        var actionColumn = showHints ? "[Next step]" : "[Investigate]";
+        return $"""
+            SELECT COALESCE({transform} COLLATE DATABASE_DEFAULT, r.Transforms COLLATE DATABASE_DEFAULT) AS [Transform],
+                   COALESCE(r.FindingTitle, c.CheckName) AS [Check],
+                   {status},
+                   CASE WHEN r.CheckNo IS NOT NULL THEN
+                       CONCAT(N'EXEC ', QUOTENAME(DB_NAME()), N'.dq.Explain @CheckNo = ', r.CheckNo,
+                              N', @RunId = ', r.RunId, N';')
+                   {runCommand}
+                   END AS {actionColumn}
+            FROM {from}
+            LEFT JOIN [MetaDQ].[dbo].[CheckReview] AS r
+              ON r.RunId = {runId} AND r.CandidateId COLLATE DATABASE_DEFAULT = c.CandidateId
+            """;
+    }
+
+    private const string RunHintSql = """
+        CASE
+            WHEN r.ReviewedAtUtc IS NOT NULL THEN CONCAT_WS(N' ', N'No issue.', r.ReviewReason COLLATE DATABASE_DEFAULT)
+            WHEN r.Outcome = N'Check failed' THEN N'The SQL check failed. Open the error before relying on it.'
+            WHEN r.Outcome = N'No rows found' THEN N'The last run found no rows for this check.'
+            WHEN r.Outcome = N'Review transform pattern' THEN
+                CONCAT_WS(N' ', N'The transform differs from the common pattern.', c.CheckHint)
+            WHEN r.Outcome = N'Review affected rows' THEN
+                CONCAT_WS(N' ',
+                    CASE
+                        WHEN r.CandidateKind IN (N'JoinOrphan', N'OuterJoinNullExpansion', N'ImpliedForeignKeyMissingReference') AND r.SuspectRows IS NOT NULL THEN
+                            CONCAT(r.SuspectRows, CASE WHEN r.SuspectRows = 1 THEN N' row had no match.' ELSE N' rows had no match.' END)
+                        WHEN r.CandidateKind IN (N'JoinMultiplicityExplosion', N'OutputDuplicateRisk') AND r.SuspectRows IS NOT NULL THEN
+                            CONCAT(r.FindingGroups, CASE WHEN r.FindingGroups = 1 THEN N' shared join key produced ' ELSE N' shared join keys produced ' END,
+                                   r.SuspectRows, N' joined rows.')
+                        WHEN r.CandidateKind = N'ImpliedUniqueKeyViolation' THEN CONCAT(r.FindingGroups, N' lookup keys repeated.')
+                        ELSE N'The last run found evidence to review.'
+                    END, c.CheckHint)
+            ELSE CONCAT_WS(N' ', N'Not yet checked.', c.CheckHint)
+        END AS [Why look]
         """;
 
     private static string RenderCombinedSql(
@@ -410,7 +447,8 @@ public sealed class DataQualityToSqlConverter
                 continue;
 
             var evidence = string.Join("\n\n", joins.Select(join => RenderEvidence(join!, kind)).Distinct());
-            queries[group.Key] = new JoinReviewQueries(fanout ? RenderMatchProbe(joins[0]!) : null, evidence);
+            queries[group.Key] = new JoinReviewQueries(fanout ? RenderMatchProbe(joins[0]!) : null, evidence,
+                DescribeCheckQuestion(kind, joins.Length == 1 ? joins[0] : null));
         }
 
         return queries;
@@ -448,6 +486,20 @@ public sealed class DataQualityToSqlConverter
         FROM {join.Left.SqlName} AS a
         CROSS APPLY (SELECT COUNT_BIG(*) AS Matches FROM {join.Right.SqlName} AS b WHERE {join.Condition}) AS m;
         """;
+
+    private static string DescribeCheckQuestion(string kind, ReviewJoin? join) => kind switch
+    {
+        CandidateKinds.JoinOrphan or CandidateKinds.ImpliedForeignKeyMissingReference => join is null
+            ? "Which of the unmatched keys require a match?"
+            : $"Should each {join.Right.Table} row have a match in {join.Left.Table}?",
+        CandidateKinds.OuterJoinNullExpansion => join is null
+            ? "Which of the rows kept by the outer join require a match?"
+            : $"Should each {join.Left.Table} row have a match in {join.Right.Table}?",
+        CandidateKinds.JoinMultiplicityExplosion => $"Can one {join!.Left.Table} row match several rows in {join.Right.Table}?",
+        CandidateKinds.OutputDuplicateRisk => $"Could joining {join!.Left.Table} to {join.Right.Table} repeat an output key?",
+        CandidateKinds.ImpliedUniqueKeyViolation => $"Should this join key identify one row in {join!.Left.Table}?",
+        _ => throw new ArgumentOutOfRangeException(nameof(kind), kind, "Unsupported runtime check kind."),
+    };
 
     private static string RenderEvidence(ReviewJoin join, string kind)
     {
@@ -505,7 +557,7 @@ public sealed class DataQualityToSqlConverter
 
     private sealed record ReviewObject(string SqlName, string Table);
     private sealed record ReviewJoin(ReviewObject Left, ReviewObject Right, string[] LeftColumns, string[] RightColumns, string Condition);
-    private sealed record JoinReviewQueries(string? MatchProbe, string EvidenceQuery);
+    private sealed record JoinReviewQueries(string? MatchProbe, string EvidenceQuery, string CheckHint);
 
     private static bool IsSqlIdentifier(string? value) => value is { Length: > 0 and <= 128 };
 

@@ -12,7 +12,7 @@ It is not a hidden business-rules engine. It turns modeled transform syntax into
 4. Promote the generated candidates that should become SQL.
 5. Convert the promoted candidates to SQL views and MetaDQ operational SQL.
 6. Deploy the SQL into a database that contains the underlying source tables and, where useful, the original transform views.
-7. Execute `dq.Run` in the database where the checks are deployed. Pick a transform from the result, run its checks and review the findings.
+7. Execute `dq.Run` in the database where the checks are deployed. Browse the checks and their saved results, then run a transform's checks when needed.
 
 Commands:
 
@@ -102,7 +102,7 @@ False-positive reduction currently uses projection evidence from the semantic Tr
 - one detail view and one result-summary view per promoted candidate
 - `dq.v_ReviewChecks`, the list of checks in this deployment
 - `dq.v_DataQualityReview`, the dashboard of saved results
-- `dq.Run`, the local procedure for choosing a transform and running its checks
+- `dq.Run`, the local procedure for listing checks and running a selected scope
 - `dq.Explain`, the interpreted result and evidence for one check
 - `dq.MarkNoIssue`, records a review decision on a finding from a transform run
 - one MetaDQ operational pack:
@@ -133,14 +133,17 @@ after the data is ready:
 EXEC dq.Run;
 ```
 
-With no arguments, `dq.Run` lists the transforms that have deployed checks.
-Copy the **Run checks** command from the list, or pass a unique transform name
-to `dq.Run @Transform`. It executes only the checks associated with that
-transform. A check can be shared by multiple transforms. Use `@All = 1` for an
-explicit full run. Add `@IncludeClean = 1` to see checks with no findings.
+With no arguments, `dq.Run` lists the deployed checks and reads saved results
+without executing any checks. **Why look** shows what the last run found, or
+what the check is looking for if it has yet to run. **Next step** opens the saved
+evidence or runs the transform's checks when there is no saved result.
 
-Copy the **Investigate** command for a finding to see the measurement and
-evidence. If the result is expected, copy **Mark no issue** from the explanation.
+Pass a unique transform name or script ID to `dq.Run @Transform` to execute
+its checks. A check can be shared by multiple transforms. Use `@All = 1` for
+an explicit full run. Add `@IncludeClean = 1` to see clean checks in an
+execution result as well.
+
+If the evidence describes an expected result, copy **Mark no issue** from the explanation.
 You can add `@Reason` to record why. The decision saves the reviewer, time and
 reason alongside that finding. A later run produces a new result for review.
 
