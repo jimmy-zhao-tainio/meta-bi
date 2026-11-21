@@ -208,14 +208,42 @@ public sealed class DataQualityToSqlConverter
                 @IncludeClean bit = 0,
                 @RunId bigint = NULL OUTPUT,
                 @Transform nvarchar(512) = NULL,
-                @All bit = 0
+                @All bit = 0,
+                @Help bit = 0
             AS
             BEGIN
                 SET NOCOUNT ON;
                 SET @RunId = NULL;
 
+                IF @Help = 1
+                BEGIN
+                    DECLARE @RunCommand nvarchar(300) = N'EXEC ' + QUOTENAME(DB_NAME()) + N'.dq.Run';
+                    DECLARE @ExampleTransform nvarchar(512), @ScopedCommand nvarchar(max);
+                    SELECT TOP (1) @ExampleTransform = TransformScriptId
+                    FROM [dq].[v_ReviewCheckTransforms]
+                    ORDER BY [Transform], TransformScriptId;
+
+                    IF @ExampleTransform IS NOT NULL
+                        SET @ScopedCommand = @RunCommand + N' @Transform = N''' + REPLACE(@ExampleTransform, N'''', N'''''') + N'''';
+
+                    SELECT [SQL], [What it does]
+                    FROM (VALUES
+                        (1, @RunCommand + N';', N'List the checks and their last saved results.'),
+                        (2, @ScopedCommand + N';', N'Run the checks for one transform. Pass its unique name or script ID to @Transform.'),
+                        (3, @ScopedCommand + N', @IncludeClean = 1;', N'Run a transform and include checks that found no rows.'),
+                        (4, @RunCommand + N' @All = 1;', N'Run every deployed check. Use for an intentional full run.'),
+                        (5, NULL, N'Use Next step on a saved result to open its evidence. Use Mark no issue there to record a review decision.')
+                    ) AS help([Position], [SQL], [What it does])
+                    WHERE [SQL] IS NOT NULL OR [Position] = 5
+                    ORDER BY [Position];
+                    RETURN;
+                END;
+
                 IF @Transform IS NULL AND ISNULL(@All, 0) = 0
                 BEGIN
+                    SELECT N'Copy the SQL from Next step. To run one transform by name, pass its name to @Transform.' AS [How to use],
+                           CONCAT(N'EXEC ', QUOTENAME(DB_NAME()), N'.dq.Run @Help = 1;') AS [Help];
+
                     {latestReviewScope}
                     {RenderReviewRows("ReviewScope AS c", "c.RunId", "c.Transform", showHints: true, scriptId: "c.TransformScriptId")}
                     ORDER BY [Transform], [Check], c.CandidateId, c.TransformScriptId;

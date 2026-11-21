@@ -81,13 +81,31 @@ public sealed class StoredReviewSqlServerIntegrationTests
                 Assert.Null(row.Investigate);
             });
 
-            var scheduled = await RunReview(master, $"EXEC [{sourceDatabase}].dq.Run;");
+            var scheduled = await RunReview(master, $"EXEC [{sourceDatabase}].dq.Run;", hasGuide: true);
             Assert.Equal(before.Count, scheduled.Count);
             Assert.All(scheduled, row => Assert.StartsWith("Not yet checked.", row.Detail, StringComparison.Ordinal));
             var customerCommand = Assert.Single(scheduled, row => row.Transform == "dbo.v_customer_orders").Investigate;
             Assert.NotNull(customerCommand);
             Assert.Contains("Should each Order row have a match in Shipment?",
                 Assert.Single(scheduled, row => row.Transform == "dbo.v_order_shipments").Detail, StringComparison.Ordinal);
+            await using (var help = new SqlCommand($"EXEC [{sourceDatabase}].dq.Run @Help = 1, @All = 1;", master))
+            await using (var reader = await help.ExecuteReaderAsync())
+            {
+                Assert.Equal(new[] { "SQL", "What it does" }, Enumerable.Range(0, reader.FieldCount).Select(reader.GetName));
+                var commands = new List<string>();
+                while (await reader.ReadAsync())
+                {
+                    if (!reader.IsDBNull(0)) commands.Add(reader.GetString(0));
+                }
+                Assert.Equal(new[]
+                {
+                    $"EXEC [{sourceDatabase}].dq.Run;",
+                    customerCommand,
+                    customerCommand.TrimEnd(';') + ", @IncludeClean = 1;",
+                    $"EXEC [{sourceDatabase}].dq.Run @All = 1;",
+                }, commands);
+                Assert.False(await reader.NextResultAsync());
+            }
             await using (var runs = new SqlCommand($"SELECT COUNT(*) FROM [{logDatabase}].dbo.RunLog", master))
                 Assert.Equal(0, await runs.ExecuteScalarAsync());
             await Assert.ThrowsAsync<SqlException>(() => Execute(source, "EXEC dq.Run @Transform = N'unknown test transform';"));
@@ -101,7 +119,7 @@ public sealed class StoredReviewSqlServerIntegrationTests
             var outerFinding = Assert.Single(firstRun, x => x.Check == "Missing matches in outer joins");
             Assert.Equal("1 row had no match. Should each Order row have a match in Shipment?", outerFinding.Detail);
             Assert.Contains("1 shared join key produced 2 joined rows.", matchFinding.Detail, StringComparison.Ordinal);
-            var catalog = await RunReview(master, $"EXEC [{sourceDatabase}].dq.Run;");
+            var catalog = await RunReview(master, $"EXEC [{sourceDatabase}].dq.Run;", hasGuide: true);
             var listedOuter = Assert.Single(catalog, row => row.Transform == "dbo.v_order_shipments");
             Assert.Equal(outerFinding.Detail, listedOuter.Detail);
             Assert.Equal(outerFinding.Investigate, listedOuter.Investigate);
@@ -137,7 +155,7 @@ public sealed class StoredReviewSqlServerIntegrationTests
             Assert.Equal("Review affected rows", Assert.Single(saved, row =>
                 row.Transform == "dbo.v_customer_regions" && row.Investigate == finding.Investigate).Detail);
             Assert.Contains(saved, row => row.Investigate == matchFinding.Investigate);
-            var listedReview = Assert.Single(await RunReview(master, $"EXEC [{sourceDatabase}].dq.Run;"),
+            var listedReview = Assert.Single(await RunReview(master, $"EXEC [{sourceDatabase}].dq.Run;", hasGuide: true),
                 row => row.Investigate == scoped.Investigate);
             Assert.Equal("No issue. Kopplingen saknas avsiktligt.", listedReview.Detail);
             await using (var count = new SqlCommand($"""
@@ -223,10 +241,19 @@ public sealed class StoredReviewSqlServerIntegrationTests
     }
 
     private static async Task<List<ReviewRow>> RunReview(
-        SqlConnection connection, string sql, bool verifyOutputId = false)
+        SqlConnection connection, string sql, bool verifyOutputId = false, bool hasGuide = false)
     {
         await using var command = new SqlCommand(sql, connection) { CommandTimeout = 60 };
         await using var reader = await command.ExecuteReaderAsync();
+        if (hasGuide)
+        {
+            Assert.Equal(new[] { "How to use", "Help" }, Enumerable.Range(0, reader.FieldCount).Select(reader.GetName));
+            Assert.True(await reader.ReadAsync());
+            Assert.Contains("Next step", reader.GetString(0), StringComparison.Ordinal);
+            Assert.EndsWith(".dq.Run @Help = 1;", reader.GetString(1), StringComparison.Ordinal);
+            Assert.False(await reader.ReadAsync());
+            Assert.True(await reader.NextResultAsync());
+        }
         var review = await ReadRows(reader, showHints: true);
         Assert.Equal(review.Select(row => row.Transform).Order(StringComparer.OrdinalIgnoreCase),
             review.Select(row => row.Transform));

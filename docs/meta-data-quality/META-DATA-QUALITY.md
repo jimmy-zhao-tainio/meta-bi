@@ -133,10 +133,14 @@ after the data is ready:
 EXEC dq.Run;
 ```
 
-With no arguments, `dq.Run` lists the deployed checks and reads saved results
-without executing any checks. **Why look** shows what the last run found, or
-what the check is looking for if it has yet to run. **Next step** opens the saved
-evidence or runs the transform's checks when there is no saved result.
+Use `EXEC dq.Run @Help = 1;` for usage and examples. Help only reads the deployed
+catalog and returns without starting a run.
+
+With no arguments, `dq.Run` shows a short usage row followed by the deployed
+checks and saved results, without executing any checks. **Why look** shows
+what the last run found, or what the check is looking for if it has yet to run.
+**Next step** opens the saved evidence or runs the transform's checks when
+there is no saved result.
 
 Pass a unique transform name or script ID to `dq.Run @Transform` to execute
 its checks. A check can be shared by multiple transforms. Use `@All = 1` for
