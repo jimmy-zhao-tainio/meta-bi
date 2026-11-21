@@ -4,7 +4,7 @@ SET NOCOUNT ON;
 
 DECLARE @RunId bigint = (
     SELECT MAX(RunId) FROM MetaDQ.dbo.RunLog
-    WHERE SourceDatabaseName = N'AdventureWorksAnalytics' AND Status = N'Completed'
+    WHERE SourceDatabaseName = N'AdventureWorksAnalytics' AND Status = N'Completed' AND TransformScriptId IS NULL
 );
 IF @RunId IS NULL
     THROW 51000, N'Run the AdventureWorks Data Quality verification before inspecting saved findings.', 1;

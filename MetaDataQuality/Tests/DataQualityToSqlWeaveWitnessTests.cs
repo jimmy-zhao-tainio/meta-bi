@@ -205,8 +205,9 @@ public sealed class DataQualityToSqlWeaveWitnessTests(ITestOutputHelper output)
                 expected.ViewList,
                 view => Assert.Contains(view.DefinitionSql, sql, StringComparison.Ordinal));
             Assert.Equal(
-                expected.ViewList.Count + 2,
+                expected.ViewList.Count + 3,
                 CountOccurrences(sql, "CREATE OR ALTER VIEW [dq]."));
+            Assert.Contains("CREATE OR ALTER VIEW [dq].[v_ReviewCheckTransforms]", sql, StringComparison.Ordinal);
             Assert.Contains("/* MetaDataQuality operational store */", sql, StringComparison.Ordinal);
             Assert.Contains("CREATE OR ALTER PROCEDURE [dbo].[Run]", sql, StringComparison.Ordinal);
             Assert.Contains("CREATE OR ALTER PROCEDURE [dbo].[Findings]", sql, StringComparison.Ordinal);
@@ -262,7 +263,7 @@ public sealed class DataQualityToSqlWeaveWitnessTests(ITestOutputHelper output)
             Assert.Equal(source.DataQualityCandidateList.Count, production.CandidateViewCount);
             Assert.Equal(167, production.CandidateViewCount);
             Assert.Equal(
-                production.CandidateViewCount * 2 + 2,
+                production.CandidateViewCount * 2 + 3,
                 CountOccurrences(productionSql, "CREATE OR ALTER VIEW [dq]."));
             Assert.Equal(
                 source.JoinOrphanList.Count + source.OuterJoinNullExpansionList.Count,

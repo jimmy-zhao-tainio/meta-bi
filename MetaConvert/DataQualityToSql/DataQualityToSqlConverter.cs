@@ -47,7 +47,8 @@ public sealed class DataQualityToSqlConverter
             .Where(view => view.Name.StartsWith("r_", StringComparison.Ordinal))
             .ToDictionary(view => view.Name[2..], StringComparer.Ordinal);
         if (candidateViews.Any(view => view.Name.Equals("v_DataQualityReview", StringComparison.OrdinalIgnoreCase) ||
-                                       view.Name.Equals("v_ReviewChecks", StringComparison.OrdinalIgnoreCase)))
+                                       view.Name.Equals("v_ReviewChecks", StringComparison.OrdinalIgnoreCase) ||
+                                       view.Name.Equals("v_ReviewCheckTransforms", StringComparison.OrdinalIgnoreCase)))
         {
             throw new InvalidOperationException("A generated check collides with a reserved Data Quality review view name.");
         }
@@ -59,7 +60,8 @@ public sealed class DataQualityToSqlConverter
         }
 
         var candidateById = source.DataQualityCandidateList.ToDictionary(candidate => candidate.Id, StringComparer.Ordinal);
-        var reviewSql = RenderReviewSql(candidateViews, candidateById, summaryViews, BuildJoinReviewQueries(source));
+        var reviewSql = RenderReviewSql(candidateViews, candidateById, summaryViews, BuildJoinReviewQueries(source),
+            BuildTransformScope(source, candidateViews.Select(ResolveCandidateId).ToHashSet(StringComparer.Ordinal)));
 
         if (IsSqlFilePath(outputPath))
         {
@@ -137,7 +139,8 @@ public sealed class DataQualityToSqlConverter
         IReadOnlyList<View> candidateViews,
         IReadOnlyDictionary<string, DataQualityCandidate> candidates,
         IReadOnlyDictionary<string, View> summaries,
-        IReadOnlyDictionary<string, JoinReviewQueries> joinReviewQueries)
+        IReadOnlyDictionary<string, JoinReviewQueries> joinReviewQueries,
+        IReadOnlyList<CheckTransform> transforms)
     {
         var builder = new StringBuilder();
         AppendSchemaGuard(builder);
@@ -169,33 +172,84 @@ public sealed class DataQualityToSqlConverter
         }
 
         builder.AppendLine("GO");
+        AppendTransformScope(builder, transforms);
         builder.AppendLine($"""
             CREATE OR ALTER VIEW [dq].[v_DataQualityReview] AS
-            WITH LatestRun AS
+            WITH LatestFullRun AS
             (
-                SELECT TOP (1) RunId
+                SELECT MAX(RunId) AS RunId
                 FROM [MetaDQ].[dbo].[RunLog]
-                WHERE SourceDatabaseName = DB_NAME()
-                ORDER BY RunId DESC
+                WHERE SourceDatabaseName = DB_NAME() AND TransformScriptId IS NULL
+                  AND Status IN (N'Completed', N'CompletedWithErrors')
+            ), LatestTransformRun AS
+            (
+                SELECT TransformScriptId COLLATE Latin1_General_100_BIN2 AS TransformScriptId, MAX(RunId) AS RunId
+                FROM [MetaDQ].[dbo].[RunLog]
+                WHERE SourceDatabaseName = DB_NAME() AND TransformScriptId IS NOT NULL
+                  AND Status IN (N'Completed', N'CompletedWithErrors')
+                GROUP BY TransformScriptId COLLATE Latin1_General_100_BIN2
+            ), ReviewScope AS
+            (
+                SELECT c.CandidateId, c.CheckName, s.Transform,
+                       CASE WHEN f.RunId IS NULL OR t.RunId > f.RunId THEN t.RunId ELSE f.RunId END AS RunId
+                FROM [dq].[v_ReviewChecks] AS c
+                LEFT JOIN [dq].[v_ReviewCheckTransforms] AS s ON s.CandidateId = c.CandidateId
+                LEFT JOIN LatestTransformRun AS t ON t.TransformScriptId = s.TransformScriptId
+                CROSS JOIN LatestFullRun AS f
             )
-            {RenderReviewRows("LEFT JOIN LatestRun AS run ON 1 = 1")};
+            {RenderReviewRows("ReviewScope AS c", "c.RunId", "c.Transform")};
             GO
 
             CREATE OR ALTER PROCEDURE [dq].[Run]
                 @IncludeClean bit = 0,
-                @RunId bigint = NULL OUTPUT
+                @RunId bigint = NULL OUTPUT,
+                @Transform nvarchar(512) = NULL,
+                @All bit = 0
             AS
             BEGIN
                 SET NOCOUNT ON;
+                SET @RunId = NULL;
+
+                IF @Transform IS NULL AND ISNULL(@All, 0) = 0
+                BEGIN
+                    SELECT DISTINCT [Transform],
+                           CONCAT(N'EXEC ', QUOTENAME(DB_NAME()), N'.dq.Run @Transform = N''',
+                                  REPLACE(TransformScriptId, N'''', N'''''') , N''';') AS [Run checks]
+                    FROM [dq].[v_ReviewCheckTransforms]
+                    ORDER BY [Transform], [Run checks];
+                    RETURN;
+                END;
+
+                IF @Transform IS NOT NULL AND @All = 1
+                    THROW 51000, N'Choose a transform or request all checks.', 1;
+
+                DECLARE @TransformScriptId nvarchar(512), @Matches int;
+                IF @Transform IS NOT NULL
+                BEGIN
+                    SELECT TOP (1) @TransformScriptId = TransformScriptId
+                    FROM [dq].[v_ReviewCheckTransforms]
+                    WHERE TransformScriptId = @Transform COLLATE Latin1_General_100_BIN2;
+
+                    IF @TransformScriptId IS NULL
+                    BEGIN
+                        SELECT @TransformScriptId = MIN(TransformScriptId), @Matches = COUNT(DISTINCT TransformScriptId)
+                        FROM [dq].[v_ReviewCheckTransforms]
+                        WHERE [Transform] = @Transform COLLATE Latin1_General_100_BIN2;
+                        IF @Matches <> 1
+                            THROW 51000, N'This transform name is unknown or ambiguous. Run dq.Run without arguments and copy a Run checks command.', 1;
+                    END;
+                END;
 
                 DECLARE @SourceDatabaseName sysname = DB_NAME();
                 EXEC [MetaDQ].[dbo].[Run]
                     @SourceDatabaseName = @SourceDatabaseName,
                     @RunId = @RunId OUTPUT,
-                    @EmitResults = 0;
+                    @EmitResults = 0,
+                    @TransformScriptId = @TransformScriptId;
 
-                {RenderReviewRows("JOIN [MetaDQ].[dbo].[RunLog] AS run ON run.RunId = @RunId")}
-                WHERE @IncludeClean = 1 OR r.Outcome <> N'No rows found' OR r.Outcome IS NULL
+                {RenderReviewRows("[dq].[v_ReviewChecks] AS c CROSS JOIN [MetaDQ].[dbo].[RunLog] AS run", "run.RunId", "run.TransformName")}
+                WHERE run.RunId = @RunId AND r.CheckNo IS NOT NULL
+                  AND (@IncludeClean = 1 OR r.Outcome <> N'No rows found')
                 ORDER BY [Transform], [Check], c.CandidateId;
             END;
             GO
@@ -204,18 +258,18 @@ public sealed class DataQualityToSqlConverter
         return builder.ToString();
     }
 
-    private static string RenderReviewRows(string runJoin) => $"""
-        SELECT r.Transforms AS [Transform],
+    private static string RenderReviewRows(string from, string runId, string transform) => $"""
+        SELECT COALESCE({transform} COLLATE DATABASE_DEFAULT, r.Transforms COLLATE DATABASE_DEFAULT) AS [Transform],
                COALESCE(r.FindingTitle, c.CheckName) AS [Check],
-               COALESCE(r.Outcome, N'Not checked') AS [Outcome],
+               CASE WHEN r.ReviewedAtUtc IS NOT NULL THEN N'No issue'
+                    ELSE COALESCE(r.Outcome, N'Not checked') END AS [Outcome],
                CASE WHEN r.CheckNo IS NOT NULL THEN
                    CONCAT(N'EXEC ', QUOTENAME(DB_NAME()), N'.dq.Explain @CheckNo = ', r.CheckNo,
                           N', @RunId = ', r.RunId, N';')
                END AS [Investigate]
-        FROM [dq].[v_ReviewChecks] AS c
-        {runJoin}
+        FROM {from}
         LEFT JOIN [MetaDQ].[dbo].[CheckReview] AS r
-          ON r.RunId = run.RunId AND r.CandidateId COLLATE DATABASE_DEFAULT = c.CandidateId
+          ON r.RunId = {runId} AND r.CandidateId COLLATE DATABASE_DEFAULT = c.CandidateId
         """;
 
     private static string RenderCombinedSql(
@@ -249,6 +303,76 @@ public sealed class DataQualityToSqlConverter
 
     private static string SqlString(string value) => "N'" + value.Replace("'", "''", StringComparison.Ordinal) + "'";
     private static string SqlStringOrNull(string? value) => value is null ? "NULL" : SqlString(value);
+
+    private static CheckTransform[] BuildTransformScope(MetaDataQualityModel source, HashSet<string> deployedCandidates)
+    {
+        var occurrences = source.JoinPatternOccurrenceList.ToLookup(row => row.JoinPattern.Id);
+        var corpus = source.CorpusRelationshipPatternOccurrenceLinkList.ToLookup(
+            row => row.CorpusRelationshipPattern.Id, row => row.JoinPatternOccurrence);
+        var equivalences = source.CorpusColumnEquivalenceOccurrenceLinkList.ToLookup(
+            row => row.CorpusColumnEquivalence.Id, row => row.JoinPatternOccurrence);
+
+        IEnumerable<CheckTransform> Match(DataQualityCandidate candidate, IEnumerable<JoinPatternOccurrence> matches) =>
+            deployedCandidates.Contains(candidate.Id)
+                ? matches.Select(row => new CheckTransform(candidate.Id, row.TransformScriptId, row.TransformScriptName))
+                : [];
+
+        var scope = source.DataQualityCandidateJoinPatternLinkList.SelectMany(row => Match(row.DataQualityCandidate, occurrences[row.JoinPattern.Id]))
+            .Concat(source.ImpliedForeignKeyMissingReferenceList.SelectMany(row => Match(row.DataQualityCandidate, corpus[row.DominantPattern.Id])))
+            .Concat(source.ImpliedUniqueKeyViolationList.SelectMany(row => Match(row.DataQualityCandidate, corpus[row.DominantPattern.Id])))
+            .Concat(source.ImpliedJoinFanoutRiskList.SelectMany(row => Match(row.DataQualityCandidate, corpus[row.DominantPattern.Id])))
+            .Concat(source.ImpliedOutputDuplicateRiskList.SelectMany(row => Match(row.DataQualityCandidate, corpus[row.DominantPattern.Id])))
+            .Concat(source.MinorityJoinPatternList.SelectMany(row => Match(row.DataQualityCandidate, corpus[row.OutlierPattern.Id])))
+            .Concat(source.IncompleteCompositeJoinList.SelectMany(row => Match(row.DataQualityCandidate, corpus[row.OutlierPattern.Id])))
+            .Concat(source.SuspiciousExtraJoinPredicateList.SelectMany(row => Match(row.DataQualityCandidate, corpus[row.OutlierPattern.Id])))
+            .Concat(source.MissingCommonFilterList.SelectMany(row => Match(row.DataQualityCandidate, corpus[row.OutlierPattern.Id])))
+            .Concat(source.MinorityColumnEquivalenceList.SelectMany(row => Match(row.DataQualityCandidate, equivalences[row.OutlierEquivalence.Id])))
+            .Concat(source.InnerJoinAgainstUsuallyOptionalRelationshipList.SelectMany(row => Match(row.DataQualityCandidate, corpus[row.CorpusRelationshipPattern.Id])))
+            .Concat(source.LeftJoinAgainstUsuallyMandatoryRelationshipList.SelectMany(row => Match(row.DataQualityCandidate, corpus[row.CorpusRelationshipPattern.Id])))
+            .Distinct()
+            .OrderBy(row => row.CandidateId, StringComparer.Ordinal)
+            .ThenBy(row => row.ScriptId, StringComparer.Ordinal)
+            .ThenBy(row => row.Name, StringComparer.Ordinal)
+            .ToArray();
+
+        foreach (var script in scope.GroupBy(row => row.ScriptId, StringComparer.Ordinal))
+        {
+            if (script.Key.Length > 512 || script.Any(row => row.Name.Length > 512))
+                throw new InvalidOperationException($"Transform '{script.Key}' exceeds the 512-character DQ scope identifier or name limit.");
+            if (script.Select(row => row.Name).Distinct(StringComparer.Ordinal).Skip(1).Any())
+                throw new InvalidOperationException($"Transform '{script.Key}' has inconsistent names in the DQ workspace.");
+        }
+
+        return scope;
+    }
+
+    private static void AppendTransformScope(StringBuilder builder, IReadOnlyList<CheckTransform> scope)
+    {
+        builder.AppendLine("CREATE OR ALTER VIEW [dq].[v_ReviewCheckTransforms] AS");
+        if (scope.Count == 0)
+        {
+            builder.AppendLine("SELECT CAST(NULL AS nvarchar(256)) AS CandidateId,");
+            builder.AppendLine("       CAST(NULL AS nvarchar(512)) COLLATE Latin1_General_100_BIN2 AS TransformScriptId,");
+            builder.AppendLine("       CAST(NULL AS nvarchar(512)) COLLATE Latin1_General_100_BIN2 AS [Transform] WHERE 1 = 0;");
+        }
+        else
+        {
+            builder.AppendLine("SELECT CAST(v.CandidateId AS nvarchar(256)) AS CandidateId,");
+            builder.AppendLine("       CAST(v.TransformScriptId AS nvarchar(512)) COLLATE Latin1_General_100_BIN2 AS TransformScriptId,");
+            builder.AppendLine("       CAST(v.TransformName AS nvarchar(512)) COLLATE Latin1_General_100_BIN2 AS [Transform]");
+            builder.AppendLine("FROM (VALUES");
+            for (var index = 0; index < scope.Count; index++)
+            {
+                var row = scope[index];
+                builder.Append($"    ({SqlString(row.CandidateId)}, {SqlString(row.ScriptId)}, {SqlString(row.Name)})");
+                builder.AppendLine(index + 1 == scope.Count ? "" : ",");
+            }
+            builder.AppendLine(") v(CandidateId, TransformScriptId, TransformName);");
+        }
+        builder.AppendLine("GO");
+    }
+
+    private sealed record CheckTransform(string CandidateId, string ScriptId, string Name);
 
     private static Dictionary<string, JoinReviewQueries> BuildJoinReviewQueries(MetaDataQualityModel source)
     {
@@ -449,7 +573,7 @@ public sealed class DataQualityToSqlConverter
             OutputPath = outputPath,
             CandidateViewCount = candidateViewCount,
             DashboardViewCount = 1,
-            OperationalTableCount = 3,
+            OperationalTableCount = 4,
             OperationalProcedureCount = 2,
         };
 

@@ -74,20 +74,35 @@ public sealed class StoredReviewSqlServerIntegrationTests
             // dashboard queries as well as queries from the deployment database.
             var dashboard = $"[{sourceDatabase}].[dq].[v_DataQualityReview]";
             var before = await Read(master, dashboard);
-            Assert.Equal(4, before.Count);
+            Assert.Equal(4, before.Select(row => row.Check).Distinct().Count());
             Assert.All(before, row =>
             {
                 Assert.Equal("Not checked", row.Outcome);
                 Assert.Null(row.Investigate);
             });
 
-            var firstRun = await RunReview(source, "EXEC dq.Run;");
+            string customerCommand;
+            await using (var picker = new SqlCommand($"EXEC [{sourceDatabase}].dq.Run;", master))
+            await using (var reader = await picker.ExecuteReaderAsync())
+            {
+                Assert.Equal(new[] { "Transform", "Run checks" }, Enumerable.Range(0, reader.FieldCount).Select(reader.GetName));
+                var choices = new Dictionary<string, string>();
+                while (await reader.ReadAsync()) choices.Add(reader.GetString(0), reader.GetString(1));
+                Assert.Equal(4, choices.Count);
+                customerCommand = choices["dbo.v_customer_orders"];
+                Assert.False(await reader.NextResultAsync());
+            }
+            await using (var runs = new SqlCommand($"SELECT COUNT(*) FROM [{logDatabase}].dbo.RunLog", master))
+                Assert.Equal(0, await runs.ExecuteScalarAsync());
+            await Assert.ThrowsAsync<SqlException>(() => Execute(source, "EXEC dq.Run @Transform = N'unknown test transform';"));
+
+            var firstRun = await RunReview(source, "EXEC dq.Run @All = 1;");
             var first = await Read(master, dashboard);
-            Assert.Equal(firstRun.OrderBy(x => x.Investigate), first.OrderBy(x => x.Investigate));
-            var finding = Assert.Single(first, x => x.Check == "Missing referenced rows");
-            var pattern = Assert.Single(first, x => x.Outcome == "Review transform pattern");
-            var matchFinding = Assert.Single(first, x => x.Check == "Join may repeat rows");
-            var outerFinding = Assert.Single(first, x => x.Check == "Missing matches in outer joins");
+            Assert.Equal(firstRun.Select(x => x.Investigate).Order(), first.Select(x => x.Investigate).Distinct().Order());
+            var finding = Assert.Single(firstRun, x => x.Check == "Missing referenced rows");
+            var pattern = Assert.Single(firstRun, x => x.Outcome == "Review transform pattern");
+            var matchFinding = Assert.Single(firstRun, x => x.Check == "Join may repeat rows");
+            var outerFinding = Assert.Single(firstRun, x => x.Check == "Missing matches in outer joins");
 
             var explanation = await Explain(master, finding);
             Assert.Contains("2 rows on the checked side", explanation.Notes["Saved result"], StringComparison.Ordinal);
@@ -103,6 +118,34 @@ public sealed class StoredReviewSqlServerIntegrationTests
             var gap = Assert.Single(shipments.Rows);
             Assert.Equal(new byte[] { 0x01, 0x02, 0xFD, 0xFE }, Assert.IsType<byte[]>(gap[0]));
             Assert.Equal(DBNull.Value, gap[1]);
+
+            var scoped = Assert.Single(await RunReview(master, customerCommand));
+            Assert.Equal("dbo.v_customer_orders", scoped.Transform);
+            Assert.Equal(finding.Check, scoped.Check);
+            var scopedExplanation = await Explain(master, scoped);
+            var mark = scopedExplanation.Notes["Mark no issue"].TrimEnd(';');
+            await Execute(master, mark + ", @Reason = N'Kopplingen saknas avsiktligt.';");
+            await Execute(master, mark + ", @Reason = N'Retry should preserve the first reason';");
+            var reviewed = await Explain(master, scoped);
+            Assert.StartsWith("No issue (", reviewed.Notes["Review"], StringComparison.Ordinal);
+            Assert.Equal("Kopplingen saknas avsiktligt.", reviewed.Notes["Review reason"]);
+            Assert.Equal(scopedExplanation.Notes["Saved result"], reviewed.Notes["Saved result"]);
+            var saved = await Read(master, dashboard);
+            Assert.Equal("No issue", Assert.Single(saved, row => row.Investigate == scoped.Investigate).Outcome);
+            Assert.Equal("Review affected rows", Assert.Single(saved, row =>
+                row.Transform == "dbo.v_customer_regions" && row.Investigate == finding.Investigate).Outcome);
+            Assert.Contains(saved, row => row.Investigate == matchFinding.Investigate);
+            await using (var count = new SqlCommand($"""
+                SELECT COUNT(*) FROM [{logDatabase}].dbo.RunCheck c
+                JOIN [{logDatabase}].dbo.RunLog r ON r.RunId=c.RunId
+                WHERE r.RunId=(SELECT MAX(RunId) FROM [{logDatabase}].dbo.RunLog);
+                """, master))
+                Assert.Equal(1, await count.ExecuteScalarAsync());
+            var rerun = Assert.Single(await RunReview(source, "EXEC dq.Run @Transform = N'dbo.v_customer_orders';"));
+            Assert.Equal("Review affected rows", rerun.Outcome);
+            Assert.NotEqual(scoped.Investigate, rerun.Investigate);
+            Assert.True((await Explain(master, rerun)).Notes.ContainsKey("Mark no issue"));
+            Assert.Equal(reviewed.Notes["Review"], (await Explain(master, scoped)).Notes["Review"]);
 
             var patternExplanation = await Explain(master, pattern);
             var conditions = Assert.Single(patternExplanation.Grids);
@@ -124,14 +167,14 @@ public sealed class StoredReviewSqlServerIntegrationTests
             Assert.Equal(new object[] { 1, 1, 2L }, Assert.Single(repeated.Rows));
 
             await Execute(source, "INSERT dbo.Customer VALUES (3, 3); INSERT dbo.[Order] VALUES (2, 0xA1B2C3D4); INSERT dbo.CustomerRegion VALUES (2); INSERT dbo.Shipment VALUES (0x0102FDFE); DELETE dbo.OrderLine;");
-            Assert.Contains(finding, await Read(master, dashboard));
-            var secondRun = await RunReview(source, "EXEC dq.Run;");
+            Assert.Contains(await Read(master, dashboard), row => row.Investigate == finding.Investigate);
+            var secondRun = await RunReview(source, "EXEC dq.Run @All = 1;");
             var latestPattern = Assert.Single(secondRun);
             Assert.Equal(pattern.Check, latestPattern.Check);
             Assert.Equal(pattern.Outcome, latestPattern.Outcome);
             Assert.NotEqual(pattern.Investigate, latestPattern.Investigate);
             var second = await Read(master, dashboard);
-            var clean = Assert.Single(second, x => x.Check == finding.Check);
+            var clean = Assert.Single(second, x => x.Check == finding.Check && x.Transform == "dbo.v_customer_orders");
             Assert.Equal("No rows found", clean.Outcome);
             var historical = await Explain(master, finding);
             Assert.Equal(explanation.Notes["Saved result"], historical.Notes["Saved result"]);
@@ -140,20 +183,20 @@ public sealed class StoredReviewSqlServerIntegrationTests
 
             var includeClean = $"""
                 DECLARE @RunId bigint;
-                EXEC [{sourceDatabase}].dq.Run @IncludeClean = 1, @RunId = @RunId OUTPUT;
+                EXEC [{sourceDatabase}].dq.Run @All = 1, @IncludeClean = 1, @RunId = @RunId OUTPUT;
                 SELECT @RunId;
                 """;
             var allResults = await RunReview(master, includeClean, verifyOutputId: true);
             Assert.Equal(4, allResults.Count);
             Assert.Contains(allResults, row => row.Check == clean.Check && row.Outcome == clean.Outcome);
 
-            var savedClean = (await Read(master, dashboard)).Single(x => x.Check == finding.Check);
+            var savedClean = (await Read(master, dashboard)).Single(x => x.Check == finding.Check && x.Transform == "dbo.v_customer_orders");
             await Execute(source, $"DROP VIEW [dq].[r_{runtimeCheck}];");
             Assert.Contains(savedClean, await Read(master, dashboard));
-            var failureRun = await RunReview(source, "EXEC dq.Run;");
+            var failureRun = await RunReview(source, "EXEC dq.Run @All = 1;");
             var third = await Read(master, dashboard);
             var failure = Assert.Single(failureRun, x => x.Outcome == "Check failed");
-            Assert.Contains(failure, third);
+            Assert.Contains(third, row => row.Investigate == failure.Investigate && row.Outcome == failure.Outcome);
             Assert.Contains(third, row => row.Check == pattern.Check && row.Outcome == pattern.Outcome);
             var failureExplanation = await Explain(master, failure);
             Assert.Contains($"r_{runtimeCheck}", failureExplanation.Notes["SQL error"], StringComparison.Ordinal);

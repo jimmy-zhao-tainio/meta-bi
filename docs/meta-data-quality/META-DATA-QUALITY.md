@@ -12,7 +12,7 @@ It is not a hidden business-rules engine. It turns modeled transform syntax into
 4. Promote the generated candidates that should become SQL.
 5. Convert the promoted candidates to SQL views and MetaDQ operational SQL.
 6. Deploy the SQL into a database that contains the underlying source tables and, where useful, the original transform views.
-7. Execute `dq.Run` in the database where the checks are deployed, then drill into the results.
+7. Execute `dq.Run` in the database where the checks are deployed. Pick a transform from the result, run its checks and review the findings.
 
 Commands:
 
@@ -102,10 +102,11 @@ False-positive reduction currently uses projection evidence from the semantic Tr
 - one detail view and one result-summary view per promoted candidate
 - `dq.v_ReviewChecks`, the list of checks in this deployment
 - `dq.v_DataQualityReview`, the dashboard of saved results
-- `dq.Run`, the local procedure for running and reviewing checks
+- `dq.Run`, the local procedure for choosing a transform and running its checks
 - `dq.Explain`, the interpreted result and evidence for one check
+- `dq.MarkNoIssue`, records a review decision on a finding from a transform run
 - one MetaDQ operational pack:
-- tables `dbo.RunLog`, `dbo.RunCheck`, `dbo.FindingLog`
+- tables `dbo.RunLog`, `dbo.RunCheck`, `dbo.FindingLog`, `dbo.FindingReview`
 - procedures `dbo.Run`, `dbo.Findings`
 
 The sanctioned `MetaDataQuality` → `MetaSql` weave generates the detail and result
@@ -132,14 +133,20 @@ after the data is ready:
 EXEC dq.Run;
 ```
 
-The procedure returns one list of findings and check errors, ordered by
-transform. Copy and run the SQL in a row's **Investigate** column to see what
-the check measured, what it means, and any evidence rows. The command refers
-to that saved finding even after a newer run. Add `@IncludeClean = 1` to see checks with no
-findings as well.
+With no arguments, `dq.Run` lists the transforms that have deployed checks.
+Copy the **Run checks** command from the list, or pass a unique transform name
+to `dq.Run @Transform`. It executes only the checks associated with that
+transform. A check can be shared by multiple transforms. Use `@All = 1` for an
+explicit full run. Add `@IncludeClean = 1` to see checks with no findings.
 
-The dashboard reads the latest saved run. You can filter by transform or
-outcome without executing the checks again.
+Copy the **Investigate** command for a finding to see the measurement and
+evidence. If the result is expected, copy **Mark no issue** from the explanation.
+You can add `@Reason` to record why. The decision saves the reviewer, time and
+reason alongside that finding. A later run produces a new result for review.
+
+The dashboard reads the latest completed result for each transform from its
+most recent scoped or full run. You can filter by transform or outcome without
+executing the checks again.
 
 ```sql
 SELECT [Transform], [Check], Outcome, Investigate
@@ -152,7 +159,8 @@ ORDER BY [Transform], [Check];
 - **Review transform pattern** means the finding comes from comparing how transforms are written.
 - **No rows found** means the data check reported no findings.
 - **Check failed** means the check raised a SQL error. Run the **Investigate** command to read it.
-- **Not checked** means there is no saved result for that check in the latest run.
+- **No issue** means a reviewer accepted this saved finding.
+- **Not checked** means there is no saved result in the latest applicable run.
 
 For row-multiplication and duplicate-risk findings with one modeled join pattern
 and resolved base-table keys, the procedure checks how many matching rows

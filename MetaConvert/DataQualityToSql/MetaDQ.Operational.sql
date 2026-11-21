@@ -31,6 +31,10 @@ IF COL_LENGTH(N''dbo.RunLog'', N''ErrorMessage'') IS NULL
 BEGIN
     ALTER TABLE [dbo].[RunLog] ADD [ErrorMessage] nvarchar(4000) NULL;
 END;
+IF COL_LENGTH(N''dbo.RunLog'', N''TransformScriptId'') IS NULL
+BEGIN
+    ALTER TABLE [dbo].[RunLog] ADD [TransformScriptId] nvarchar(512) NULL, [TransformName] nvarchar(512) NULL;
+END;
 
 IF OBJECT_ID(N''[dbo].[FindingLog]'', N''U'') IS NULL
 BEGIN
@@ -318,6 +322,20 @@ BEGIN
     );
 END;
 
+IF OBJECT_ID(N''dbo.FindingReview'', N''U'') IS NULL
+BEGIN
+    CREATE TABLE [dbo].[FindingReview]
+    (
+        [RunId] bigint NOT NULL,
+        [CandidateId] nvarchar(256) NOT NULL,
+        [ReviewedBy] sysname NOT NULL,
+        [ReviewedAtUtc] datetime2(3) NOT NULL CONSTRAINT [DF_dbo_FindingReview_ReviewedAtUtc] DEFAULT (SYSUTCDATETIME()),
+        [Reason] nvarchar(1000) NULL,
+        CONSTRAINT [PK_dbo_FindingReview] PRIMARY KEY ([RunId], [CandidateId]),
+        CONSTRAINT [FK_dbo_FindingReview_RunCheck] FOREIGN KEY ([RunId], [CandidateId]) REFERENCES [dbo].[RunCheck] ([RunId], [CandidateId])
+    );
+END;
+
 IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id = OBJECT_ID(N''dbo.FindingLog'') AND name = N''IX_dbo_FindingLog_RunId_CandidateId'')
     CREATE INDEX [IX_dbo_FindingLog_RunId_CandidateId] ON [dbo].[FindingLog] ([RunId], [CandidateId]);
 
@@ -328,7 +346,7 @@ GO
 
 EXEC [MetaDQ].sys.sp_executesql N'
 CREATE OR ALTER VIEW [dbo].[CheckReview] AS
-SELECT r.[RunId], r.[SourceDatabaseName], r.[Status] AS [RunStatus], c.[CandidateId],
+SELECT r.[RunId], r.[SourceDatabaseName], r.[Status] AS [RunStatus], c.[CandidateId], r.[TransformName],
        ROW_NUMBER() OVER (PARTITION BY c.[RunId] ORDER BY c.[CandidateId]) AS [CheckNo],
        f.[CandidateKind], f.[OutputMode],
        CASE f.[CandidateKind]
@@ -347,9 +365,10 @@ SELECT r.[RunId], r.[SourceDatabaseName], r.[Status] AS [RunStatus], c.[Candidat
        END AS [Outcome],
        f.[CheckedRelationship], f.[Transforms], f.[FindingGroups], f.[SuspectRows],
        COALESCE(c.[ErrorMessage], f.[Explanation]) AS [Explanation],
-       c.[CompletedAtUtc] AS [CheckedAtUtc]
+       c.[CompletedAtUtc] AS [CheckedAtUtc], review.[ReviewedAtUtc], review.[ReviewedBy], review.[Reason] AS [ReviewReason]
 FROM [dbo].[RunLog] AS r
 JOIN [dbo].[RunCheck] AS c ON c.[RunId] = r.[RunId]
+LEFT JOIN [dbo].[FindingReview] AS review ON review.[RunId] = c.[RunId] AND review.[CandidateId] = c.[CandidateId]
 OUTER APPLY
 (
     SELECT NULLIF(MAX(COALESCE(f.[FindingTitle], N'''')), N'''') AS [FindingTitle],
@@ -378,7 +397,8 @@ EXEC [MetaDQ].sys.sp_executesql N'
 CREATE OR ALTER PROCEDURE [dbo].[Run]
     @SourceDatabaseName sysname,
     @RunId bigint OUTPUT,
-    @EmitResults bit = 1
+    @EmitResults bit = 1,
+    @TransformScriptId nvarchar(512) = NULL
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -400,19 +420,38 @@ BEGIN
 
     DECLARE @runIdLocal bigint;
     DECLARE @catalog nvarchar(600) = QUOTENAME(@SourceDatabaseName) + N''.[dq].[v_ReviewChecks]'';
+    DECLARE @mapping nvarchar(600) = QUOTENAME(@SourceDatabaseName) + N''.[dq].[v_ReviewCheckTransforms]'';
+    DECLARE @transformName nvarchar(512);
     IF OBJECT_ID(@catalog, N''V'') IS NULL
         THROW 51000, N''The Data Quality review catalog is missing or inaccessible. Deploy the current generated SQL to the source database first.'', 1;
 
-    INSERT INTO [dbo].[RunLog] ([SourceDatabaseName], [Status])
-    VALUES (@SourceDatabaseName, N''Running'');
+    IF @TransformScriptId IS NOT NULL
+    BEGIN
+        IF OBJECT_ID(@mapping, N''V'') IS NULL
+            THROW 51000, N''The transform review catalog is missing or inaccessible. Deploy the current generated SQL to the source database first.'', 1;
+        DECLARE @resolveSql nvarchar(max) =
+            N''SELECT @Name = MIN([Transform]) FROM '' + @mapping +
+            N'' WHERE [TransformScriptId] = @ScriptId COLLATE Latin1_General_100_BIN2;'';
+        EXEC sys.sp_executesql @resolveSql, N''@ScriptId nvarchar(512), @Name nvarchar(512) OUTPUT'',
+            @ScriptId = @TransformScriptId, @Name = @transformName OUTPUT;
+        IF @transformName IS NULL
+            THROW 51000, N''This transform has no deployed DQ checks.'', 1;
+    END;
+
+    INSERT INTO [dbo].[RunLog] ([SourceDatabaseName], [Status], [TransformScriptId], [TransformName])
+    VALUES (@SourceDatabaseName, N''Running'', @TransformScriptId, @transformName);
     SET @runIdLocal = SCOPE_IDENTITY();
     SET @RunId = @runIdLocal;
 
     BEGIN TRY
         DECLARE @snapshotSql nvarchar(max) =
             N''INSERT INTO [dbo].[RunCheck] ([RunId], [CandidateId], [SummaryView])
-              SELECT @RunId, [CandidateId], [SummaryView] FROM '' + @catalog + N'';'';
-        EXEC sys.sp_executesql @snapshotSql, N''@RunId bigint'', @RunId = @runIdLocal;
+              SELECT @RunId, c.[CandidateId], c.[SummaryView] FROM '' + @catalog + N'' AS c'';
+        IF @TransformScriptId IS NOT NULL
+            SET @snapshotSql += N'' WHERE EXISTS (SELECT 1 FROM '' + @mapping + N'' AS m
+                WHERE m.[CandidateId] = c.[CandidateId] AND m.[TransformScriptId] = @ScriptId COLLATE Latin1_General_100_BIN2)'';
+        EXEC sys.sp_executesql @snapshotSql, N''@RunId bigint, @ScriptId nvarchar(512)'',
+            @RunId = @runIdLocal, @ScriptId = @TransformScriptId;
 
         DECLARE @insertSql nvarchar(max) =
             N''INSERT INTO [dbo].[FindingLog] ([RunId], [DQView], [Issue], [FindingTitle], [FindingCategory], [OutputMode], [CandidateId], [CandidateKind], [Relationship], [RelationshipLabel], [ReferencingObject], [ReferencedObject], [CheckedObject], [SuspectSide], [SuspectObject], [LookupObject], [RelatedObject], [CorpusRelationship], [CorpusRelationshipPattern], [DominantPattern], [OutlierPattern], [TransformViews], [GeneratedView], [RowsReturned], [ResultRowCount], [FindingGroupCount], [TotalSuspectCount], [SuspectRowCount], [Explanation], [FindingExplanation], [EvidenceSummary], [EvidenceOccurrenceCount], [OutlierOccurrenceCount], [EvidenceTransformCount], [OutlierTransformCount], [EvidenceConsensusRatio], [DominantConsensusRatio], [EvidenceOutlierRatio], [OutlierRatio], [EvidenceQuality], [ConfidenceBand], [ConfidenceReason], [EvidenceDiversitySummary], [ConfidenceSummary], [DistinctTransformCount], [DistinctSourceTransformCount], [DistinctSourceObjectCount], [DistinctRelationshipPatternCount], [EffectiveTransformCount], [RecommendedAction], [RuntimeCountStatus], [ReviewQuery], [DetailQuery], [TransformViewQuery], [SupportingTransformQuery]) '' +

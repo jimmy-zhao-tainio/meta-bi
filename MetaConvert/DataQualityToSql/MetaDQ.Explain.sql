@@ -15,13 +15,15 @@ BEGIN
     DECLARE @Kind nvarchar(128), @Mode nvarchar(64), @Outcome nvarchar(64),
             @Title nvarchar(256), @Relationship nvarchar(512), @Transforms nvarchar(max),
             @DetailView sysname, @Error nvarchar(max), @Probe nvarchar(max), @EvidenceQuery nvarchar(max),
-            @CandidateId nvarchar(256), @Groups bigint, @Rows bigint;
+            @CandidateId nvarchar(256), @Groups bigint, @Rows bigint,
+            @ScopedTransform nvarchar(512), @ReviewedBy sysname, @ReviewReason nvarchar(1000);
 
     SELECT @Kind = r.[CandidateKind], @Mode = r.[OutputMode], @Outcome = r.[Outcome],
            @Title = COALESCE(r.[FindingTitle], c.[CheckName], r.[CandidateId]),
-           @Relationship = r.[CheckedRelationship], @Transforms = r.[Transforms],
+           @Relationship = r.[CheckedRelationship], @Transforms = COALESCE(r.[TransformName], r.[Transforms]),
            @DetailView = c.[DetailView], @Probe = c.[MatchProbe], @EvidenceQuery = c.[EvidenceQuery], @CandidateId = r.[CandidateId],
            @Groups = r.[FindingGroups], @Rows = r.[SuspectRows],
+           @ScopedTransform = r.[TransformName], @ReviewedBy = r.[ReviewedBy], @ReviewReason = r.[ReviewReason],
            @Error = CASE WHEN r.[Outcome] = N'Check failed' THEN r.[Explanation] END
     FROM [MetaDQ].[dbo].[CheckReview] AS r
     LEFT JOIN [dq].[v_ReviewChecks] AS c ON c.[CandidateId] = r.[CandidateId] COLLATE DATABASE_DEFAULT
@@ -144,7 +146,13 @@ ORDER BY [RelationshipLabel], [OutlierPattern], [FindingId];';
         (6, N'What to do', @Decision),
         (7, N'SQL error', @Error),
         (8, N'Match check error', @EvidenceError),
-        (9, N'Evidence query', @EvidenceQuery)
+        (9, N'Evidence query', @EvidenceQuery),
+        (10, N'Review', CASE WHEN @ReviewedBy IS NOT NULL THEN CONCAT(N'No issue (', @ReviewedBy, N')') END),
+        (11, N'Review reason', @ReviewReason),
+        (12, N'Mark no issue', CASE WHEN @ScopedTransform IS NOT NULL AND @ReviewedBy IS NULL
+                                      AND @Outcome IN (N'Review affected rows', N'Review transform pattern') THEN
+            CONCAT(N'EXEC ', QUOTENAME(@SourceDatabase), N'.dq.MarkNoIssue @RunId = ', @RunId,
+                   N', @CheckNo = ', @CheckNo, N';') END)
     ) AS notes([Position], [Topic], [WhatToKnow])
     WHERE NULLIF([WhatToKnow], N'') IS NOT NULL
     ORDER BY [Position];
@@ -156,5 +164,37 @@ ORDER BY [RelationshipLabel], [OutlierPattern], [FindingId];';
     BEGIN CATCH
         SELECT ERROR_MESSAGE() AS [Evidence error];
     END CATCH;
+END;
+GO
+
+CREATE OR ALTER PROCEDURE [dq].[MarkNoIssue]
+    @RunId bigint,
+    @CheckNo bigint,
+    @Reason nvarchar(1000) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @CandidateId nvarchar(256);
+    SELECT @CandidateId = [CandidateId]
+    FROM [MetaDQ].[dbo].[CheckReview]
+    WHERE [RunId] = @RunId AND [CheckNo] = @CheckNo AND [SourceDatabaseName] = DB_NAME()
+      AND [TransformName] IS NOT NULL AND [RunStatus] IN (N'Completed', N'CompletedWithErrors')
+      AND [Outcome] IN (N'Review affected rows', N'Review transform pattern');
+
+    IF @CandidateId IS NULL
+        THROW 51000, N'No reviewable finding was found. Run the checks for one transform and use the Mark no issue command from dq.Explain.', 1;
+
+    INSERT INTO [MetaDQ].[dbo].[FindingReview] ([RunId], [CandidateId], [ReviewedBy], [Reason])
+    SELECT @RunId, @CandidateId, ORIGINAL_LOGIN(), NULLIF(TRIM(@Reason), N'')
+    WHERE NOT EXISTS
+    (
+        SELECT 1 FROM [MetaDQ].[dbo].[FindingReview] WITH (UPDLOCK, HOLDLOCK)
+        WHERE [RunId] = @RunId AND [CandidateId] = @CandidateId
+    );
+
+    SELECT N'No issue' AS [Review], [ReviewedBy], [Reason]
+    FROM [MetaDQ].[dbo].[FindingReview]
+    WHERE [RunId] = @RunId AND [CandidateId] = @CandidateId;
 END;
 GO
