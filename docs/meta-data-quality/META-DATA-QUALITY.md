@@ -136,8 +136,9 @@ EXEC dq.Run;
 Use `EXEC dq.Run @Help = 1;` for usage and examples. Help only reads the deployed
 catalog and returns without starting a run.
 
-With no arguments, `dq.Run` shows a short usage row followed by the deployed
-checks and saved results, without executing any checks. **Why look** shows
+With no arguments, `dq.Run` shows a summary followed by the deployed checks
+and saved results, without executing any checks. The summary counts the rows
+in the list below it and ends with the command for **Help**. **Why look** shows
 what the last run found, or what the check is looking for if it has yet to run.
 **Next step** opens the saved evidence or runs the transform's checks when
 there is no saved result.

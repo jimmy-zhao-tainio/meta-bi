@@ -241,12 +241,37 @@ public sealed class DataQualityToSqlConverter
 
                 IF @Transform IS NULL AND ISNULL(@All, 0) = 0
                 BEGIN
-                    SELECT N'Copy the SQL from Next step. To run one transform by name, pass its name to @Transform.' AS [How to use],
-                           CONCAT(N'EXEC ', QUOTENAME(DB_NAME()), N'.dq.Run @Help = 1;') AS [Help];
+                    {latestReviewScope}, ListedChecks AS
+                    (
+                        {RenderReviewRows("ReviewScope AS c", "c.RunId", "c.Transform", showHints: true, scriptId: "c.TransformScriptId")}
+                    )
+                    SELECT * INTO #ListedChecks FROM ListedChecks;
 
-                    {latestReviewScope}
-                    {RenderReviewRows("ReviewScope AS c", "c.RunId", "c.Transform", showHints: true, scriptId: "c.TransformScriptId")}
-                    ORDER BY [Transform], [Check], c.CandidateId, c.TransformScriptId;
+                    SELECT entries.[Item], entries.[Value]
+                    FROM (
+                        SELECT COUNT_BIG(*) AS ChecksListed,
+                               COUNT_BIG(CASE WHEN Outcome IN (N'Review affected rows', N'Review transform pattern') THEN 1 END) AS NeedsReview,
+                               COUNT_BIG(CASE WHEN Outcome = N'No issue' THEN 1 END) AS NoIssue,
+                               COUNT_BIG(CASE WHEN Outcome = N'No rows found' THEN 1 END) AS NoFindings,
+                               COUNT_BIG(CASE WHEN Outcome IN (N'Check failed', N'Run interrupted') THEN 1 END) AS CheckErrors,
+                               COUNT_BIG(CASE WHEN Outcome = N'Not checked' THEN 1 END) AS NotChecked
+                        FROM #ListedChecks
+                    ) AS totals
+                    CROSS APPLY (VALUES
+                        (1, N'Checks listed', CONVERT(nvarchar(20), totals.ChecksListed)),
+                        (2, N'Needs review', CONVERT(nvarchar(20), totals.NeedsReview)),
+                        (3, N'No issue', CONVERT(nvarchar(20), totals.NoIssue)),
+                        (4, N'No findings', CONVERT(nvarchar(20), totals.NoFindings)),
+                        (5, N'Check errors', CONVERT(nvarchar(20), totals.CheckErrors)),
+                        (6, N'Not yet checked', CONVERT(nvarchar(20), totals.NotChecked)),
+                        (7, N'How to use', N'Copy the SQL from Next step. To run one transform, pass its name to @Transform.'),
+                        (8, N'Help', CONCAT(N'EXEC ', QUOTENAME(DB_NAME()), N'.dq.Run @Help = 1;'))
+                    ) AS entries([Position], [Item], [Value])
+                    ORDER BY entries.[Position];
+
+                    SELECT [Transform], [Check], [Why look], [Next step]
+                    FROM #ListedChecks
+                    ORDER BY [Transform], [Check], CandidateId, TransformScriptId;
                     RETURN;
                 END;
 
@@ -290,16 +315,14 @@ public sealed class DataQualityToSqlConverter
 
     private static string RenderReviewRows(string from, string runId, string transform, bool showHints = false, string? scriptId = null)
     {
-        var status = showHints ? RunHintSql : """
-            CASE WHEN r.ReviewedAtUtc IS NOT NULL THEN N'No issue'
-                 ELSE COALESCE(r.Outcome, N'Not checked') END AS [Outcome]
-            """;
+        var status = showHints ? RunHintSql : ReviewOutcomeSql;
         var runCommand = scriptId is null ? "" : $"""
             WHEN {scriptId} IS NOT NULL THEN
                 CONCAT(N'EXEC ', QUOTENAME(DB_NAME()), N'.dq.Run @Transform = N''',
                        REPLACE({scriptId}, N'''', N''''''), N''';')
             """;
         var actionColumn = showHints ? "[Next step]" : "[Investigate]";
+        var listDetails = scriptId is null ? "" : $", {ReviewOutcomeSql}, c.CandidateId, {scriptId} AS TransformScriptId";
         return $"""
             SELECT COALESCE({transform} COLLATE DATABASE_DEFAULT, r.Transforms COLLATE DATABASE_DEFAULT) AS [Transform],
                    COALESCE(r.FindingTitle, c.CheckName) AS [Check],
@@ -308,12 +331,17 @@ public sealed class DataQualityToSqlConverter
                        CONCAT(N'EXEC ', QUOTENAME(DB_NAME()), N'.dq.Explain @CheckNo = ', r.CheckNo,
                               N', @RunId = ', r.RunId, N';')
                    {runCommand}
-                   END AS {actionColumn}
+                   END AS {actionColumn}{listDetails}
             FROM {from}
             LEFT JOIN [MetaDQ].[dbo].[CheckReview] AS r
               ON r.RunId = {runId} AND r.CandidateId COLLATE DATABASE_DEFAULT = c.CandidateId
             """;
     }
+
+    private const string ReviewOutcomeSql = """
+        CASE WHEN r.ReviewedAtUtc IS NOT NULL THEN N'No issue'
+             ELSE COALESCE(r.Outcome, N'Not checked') END AS [Outcome]
+        """;
 
     private const string RunHintSql = """
         CASE
